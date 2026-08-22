@@ -461,4 +461,34 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   },
   { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397', renderWidth: 1550 }, // Phase 6 (015), named-repair: both dispositions declare layoutSizingHorizontal FIXED at 1550px on the isolated master (figma_get_component_for_development, read-only) — the contract's own align-self:stretch correctly fills every REAL consumer's own container (verified live: coordonnees' embedded instance measures 480px, its own wrapper's content width) and must NOT carry a width itself, or every stretch-context consumer regresses (confirmed: adding one broke coordonnees/sav/presentation, reverted). This is a harness-only pin, isolation-context width, same class as accordion-row's own 1550.
   { id: 'tab', label: 'Tab (Piqueray)', kind: 'contract', contractId: 'ds.tab', fileKey: PIQUERAY, setNodeId: '2061:1588', renderWidth: 86 },
+
+  // ── SECTIONS (ajoutées 2026-08-22) ────────────────────────────────────────
+  // Jusqu'ici ce fichier ne portait AUCUN contrat de section sauf
+  // ds.google-reviews : 22 des 34 contrats couverts, et les 12 absents étaient
+  // exactement les sections. Rien ne déclarait l'exclusion et aucune raison
+  // technique ne la soutenait (google-reviews est une section comme les
+  // autres). Conséquence mesurée : pour ces sections, la chaîne
+  // Figma → HTML → Odoo n'avait PAS de premier maillon — un score Odoo à
+  // 0,007 % prouvait « Odoo rend ce que notre HTML rend », jamais « notre HTML
+  // rend ce que Figma dessine ». Les `setNodeId` viennent des ancres
+  // `figma.nodeId` des contrats (écrites par anchors:writeback), non saisies à
+  // la main. Pas de `renderWidth` : ces roots portent leur propre largeur
+  // (fill/référence 1728) et n'ont pas la non-concordance de boîte des atomes
+  // à largeur FIXED.
+  { id: 'hero', label: 'Hero (Piqueray)', kind: 'contract', contractId: 'ds.hero', fileKey: PIQUERAY, setNodeId: '2111:3382' , renderWidth: 1728},
+  { id: 'presentation', label: 'Presentation (Piqueray)', kind: 'contract', contractId: 'ds.presentation', fileKey: PIQUERAY, setNodeId: '2103:2824' , renderWidth: 1276.5},
+  { id: 'reassurances', label: 'Reassurances (Piqueray)', kind: 'contract', contractId: 'ds.reassurances', fileKey: PIQUERAY, setNodeId: '2114:3721' , renderWidth: 1550},
+  { id: 'equipe', label: 'Equipe (Piqueray)', kind: 'contract', contractId: 'ds.equipe', fileKey: PIQUERAY, setNodeId: '2115:3947' , renderWidth: 1728},
+  { id: 'sav', label: 'SAV (Piqueray)', kind: 'contract', contractId: 'ds.sav', fileKey: PIQUERAY, setNodeId: '2108:3105' , renderWidth: 1550},
+  { id: 'devis', label: 'Devis (Piqueray)', kind: 'contract', contractId: 'ds.devis', fileKey: PIQUERAY, setNodeId: '2096:2524' , renderWidth: 1728},
+  { id: 'faq', label: 'FAQ (Piqueray)', kind: 'contract', contractId: 'ds.faq', fileKey: PIQUERAY, setNodeId: '2104:2914' , renderWidth: 1550},
+  // Coordonnees porte 2 icônes et Header 3 : `core/emit-html.ts` ne rend NI
+  // `vectorAsset` NI icône (grep : zéro occurrence des deux) — le résidu de ces
+  // deux lignes inclura donc une absence d'icône côté NOUS. Constat attendu, à
+  // trier comme cause nommée, jamais à masquer.
+  { id: 'coordonnees', label: 'Coordonnees (Piqueray)', kind: 'contract', contractId: 'ds.coordonnees', fileKey: PIQUERAY, setNodeId: '2104:2904' , renderWidth: 1728},
+  { id: 'texte-seo', label: 'TexteSEO (Piqueray)', kind: 'contract', contractId: 'ds.texte-seo', fileKey: PIQUERAY, setNodeId: '2108:3123' , renderWidth: 1550},
+  // Header : encre claire sur Transparent → surface d'inspection `dark` des
+  // DEUX côtés, comme le sujet Odoo `subjects/header.mts` le fait déjà.
+  { id: 'header', label: 'Header (Piqueray)', kind: 'contract', contractId: 'ds.header', fileKey: PIQUERAY, setNodeId: '84:285', comparisonSurface: 'dark' },
 ];

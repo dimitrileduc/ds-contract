@@ -30,6 +30,12 @@ npm run build && npm run parity && npm run eval && npm run plugin:check \
 # 2. Refresh LECTURE SEULE de parity/snapshots/figma-components.json (notre geste a changé le fichier)
 # 3. Contrats : delta header 2.0.0 (contracts/header-2.0.0.delta.md §1, rien d'autre)
 #              + adoption piqueray-logo 1.0.0 (contracts/piqueray-logo-adoption.md)
+# 3bis. AJOUT DATÉ 2026-08-22 — ce runbook s'arrêtait à 2.0.0 et ne rejouait donc PAS
+#       l'état livré. Un SECOND geste canvas §X a suivi (master Fond=Transparent :
+#       FIXED → FILL, stroke 1px du set retiré, 10 usages laissés à 1728, version
+#       nommée « 022 — header master FILL 1728 »), puis le bump MINOR header 2.1.0
+#       (root width fill + referenceWidth 1728 + jeton size.header.root lâché).
+#       Ce geste-là n'a PAS rafraîchi parity/snapshots (clôture n°15). Détail : n°4.
 npm run build
 node scripts/update-golden.mjs          # re-pin golden (jamais à la main)
 npm run plugin:check                    # re-pin engine.receipt

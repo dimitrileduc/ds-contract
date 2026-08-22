@@ -6,6 +6,7 @@ description: "Task list template for feature implementation"
 # Tasks: [FEATURE NAME]
 
 **Input**: Design documents from `/specs/[###-feature-name]/`
+
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
 **Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
@@ -25,24 +26,22 @@ description: "Task list template for feature implementation"
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
-  The /speckit.tasks command MUST replace these with actual tasks based on:
+
+  The /speckit-tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
-  EXCEPTION: when the feature executes in a git worktree (the norm here), T001 below
-  is NOT a sample — keep it, adapted with the real worktree path.
   ============================================================================
 -->
 
@@ -50,15 +49,7 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [Worktree gates — F1] Make this worktree self-sufficient (Constitution,
-      Development Workflow: Worktree Gates): run `npm install` inside the worktree
-      (`npm run eval` symlinks the checkout's own node_modules — it refuses without
-      this), then `npx playwright install chromium` (two checks drive real Chromium).
-      The FULL gate sweep — including `npm run eval` — runs in this worktree at every
-      checkpoint and at closure; the visual-parity baseline is versioned in-worktree.
-      The main checkout cannot check out this branch while the worktree holds it — if
-      a check must run there: `git -C <main-checkout> checkout --detach <commit>`,
-      sweep, restore.
+- [ ] T001 Create project structure per implementation plan
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools
 

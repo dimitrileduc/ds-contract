@@ -6,6 +6,22 @@ qu'elle solde. Décision fondatrice : **owner, 2026-08-20 — la variante `Fond=
 audit 020 : 9/9 Transparent) est retirée du contrat ET du set Figma.** Aucun canal de schéma
 nouveau ; schéma et émetteurs intouchés.
 
+> **Addendum daté — 2026-08-22.** Ce delta reste **normatif et inchangé** pour
+> 1.0.0 → 2.0.0. Mais une **seconde évolution, non planifiée**, a suivi dans la même
+> feature, et elle n'a **aucun document de delta** — c'est le trou que cet addendum
+> comble : `ds.header` **2.0.0 → 2.1.0** (MINOR), trois éditions —
+> `anatomy.root.layout.width: "fill"`, ajout de `anatomy.root.layout.referenceWidth:
+> 1728`, retrait du jeton de largeur fixe (`size.header.root`, devenu **orphelin**) —
+> précédées d'un **second geste canvas §X** sur le master `Fond=Transparent`
+> (`layoutSizingHorizontal` FIXED → **FILL**, stroke 1 px du set retiré pour que le
+> master reste exactement 1728, **10 usages laissés intacts à 1728**, version nommée
+> « 022 — header master FILL 1728 »). Motif, mesure (1920 → 1920) et re-pins :
+> `../proofs/RAPPORT-CLOTURE.md` §« Limites nommées » n°4.
+>
+> Ce que ce second geste n'a **pas** eu, contrairement au geste 2.0.0 décrit au §0
+> ci-dessous : le rafraîchissement du cliché `parity/snapshots/figma-components.json`
+> (clôture n°15 — et le cliché ne porte de toute façon aucune géométrie).
+
 ## 0. Préalable canvas (§VIII : nettoyer la source AVANT de contracter — §X actif)
 
 Ordre imposé, chaque étape avec reçu sous `proofs/canvas/` :

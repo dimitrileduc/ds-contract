@@ -11,7 +11,7 @@ spikes S1/S1b/S2 ont leur reçu OBSERVÉ.
 | `lib/repo-data.ts` | `SHELL_CONTRACT_IDS = ['ds.header']` (NOUVEAU, à côté des posables) ; `closureOf` inchangé |
 | `build-assets.ts` | émet la CSS des fermetures posables ∪ shell (dédup existante) — `components.pqr.css` gagne les blocs `header/nav-item/piqueray-logo` (button déjà présent) ; `--check` reste le tribunal |
 | `check-module.ts` | racine posable ⇒ snippet inscrit ; racine shell ⇒ snippet **INTERDIT** (FR-001) |
-| `check-inputs.ts` / lock | + `header@2.0.0`, `nav-item@1.2.0`, `piqueray-logo@1.0.0` (chemin+version+SHA-256) |
+| `check-inputs.ts` / lock | + `header@2.0.0` — **LIVRÉ `header@2.1.0`** (correction datée 2026-08-22 : bump MINOR post-plan, root en `fill` ; clôture §Limites nommées n°4) —, `nav-item@1.2.0`, `piqueray-logo@1.0.0` (chemin+version+SHA-256) |
 | `check-authoring.ts` | exige `header.authoring.json` exhaustif (un verdict par prop/part, occurrences imbriquées comprises) ; enum `mechanism` du schéma 019 étendu **additivement** : `native-menu` |
 | `build-derivation-report.ts` | compte les nouveaux blocs manuels `ODOO-022-*` (fichiers/blocs/lignes/octets — jamais un avis) |
 
