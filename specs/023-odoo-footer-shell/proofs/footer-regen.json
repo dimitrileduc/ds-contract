@@ -1,0 +1,18 @@
+{
+  "receiptId": "footer-regen-odoo-019-foundation",
+  "scenarioId": "footer-regen",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "edited-footer-fields",
+  "observations": [
+    "[pass] avant régénération — footer rend du contenu — attendu « col1 non vide », observé « 23 chars »",
+    "[pass] régénération repo — npm run build vert — attendu « exit 0 », observé « exit 0 »",
+    "[pass] SC-006 — CSS footer reproduite À L'OCTET (déterministe, non figée) — attendu « odoo:assets --check propre », observé « ✔ 8 sortie(s) générée(s) conformes, et deux constructions identiques à l'octet. »",
+    "[pass] update module après régénération — attendu « exit 0 », observé « exit 0 »",
+    "[pass] Odoo repart — attendu « healthcheck OK », observé « OK »",
+    "[pass] SC-006 — textes survivent à la régénération — attendu « identique », observé « identique »",
+    "[pass] SC-006 — design intact après régénération — attendu « logo + CTA », observé « logo=true cta=true »"
+  ],
+  "artifacts": [],
+  "limitCodes": []
+}

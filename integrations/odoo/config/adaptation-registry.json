@@ -687,7 +687,8 @@
         "ds.sav",
         "ds.devis",
         "ds.faq",
-        "ds.header"
+        "ds.header",
+        "ds.footer"
       ],
       "reasonCode": "odoo-layout-bridge",
       "decisionRefs": [
@@ -954,6 +955,19 @@
         "hero.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-023-FOOTER-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/footer.xml",
+      "rootContracts": [
+        "ds.footer"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "footer.authoring.json",
+        "spike-footer.json"
+      ],
+      "mechanism": "qweb"
     }
   ]
 }

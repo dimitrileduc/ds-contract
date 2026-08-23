@@ -1,0 +1,36 @@
+{
+  "receiptId": "spike-footer-odoo-023-footer-shell",
+  "scenarioId": "spike-footer",
+  "snapshotId": "odoo-19.0-20260803",
+  "status": "pass",
+  "spike": "S1",
+  "date": "2026-08-22",
+  "method": "lecture de la source website 19 dans le conteneur épinglé (docker exec). Chaque assertion étiquetée DOCUMENTÉ (source) ou OBSERVÉ (instance).",
+  "decision_D2": "Route retenue : livrer un gabarit `template_footer_piqueray` héritant `website.layout`, xpath `//div[@id='footer']` position=replace (le patron EXACT de `website.footer_custom` et de TOUS les templates de footer natifs Odoo 19). Le nôtre naît `active=\"False\"` ; la migration l'active et désactive `website.footer_custom` (le défaut actif). La zone copyright native (`o_footer_copyright`) est supprimée par un SECOND xpath (notre footer porte son propre copyright gouverné via `ds.copyright`).",
+  "observations": [
+    "[DOCUMENTÉ] structure du layout — `<footer id=\"bottom\">` dans web/views/webclient_templates.xml:68 contient deux enfants : `<div id=\"footer\"/>` (le contenu du footer, cible de remplacement) et `<div class=\"o_footer_copyright\">` (le copyright natif, conditionnel `t-if=\"not no_copyright\"`)",
+    "[DOCUMENTÉ] zone footer — TOUS les templates de footer natifs héritent `website.layout` et remplacent `//div[@id='footer']` — source website/views/website_templates.xml : footer_custom:1640, template_footer_descriptive:1696, template_footer_centered:1739, template_footer_links:1783, template_footer_minimalist:1839, template_footer_contact:1882, template_footer_call_to_action:1947, template_footer_headline:1980, template_footer_mega:2021, template_footer_mega_columns:2116, template_footer_mega_links:2244, template_footer_mega_cards:2354, template_footer_slideout:2428 — 13 variantes au total",
+    "[DOCUMENTÉ] activation — exactement un gabarit de footer est actif ; le défaut est `website.footer_custom` (active=\"True\", website_templates.xml:1639). Tous les autres naissent `active=\"False\"`. Le mécanisme de bascule est le même flag `active` sur `ir.ui.view` que pour les headers",
+    "[DOCUMENTÉ] copyright natif — `website.footer_no_copyright` (website_templates.xml:2438) fournit un mécanisme pour masquer le copyright natif : il pose `t-set no_copyright=True` avant la div `.o_footer_copyright`, dont le rendu est conditionné par `t-if=\"not no_copyright\"` dans la base (webclient_templates.xml:70). Alternative : un deuxième xpath sur `//div[hasclass('o_footer_copyright')]` position=replace pour le supprimer entièrement",
+    "[DOCUMENTÉ] contenu du footer_custom — le footer par défaut est un `oe_structure oe_structure_solo` contenant un snippet `s_text_block` avec 3 colonnes (Useful Links, About us, Connect with us) et un widget social media — c'est du contenu éditable/sauvegardable (COW). Notre gabarit remplace TOUT ce contenu par la composition gouvernée de ds.footer",
+    "[DOCUMENTÉ] COW immunité — les templates de footer natifs utilisent `t-ignore=\"true\"` sur le `div#footer` pour marquer leur contenu comme non héritable par les vues COW. Notre gabarit hérite `website.layout` comme eux ; puisque le contenu est un template ARCH re-rendu à chaque requête (pas un snippet sauvegardé en HTML), le mécanisme COW ne s'applique pas au contenu de notre footer_bar — seul le `website.layout` lui-même est sujet à COW, et notre héritage est structurel (il remplace la zone, il ne la modifie pas). Même argument que le header : le `t-call` rend le template depuis l'arch à chaque requête"
+  ],
+  "findings": {
+    "xpath": "//div[@id='footer']",
+    "xpathPosition": "replace",
+    "nativeActiveTemplate": "website.footer_custom",
+    "nativeTemplateToDeactivate": "website.footer_custom",
+    "copyrightSuppression": "Deuxième xpath : `//div[hasclass('o_footer_copyright')]` position=replace — notre footer porte son propre copyright gouverné (ds.copyright). Alternative : activer `website.footer_no_copyright` pour poser `no_copyright=True`",
+    "cowImmunity": "Structurellement tenue. Le gabarit hérite website.layout et remplace //div[@id='footer'] ; le contenu est un t-call vers footer_bar qui rend l'arch à chaque requête. Le mécanisme COW d'Odoo ne touche que le HTML sauvegardé (oe_structure), jamais un template ARCH re-rendu. Même patron exact que le header (template_header_piqueray, xpath //header//nav, spike-header.json)."
+  },
+  "artifacts": [
+    "web/views/webclient_templates.xml:68 (footer#bottom base structure)",
+    "website/views/website_templates.xml:1639 (footer_custom — active default)",
+    "website/views/website_templates.xml:2438 (footer_no_copyright — copyright suppression mechanism)"
+  ],
+  "limitCodes": [],
+  "consequences_for_qweb": [
+    "T012 : `views/footer.xml` = `template_footer_piqueray` inherit `website.layout`, xpath `//div[@id='footer']` position=replace, rendu de `t-call=\"piqueray_ds.footer_bar\"`. Deuxième xpath `//div[hasclass('o_footer_copyright')]` position=replace pour supprimer le copyright natif (remplacé par ds.copyright dans footer_bar).",
+    "T015 : l'activation de notre footer (active flag sur template_footer_piqueray) + désactivation de website.footer_custom fait partie de la migration/hook."
+  ]
+}

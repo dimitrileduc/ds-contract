@@ -1,0 +1,98 @@
+{
+  "spike": "S2",
+  "date": "2026-08-22",
+  "question": "persistance du texte libre dans un gabarit système (footer re-rendu à chaque requête, jamais sauvegardé en HTML)",
+  "sources": [
+    {
+      "file": "odoo/addons/html_editor/models/ir_ui_view.py",
+      "line": 62,
+      "what": "save_embedded_field — writes t-field edits to the MODEL RECORD (record.write({field: value})), NOT to the view arch"
+    },
+    {
+      "file": "odoo/addons/html_editor/models/ir_ui_view.py",
+      "line": 295,
+      "what": "save method — if xpath is None, dispatches to save_embedded_field; if xpath set, extracts embedded fields first, saves them to model, then saves the view arch with fields reverted to t-field refs"
+    },
+    {
+      "file": "odoo/addons/html_editor/models/ir_qweb_fields.py",
+      "line": 403,
+      "what": "IrQwebFieldText.from_html — calls html_to_text(element), strips HTML, returns plain text; round-trips correctly with value_to_html which converts \\n to <br>"
+    },
+    {
+      "file": "odoo/addons/base/models/ir_qweb_fields.py",
+      "line": 335,
+      "what": "IrQwebFieldText.value_to_html — nl2br(value); renders \\n as <br> for display"
+    },
+    {
+      "file": "odoo/addons/html_builder/static/src/core/core_setup_editor_plugin.js",
+      "line": 8,
+      "what": "o_editable_selectors: '[data-oe-model]' — any element with data-oe-model is made contenteditable by the editor"
+    },
+    {
+      "file": "odoo/addons/html_builder/static/src/core/save_plugin.js",
+      "line": 49,
+      "what": "savable_selectors includes '#wrapwrap [data-oe-field]:not([data-oe-sanitize-prevent-edition])' — t-field elements are in the savable scope"
+    },
+    {
+      "file": "odoo/addons/html_builder/static/src/core/field_change_replication_plugin.js",
+      "line": 1,
+      "what": "FieldChangeReplicationPlugin — replicates edits to all DOM elements referencing the same (model, id, field) tuple; supports multi-appearance of the same field on one page"
+    },
+    {
+      "file": "odoo/addons/website/models/ir_qweb.py",
+      "line": 77,
+      "what": "website=current_website — the `website` variable is injected into the QWeb rendering context, so t-field='website.x_field' resolves correctly"
+    },
+    {
+      "file": "odoo/addons/website/views/website_templates.xml",
+      "line": 14,
+      "what": "t-field='submenu.name' — inline text editing of a Char field on website.menu, same pattern, proven in the default header"
+    },
+    {
+      "file": "odoo/addons/website/views/website_templates.xml",
+      "line": 1552,
+      "what": "t-field='website.logo' — inline image editing of a field on the website model, proven in the default logo"
+    },
+    {
+      "file": "odoo/addons/website/models/website.py",
+      "line": 99,
+      "what": "class Website(models.Model) — the website model, extensible via _inherit (e.g. website_sale extends it at line 31 of its website.py)"
+    }
+  ],
+  "findings": {
+    "mechanism": "t-field inline editing on Text fields of the website model",
+    "hostModel": "website (extended by piqueray_ds with _inherit='website')",
+    "fields": [
+      {
+        "name": "x_pqr_footer_col1",
+        "type": "Text",
+        "purpose": "colonne 1 (Adresse) — text rendered via t-field, edited inline"
+      },
+      {
+        "name": "x_pqr_footer_col2",
+        "type": "Text",
+        "purpose": "colonne 2 (Horaires)"
+      },
+      {
+        "name": "x_pqr_footer_col3",
+        "type": "Text",
+        "purpose": "colonne 3 (Contact)"
+      },
+      {
+        "name": "x_pqr_footer_copyright",
+        "type": "Text",
+        "purpose": "copyright (mentions légales)"
+      }
+    ],
+    "editChain": "edit→save→reopen→public→update→intact: YES — t-field writes to the MODEL record (save_embedded_field calls record.write()), NOT to the view arch; module update (-u piqueray_ds) reloads the arch from XML (which still contains t-field directives pointing to the same model fields) and renders the current database values; data is never touched by the update",
+    "inlineEditing": "YES — core_setup_editor_plugin makes all [data-oe-model] elements contenteditable; save_plugin includes [data-oe-field] in savable_selectors; text fields round-trip via value_to_html (nl2br) and from_html (html_to_text); rich-text marks are NOT available (plain text only) which matches the verdict (allowedMarks: [])",
+    "seeding": "ir.config_parameter guard (FLAG pattern from hooks.py); initial values from contract sample/default; idempotent — never re-seeded on update",
+    "modelsDir": "models/ directory must be created in the addon (currently no models); __init__.py updated to import models"
+  },
+  "verdict": "CONFIRMED — t-field on Text fields of the website model is the correct mechanism. Data persists in the database, survives module updates, supports inline editing in the website editor, and round-trips plain text with line breaks correctly. No verdict change needed.",
+  "verdictChange": false,
+  "additionalFindings": {
+    "footerXpath": "All native Odoo 19 footer templates use xpath expr='//div[@id=\"footer\"]' position='replace' on website.layout. The base structure is <footer id='bottom'><div id='footer'/></footer>. The default active footer is 'footer_custom'. Our template must deactivate it and activate ours — same pattern as the header.",
+    "socialFields": "social_facebook and social_instagram are Char fields already on the website model (website.py line 145/157), with defaults from res.company. Editable via Settings. This confirms spike S3's candidate."
+  }
+}
