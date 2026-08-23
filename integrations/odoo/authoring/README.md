@@ -92,6 +92,7 @@ nomme un **bloc** (`component`) et son **contenu**. Extraits réels de `pages/ho
 | `cards` | liste de cartes (`titre` / `texte` ou `body` / `image`) — réassurances, catégories |
 | `reviews` | liste d'avis (`auteur` / `initiale` / `date` / `texte`) — Avis Google |
 | `remove_class` | retire une classe du bloc (ex : `pqr-soustitre-on` pour masquer un sous-titre) |
+| `add_class` | ajoute une classe de composition au bloc (ex : `s_pqr_bleed` pour la pleine largeur — voir « Layout de page ») |
 | `set_empty` | vide un texte |
 
 Le `<part>` est l'étiquette d'un morceau du bloc (`data-pqr-part="…"` dans le template).
@@ -103,6 +104,29 @@ Les plus utiles : `hero-title`, `hero-cta`, `hero-background`, `sav-background`,
 `s_pqr_devis`, `s_pqr_reassurances`, `s_pqr_google_reviews`, `s_pqr_equipe`,
 `s_pqr_faq`, `s_pqr_coordonnees`, `s_pqr_texte_seo`, plus `pqr_section_header`
 (un en-tête de section à composer, ex. au-dessus des avis).
+
+## Layout de page (gutter, gap, pleine largeur) — À LIRE avant tout html→odoo
+
+Le **padding horizontal** (gutter) et l'**espacement vertical** (gap) entre sections
+NE sont PAS dans les blocs. Ils vivent une seule fois sur le **page container** :
+le composeur enveloppe toutes les sections dans `<div id="wrap" class="oe_structure o_pqr_page">`,
+et `o_pqr_page` (dans `static/src/css/odoo-bridge.css`) est une **content-grid** qui
+porte le gutter (`--pqr-space-89`) et le `row-gap` (`--pqr-space-128`).
+
+**Règle non négociable pour un futur émetteur html→odoo :**
+
+- Les **sections restent full-width** côté contrat. Le gutter/gap sont de la
+  **composition NON gouvernée** — ni dans `contracts/*.contract.json`, ni surveillés
+  par `parity`/image-parity (image-parity mesure le **bloc nu**, plein largeur).
+  C'est cohérent avec Figma, où le 89 est porté par un frame `Container` non gouverné
+  (nœud `2496:7189`), pas par le master de section.
+- **NE JAMAIS cuire le gutter dans un contrat** : ça casserait image-parity (bloc-avec-89
+  vs master Figma full-width) et le modèle « on ne gouverne que les sections ».
+- Une section **pleine largeur** (bord à bord, ex. `devis`) reçoit `"add_class": ["s_pqr_bleed"]`
+  → `grid-column: full` : elle sort du gutter **en gardant son gap vertical** (pas de marge
+  négative). `header`/`footer` sont hors de `#wrap` par construction — rien à faire pour eux.
+
+Tracé dans `integrations/odoo/config/adaptation-registry.json` (reason code `odoo-page-layout`).
 
 ## Les images
 Elles vivent dans **`assets/`** (`assets/hero.png`, `assets/cat_garage.png`…).
