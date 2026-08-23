@@ -1403,6 +1403,37 @@
       "variantCount": 1,
       "properties": {},
       "nestedInstances": []
+    },
+    {
+      "name": "Section Avis Google",
+      "nodeId": "2545:5685",
+      "key": "a4d8c699641576c3f44fa7042382979ef9445cdb",
+      "description": "GoogleReviewsSection — generated from contract ds.google-reviews-section v1.0.0",
+      "variantCount": 1,
+      "properties": {
+        "Contrôles#2545:4": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {
+        "Afficher accroche#2169:64": { "type": "BOOLEAN", "defaultValue": true, "variantOptions": null, "preferredValues": null },
+        "Titre#2090:47": { "type": "TEXT", "defaultValue": "Plus de 1500 portes installées par année et autant de clients satisfaits", "variantOptions": null, "preferredValues": null },
+        "Accroche#2090:46": { "type": "TEXT", "defaultValue": "Nos avis Google vérifiés", "variantOptions": null, "preferredValues": null },
+        "Alignement": { "type": "VARIANT", "defaultValue": "Centre", "variantOptions": null, "preferredValues": null },
+        "Contrôles#2178:80": { "type": "BOOLEAN", "defaultValue": true, "variantOptions": null, "preferredValues": null },
+        "Volume#2178:79": { "type": "TEXT", "defaultValue": "93 avis", "variantOptions": null, "preferredValues": null },
+        "Note globale#2178:78": { "type": "TEXT", "defaultValue": "4.8", "variantOptions": null, "preferredValues": null },
+        "Qualificatif#2178:77": { "type": "TEXT", "defaultValue": "Excellent", "variantOptions": null, "preferredValues": null }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Avis Google",
+        "Notation",
+        "Review-card"
+      ]
     }
   ]
 }

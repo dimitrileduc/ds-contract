@@ -1622,7 +1622,7 @@ const COMPONENTS = [
     "setName": "Carte",
     "contractId": "ds.carte",
     "anchorKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-    "description": "Carte — generated from contract ds.carte v2.0.1 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Carte — generated from contract ds.carte v2.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1656,6 +1656,7 @@ const COMPONENTS = [
             "itemSpacing": "space/24",
             "paddingBottom": "space/24"
           },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",

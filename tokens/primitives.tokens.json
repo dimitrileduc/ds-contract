@@ -550,7 +550,7 @@
       "carte-cinq-cartes": {
         "$value": "284.4px",
         "$type": "dimension",
-        "$description": "Largeur d'une carte dans la disposition « 5 cartes » de ds.reassurances. MINT from-dump 016 (L-DW002, 2026-08-05) : la source portait 285 px en valeur BRUTE, gouvernée par aucun token — donc invisible au différentiel, exactement le trou que la règle « la géométrie se porte en tokens » vise. La valeur corrigée est (1550 − 4×32) / 5 = 284,4 : les 5 cartes remplissent leur conteneur exactement, sans toucher au conteneur ni aux gaps (décision owner, même doctrine que les variantes à 4 cartes). Le diagnostic 013 n'avait jamais nommé cette variante ; elle a été trouvée au re-relevé vif T026."
+        "$description": "Legacy bridge token retained only until the governed live-Figma repair removes its matching variable. Reassurances v1.3 does not consume it: card widths are derived from their native grid tracks, never from this token."
       }
     },
     "review-card": {

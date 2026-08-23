@@ -32,6 +32,8 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {
   "colonnes-3:root": {
     "display": "grid",
+    "width": "100%",
+    "minWidth": "0",
     "gridTemplateColumns": "repeat(3, minmax(0, 1fr))"
   }
 };

@@ -25,6 +25,14 @@
         "deprecated"
       ]
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "atom",
+        "molecule",
+        "section"
+      ]
+    },
     "description": {
       "type": "string"
     },
@@ -110,6 +118,13 @@
             "prop",
             "map"
           ]
+        },
+        "provenance": {
+          "type": "string",
+          "enum": [
+            "authored",
+            "extracted"
+          ]
         }
       },
       "required": [
@@ -140,6 +155,10 @@
               },
               {
                 "type": "string",
+                "const": "rich-text"
+              },
+              {
+                "type": "string",
                 "const": "number"
               },
               {
@@ -167,11 +186,31 @@
                       "type": "string"
                     },
                     "additionalProperties": {
-                      "type": "string",
-                      "enum": [
-                        "text",
-                        "number",
-                        "boolean"
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "text",
+                            "number",
+                            "boolean"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "enum": {
+                              "minItems": 1,
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "enum"
+                          ],
+                          "additionalProperties": false
+                        }
                       ]
                     }
                   }
@@ -193,6 +232,28 @@
               },
               {
                 "type": "number"
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    },
+                    "strong": {
+                      "type": "boolean"
+                    },
+                    "underline": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
               }
             ]
           },
@@ -323,6 +384,9 @@
                   "pressed",
                   "selected"
                 ]
+              },
+              "controls": {
+                "type": "string"
               }
             },
             "required": [
@@ -392,6 +456,13 @@
             "AA",
             "AAA"
           ]
+        },
+        "provenance": {
+          "type": "string",
+          "enum": [
+            "authored",
+            "extracted"
+          ]
         }
       }
     },
@@ -430,6 +501,9 @@
                   "type": "null"
                 }
               ]
+            },
+            "dumpedAt": {
+              "type": "string"
             }
           },
           "required": [
@@ -493,8 +567,14 @@
               "type": "string",
               "enum": [
                 "flex",
-                "inline-flex"
+                "inline-flex",
+                "grid"
               ]
+            },
+            "columns": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
             },
             "direction": {
               "type": "string",
@@ -520,6 +600,21 @@
                 "end",
                 "space-between"
               ]
+            },
+            "width": {
+              "type": "string",
+              "const": "fill"
+            },
+            "aspectRatio": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "referenceWidth": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "clip": {
+              "type": "boolean"
             },
             "grow": {
               "type": "boolean"
@@ -580,6 +675,15 @@
                       "end",
                       "space-between"
                     ]
+                  },
+                  "width": {
+                    "type": "string",
+                    "const": "fill"
+                  },
+                  "columns": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "additionalProperties": false
@@ -593,6 +697,34 @@
           "additionalProperties": false
         },
         "stylesWhen": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "prop": {
+                "type": "string"
+              },
+              "equals": {
+                "type": "string"
+              },
+              "styles": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "prop",
+              "styles"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "glyphStylesWhen": {
           "type": "array",
           "items": {
             "type": "object",
@@ -668,6 +800,44 @@
           },
           "required": [
             "kind",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        "vectorAsset": {
+          "type": "object",
+          "properties": {
+            "asset": {
+              "type": "string"
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "position": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "asset",
             "width",
             "height"
           ],
@@ -755,8 +925,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "type": "string",
-            "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+            "type": "string"
           }
         },
         "literalsByProp": {
@@ -839,6 +1008,52 @@
           "properties": {
             "prop": {
               "type": "string"
+            },
+            "marks": {
+              "type": "object",
+              "properties": {
+                "strong": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "font-weight": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                            },
+                            {
+                              "type": "string",
+                              "pattern": "^[1-9]00$"
+                            }
+                          ]
+                        },
+                        "font-size": {
+                          "type": "string",
+                          "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                        },
+                        "line-height": {
+                          "type": "string",
+                          "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                        }
+                      },
+                      "required": [
+                        "font-weight"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "strong"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
@@ -848,6 +1063,74 @@
         },
         "text": {
           "type": "string"
+        },
+        "textSegments": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "strong": {
+                "type": "boolean"
+              },
+              "underline": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "textMarks": {
+          "type": "object",
+          "properties": {
+            "strong": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "font-weight": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^[1-9]00$"
+                        }
+                      ]
+                    },
+                    "font-size": {
+                      "type": "string",
+                      "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                    },
+                    "line-height": {
+                      "type": "string",
+                      "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                    }
+                  },
+                  "required": [
+                    "font-weight"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "strong"
+          ],
+          "additionalProperties": false
         },
         "meter": {
           "type": "object",
@@ -908,6 +1191,86 @@
             "figmaProperty": {
               "type": "string"
             },
+            "control": {
+              "type": "object",
+              "properties": {
+                "fill": {
+                  "type": "string",
+                  "const": "width"
+                },
+                "attributes": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "prop": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "prop",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "styles": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "prop": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "prop",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
             "defaultContent": {
               "type": "array",
               "items": {
@@ -962,16 +1325,82 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
                   },
                   {
-                    "type": "boolean"
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "strong": {
+                          "type": "boolean"
+                        },
+                        "underline": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    }
                   }
                 ]
               }
             },
             "text": {
               "type": "string"
+            },
+            "slots": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "props": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              }
             }
           },
           "required": [
@@ -1039,6 +1468,190 @@
             "type": "string"
           }
         },
+        "attrsByProp": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "prop": {
+                  "type": "string"
+                },
+                "map": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "prop",
+                "map"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "prop": {
+                    "type": "string"
+                  },
+                  "map": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "prop",
+                  "map"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ]
+        },
+        "tabContext": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "const": "external"
+            },
+            "role": {
+              "type": "string",
+              "const": "tablist"
+            },
+            "rovingFocus": {
+              "type": "boolean",
+              "const": true
+            },
+            "idProp": {
+              "type": "string"
+            },
+            "minTabs": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 32
+            }
+          },
+          "required": [
+            "owner",
+            "role",
+            "rovingFocus",
+            "idProp",
+            "minTabs"
+          ],
+          "additionalProperties": false
+        },
+        "geometryJustification": {
+          "type": "object",
+          "properties": {
+            "cause": {
+              "type": "string",
+              "const": "typographic-subpixel-rounding"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bounds": {
+              "type": "object",
+              "properties": {
+                "root": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "width": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "height": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "width",
+                    "height"
+                  ],
+                  "additionalProperties": false
+                },
+                "parts": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "y": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "width": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "height": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y",
+                      "width",
+                      "height"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "cause",
+            "reason",
+            "bounds"
+          ],
+          "additionalProperties": false
+        },
         "visibleWhen": {
           "type": "object",
           "properties": {
@@ -1051,6 +1664,22 @@
           },
           "required": [
             "prop"
+          ],
+          "additionalProperties": false
+        },
+        "hiddenWhen": {
+          "type": "object",
+          "properties": {
+            "prop": {
+              "type": "string"
+            },
+            "equals": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "prop",
+            "equals"
           ],
           "additionalProperties": false
         },

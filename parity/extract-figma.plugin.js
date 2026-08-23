@@ -44,11 +44,25 @@ for (const page of figma.root.children) {
     // Nested instances: which components does this one compose?
     const probe = node.type === 'COMPONENT_SET' ? node.defaultVariant : node;
     const nestedInstances = [];
+    // An exposed nested instance forwards its own component properties through
+    // the parent without creating duplicate root definitions. Keep those
+    // properties separate: they satisfy contract forwarding, but must not be
+    // misreported as root-level Figma API owned by the parent.
+    const forwardedProperties = {};
     for (const inst of probe.findAllWithCriteria({ types: ['INSTANCE'] })) {
       const main = await inst.getMainComponentAsync();
       if (!main) continue;
       const owner = main.parent && main.parent.type === 'COMPONENT_SET' ? main.parent.name : main.name;
       if (!nestedInstances.includes(owner)) nestedInstances.push(owner);
+      if (!inst.isExposedInstance) continue;
+      for (const [key, def] of Object.entries(inst.componentProperties)) {
+        forwardedProperties[key] = {
+          type: def.type,
+          defaultValue: def.value,
+          variantOptions: null,
+          preferredValues: null,
+        };
+      }
     }
     sets.push({
       name: node.name,
@@ -57,6 +71,7 @@ for (const page of figma.root.children) {
       description: node.description,
       variantCount: node.type === 'COMPONENT_SET' ? node.children.length : 1,
       properties: defs,
+      forwardedProperties,
       nestedInstances,
     });
   }

@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.reassurances",
   "name": "Reassurances",
-  "version": "1.2.0",
-  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
+  "version": "1.3.0",
+  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -57,11 +57,12 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « Disposition=4 cartes » 2114:3619, 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, layoutSizingHorizontal FIXED, aucun padding — la largeur portée est donc à la fois la boîte de CONTENU et la boîte du master, sans arithmétique à expliciter. Les 731px de hauteur se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
+      "description": "COMPONENT « Disposition=4 cartes » 2114:3619, référence 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, aucun padding. Le Container de contexte possède la largeur ; le master remplit cette largeur disponible. Les 731px de hauteur de référence se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill"
       },
       "parts": {
         "SectionHeader": {
@@ -81,10 +82,19 @@
           }
         },
         "items": {
-          "description": "FRAME « items » 2114:3613, 1550×498, layoutMode HORIZONTAL, itemSpacing 32, primaryAxisAlignItems CENTER, layoutSizingHorizontal FILL (layoutAlign STRETCH). LIMITE NOMMÉE : le FILL horizontal d'un enfant de conteneur COLUMN s'écrit align-self: stretch, pas layout.grow — dans une colonne, grow porte sur l'axe VERTICAL et étirerait la frame en hauteur. Le dossier d'audit attend ce fait au pointeur /layout/grow ; il reste donc divergent alors que le rendu est fidèle.",
+          "description": "FRAME « items », largeur FILL dans le root, gap 32. La disposition est une grille native : 4 pistes égales pour les deux variantes à quatre cartes et 5 pistes égales pour « 5 cartes ». Les instances ds.carte de disposition reassurance remplissent leur piste ; leur largeur visible est donc dérivée de la largeur disponible, jamais fixée à 364px ou 285px.",
           "layout": {
-            "direction": "row",
-            "justify": "center"
+            "display": "grid",
+            "columns": 4,
+            "width": "fill"
+          },
+          "layoutByProp": {
+            "prop": "disposition",
+            "map": {
+              "5Cartes": {
+                "columns": 5
+              }
+            }
           },
           "tokens": {
             "gap": "{space.32}"
@@ -94,7 +104,7 @@
           },
           "parts": {
             "Carte": {
-              "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
+              "description": "Les instances de ds.carte portent disposition=reassurance. Leur root a une largeur FILL par cette disposition : la piste de la grille, non un parent CSS ni une largeur fixe, décide donc de la largeur effective dans les variantes à 4 et 5 cartes.",
               "component": {
                 "id": "ds.carte",
                 "props": {
@@ -213,7 +223,6 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "width": "{size.reassurances.root}",
         "gap": "{space.48}"
       }
     }

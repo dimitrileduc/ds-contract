@@ -1985,7 +1985,11 @@ function mapDepProps(
         const resolved = subst[parentRef[1]];
         if (resolved === undefined)
           throw new Error(`Cannot resolve parent prop mapping "{${parentRef[1]}}"`);
-        value = resolved;
+        // `subst` is string-valued for token interpolation, while Figma
+        // BOOLEAN properties reject the strings "true" and "false". Keep
+        // the static parent default serializable, then restore the child
+        // property's native Boolean value at the projection boundary.
+        value = depProp.bindings.figma.kind === 'BOOLEAN' ? resolved === 'true' : resolved;
       }
     }
     if (typeof value === 'boolean') out[depProp.bindings.figma.property!] = value;
@@ -2846,10 +2850,10 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   // threw "Cannot resolve parent prop mapping" and took the whole figma plan
   // down. The canvas plan is STATIC, so the parent's default is exactly what
   // the canvas must draw; a rich-text default flattens like every other text
-  // field. Booleans and enums are deliberately NOT widened — their names are
-  // what `visibleWhen` / `stylesWhen` / token substitution look up in `subst`,
-  // and the axis loop below owns those. (The map is no longer code-only: do
-  // not re-narrow it to `kind === 'NONE'` on the strength of a name.)
+  // field. A native BOOLEAN also needs its default here when a parent forwards
+  // it into a child's BOOLEAN property. Enums remain owned by the axis loop
+  // below. (The map is no longer code-only: do not re-narrow it to
+  // `kind === 'NONE'` on the strength of a name.)
   const parentResolvableDefaults = Object.fromEntries(
     contract.props
       .filter(
@@ -2858,7 +2862,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
           ((p.bindings.figma.kind === 'NONE' &&
             (p.type === 'text' || p.type === 'number' || p.type === 'boolean' || isEnum(p))) ||
             (p.bindings.figma.kind === 'TEXT' &&
-              (p.type === 'text' || p.type === 'number' || isRichText(p)))),
+              (p.type === 'text' || p.type === 'number' || isRichText(p))) ||
+            (p.bindings.figma.kind === 'BOOLEAN' && p.type === 'boolean')),
       )
       .map((p) => [p.name, isRichText(p) ? richTextPlain(p.default) : String(p.default)]),
   );

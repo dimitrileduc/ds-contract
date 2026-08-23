@@ -199,7 +199,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Carte — from ds.carte v2.0.1 (core/emit-html.ts) */
+/* Carte — from ds.carte v2.1.0 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;
@@ -224,6 +224,11 @@
   gap: var(--space-32);
   padding-bottom: var(--space-0);
   background-color: transparent;
+}
+
+.carte--disposition-reassurance {
+  width: 100%;
+  min-width: 0;
 }
 
 .carte__reassuranceImage {
@@ -306,7 +311,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v1.2.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v1.3.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -323,11 +328,16 @@
 }
 
 .reassurances__items {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
   align-self: stretch;
+}
+
+.reassurances--disposition-5Cartes .reassurances__items {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .reassurances__Boutons {

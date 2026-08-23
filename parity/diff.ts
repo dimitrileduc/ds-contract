@@ -92,6 +92,8 @@ interface FigmaSet {
   key: string;
   variantCount: number;
   properties: Record<string, FigmaPropertyDef>;
+  /** Properties surfaced by an exposed nested instance, not owned by root. */
+  forwardedProperties?: Record<string, FigmaPropertyDef>;
   nestedInstances?: string[];
 }
 const figmaComponents: { sets: FigmaSet[]; fileKey?: string; extractedAt?: number } = JSON.parse(
@@ -371,6 +373,10 @@ for (const contract of contracts) {
   }
 
   const figmaProps = normalizeFigmaProps(set);
+  const forwardedFigmaProps = normalizeFigmaProps({
+    ...set,
+    properties: set.forwardedProperties ?? {},
+  });
   const expectedNames = new Set<string>();
 
   for (const p of contract.props) {
@@ -379,7 +385,7 @@ for (const contract of contracts) {
     if (p.bindings.figma.kind === 'NONE') continue;
     const propertyName = p.bindings.figma.property!;
     expectedNames.add(propertyName);
-    const def = figmaProps.get(propertyName);
+    const def = figmaProps.get(propertyName) ?? forwardedFigmaProps.get(propertyName);
     if (!def) {
       add({
         surface: 'figma',

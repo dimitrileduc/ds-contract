@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.2.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -14,18 +14,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-reassurances-root);
   gap: var(--space-48);
 }
 
 .items {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
   align-self: stretch;
+}
+
+.disposition-5Cartes .items {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .Boutons {

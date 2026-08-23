@@ -41,6 +41,7 @@ export interface LayoutOverride {
   direction?: string;
   align?: string;
   justify?: string;
+  width?: 'fill';
   columns?: number;
 }
 
@@ -56,6 +57,7 @@ export function layoutOverridePairs(o: LayoutOverride): Array<[string, string]> 
   if (o.direction) pairs.push(['flex-direction', o.direction]);
   if (o.align) pairs.push(['align-items', ALIGN_CSS[o.align]]);
   if (o.justify) pairs.push(['justify-content', JUSTIFY_CSS[o.justify]]);
+  if (o.width === 'fill') pairs.push(['width', '100%'], ['min-width', '0']);
   // v16 (spec 023, E1): a per-enum `columns` override re-emits the grid track
   // template under the enum class — the same shape the base layout emits.
   if (o.columns) pairs.push(['grid-template-columns', gridTracks(o.columns)]);

@@ -209,6 +209,9 @@ export const VariantLayoutSchema = z.strictObject({
   direction: z.enum(['row', 'column', 'row-reverse', 'column-reverse']).optional(),
   align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
   justify: z.enum(['start', 'center', 'end', 'space-between']).optional(),
+  /** Per-enum parent-owned width. Code emits 100%; Figma resolves it to Fill
+   * in the compiled variant. This is intentionally layout, never a % token. */
+  width: z.literal('fill').optional(),
   /** v16 (spec 023, E1): per-enum-value column-count override for a grid part
    *  — the section `colonnes` {2,3} case. Licit ONLY when the part's base
    *  layout is display:"grid" (mirror of the base columns↔grid refine, lines

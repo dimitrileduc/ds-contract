@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.0.1)
+ * Source of truth: contracts/carte.contract.json (ds.carte v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -98,6 +98,13 @@ const V: Record<string, CSSProperties> = {
     "gap": "16px",
     "paddingRight": "0px",
     "paddingLeft": "0px"
+  },
+  "disposition-reassurance:root": {
+    "display": "flex",
+    "flexDirection": "column",
+    "alignItems": "stretch",
+    "width": "100%",
+    "minWidth": "0"
   }
 };
 
