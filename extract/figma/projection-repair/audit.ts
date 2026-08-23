@@ -101,6 +101,26 @@ export function organismContainerIssues(master: Json, parent: Json | null): stri
   return issues;
 }
 
+/** A campaign may pin one bounded child-order postcondition without adding a
+ * component-specific audit rule. The same declaration drives the live plan
+ * and the read-only proposal, so the audit cannot report green while the
+ * authorized structural defect is still present. */
+export function expectedChildOrderIssues(campaign: RepairCampaign, targetId: string, master: Json): string[] {
+  const expectations = campaign.allowedOperations
+    .filter((operation) => operation.targetId === targetId)
+    .flatMap((operation) => operation.expectedPostconditions)
+    .filter((postcondition) => postcondition.field === 'childOrder' && Array.isArray(postcondition.equals));
+  if (expectations.length === 0) return [];
+  if (expectations.length > 1) return ['multiple childOrder postconditions are declared for one target'];
+  const expected = expectations[0].equals.map(String);
+  const actual = (Array.isArray(master.children) ? master.children : [])
+    .filter(object)
+    .map((child) => String(child.name ?? ''));
+  return JSON.stringify(actual) === JSON.stringify(expected)
+    ? []
+    : [`master child order is ${actual.join(' > ') || '(empty)'}; expected ${expected.join(' > ')}`];
+}
+
 export async function auditComponentCampaign(campaign: RepairCampaign): Promise<ComponentAuditReport> {
   if (campaign.schemaVersion !== '2.0.0' || !campaign.workflow || campaign.targets.length !== 1) {
     throw new Error('component audit requires one schema v2 target');
@@ -125,6 +145,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const parent = parents.get(target.masterNodeId) ?? null;
   const containerApplicable = campaign.workflow.subjectKind === 'organism';
   const containerIssues = containerApplicable ? organismContainerIssues(master, parent) : [];
+  const childOrderIssues = expectedChildOrderIssues(campaign, target.targetId, master);
 
   // The shared loader parses contracts through the schema, so a malformed
   // contract refuses the audit by name instead of shaping a wrong report.
@@ -161,6 +182,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const undeclaredDependencies = observedDependencies.filter((name) => !declaredNormalized.has(name.toLowerCase()));
   const findings: ComponentAuditReport['findings'] = [];
   if (containerIssues.length > 0) findings.push({ code: 'organism-container', severity: 'proposal', message: containerIssues.join('; ') });
+  if (childOrderIssues.length > 0) findings.push({ code: 'child-order', severity: 'proposal', message: childOrderIssues.join('; ') });
   if (undeclaredDependencies.length > 0) findings.push({ code: 'dependency-inventory', severity: 'proposal', message: `undeclared direct dependencies: ${undeclaredDependencies.join(', ')}` });
   for (const text of texts.filter((entry) => entry.classification === 'defect')) {
     findings.push({ code: 'text-style', severity: 'proposal', message: `${text.name} (${text.nodeId}): ${text.reasons.join('; ')}` });
@@ -168,6 +190,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
 
   const proposedChanges = [
     ...(containerIssues.length > 0 ? ['present the existing master in one local auto-layout Container and set its horizontal sizing to FILL'] : []),
+    ...(childOrderIssues.length > 0 ? ['reorder the existing master children to the declared childOrder without recreating nodes'] : []),
     ...(undeclaredDependencies.length > 0 ? [`declare direct dependencies: ${undeclaredDependencies.join(', ')}`] : []),
     ...texts.filter((entry) => entry.classification === 'defect').map((entry) => `repair Text Style classification for ${entry.name} (${entry.nodeId})`),
   ];

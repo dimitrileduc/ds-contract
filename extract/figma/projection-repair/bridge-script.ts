@@ -9,6 +9,13 @@ import type { RepairCampaign } from './types.js';
  * enter this emitter. */
 export function validateBridgeOperation(operation: PlannedOperation): string[] {
   if (operation.mechanism === 'ensure-organism-container') return [];
+  if (operation.mechanism === 'reorder-children') {
+    const order = operation.changes.childOrder;
+    return Array.isArray(order) && order.length > 1 && new Set(order).size === order.length &&
+      order.every((nodeId) => typeof nodeId === 'string' && /^\d+:\d+$/.test(nodeId))
+      ? []
+      : ['reorder-children requires a unique ordered list of pinned child node ids'];
+  }
   if (operation.mechanism === 'generated-amend') {
     const ref = operation.changes.generatedScriptRef;
     return typeof ref === 'string' && ref.length > 0 && !path.isAbsolute(ref) && !ref.split(/[\\/]+/).includes('..') && ref.endsWith('.js')
@@ -134,6 +141,7 @@ const readPrecondition = (node, root, operation, field) => {
   if (field === 'layoutSizingVertical') return 'layoutSizingVertical' in node ? node.layoutSizingVertical : undefined;
   if (field === 'primaryAxisAlignItems') return 'primaryAxisAlignItems' in node ? node.primaryAxisAlignItems : undefined;
   if (field === 'nodeName') return node.name;
+  if (field === 'childOrder') return 'children' in node ? node.children.map((child) => child.id).join(',') : undefined;
   if (field === 'width') return node.width;
   if (field === 'height') return node.height;
   if (['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'].includes(field)) return field in node ? node[field] : undefined;
@@ -326,6 +334,33 @@ for (const operation of INPUT.operations) {
       operationId: operation.operationId, targetId: operation.targetId, nodeId: operation.nodeId,
       result: result.changed
         ? { applied: true, createdNodeIds: [], changedNodeIds: [result.node.id] }
+        : { skipped: true, reason: 'unchanged', createdNodeIds: [], changedNodeIds: [] },
+    });
+    continue;
+  }
+  if (operation.mechanism === 'reorder-children') {
+    const master = await figma.getNodeByIdAsync(operation.nodeId);
+    if (!master || !masterLike(master)) throw new Error('Pinned reorder-children master absent: ' + operation.nodeId);
+    if (pageOf(master)?.name === 'Pages') throw new Error('Refused Page master write: ' + master.id);
+    const sameNamed = sameNamedMasters(target.expectedMasterName);
+    if (sameNamed.length !== 1 || sameNamed[0].id !== master.id) throw new Error('Master cardinality drift: ' + target.expectedMasterName);
+    assertOperationPreconditions(master, master, operation);
+    const expectedOrder = operation.changes.childOrder;
+    const actualOrder = master.children.map((child) => child.id);
+    const sameMembers = actualOrder.length === expectedOrder.length && actualOrder.every((nodeId) => expectedOrder.includes(nodeId));
+    if (!sameMembers) throw new Error('Pinned child set drift: expected ' + expectedOrder.join(',') + ', got ' + actualOrder.join(','));
+    const changed = actualOrder.some((nodeId, index) => nodeId !== expectedOrder[index]);
+    if (changed) for (let index = 0; index < expectedOrder.length; index++) {
+      const child = master.children.find((candidate) => candidate.id === expectedOrder[index]);
+      if (!child) throw new Error('Pinned child disappeared during reorder: ' + expectedOrder[index]);
+      master.insertChild(index, child);
+    }
+    const postOrder = master.children.map((child) => child.id);
+    if (postOrder.some((nodeId, index) => nodeId !== expectedOrder[index])) throw new Error('Child-order postcondition failed: ' + operation.operationId);
+    scriptResults.push({
+      operationId: operation.operationId, targetId: operation.targetId, nodeId: operation.nodeId,
+      result: changed
+        ? { applied: true, createdNodeIds: [], changedNodeIds: [master.id] }
         : { skipped: true, reason: 'unchanged', createdNodeIds: [], changedNodeIds: [] },
     });
     continue;

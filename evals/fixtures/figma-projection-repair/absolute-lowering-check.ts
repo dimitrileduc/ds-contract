@@ -13,6 +13,10 @@ const contract = ContractSchema.parse({
     literals: { width: '200px', height: '100px' },
     parts: {
       ImagePlane: { element: 'img', declared: { position: 'absolute', 'object-fit': 'cover' } },
+      VeilPlane: {
+        literals: { 'background-color': '#0000004D' },
+        declared: { position: 'absolute', top: '0', right: '0', bottom: '0', left: '0' },
+      },
       FillTopBand: {
         element: 'img', layout: { width: 'fill' }, literals: { height: '30px' },
         declared: { position: 'absolute', top: '0', right: '0', left: '0', 'object-fit': 'cover' },
@@ -74,6 +78,13 @@ try {
   walk(root);
   if (nodes.ImagePlane?.layoutPositioning !== 'ABSOLUTE' || nodes.ImagePlane?.width !== 200 || nodes.ImagePlane?.height !== 100) {
     errors.push('ImagePlane did not become a parent-sized ABSOLUTE plane after append');
+  }
+  const rootParent = nodes.RootWitness?.parent;
+  const rootOrder = rootParent?.children?.map((node: any) => node.name) ?? [];
+  if (rootOrder.indexOf('ImagePlane') < 0 || rootOrder.indexOf('VeilPlane') < 0 ||
+    rootOrder.indexOf('ImagePlane') >= rootOrder.indexOf('VeilPlane') ||
+    rootOrder.indexOf('VeilPlane') >= rootOrder.indexOf('RootWitness')) {
+    errors.push(`backdrop order drifted: ${rootOrder.join(' > ')}; expected ImagePlane > VeilPlane > in-flow content`);
   }
   if (nodes.FillTopBand?.layoutPositioning !== 'ABSOLUTE' || nodes.FillTopBand?.layoutSizingHorizontal === 'FILL' ||
     nodes.FillTopBand?.constraints?.horizontal !== 'STRETCH' || nodes.FillTopBand?.width !== 200 || nodes.FillTopBand?.height !== 30) {

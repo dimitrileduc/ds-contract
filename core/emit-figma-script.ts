@@ -3813,7 +3813,7 @@ const absoluteCall = (has: boolean, args: string): string =>
 
 /** B-3 finding 5: inset-0 overlay lowering — layoutPositioning ABSOLUTE,
  *  x/y 0, STRETCH/STRETCH constraints, sized to the parent, inserted BEHIND
- *  the in-flow siblings (index 0). Runs at the END of the per-child block so
+ *  the in-flow siblings while preserving declared backdrop order. Runs at the END of the per-child block so
  *  the empty-frame FILL default (which an out-of-flow node must not keep)
  *  is overridden, and only after appendChild (ABSOLUTE requires an
  *  auto-layout parent). Conditional emission — the golden discipline. */
@@ -3834,7 +3834,15 @@ function applyInsetOverlay(parent, childNode, childSpec) {
     // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
     // previously hand-corrected on canvas each re-amend).
     if (${hasZIndex ? '(!childNode.children || childNode.children.length === 0) && childSpec.zIndex === undefined' : '!childNode.children || childNode.children.length === 0'}) {
-      parent.insertChild(0, childNode);
+      // Multiple backdrop planes must keep contract order (Background, then
+      // Voile). Repeated insertChild(0) reversed them and painted the image
+      // over the veil. Count only previously lowered backdrop siblings so all
+      // backdrops remain behind in-flow content without reversing each other.
+      const backdropIndex = parent.children.filter((sibling) =>
+        sibling !== childNode && sibling.layoutPositioning === 'ABSOLUTE' &&
+        (!sibling.children || sibling.children.length === 0)
+      ).length;
+      parent.insertChild(backdropIndex, childNode);
     }
     // Figma forbids FILL sizing on an absolute auto-layout child. The inset
     // constraints own the width after it leaves flow.

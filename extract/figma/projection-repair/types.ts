@@ -216,7 +216,7 @@ export interface ConsumerImpact {
 export interface RepairOperation {
   operationId: string;
   targetId: RepairTargetId;
-  mechanism: 'generated-amend' | 'ensure-organism-container' | 'set-properties' | 'resize' | 'reposition' | 'property-reference';
+  mechanism: 'generated-amend' | 'ensure-organism-container' | 'set-properties' | 'reorder-children' | 'resize' | 'reposition' | 'property-reference';
   nodeId: string;
   structuralPath?: string | null;
   preconditions: Record<string, unknown>[];

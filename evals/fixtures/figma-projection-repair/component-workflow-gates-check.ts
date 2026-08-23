@@ -1,7 +1,7 @@
 import { validateRepairCampaign } from '../../../extract/figma/projection-repair/campaign.js';
 import { assertComponentTopology } from '../../../extract/figma/projection-repair/capture.js';
 import { REQUIRED_COMPONENT_PROTECTION_FACTS } from '../../../extract/figma/projection-repair/types.js';
-import { organismContainerIssues } from '../../../extract/figma/projection-repair/audit.js';
+import { expectedChildOrderIssues, organismContainerIssues } from '../../../extract/figma/projection-repair/audit.js';
 import { validateBridgeOperation } from '../../../extract/figma/projection-repair/bridge-script.js';
 
 const clone = <T>(value: T): T => structuredClone(value);
@@ -118,12 +118,31 @@ const genericTextAlignOperation = {
 if (validateBridgeOperation(genericTextAlignOperation as never).length !== 0) throw new Error('bounded text-align operation was refused');
 if (validateBridgeOperation({ ...genericTextAlignOperation, changes: { textAlign: { value: 'MIDDLE' } } } as never).length === 0) throw new Error('unbounded text-align value was accepted');
 if (validateBridgeOperation({ ...genericLayoutOperation, mechanism: 'generated-amend' } as never).length === 0) throw new Error('component-specific bridge mechanism was accepted');
+const reorderChildrenOperation = {
+  ...genericLayoutOperation, operationId: 'reorder-pinned-children', mechanism: 'reorder-children', structuralPath: '',
+  changes: { childOrder: ['1:1', '1:2', '1:3'] },
+} as const;
+if (validateBridgeOperation(reorderChildrenOperation as never).length !== 0) throw new Error('bounded child reorder was refused');
+if (validateBridgeOperation({ ...reorderChildrenOperation, changes: { childOrder: ['1:1', '1:1'] } } as never).length === 0) throw new Error('duplicate child ids were accepted');
 
 const containedMaster = { id: '1:1', type: 'COMPONENT', layoutSizingHorizontal: 'FILL' };
 const localContainer = { id: '1:2', type: 'FRAME', name: 'Container · HeroVideo', layoutMode: 'HORIZONTAL', children: [containedMaster] };
 if (organismContainerIssues(containedMaster, localContainer).length !== 0) throw new Error('valid organism Container was refused');
 const missingContainer = organismContainerIssues({ ...containedMaster, layoutSizingHorizontal: 'FIXED' }, { id: '1:3', type: 'SECTION', name: 'Hero vidéo', children: [containedMaster] });
 if (missingContainer.length < 3) throw new Error('missing Container/FILL gates were not reported');
+
+const orderedCampaign = clone(campaign);
+orderedCampaign.allowedOperations[0].expectedPostconditions = [
+  { field: 'childOrder', equals: ['Background', 'Voile', 'Container'] },
+] as never;
+const wrongBackdropOrder = { children: [{ name: 'Voile' }, { name: 'Background' }, { name: 'Container' }] };
+if (expectedChildOrderIssues(orderedCampaign as never, 'hero-video', wrongBackdropOrder).length !== 1) {
+  throw new Error('declared childOrder drift was not reported by the audit gate');
+}
+const correctBackdropOrder = { children: [{ name: 'Background' }, { name: 'Voile' }, { name: 'Container' }] };
+if (expectedChildOrderIssues(orderedCampaign as never, 'hero-video', correctBackdropOrder).length !== 0) {
+  throw new Error('declared childOrder was refused after convergence');
+}
 
 const batch = clone(campaign);
 batch.targets.push({ ...clone(batch.targets[0]), targetId: 'footer', masterNodeId: '1:2' });

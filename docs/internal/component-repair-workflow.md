@@ -259,10 +259,11 @@ si le contour externe du master reste dans le Container. Le Container garde sa
 largeur de référence mais HUG sa hauteur afin qu'un texte qui reflowe ne soit pas
 maquillé par une hauteur fixe.
 
-Le transport générique accepte trois familles bornées : création/adoption du
+Le transport générique accepte quatre familles bornées : création/adoption du
 Container d'organisme, propriétés Auto Layout explicitement allowlistées sur un
 nœud résolu par chemin structurel (sizing, padding, axe, positionnement et
-contraintes), et typographie gouvernée (`Text Style` identifié par le marqueur
+contraintes), réordonnancement de la liste exacte d'enfants existants d'un master
+(IDs épinglés, ensemble inchangé, aucune création/suppression), et typographie gouvernée (`Text Style` identifié par le marqueur
 `ds_contracts/textStyleToken`, plages de fontes explicitement déclarées, ou
 alignement texte borné `textAlign` ∈ LEFT|CENTER|RIGHT|JUSTIFIED — ajouté le
 2026-08-18 par le run member-card : `textAlignHorizontal` est un fait natif TEXT
