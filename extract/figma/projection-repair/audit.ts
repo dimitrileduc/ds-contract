@@ -7,6 +7,11 @@ import type { ComponentAuditReport, RepairCampaign, TextAuditClassification } fr
 /** `any` here is deliberate: the audit visitors read Figma dump fields loosely. */
 type Json = Record<string, any>;
 const object = isObject as (value: unknown) => value is Json;
+type ChildOrderPostcondition = Record<string, unknown> & { field: 'childOrder'; equals: unknown[] };
+
+function isChildOrderPostcondition(postcondition: Record<string, unknown>): postcondition is ChildOrderPostcondition {
+  return postcondition.field === 'childOrder' && Array.isArray(postcondition.equals);
+}
 
 function metricMatches(node: Json, expected: TokenCorpus['textStyles'][number]): boolean {
   const style = object(node.style) ? node.style : {};
@@ -109,7 +114,7 @@ export function expectedChildOrderIssues(campaign: RepairCampaign, targetId: str
   const expectations = campaign.allowedOperations
     .filter((operation) => operation.targetId === targetId)
     .flatMap((operation) => operation.expectedPostconditions)
-    .filter((postcondition) => postcondition.field === 'childOrder' && Array.isArray(postcondition.equals));
+    .filter(isChildOrderPostcondition);
   if (expectations.length === 0) return [];
   if (expectations.length > 1) return ['multiple childOrder postconditions are declared for one target'];
   const expected = expectations[0].equals.map(String);
