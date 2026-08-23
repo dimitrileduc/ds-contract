@@ -1,41 +1,47 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v3.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
 import type { HTMLAttributes } from 'react';
-import { SectionHeader } from '../SectionHeader';
 import { AccordionRow } from '../AccordionRow';
 import styles from './TexteSEO.module.css';
 
 export interface TexteSEOProps extends HTMLAttributes<HTMLDivElement> {
+  /** Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy. */
+  titre?: Array<{ text: string; strong?: boolean }>;
   /** Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli. */
   items?: Array<{ contenu: string; etat: 'ferme' | 'ouvert'; titre: string }>;
 }
 
 /** Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function TexteSEO(
-  { items, className, children, ...rest },
+  {
+    titre = [
+      { text: 'Visitez notre ' },
+      { text: 'showroom à Pepinster', strong: true },
+      { text: ' ou contactez-nous' },
+    ],
+    items,
+    className,
+    children,
+    ...rest
+  },
   ref,
 ) {
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <div className={styles.h2}>
-        <SectionHeader
-          titre={[
-            { text: 'Visitez notre ' },
-            { text: 'showroom à Pepinster', strong: true },
-            { text: ' ou contactez-nous' },
-          ]}
-          accroche="Plus de 50 ans d’expérience"
-          disposition="standard"
-          accroche2={false}
-          emphase="compact"
-          alignement="gauche"
-        />
-      </div>
+      <span className={styles.Titre}>
+        {titre.map((segment, index) =>
+          segment.strong ? (
+            <strong key={index}>{segment.text}</strong>
+          ) : (
+            <span key={index}>{segment.text}</span>
+          ),
+        )}
+      </span>
       <div className={styles.p}>
         <span className={styles.Paragraphe}>
           Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue

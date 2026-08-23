@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "section-header-centre-alignment",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2390986664230741536",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "centre-eyebrow-text-align",
+      "targetId": "section-header",
+      "nodeId": "2090:2397",
+      "result": {
+        "skipped": true,
+        "reason": "unchanged",
+        "createdNodeIds": [],
+        "changedNodeIds": []
+      }
+    },
+    {
+      "operationId": "centre-title-text-align",
+      "targetId": "section-header",
+      "nodeId": "2090:2397",
+      "result": {
+        "skipped": true,
+        "reason": "unchanged",
+        "createdNodeIds": [],
+        "changedNodeIds": []
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "section-header",
+        "nodeId": "2090:2397",
+        "componentKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
+        "masterCount": 1,
+        "variantNames": [
+          "Alignement=Centre",
+          "Alignement=Gauche"
+        ]
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "section-header",
+        "width": 1440,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/section-header/run-003/responsive-1440-first.png"
+      },
+      {
+        "targetId": "section-header",
+        "width": 768,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/section-header/run-003/responsive-768-first.png"
+      }
+    ]
+  }
+}

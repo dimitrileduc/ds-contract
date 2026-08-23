@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "executedAt": "2026-08-23T19:40:00Z",
+  "targeted": {
+    "parity": "pass (no new drift; 9 acknowledged unrelated baseline findings)",
+    "typecheck": "pass",
+    "catalog": "pass",
+    "migrationLedgerFixture": "pass",
+    "ownerMigrationFixture": "pass",
+    "pageParityGateFixture": "pass",
+    "odooStatic": "pass (inputs, authoring, assets, Figma links, module, derivation, typecheck)"
+  },
+  "fullEval": {
+    "command": "npm run eval",
+    "status": "failed",
+    "passed": 225,
+    "total": 226,
+    "failures": [
+      {
+        "gate": "polaris-showcase-reproducible",
+        "reason": "five unrelated Polaris Figma showcase files regenerate differently: avatar, checkbox, tag, text-field, thumbnail."
+      }
+    ]
+  },
+  "liveOdooQa": {
+    "status": "not-run",
+    "reason": "Disposable Odoo public/editor/save-reopen/visual scenarios remain a release gate."
+  },
+  "verdict": "targeted implementation gates pass; golden output was reviewed and repinned. Repository-wide release closure remains blocked by one unrelated Polaris determinism gate and unrun live Odoo QA."
+}

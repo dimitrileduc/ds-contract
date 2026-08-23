@@ -73,8 +73,7 @@ export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(
               <SectionHeader
                 titre={[{ text: 'Dépannage / SAV' }]}
                 accroche="Plus de 50 ans d’expérience"
-                accroche2={false}
-                disposition="standard"
+                afficherAccroche={false}
                 alignement="gauche"
               />
               <span className={styles.vousRencontrezUnProblmeA}>

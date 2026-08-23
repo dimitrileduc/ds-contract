@@ -13,7 +13,7 @@ The existing internal `pqr_section_header` helper becomes a narrow generic proje
 
 ## Contract graph and metadata
 
-After contract review, repin `integrations/odoo/config/inputs.lock.json` by path, version and SHA. A changed graph digest/version then propagates to every controlled Odoo root metadata record, `version_guard.js`, saved-version scan/fixtures and module checks. `npm run odoo:module:check` is the gate for these transcriptions.
+This branch repins `integrations/odoo/config/inputs.lock.json` by path, version and SHA, including `ds.produits-ecommerce@1.0.0`; the current graph digest is `590904930819dbe522a3d764cb9b4f5d86ce6529804cda3cc3d57425bbc8e772`. The changed graph/version propagates to every controlled Odoo root metadata record, `version_guard.js`, saved-version scan/fixtures and module checks. `npm run odoo:module:check` is the gate for these transcriptions.
 
 ## Persisted pages
 

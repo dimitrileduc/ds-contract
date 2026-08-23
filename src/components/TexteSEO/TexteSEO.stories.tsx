@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v3.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -20,6 +20,11 @@ const meta = {
   },
   render: (args) => <TexteSEO key={JSON.stringify(args)} {...args} />,
   argTypes: {
+    titre: {
+      control: false,
+      description:
+        'Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy.',
+    },
     items: {
       control: false,
       description:
@@ -27,6 +32,11 @@ const meta = {
     },
   },
   args: {
+    titre: [
+      { text: 'Visitez notre ' },
+      { text: 'showroom à Pepinster', strong: true },
+      { text: ' ou contactez-nous' },
+    ],
     items: [
       { contenu: 'Réponse', etat: 'ferme', titre: 'Accès et parking' },
       {

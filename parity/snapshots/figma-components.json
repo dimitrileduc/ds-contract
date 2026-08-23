@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1787436956585,
+  "extractedAt": 1787512230131,
   "sets": [
     {
       "name": "Input",
@@ -237,6 +237,15 @@
       "nodeId": "6:119",
       "key": "effda951d950a7ab05d4745ab1ab90cca8da3176",
       "description": "Anciennement nommé « octicon:chevron-down-12 » sur le canvas. Glyphe hors registre (contracts/icons.registry.json ne le liste pas — gouvernance spec 002). Conservé tel quel, non réassigné à l'icône chevron-down du registre (226:373) : ses 4 usages actuels (dans les instances de Nav-item, en-tête du site) rendent visuellement à l'identique de ce glyphe précis, un ré-assignement serait un changement visuel non demandé. Décision d'adoption-ou-remplacement définitive léguée à la Spec B (FR-038, spec 005). Découvert sans emplacement de page (composant orphelin — aucun parent, non trouvé par balayage de page) avant ce déplacement ; c'est la première fois qu'il vit sur une page.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Etoile vide",
+      "nodeId": "2480:5363",
+      "key": "d81e9895fa1953957d98abce4a9e9015f36d505f",
+      "description": "Étoile vide — position non atteinte d’une note. Même géométrie que Etoile, remplissage color/gris-clair.",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": []
@@ -503,6 +512,28 @@
       ]
     },
     {
+      "name": "Notation",
+      "nodeId": "2480:5365",
+      "key": "85029a113e23bf7faec3a0714b983d4a824b0722",
+      "description": "Notation — bandeau de cinq étoiles, note 1 à 5. Destiné à ds.notation ; consommé par Review-card et par le résumé de Avis Google.",
+      "variantCount": 5,
+      "properties": {
+        "Note": {
+          "type": "VARIANT",
+          "defaultValue": "5",
+          "variantOptions": [
+            "5",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
       "name": "Field",
       "nodeId": "2056:1278",
       "key": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
@@ -649,39 +680,6 @@
         }
       },
       "nestedInstances": []
-    },
-    {
-      "name": "CarteCategorie",
-      "nodeId": "2495:6770",
-      "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Titre#2495:11": {
-          "type": "TEXT",
-          "defaultValue": "Pour portes de garage",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2495:12": {
-          "type": "TEXT",
-          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Style": {
-          "type": "VARIANT",
-          "defaultValue": "Superpose",
-          "variantOptions": [
-            "Superpose",
-            "Empile"
-          ],
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "ArrowRight"
-      ]
     },
     {
       "name": "Carte/Categorie",
@@ -834,7 +832,7 @@
       "nodeId": "2090:2397",
       "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
       "description": "SectionHeader — generated from contract ds.section-header v2.1.1 †",
-      "variantCount": 16,
+      "variantCount": 2,
       "properties": {
         "Accroche#2090:46": {
           "type": "TEXT",
@@ -848,30 +846,10 @@
           "variantOptions": null,
           "preferredValues": null
         },
-        "Accroche2#2169:64": {
+        "Afficher accroche#2169:64": {
           "type": "BOOLEAN",
           "defaultValue": true,
           "variantOptions": null,
-          "preferredValues": null
-        },
-        "Disposition": {
-          "type": "VARIANT",
-          "defaultValue": "Standard",
-          "variantOptions": [
-            "Standard",
-            "Avec CTA"
-          ],
-          "preferredValues": null
-        },
-        "Emphase": {
-          "type": "VARIANT",
-          "defaultValue": "Standard",
-          "variantOptions": [
-            "Standard",
-            "Hero",
-            "Moyen",
-            "Compact"
-          ],
           "preferredValues": null
         },
         "Alignement": {
@@ -991,6 +969,53 @@
       ]
     },
     {
+      "name": "CarteCategorie",
+      "nodeId": "2495:6770",
+      "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Titre#2495:11": {
+          "type": "TEXT",
+          "defaultValue": "Pour portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2495:12": {
+          "type": "TEXT",
+          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose",
+            "Empile"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Section Avis Google",
+      "nodeId": "2545:5685",
+      "key": "a4d8c699641576c3f44fa7042382979ef9445cdb",
+      "description": "GoogleReviewsSection — composed parent of ds.section-header + ds.google-reviews; fill width / hug height; contract-first composition 2026-08-23.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "SectionHeader",
+        "Avis Google",
+        "Notation",
+        "Review-card"
+      ]
+    },
+    {
       "name": "Devis",
       "nodeId": "2096:2524",
       "key": "0caac7487988d0da129211e64a40545163149a6f",
@@ -1062,7 +1087,6 @@
         }
       },
       "nestedInstances": [
-        "SectionHeader",
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
@@ -1134,9 +1158,15 @@
       "key": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
       "description": "TexteSEO — generated from contract ds.texte-seo v2.1.0 †",
       "variantCount": 1,
-      "properties": {},
+      "properties": {
+        "Titre#2545:2": {
+          "type": "TEXT",
+          "defaultValue": "Visitez notre showroom à Pepinster ou contactez-nous",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
       "nestedInstances": [
-        "SectionHeader",
         "AccordionRow"
       ]
     },
@@ -1158,10 +1188,15 @@
           "defaultValue": true,
           "variantOptions": null,
           "preferredValues": null
+        },
+        "Titre#2545:1": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage industrielles",
+          "variantOptions": null,
+          "preferredValues": null
         }
       },
       "nestedInstances": [
-        "SectionHeader",
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
@@ -1242,9 +1277,15 @@
       "key": "a616f938df22515ef5778930a99802ea925de85f",
       "description": "Anciennement nommé « Produits e-commerce » sur le canvas. Section qui met en avant une sélection de produits de la boutique en ligne : elle assemble une grille d'instances Product-card, un Carousel-controls pour naviguer entre les produits, et un Section-header pour l'intitulé de la section. Produits affichés et texte d'en-tête sont portés par ces instances imbriquées, modifiables depuis chaque occurrence du composant.",
       "variantCount": 1,
-      "properties": {},
+      "properties": {
+        "Titre#2545:3": {
+          "type": "TEXT",
+          "defaultValue": "Découvrez nos produits disponibles en ligne",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
       "nestedInstances": [
-        "SectionHeader",
         "Bouton",
         "ArrowLeft",
         "ArrowRight",
@@ -1340,7 +1381,7 @@
       "name": "Avis Google",
       "nodeId": "2178:7381",
       "key": "9bc775b834830afc0b67841e8d341cf2efa3037c",
-      "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.0",
+      "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.2",
       "variantCount": 1,
       "properties": {
         "Qualificatif#2178:77": {
@@ -1372,37 +1413,6 @@
         "Notation",
         "Review-card"
       ]
-    },
-    {
-      "name": "Notation",
-      "nodeId": "2480:5365",
-      "key": "85029a113e23bf7faec3a0714b983d4a824b0722",
-      "description": "Notation — bandeau de cinq étoiles, note 1 à 5. Destiné à ds.notation ; consommé par Review-card et par le résumé de Avis Google.",
-      "variantCount": 5,
-      "properties": {
-        "Note": {
-          "type": "VARIANT",
-          "defaultValue": "5",
-          "variantOptions": [
-            "5",
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": []
-    },
-    {
-      "name": "Etoile vide",
-      "nodeId": "2480:5363",
-      "key": "d81e9895fa1953957d98abce4a9e9015f36d505f",
-      "description": "Étoile vide — position non atteinte d’une note. Même géométrie que Etoile, remplissage color/gris-clair.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
     }
   ]
 }

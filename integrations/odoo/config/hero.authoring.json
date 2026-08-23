@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-hero-authoring",
-  "authoringVersion": "1.2.0",
+  "authoringVersion": "3.0.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.hero",
-    "version": "1.6.0"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,49 +35,63 @@
   ],
   "controls": [
     {
-      "decisionId": "hero-background-url",
+      "decisionId": "hero-ctl-hero-backgroun-rl",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "backgroundUrl"
       },
-      "verdict": "controlled",
-      "mechanism": "computed-display",
-      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-background\"]",
-      "label": "Remplacer l’image"
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
     },
     {
-      "decisionId": "hero-background-alt",
+      "decisionId": "hero-ctl-hero-backgroun-lt",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "backgroundAlt"
       },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-background\"]",
-      "label": "Alternative de l’image"
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
     },
     {
-      "decisionId": "hero-subtitle",
+      "decisionId": "hero-ctl-hero-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-title\"]",
+      "label": "titre"
+    },
+    {
+      "decisionId": "hero-ctl-hero-sou-itre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
             }
           }
         ],
@@ -86,496 +100,172 @@
       "verdict": "controlled",
       "mechanism": "rich-text",
       "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-subtitle\"]",
-      "label": "Sous-titre"
+      "label": "sousTitre"
     },
     {
-      "decisionId": "hero-section-disposition",
+      "decisionId": "hero-ctl-hero-sou-itre2",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "disposition"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-eyebrow",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-title",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-title\"]",
-      "label": "Titre"
-    },
-    {
-      "decisionId": "hero-section-show-eyebrow",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche2"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-emphasis",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "emphase"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-alignment",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "alignement"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-left-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-section-button-right-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-button-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-button-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-label\"]",
-      "label": "Libellé du CTA"
-    },
-    {
-      "decisionId": "hero-button-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-button-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-button-left-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-button-right-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "hero-subtitle-visible",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "sousTitre2"
       },
-      "verdict": "controlled",
-      "mechanism": "boolean",
-      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-subtitle\"]",
-      "label": "Afficher le sous-titre"
-    }
-  ],
-  "parts": [
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
     {
-      "decisionId": "hero-part-root",
+      "decisionId": "hero-ctl-hero-bouton-button-variant",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "hero-ctl-hero-bouton-button-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
+    },
+    {
+      "decisionId": "hero-ctl-hero-bouton-button-ico-eft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "hero-ctl-hero-bouton-button-ico-ight",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "hero-ctl-hero-bouton-button-ico-ef-lyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "hero-ctl-hero-bouton-button-ico-igh-lyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "hero-part-hero-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "2.0.0"
             }
           }
         ],
@@ -585,17 +275,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-background",
+      "decisionId": "hero-part-hero-root-background",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -606,17 +296,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-background\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-background\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-navigation-veil",
+      "decisionId": "hero-part-hero-root-voil-avigation",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -627,17 +317,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-navigation-veil\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-voil-avigation\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-content",
+      "decisionId": "hero-part-hero-root-blo-exte",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -648,17 +338,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-content\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-blo-exte\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-titles",
+      "decisionId": "hero-part-hero-root-blo-exte-titres",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -670,17 +360,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-titles\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-blo-exte-titres\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-section",
+      "decisionId": "hero-part-hero-root-blo-exte-titres-bouton",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -688,23 +378,22 @@
           "root",
           "blocTexte",
           "Titres",
-          "colGauche",
-          "SectionHeader"
+          "Bouton"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "component",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-blo-exte-titres-bouton\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-colgauche",
+      "decisionId": "hero-part-hero-root-blo-exte-titres-co-auche",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -717,40 +406,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-left-column\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-blo-exte-titres-co-auche\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-cta",
+      "decisionId": "hero-part-hero-root-blo-exte-titres-co-auche-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "blocTexte",
-          "Titres",
-          "Bouton"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-part-subtitle",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -759,119 +425,6 @@
           "blocTexte",
           "Titres",
           "colGauche",
-          "sousTitre"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-subtitle\"]",
-      "allowedMarks": [
-        "strong"
-      ]
-    },
-    {
-      "decisionId": "hero-section-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-part-eyebrow",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Accroche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-eyebrow\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-part-button",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Bouton"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-part-title",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
           "Titre"
         ]
       },
@@ -883,187 +436,37 @@
       ]
     },
     {
-      "decisionId": "hero-section-button-part-root",
+      "decisionId": "hero-part-hero-root-blo-exte-titres-co-auche-sou-itre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-button-part-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
           }
         ],
         "partPath": [
           "root",
-          "iconLeft"
+          "blocTexte",
+          "Titres",
+          "colGauche",
+          "sousTitre"
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-left\"]",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-blo-exte-titres-co-auche-sou-itre\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-section-button-part-only",
+      "decisionId": "hero-part-hero-bouton-button-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-only\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-button-part-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-right\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-section-button-part-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_hero [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "hero-button-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1080,17 +483,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-root\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-button-part-left",
+      "decisionId": "hero-part-hero-bouton-button-root-ico-eft",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1108,17 +511,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-icon-left\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-button-part-only",
+      "decisionId": "hero-part-hero-bouton-button-root-ico-nl-con",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1136,17 +539,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-icon-only\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-button-part-right",
+      "decisionId": "hero-part-hero-bouton-button-root-ico-ight",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1164,17 +567,17 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-icon-right\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-button-part-label",
+      "decisionId": "hero-part-hero-bouton-button-root-label",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.6.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1190,9 +593,9 @@
           "label"
         ]
       },
-      "verdict": "directly-editable",
+      "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-cta\"] [data-pqr-part=\"button-label\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"root-label\"]",
       "allowedMarks": []
     }
   ]

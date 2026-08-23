@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "scope": "Odoo static qualification of new/current snippet projections",
+  "executedAt": "2026-08-23T18:27:00Z",
+  "commands": [
+    { "command": "npm run odoo:inputs:check", "status": "pass" },
+    { "command": "npm run odoo:authoring:check", "status": "pass" },
+    { "command": "npm run odoo:assets -- --check", "status": "pass" },
+    { "command": "npm run odoo:figma-links:check", "status": "pass", "details": "20 governed panels" },
+    { "command": "npm run odoo:module:check", "status": "pass", "details": "23 checks" },
+    { "command": "npm run odoo:derivation:check", "status": "pass" },
+    { "command": "npm run odoo:typecheck", "status": "pass" }
+  ],
+  "liveQa": {
+    "status": "not-run",
+    "reason": "The disposable Odoo instance scenarios and visual comparison receipts have not been executed in this worktree. They remain a required release gate and are not represented as passing static evidence."
+  },
+  "persistedPages": "No saved Odoo page was rewritten. version_guard remains detection-only and can report structure-stale.",
+  "verdict": "static-pass; live-QA-pending"
+}

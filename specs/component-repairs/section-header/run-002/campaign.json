@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "section-header-v3-migration",
+  "createdAt": "2026-08-23T19:34:35+02:00",
+  "state": "draft",
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2390951111569267738",
+    "fileName": "Piqueray (Copy)",
+    "capturedAt": "2026-08-23T17:37:44.978Z"
+  },
+  "scope": {
+    "expectedUsageCount": 45,
+    "expectedRoles": {
+      "generic-standard": 24,
+      "hero": 8,
+      "presentation": 3,
+      "texte-seo": 8,
+      "produits-ecommerce": 2
+    },
+    "requiredSourceFrames": 9,
+    "censusMethod": [
+      "position",
+      "structural-signature",
+      "getMainComponentAsync"
+    ],
+    "classificationRule": "Layer names are documentary and cannot determine a migration role."
+  },
+  "authorityRefs": [
+    "contracts/section-header.contract.json",
+    "contracts/hero.contract.json",
+    "contracts/presentation.contract.json",
+    "contracts/texte-seo.contract.json",
+    "specs/026-simplify-section-header/spec.md",
+    "specs/026-simplify-section-header/contracts/section-header-v3.interface.md",
+    "specs/026-simplify-section-header/contracts/migration-ledger.schema.json",
+    "specs/component-repairs/section-header/run-001/audit.json",
+    "figma-sync/10-sectionheader.js"
+  ],
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "shared-component",
+    "evidenceRoot": "specs/component-repairs/section-header/run-002",
+    "ownerDecisionRoot": "specs/component-repairs/section-header/run-002/owner",
+    "comparisonPath": "specs/component-repairs/section-header/run-002/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/section-header/run-002/live-receipt-first.json",
+      "second": "specs/component-repairs/section-header/run-002/live-receipt-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ds.button"
+    ],
+    "sharedDependencies": [
+      "ds.hero",
+      "ds.presentation",
+      "ds.texte-seo",
+      "ds.produits-ecommerce"
+    ]
+  },
+  "targets": [
+    {
+      "targetId": "section-header",
+      "kind": "generated-master",
+      "masterNodeId": "2090:2397",
+      "variantNodeIds": [
+        "2090:2385",
+        "2090:2388",
+        "2338:29029",
+        "2338:29032",
+        "2338:29035",
+        "2338:29038",
+        "2338:29041",
+        "2338:29044",
+        "2338:29047",
+        "2338:29064",
+        "2338:29078",
+        "2338:29092",
+        "2338:29106",
+        "2338:29120",
+        "2338:29134",
+        "2338:29148"
+      ],
+      "reference": {
+        "referenceId": "section-header-v3-pre-migration-baseline",
+        "sourceKind": "contract-and-history",
+        "figmaVersionId": "2390951111569267738",
+        "subjectNodeId": "2090:2397",
+        "visualFacts": [
+          "The read-only baseline retains the current 16-variant SectionHeader until owner-approved reconciliation.",
+          "The v3 outcome has exactly Alignement=Centre and Alignement=Gauche.",
+          "Page instances and source frames are evidence-only and cannot be written directly."
+        ],
+        "decisionRef": "specs/026-simplify-section-header/contracts/section-header-v3.interface.md",
+        "renderRef": "src/components/SectionHeader/SectionHeader.tsx"
+      },
+      "affectedSurfaceIds": [
+        "section-header:master"
+      ],
+      "projectionDefectIds": [
+        "legacy-generic-api"
+      ],
+      "allowedFields": [
+        "specHash",
+        "description",
+        "componentProperties",
+        "variantProperties"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity"
+      ],
+      "allowedFactChanges": [
+        "variant-cardinality",
+        "variant-names",
+        "geometry",
+        "responsive-overflow"
+      ],
+      "expectedMasterName": "SectionHeader",
+      "expectedVariantNames": [
+        "Disposition=Standard, Emphase=Standard, Alignement=Centre",
+        "Disposition=Avec CTA, Emphase=Standard, Alignement=Centre",
+        "Disposition=Standard, Emphase=Standard, Alignement=Gauche",
+        "Disposition=Standard, Emphase=Hero, Alignement=Centre",
+        "Disposition=Standard, Emphase=Hero, Alignement=Gauche",
+        "Disposition=Standard, Emphase=Moyen, Alignement=Centre",
+        "Disposition=Standard, Emphase=Moyen, Alignement=Gauche",
+        "Disposition=Standard, Emphase=Compact, Alignement=Centre",
+        "Disposition=Standard, Emphase=Compact, Alignement=Gauche",
+        "Disposition=Avec CTA, Emphase=Standard, Alignement=Gauche",
+        "Disposition=Avec CTA, Emphase=Hero, Alignement=Centre",
+        "Disposition=Avec CTA, Emphase=Hero, Alignement=Gauche",
+        "Disposition=Avec CTA, Emphase=Moyen, Alignement=Centre",
+        "Disposition=Avec CTA, Emphase=Moyen, Alignement=Gauche",
+        "Disposition=Avec CTA, Emphase=Compact, Alignement=Centre",
+        "Disposition=Avec CTA, Emphase=Compact, Alignement=Gauche"
+      ],
+      "responsiveWidths": [
+        1440,
+        768
+      ]
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "section-header:master",
+      "targetId": "section-header",
+      "role": "master",
+      "nodeId": "2090:2397",
+      "pageComposition": null,
+      "structuralPath": "",
+      "expectedSize": {
+        "width": 12760,
+        "height": 357
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [],
+  "allowedOperations": [
+    {
+      "operationId": "reconcile-section-header-v3-generated-master",
+      "targetId": "section-header",
+      "mechanism": "generated-amend",
+      "nodeId": "2090:2397",
+      "structuralPath": "",
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "fileVersionId",
+          "equals": "2390951111569267738"
+        },
+        {
+          "field": "ownerGo",
+          "equals": true
+        }
+      ],
+      "changes": {
+        "generatedScriptRef": "figma-sync/10-sectionheader.js"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "variantNames",
+          "equals": [
+            "Alignement=Centre",
+            "Alignement=Gauche"
+          ]
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "section-header-v3-migration-before-pending",
+      "phase": "before",
+      "fileVersionId": "2390951111569267738",
+      "artifacts": [],
+      "imageFingerprints": [],
+      "instanceLinks": [],
+      "complete": false
+    }
+  },
+  "sourceBaseline": {
+    "gitHead": "a45ba2ea8f7690811fa8fd4296f879872f822525",
+    "worktreeTree": "21cd08997c2373f960c1aedac9d27396f7127e4c",
+    "backupRef": "refs/codex/backups/section-header-v3-20260823",
+    "capturedAt": "2026-08-23T17:37:36.498Z"
+  }
+}

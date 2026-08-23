@@ -3,13 +3,13 @@
   "configId": "fixture-missing-verdict",
   "authoringVersion": "1.0.0",
   "snapshotId": "odoo-019-foundation",
-  "rootContract": { "id": "ds.presentation", "version": "2.5.0" },
+  "rootContract": { "id": "ds.presentation", "version": "3.0.0" },
   "rootActions": [{ "action": "move", "verdict": "allowed" }],
   "controls": [
     {
       "decisionId": "fx-ctl-bouton",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "3.0.0" } }],
         "prop": "bouton"
       },
       "verdict": "controlled",
@@ -22,7 +22,7 @@
     {
       "decisionId": "fx-part-root",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "3.0.0" } }],
         "partPath": ["root"]
       },
       "verdict": "not-editable",

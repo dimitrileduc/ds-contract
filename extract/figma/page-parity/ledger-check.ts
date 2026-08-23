@@ -381,9 +381,65 @@ function main(): void {
   process.exit(allOk ? 0 : 1);
 }
 
-try {
-  main();
-} catch (err) {
-  console.error(`ledger-check: unexpected error: ${errMessage(err)}`);
-  process.exit(1);
+// ---------------------------------------------------------------------------
+// Spec 026 — SectionHeader migration visual allowance.  This is exported so
+// tests and the post-mutation receipt share one refusal policy; it leaves the
+// historical customization-ledger CLI above untouched.
+// ---------------------------------------------------------------------------
+
+export interface SectionHeaderMigrationCapture {
+  sha256: string;
+  width: number;
+  height: number;
+}
+
+export interface SectionHeaderMigrationParityRow {
+  usageId: string;
+  role: string;
+  destination: string;
+  status: 'blocked' | 'preserve' | 'authorized-product-delta';
+  before: SectionHeaderMigrationCapture;
+  after?: SectionHeaderMigrationCapture;
+  authorizedDelta?: string;
+  approvalRef?: string;
+}
+
+/**
+ * Return every refusal rather than stopping at the first row. `preserve` is
+ * byte-and-dimension identical. The only permitted difference is an approved
+ * Products row carrying the named interim CTA/title allowance.
+ */
+export function sectionHeaderMigrationParityFailures(
+  rows: readonly SectionHeaderMigrationParityRow[],
+  expectedUsageCount = 45,
+): string[] {
+  const failures: string[] = [];
+  if (rows.length !== expectedUsageCount) failures.push(`expected ${expectedUsageCount} rows, got ${rows.length}`);
+  const ids = new Set<string>();
+  for (const row of rows) {
+    if (!row.usageId) failures.push('row without usageId');
+    else if (ids.has(row.usageId)) failures.push(`${row.usageId}: duplicate usageId`);
+    else ids.add(row.usageId);
+    if (row.status === 'preserve') {
+      if (!row.after) failures.push(`${row.usageId}: preserve without after capture`);
+      else if (row.after.sha256 !== row.before.sha256 || row.after.width !== row.before.width || row.after.height !== row.before.height) {
+        failures.push(`${row.usageId}: unauthorised visual delta`);
+      }
+    }
+    if (row.status === 'authorized-product-delta' &&
+        (row.role !== 'produits-ecommerce' || row.destination !== 'produits-ecommerce' ||
+          row.authorizedDelta !== 'product-intermediate-left-no-eyebrow-cta' || !row.approvalRef || !row.after)) {
+      failures.push(`${row.usageId}: unapproved Products delta`);
+    }
+  }
+  return failures;
+}
+
+if (process.argv[1]?.endsWith('/ledger-check.ts') || process.argv[1]?.endsWith('\\ledger-check.ts')) {
+  try {
+    main();
+  } catch (err) {
+    console.error(`ledger-check: unexpected error: ${errMessage(err)}`);
+    process.exit(1);
+  }
 }

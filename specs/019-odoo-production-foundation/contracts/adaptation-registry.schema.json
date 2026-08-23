@@ -60,7 +60,7 @@
         "rootContracts": {
           "$comment": "`ds.header` ajouté (ADDITIF) par spec 022, `ds.footer` par spec 023 : les racines shell sont des racines de l'intégration au même titre que les posables.",
           "type": "array",
-          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header", "ds.categories-principales", "ds.footer", "ds.hero-video"] },
+          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header", "ds.categories-principales", "ds.footer", "ds.hero-video", "ds.produits-ecommerce"] },
           "$comment": "minItems piloté par `allOf` (≥1 sauf mechanism page-composition).",
           "minItems": 0,
           "uniqueItems": true

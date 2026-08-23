@@ -202,8 +202,14 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // la source (§VIII : on ne corrige pas un défaut de source en code), donc il
 // hérite du défaut — allowlisté comme ds.carte, jamais absous. Nettoyage de
 // source (Medium -> Regular) = décision owner différée (Gate C).
-if (linked.length !== 65 || custom.length !== 16 || rich.length !== 21) {
-  fail(`global gate expected 65 linked / 16 historical custom / 21 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+//
+// 2026-08-23 (spec 026) : 65 -> 51 linked et 21 -> 11 rich. Les quatre routes
+// spécialisées possèdent maintenant leurs titres directs ; le jeu générique ne
+// décline plus ses variantes Hero/Moyen/Compact ni le CTA. Ces comptes attestent
+// donc l'API v3 locale, sans prétendre que le master Figma a déjà reçu la
+// mutation soumise au GO owner.
+if (linked.length !== 51 || custom.length !== 16 || rich.length !== 11) {
+  fail(`global gate expected 51 linked / 16 historical custom / 11 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -217,4 +223,4 @@ if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 65 linked / 16 historical custom / 21 rich; second token apply preserves ids');
+console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 51 linked / 16 historical custom / 11 rich; second token apply preserves ids');

@@ -1,0 +1,151 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.produits-ecommerce",
+  "name": "ProduitsECommerce",
+  "version": "1.0.0",
+  "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+  "semantics": {
+    "element": "section",
+    "provenance": "authored"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Découvrez nos produits disponibles en ligne"
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "produits",
+      "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here.",
+      "type": {
+        "arrayOf": {
+          "titre": "text",
+          "prix": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "produits"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "start",
+        "width": "fill",
+        "referenceWidth": 1596
+      },
+      "parts": {
+        "Titre": {
+          "layout": {
+            "width": "fill",
+            "align": "start"
+          },
+          "content": {
+            "prop": "titre",
+            "marks": {
+              "strong": "{font.weight.bold}"
+            }
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}",
+            "font-size": "{font.size.32}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "40px"
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button",
+            "text": "Voir les produits",
+            "props": {
+              "variant": "outlineNoir",
+              "iconLeft": false,
+              "iconRight": true
+            }
+          }
+        },
+        "Produits": {
+          "layout": {
+            "display": "grid",
+            "columns": 4,
+            "width": "fill"
+          },
+          "parts": {
+            "ProductCard": {
+              "component": {
+                "id": "ds.product-card"
+              },
+              "repeat": {
+                "itemsProp": "produits",
+                "sample": [
+                  {
+                    "titre": "Télécommande Hörmann HSE4-868BS",
+                    "prix": "74,99€"
+                  },
+                  {
+                    "titre": "Clavier à code Hörmann FCT3-1BS",
+                    "prix": "139,99€"
+                  },
+                  {
+                    "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
+                    "prix": "89,99€"
+                  },
+                  {
+                    "titre": "Passerelle BiSecure Hörmann",
+                    "prix": "74,99€"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "CarouselControls": {
+          "component": {
+            "id": "ds.carousel-controls"
+          }
+        }
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.32}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f",
+      "nodeId": "2116:4475",
+      "dumpedAt": "2026-08-23"
+    },
+    "code": {
+      "importPath": "src/components/ProduitsECommerce",
+      "export": "ProduitsECommerce"
+    }
+  },
+  "category": "section"
+}

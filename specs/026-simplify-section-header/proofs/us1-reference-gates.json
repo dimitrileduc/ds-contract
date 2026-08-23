@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "scope": "US1 canonical and generated reference surfaces",
+  "executedAt": "2026-08-23T19:25:00Z",
+  "commands": [
+    { "command": "npx tsx scripts/generate-components.ts", "status": "pass" },
+    { "command": "npm run figma:plan", "status": "pass" },
+    { "command": "npm run catalog", "status": "pass" },
+    { "command": "npx tsx evals/fixtures/section-header-v3-api-check.ts", "status": "pass" },
+    { "command": "npx tsx evals/fixtures/section-header-v3-render-check.ts", "status": "pass" },
+    { "command": "npx tsx evals/fixtures/section-header-v3-figma-check.ts", "status": "pass" },
+    { "command": "npm run typecheck", "status": "pass" },
+    {
+      "command": "npm run parity",
+      "status": "pass",
+      "acknowledgedBaselineFindings": 9,
+      "reason": "No new drift after the approved SectionHeader v3 Figma reconciliation."
+    }
+  ],
+  "verdict": "reference-and-live-Figma parity pass; nine unrelated baseline findings remain acknowledged"
+}

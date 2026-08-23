@@ -44,12 +44,7 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
     <div ref={ref} className={classes} {...rest}>
       <img className={styles.googleMap} src={String(mapUrl)} alt={String(mapAlt)}></img>
       <div className={styles.wrapper}>
-        <SectionHeader
-          titre={titre}
-          accroche={accroche}
-          disposition="standard"
-          alignement="gauche"
-        />
+        <SectionHeader titre={titre} accroche={accroche} alignement="gauche" />
         <div className={styles.Adresse}>
           <span className={styles.AdresseEtiquette}>Adresse</span>
           <span className={styles.AdresseValeur}>{'Rue Alfred Drèze 7,\n4860 Pepinster'}</span>

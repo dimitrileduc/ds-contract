@@ -3,10 +3,10 @@
   "snapshotId": "odoo-019-foundation",
   "generatorVersion": "1.0.0",
   "coverage": {
-    "expectedProps": 268,
-    "decidedProps": 268,
-    "expectedParts": 397,
-    "decidedParts": 397,
+    "expectedProps": 226,
+    "decidedProps": 226,
+    "expectedParts": 373,
+    "decidedParts": 373,
     "missingDecisionIds": [],
     "extraDecisionIds": [],
     "invalidAddresses": []
@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "7ffcf61253ec23f5c82413a037e591ccfbd711b1e9e88708db4d6884d3a6fcd3",
-      "actualSha256": "7ffcf61253ec23f5c82413a037e591ccfbd711b1e9e88708db4d6884d3a6fcd3",
-      "bytes": 52749
+      "expectedSha256": "7f4b724454620c0d57532a671c29ac31eb68fb5d6460d173e97a2ce91ae80a41",
+      "actualSha256": "7f4b724454620c0d57532a671c29ac31eb68fb5d6460d173e97a2ce91ae80a41",
+      "bytes": 54884
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -71,16 +71,16 @@
   ],
   "manualDelta": {
     "files": 17,
-    "blocks": 79,
-    "lines": 4038,
-    "bytes": 244890,
+    "blocks": 82,
+    "lines": 4096,
+    "bytes": 248424,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
         "files": 4,
-        "blocks": 19,
-        "lines": 1187,
-        "bytes": 66411
+        "blocks": 20,
+        "lines": 1210,
+        "bytes": 67867
       },
       {
         "key": "odoo-internal-api",
@@ -127,9 +127,9 @@
       {
         "key": "odoo-qweb-composition",
         "files": 4,
-        "blocks": 26,
-        "lines": 839,
-        "bytes": 90352
+        "blocks": 28,
+        "lines": 874,
+        "bytes": 92396
       },
       {
         "key": "odoo-repeat-dom",
@@ -143,16 +143,16 @@
         "files": 1,
         "blocks": 1,
         "lines": 53,
-        "bytes": 3083
+        "bytes": 3117
       }
     ],
     "byMechanism": [
       {
         "key": "builder-option",
         "files": 4,
-        "blocks": 19,
-        "lines": 1187,
-        "bytes": 66411
+        "blocks": 20,
+        "lines": 1210,
+        "bytes": 67867
       },
       {
         "key": "compatibility",
@@ -185,9 +185,9 @@
       {
         "key": "qweb",
         "files": 4,
-        "blocks": 27,
-        "lines": 888,
-        "bytes": 93643
+        "blocks": 29,
+        "lines": 923,
+        "bytes": 95687
       },
       {
         "key": "repeat-action",
@@ -201,7 +201,7 @@
         "files": 1,
         "blocks": 1,
         "lines": 53,
-        "bytes": 3083
+        "bytes": 3117
       },
       {
         "key": "seed",
@@ -217,5 +217,5 @@
     "blocks": [],
     "registryEntries": []
   },
-  "canonicalDigest": "acb6105729d6558d01b7593199438ca4bab1daf0883afd906ac1fc83b9665cac"
+  "canonicalDigest": "41c03e72054689c28e37b6a568b0f38f98376bb4c714cfdc37381e5523cbe568"
 }

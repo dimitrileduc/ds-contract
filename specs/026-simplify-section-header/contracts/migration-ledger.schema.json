@@ -62,6 +62,26 @@
         },
         "destination": { "enum": ["section-header", "hero", "presentation", "texte-seo", "produits-ecommerce", "blocked"] },
         "status": { "enum": ["preserve", "authorized-product-delta", "blocked"] },
+        "migration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target", "fieldMap", "removed"],
+          "properties": {
+            "target": { "const": "ds.section-header@3.0.0" },
+            "fieldMap": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["titre", "accroche", "afficherAccroche", "alignement"],
+              "properties": {
+                "titre": { "const": "titre" },
+                "accroche": { "const": "accroche" },
+                "afficherAccroche": { "const": "accroche2" },
+                "alignement": { "const": "alignement" }
+              }
+            },
+            "removed": { "const": ["disposition", "emphase"] }
+          }
+        },
         "before": { "$ref": "#/$defs/capture" },
         "after": { "$ref": "#/$defs/capture" },
         "preservation": {

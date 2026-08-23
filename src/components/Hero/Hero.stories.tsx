@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.6.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -30,6 +30,11 @@ const meta = {
       description:
         'Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state.',
     },
+    titre: {
+      control: false,
+      description:
+        'Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero.',
+    },
     sousTitre: {
       control: false,
       description:
@@ -44,6 +49,7 @@ const meta = {
   args: {
     backgroundUrl: '',
     backgroundAlt: '',
+    titre: [{ text: 'Portes de garage', strong: true }, { text: ' industrielles' }],
     sousTitre: [
       { text: 'La ' },
       { text: 'performance', strong: true },

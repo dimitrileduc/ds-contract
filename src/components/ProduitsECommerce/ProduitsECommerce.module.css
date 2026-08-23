@@ -1,0 +1,42 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/produits-ecommerce.contract.json (ds.produits-ecommerce v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+  gap: var(--space-32);
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-regular);
+  line-height: 40px;
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.Produits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+}

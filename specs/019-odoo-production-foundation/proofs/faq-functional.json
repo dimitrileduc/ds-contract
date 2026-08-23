@@ -7,7 +7,7 @@
   "observations": [
     "[pass] QWeb — le sample canonique rend 3 questions fermées, accroche et CTA — attendu « HTTP 200 · 1 racine · 3 fermées · accroche FAQ · CTA Contactez-nous », observé « {\"status\":200,\"state\":[{\"rows\":[{\"marker\":\"faq-0\",\"titre\":\"Nos portes répondent-elles aux normes des bâtiments publics ?\",\"open\":false},{\"marker\":\"faq-1\",\"titre\":\"Quels types de bardages peuvent être intégrés sur les portes ?\",\"open\":false},{\"marker\":\"faq-2\",\"titre\":\"Assurez-vous la maintenance après l'installation ?\",\"open\":false}],\"eyebrow\":\"FAQ\",\"title\":\"Questions fréquentes\",\"cta\":\"Contactez-nous\"}]} »",
     "[pass] catalogue — deux FAQ indépendantes sont insérées — attendu « A=3, B=3 », observé « racines=2 · A=3 · B=3 »",
-    "[pass] panneau racine — inventaire strict et actions déclarées — attendu « faq-collection, faq-cta-label, faq-title · move, duplicate, remove », observé « faq-collection, faq-cta-label, faq-title · duplicate, move, remove »",
+    "[pass] panneau racine — inventaire strict et actions déclarées — attendu « faq-collection, faq-cta-href, faq-cta-label, faq-title · move, duplicate, remove », observé « faq-collection, faq-cta-href, faq-cta-label, faq-title · duplicate, move, remove »",
     "[pass] panneau rangée — inventaire strict — attendu « faq-row-contenu, faq-row-etat, faq-row-move-down, faq-row-move-up, faq-row-remove, faq-row-titre », observé « faq-row-contenu, faq-row-etat, faq-row-move-down, faq-row-move-up, faq-row-remove, faq-row-titre »",
     "[pass] édition — titre par frappe réelle, réponse dans la rangée ouverte — attendu « frappe QA insérée dans le titre · contenu « Réponse QA finale » », observé « titre=« Nos portes répondent-elles aux  QAnormes des bâtiments publics ? » · contenu=« Réponse QA finale » »",
     "[pass] repeat — cardinalité 1 sans fuite — attendu « A=1, B=3 », observé « A=1 · B=3 »",
@@ -21,5 +21,5 @@
   ],
   "artifacts": [],
   "limitCodes": [],
-  "durationMs": 135174
+  "durationMs": 44004
 }

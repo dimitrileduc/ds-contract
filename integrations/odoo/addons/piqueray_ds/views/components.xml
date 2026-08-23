@@ -73,9 +73,9 @@
       {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 6 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''}
     ]"/>
     <section class="s_pqr_google_reviews google-reviews pqr-controls-visible" data-snippet="s_pqr_google_reviews" data-name="Piqueray · Google Reviews"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="2.0.0" data-ds-authoring-version="1.2.0"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
              data-montrer-controles=""
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="root">
       <div class="google-reviews__resume" data-pqr-part="resume">
@@ -138,23 +138,20 @@
   </template>
 
   <template id="pqr_section_header" name="Piqueray · SectionHeader">
-    <div t-attf-class="section-header section-header--disposition-#{disposition} section-header--emphase-#{emphase} section-header--alignement-#{alignement} oe_unremovable oe_unmovable" data-pqr-part="section-header-root">
+    <div t-attf-class="section-header section-header--alignement-#{alignement} oe_unremovable oe_unmovable" data-pqr-part="section-header-root">
       <span t-if="show_eyebrow" class="section-header__Accroche" data-pqr-part="section-header-eyebrow"><t t-esc="eyebrow"/></span>
       <span class="section-header__Titre o_pqr_editable" t-att-data-pqr-part="title_part" data-pqr-marks="strong"><t t-out="title_html"/></span>
-      <t t-if="disposition == 'avecCta'">
-        <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Voir les produits'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="False"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
-      </t>
     </div>
   </template>
 
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
-             data-ds-contract="ds.presentation" data-ds-contract-version="2.6.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.presentation" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
-        <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'moyen'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'presentation-title'"/><t t-set="title_html"><strong>Piqueray, </strong><span>une histoire de famille </span></t></t>
+        <span class="presentation__Titre o_pqr_editable" data-pqr-part="presentation-title" data-pqr-marks="strong"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
       </div>
       <div class="presentation__wrapper" data-pqr-part="content-wrapper">
         <span class="presentation__Texte o_pqr_editable" data-pqr-part="presentation-text" data-pqr-marks="strong"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
@@ -169,8 +166,8 @@
   <!-- ODOO-019-HERO-QWEB BEGIN -->
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero pqr-soustitre-on" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
-             data-ds-contract="ds.hero" data-ds-contract-version="1.6.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.hero" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
@@ -178,7 +175,7 @@
       <div class="hero__blocTexte oe_unremovable oe_unmovable" data-pqr-part="hero-content">
         <div class="hero__Titres oe_unremovable oe_unmovable" data-pqr-part="hero-titles">
           <div class="hero__colGauche oe_unremovable oe_unmovable" data-pqr-part="hero-left-column">
-            <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'hero'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'hero-title'"/><t t-set="title_html"><strong>Portes de garage</strong><span> industrielles</span></t></t>
+            <span class="hero__Titre o_pqr_editable" data-pqr-part="hero-title" data-pqr-marks="strong"><strong>Portes de garage</strong><span> industrielles</span></span>
             <span class="hero__sousTitre o_pqr_editable" data-pqr-part="hero-subtitle" data-pqr-marks="strong"><span>La </span><strong>performance</strong><span> sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons </span><strong>la solution idéale</strong><span>.</span></span>
           </div>
           <div class="hero__Bouton oe_unremovable oe_unmovable" data-pqr-part="hero-cta">
@@ -192,8 +189,8 @@
   <!-- ODOO-025-HERO-VIDEO-QWEB BEGIN -->
   <template id="s_pqr_hero_video" name="Piqueray · Hero vidéo">
     <section class="s_pqr_hero_video hero-video" data-snippet="s_pqr_hero_video" data-name="Piqueray · Hero vidéo"
-             data-ds-contract="ds.hero-video" data-ds-contract-version="1.0.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.hero-video" data-ds-contract-version="1.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-video-default" data-pqr-part="root">
       <img class="hero-video__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-video-poster" alt=""/>
@@ -253,8 +250,8 @@
       {'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
-             data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
       <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
@@ -297,11 +294,11 @@
       {'titre': 'Assurez-vous la maintenance après l\'installation ?', 'contenu': 'Réponse'}
     ]"/>
     <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
-             data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
-      <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
+      <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
       <div class="faq__accordion" data-pqr-faq-list="" data-pqr-part="accordion">
         <t t-foreach="questions" t-as="question"><t t-call="piqueray_ds.faq_accordion_row"><t t-set="question" t-value="question"/><t t-set="question_index" t-value="question_index"/></t></t>
       </div>
@@ -315,8 +312,8 @@
   <!-- ODOO-019-DEVIS-QWEB BEGIN -->
   <template id="s_pqr_devis" name="Piqueray · Devis">
     <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
-             data-ds-contract="ds.devis" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.devis" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
              data-fond="">
@@ -334,8 +331,8 @@
   <!-- ODOO-019-SAV-QWEB BEGIN -->
   <template id="s_pqr_sav" name="Piqueray · SAV">
     <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
-             data-ds-contract="ds.sav" data-ds-contract-version="1.4.1" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.sav" data-ds-contract-version="1.4.1" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
       <div class="sav__section oe_unremovable oe_unmovable" data-pqr-part="sav-section">
@@ -344,7 +341,7 @@
           <div class="sav__wrapper oe_unremovable oe_unmovable" data-pqr-part="sav-wrapper">
             <div class="sav__WrapperBackground oe_unremovable oe_unmovable" data-pqr-part="sav-wrapper-background"/>
             <div class="sav__inner oe_unremovable oe_unmovable" data-pqr-part="sav-inner">
-              <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'sav-title'"/><t t-set="title_html"><span>Dépannage / SAV</span></t></t>
+              <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'sav-title'"/><t t-set="title_html"><span>Dépannage / SAV</span></t></t>
               <span class="sav__vousRencontrezUnProblmeA o_pqr_editable" data-pqr-part="sav-text" data-pqr-marks="strong,line-break"><span>Vous rencontrez un problème avec </span><strong>votre installation </strong><span>Hörmann à Liège ? Il y a une panne de courant et </span><strong>votre porte de garage</strong><span> ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?</span><br/><span>Pas de panique, Piqueray, </span><strong>votre distributeur Hörmann en province de Liège</strong><span> est là pour vous aider !</span></span>
               <div class="sav__Bouton oe_unremovable oe_unmovable" data-pqr-part="sav-cta">
                 <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'default'"/><t t-set="label" t-value="'Demander de l’aide'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
@@ -389,12 +386,12 @@
       {'titre': 'Zones de déplacement pour devis', 'contenu': 'Réponse', 'etat': 'ferme'}
     ]"/>
     <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
-             data-ds-contract="ds.texte-seo" data-ds-contract-version="2.1.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.texte-seo" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
       <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
-        <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'compact'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'texte-seo-title'"/><t t-set="title_html"><span>Visitez notre </span><strong>showroom à Pepinster</strong><span> ou contactez-nous</span></t></t>
+        <span class="texte-seo__Titre o_pqr_editable" data-pqr-part="texte-seo-title" data-pqr-marks="strong"><span>Visitez notre </span><strong>showroom à Pepinster</strong><span> ou contactez-nous</span></span>
       </div>
       <div class="texte-seo__p" data-pqr-part="texte-seo-p">
         <span class="texte-seo__Paragraphe o_pqr_editable" data-pqr-part="texte-seo-text" data-pqr-marks="">Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.</span>
@@ -419,8 +416,8 @@
 
   <template id="s_pqr_coordonnees" name="Piqueray · Coordonnées">
     <section class="s_pqr_coordonnees coordonnees" data-snippet="s_pqr_coordonnees" data-name="Piqueray · Coordonnées"
-             data-ds-contract="ds.coordonnees" data-ds-contract-version="2.2.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.coordonnees" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="coordonnees-default" data-pqr-part="root">
       <!-- Plan Google : PLACEHOLDER sans src (décision gate 2026-08-19). Alimenté
@@ -428,7 +425,7 @@
            panneau, jamais d'image cassée, identique des deux côtés de la mesure. -->
       <img class="coordonnees__googleMap oe_unremovable oe_unmovable" data-pqr-part="coordonnees-map" alt=""/>
       <div class="coordonnees__wrapper oe_unremovable oe_unmovable" data-pqr-part="coordonnees-wrapper">
-        <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Contact'"/><t t-set="title_part" t-value="'coordonnees-title'"/><t t-set="title_html"><span>Pourquoi choisir Piqueray ?</span></t></t>
+        <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Contact'"/><t t-set="title_part" t-value="'coordonnees-title'"/><t t-set="title_html"><span>Pourquoi choisir Piqueray ?</span></t></t>
         <div class="coordonnees__Adresse oe_unremovable oe_unmovable" data-pqr-part="coordonnees-address">
           <span class="coordonnees__AdresseEtiquette" data-pqr-part="coordonnees-address-label">Adresse</span>
           <span class="coordonnees__AdresseValeur o_pqr_editable" data-pqr-part="coordonnees-address-value" data-pqr-marks="link"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rue+Alfred+Dr%C3%A8ze+7%2C+4860+Pepinster" target="_blank" rel="noopener noreferrer">Rue Alfred Drèze 7, 4860 Pepinster</a></span>
@@ -488,12 +485,12 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'SAV &amp; maintenance dédiés', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_reassurances reassurances reassurances--disposition-4Cartes" data-snippet="s_pqr_reassurances" data-name="Piqueray · Réassurances"
-             data-ds-contract="ds.reassurances" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.reassurances" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="reassurances-default" data-pqr-part="root">
       <!-- En-tête FIXÉ par composition (littéraux, textes non éditables — R3). -->
-      <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'reassurances-title'"/><t t-set="title_html"><span>Pourquoi choisir nos portes de garage industrielles ?</span></t></t>
+      <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'reassurances-title'"/><t t-set="title_html"><span>Pourquoi choisir nos portes de garage industrielles ?</span></t></t>
       <div class="reassurances__items" data-pqr-carte-list="" data-pqr-part="reassurances-items">
         <t t-foreach="cartes" t-as="carte"><t t-call="piqueray_ds.carte_reassurance"><t t-set="carte" t-value="carte"/><t t-set="carte_index" t-value="carte_index"/></t></t>
       </div>
@@ -584,8 +581,8 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'Pour l’automatisation', 'texte': 'Motorisations et accessoires. Confort et pilotage à distance de tous vos accès.', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_categories_principales categories-principales" data-snippet="s_pqr_categories_principales" data-name="Piqueray · Catégories principales"
-             data-ds-contract="ds.categories-principales" data-ds-contract-version="1.0.0" data-ds-authoring-version="1.2.0"
-             data-ds-graph-digest="35950379592814df325c3f0d7adc6886bc3694de762f9f6c345855869e435429"
+             data-ds-contract="ds.categories-principales" data-ds-contract-version="1.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b"
              data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
              data-pqr-colonnes="2" data-pqr-style="empile"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="categories-principales-default" data-pqr-part="root">
@@ -609,4 +606,34 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     </section>
   </template>
   <!-- ODOO-023-CATEGORIES-QWEB END -->
+  <!-- ODOO-026-PRODUITS-ECOMMERCE-QWEB BEGIN -->
+  <template id="s_pqr_produits_ecommerce" name="Piqueray · Produits e-commerce">
+    <t t-set="produits" t-value="[
+      {'titre': 'Télécommande Hörmann HSE4-868BS', 'prix': '74,99€'},
+      {'titre': 'Clavier à code Hörmann FCT3-1BS', 'prix': '139,99€'},
+      {'titre': 'Bouton poussoir Hörmann FIT2-1-868-BS', 'prix': '89,99€'},
+      {'titre': 'Passerelle BiSecure Hörmann', 'prix': '74,99€'}
+    ]"/>
+    <section class="s_pqr_produits_ecommerce produits-ecommerce" data-snippet="s_pqr_produits_ecommerce" data-name="Piqueray · Produits e-commerce"
+             data-ds-contract="ds.produits-ecommerce" data-ds-contract-version="1.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="a88621d0ecb0c90e647d68c1fc6c84b5b17dace7c9e79182baca31839893a23b" data-vcss="19.0.1.9.0" data-vxml="19.0.1.9.0" data-vjs="19.0.1.9.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="produits-ecommerce-default" data-pqr-part="root">
+      <span class="produits-ecommerce__Titre o_pqr_editable" data-pqr-part="produits-ecommerce-title" data-pqr-marks="strong">Découvrez nos produits disponibles en ligne</span>
+      <div data-pqr-part="root-bouton"><t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Voir les produits'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t></div>
+      <div class="produits-ecommerce__Produits" data-pqr-part="root-produits">
+        <t t-foreach="produits" t-as="produit">
+          <div class="product-card" data-pqr-part="root-produits-produc-ard">
+            <img class="product-card__Image" alt=""/>
+            <span class="product-card__Titre"><t t-esc="produit['titre']"/></span>
+            <span class="product-card__Prix"><t t-esc="produit['prix']"/></span>
+          </div>
+        </t>
+      </div>
+      <nav class="carousel-controls" aria-label="Navigation du carrousel" data-pqr-part="root-carouse-ontrols">
+        <button type="button" class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable" data-pqr-part="carousel-previous"><span class="button__iconOnlyIcon" role="img" aria-label="Précédent"><t t-call="piqueray_ds.pqr_chevron_left"/></span><span class="button__label">Précédent</span></button>
+        <button type="button" class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable" data-pqr-part="carousel-next"><span class="button__iconOnlyIcon" role="img" aria-label="Suivant"><t t-call="piqueray_ds.pqr_chevron_right"/></span><span class="button__label">Suivant</span></button>
+      </nav>
+    </section>
+  </template>
+  <!-- ODOO-026-PRODUITS-ECOMMERCE-QWEB END -->
 </odoo>

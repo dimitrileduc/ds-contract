@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.6.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v3.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -23,8 +23,9 @@ const meta = {
     texte: { control: false },
     bouton: { control: 'boolean' },
     titre: {
-      control: 'text',
-      description: 'Extracted from Figma "Titre" TEXT property (added by sync pass).',
+      control: false,
+      description:
+        'Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy.',
     },
   },
   args: {
@@ -41,7 +42,7 @@ const meta = {
       { text: '.' },
     ],
     bouton: true,
-    titre: 'Piqueray, une histoire de famille ',
+    titre: [{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }],
   },
 } satisfies Meta<typeof Presentation>;
 

@@ -60,13 +60,19 @@
       "adaptationId": "ODOO-019-PRESENTATION-QWEB",
       "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
       "rootContracts": [
-        "ds.presentation"
+        "ds.presentation",
+        "ds.coordonnees",
+        "ds.faq",
+        "ds.reassurances",
+        "ds.sav"
       ],
       "reasonCode": "odoo-qweb-composition",
       "decisionRefs": [
         "T043",
         "T044",
-        "T045"
+        "T045",
+        "specs/026-simplify-section-header/plan.md",
+        "section-header.contract.json"
       ],
       "mechanism": "qweb"
     },
@@ -153,7 +159,8 @@
         "ds.devis",
         "ds.faq",
         "ds.sav",
-        "ds.texte-seo"
+        "ds.texte-seo",
+        "ds.produits-ecommerce"
       ],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": [
@@ -165,7 +172,8 @@
         "devis.authoring.json",
         "faq.authoring.json",
         "sav.authoring.json",
-        "texte-seo.authoring.json"
+        "texte-seo.authoring.json",
+        "produits-ecommerce.authoring.json"
       ],
       "mechanism": "builder-option"
     },
@@ -180,7 +188,8 @@
         "ds.devis",
         "ds.faq",
         "ds.sav",
-        "ds.texte-seo"
+        "ds.texte-seo",
+        "ds.produits-ecommerce"
       ],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": [
@@ -192,7 +201,8 @@
         "devis.authoring.json",
         "faq.authoring.json",
         "sav.authoring.json",
-        "texte-seo.authoring.json"
+        "texte-seo.authoring.json",
+        "produits-ecommerce.authoring.json"
       ],
       "mechanism": "builder-option"
     },
@@ -316,7 +326,8 @@
         "ds.equipe",
         "ds.faq",
         "ds.sav",
-        "ds.texte-seo"
+        "ds.texte-seo",
+        "ds.produits-ecommerce"
       ],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": [
@@ -327,7 +338,8 @@
         "equipe.authoring.json",
         "faq.authoring.json",
         "sav.authoring.json",
-        "texte-seo.authoring.json"
+        "texte-seo.authoring.json",
+        "produits-ecommerce.authoring.json"
       ],
       "mechanism": "builder-option"
     },
@@ -342,7 +354,8 @@
         "ds.devis",
         "ds.faq",
         "ds.sav",
-        "ds.texte-seo"
+        "ds.texte-seo",
+        "ds.produits-ecommerce"
       ],
       "reasonCode": "odoo-version-policy",
       "decisionRefs": [
@@ -353,7 +366,8 @@
         "devis.authoring.json",
         "faq.authoring.json",
         "sav.authoring.json",
-        "texte-seo.authoring.json"
+        "texte-seo.authoring.json",
+        "produits-ecommerce.authoring.json"
       ],
       "mechanism": "save-version"
     },
@@ -1044,7 +1058,7 @@
     {
       "adaptationId": "ODOO-025-FIGMA-LINKS-JS",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js",
-      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.produits-ecommerce", "ds.reassurances", "ds.sav", "ds.texte-seo"],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": ["specs/025-odoo-figma-links/plan.md", "integrations/odoo/config/figma-panels.json"],
       "mechanism": "builder-option"
@@ -1052,7 +1066,7 @@
     {
       "adaptationId": "ODOO-025-FIGMA-LINKS-XML",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
-      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.produits-ecommerce", "ds.reassurances", "ds.sav", "ds.texte-seo"],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": ["specs/025-odoo-figma-links/contracts/editor-action.md", "integrations/odoo/config/figma-panels.json"],
       "mechanism": "builder-option"
@@ -1060,9 +1074,33 @@
     {
       "adaptationId": "ODOO-025-FIGMA-LINKS-GENERATED",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/js/generated/figma_links.js",
-      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.produits-ecommerce", "ds.reassurances", "ds.sav", "ds.texte-seo"],
       "reasonCode": "odoo-builder-policy",
       "decisionRefs": ["integrations/odoo/config/figma-panels.json", "contracts"],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-026-PRODUITS-ECOMMERCE-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": ["ds.produits-ecommerce"],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": ["produits-ecommerce.authoring.json", "produits-ecommerce.contract.json"],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-026-PRODUITS-ECOMMERCE-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": ["ds.produits-ecommerce"],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": ["produits-ecommerce.authoring.json"],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-026-PRODUITS-ECOMMERCE-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": ["ds.produits-ecommerce"],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": ["produits-ecommerce.authoring.json"],
       "mechanism": "builder-option"
     }
   ]

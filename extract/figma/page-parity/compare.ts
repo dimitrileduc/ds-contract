@@ -142,6 +142,20 @@ export interface CompareEntryResult {
   };
 }
 
+/**
+ * Spec 026's page gate is deliberately narrower than the generic region
+ * instrument: outside the single separately-reviewed Products allowance,
+ * every captured page and use must be strictly identical.  Keeping this
+ * verdict reduction next to the pixel comparator makes capture failures and
+ * dimension changes impossible to accidentally treat as a clean comparison.
+ */
+export function strictParityFailures(verdicts: readonly PixelVerdict[]): string[] {
+  if (verdicts.length === 0) return ['no captures were supplied'];
+  return verdicts
+    .filter((verdict) => verdict.status !== 'identical')
+    .map((verdict) => `${verdict.maquette}: ${verdict.status}`);
+}
+
 // ---------------------------------------------------------------------------
 // Per-side evaluation.
 // ---------------------------------------------------------------------------
