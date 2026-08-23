@@ -2,13 +2,39 @@
   "$schema": "./contract.schema.json",
   "id": "ds.texte-seo",
   "name": "TexteSEO",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "titre",
+      "description": "Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Visitez notre "
+        },
+        {
+          "text": "showroom à Pepinster",
+          "strong": true
+        },
+        {
+          "text": " ou contactez-nous"
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
     {
       "name": "items",
       "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
@@ -43,32 +69,24 @@
         "align": "stretch"
       },
       "parts": {
-        "h2": {
-          "parts": {
-            "SectionHeader": {
-              "component": {
-                "id": "ds.section-header",
-                "props": {
-                  "titre": [
-                    {
-                      "text": "Visitez notre "
-                    },
-                    {
-                      "text": "showroom à Pepinster",
-                      "strong": true
-                    },
-                    {
-                      "text": " ou contactez-nous"
-                    }
-                  ],
-                  "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard",
-                  "accroche2": false,
-                  "emphase": "compact",
-                  "alignement": "gauche"
-                }
-              }
+        "Titre": {
+          "layout": {
+            "width": "fill",
+            "align": "start"
+          },
+          "content": {
+            "prop": "titre",
+            "marks": {
+              "strong": "{font.weight.bold}"
             }
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}",
+            "font-size": "{font.size.24}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "30px"
           }
         },
         "p": {

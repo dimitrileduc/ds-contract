@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -21,8 +21,17 @@
   align-self: stretch;
 }
 
-.h2 {
-  display: flex;
+.Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .p {

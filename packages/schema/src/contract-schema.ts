@@ -655,7 +655,7 @@ export const STYLES_WHEN_ALLOWED = new Set([
   'position', 'top', 'right', 'bottom', 'left', 'z-index',
   'overflow', 'text-overflow', 'white-space', 'display', 'opacity',
   'pointer-events', 'transform', 'transition', 'flex-direction',
-  'justify-content', 'align-items', 'cursor', 'text-decoration',
+  'justify-content', 'align-items', 'text-align', 'cursor', 'text-decoration',
 ]);
 
 /** v7: conditional literal styles — CSS applied only when the prop matches.

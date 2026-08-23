@@ -56,9 +56,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Plus de 1500 portes installées par année et autant de clients satisfaits",
                 "Accroche": "Nos avis Google vérifiés",
-                "Accroche2": true,
-                "Disposition": "Standard",
-                "Emphase": "Standard",
+                "Afficher accroche": true,
                 "Alignement": "Centre"
               },
               "depPropRefs": [

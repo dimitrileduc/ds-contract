@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "709cbbb4",
+    "gitCommit": "a45ba2ea",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -769,28 +769,15 @@
     {
       "id": "ds.section-header",
       "name": "SectionHeader",
-      "version": "2.2.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray SectionHeader v3. Generic section title only: a rich title, optional eyebrow and explicit alignment. CTA and specialised hierarchy belong to their owning sections: ds.hero@2.0.0, ds.presentation@3.0.0, ds.texte-seo@3.0.0 and ds.produits-ecommerce@1.0.0.",
       "figma": {
         "representation": "component",
         "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
       },
       "props": [
-        {
-          "name": "disposition",
-          "type": [
-            "standard",
-            "avecCta"
-          ],
-          "default": "standard"
-        },
-        {
-          "name": "accroche",
-          "type": "string",
-          "default": "Plus de 50 ans d’expérience"
-        },
         {
           "name": "titre",
           "type": "string",
@@ -798,25 +785,18 @@
             {
               "text": "Pourquoi choisir Piqueray ?"
             }
-          ],
-          "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas garde UNE valeur TEXT native et applique les marques gouvernées par plages de caractères natives."
+          ]
         },
         {
-          "name": "accroche2",
+          "name": "accroche",
+          "type": "string",
+          "default": "Plus de 50 ans d’expérience"
+        },
+        {
+          "name": "afficherAccroche",
           "type": "boolean",
           "default": true,
-          "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass)."
-        },
-        {
-          "name": "emphase",
-          "type": [
-            "standard",
-            "hero",
-            "moyen",
-            "compact"
-          ],
-          "default": "standard",
-          "description": "Axe gouverné : binding VARIANT « Emphase » depuis 2.1.0 (016, journal decisions.md O-12 — le SET 2090:2397 a gagné les dimensions Emphase et Alignement, 16 variantes). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE), une abstraction au-dessus de surcharges d'instance ad hoc (hero 2169:6264 : 54/68/blanc ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; les autres usages au défaut 40/50 du master 2090:2385) — le correctif de fond annoncé par l'ancienne limite (promouvoir ces surcharges en variantes réelles) a eu lieu côté Figma. Le modèle du poids hero est inchangé : le nœud d'origine porte un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold)."
+          "description": "Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box."
         },
         {
           "name": "alignement",
@@ -824,8 +804,7 @@
             "centre",
             "gauche"
           ],
-          "default": "centre",
-          "description": "Axe gouverné : binding VARIANT « Alignement » depuis 2.1.0 (016, journal decisions.md O-12). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE) — le master 2090:2385 centrait (textAlign CENTER) et les usages le surchargeaient en LEFT par instance (census 013 : 5 usages sur 7 ; relevé vif 016 : 34 instances sur 59, specs/016-canvas-vrai/registre/defauts-source.json B013-2). Le correctif de fond annoncé par l'ancienne limite a eu lieu : l'alignement est une variante gouvernée du master."
+          "default": "centre"
         }
       ],
       "children": {
@@ -1259,7 +1238,7 @@
     {
       "id": "ds.footer",
       "name": "Footer",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
@@ -1615,7 +1594,7 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "1.5.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
@@ -1635,6 +1614,20 @@
           "type": "string",
           "default": "",
           "description": "Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state."
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": [
+            {
+              "text": "Portes de garage",
+              "strong": true
+            },
+            {
+              "text": " industrielles"
+            }
+          ],
+          "description": "Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero."
         },
         {
           "name": "sousTitre",
@@ -1659,6 +1652,12 @@
             }
           ],
           "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges."
+        },
+        {
+          "name": "sousTitre2",
+          "type": "boolean",
+          "default": true,
+          "description": "Extracted from Figma \"SousTitre2\" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22)."
         }
       ],
       "children": {
@@ -1669,7 +1668,7 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "2.6.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
@@ -1720,8 +1719,16 @@
         {
           "name": "titre",
           "type": "string",
-          "default": "Piqueray, une histoire de famille ",
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+          "default": [
+            {
+              "text": "Piqueray, ",
+              "strong": true
+            },
+            {
+              "text": "une histoire de famille "
+            }
+          ],
+          "description": "Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy."
         }
       ],
       "children": {
@@ -1762,6 +1769,43 @@
           "type": "string",
           "default": "",
           "description": "Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.produits-ecommerce",
+      "name": "ProduitsECommerce",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f"
+      },
+      "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": [
+            {
+              "text": "Découvrez nos produits disponibles en ligne"
+            }
+          ]
+        },
+        {
+          "name": "produits",
+          "type": {
+            "arrayOf": {
+              "titre": "text",
+              "prix": "text"
+            }
+          },
+          "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here."
         }
       ],
       "children": {
@@ -1849,10 +1893,10 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
       "figma": {
         "representation": "component",
         "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"
@@ -1971,7 +2015,7 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -1980,6 +2024,23 @@
         "componentSetKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9"
       },
       "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": [
+            {
+              "text": "Visitez notre "
+            },
+            {
+              "text": "showroom à Pepinster",
+              "strong": true
+            },
+            {
+              "text": " ou contactez-nous"
+            }
+          ],
+          "description": "Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy."
+        },
         {
           "name": "items",
           "type": {

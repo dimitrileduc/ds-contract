@@ -63,8 +63,7 @@ const COMPONENTS = [
                   "depId": "ds.section-header",
                   "depProps": {
                     "Titre": "Prenez contact avec nous dès maintenant !",
-                    "Accroche": "Une demande de devis ? Une réparation ?",
-                    "Disposition": "Standard"
+                    "Accroche": "Une demande de devis ? Une réparation ?"
                   },
                   "depPropRefs": [
                     {

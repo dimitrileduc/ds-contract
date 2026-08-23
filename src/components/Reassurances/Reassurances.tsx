@@ -29,8 +29,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
       <SectionHeader
         titre={[{ text: 'Pourquoi choisir nos portes de garage industrielles ?' }]}
         accroche="Plus de 50 ans d’expérience"
-        accroche2
-        disposition="standard"
+        afficherAccroche
       />
       <div className={styles.items}>
         {items?.map((item, index) => (

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-coordonnees-authoring",
-  "authoringVersion": "1.0.0",
+  "authoringVersion": "3.0.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.coordonnees",
@@ -35,7 +35,7 @@
   ],
   "controls": [
     {
-      "decisionId": "coordonnees-map-url",
+      "decisionId": "coordonnees-ctl-coordonnees-ma-rl",
       "address": {
         "componentPath": [
           {
@@ -47,12 +47,11 @@
         ],
         "prop": "mapUrl"
       },
-      "verdict": "not-editable",
-      "mechanism": "none",
-      "reasonCode": "coordonnees-map-placeholder"
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
     },
     {
-      "decisionId": "coordonnees-map-alt",
+      "decisionId": "coordonnees-ctl-coordonnees-ma-lt",
       "address": {
         "componentPath": [
           {
@@ -64,12 +63,11 @@
         ],
         "prop": "mapAlt"
       },
-      "verdict": "not-editable",
-      "mechanism": "none",
-      "reasonCode": "coordonnees-map-placeholder"
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
     },
     {
-      "decisionId": "coordonnees-accroche",
+      "decisionId": "coordonnees-ctl-coordonnees-accroche",
       "address": {
         "componentPath": [
           {
@@ -82,10 +80,10 @@
         "prop": "accroche"
       },
       "verdict": "fixed-by-composition",
-      "mechanism": "none"
+      "mechanism": "plain-text"
     },
     {
-      "decisionId": "coordonnees-titre",
+      "decisionId": "coordonnees-ctl-coordonnees-titre",
       "address": {
         "componentPath": [
           {
@@ -100,10 +98,10 @@
       "verdict": "controlled",
       "mechanism": "rich-text",
       "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]",
-      "label": "Titre"
+      "label": "titre"
     },
     {
-      "decisionId": "coordonnees-section-disposition",
+      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-titre",
       "address": {
         "componentPath": [
           {
@@ -115,18 +113,68 @@
           {
             "contract": {
               "id": "ds.section-header",
-              "version": "2.2.0"
+              "version": "3.0.0"
             },
             "viaPart": "SectionHeader"
           }
         ],
-        "prop": "disposition"
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]",
+      "label": "titre"
+    },
+    {
+      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "3.0.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "accroche"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-eyebrow\"]",
+      "label": "accroche"
+    },
+    {
+      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-affiche-ccroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "3.0.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "afficherAccroche"
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
     },
     {
-      "decisionId": "coordonnees-section-alignment",
+      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-alignement",
       "address": {
         "componentPath": [
           {
@@ -138,7 +186,7 @@
           {
             "contract": {
               "id": "ds.section-header",
-              "version": "2.2.0"
+              "version": "3.0.0"
             },
             "viaPart": "SectionHeader"
           }
@@ -147,283 +195,11 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-emphasis",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "emphase"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-show-eyebrow",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche2"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-title",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-eyebrow",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-left-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-section-button-right-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
     }
   ],
   "parts": [
     {
-      "decisionId": "coordonnees-part-root",
+      "decisionId": "coordonnees-part-coordonnees-root",
       "address": {
         "componentPath": [
           {
@@ -439,11 +215,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-map",
+      "decisionId": "coordonnees-part-coordonnees-root-googl-ap",
       "address": {
         "componentPath": [
           {
@@ -460,11 +236,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-map\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-googl-ap\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-wrapper",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper",
       "address": {
         "componentPath": [
           {
@@ -481,33 +257,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-wrapper\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-section",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "SectionHeader"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-address",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse",
       "address": {
         "componentPath": [
           {
@@ -525,11 +279,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-address-label",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse-adress-tiquette",
       "address": {
         "componentPath": [
           {
@@ -547,12 +301,12 @@
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-label\"]",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse-adress-tiquette\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-address-value",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse-adress-aleur",
       "address": {
         "componentPath": [
           {
@@ -569,85 +323,13 @@
           "AdresseValeur"
         ]
       },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-value\"]",
-      "allowedMarks": [
-        "link"
-      ]
-    },
-    {
-      "decisionId": "coordonnees-part-hours",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires"
-        ]
-      },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse-adress-aleur\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-hours-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires",
-          "HorairesEtiquette"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-hours-value",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires",
-          "HorairesValeur"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-value\"]",
-      "allowedMarks": [
-        "line-break"
-      ]
-    },
-    {
-      "decisionId": "coordonnees-part-contact",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact",
       "address": {
         "componentPath": [
           {
@@ -665,11 +347,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-contact-label",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact-contac-tiquette",
       "address": {
         "componentPath": [
           {
@@ -687,12 +369,12 @@
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-label\"]",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact-contac-tiquette\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-contact-block",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact-tl32087463266emai-nfopi",
       "address": {
         "componentPath": [
           {
@@ -709,16 +391,103 @@
           "tl32087463266EmailInfopi"
         ]
       },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-block\"]",
-      "allowedMarks": [
-        "link",
-        "line-break"
-      ]
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact-tl32087463266emai-nfopi\"]",
+      "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-social",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "Horaires"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires-horaire-tiquette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "Horaires",
+          "HorairesEtiquette"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires-horaire-tiquette\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires-horaire-aleur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "Horaires",
+          "HorairesValeur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires-horaire-aleur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-sectio-eader",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "2.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "SectionHeader"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-sectio-eader\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous",
       "address": {
         "componentPath": [
           {
@@ -736,11 +505,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-social-label",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-suive-ou-tiquette",
       "address": {
         "componentPath": [
           {
@@ -758,12 +527,12 @@
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-label\"]",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-suive-ou-tiquette\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-social-icons",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux",
       "address": {
         "componentPath": [
           {
@@ -782,11 +551,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-icons\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-facebook",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux-facebook",
       "address": {
         "componentPath": [
           {
@@ -806,11 +575,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-facebook\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux-facebook\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-instagram",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux-instagram",
       "address": {
         "componentPath": [
           {
@@ -830,11 +599,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-instagram\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux-instagram\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-section-part-root",
+      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root",
       "address": {
         "componentPath": [
           {
@@ -846,7 +615,7 @@
           {
             "contract": {
               "id": "ds.section-header",
-              "version": "2.2.0"
+              "version": "3.0.0"
             },
             "viaPart": "SectionHeader"
           }
@@ -857,11 +626,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-section-part-eyebrow",
+      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root-accroche",
       "address": {
         "componentPath": [
           {
@@ -873,7 +642,7 @@
           {
             "contract": {
               "id": "ds.section-header",
-              "version": "2.2.0"
+              "version": "3.0.0"
             },
             "viaPart": "SectionHeader"
           }
@@ -885,11 +654,11 @@
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-eyebrow\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-accroche\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-section-part-title",
+      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root-titre",
       "address": {
         "componentPath": [
           {
@@ -901,7 +670,7 @@
           {
             "contract": {
               "id": "ds.section-header",
-              "version": "2.2.0"
+              "version": "3.0.0"
             },
             "viaPart": "SectionHeader"
           }
@@ -917,208 +686,6 @@
       "allowedMarks": [
         "strong"
       ]
-    },
-    {
-      "decisionId": "coordonnees-section-part-button",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Bouton"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "component",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-section-button-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-section-button-part-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconLeft"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-left\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-section-button-part-only",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-only\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-section-button-part-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-right\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-section-button-part-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "2.2.0"
-            },
-            "viaPart": "SectionHeader"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-label\"]",
-      "allowedMarks": []
     }
   ]
 }

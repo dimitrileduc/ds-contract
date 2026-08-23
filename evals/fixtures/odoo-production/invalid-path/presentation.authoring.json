@@ -3,14 +3,14 @@
   "configId": "fixture-invalid-path",
   "authoringVersion": "1.0.0",
   "snapshotId": "odoo-019-foundation",
-  "rootContract": { "id": "ds.presentation", "version": "2.6.0" },
+  "rootContract": { "id": "ds.presentation", "version": "3.0.0" },
   "rootActions": [{ "action": "move", "verdict": "allowed" }],
   "controls": [
     {
       "decisionId": "fx-chemin-inexistant",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.presentation", "version": "2.6.0" } },
+          { "contract": { "id": "ds.presentation", "version": "3.0.0" } },
           { "contract": { "id": "ds.review-card", "version": "2.0.0" }, "viaPart": "carte" }
         ],
         "prop": "auteur"
@@ -23,7 +23,7 @@
       "decisionId": "fx-version-fausse",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.presentation", "version": "2.6.0" } },
+          { "contract": { "id": "ds.presentation", "version": "3.0.0" } },
           { "contract": { "id": "ds.section-header", "version": "9.9.9" }, "viaPart": "SectionHeader" }
         ],
         "prop": "titre"
@@ -37,7 +37,7 @@
     {
       "decisionId": "fx-part-inexistante",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.6.0" } }],
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "3.0.0" } }],
         "partPath": ["root", "colonneQuiNexistePas"]
       },
       "verdict": "not-editable",
@@ -48,7 +48,7 @@
     {
       "decisionId": "fx-selecteur-non-prefixe",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.6.0" } }],
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "3.0.0" } }],
         "partPath": ["root", "wrapper", "Texte"]
       },
       "verdict": "directly-editable",

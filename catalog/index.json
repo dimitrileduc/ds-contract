@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "709cbbb4",
+    "gitCommit": "a45ba2ea",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -160,18 +160,16 @@
     {
       "id": "ds.section-header",
       "name": "SectionHeader",
-      "version": "2.2.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
-        "disposition",
-        "accroche",
         "titre",
-        "accroche2",
-        "emphase",
+        "accroche",
+        "afficherAccroche",
         "alignement"
       ],
-      "summary": "Piqueray SectionHeader."
+      "summary": "Piqueray SectionHeader v3."
     },
     {
       "id": "ds.coordonnees",
@@ -335,7 +333,7 @@
     {
       "id": "ds.footer",
       "name": "Footer",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -443,20 +441,22 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "1.5.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
         "backgroundUrl",
         "backgroundAlt",
-        "sousTitre"
+        "titre",
+        "sousTitre",
+        "sousTitre2"
       ],
       "summary": "Piqueray Hero."
     },
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "2.6.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -479,6 +479,18 @@
         "imageAlt"
       ],
       "summary": "Piqueray ProductCard."
+    },
+    {
+      "id": "ds.produits-ecommerce",
+      "name": "ProduitsECommerce",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "propNames": [
+        "titre",
+        "produits"
+      ],
+      "summary": "Piqueray ProduitsECommerce."
     },
     {
       "id": "ds.realisation",
@@ -508,7 +520,7 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -538,10 +550,11 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "titre",
         "items"
       ],
       "summary": "Piqueray TexteSEO."

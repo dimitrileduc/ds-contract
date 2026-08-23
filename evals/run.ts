@@ -94,7 +94,7 @@ const cases: Case[] = [
         throw new Error('la projection doit être générée, marquée DO NOT EDIT et ne doit pas recopier une URL Figma');
       }
       for (const panelId of [
-        'presentation', 'google-reviews', 'hero', 'equipe', 'devis', 'faq', 'sav', 'texte-seo',
+        'presentation', 'google-reviews', 'hero', 'equipe', 'devis', 'faq', 'sav', 'texte-seo', 'produits-ecommerce',
         'coordonnees', 'reassurances', 'categories-principales', 'footer',
         'review-card', 'member-card', 'faq-row', 'texte-seo-row', 'reassurances-card', 'category-card',
       ]) {
@@ -278,16 +278,16 @@ const cases: Case[] = [
       if (manque.status === 0) throw new Error('R1: une config amputée de ses verdicts a été acceptée');
       if (!manque.out.includes('manquant :')) throw new Error(`R1: le refus ne liste aucun verdict manquant :\n${manque.out}`);
       // L'adresse doit être CANONIQUE : le chemin de composants, pas un nom court.
-      if (!/manquant : ds\.presentation \/ SectionHeader→ds\.section-header/.test(manque.out)) {
+      if (!/manquant : ds\.presentation :: prop titre/.test(manque.out)) {
         throw new Error(`R1: les manquants ne portent pas leur adresse canonique :\n${manque.out}`);
       }
-      // Et l'occurrence DOUBLE de ds.button doit apparaître par ses DEUX chemins :
-      // une table indexée par nom les confondrait en un seul bouton.
+      // L'occurrence imbriquée de ds.button doit rester adressée par son chemin
+      // canonique plutôt que par son seul nom de contrat.
       const cheminsBouton = new Set(
         [...manque.out.matchAll(/manquant : (.*?ds\.button) ::/g)].map((m) => m[1]),
       );
-      if (cheminsBouton.size !== 2) {
-        throw new Error(`R1: ds.button attendu par 2 chemins d'occurrence distincts, ${cheminsBouton.size} vu(s) :\n${[...cheminsBouton].join('\n')}`);
+      if (cheminsBouton.size !== 1) {
+        throw new Error(`R1: ds.button attendu par 1 chemin d'occurrence, ${cheminsBouton.size} vu(s) :\n${[...cheminsBouton].join('\n')}`);
       }
 
       // ---- R2/R3/R4 : chemin inexistant, version fausse, sélecteur non préfixé.
@@ -391,6 +391,55 @@ const cases: Case[] = [
     run: () => {
       const r = parity();
       if (r.status !== 0) throw new Error(`Baseline not clean:\n${r.out}`);
+    },
+  },
+  {
+    id: 'section-header-v3-api',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/section-header-v3-api-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture section-header-v3-api rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'section-header-migration-ledger',
+    claim: 'C2-refusal',
+    run: () => {
+      // The feature evidence is intentionally outside the broad scratch copy.
+      // Stage this one canonical ledger explicitly so the fixture tests the
+      // reviewed 45-row migration plan, not merely synthetic examples.
+      const source = path.join(ROOT, 'specs', '026-simplify-section-header', 'inventory', 'migration-ledger.json');
+      const target = path.join(SCRATCH, 'specs', '026-simplify-section-header', 'inventory', 'migration-ledger.json');
+      mkdirSync(path.dirname(target), { recursive: true });
+      cpSync(source, target);
+      const r = run(TSX, ['evals/fixtures/section-header-migration-ledger-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture section-header-migration-ledger rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'section-header-v3-render',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/section-header-v3-render-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture section-header-v3-render rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'section-header-v3-figma',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/section-header-v3-figma-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture section-header-v3-figma rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'section-header-owner-migration',
+    claim: 'C2-refusal',
+    run: () => {
+      for (const fixture of ['specialised-section-title-owner-check.ts', 'section-header-owner-migration-check.ts', 'section-header-page-parity-gates-check.ts']) {
+        const r = run(TSX, [`evals/fixtures/${fixture}`]);
+        if (r.status !== 0) throw new Error(`fixture ${fixture} rouge:\n${r.out}`);
+      }
     },
   },
   {

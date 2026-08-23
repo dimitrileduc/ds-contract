@@ -2,33 +2,28 @@
   "$schema": "./contract.schema.json",
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "2.2.0",
-  "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "version": "3.0.0",
+  "description": "Piqueray SectionHeader v3. Generic section title only: a rich title, optional eyebrow and explicit alignment. CTA and specialised hierarchy belong to their owning sections: ds.hero@2.0.0, ds.presentation@3.0.0, ds.texte-seo@3.0.0 and ds.produits-ecommerce@1.0.0.",
   "semantics": {
     "element": "div",
-    "provenance": "extracted"
+    "provenance": "authored"
   },
   "props": [
     {
-      "name": "disposition",
-      "type": {
-        "enum": [
-          "standard",
-          "avecCta"
-        ]
-      },
-      "default": "standard",
+      "name": "titre",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Pourquoi choisir Piqueray ?"
+        }
+      ],
       "bindings": {
         "figma": {
-          "kind": "VARIANT",
-          "property": "Disposition",
-          "values": {
-            "standard": "Standard",
-            "avecCta": "Avec CTA"
-          }
+          "kind": "TEXT",
+          "property": "Titre"
         },
         "code": {
-          "prop": "disposition"
+          "prop": "titre"
         }
       }
     },
@@ -47,64 +42,17 @@
       }
     },
     {
-      "name": "titre",
-      "type": "rich-text",
-      "default": [
-        {
-          "text": "Pourquoi choisir Piqueray ?"
-        }
-      ],
-      "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas garde UNE valeur TEXT native et applique les marques gouvernées par plages de caractères natives.",
-      "bindings": {
-        "figma": {
-          "kind": "TEXT",
-          "property": "Titre"
-        },
-        "code": {
-          "prop": "titre"
-        }
-      }
-    },
-    {
-      "name": "accroche2",
+      "name": "afficherAccroche",
       "type": "boolean",
       "default": true,
-      "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass).",
+      "description": "Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box.",
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
-          "property": "Accroche2"
+          "property": "Afficher accroche"
         },
         "code": {
-          "prop": "accroche2"
-        }
-      }
-    },
-    {
-      "name": "emphase",
-      "type": {
-        "enum": [
-          "standard",
-          "hero",
-          "moyen",
-          "compact"
-        ]
-      },
-      "default": "standard",
-      "description": "Axe gouverné : binding VARIANT « Emphase » depuis 2.1.0 (016, journal decisions.md O-12 — le SET 2090:2397 a gagné les dimensions Emphase et Alignement, 16 variantes). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE), une abstraction au-dessus de surcharges d'instance ad hoc (hero 2169:6264 : 54/68/blanc ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; les autres usages au défaut 40/50 du master 2090:2385) — le correctif de fond annoncé par l'ancienne limite (promouvoir ces surcharges en variantes réelles) a eu lieu côté Figma. Le modèle du poids hero est inchangé : le nœud d'origine porte un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold).",
-      "bindings": {
-        "figma": {
-          "kind": "VARIANT",
-          "property": "Emphase",
-          "values": {
-            "standard": "Standard",
-            "hero": "Hero",
-            "moyen": "Moyen",
-            "compact": "Compact"
-          }
-        },
-        "code": {
-          "prop": "emphase"
+          "prop": "afficherAccroche"
         }
       }
     },
@@ -117,7 +65,6 @@
         ]
       },
       "default": "centre",
-      "description": "Axe gouverné : binding VARIANT « Alignement » depuis 2.1.0 (016, journal decisions.md O-12). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE) — le master 2090:2385 centrait (textAlign CENTER) et les usages le surchargeaient en LEFT par instance (census 013 : 5 usages sur 7 ; relevé vif 016 : 34 instances sur 59, specs/016-canvas-vrai/registre/defauts-source.json B013-2). Le correctif de fond annoncé par l'ancienne limite a eu lieu : l'alignement est une variante gouvernée du master.",
       "bindings": {
         "figma": {
           "kind": "VARIANT",
@@ -143,15 +90,6 @@
         "width": "fill",
         "referenceWidth": 1550
       },
-      "layoutByProp": {
-        "prop": "disposition",
-        "map": {
-          "avecCta": {
-            "direction": "row",
-            "justify": "space-between"
-          }
-        }
-      },
       "parts": {
         "Accroche": {
           "layout": {
@@ -166,7 +104,7 @@
             "font-weight": "{font.weight.regular}"
           },
           "visibleWhen": {
-            "prop": "accroche2"
+            "prop": "afficherAccroche"
           },
           "literals": {
             "letter-spacing": "3px",
@@ -191,71 +129,8 @@
             "font-size": "{font.size.40}",
             "font-weight": "{font.weight.regular}"
           },
-          "tokensByProp": [
-            {
-              "prop": "disposition",
-              "map": {
-                "avecCta": {
-                  "font-size": "{font.size.32}"
-                }
-              }
-            },
-            {
-              "prop": "emphase",
-              "map": {
-                "hero": {
-                  "color": "{color.blanc}",
-                  "font-size": "{font.size.54}"
-                },
-                "moyen": {
-                  "font-size": "{font.size.32}"
-                },
-                "compact": {
-                  "font-size": "{font.size.24}"
-                }
-              }
-            }
-          ],
           "literals": {
             "line-height": "50px"
-          },
-          "literalsByProp": [
-            {
-              "prop": "disposition",
-              "map": {
-                "avecCta": {
-                  "line-height": "40px"
-                }
-              }
-            },
-            {
-              "prop": "emphase",
-              "map": {
-                "hero": {
-                  "line-height": "68px",
-                  "font-weight": "300"
-                },
-                "moyen": {
-                  "line-height": "40px"
-                },
-                "compact": {
-                  "line-height": "30px"
-                }
-              }
-            }
-          ]
-        },
-        "Bouton": {
-          "component": {
-            "id": "ds.button",
-            "text": "Voir les produits",
-            "props": {
-              "variant": "outlineNoir"
-            }
-          },
-          "visibleWhen": {
-            "prop": "disposition",
-            "equals": "avecCta"
           }
         }
       },
@@ -264,14 +139,16 @@
         "gap": "{space.8}"
       },
       "declared": {
-        "align-self": "stretch"
+        "align-self": "stretch",
+        "text-align": "center"
       },
       "stylesWhen": [
         {
           "prop": "alignement",
           "equals": "gauche",
           "styles": {
-            "align-items": "start"
+            "align-items": "start",
+            "text-align": "left"
           }
         }
       ]
@@ -282,7 +159,7 @@
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
       "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
       "nodeId": "2090:2397",
-      "dumpedAt": "2026-07-27"
+      "dumpedAt": "2026-08-23"
     },
     "code": {
       "importPath": "src/components/SectionHeader",

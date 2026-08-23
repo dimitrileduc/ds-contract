@@ -1,68 +1,575 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-texte-seo-authoring",
-  "authoringVersion": "1.1.0",
+  "authoringVersion": "3.0.0",
   "snapshotId": "odoo-019-foundation",
-  "rootContract": { "id": "ds.texte-seo", "version": "2.1.0" },
+  "rootContract": {
+    "id": "ds.texte-seo",
+    "version": "3.0.0"
+  },
   "rootActions": [
-    { "action": "move", "verdict": "allowed" },
-    { "action": "duplicate", "verdict": "allowed" },
-    { "action": "remove", "verdict": "allowed" },
-    { "action": "save-as-custom", "verdict": "forbidden" },
-    { "action": "resize", "verdict": "forbidden" },
-    { "action": "background", "verdict": "forbidden" }
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
   ],
   "controls": [
-    { "decisionId": "seo-collection", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "prop": "items" }, "verdict": "controlled", "mechanism": "ordered-repeat", "targetSelector": ".s_pqr_texte_seo [data-pqr-accordion-list]", "label": "Questions" },
-
-    { "decisionId": "seo-section-disposition", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "disposition" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-eyebrow", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "accroche" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-title", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "titre" }, "verdict": "controlled", "mechanism": "rich-text", "targetSelector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-title\"]", "label": "Titre" },
-    { "decisionId": "seo-section-show-eyebrow", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "accroche2" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-emphasis", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "emphase" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-alignment", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "prop": "alignement" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-
-    { "decisionId": "seo-section-button-variant", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "variant" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-button-label", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "children" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-button-left", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "iconLeft" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-button-right", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "iconRight" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-button-left-glyph", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "iconLeftGlyph" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-section-button-right-glyph", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "prop": "iconRightGlyph" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-
-    { "decisionId": "seo-row-taille", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "prop": "taille" }, "verdict": "fixed-by-composition", "mechanism": "none" },
-    { "decisionId": "seo-row-etat", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "prop": "etat" }, "verdict": "controlled", "mechanism": "enum", "targetSelector": ".s_pqr_texte_seo [data-pqr-accordion-row]", "label": "Ouverte au chargement" },
-    { "decisionId": "seo-row-titre", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "prop": "titre" }, "verdict": "controlled", "mechanism": "plain-text", "targetSelector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"titre\"]", "label": "Question" },
-    { "decisionId": "seo-row-contenu", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "prop": "contenu" }, "verdict": "controlled", "mechanism": "plain-text", "targetSelector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"contenu\"]", "label": "Réponse" }
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-title\"]",
+      "label": "titre"
+    },
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-items",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "items"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-accordio-ow-accordion-row-taille",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "prop": "taille"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-accordio-ow-accordion-row-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-accordio-ow-accordion-row-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
+    },
+    {
+      "decisionId": "texte-seo-ctl-texte-seo-accordio-ow-accordion-row-contenu",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "prop": "contenu"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "plain-text"
+    }
   ],
   "parts": [
-    { "decisionId": "seo-part-root", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo", "allowedMarks": [] },
-    { "decisionId": "seo-part-h2", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "h2"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-h2\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-section", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "h2", "SectionHeader"] }, "verdict": "not-editable", "contentKind": "component", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-p", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "p"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-p\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-text", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "p", "Paragraphe"] }, "verdict": "directly-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-text\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-h3", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "h3"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-h3\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-subtitle", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "h3", "SousTitre"] }, "verdict": "directly-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-subtitle\"]", "allowedMarks": [] },
-    { "decisionId": "seo-part-accordion", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "accordion"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-accordion-list]", "allowedMarks": [] },
-    { "decisionId": "seo-part-row-repeat", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }], "partPath": ["root", "accordion", "AccordionRow"] }, "verdict": "not-editable", "contentKind": "repeat", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row]", "allowedMarks": [] },
-
-    { "decisionId": "seo-section-part-root", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "partPath": ["root"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-part-eyebrow", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "partPath": ["root", "Accroche"] }, "verdict": "not-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-eyebrow\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-part-title", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "partPath": ["root", "Titre"] }, "verdict": "directly-editable", "contentKind": "rich-text", "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-title\"]", "allowedMarks": ["strong"] },
-    { "decisionId": "seo-section-part-button", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }], "partPath": ["root", "Bouton"] }, "verdict": "not-editable", "contentKind": "component", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]", "allowedMarks": [] },
-
-    { "decisionId": "seo-section-button-part-root", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "partPath": ["root"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-button-part-left", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "partPath": ["root", "iconLeft"] }, "verdict": "not-editable", "contentKind": "media", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-left\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-button-part-only", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "partPath": ["root", "iconOnlyIcon"] }, "verdict": "not-editable", "contentKind": "media", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-only\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-button-part-right", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "partPath": ["root", "iconRight"] }, "verdict": "not-editable", "contentKind": "media", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-right\"]", "allowedMarks": [] },
-    { "decisionId": "seo-section-button-part-label", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }], "partPath": ["root", "label"] }, "verdict": "not-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-label\"]", "allowedMarks": [] },
-
-    { "decisionId": "seo-row-part-root", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-title-row", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "title"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"title-group\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-titre-ouvert", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "title", "TitreOuvert"] }, "verdict": "directly-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row].accordion-row--etat-ouvert [data-pqr-part=\"titre\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-chevron-up", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "title", "ChevronUp"] }, "verdict": "not-editable", "contentKind": "media", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"chevron-up\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-contenu", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "Contenu"] }, "verdict": "directly-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"contenu\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-titre", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "Titre"] }, "verdict": "directly-editable", "contentKind": "plain-text", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"titre\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-chevron-down", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "ChevronDown"] }, "verdict": "not-editable", "contentKind": "media", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"chevron-down\"]", "allowedMarks": [] },
-    { "decisionId": "seo-row-part-trigger", "address": { "componentPath": [{ "contract": { "id": "ds.texte-seo", "version": "2.1.0" } }, { "contract": { "id": "ds.accordion-row", "version": "1.2.0" }, "viaPart": "AccordionRow", "repeat": true }], "partPath": ["root", "trigger"] }, "verdict": "not-editable", "contentKind": "structural", "selector": ".s_pqr_texte_seo [data-pqr-accordion-row] [data-pqr-part=\"trigger\"]", "allowedMarks": [] }
+    {
+      "decisionId": "texte-seo-part-texte-seo-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"texte-seo-title\"]",
+      "allowedMarks": [
+        "strong"
+      ]
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-accordion",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "accordion"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-accordion\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-accordion-accordio-ow",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "accordion",
+          "AccordionRow"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-accordion-accordio-ow\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-h3",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "h3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-h3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-h3-sou-itre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "h3",
+          "SousTitre"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-h3-sou-itre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-p",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "p"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-p\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-root-p-paragraphe",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "p",
+          "Paragraphe"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-p-paragraphe\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-chevro-own",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "ChevronDown"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-chevro-own\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-contenu",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Contenu"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-contenu\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Titre"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-titre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-title",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "title"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-title-chevro-p",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "title",
+          "ChevronUp"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-title-chevro-p\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-title-titr-uvert",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "title",
+          "TitreOuvert"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-title-titr-uvert\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "texte-seo-part-texte-seo-accordio-ow-accordion-row-root-trigger",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.texte-seo",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.accordion-row",
+              "version": "1.2.0"
+            },
+            "viaPart": "AccordionRow",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "trigger"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_texte_seo [data-pqr-part=\"root-trigger\"]",
+      "allowedMarks": []
+    }
   ]
 }

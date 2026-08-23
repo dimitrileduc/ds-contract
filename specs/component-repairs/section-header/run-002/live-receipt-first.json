@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "writer": "figma-console-desktop-bridge",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "approvalRef": "specs/026-simplify-section-header/proofs/owner-go.json",
+  "baselineVersionId": "2390951111569267738",
+  "liveVerificationVersionId": "2390993361158520794",
+  "applied": [
+    {
+      "master": "2090:2397",
+      "operation": "Reduced generic SectionHeader to Alignement=Centre|Gauche; exposed Accroche, Titre, Afficher accroche and Alignement only."
+    },
+    {
+      "master": "2111:3382",
+      "operation": "Replaced nested generic header with direct 54/68 light title anatomy and owner text property."
+    },
+    {
+      "master": "2103:2824",
+      "operation": "Replaced nested generic header with direct 32/40 dark title anatomy."
+    },
+    {
+      "master": "2108:3123",
+      "operation": "Replaced nested generic header with direct 24/30 dark title anatomy and owner text property."
+    },
+    {
+      "master": "2116:4475",
+      "operation": "Replaced nested generic header with direct left 32/40 title plus retained Products CTA; eyebrow removed."
+    },
+    {
+      "scope": "specialised owner instances",
+      "operation": "Restored 21 historic rich-text segment maps and 22 owner title property values; no page structure, layout, media, navigation, token, or generic instance was written."
+    }
+  ],
+  "validation": {
+    "genericVariants": [
+      "Alignement=Centre",
+      "Alignement=Gauche"
+    ],
+    "genericProperties": [
+      "Accroche#2090:46",
+      "Titre#2090:47",
+      "Afficher accroche#2169:64",
+      "Alignement"
+    ],
+    "remainingSpecialistNestedSectionHeaders": 0,
+    "specialisedRoutes": 21,
+    "genericRoutes": 24,
+    "richTextRestoration": "21/21 exact historic segment maps",
+    "firstLiveNoOpPreflight": {
+      "mode": "reconciliation-preflight",
+      "writesApplied": 0,
+      "wouldChange": [],
+      "propertyOk": true,
+      "variantOk": true,
+      "ownerOk": true,
+      "owners": [
+        {
+          "id": "2111:3382",
+          "name": "Hero",
+          "oldNestedSectionHeaders": []
+        },
+        {
+          "id": "2103:2824",
+          "name": "Presentation",
+          "oldNestedSectionHeaders": []
+        },
+        {
+          "id": "2108:3123",
+          "name": "TexteSEO",
+          "oldNestedSectionHeaders": []
+        },
+        {
+          "id": "2116:4475",
+          "name": "ProduitsECommerce",
+          "oldNestedSectionHeaders": []
+        }
+      ],
+      "richTitleRestorationOk": true,
+      "styleMismatches": []
+    }
+  },
+  "status": "applied-and-verified"
+}

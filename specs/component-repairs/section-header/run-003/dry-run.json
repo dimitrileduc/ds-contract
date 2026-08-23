@@ -1,0 +1,81 @@
+{
+  "campaignId": "section-header-centre-alignment",
+  "filePin": "2390986664230741536",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "centre-eyebrow-text-align",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "0/0",
+      "changes": {
+        "textAlign": {
+          "value": "CENTER"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36774"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "textAlignHorizontal",
+          "equals": "LEFT"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "textAlignHorizontal",
+          "equals": "CENTER"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "centre-title-text-align",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "0/1",
+      "changes": {
+        "textAlign": {
+          "value": "CENTER"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36775"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "textAlignHorizontal",
+          "equals": "LEFT"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "textAlignHorizontal",
+          "equals": "CENTER"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

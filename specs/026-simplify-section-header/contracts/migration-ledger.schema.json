@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "specs/026-simplify-section-header/contracts/migration-ledger.schema.json",
+  "title": "SectionHeader Simplification Migration Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "source", "expectedUsageCount", "usages"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileKey", "fileVersionId", "capturedAt"],
+      "properties": {
+        "fileKey": { "type": "string", "minLength": 1 },
+        "fileVersionId": { "type": "string", "minLength": 1 },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "expectedUsageCount": { "const": 45 },
+    "usages": {
+      "type": "array",
+      "minItems": 45,
+      "maxItems": 45,
+      "items": { "$ref": "#/$defs/usage" }
+    }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha256", "width", "height", "capturedAt"],
+      "properties": {
+        "ref": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/digest" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usageId", "page", "nodeId", "structuralSignature", "role", "oldApi", "destination", "status", "before", "preservation"],
+      "properties": {
+        "usageId": { "type": "string", "minLength": 1 },
+        "page": { "type": "string", "minLength": 1 },
+        "nodeId": { "type": "string", "pattern": "^[A-Za-z0-9:;_-]+$" },
+        "structuralSignature": { "type": "string", "minLength": 1 },
+        "role": { "enum": ["generic-standard", "hero", "presentation", "texte-seo", "produits-ecommerce", "exception"] },
+        "oldApi": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["alignement", "accroche2"],
+          "properties": {
+            "disposition": { "enum": ["standard", "avecCta"] },
+            "emphase": { "enum": ["standard", "hero", "moyen", "compact"] },
+            "alignement": { "enum": ["centre", "gauche"] },
+            "accroche2": { "type": "boolean" }
+          }
+        },
+        "destination": { "enum": ["section-header", "hero", "presentation", "texte-seo", "produits-ecommerce", "blocked"] },
+        "status": { "enum": ["preserve", "authorized-product-delta", "blocked"] },
+        "migration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target", "fieldMap", "removed"],
+          "properties": {
+            "target": { "const": "ds.section-header@3.0.0" },
+            "fieldMap": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["titre", "accroche", "afficherAccroche", "alignement"],
+              "properties": {
+                "titre": { "const": "titre" },
+                "accroche": { "const": "accroche" },
+                "afficherAccroche": { "const": "accroche2" },
+                "alignement": { "const": "alignement" }
+              }
+            },
+            "removed": { "const": ["disposition", "emphase"] }
+          }
+        },
+        "before": { "$ref": "#/$defs/capture" },
+        "after": { "$ref": "#/$defs/capture" },
+        "preservation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["content", "richText", "styles", "media", "geometry", "instanceLink", "pageContext"],
+          "properties": {
+            "content": { "$ref": "#/$defs/digest" },
+            "richText": { "$ref": "#/$defs/digest" },
+            "styles": { "$ref": "#/$defs/digest" },
+            "media": { "$ref": "#/$defs/digest" },
+            "geometry": { "$ref": "#/$defs/digest" },
+            "instanceLink": { "$ref": "#/$defs/digest" },
+            "pageContext": { "$ref": "#/$defs/digest" }
+          }
+        },
+        "authorizedDelta": { "enum": ["product-intermediate-left-no-eyebrow-cta"] },
+        "approvalRef": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "authorized-product-delta" } } },
+          "then": {
+            "required": ["authorizedDelta", "approvalRef", "after"],
+            "properties": {
+              "role": { "const": "produits-ecommerce" },
+              "destination": { "const": "produits-ecommerce" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "preserve" } } },
+          "then": { "required": ["after"] }
+        }
+      ]
+    }
+  }
+}

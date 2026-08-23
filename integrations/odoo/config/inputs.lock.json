@@ -41,6 +41,13 @@
       "version": "2.0.1"
     },
     {
+      "id": "ds.carousel-controls",
+      "kind": "contract",
+      "path": "contracts/carousel-controls.contract.json",
+      "sha256": "b31f71d640bb0291eb871e84ab4e769acd9baa6f508ffd5f7863b221945d422b",
+      "version": "1.0.2"
+    },
+    {
       "id": "ds.carte",
       "kind": "contract",
       "path": "contracts/carte.contract.json",
@@ -65,7 +72,7 @@
       "id": "ds.coordonnees",
       "kind": "contract",
       "path": "contracts/coordonnees.contract.json",
-      "sha256": "5c2768463246f7e7587eaec4f6eca21f08e086d05527ee6091e9f81a11275ac5",
+      "sha256": "ecea388efc938d9c2092d55f4e7250160b7bc6b7239ee524a51a09046d99e020",
       "version": "2.2.0"
     },
     {
@@ -93,7 +100,7 @@
       "id": "ds.faq",
       "kind": "contract",
       "path": "contracts/faq.contract.json",
-      "sha256": "8a7d61351a1da8f7bf55856171f3793470fe310a0c59f50195d80d00a2d6b1cc",
+      "sha256": "5d7bb1fba80c91ff85c81c8f6ddccc87e4d00e1d163c0485e03191b104e21b70",
       "version": "1.3.0"
     },
     {
@@ -128,8 +135,8 @@
       "id": "ds.hero",
       "kind": "contract",
       "path": "contracts/hero.contract.json",
-      "sha256": "b5767c4561fd6d3a1b14362aa0a59443f082ebd07c7921daabe82b03552faf76",
-      "version": "1.6.0"
+      "sha256": "e114b4decf1d20b5b3a5efc22d699e5152f3b9fccc46e6ebe8e6f1367886800e",
+      "version": "2.0.0"
     },
     {
       "id": "ds.hero-video",
@@ -177,14 +184,28 @@
       "id": "ds.presentation",
       "kind": "contract",
       "path": "contracts/presentation.contract.json",
-      "sha256": "b5a3408b951c7b1d7585203cdb94bda964280c134a70cbaf5a990a3a38437d00",
-      "version": "2.6.0"
+      "sha256": "0d788da441657de5c3b0163cf3d54eae497f0ac8132b5658eb733c80e3a3a2b2",
+      "version": "3.0.0"
+    },
+    {
+      "id": "ds.product-card",
+      "kind": "contract",
+      "path": "contracts/product-card.contract.json",
+      "sha256": "6579ed9b0149a575768da8ac6ba144211fe3c23533eebeaa347434e45e07e862",
+      "version": "2.0.0"
+    },
+    {
+      "id": "ds.produits-ecommerce",
+      "kind": "contract",
+      "path": "contracts/produits-ecommerce.contract.json",
+      "sha256": "37defd5b1eb89932947a669c8c1b6c8e48331700f388f26fc0334f5643901f8f",
+      "version": "1.0.0"
     },
     {
       "id": "ds.reassurances",
       "kind": "contract",
       "path": "contracts/reassurances.contract.json",
-      "sha256": "62c95bd2cc38681014648fe998177cbaa175d5d84b11302fcbc78ea727b82c78",
+      "sha256": "697a8656fff9600462565d7e0afc6effd7fe3dec47b87070861d60ccc401a1ab",
       "version": "1.3.0"
     },
     {
@@ -198,25 +219,25 @@
       "id": "ds.sav",
       "kind": "contract",
       "path": "contracts/sav.contract.json",
-      "sha256": "b79a80eea1c47a59d471f28d288423dc11fc7e7fd57b00665d40fca6e96cc584",
+      "sha256": "c1fddc3168aece0b04b1067c40a5a70d864047fcb63e2bf266114ff83d40f011",
       "version": "1.4.1"
     },
     {
       "id": "ds.section-header",
       "kind": "contract",
       "path": "contracts/section-header.contract.json",
-      "sha256": "c4020634786d9d7d237f3d843c8899a8c65728bbb16a94b52be5266ba5235e87",
-      "version": "2.2.0"
+      "sha256": "879def3fb935bf59c23df5cd63d5a7c638451f1c392f0433ed606663334bd375",
+      "version": "3.0.0"
     },
     {
       "id": "ds.texte-seo",
       "kind": "contract",
       "path": "contracts/texte-seo.contract.json",
-      "sha256": "1508a782013bcc05cdff1108622d78b89f429513147c63ef67d91c6da4c848ca",
-      "version": "2.1.0"
+      "sha256": "94ce194c2b5407e4f19045c623cdf607dfeb3648453da92a3539c579db9b3185",
+      "version": "3.0.0"
     }
   ],
-  "graphDigest": "7b654b5be0f5b85f82fed4e893944f40ec474b3e23732a28eaa77a2888165b24",
+  "graphDigest": "b06a85ed51f9446578e1de1541193610ebde1420d5deede40bd5d5b1fe0cfa4c",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",

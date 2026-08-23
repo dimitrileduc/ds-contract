@@ -1,7 +1,7 @@
 {
   "id": "ds.texte-seo",
   "name": "TexteSEO",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -10,6 +10,23 @@
     "componentSetKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9"
   },
   "props": [
+    {
+      "name": "titre",
+      "type": "string",
+      "default": [
+        {
+          "text": "Visitez notre "
+        },
+        {
+          "text": "showroom à Pepinster",
+          "strong": true
+        },
+        {
+          "text": " ou contactez-nous"
+        }
+      ],
+      "description": "Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy."
+    },
     {
       "name": "items",
       "type": {

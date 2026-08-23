@@ -1,7 +1,7 @@
 {
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
@@ -52,8 +52,16 @@
     {
       "name": "titre",
       "type": "string",
-      "default": "Piqueray, une histoire de famille ",
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+      "default": [
+        {
+          "text": "Piqueray, ",
+          "strong": true
+        },
+        {
+          "text": "une histoire de famille "
+        }
+      ],
+      "description": "Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy."
     }
   ],
   "children": {

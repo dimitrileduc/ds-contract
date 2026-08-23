@@ -44,14 +44,7 @@ export const GoogleReviewsSection = forwardRef<HTMLElement, GoogleReviewsSection
         data-montrer-controles={montrerControles || undefined}
         {...rest}
       >
-        <SectionHeader
-          titre={titre}
-          accroche={accroche}
-          accroche2
-          disposition="standard"
-          emphase="standard"
-          alignement="centre"
-        />
+        <SectionHeader titre={titre} accroche={accroche} afficherAccroche alignement="centre" />
         <GoogleReviews
           qualificatif={qualificatif}
           noteGlobale={noteGlobale}

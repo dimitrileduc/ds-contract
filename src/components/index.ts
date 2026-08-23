@@ -28,6 +28,7 @@ export * from './Notation';
 export * from './PiquerayLogo';
 export * from './Presentation';
 export * from './ProductCard';
+export * from './ProduitsECommerce';
 export * from './Realisation';
 export * from './Reassurances';
 export * from './ReviewCard';

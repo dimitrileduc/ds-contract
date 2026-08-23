@@ -1,0 +1,37 @@
+{
+  "id": "ds.produits-ecommerce",
+  "name": "ProduitsECommerce",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "string",
+      "default": [
+        {
+          "text": "Découvrez nos produits disponibles en ligne"
+        }
+      ]
+    },
+    {
+      "name": "produits",
+      "type": {
+        "arrayOf": {
+          "titre": "text",
+          "prix": "text"
+        }
+      },
+      "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here."
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

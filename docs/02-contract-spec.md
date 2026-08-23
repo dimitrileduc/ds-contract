@@ -46,6 +46,12 @@ Rules of thumb:
 - `"text"` props map to `children` in code and a text property on the canvas.
 - `"boolean"` props map to the native attribute where the element supports it (`disabled` on `<button>`), otherwise a `data-*` attribute.
 
+### SectionHeader v3 migration
+
+`ds.section-header@3.0.0` is a breaking, intentionally smaller generic API. It exposes only `titre` (rich text), `accroche` (text), `afficherAccroche` (boolean, default `true`) and `alignement` (`centre | gauche`, default `centre`). Its Figma set contains exactly `Alignement=Centre` and `Alignement=Gauche`; both render the standard dark 40/50 title.
+
+The v2 `disposition`, `emphase` and `accroche2` properties were removed with no compatibility alias. Migrate `accroche2` explicitly to `afficherAccroche`. A former Hero, Presentation, Texte SEO or Products combination must route to its named owner; generic SectionHeader never receives an inferred hierarchy or CTA fallback. This contract migration changes generated references only—existing saved Odoo page markup is detected as stale, never rewritten.
+
 ## Anatomy & token bindings (v2 — composition)
 
 Anatomy is a **nested tree** of named parts (CEM's slots/parts, Curtis's anatomy). Every part can carry **token bindings** (CSS property → DTCG token reference — the CSS Module and the canvas node styling are both generated from these; there is no handwritten style layer), a **layout** block (`display`/`direction`/`align`/`justify` → flexbox on the code side, auto-layout on the canvas side), and one of three composition roles:

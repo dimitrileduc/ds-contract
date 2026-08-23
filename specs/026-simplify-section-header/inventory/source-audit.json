@@ -1,0 +1,3815 @@
+{
+  "schemaVersion": "1.0.0",
+  "capturedAt": "2026-08-23T17:41:35.825Z",
+  "transport": "figma-console-desktop-bridge",
+  "mode": "read-only",
+  "file": {
+    "name": "Piqueray (Copy)",
+    "key": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2390951111569267738"
+  },
+  "targets": [
+    {
+      "role": "section-header",
+      "componentId": "ds.section-header",
+      "nodeId": "2090:2397",
+      "node": {
+        "id": "2090:2397",
+        "name": "SectionHeader",
+        "type": "COMPONENT_SET",
+        "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
+        "description": "SectionHeader — generated from contract ds.section-header v2.1.1 †",
+        "bounds": {
+          "x": 40,
+          "y": 60,
+          "width": 12760,
+          "height": 357
+        },
+        "layoutMode": "NONE",
+        "layoutSizingHorizontal": "FIXED",
+        "layoutSizingVertical": "FIXED",
+        "boundVariables": {}
+      },
+      "componentPropertyDefinitions": {
+        "Accroche#2090:46": {
+          "type": "TEXT",
+          "defaultValue": "Plus de 50 ans d’expérience"
+        },
+        "Titre#2090:47": {
+          "type": "TEXT",
+          "defaultValue": "Pourquoi choisir Piqueray ?"
+        },
+        "Accroche2#2169:64": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "Standard",
+          "variantOptions": [
+            "Standard",
+            "Avec CTA"
+          ]
+        },
+        "Emphase": {
+          "type": "VARIANT",
+          "defaultValue": "Standard",
+          "variantOptions": [
+            "Standard",
+            "Hero",
+            "Moyen",
+            "Compact"
+          ]
+        },
+        "Alignement": {
+          "type": "VARIANT",
+          "defaultValue": "Centre",
+          "variantOptions": [
+            "Centre",
+            "Gauche"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "2090:2385",
+          "name": "Disposition=Standard, Emphase=Standard, Alignement=Centre",
+          "key": "92972646c8af38b754fdc42fe97f86a206a6dde8",
+          "bounds": {
+            "width": 1550,
+            "height": 83
+          }
+        },
+        {
+          "id": "2090:2388",
+          "name": "Disposition=Avec CTA, Emphase=Standard, Alignement=Centre",
+          "key": "91084135c117f3c1103b436bd29307ba8b2c94fb",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        },
+        {
+          "id": "2338:29029",
+          "name": "Disposition=Standard, Emphase=Standard, Alignement=Gauche",
+          "key": "1bc8951a6a38e29130326c5a720d52514fb5250c",
+          "bounds": {
+            "width": 1550,
+            "height": 83
+          }
+        },
+        {
+          "id": "2338:29032",
+          "name": "Disposition=Standard, Emphase=Hero, Alignement=Centre",
+          "key": "2b76da0a23bbda8bc40b7d3e230265df78aa0e13",
+          "bounds": {
+            "width": 1550,
+            "height": 101
+          }
+        },
+        {
+          "id": "2338:29035",
+          "name": "Disposition=Standard, Emphase=Hero, Alignement=Gauche",
+          "key": "33d68c1113b900fdc634cc64ff84ee9b713707f3",
+          "bounds": {
+            "width": 1550,
+            "height": 101
+          }
+        },
+        {
+          "id": "2338:29038",
+          "name": "Disposition=Standard, Emphase=Moyen, Alignement=Centre",
+          "key": "8c0b38e3dda43283a16c2976904c5f29c945b20f",
+          "bounds": {
+            "width": 1550,
+            "height": 73
+          }
+        },
+        {
+          "id": "2338:29041",
+          "name": "Disposition=Standard, Emphase=Moyen, Alignement=Gauche",
+          "key": "829ec179b616fdc00776915b8a1cb503886a9619",
+          "bounds": {
+            "width": 1550,
+            "height": 73
+          }
+        },
+        {
+          "id": "2338:29044",
+          "name": "Disposition=Standard, Emphase=Compact, Alignement=Centre",
+          "key": "7ff47925d364c3cfb9eaa061670e456c9d6df085",
+          "bounds": {
+            "width": 1550,
+            "height": 63
+          }
+        },
+        {
+          "id": "2338:29047",
+          "name": "Disposition=Standard, Emphase=Compact, Alignement=Gauche",
+          "key": "0f027f8442c83d6f8453b832f6d2d3862090f0f3",
+          "bounds": {
+            "width": 1550,
+            "height": 63
+          }
+        },
+        {
+          "id": "2338:29064",
+          "name": "Disposition=Avec CTA, Emphase=Standard, Alignement=Gauche",
+          "key": "34759c3b7f3df10a8e316d09df311c9a3a601b4a",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        },
+        {
+          "id": "2338:29078",
+          "name": "Disposition=Avec CTA, Emphase=Hero, Alignement=Centre",
+          "key": "e005c722ebb5b5865c8dbeccdf70cd7ae7c36605",
+          "bounds": {
+            "width": 1550,
+            "height": 136
+          }
+        },
+        {
+          "id": "2338:29092",
+          "name": "Disposition=Avec CTA, Emphase=Hero, Alignement=Gauche",
+          "key": "2023de2cda240331239a464f880273e3e1233c68",
+          "bounds": {
+            "width": 1550,
+            "height": 136
+          }
+        },
+        {
+          "id": "2338:29106",
+          "name": "Disposition=Avec CTA, Emphase=Moyen, Alignement=Centre",
+          "key": "21dc7c672a24650600c775867b585c5ee9cbecdb",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        },
+        {
+          "id": "2338:29120",
+          "name": "Disposition=Avec CTA, Emphase=Moyen, Alignement=Gauche",
+          "key": "b68082edef83c0dd55867751917542f2c1df52df",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        },
+        {
+          "id": "2338:29134",
+          "name": "Disposition=Avec CTA, Emphase=Compact, Alignement=Centre",
+          "key": "253973899f50215a83a29cf8edb97346e3157e5c",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        },
+        {
+          "id": "2338:29148",
+          "name": "Disposition=Avec CTA, Emphase=Compact, Alignement=Gauche",
+          "key": "989432749dfa414f5b1247f644ad384ce1b34cbf",
+          "bounds": {
+            "width": 1550,
+            "height": 54
+          }
+        }
+      ],
+      "textFacts": [
+        {
+          "nodeId": "2351:36774",
+          "path": [
+            0,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36775",
+          "path": [
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:c41cd000862834c276ecb646256fac31676b88e5,",
+          "textStyleName": "Titre 2",
+          "fontSize": 40,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 50
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:c41cd000862834c276ecb646256fac31676b88e5,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36812",
+          "path": [
+            1,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36813",
+          "path": [
+            1,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36908;2410:6164",
+          "path": [
+            1,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36776",
+          "path": [
+            2,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36777",
+          "path": [
+            2,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:c41cd000862834c276ecb646256fac31676b88e5,",
+          "textStyleName": "Titre 2",
+          "fontSize": 40,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 50
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:c41cd000862834c276ecb646256fac31676b88e5,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36778",
+          "path": [
+            3,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36779",
+          "path": [
+            3,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 54,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Light"
+          },
+          "fontWeight": 300,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 68
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36802",
+          "path": [
+            4,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36803",
+          "path": [
+            4,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 54,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Light"
+          },
+          "fontWeight": 300,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 68
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36804",
+          "path": [
+            5,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36805",
+          "path": [
+            5,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36806",
+          "path": [
+            6,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36807",
+          "path": [
+            6,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36808",
+          "path": [
+            7,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36809",
+          "path": [
+            7,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,",
+          "textStyleName": "Titre 4",
+          "fontSize": 24,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 30
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36810",
+          "path": [
+            8,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36811",
+          "path": [
+            8,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,",
+          "textStyleName": "Titre 4",
+          "fontSize": 24,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 30
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36919",
+          "path": [
+            9,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36920",
+          "path": [
+            9,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36939;2410:6164",
+          "path": [
+            9,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36950",
+          "path": [
+            10,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36951",
+          "path": [
+            10,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 54,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Light"
+          },
+          "fontWeight": 300,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 68
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36952;2410:6164",
+          "path": [
+            10,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36963",
+          "path": [
+            11,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36964",
+          "path": [
+            11,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 54,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Light"
+          },
+          "fontWeight": 300,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 68
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36965;2410:6164",
+          "path": [
+            11,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36976",
+          "path": [
+            12,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36977",
+          "path": [
+            12,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36978;2410:6164",
+          "path": [
+            12,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36989",
+          "path": [
+            13,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:36990",
+          "path": [
+            13,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:36991;2410:6164",
+          "path": [
+            13,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37002",
+          "path": [
+            14,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37003",
+          "path": [
+            14,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,",
+          "textStyleName": "Titre 4",
+          "fontSize": 24,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 30
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37004;2410:6164",
+          "path": [
+            14,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37015",
+          "path": [
+            15,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37016",
+          "path": [
+            15,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Pourquoi choisir Piqueray ?",
+          "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,",
+          "textStyleName": "Titre 4",
+          "fontSize": 24,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 30
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Pourquoi choisir Piqueray ?",
+              "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37017;2410:6164",
+          "path": [
+            15,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "nodeId": "2351:36908",
+          "path": [
+            1,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36908;2410:6162",
+          "path": [
+            1,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36908;2410:6165",
+          "path": [
+            1,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:36939",
+          "path": [
+            9,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36939;2410:6162",
+          "path": [
+            9,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36939;2410:6165",
+          "path": [
+            9,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:36952",
+          "path": [
+            10,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36952;2410:6162",
+          "path": [
+            10,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36952;2410:6165",
+          "path": [
+            10,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:36965",
+          "path": [
+            11,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36965;2410:6162",
+          "path": [
+            11,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36965;2410:6165",
+          "path": [
+            11,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:36978",
+          "path": [
+            12,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36978;2410:6162",
+          "path": [
+            12,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36978;2410:6165",
+          "path": [
+            12,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:36991",
+          "path": [
+            13,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:36991;2410:6162",
+          "path": [
+            13,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:36991;2410:6165",
+          "path": [
+            13,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:37004",
+          "path": [
+            14,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:37004;2410:6162",
+          "path": [
+            14,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:37004;2410:6165",
+          "path": [
+            14,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2351:37017",
+          "path": [
+            15,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2351:37017;2410:6162",
+          "path": [
+            15,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:37017;2410:6165",
+          "path": [
+            15,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        }
+      ]
+    },
+    {
+      "role": "hero",
+      "componentId": "ds.hero",
+      "nodeId": "2111:3382",
+      "node": {
+        "id": "2111:3382",
+        "name": "Hero",
+        "type": "COMPONENT",
+        "key": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
+        "description": "Hero — generated from contract ds.hero v1.6.0 · image frame: runtime slot, photo shown is a mockup sample †",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 640
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FILL",
+        "layoutSizingVertical": "FIXED",
+        "boundVariables": {
+          "itemSpacing": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2027:969"
+          },
+          "height": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2309:4446"
+          }
+        }
+      },
+      "componentPropertyDefinitions": {
+        "SousTitre#2351:49": {
+          "type": "TEXT",
+          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale."
+        },
+        "SousTitre2#2538:0": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        }
+      },
+      "variants": [],
+      "textFacts": [
+        {
+          "nodeId": "I2434:5794;2351:36802",
+          "path": [
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2434:5794;2351:36803",
+          "path": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Portes de garage industrielles",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 54,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 68
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 30,
+              "text": "Portes de garage industrielles",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2434:5800",
+          "path": [
+            2,
+            0,
+            0,
+            1
+          ],
+          "name": "sousTitre",
+          "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 24,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 32
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 181,
+              "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2434:5801;2410:6133",
+          "path": [
+            2,
+            0,
+            1,
+            1
+          ],
+          "name": "label",
+          "characters": "Demander un devis gratuit",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 25,
+              "text": "Demander un devis gratuit",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:29"
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "nodeId": "2434:5794",
+          "path": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "mainComponentId": "2338:29035",
+          "mainComponentKey": "33d68c1113b900fdc634cc64ff84ee9b713707f3",
+          "mainComponentName": "Disposition=Standard, Emphase=Hero, Alignement=Gauche"
+        },
+        {
+          "nodeId": "2434:5801",
+          "path": [
+            2,
+            0,
+            1
+          ],
+          "mainComponentId": "6:135",
+          "mainComponentKey": "79d92a0042c840703a0afe8d81dae1d3c1a9c241",
+          "mainComponentName": "Style=Outline blanc"
+        },
+        {
+          "nodeId": "I2434:5801;2410:6131",
+          "path": [
+            2,
+            0,
+            1,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2434:5801;2410:6134",
+          "path": [
+            2,
+            0,
+            1,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        }
+      ]
+    },
+    {
+      "role": "presentation",
+      "componentId": "ds.presentation",
+      "nodeId": "2103:2824",
+      "node": {
+        "id": "2103:2824",
+        "name": "Presentation",
+        "type": "COMPONENT",
+        "key": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
+        "description": "Presentation — generated from contract ds.presentation v2.5.0",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1287,
+          "height": 142
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FILL",
+        "layoutSizingVertical": "HUG",
+        "boundVariables": {
+          "itemSpacing": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2027:971"
+          }
+        }
+      },
+      "componentPropertyDefinitions": {
+        "Texte#2103:54": {
+          "type": "TEXT",
+          "defaultValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale."
+        },
+        "Bouton#2103:55": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Titre#2351:54": {
+          "type": "TEXT",
+          "defaultValue": "Piqueray, une histoire de famille "
+        }
+      },
+      "variants": [],
+      "textFacts": [
+        {
+          "nodeId": "I2351:37031;2351:36806",
+          "path": [
+            0,
+            0,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37031;2351:36807",
+          "path": [
+            0,
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Piqueray, une histoire de famille ",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 34,
+              "text": "Piqueray, une histoire de famille ",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37037",
+          "path": [
+            1,
+            0
+          ],
+          "name": "Texte",
+          "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 14,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 314,
+              "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:24:52"
+              }
+            ],
+            "textRangeFills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:24:52"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37050;2410:6138",
+          "path": [
+            1,
+            1,
+            1
+          ],
+          "name": "label",
+          "characters": "Contactez-nous",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 14,
+              "text": "Contactez-nous",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "nodeId": "2351:37031",
+          "path": [
+            0,
+            0
+          ],
+          "mainComponentId": "2338:29041",
+          "mainComponentKey": "829ec179b616fdc00776915b8a1cb503886a9619",
+          "mainComponentName": "Disposition=Standard, Emphase=Moyen, Alignement=Gauche"
+        },
+        {
+          "nodeId": "2351:37050",
+          "path": [
+            1,
+            1
+          ],
+          "mainComponentId": "9:206",
+          "mainComponentKey": "9c44b433a509b02657137ddaa9f939a634607cb9",
+          "mainComponentName": "Style=Link"
+        },
+        {
+          "nodeId": "I2351:37050;2410:6136",
+          "path": [
+            1,
+            1,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2351:37050;2410:6139",
+          "path": [
+            1,
+            1,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        }
+      ]
+    },
+    {
+      "role": "texte-seo",
+      "componentId": "ds.texte-seo",
+      "nodeId": "2108:3123",
+      "node": {
+        "id": "2108:3123",
+        "name": "TexteSEO",
+        "type": "COMPONENT",
+        "key": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
+        "description": "TexteSEO — generated from contract ds.texte-seo v2.1.0 †",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 383
+        },
+        "layoutMode": "VERTICAL",
+        "layoutSizingHorizontal": "FILL",
+        "layoutSizingVertical": "HUG",
+        "boundVariables": {
+          "itemSpacing": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2027:971"
+          },
+          "paddingLeft": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2183:7972"
+          },
+          "paddingRight": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:2183:7972"
+          }
+        }
+      },
+      "componentPropertyDefinitions": {},
+      "variants": [],
+      "textFacts": [
+        {
+          "nodeId": "I2351:37782;2351:36810",
+          "path": [
+            0,
+            0,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37782;2351:36811",
+          "path": [
+            0,
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Visitez notre showroom à Pepinster ou contactez-nous",
+          "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,",
+          "textStyleName": "Titre 4",
+          "fontSize": 24,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 30
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 52,
+              "text": "Visitez notre showroom à Pepinster ou contactez-nous",
+              "textStyleId": "S:17a5b2d0877afa8fdfacf67f10552e50788a3461,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37788",
+          "path": [
+            1,
+            0
+          ],
+          "name": "Paragraphe",
+          "characters": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 14,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 482,
+              "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:24:52"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "2351:37822",
+          "path": [
+            2,
+            0
+          ],
+          "name": "SousTitre",
+          "characters": "Infos pratiques",
+          "textStyleId": "S:9e8c53e9d02db5aac755887336b447ab3e995948,",
+          "textStyleName": "Titre 5",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 15,
+              "text": "Infos pratiques",
+              "textStyleId": "S:9e8c53e9d02db5aac755887336b447ab3e995948,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37856;2347:34260",
+          "path": [
+            3,
+            0,
+            1,
+            0
+          ],
+          "name": "Question",
+          "characters": "Accès et parking",
+          "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,",
+          "textStyleName": "Paragraphe gras",
+          "fontSize": 14,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Bold"
+          },
+          "fontWeight": 700,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 16,
+              "text": "Accès et parking",
+              "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37867;2347:34266",
+          "path": [
+            3,
+            1,
+            0,
+            0,
+            0
+          ],
+          "name": "Question",
+          "characters": "Faut-il prendre rendez-vous ?",
+          "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,",
+          "textStyleName": "Paragraphe gras",
+          "fontSize": 14,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Bold"
+          },
+          "fontWeight": 700,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 29,
+              "text": "Faut-il prendre rendez-vous ?",
+              "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37867;2347:34270",
+          "path": [
+            3,
+            1,
+            2
+          ],
+          "name": "Contenu",
+          "characters": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+          "textStyleId": "S:4440064aaea1495b6cf0a1eaeaaf31da4dbc2f21,",
+          "textStyleName": "Paragraphe",
+          "fontSize": 14,
+          "fontName": "MIXED",
+          "fontWeight": "MIXED",
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 177,
+              "text": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+              "textStyleId": "S:4440064aaea1495b6cf0a1eaeaaf31da4dbc2f21,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2351:37880;2347:34260",
+          "path": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "name": "Question",
+          "characters": "Zones de déplacement pour devis",
+          "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,",
+          "textStyleName": "Paragraphe gras",
+          "fontSize": 14,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Bold"
+          },
+          "fontWeight": 700,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 24
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 31,
+              "text": "Zones de déplacement pour devis",
+              "textStyleId": "S:1740a16ecc991570943e0c7e74a4029646d3d3b8,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "nodeId": "2351:37782",
+          "path": [
+            0,
+            0
+          ],
+          "mainComponentId": "2338:29047",
+          "mainComponentKey": "0f027f8442c83d6f8453b832f6d2d3862090f0f3",
+          "mainComponentName": "Disposition=Standard, Emphase=Compact, Alignement=Gauche"
+        },
+        {
+          "nodeId": "2351:37856",
+          "path": [
+            3,
+            0
+          ],
+          "mainComponentId": "2059:1383",
+          "mainComponentKey": "5bb81096aaca0fb3d9114384a15c4e3cebb34554",
+          "mainComponentName": "Taille=Petit, Etat=Ferme"
+        },
+        {
+          "nodeId": "2351:37867",
+          "path": [
+            3,
+            1
+          ],
+          "mainComponentId": "2059:1411",
+          "mainComponentKey": "b86e8899d76af6d5a52995c61b8ecb05fa5285ca",
+          "mainComponentName": "Taille=Petit, Etat=Ouvert"
+        },
+        {
+          "nodeId": "2351:37880",
+          "path": [
+            3,
+            2
+          ],
+          "mainComponentId": "2059:1383",
+          "mainComponentKey": "5bb81096aaca0fb3d9114384a15c4e3cebb34554",
+          "mainComponentName": "Taille=Petit, Etat=Ferme"
+        }
+      ]
+    },
+    {
+      "role": "produits-ecommerce",
+      "componentId": "ds.produits-ecommerce",
+      "nodeId": "2116:4475",
+      "node": {
+        "id": "2116:4475",
+        "name": "ProduitsECommerce",
+        "type": "COMPONENT",
+        "key": "a616f938df22515ef5778930a99802ea925de85f",
+        "description": "Anciennement nommé « Produits e-commerce » sur le canvas. Section qui met en avant une sélection de produits de la boutique en ligne : elle assemble une grille d'instances Product-card, un Carousel-controls pour naviguer entre les produits, et un Section-header pour l'intitulé de la section. Produits affichés et texte d'en-tête sont portés par ces instances imbriquées, modifiables depuis chaque occurrence du composant.",
+        "bounds": {
+          "x": 106,
+          "y": 103,
+          "width": 1596,
+          "height": 440
+        },
+        "layoutMode": "VERTICAL",
+        "layoutSizingHorizontal": "FIXED",
+        "layoutSizingVertical": "HUG",
+        "boundVariables": {}
+      },
+      "componentPropertyDefinitions": {},
+      "variants": [],
+      "textFacts": [
+        {
+          "nodeId": "I2116:4467;2351:36812",
+          "path": [
+            0,
+            0
+          ],
+          "name": "Accroche",
+          "characters": "Plus de 50 ans d’expérience",
+          "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+          "textStyleName": "Accroche",
+          "fontSize": 20,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 25
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 15
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Plus de 50 ans d’expérience",
+              "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4467;2351:36813",
+          "path": [
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Découvrez nos produits disponibles en ligne",
+          "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,",
+          "textStyleName": "Titre 3",
+          "fontSize": 32,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 40
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 43,
+              "text": "Découvrez nos produits disponibles en ligne",
+              "textStyleId": "S:acae845fbfc52bc3bcdab0325f635f01fb94da0e,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4467;2351:36908;2410:6164",
+          "path": [
+            0,
+            2,
+            1
+          ],
+          "name": "label",
+          "characters": "Voir les produits",
+          "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+          "textStyleName": "Libellé bouton",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "fontWeight": 500,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 22
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "UPPER",
+          "segments": [
+            {
+              "start": 0,
+              "end": 17,
+              "text": "Voir les produits",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4470;2351:35673",
+          "path": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Télécommande Hörmann HSE4-868BS",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 31,
+              "text": "Télécommande Hörmann HSE4-868BS",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4470;2351:35686",
+          "path": [
+            1,
+            0,
+            0,
+            2
+          ],
+          "name": "Prix",
+          "characters": "74,99€",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 6,
+              "text": "74,99€",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:27"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4471;2351:35673",
+          "path": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Clavier à code Hörmann FCT3-1BS",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 31,
+              "text": "Clavier à code Hörmann FCT3-1BS",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4471;2351:35686",
+          "path": [
+            1,
+            0,
+            1,
+            2
+          ],
+          "name": "Prix",
+          "characters": "139,99€",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 7,
+              "text": "139,99€",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:27"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4472;2351:35673",
+          "path": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Bouton poussoir Hörmann FIT2-1-868-BS",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 37,
+              "text": "Bouton poussoir Hörmann FIT2-1-868-BS",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4472;2351:35686",
+          "path": [
+            1,
+            0,
+            2,
+            2
+          ],
+          "name": "Prix",
+          "characters": "89,99€",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 6,
+              "text": "89,99€",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:27"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4473;2351:35673",
+          "path": [
+            1,
+            0,
+            3,
+            1
+          ],
+          "name": "Titre",
+          "characters": "Passerelle BiSecure Hörmann",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 27,
+              "text": "Passerelle BiSecure Hörmann",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:5:40"
+              }
+            ]
+          }
+        },
+        {
+          "nodeId": "I2116:4473;2351:35686",
+          "path": [
+            1,
+            0,
+            3,
+            2
+          ],
+          "name": "Prix",
+          "characters": "74,99€",
+          "textStyleId": "",
+          "textStyleName": null,
+          "fontSize": 16,
+          "fontName": {
+            "family": "Montserrat",
+            "style": "SemiBold"
+          },
+          "fontWeight": 600,
+          "lineHeight": {
+            "unit": "PIXELS",
+            "value": 20
+          },
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "segments": [
+            {
+              "start": 0,
+              "end": 6,
+              "text": "74,99€",
+              "textStyleId": ""
+            }
+          ],
+          "boundVariables": {
+            "fills": [
+              {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:4:27"
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "nodeId": "2116:4467",
+          "path": [
+            0
+          ],
+          "mainComponentId": "2090:2388",
+          "mainComponentKey": "91084135c117f3c1103b436bd29307ba8b2c94fb",
+          "mainComponentName": "Disposition=Avec CTA, Emphase=Standard, Alignement=Centre"
+        },
+        {
+          "nodeId": "I2116:4467;2351:36908",
+          "path": [
+            0,
+            2
+          ],
+          "mainComponentId": "28:114",
+          "mainComponentKey": "9d9fbc31e87da44029a5d485cc5ea858c3bfaa91",
+          "mainComponentName": "Style=Outline noir"
+        },
+        {
+          "nodeId": "I2116:4467;2351:36908;2410:6162",
+          "path": [
+            0,
+            2,
+            0
+          ],
+          "mainComponentId": "6:99",
+          "mainComponentKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+          "mainComponentName": "ArrowLeft"
+        },
+        {
+          "nodeId": "I2116:4467;2351:36908;2410:6165",
+          "path": [
+            0,
+            2,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "2116:4470",
+          "path": [
+            1,
+            0,
+            0
+          ],
+          "mainComponentId": "2068:1972",
+          "mainComponentKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+          "mainComponentName": "ProductCard"
+        },
+        {
+          "nodeId": "2116:4471",
+          "path": [
+            1,
+            0,
+            1
+          ],
+          "mainComponentId": "2068:1972",
+          "mainComponentKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+          "mainComponentName": "ProductCard"
+        },
+        {
+          "nodeId": "2116:4472",
+          "path": [
+            1,
+            0,
+            2
+          ],
+          "mainComponentId": "2068:1972",
+          "mainComponentKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+          "mainComponentName": "ProductCard"
+        },
+        {
+          "nodeId": "2116:4473",
+          "path": [
+            1,
+            0,
+            3
+          ],
+          "mainComponentId": "2068:1972",
+          "mainComponentKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+          "mainComponentName": "ProductCard"
+        },
+        {
+          "nodeId": "2116:4474",
+          "path": [
+            1,
+            1
+          ],
+          "mainComponentId": "2077:2191",
+          "mainComponentKey": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
+          "mainComponentName": "CarouselControls"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6685",
+          "path": [
+            1,
+            1,
+            0
+          ],
+          "mainComponentId": "2238:4417",
+          "mainComponentKey": "4be192ca5db4c45bec2fd8b852681d4abaf0b5a1",
+          "mainComponentName": "Style=Icône seule"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6685;2410:6187",
+          "path": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "mainComponentId": "27:83",
+          "mainComponentKey": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
+          "mainComponentName": "ChevronLeft"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6685;2410:6189",
+          "path": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "mainComponentId": "27:83",
+          "mainComponentKey": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
+          "mainComponentName": "ChevronLeft"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6685;2410:6191",
+          "path": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6720",
+          "path": [
+            1,
+            1,
+            1
+          ],
+          "mainComponentId": "2238:4417",
+          "mainComponentKey": "4be192ca5db4c45bec2fd8b852681d4abaf0b5a1",
+          "mainComponentName": "Style=Icône seule"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6720;2410:6187",
+          "path": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "mainComponentId": "27:86",
+          "mainComponentKey": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
+          "mainComponentName": "ChevronRight"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6720;2410:6189",
+          "path": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mainComponentId": "27:86",
+          "mainComponentKey": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
+          "mainComponentName": "ChevronRight"
+        },
+        {
+          "nodeId": "I2116:4474;2410:6720;2410:6191",
+          "path": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "mainComponentId": "6:104",
+          "mainComponentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+          "mainComponentName": "ArrowRight"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "masters": 5,
+    "sectionHeaderVariantCount": 16,
+    "sourceWrites": 0
+  }
+}

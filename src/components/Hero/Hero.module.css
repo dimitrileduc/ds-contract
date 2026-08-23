@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.6.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -83,6 +83,19 @@
   min-width: 0;
   width: 100%;
   gap: var(--space-16);
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-blanc);
+  font-size: var(--font-size-54);
+  font-weight: 300;
+  line-height: 68px;
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .sousTitre {

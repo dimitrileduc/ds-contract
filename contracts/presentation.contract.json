@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
   "semantics": {
     "element": "div",
@@ -68,9 +68,17 @@
     },
     {
       "name": "titre",
-      "type": "text",
-      "default": "Piqueray, une histoire de famille ",
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Piqueray, ",
+          "strong": true
+        },
+        {
+          "text": "une histoire de famille "
+        }
+      ],
+      "description": "Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -102,28 +110,24 @@
             "width": "fill"
           },
           "parts": {
-            "SectionHeader": {
+            "Titre": {
               "layout": {
-                "width": "fill"
+                "width": "fill",
+                "align": "start"
               },
-              "component": {
-                "id": "ds.section-header",
-                "props": {
-                  "titre": [
-                    {
-                      "text": "Piqueray, ",
-                      "strong": true
-                    },
-                    {
-                      "text": "une histoire de famille "
-                    }
-                  ],
-                  "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard",
-                  "accroche2": false,
-                  "emphase": "moyen",
-                  "alignement": "gauche"
+              "content": {
+                "prop": "titre",
+                "marks": {
+                  "strong": "{font.weight.bold}"
                 }
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.32}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "40px"
               }
             }
           }

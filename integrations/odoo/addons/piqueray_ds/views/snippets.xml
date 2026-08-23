@@ -96,4 +96,12 @@
     </xpath>
   </template>
   <!-- ODOO-023-CATEGORIES-SNIPPET END -->
+  <!-- ODOO-026-PRODUITS-ECOMMERCE-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_produits_ecommerce" inherit_id="website.snippets" name="Piqueray · Produits e-commerce dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_produits_ecommerce" string="Piqueray · Produits e-commerce"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_features_grid.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-026-PRODUITS-ECOMMERCE-SNIPPET END -->
 </odoo>

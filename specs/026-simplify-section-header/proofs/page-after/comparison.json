@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "capturedAt": "2026-08-23T19:29:16.497Z",
+  "commands": [
+    "npm run pages:compare -- --before proofs/before/frames --after proofs/after/frames --out proofs/after/frames-parity-final",
+    "npm run pages:compare -- --before proofs/before/uses --after proofs/after/uses --out proofs/after/uses-parity-final"
+  ],
+  "frameComparison": {
+    "totals": {
+      "identical": 6,
+      "diff": 1,
+      "captureFailed": 0,
+      "dimensionMismatch": 2
+    },
+    "identical": [
+      "frame-01",
+      "frame-02",
+      "frame-03",
+      "frame-04",
+      "frame-06",
+      "frame-07"
+    ],
+    "authorizedProductDimensionDeltas": [
+      {
+        "frame": "frame-05",
+        "usage": "section-header-v3-22",
+        "heightChange": -26,
+        "approvalRef": "specs/026-simplify-section-header/proofs/owner-go.json"
+      },
+      {
+        "frame": "frame-09",
+        "usage": "section-header-v3-43",
+        "heightChange": -26,
+        "approvalRef": "specs/026-simplify-section-header/proofs/owner-go.json"
+      }
+    ],
+    "concurrentBaselineDelta": {
+      "frame": "frame-08",
+      "component": "Reassurances",
+      "change": "five image fills",
+      "evidence": "The five image hashes and bounds equal labelled Figma version 2390990230148701498 (xxxc, 2026-08-23T18:20:41Z), which predates the approved v3 reconciliation. It is not attributed to this migration.",
+      "status": "out-of-scope-prebaseline-change"
+    }
+  },
+  "useComparison": {
+    "totals": {
+      "identical": 24,
+      "diff": 0,
+      "captureFailed": 0,
+      "dimensionMismatch": 21
+    },
+    "genericStandardIdentical": 24,
+    "directOwnerExportEnvelopeChanges": 21,
+    "explanation": "Figma exportAsync trims transparent direct-owner frames to painted bounds after the generic wrapper is removed. Their live node geometry, rich text segments, title content, style metrics and page-frame evidence were separately validated; this is a capture-envelope difference, not a page visual change.",
+    "richTitleValidation": {
+      "routes": 21,
+      "status": "exact historic segments restored"
+    },
+    "productUses": [
+      "section-header-v3-22",
+      "section-header-v3-43"
+    ]
+  },
+  "noOpReconciliation": {
+    "mode": "reconciliation-preflight",
+    "writesApplied": 0,
+    "wouldChange": [],
+    "propertyOk": true,
+    "variantOk": true,
+    "ownerOk": true,
+    "owners": [
+      {
+        "id": "2111:3382",
+        "name": "Hero",
+        "oldNestedSectionHeaders": []
+      },
+      {
+        "id": "2103:2824",
+        "name": "Presentation",
+        "oldNestedSectionHeaders": []
+      },
+      {
+        "id": "2108:3123",
+        "name": "TexteSEO",
+        "oldNestedSectionHeaders": []
+      },
+      {
+        "id": "2116:4475",
+        "name": "ProduitsECommerce",
+        "oldNestedSectionHeaders": []
+      }
+    ],
+    "richTitleRestorationOk": true,
+    "styleMismatches": []
+  },
+  "verdict": "qualified: six source frames exact; only the two approved Products 26px header deltas and one documented prebaseline Reassurances change remain. No migration-attributable non-product visual/content/style delta is observed."
+}

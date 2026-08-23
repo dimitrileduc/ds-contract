@@ -138,7 +138,7 @@ export class PiquerayFigmaLinkOption extends BaseOptionComponent {
 /** Les seules racines posables. Fermées par défaut, sans exception.
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
  *  (US2). Spec 023 ajoute `.s_pqr_categories_principales`. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video"];
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video", ".s_pqr_produits_ecommerce"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -271,9 +271,17 @@ export const CATEGORIES_EDITABLE_PARTS = [
     '[data-pqr-carte] [data-pqr-part="carte-text"]',
     '[data-pqr-carte] [data-pqr-part="carte-cta-lien"] [data-pqr-part="button-label"]',
 ].map((part) => `.s_pqr_categories_principales ${part}`);
+/** Spec 026 : le titre de la section Produits e-commerce est le seul contenu
+ * rédacteur ; les cartes et les contrôles de carrousel restent fixés par
+ * composition. */
+export const PRODUITS_ECOMMERCE_EDITABLE_PARTS = [
+    '[data-pqr-part="produits-ecommerce-title"]',
+].map((part) => `.s_pqr_produits_ecommerce ${part}`);
+export const PRODUITS_ECOMMERCE_RICH_TEXT =
+    '.s_pqr_produits_ecommerce [data-pqr-part="produits-ecommerce-title"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -297,6 +305,7 @@ export const PIQUERAY_REOPENED = [
     ...REASSURANCES_EDITABLE_PARTS,
     ...CATEGORIES_EDITABLE_PARTS,
     ...HERO_VIDEO_EDITABLE_PARTS,
+    ...PRODUITS_ECOMMERCE_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -535,6 +544,12 @@ export class PiquerayCategoriesPrincipalesOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+export class PiquerayProduitsEcommerceOption extends BaseOptionComponent {
+    static template = "piqueray_ds.ProduitsEcommerceOption";
+    static selector = ".s_pqr_produits_ecommerce";
+    static editableOnly = false;
+}
+
 export class PiquerayCarteCategorieOption extends BaseOptionComponent {
     static template = "piqueray_ds.CarteCategorieOption";
     static selector = ".s_pqr_categories_principales [data-pqr-carte]";
@@ -706,7 +721,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayProduitsEcommerceOption, PiquerayFooterOption],
         builder_actions: {
             OpenFigmaAction,
             SetCtaHrefAction,

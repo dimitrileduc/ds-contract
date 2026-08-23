@@ -52,8 +52,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Questions fréquentes",
                 "Accroche": "FAQ",
-                "Accroche2": true,
-                "Disposition": "Standard"
+                "Afficher accroche": true
               }
             },
             {

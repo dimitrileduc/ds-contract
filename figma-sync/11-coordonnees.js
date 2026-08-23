@@ -94,7 +94,6 @@ const COMPONENTS = [
                   "depProps": {
                     "Titre": "Nos coordonnées",
                     "Accroche": "Contact",
-                    "Disposition": "Standard",
                     "Alignement": "Gauche"
                   },
                   "depPropRefs": [

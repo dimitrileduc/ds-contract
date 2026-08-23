@@ -1,26 +1,24 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.6.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v3.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
 import type { HTMLAttributes } from 'react';
-import { SectionHeader } from '../SectionHeader';
 import { Button } from '../Button';
 import styles from './Presentation.module.css';
 
 export interface PresentationProps extends HTMLAttributes<HTMLDivElement> {
   texte?: Array<{ text: string; strong?: boolean }>;
   bouton?: boolean;
-  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
-  titre?: string;
+  /** Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy. */
+  titre?: Array<{ text: string; strong?: boolean }>;
 }
 
 /** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing. */
 export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(function Presentation(
   {
     bouton = true,
-    titre = 'Piqueray, une histoire de famille ',
     texte = [
       { text: 'Depuis plus de 50 ans,', strong: true },
       {
@@ -33,6 +31,7 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
       { text: "la souplesse d'une PME locale", strong: true },
       { text: '.' },
     ],
+    titre = [{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }],
     className,
     children,
     ...rest
@@ -43,14 +42,15 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
   return (
     <div ref={ref} className={classes} data-bouton={bouton || undefined} {...rest}>
       <div className={styles.colGauche}>
-        <SectionHeader
-          titre={[{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }]}
-          accroche="Plus de 50 ans d’expérience"
-          disposition="standard"
-          accroche2={false}
-          emphase="moyen"
-          alignement="gauche"
-        />
+        <span className={styles.Titre}>
+          {titre.map((segment, index) =>
+            segment.strong ? (
+              <strong key={index}>{segment.text}</strong>
+            ) : (
+              <span key={index}>{segment.text}</span>
+            ),
+          )}
+        </span>
       </div>
       <div className={styles.wrapper}>
         <span className={styles.Texte}>

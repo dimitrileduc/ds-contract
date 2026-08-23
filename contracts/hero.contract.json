@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero",
   "name": "Hero",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
   "semantics": {
     "element": "div",
@@ -34,6 +34,29 @@
         },
         "code": {
           "prop": "backgroundAlt"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "description": "Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Portes de garage",
+          "strong": true
+        },
+        {
+          "text": " industrielles"
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
         }
       }
     },
@@ -175,28 +198,24 @@
                     "gap": "{space.16}"
                   },
                   "parts": {
-                    "SectionHeader": {
+                    "Titre": {
                       "layout": {
-                        "width": "fill"
+                        "width": "fill",
+                        "align": "start"
                       },
-                      "component": {
-                        "id": "ds.section-header",
-                        "props": {
-                          "titre": [
-                            {
-                              "text": "Portes de garage",
-                              "strong": true
-                            },
-                            {
-                              "text": " industrielles"
-                            }
-                          ],
-                          "accroche": "Plus de 50 ans d’expérience",
-                          "accroche2": false,
-                          "disposition": "standard",
-                          "emphase": "hero",
-                          "alignement": "gauche"
+                      "content": {
+                        "prop": "titre",
+                        "marks": {
+                          "strong": "{font.weight.bold}"
                         }
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.54}"
+                      },
+                      "literals": {
+                        "font-weight": "300",
+                        "line-height": "68px"
                       }
                     },
                     "sousTitre": {

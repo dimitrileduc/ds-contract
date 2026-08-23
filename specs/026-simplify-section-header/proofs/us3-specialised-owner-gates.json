@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "feature": "026-simplify-section-header",
+  "scope": "US3 direct specialised title owners",
+  "executedAt": "2026-08-23T18:26:00Z",
+  "commands": [
+    { "command": "npx tsx scripts/generate-components.ts", "status": "pass" },
+    { "command": "npx tsx evals/fixtures/specialised-section-title-owner-check.ts", "status": "pass" },
+    { "command": "npx tsx evals/fixtures/section-header-owner-migration-check.ts", "status": "pass" },
+    { "command": "npm run odoo:authoring:check", "status": "pass" },
+    { "command": "npm run odoo:figma-links:check", "status": "pass" }
+  ],
+  "ownerContracts": {
+    "Hero": "ds.hero@2.0.0 — direct left light 54/68 title; CTA remains Hero-owned",
+    "Presentation": "ds.presentation@3.0.0 — direct left dark 32/40 title",
+    "TexteSEO": "ds.texte-seo@3.0.0 — direct left dark 24/30 title",
+    "ProduitsEcommerce": "ds.produits-ecommerce@1.0.0 — direct left dark 32/40 title, section CTA, cards and carousel controls"
+  },
+  "liveFigmaReconciliation": {
+    "status": "pass",
+    "masters": ["2111:3382", "2103:2824", "2108:3123", "2116:4475"],
+    "nestedGenericSectionHeaders": 0,
+    "richTitleRoutesRestored": 21,
+    "noOpSecondPass": true
+  },
+  "verdict": "pass"
+}

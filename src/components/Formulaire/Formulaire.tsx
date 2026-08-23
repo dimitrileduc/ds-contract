@@ -38,7 +38,7 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
   return (
     <div ref={ref} className={classes} {...rest}>
       <div className={styles.column}>
-        <SectionHeader titre={titre} accroche={accroche} disposition="standard" />
+        <SectionHeader titre={titre} accroche={accroche} />
         <div className={styles.features}>
           {items?.map((item, index) => (
             <Avantage key={index} texte={item.texte} titre={item.titre} />

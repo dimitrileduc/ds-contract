@@ -190,8 +190,14 @@ const applySetProperties = async (operation) => {
   if (!root || !masterLike(root)) throw new Error('Pinned set-properties master absent: ' + operation.nodeId);
   if (pageOf(root)?.name === 'Pages') throw new Error('Refused Page master write: ' + root.id);
   const node = resolvePath(root, operation.structuralPath);
-  assertOperationPreconditions(node, root, operation);
   const changes = operation.changes;
+  // A bounded text-align operation is already a valid second-run no-op once
+  // its native postcondition holds. Its first-run precondition intentionally
+  // describes the *old* value, so asserting it again would make an otherwise
+  // idempotent repair fail before it can report no-op.
+  const textAlignAlreadyApplied = INPUT.run === 'second' && changes.textAlign &&
+    node.type === 'TEXT' && node.textAlignHorizontal === changes.textAlign.value;
+  if (!textAlignAlreadyApplied) assertOperationPreconditions(node, root, operation);
   let changed = false;
   if (Object.prototype.hasOwnProperty.call(changes, 'layoutSizingHorizontal')) {
     if (!('layoutSizingHorizontal' in node)) throw new Error('Layout sizing unsupported at ' + operation.structuralPath);
