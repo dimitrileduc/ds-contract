@@ -101,7 +101,14 @@ START_TS=$(date +%s)
 
 # --- 1) Clean stale filestore (while container is up), then stop Odoo --------
 echo "restore> [1/6] clearing stale filestore + stopping Odoo container"
-docker exec "$ODOO_C" sh -c "rm -rf '$FILESTORE_BASE/$DB_NAME'" 2>/dev/null || true
+# -u root est OBLIGATOIRE : le conteneur exécute par défaut l'utilisateur `odoo`,
+# qui ne peut pas supprimer un arbre appartenant à un autre uid (cas d'un filestore
+# posé par un docker cp précédent). Sans root, le nettoyage échoue en silence et
+# des fichiers périmés survivent à la restauration.
+if ! docker exec -u root "$ODOO_C" rm -rf "$FILESTORE_BASE/$DB_NAME"; then
+  echo "restore-seed: could not clear the stale filestore at $FILESTORE_BASE/$DB_NAME." >&2
+  exit 4
+fi
 docker stop "$ODOO_C" >/dev/null
 
 # --- 2) Terminate lingering connections, drop + recreate DB -----------------
@@ -133,8 +140,30 @@ rm -rf "$TMP_EXTRACT"
 # --- 5) Start Odoo ----------------------------------------------------------
 echo "restore> [5/6] starting Odoo container"
 docker start "$ODOO_C" >/dev/null
-# Ownership: docker cp lands as root; Odoo runs as 'odoo'. Fix once it's up.
-docker exec "$ODOO_C" sh -c "chown -R odoo:odoo '$FILESTORE_BASE/$DB_NAME' 2>/dev/null || true"
+# Ownership. L'archive est extraite LOCALEMENT (hôte) avant le docker cp : les
+# fichiers portent donc l'uid de l'utilisateur hôte, pas celui d'Odoo. Odoo tourne
+# en `odoo` (uid 100) et doit POUVOIR ÉCRIRE dans ce répertoire — il y dépose les
+# bundles d'assets qu'il génère à la volée. Un filestore non inscriptible ne casse
+# pas la restauration : il casse le RENDU, et seulement au premier chargement de
+# page (PermissionError sur /web/assets/… → 500 → page sans CSS ni JS).
+#
+# -u root est OBLIGATOIRE (un `docker exec` nu s'exécute en `odoo`, qui ne peut pas
+# chown des fichiers d'un autre uid), et l'échec NE DOIT PAS être avalé : la panne
+# qu'il produit est invisible jusqu'à ce qu'un humain regarde la page.
+if ! docker exec -u root "$ODOO_C" chown -R odoo:odoo "$FILESTORE_BASE/$DB_NAME"; then
+  echo "restore-seed: chown of the filestore failed — Odoo could not own $FILESTORE_BASE/$DB_NAME." >&2
+  exit 4
+fi
+# Constat, pas confiance : le répertoire doit appartenir à odoo ET être inscriptible.
+FS_OWNER="$(docker exec "$ODOO_C" stat -c '%U' "$FILESTORE_BASE/$DB_NAME" 2>/dev/null || echo '?')"
+if [[ "$FS_OWNER" != "odoo" ]]; then
+  echo "restore-seed: filestore owner is '$FS_OWNER', expected 'odoo' — assets would fail to render." >&2
+  exit 4
+fi
+if ! docker exec "$ODOO_C" test -w "$FILESTORE_BASE/$DB_NAME"; then
+  echo "restore-seed: filestore is not writable by the Odoo user — assets would fail to render." >&2
+  exit 4
+fi
 
 # --- 6) Wait for healthy ----------------------------------------------------
 echo "restore> [6/6] waiting for Odoo healthcheck"

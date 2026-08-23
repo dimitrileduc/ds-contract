@@ -476,6 +476,16 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // (fill/référence 1728) et n'ont pas la non-concordance de boîte des atomes
   // à largeur FIXED.
   { id: 'hero', label: 'Hero (Piqueray)', kind: 'contract', contractId: 'ds.hero', fileKey: PIQUERAY, setNodeId: '2111:3382' , renderWidth: 1728},
+  {
+    // 025 — standalone HeroVideo master. The background image is already
+    // pinned in the fixture manifest from the same Figma imageRef, so the
+    // comparison lends those verified source bytes to the code-only URL prop
+    // without creating a runtime default or committing a duplicate binary.
+    id: 'hero-video', label: 'HeroVideo (Piqueray)', kind: 'contract', contractId: 'ds.hero-video',
+    fileKey: PIQUERAY, setNodeId: '2151:5552', renderWidth: 1728,
+    comparisonProps: { backgroundUrl: { $asset: 'carte-image-dfaa8d204634' } },
+    fixtureAssetIds: ['carte-image-dfaa8d204634'],
+  },
   { id: 'presentation', label: 'Presentation (Piqueray)', kind: 'contract', contractId: 'ds.presentation', fileKey: PIQUERAY, setNodeId: '2103:2824' , renderWidth: 1276.5},
   { id: 'reassurances', label: 'Reassurances (Piqueray)', kind: 'contract', contractId: 'ds.reassurances', fileKey: PIQUERAY, setNodeId: '2114:3721' , renderWidth: 1550},
   { id: 'equipe', label: 'Equipe (Piqueray)', kind: 'contract', contractId: 'ds.equipe', fileKey: PIQUERAY, setNodeId: '2115:3947' , renderWidth: 1728},

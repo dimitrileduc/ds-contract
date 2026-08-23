@@ -5,19 +5,34 @@
   "header_overlay": true,
   "sections": [
     {
-      "component": "s_pqr_hero",
-      "add_class": ["s_pqr_bleed"],
-      "set_html": { "hero-title": "<span>Le numéro 1 des portes HÖRMANN en Province de Liège !</span>" },
-      "remove_class": ["pqr-soustitre-on"],
-      "set_button": { "hero-cta": "En savoir plus" },
-      "images": { "hero-background": "hero" }
+      "component": "s_pqr_hero_video",
+      "add_class": [
+        "s_pqr_bleed"
+      ],
+      "set_html": {
+        "hero-video-title": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+      },
+      "set_button": {
+        "button-root": "En savoir plus"
+      },
+      "images": {
+        "hero-video-poster": "hero_video"
+      }
     },
     {
       "component": "s_pqr_categories_principales",
       "variant": "superpose",
       "cards": [
-        { "titre": "Portes de garage", "texte": "Une porte de garage pour chaque goût et chaque style de maison.", "image": "cat_garage" },
-        { "titre": "Portes d’entrée", "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.", "image": "cat_entree" }
+        {
+          "titre": "Portes de garage",
+          "texte": "Une porte de garage pour chaque goût et chaque style de maison.",
+          "image": "cat_garage"
+        },
+        {
+          "titre": "Portes d’entrée",
+          "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
+          "image": "cat_entree"
+        }
       ]
     },
     {
@@ -29,27 +44,53 @@
     },
     {
       "component": "s_pqr_sav",
-      "images": { "sav-background": "sav_bg", "sav-photo": "sav_tech" }
+      "images": {
+        "sav-background": "sav_bg",
+        "sav-photo": "sav_tech"
+      }
     },
     {
       "component": "s_pqr_devis",
-      "add_class": ["s_pqr_bleed"],
-      "images": { "devis-background": "devis" }
+      "add_class": [
+        "s_pqr_bleed"
+      ],
+      "images": {
+        "devis-background": "devis"
+      }
     },
     {
       "component": "s_pqr_reassurances",
       "cards": [
-        { "titre": "Sécurité et conformité", "body": "Respectent les normes des bâtiments publics et les réglementations pompiers.", "image": "rea1" },
-        { "titre": "Intégration parfaite", "body": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).", "image": "rea2" },
-        { "titre": "Moteur performant", "body": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.", "image": "rea3" },
-        { "titre": "SAV & maintenance dédiés", "body": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.", "image": "rea4" }
+        {
+          "titre": "Sécurité et conformité",
+          "body": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+          "image": "rea1"
+        },
+        {
+          "titre": "Intégration parfaite",
+          "body": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+          "image": "rea2"
+        },
+        {
+          "titre": "Moteur performant",
+          "body": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+          "image": "rea3"
+        },
+        {
+          "titre": "SAV & maintenance dédiés",
+          "body": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+          "image": "rea4"
+        }
       ]
     },
     {
       "component": "pqr_section_header",
       "params": {
-        "disposition": "standard", "emphase": "standard", "alignement": "centre",
-        "show_eyebrow": true, "eyebrow": "Nos avis Google vérifiés",
+        "disposition": "standard",
+        "emphase": "standard",
+        "alignement": "centre",
+        "show_eyebrow": true,
+        "eyebrow": "Nos avis Google vérifiés",
         "title_part": "google-reviews-header-title",
         "title_html": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>"
       }
@@ -57,11 +98,36 @@
     {
       "component": "s_pqr_google_reviews",
       "reviews": [
-        { "auteur": "pho syster", "initiale": "P", "date": "il y a 2 mois", "texte": "super très pro et service après vente présent" },
-        { "auteur": "Petit Nicole", "initiale": "P", "date": "il y a 3 mois", "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…" },
-        { "auteur": "Aun Bukhari", "initiale": "A", "date": "il y a 4 mois", "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…" },
-        { "auteur": "Thierry Picard", "initiale": "T", "date": "il y a 5 mois", "texte": "Dépannage ultra rapide et professionnel" },
-        { "auteur": "miguel martinez", "initiale": "m", "date": "il y a 6 mois", "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…" }
+        {
+          "auteur": "pho syster",
+          "initiale": "P",
+          "date": "il y a 2 mois",
+          "texte": "super très pro et service après vente présent"
+        },
+        {
+          "auteur": "Petit Nicole",
+          "initiale": "P",
+          "date": "il y a 3 mois",
+          "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…"
+        },
+        {
+          "auteur": "Aun Bukhari",
+          "initiale": "A",
+          "date": "il y a 4 mois",
+          "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…"
+        },
+        {
+          "auteur": "Thierry Picard",
+          "initiale": "T",
+          "date": "il y a 5 mois",
+          "texte": "Dépannage ultra rapide et professionnel"
+        },
+        {
+          "auteur": "miguel martinez",
+          "initiale": "m",
+          "date": "il y a 6 mois",
+          "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…"
+        }
       ]
     }
   ]
