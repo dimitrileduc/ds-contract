@@ -1,0 +1,65 @@
+{
+  "spike": "S3",
+  "date": "2026-08-22",
+  "question": "champs sociaux natifs website.social_* sur Odoo 19 épinglé (odoo:19.0-20260803) : présence, nom exact, édition via Réglages, comportement si vide",
+  "sources": [
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/website/models/website.py",
+      "lines": "145-181",
+      "content": "fields.Char social_facebook, social_instagram, social_twitter, social_linkedin, social_youtube, social_github, social_tiktok, social_discord — all on the website model, with _default_social_* pulling from base.main_company"
+    },
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/social_media/models/res_company.py",
+      "lines": "10-17",
+      "content": "social_media module defines matching fields on res.company — the upstream source for website defaults"
+    },
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/website/controllers/main.py",
+      "lines": "369-374",
+      "content": "Route /website/social/<string:social> reads website.social_<name>, redirects if truthy, raises NotFound (404) if empty/False"
+    },
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/website/static/src/builder/plugins/options/social_media_option_plugin.js",
+      "lines": "188-230",
+      "content": "SocialMediaOptionPlugin reads/writes website.social_* via ORM (services.orm.read/write on website model). This is the editing mechanism used when a s_social_media snippet is selected in the website editor."
+    },
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/social_media/views/res_company_views.xml",
+      "lines": "1-23",
+      "content": "Company form shows social fields under 'Social Media' group (groups='base.group_no_one' — admin/debug mode only)"
+    },
+    {
+      "file": "/usr/lib/python3/dist-packages/odoo/addons/website/views/website_templates.xml",
+      "lines": "1672-1726",
+      "content": "Native Odoo footer templates use href='/website/social/facebook' pattern — the controller redirect route, not a direct field read"
+    }
+  ],
+  "findings": {
+    "fieldsPresent": [
+      "website.social_facebook (fields.Char 'Facebook Account')",
+      "website.social_instagram (fields.Char 'Instagram Account')",
+      "website.social_twitter (fields.Char 'X Account')",
+      "website.social_linkedin (fields.Char 'LinkedIn Account')",
+      "website.social_youtube (fields.Char 'Youtube Account')",
+      "website.social_github (fields.Char 'GitHub Account')",
+      "website.social_tiktok (fields.Char 'TikTok Account')",
+      "website.social_discord (fields.Char 'Discord Account')"
+    ],
+    "fieldOrigin": "social_media module defines on res.company; website module defines matching fields on website model with defaults pulling from base.main_company",
+    "editableVia": [
+      "Website editor: SocialMediaOptionPlugin reads/writes via ORM when a s_social_media snippet is selected",
+      "Company form: Settings > Companies > [Company] > Social Media (groups='base.group_no_one' — admin/debug mode only)",
+      "Direct ORM write to website record (programmatic)"
+    ],
+    "emptyBehavior": "Controller /website/social/<name> raises werkzeug.exceptions.NotFound (404) if the field is empty/False. No graceful fallback — a link to /website/social/facebook with no URL set gives a 404 page.",
+    "nativeHrefPattern": "/website/social/facebook — the controller route that redirects to the stored URL",
+    "currentValues": "All 8 fields default to False (empty) on a fresh instance"
+  },
+  "verdict": "CONFIRMED — social_facebook and social_instagram are native website.Char fields, editableVia the website editor's SocialMediaOptionPlugin (when a s_social_media snippet is selected) or the company form. For our footer: use href='/website/social/facebook' pattern (same as native Odoo footers). Seeding: write default URLs to website.social_facebook and website.social_instagram in the content seed (hooks.py), so the links work out of the box. Empty field = 404 via the redirect controller (named limit D12: icônes fixées, URL vide ne retire pas l'icône).",
+  "implicationForImplementation": {
+    "hrefPattern": "Use href='/website/social/facebook' and href='/website/social/instagram' — the native redirect route, consistent with all Odoo footer templates",
+    "seeding": "Seed default URLs in hooks.py alongside column/copyright content (same idempotence guard). Values: Piqueray's actual Facebook and Instagram profile URLs.",
+    "editing": "Editing happens via the SocialMediaOptionPlugin when a s_social_media snippet is in scope, OR via the company form. Since our footer does NOT use s_social_media (we inline governed SVGs), the editor won't offer the social links panel automatically. Editing route: company form (Settings > Companies) or programmatic. This is an acceptable limitation per D12 (panneau minimal).",
+    "noNewMechanism": "No ir.config_parameter needed. The native website.social_* fields are the mechanism."
+  }
+}

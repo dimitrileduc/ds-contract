@@ -43,7 +43,7 @@ export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.he
  *     au lock par son sha256 par-entrée, pas par le digest — voir `check-inputs`.
  * Leur CSS de fermeture est néanmoins émise (le gabarit consomme les classes).
  */
-export const SHELL_CONTRACT_IDS = ['ds.header'] as const;
+export const SHELL_CONTRACT_IDS = ['ds.header', 'ds.footer'] as const;
 
 /** Toutes les racines de l'intégration — posables ∪ shell, triées. La CSS et le
  *  lock couvrent cette union ; seule la staleness du HTML sauvegardé (digest,

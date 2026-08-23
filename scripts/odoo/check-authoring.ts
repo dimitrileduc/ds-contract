@@ -55,6 +55,7 @@ export const ROOT_SELECTOR: Record<string, string> = {
   // celle que la CSS générée et le gabarit posent — le même adressage réel que
   // les sections, un cran plus haut que le marqueur de snippet qu'il n'a pas.
   'ds.header': '.header',
+  'ds.footer': '.footer',
 };
 
 // ---------------------------------------------------------------------------
@@ -280,7 +281,7 @@ export function checkConfig(config: AuthoringConfig, source: string, contracts: 
       `rootContract ${rootId}@${config.rootContract.version} ; le dépôt porte @${contracts.get(rootId)?.version ?? '(absent)'}`,
     );
   }
-  if (!prefix) problemes.push(`racine « ${rootId} » hors des sections posables (${ROOT_CONTRACT_IDS.join(', ')})`);
+  if (!prefix) problemes.push(`racine « ${rootId} » hors des racines connues (${Object.keys(ROOT_SELECTOR).join(', ')})`);
 
   for (const d of config.controls) {
     noteId(d.decisionId, 'control');

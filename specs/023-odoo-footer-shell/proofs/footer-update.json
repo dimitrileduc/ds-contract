@@ -1,0 +1,20 @@
+{
+  "receiptId": "footer-update-odoo-019-foundation",
+  "scenarioId": "footer-update",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "edited-footer-fields",
+  "observations": [
+    "[pass] avant update — footer rend les éditions du rédacteur — attendu « col1 et copyright non vides », observé « col1=23 chars, copyright=37 chars »",
+    "[pass] update module — exit 0 — attendu « exit 0 », observé « exit 0 »",
+    "[pass] Odoo repart après update — attendu « healthcheck OK », observé « OK »",
+    "[pass] SC-004 — col1 identique avant/après update — attendu « Adresse modifiée par QA », observé « Adresse modifiée par QA »",
+    "[pass] SC-004 — col2 identique avant/après update — attendu « identique », observé « identique »",
+    "[pass] SC-004 — col3 identique avant/après update — attendu « identique », observé « identique »",
+    "[pass] SC-004 — copyright identique avant/après update — attendu « © 2026 QA Test — Tous droits r », observé « © 2026 QA Test — Tous droits r »",
+    "[pass] SC-004 — design intact après update — attendu « logo + CTA », observé « logo=true cta=true »",
+    "[pass] SC-004 — digest global identique — attendu « 683e76f51616 », observé « 683e76f51616 »"
+  ],
+  "artifacts": [],
+  "limitCodes": []
+}

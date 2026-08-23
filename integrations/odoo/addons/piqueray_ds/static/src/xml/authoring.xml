@@ -242,6 +242,20 @@
   </t>
   <!-- ODOO-022-COORDONNEES-PANEL END -->
 
+  <!-- ODOO-023-FOOTER-PANEL BEGIN -->
+  <t t-name="piqueray_ds.FooterOption">
+    <BuilderRow label.translate="Piqueray · Pied de page">
+      <span>Le libellé du CTA se modifie directement dans le bloc. Les colonnes et le copyright aussi.</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="footer-cta-href"><BuilderUrlPicker action="'pqrSetFooterCtaHref'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Réseaux sociaux">
+      <span class="text-muted small">Les liens Facebook et Instagram se configurent dans Paramètres › Site Web › Réseaux sociaux.</span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-023-FOOTER-PANEL END -->
+
   <!-- ODOO-022-REASSURANCES-PANEL BEGIN -->
   <t t-name="piqueray_ds.ReassurancesOption">
     <BuilderRow label.translate="Piqueray · Réassurances">

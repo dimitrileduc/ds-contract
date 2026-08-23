@@ -25,10 +25,16 @@ La barre de navigation Piqueray (`ds.header`) est un gabarit SHELL système
 jamais un snippet posable. Ses liens sont la donnée native `website.menu`,
 éditée par le dialogue de menu standard d'Odoo.
 
+Le pied de page Piqueray (`ds.footer`) est un gabarit SHELL système (spec 023) :
+il hérite `website.layout` et remplace la zone footer native. Les textes des
+colonnes et du copyright sont éditables inline via `t-field` sur des champs
+`Text` du modèle `website` ; les URLs sociales passent par les champs natifs
+`website.social_facebook` / `website.social_instagram`.
+
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.6.0",
+    "version": "19.0.1.8.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
@@ -52,6 +58,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
         "views/components.xml",
         "views/snippets.xml",
         "views/header.xml",
+        "views/footer.xml",
         "data/menu_seed.xml",
     ],
     "assets": {

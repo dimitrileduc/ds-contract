@@ -106,7 +106,8 @@
 .s_pqr_texte_seo a.button,
 .s_pqr_equipe a.button,
 .s_pqr_google_reviews a.button,
-.header a.button {
+.header a.button,
+.footer a.button {
   text-decoration: none;
 }
 
@@ -234,3 +235,79 @@
   align-items: center;
 }
 /* ODOO-022-FOND-SOMBRE END */
+
+/* ODOO-023-FOOTER-BRIDGE BEGIN
+ * Adaptation du footer shell au contexte Odoo — aucune valeur de design dupliquée,
+ * uniquement des neutralisations de conflits Bootstrap/Odoo et une adaptation de
+ * largeur (même patron que coordonnees, reassurances, header).
+ *
+ * (1) Largeur : le contrat porte `width: 1728px` fixe (size.footer.root) ; dans Odoo
+ *     le footer doit couvrir 100% du viewport, comme le header.
+ * (2) Icônes sociales : le contrat porte `color: noir-bleute` (correcte dans Figma où
+ *     les icônes sont sur fond variable) ; sur le fond sombre du footer Odoo, elles
+ *     sont invisibles — override à `blanc`.
+ * (3) Bouton CTA : Bootstrap/Odoo injecte une couleur de lien sur `a` qui écrase le
+ *     `color: blanc` de la classe `.button` — spécificité insuffisante. Le fix
+ *     reprend le canal du contrat avec une spécificité gagnante.
+ * (4) Logo link : même fix display:flex que le header (l'ancre inline gonfle la
+ *     hauteur de ligne). */
+
+/* (1) Le footer couvre tout le viewport */
+.footer[data-pqr-shell="footer"] {
+  width: 100%;
+}
+
+/* (1b) Le plan de fond couvre toute la hauteur du footer — le contrat porte
+ * 459px (hauteur du master Figma) mais le pied de page en occupe ~619 : le
+ * séparateur blanc et le copyright blanc tombent sous le plan sombre et sont
+ * invisibles sur le fond de page blanc d'Odoo. `bottom: 0` étend le plan
+ * absolu à la boîte complète (le root porte `position: relative`). */
+.footer[data-pqr-shell="footer"] .footer__Background {
+  height: auto;
+  bottom: 0;
+}
+
+/* (1c) Le séparateur, les spacers et le copyright sont des enfants NON-positionnés
+ * du root — ils se peignent SOUS le plan de fond absolu (étape 3 vs étape 6 du
+ * modèle de stacking CSS). Le Row échappe car il porte `position: relative` dans
+ * le CSS généré. `position: relative` les ramène au même plan que le Row. */
+.footer[data-pqr-shell="footer"] .footer__Spacer,
+.footer[data-pqr-shell="footer"] .footer__Separator,
+.footer[data-pqr-shell="footer"] .footer__spacer2,
+.footer[data-pqr-shell="footer"] .copyright {
+  position: relative;
+}
+
+/* (1d) Le séparateur CSS généré porte `border-style: solid` (les 4 côtés) puis
+ * `border-top-width: 1px` — les 3 côtés restants héritent `medium` (3px), ce
+ * qui gonfle le trait de 1px à 4px sous border-box. Neutralisation : seul le
+ * trait supérieur subsiste. */
+.footer[data-pqr-shell="footer"] .footer__Separator {
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+}
+
+/* (2) Icônes sociales blanches sur fond sombre, hover gris léger */
+.footer[data-pqr-shell="footer"] .footer__Facebook,
+.footer[data-pqr-shell="footer"] .footer__Instagram {
+  color: var(--pqr-color-blanc);
+  transition: opacity 0.2s ease;
+}
+.footer[data-pqr-shell="footer"] .footer__Facebook:hover,
+.footer[data-pqr-shell="footer"] .footer__Instagram:hover {
+  color: var(--pqr-color-blanc);
+  opacity: 0.6;
+}
+
+/* (3) Le CTA conserve sa couleur de contrat (blanc) contre Bootstrap */
+.footer[data-pqr-shell="footer"] a.button {
+  color: var(--pqr-color-blanc);
+}
+
+/* (4) Logo link : boîte flex exacte comme le header */
+.footer__logoLink {
+  display: flex;
+  align-items: center;
+}
+/* ODOO-023-FOOTER-BRIDGE END */

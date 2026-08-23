@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -38,7 +38,8 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  width: var(--size-footer-row);
+  flex: 1 1 auto;
+  min-width: 0;
   position: relative;
 }
 
@@ -76,7 +77,7 @@
 .Facebook {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--color-noir-bleute);
+  color: var(--color-blanc);
 }
 
 .Instagram svg {
@@ -87,7 +88,7 @@
 .Instagram {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--color-noir-bleute);
+  color: var(--color-blanc);
 }
 
 .Spacer {
