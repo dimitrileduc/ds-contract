@@ -369,7 +369,12 @@
   display: grid;
   grid-template-columns:
     [full-start] var(--pqr-space-89)
-    [content-start] 1fr [content-end]
+    /* minmax(0, 1fr) et non 1fr : une piste `fr` vaut minmax(auto, 1fr), et ce
+     * minimum `auto` cale la colonne sur le min-content de la section la plus
+     * large (~1552 = 4×364+3×32, DW-002) — la page ne rétrécit alors plus et
+     * rogne. minmax(0, …) neutralise ce minimum, la colonne suit le viewport.
+     * Au large, comportement identique à 1fr (aucune régression maquette). */
+    [content-start] minmax(0, 1fr) [content-end]
     var(--pqr-space-89) [full-end];
   row-gap: var(--pqr-space-128);
   /* Padding bas de page (128) : au container, pas par section. Pas de top
