@@ -209,6 +209,12 @@
 
 ### Avis Google
 
+- Addendum 2026-08-23 : la surface publique est `Section Avis Google`, un
+  parent composé `SectionHeader + Avis Google` en Fill/Hug avec un gap de 48.
+  Son master Figma est `2545:5685`; les huit Pages existantes ne sont pas
+  migrées dans ce passage. Voir
+  `specs/tiny/google-reviews-section-composition.md`.
+
 - Les 8 instances sont fixes à 1552 et placées dans des `GROUP`, pas dans des Containers auto-layout.
 - Le root, `resume` et `cartes` savent se réduire, mais le groupe de cartes a été projeté comme une rangée de cartes fixes ; à 1262, cette projection rogne la cinquième carte.
 - Les wrappers `flecheGauche` et `flecheDroite` font environ `0,0001 px` alors que leurs pastilles font 30 px et sont clippées. C'est un défaut structurel présent à la largeur nominale.

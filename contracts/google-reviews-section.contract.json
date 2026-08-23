@@ -1,0 +1,96 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.google-reviews-section",
+  "name": "GoogleReviewsSection",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Composition publique Avis Google. Elle réunit le titre de section et le widget ds.google-reviews, auparavant deux frères ad hoc dans les Pages Figma et dans le seed Odoo. Le root est Fill/Hug, sans largeur fixe ni padding local : le Container consommateur possède l'espacement externe.",
+  "semantics": {
+    "element": "section",
+    "provenance": "authored"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "rich-text",
+      "default": [{ "text": "Plus de 1500 portes installées par année et autant de clients satisfaits" }],
+      "bindings": { "figma": { "kind": "TEXT", "property": "Titre" }, "code": { "prop": "titre" } }
+    },
+    {
+      "name": "accroche",
+      "type": "text",
+      "default": "Nos avis Google vérifiés",
+      "bindings": { "figma": { "kind": "TEXT", "property": "Accroche" }, "code": { "prop": "accroche" } }
+    },
+    {
+      "name": "qualificatif",
+      "type": "text",
+      "default": "Excellent",
+      "bindings": { "figma": { "kind": "TEXT", "property": "Qualificatif" }, "code": { "prop": "qualificatif" } }
+    },
+    {
+      "name": "noteGlobale",
+      "type": "text",
+      "default": "4.8",
+      "bindings": { "figma": { "kind": "TEXT", "property": "Note globale" }, "code": { "prop": "noteGlobale" } }
+    },
+    {
+      "name": "volume",
+      "type": "text",
+      "default": "93 avis",
+      "bindings": { "figma": { "kind": "TEXT", "property": "Volume" }, "code": { "prop": "volume" } }
+    },
+    {
+      "name": "montrerControles",
+      "type": "boolean",
+      "default": true,
+      "bindings": { "figma": { "kind": "BOOLEAN", "property": "Contrôles" }, "code": { "prop": "montrerControles" } }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "element": "section",
+      "layout": { "display": "flex", "direction": "column", "align": "center", "width": "fill", "referenceWidth": 1552 },
+      "tokens": { "gap": "{space.12}" },
+      "parts": {
+        "SectionHeader": {
+          "layout": { "width": "fill" },
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "titre": "{titre}",
+              "accroche": "{accroche}",
+              "accroche2": true,
+              "disposition": "standard",
+              "emphase": "standard",
+              "alignement": "centre"
+            }
+          }
+        },
+        "AvisGoogle": {
+          "layout": { "width": "fill" },
+          "component": {
+            "id": "ds.google-reviews",
+            "props": {
+              "qualificatif": "{qualificatif}",
+              "noteGlobale": "{noteGlobale}",
+              "volume": "{volume}",
+              "montrerControles": "{montrerControles}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a4d8c699641576c3f44fa7042382979ef9445cdb",
+      "nodeId": "2545:5685",
+      "dumpedAt": "2026-08-23"
+    },
+    "code": { "importPath": "src/components/GoogleReviewsSection", "export": "GoogleReviewsSection" }
+  }
+}

@@ -410,3 +410,16 @@
 .o_pqr_page     { outline: 2px solid #e6007a; }   /* container */
 .o_pqr_page > * { outline: 1px solid #00a3ff; }   /* sections  */
 /* ODOO-PAGE-DEBUG END */
+/* Parent public composé (spec drift 2026-08-23). Le widget historique garde
+   son contrat 1552px pour les snippets sauvegardés ; dans ce nouveau parent,
+   le Container Odoo possède la largeur et le widget remplit cette largeur. */
+.s_pqr_google_reviews_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pqr-space-12);
+  width: 100%;
+}
+.s_pqr_google_reviews_section .google-reviews {
+  width: 100%;
+}

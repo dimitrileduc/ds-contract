@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <!-- ODOO-019-GOOGLE-REVIEWS-SNIPPET BEGIN -->
-  <template id="snippets_piqueray_google_reviews" inherit_id="website.snippets" name="Piqueray · Google Reviews dans la bibliothèque">
+  <template id="snippets_piqueray_google_reviews" inherit_id="website.snippets" name="Piqueray · Section Avis Google dans la bibliothèque">
     <xpath expr="//snippets[@id='snippet_structure']" position="inside">
-      <t t-snippet="piqueray_ds.s_pqr_google_reviews" string="Piqueray · Google Reviews"
+      <t t-snippet="piqueray_ds.s_pqr_google_reviews_section" string="Piqueray · Section Avis Google"
          t-thumbnail="/website/static/src/img/snippets_thumbs/s_rating.svg" group="content"/>
     </xpath>
   </template>

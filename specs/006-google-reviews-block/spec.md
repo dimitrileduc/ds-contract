@@ -211,3 +211,11 @@ En tant qu'utilisateur du design system (designer ou développeur), je veux pouv
 - Toute décision sur un branchement à une source d'avis live en production.
 - **Tout comportement interactif du bloc** (défilement du carrousel, flèches actives, pagination) : sur les deux surfaces, le composant est une **présentation statique** de l'état figé de l'aplat. Le chrome de navigation visible, s'il existe, est reconstruit comme pièce visuelle gouvernée **sans logique** (précédent : Carousel-controls, 003).
 - Toute autre zone du fichier : cette itération ne profite pas du passage pour ranger, renommer ou corriger ailleurs (ce travail appartient à l'itération 005).
+
+## Addendum de drift — 2026-08-23
+
+La frontière « SectionHeader hors scope » reste vraie pour le widget historique
+`ds.google-reviews`, mais elle est remplacée pour la surface publique par le
+parent composé `ds.google-reviews-section`. La décision, les IDs Figma, la
+compatibilité Odoo et les gates de clôture sont consignés dans
+`specs/tiny/google-reviews-section-composition.md`.

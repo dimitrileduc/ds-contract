@@ -84,19 +84,10 @@
       ]
     },
     {
-      "component": "pqr_section_header",
-      "params": {
-        "disposition": "standard",
-        "emphase": "standard",
-        "alignement": "centre",
-        "show_eyebrow": true,
-        "eyebrow": "Nos avis Google vérifiés",
-        "title_part": "google-reviews-header-title",
-        "title_html": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>"
-      }
-    },
-    {
-      "component": "s_pqr_google_reviews",
+      "component": "s_pqr_google_reviews_section",
+      "set_html": {
+        "google-reviews-header-title": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>"
+      },
       "reviews": [
         {
           "auteur": "pho syster",
