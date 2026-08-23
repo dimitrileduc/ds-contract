@@ -31,6 +31,14 @@
     "adaptation": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "$comment": "`page-composition` (spec 024, layout de page NON gouverné) n'adapte aucun contrat : `rootContracts` vide admis pour cette classe seulement. Toute autre adaptation exige toujours ≥1 racine gouvernée.",
+          "if": { "required": ["mechanism"], "properties": { "mechanism": { "const": "page-composition" } } },
+          "then": { "properties": { "rootContracts": { "minItems": 0 } } },
+          "else": { "properties": { "rootContracts": { "minItems": 1 } } }
+        }
+      ],
       "required": [
         "adaptationId",
         "path",
@@ -53,7 +61,8 @@
           "$comment": "`ds.header` ajouté (ADDITIF) par spec 022, `ds.footer` par spec 023 : les racines shell sont des racines de l'intégration au même titre que les posables.",
           "type": "array",
           "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header", "ds.categories-principales", "ds.footer"] },
-          "minItems": 1,
+          "$comment": "minItems piloté par `allOf` (≥1 sauf mechanism page-composition).",
+          "minItems": 0,
           "uniqueItems": true
         },
         "reasonCode": { "$ref": "#/$defs/id" },
@@ -64,7 +73,7 @@
           "uniqueItems": true
         },
         "mechanism": {
-          "$comment": "`seed` ajouté (ADDITIF) par spec 022 : semis unique de données natives (website.menu) à la livraison — ni qweb, ni bridge CSS.",
+          "$comment": "`seed` ajouté (ADDITIF) par spec 022 : semis unique de données natives (website.menu) à la livraison — ni qweb, ni bridge CSS. `page-composition` ajouté (ADDITIF) par spec 024 : layout de page (gutter/gap) sur le page container, non gouverné (aucun contrat racine) — cf. allOf.",
           "enum": [
             "qweb",
             "builder-option",
@@ -74,7 +83,8 @@
             "odoo-bridge",
             "qualification",
             "compatibility",
-            "seed"
+            "seed",
+            "page-composition"
           ]
         }
       }
