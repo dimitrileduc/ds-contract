@@ -12,7 +12,8 @@
 
   Balisage : les classes de la CSS générée (`components.pqr.css`, fermeture de ds.header)
   + `data-pqr-part`. L'unique variante 2.0.0 (Transparent) — aucun conditionnement, la prop
-  `fond` n'existe plus. Le fond sombre est posé côté Odoo seulement (ODOO-022-FOND-SOMBRE).
+  `fond` n'existe plus. Odoo ne rajoute aucune peinture : la barre reste transparente,
+  comme le contrat et le composant Figma (voir tiny spec `odoo-home-header-overlay`).
 -->
 <odoo>
   <!-- ODOO-022-HEADER-ACTIF BEGIN -->
@@ -126,5 +127,13 @@
       <t t-call="piqueray_ds.header_bar"/>
     </xpath>
   </template>
+
+  <!-- Odoo 19 appelle `standard` un effet qui affixe tout de même le header après
+       ~300 px (`HeaderStandard.onScroll`). Le produit demande un header de document
+       normal : overlay au sommet de la Home, puis hors écran avec le scroll. Aucun
+       autre effet de visibilité n'est activé. -->
+  <record id="website.header_visibility_standard" model="ir.ui.view">
+    <field name="active" eval="False"/>
+  </record>
   <!-- ODOO-022-HEADER-QWEB END -->
 </odoo>
