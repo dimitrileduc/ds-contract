@@ -111,7 +111,9 @@ Le **padding horizontal** (gutter) et l'**espacement vertical** (gap) entre sect
 NE sont PAS dans les blocs. Ils vivent une seule fois sur le **page container** :
 le composeur enveloppe toutes les sections dans `<div id="wrap" class="oe_structure o_pqr_page">`,
 et `o_pqr_page` (dans `static/src/css/odoo-bridge.css`) est une **content-grid** qui
-porte le gutter (`--pqr-space-89`) et le `row-gap` (`--pqr-space-128`).
+porte le gutter (`--pqr-space-89`), le `row-gap` (`--pqr-space-128`) et le
+**padding vertical de page** (`padding-block` : top `--pqr-space-48`, bottom
+`--pqr-space-128`) — au container, jamais par section.
 
 **Règle non négociable pour un futur émetteur html→odoo :**
 

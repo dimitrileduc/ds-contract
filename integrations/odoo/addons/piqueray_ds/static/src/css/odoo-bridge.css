@@ -372,6 +372,9 @@
     [content-start] 1fr [content-end]
     var(--pqr-space-89) [full-end];
   row-gap: var(--pqr-space-128);
+  /* Padding vertical de page (top 48, bottom 128) : au container, pas par
+   * section. N'affecte ni le gutter, ni le row-gap, ni le full-bleed. */
+  padding-block: var(--pqr-space-48) var(--pqr-space-128);
 }
 .o_pqr_page > * {
   grid-column: content;
