@@ -163,10 +163,20 @@ def build():
             if sec_root is not None:
                 sec_root.set("class", " ".join(c for c in (sec_root.get("class") or "").split() if c not in rem))
 
+        # Symétrique de remove_class : pose des classes de COMPOSITION sur le root
+        # de section (ex. `s_pqr_bleed` pour sortir du gutter du page container).
+        # Ces classes vivent hors des contrats — couche page, jamais gouvernée.
+        add = sec.get("add_class", [])
+        if add:
+            sec_root = part(root, "root")
+            if sec_root is not None:
+                existing = (sec_root.get("class") or "").split()
+                sec_root.set("class", " ".join(existing + [c for c in add if c not in existing]))
+
         out.append("<!-- %s -->\n%s" % (comp, inner(root)))
     return out
 
-wrap = '<div id="wrap" class="oe_structure">\n' + "\n".join(build()) + "\n</div>"
+wrap = '<div id="wrap" class="oe_structure o_pqr_page">\n' + "\n".join(build()) + "\n</div>"
 tname = DESC.get("view_tname", "website.homepage")
 arch = '<t name="%s" t-name="%s"><t t-call="website.layout">%s</t></t>' % (DESC.get("name", "Page"), tname, wrap)
 

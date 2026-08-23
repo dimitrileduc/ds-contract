@@ -36,6 +36,10 @@
     {
       "code": "odoo-menu-seed",
       "description": "Semis unique de l'arborescence de menu à la livraison ; le menu appartient ensuite au client (spec 022, FR-016)."
+    },
+    {
+      "code": "odoo-page-layout",
+      "description": "Gutter horizontal + gap vertical portés par le page container (content-grid `o_pqr_page`), couche composition NON gouvernée — jamais dans un contrat ; full-bleed via `s_pqr_bleed`."
     }
   ],
   "adaptations": [
@@ -992,6 +996,16 @@
         "footer.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-PAGE-LAYOUT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [],
+      "reasonCode": "odoo-page-layout",
+      "decisionRefs": [
+        "specs/tiny/odoo-page-gutter-gap.md"
+      ],
+      "mechanism": "page-composition"
     }
   ]
 }

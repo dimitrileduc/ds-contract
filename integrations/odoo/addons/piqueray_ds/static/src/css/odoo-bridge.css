@@ -350,3 +350,33 @@
   align-items: center;
 }
 /* ODOO-023-FOOTER-BRIDGE END */
+
+/* ODOO-PAGE-LAYOUT BEGIN
+ *
+ * Page container (COUCHE COMPOSITION, NON gouvernée). Le gutter horizontal et le
+ * gap vertical des pages vivent ICI, une seule fois — JAMAIS dans un contrat de
+ * section (cohérent avec Figma : le 89 est porté par un frame `Container` non
+ * gouverné, cf. nœud 2496:7189). Les sections restent full-width côté contrat ;
+ * parity et image-parity ne surveillent pas ces valeurs (image-parity mesure le
+ * bloc nu). Voir integrations/odoo/authoring/README.md § « Layout de page ».
+ *
+ * content-grid à lignes nommées (Mulligan/Comeau) : pas de marge négative, pas
+ * de littéral (valeurs via tokens). Les sections vont en colonne `content` ; une
+ * section full-bleed (`s_pqr_bleed`, ex. devis) prend `full` — pleine largeur
+ * SANS toucher au gap vertical, que la grille conserve toute seule.
+ */
+.o_pqr_page {
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--pqr-space-89)
+    [content-start] 1fr [content-end]
+    var(--pqr-space-89) [full-end];
+  row-gap: var(--pqr-space-128);
+}
+.o_pqr_page > * {
+  grid-column: content;
+}
+.o_pqr_page > .s_pqr_bleed {
+  grid-column: full;
+}
+/* ODOO-PAGE-LAYOUT END */
