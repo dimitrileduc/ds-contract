@@ -2258,7 +2258,7 @@
   gap: var(--pqr-space-16);
 }
 
-/* SAV — from ds.sav v1.4.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v1.4.1 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -2382,6 +2382,7 @@
   height: var(--pqr-size-sav-img-group-background-h);
   position: absolute;
   align-self: flex-start;
+  left: 0;
 }
 
 .sav__img {
