@@ -6,7 +6,7 @@
   "fixture": "devis-panel",
   "observations": [
     "[pass] catalogue — deux Devis indépendants sont insérés — attendu « 2 racines », observé « 2 racine(s) »",
-    "[pass] panneau — inventaire Devis strict — attendu « devis-background-alt, devis-background-url, devis-cta-label, devis-title », observé « devis-background-alt, devis-background-url, devis-cta-label, devis-title »",
+    "[pass] panneau — inventaire Devis strict — attendu « devis-background-alt, devis-background-url, devis-cta-href, devis-cta-label, devis-title », observé « devis-background-alt, devis-background-url, devis-cta-href, devis-cta-label, devis-title »",
     "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
     "[pass] racine — actions Odoo interdites absentes — attendu « save-as-custom, resize, background, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0,\"background\":0} »",
     "[pass] fermeture — seuls le titre et le libellé CTA sont contenteditable — attendu « devis-title + button-label », observé « [\"button-label\",\"devis-title\"] »",
@@ -18,16 +18,16 @@
     "[pass] save — Odoo persiste les deux Devis — attendu « RPC save 2xx », observé « HTTP 200 »",
     "[pass] public — contenu, média same-origin et isolation persistent — attendu « HTTP 200 · A avec média · B sans média · data-fond et voile présents », observé « [{\"title\":\"Titre A gras interdititalique interdithostile\",\"label\":\"CTA instance A\",\"source\":\"/web/image/307-ad815f8a/home-light.webp\",\"alt\":\"Fond du bloc Devis\",\"pending\":false,\"fond\":true,\"veil\":true},{\"title\":\"Devis instance B\",\"label\":\"CTA instance B\",\"source\":\"\",\"alt\":\"\",\"pending\":false,\"fond\":true,\"veil\":true}] »",
     "[pass] public — titre simple déplié, aucune charge exécutable — attendu « 0 balise riche · 0 script/handler/URL hostile », observé « {\"titleMarks\":0,\"scripts\":0,\"handlers\":[],\"executableUrls\":[]} »",
-    "[pass] responsive — plans de fond et contenu tiennent à 1728/1440 — attendu « plans pleine boîte · contenu contenu · hauteur stable », observé « [{\"width\":1728,\"rootWidth\":1728,\"rootHeight\":328,\"overflow\":0,\"backgroundDelta\":0,\"veilDelta\":0,\"titleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"},{\"width\":1440,\"rootWidth\":1728,\"rootHeight\":328,\"overflow\":0,\"backgroundDelta\":0,\"veilDelta\":0,\"titleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"}] »",
+    "[pass] responsive — plans de fond et contenu tiennent à 1728/1440 — attendu « plans pleine boîte · contenu contenu · hauteur stable », observé « [{\"width\":1728,\"rootWidth\":1728,\"rootHeight\":328,\"overflow\":0,\"backgroundDelta\":0,\"veilDelta\":0,\"titleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"},{\"width\":1440,\"rootWidth\":1440,\"rootHeight\":328,\"overflow\":0,\"backgroundDelta\":0,\"veilDelta\":0,\"titleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"}] »",
     "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 Devis et média A relus », observé « [{\"title\":\"Titre A gras interdititalique interdithostile\",\"label\":\"CTA instance A\",\"source\":\"/web/image/307-ad815f8a/home-light.webp\",\"alt\":\"Fond du bloc Devis\",\"pending\":false,\"fond\":true,\"veil\":true},{\"title\":\"Devis instance B\",\"label\":\"CTA instance B\",\"source\":\"\",\"alt\":\"\",\"pending\":false,\"fond\":true,\"veil\":true}] »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/devis-functional.public.json",
-      "sha256": "3a9d40546ca264219754a4af532e116af18b16dded8b8b6e4ab5dd1e53eff6c5",
+      "sha256": "ca5e08852de2445c19e00c28f7ecc0f774617c9bfea78fc01c24952535e9756d",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 150183
+  "durationMs": 37001
 }
