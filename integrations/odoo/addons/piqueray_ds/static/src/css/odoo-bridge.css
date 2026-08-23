@@ -372,9 +372,10 @@
     [content-start] 1fr [content-end]
     var(--pqr-space-89) [full-end];
   row-gap: var(--pqr-space-128);
-  /* Padding vertical de page (top 48, bottom 128) : au container, pas par
-   * section. N'affecte ni le gutter, ni le row-gap, ni le full-bleed. */
-  padding-block: var(--pqr-space-48) var(--pqr-space-128);
+  /* Padding bas de page (128) : au container, pas par section. Pas de top
+   * (la 1re section touche la nav). N'affecte ni le gutter, ni le row-gap,
+   * ni le full-bleed. */
+  padding-bottom: var(--pqr-space-128);
 }
 .o_pqr_page > * {
   grid-column: content;
@@ -383,3 +384,14 @@
   grid-column: full;
 }
 /* ODOO-PAGE-LAYOUT END */
+
+/* ODOO-PAGE-DEBUG BEGIN
+ *
+ * Bordures de repérage DX (couche composition, NON gouvernée). Éteint par
+ * défaut : rien ne s'affiche tant que la classe `o_pqr_debug` n'est pas sur un
+ * ancêtre (ex. <html>). `outline` et non `border` — se dessine par-dessus, zéro
+ * impact sur la grille, donc zéro pixel de différence quand c'est éteint.
+ */
+.o_pqr_debug .o_pqr_page     { outline: 2px solid #e6007a; }   /* container */
+.o_pqr_debug .o_pqr_page > * { outline: 1px solid #00a3ff; }   /* sections  */
+/* ODOO-PAGE-DEBUG END */
