@@ -968,6 +968,30 @@
         "spike-footer.json"
       ],
       "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-023-FOOTER-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.footer"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "footer.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-023-FOOTER-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.footer"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "footer.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }
