@@ -1,0 +1,20 @@
+{
+  "receiptId": "footer-edit-odoo-019-foundation",
+  "scenarioId": "footer-edit",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "seeded-footer-fields",
+  "observations": [
+    "[pass] baseline — footer présent avec les champs semés — attendu « shell=footer + col1 non vide », observé « shell=true, col1=34 chars »",
+    "[pass] baseline — design intact (logo + CTA + réseaux + séparateur) — attendu « tous les éléments de design présents », observé « logo=true cta=true social=true sep=true »",
+    "[pass] édition ORM — 4 champs modifiés — attendu « EDIT_OK », observé « EDIT_OK »",
+    "[pass] SC-002 — col1 conservée après édition — attendu « Adresse modifiée par QA », observé « Adresse modifiée par QA »",
+    "[pass] SC-002 — col2 conservée après édition — attendu « contient \"Horaires QA\" », observé « Horaires QA\nLun-Ven 9h-18h »",
+    "[pass] SC-002 — col3 conservée après édition — attendu « contient \"Contact QA\" », observé « Contact QA\ntest@example.com »",
+    "[pass] SC-003 — copyright conservé après édition — attendu « contient \"QA Test\" », observé « © 2026 QA Test — Tous droits réservés »",
+    "[pass] SC-002 — design intact après édition (logo + CTA + réseaux + séparateur) — attendu « tous les éléments de design présents », observé « logo=true cta=true social=true sep=true »",
+    "[pass] SC-002 — attribut data-ds-contract intact — attendu « data-ds-contract=\"ds.footer\" », observé « true »"
+  ],
+  "artifacts": [],
+  "limitCodes": []
+}

@@ -1,0 +1,515 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-footer-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.footer",
+    "version": "1.2.0"
+  },
+  "rootActions": [
+    { "action": "move", "verdict": "forbidden", "reasonCode": "shell-systeme" },
+    { "action": "duplicate", "verdict": "forbidden", "reasonCode": "shell-systeme" },
+    { "action": "remove", "verdict": "forbidden", "reasonCode": "shell-systeme" },
+    { "action": "save-as-custom", "verdict": "forbidden", "reasonCode": "shell-systeme" },
+    { "action": "resize", "verdict": "forbidden", "reasonCode": "shell-systeme" },
+    { "action": "background", "verdict": "forbidden", "reasonCode": "shell-systeme" }
+  ],
+  "controls": [
+    {
+      "decisionId": "footer-items",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "prop": "items"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-logo-couleur",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+        ],
+        "prop": "couleur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-variant",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-children",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-icon-right",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-icon-left",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-icon-left-glyph",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-cta-icon-right-glyph",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-column-texte",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".footer [data-pqr-part=\"footer-column-texte\"]",
+      "label": "Texte de la colonne",
+      "reasonCode": "t-field-inline"
+    },
+    {
+      "decisionId": "footer-column-titre",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "footer-copyright-texte",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".footer [data-pqr-part=\"copyright-texte\"]",
+      "label": "Texte du copyright",
+      "reasonCode": "t-field-inline"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "footer-part-root",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-background",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Background"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"background\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-row",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"row\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-col1",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col1"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"col1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-logo",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col1", "PiquerayLogo"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".footer [data-pqr-part=\"piqueray-logo-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-cta",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col1", "Bouton"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".footer [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-column-collection",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "FooterColumn"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "repeat",
+      "selector": ".footer [data-pqr-part=\"footer-column-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-col5",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col5"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"col5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-titre-reseaux",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col5", "TitreReseaux"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"titre-reseaux\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-reseaux-sociaux",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col5", "rseauxSociaux"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"reseaux-sociaux\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-facebook",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col5", "rseauxSociaux", "Facebook"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"facebook\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-instagram",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Row", "col5", "rseauxSociaux", "Instagram"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"instagram\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-spacer",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Spacer"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"spacer\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-separator",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Separator"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"separator\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-spacer2",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "spacer2"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"spacer2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-copyright",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "partPath": ["root", "Copyright"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".footer [data-pqr-part=\"copyright-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-logo-part-root",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+        ],
+        "partPath": ["root"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"piqueray-logo-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-logo-part-marque",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+        ],
+        "partPath": ["root", "Marque"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"piqueray-logo-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-logo-part-wordmark",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+        ],
+        "partPath": ["root", "Wordmark"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"piqueray-logo-wordmark\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-cta-part-root",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "partPath": ["root"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-cta-part-icon-left",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "partPath": ["root", "iconLeft"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"button-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-cta-part-icon-only",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "partPath": ["root", "iconOnlyIcon"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"button-icon-only\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-cta-part-label",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "partPath": ["root", "label"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-cta-part-icon-right",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" }
+        ],
+        "partPath": ["root", "iconRight"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"button-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-column-part-root",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+        ],
+        "partPath": ["root"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"footer-column-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-column-part-titre",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+        ],
+        "partPath": ["root", "Titre"]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"footer-column-titre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-column-part-texte",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+        ],
+        "partPath": ["root", "Texte"]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"footer-column-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-copyright-part-root",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+        ],
+        "partPath": ["root"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"copyright-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-copyright-part-texte",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
+          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+        ],
+        "partPath": ["root", "Texte"]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"copyright-texte\"]",
+      "allowedMarks": []
+    }
+  ]
+}

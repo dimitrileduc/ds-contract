@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

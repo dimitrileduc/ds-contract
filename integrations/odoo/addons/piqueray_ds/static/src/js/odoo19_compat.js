@@ -57,6 +57,7 @@ import { DISABLED_NAMESPACE } from "@html_editor/main/toolbar/toolbar_plugin";
 import { closestElement } from "@html_editor/utils/dom_traversal";
 import { withSequence } from "@html_editor/utils/resource";
 import { registry } from "@web/core/registry";
+import { rpc } from "@web/core/network/rpc";
 import {
     WebsiteBackgroundCarouselOption,
     WebsiteBackgroundBGColorImageOption,
@@ -276,6 +277,7 @@ export {
     BaseOptionComponent,
     BuilderAction,
     registry,
+    rpc,
     DISABLED_NAMESPACE,
     closestElement,
     withSequence,

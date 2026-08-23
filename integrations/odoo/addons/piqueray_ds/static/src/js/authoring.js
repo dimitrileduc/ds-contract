@@ -32,6 +32,7 @@ import {
     BaseOptionComponent,
     BuilderAction,
     registry,
+    rpc,
     DISABLED_NAMESPACE,
     closestElement,
     assertOdoo19Environment,
@@ -303,6 +304,16 @@ excludeNativeOptionsForRoots(PIQUERAY_ROOTS);
 excludeNativeImageOptionsForRoots(PIQUERAY_ROOTS);
 excludeUndeclaredTopActionsForRoots(PIQUERAY_ROOTS);
 governResizeForRoots(PIQUERAY_ROOTS);
+
+// ODOO-023 — Suppression des plugins footer natifs. Notre footer shell remplace
+// entièrement le footer natif d'Odoo (xpath sur website.layout). Les plugins
+// natifs enregistrent des builder_options qui ciblent `#wrapwrap > footer` et
+// cherchent des éléments natifs (#footer, .o_footer_copyright) qui n'existent
+// plus — sélection = crash. Les retirer du registre est sûr : le gabarit
+// template_footer_piqueray est le seul footer actif.
+const _websitePlugins = registry.category("website-plugins");
+if (_websitePlugins.contains("footerOption")) _websitePlugins.remove("footerOption");
+if (_websitePlugins.contains("footerCopyrightOption")) _websitePlugins.remove("footerCopyrightOption");
 // ODOO-019-AUTHORING-ROOTS END
 
 // ODOO-019-AUTHORING-PLUGIN BEGIN
@@ -410,6 +421,44 @@ export class PiquerayReassurancesOption extends BaseOptionComponent {
     static template = "piqueray_ds.ReassurancesOption";
     static selector = ".s_pqr_reassurances";
     static editableOnly = false;
+}
+
+// ODOO-023 — panneau Footer shell. Le footer n'est PAS un snippet (pas de
+// `data-snippet`) ; c'est un gabarit système hérité de `website.layout`. Le
+// panneau cible le sélecteur shell. Le libellé du CTA est un `t-field` (éditable
+// en ligne par le mécanisme natif d'Odoo) ; le lien du CTA est un champ modèle
+// mis à jour par `SetFooterCtaHrefAction`. Les liens sociaux utilisent les
+// routes natives Odoo `/website/social/*` (Paramètres > Site Web > Réseaux sociaux).
+export class PiquerayFooterOption extends BaseOptionComponent {
+    static template = "piqueray_ds.FooterOption";
+    static selector = '.footer[data-pqr-shell="footer"]';
+    static editableOnly = false;
+}
+
+/** Lien du CTA footer — PERSISTE au modèle website (le footer est un gabarit
+ * système re-rendu par QWeb à chaque requête, pas un snippet sauvegardé en HTML).
+ * L'action met à jour le DOM (retour immédiat) ET le champ via RPC (persistance). */
+export class SetFooterCtaHrefAction extends BuilderAction {
+    static id = "pqrSetFooterCtaHref";
+    getValue({ editingElement }) {
+        return editingElement.querySelector('a[data-pqr-part="button-root"]')?.getAttribute("href") || "";
+    }
+    async apply({ editingElement, value }) {
+        const ancre = editingElement.querySelector('a[data-pqr-part="button-root"]');
+        if (!ancre) return;
+        const href = normaliserCtaHref(value, window.location.origin);
+        if (href === null) return;
+        ancre.setAttribute("href", href);
+        const oeId = editingElement.querySelector('[data-oe-model="website"][data-oe-id]')?.dataset?.oeId;
+        if (oeId) {
+            await rpc("/web/dataset/call_kw/website/write", {
+                model: "website",
+                method: "write",
+                args: [[parseInt(oeId)], { x_pqr_footer_cta_href: href }],
+                kwargs: {},
+            });
+        }
+    }
 }
 
 export class PiquerayCarteOption extends BaseOptionComponent {
@@ -600,11 +649,12 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
         builder_actions: {
             SetCtaHrefAction,
             SetLinkHrefAction,
             SetColonnesAction,
+            SetFooterCtaHrefAction,
             AddCarteAction,
             RemoveCarteAction,
             MoveCarteUpAction,

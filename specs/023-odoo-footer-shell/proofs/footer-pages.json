@@ -1,0 +1,31 @@
+{
+  "receiptId": "footer-pages-odoo-019-foundation",
+  "scenarioId": "footer-pages",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "deployed-footer-shell",
+  "observations": [
+    "[pass] homepage — HTTP 200 — attendu « 200 », observé « 200 »",
+    "[pass] homepage — footer présent — attendu « data-pqr-shell=\"footer\" », observé « true »",
+    "[pass] homepage — footer contract attr — attendu « ds.footer », observé « ds.footer »",
+    "[pass] homepage — footer design intact — attendu « logo+cta+copyright », observé « logo=true cta=true copyright=true »",
+    "[pass] homepage — header shell intact — attendu « ds.header », observé « ds.header »",
+    "[pass] presentation — HTTP 200 — attendu « 200 », observé « 200 »",
+    "[pass] presentation — footer présent — attendu « data-pqr-shell=\"footer\" », observé « true »",
+    "[pass] presentation — footer contract attr — attendu « ds.footer », observé « ds.footer »",
+    "[pass] presentation — footer design intact — attendu « logo+cta+copyright », observé « logo=true cta=true copyright=true »",
+    "[pass] presentation — header shell intact — attendu « ds.header », observé « ds.header »",
+    "[pass] hero — HTTP 200 — attendu « 200 », observé « 200 »",
+    "[pass] hero — footer présent — attendu « data-pqr-shell=\"footer\" », observé « true »",
+    "[pass] hero — footer contract attr — attendu « ds.footer », observé « ds.footer »",
+    "[pass] hero — footer design intact — attendu « logo+cta+copyright », observé « logo=true cta=true copyright=true »",
+    "[pass] hero — header shell intact — attendu « ds.header », observé « ds.header »",
+    "[pass] equipe — HTTP 200 — attendu « 200 », observé « 200 »",
+    "[pass] equipe — footer présent — attendu « data-pqr-shell=\"footer\" », observé « true »",
+    "[pass] equipe — footer contract attr — attendu « ds.footer », observé « ds.footer »",
+    "[pass] equipe — footer design intact — attendu « logo+cta+copyright », observé « logo=true cta=true copyright=true »",
+    "[pass] equipe — header shell intact — attendu « ds.header », observé « ds.header »"
+  ],
+  "artifacts": [],
+  "limitCodes": []
+}

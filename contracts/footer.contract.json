@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.footer",
   "name": "Footer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
   "semantics": {
     "element": "div",
@@ -53,15 +53,13 @@
           }
         },
         "Row": {
-          "description": "FRAME 2120:4779 de 1385px, layoutMode ABSENT dans Figma : ses enfants y sont positionnés en absolu. Le code les remet en flux. L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse, qui n'est pas un canal déclaré ET qui inverserait aussi les trois colonnes répétées entre elles. LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout.",
+          "description": "FRAME 2120:4779, layoutMode HORIZONTAL SPACE_BETWEEN, layoutSizingHorizontal FILL (corrigé 2026-08-23, §VIII source-cleanliness : était FIXED 1385px, passé FILL pour que le footer soit dynamique au resize). L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse.",
           "layout": {
             "display": "flex",
             "direction": "row",
             "justify": "space-between",
-            "align": "start"
-          },
-          "tokens": {
-            "width": "{size.footer.row}"
+            "align": "start",
+            "grow": true
           },
           "declared": {
             "position": "relative"
@@ -154,7 +152,7 @@
                         "size": 31.857126235961914
                       },
                       "tokens": {
-                        "color": "{color.noir-bleute}"
+                        "color": "{color.blanc}"
                       }
                     },
                     "Instagram": {
@@ -163,7 +161,7 @@
                         "size": 31.857126235961914
                       },
                       "tokens": {
-                        "color": "{color.noir-bleute}"
+                        "color": "{color.blanc}"
                       }
                     }
                   }

@@ -60,6 +60,31 @@ def _finalize_shell(env):
     params.set_param(FLAG, "1")
 
 
+# ---------------------------------------------------------------------------
+# Finalisation du footer shell (spec 023).
+# Même patron que le header : un corps partagé, appelé par post_init_hook
+# (install frais) et par la migration 19.0.1.7.0 (update). Garde propre.
+# ---------------------------------------------------------------------------
+
+FOOTER_FLAG = "piqueray_ds.footer_finalized"
+
+
+def _finalize_footer(env):
+    params = env["ir.config_parameter"].sudo()
+    if params.get_param(FOOTER_FLAG):
+        return
+
+    default_footer = env.ref("website.footer_custom", raise_if_not_found=False)
+    if default_footer:
+        default_footer.active = False
+    ours = env.ref("piqueray_ds.template_footer_piqueray", raise_if_not_found=False)
+    if ours:
+        ours.active = True
+
+    params.set_param(FOOTER_FLAG, "1")
+
+
 def post_init_hook(env):
     """Install FRAIS : le semis noupdate a créé les menus, on les finalise."""
     _finalize_shell(env)
+    _finalize_footer(env)

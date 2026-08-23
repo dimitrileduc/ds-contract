@@ -333,4 +333,18 @@
     <field name="url">/piqueray-harness/categories-principales-visual</field><field name="view_id" ref="harness_categories_principales_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- HARNESS-CATEGORIES END -->
+
+  <!-- ODOO-023-HARNESS-FOOTER BEGIN -->
+  <!-- Banc visuel du FOOTER SHELL (spec 023, SC-001). Même patron que le header :
+       un cadre de mesure .pqr-mesure qui isole le composant seul sur la page, à la
+       taille exacte du clip (1776×504). Le footer porte son propre fond sombre ; la
+       mesure se fait sur fond sombre. Le t-call rend footer_bar, qui inclut la CSS
+       générée, les t-field et les liens sociaux. -->
+  <template id="harness_footer_visual" name="Piqueray — Footer visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 504px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-noir-bleute); position: relative; z-index: 1;"><t t-call="piqueray_ds.footer_bar"/></div></div></t>
+  </template>
+  <record id="page_harness_footer_visual" model="website.page">
+    <field name="url">/piqueray-harness/footer-visual</field><field name="view_id" ref="harness_footer_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-023-HARNESS-FOOTER END -->
 </odoo>

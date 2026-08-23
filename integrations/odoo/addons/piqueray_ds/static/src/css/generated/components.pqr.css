@@ -10,6 +10,7 @@
  *   ds.devis → ds.button, ds.devis
  *   ds.equipe → ds.equipe, ds.member-card, ds.member-picture
  *   ds.faq → ds.accordion-row, ds.button, ds.faq, ds.section-header
+ *   ds.footer → ds.button, ds.copyright, ds.footer, ds.footer-column, ds.piqueray-logo
  *   ds.google-reviews → ds.google-reviews, ds.notation, ds.review-card
  *   ds.header → ds.button, ds.header, ds.nav-item, ds.piqueray-logo
  *   ds.hero → ds.button, ds.hero, ds.section-header
@@ -925,6 +926,209 @@
   align-self: stretch;
 }
 
+/* PiquerayLogo — from ds.piqueray-logo v1.0.0 (core/emit-html.ts) */
+
+.piqueray-logo, .piqueray-logo *, .piqueray-logo *::before, .piqueray-logo *::after {
+  box-sizing: border-box;
+}
+
+.piqueray-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  position: relative;
+  width: var(--pqr-size-logo-width);
+  height: var(--pqr-size-logo-height);
+}
+
+.piqueray-logo__Marque svg {
+  display: block;
+  width: 25.96292495727539px;
+  height: 34px;
+}
+
+.piqueray-logo__Marque {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: var(--pqr-color-orange);
+}
+
+.piqueray-logo__Wordmark svg {
+  display: block;
+  width: 145.67019653320312px;
+  height: 25.00434112548828px;
+}
+
+.piqueray-logo__Wordmark {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 34.329803466796875px;
+  top: 5.959875106811523px;
+  color: var(--pqr-color-bleu);
+}
+
+.piqueray-logo--couleur-blanc .piqueray-logo__Wordmark {
+  color: var(--pqr-color-blanc);
+}
+
+/* FooterColumn — from ds.footer-column v1.1.0 (core/emit-html.ts) */
+
+.footer-column, .footer-column *, .footer-column *::before, .footer-column *::after {
+  box-sizing: border-box;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  gap: var(--pqr-space-16);
+  width: var(--pqr-size-footer-column-root);
+}
+
+.footer-column__Titre {
+  color: var(--pqr-color-orange);
+  font-size: var(--pqr-font-size-24);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 30px;
+}
+
+.footer-column__Texte {
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-18);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 27px;
+}
+
+/* Copyright — from ds.copyright v1.0.0 (core/emit-html.ts) */
+
+.copyright, .copyright *, .copyright *::before, .copyright *::after {
+  box-sizing: border-box;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+}
+
+.copyright__Texte {
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-14);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 24px;
+}
+
+/* Footer — from ds.footer v1.2.0 (core/emit-html.ts) */
+
+.footer, .footer *, .footer *::before, .footer *::after {
+  box-sizing: border-box;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  width: var(--pqr-size-footer-root);
+  padding-top: var(--pqr-space-128);
+  padding-right: var(--pqr-space-89);
+  padding-bottom: var(--pqr-space-32);
+  padding-left: var(--pqr-space-89);
+  gap: var(--pqr-space-0);
+  position: relative;
+}
+
+.footer__Background {
+  height: var(--pqr-size-footer-background);
+  background-color: var(--pqr-color-noir-bleute);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer__Row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+}
+
+.footer__col1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pqr-space-32);
+}
+
+.footer__col5 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pqr-space-16);
+}
+
+.footer__TitreReseaux {
+  color: var(--pqr-color-orange);
+  font-weight: var(--pqr-font-weight-regular);
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.footer__rseauxSociaux {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-16);
+}
+
+.footer__Facebook svg {
+  display: block;
+  width: 31.857126235961914px;
+  height: 31.857126235961914px;
+}
+
+.footer__Facebook {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--pqr-color-blanc);
+}
+
+.footer__Instagram svg {
+  display: block;
+  width: 31.857126235961914px;
+  height: 31.857126235961914px;
+}
+
+.footer__Instagram {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--pqr-color-blanc);
+}
+
+.footer__Spacer {
+  height: var(--pqr-size-footer-spacer);
+}
+
+.footer__Separator {
+  border-color: var(--pqr-color-blanc);
+  height: var(--pqr-space-0);
+  border-style: solid;
+  border-top-width: 1px;
+}
+
+.footer__spacer2 {
+  height: var(--pqr-size-footer-spacer2);
+}
+
 /* Notation — from ds.notation v1.0.0 (core/emit-html.ts) */
 
 .notation, .notation *, .notation *::before, .notation *::after {
@@ -1644,56 +1848,6 @@
 .google-reviews__iconeDroite {
   display: inline-flex;
   flex-shrink: 0;
-}
-
-/* PiquerayLogo — from ds.piqueray-logo v1.0.0 (core/emit-html.ts) */
-
-.piqueray-logo, .piqueray-logo *, .piqueray-logo *::before, .piqueray-logo *::after {
-  box-sizing: border-box;
-}
-
-.piqueray-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  position: relative;
-  width: var(--pqr-size-logo-width);
-  height: var(--pqr-size-logo-height);
-}
-
-.piqueray-logo__Marque svg {
-  display: block;
-  width: 25.96292495727539px;
-  height: 34px;
-}
-
-.piqueray-logo__Marque {
-  display: inline-flex;
-  flex-shrink: 0;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  color: var(--pqr-color-orange);
-}
-
-.piqueray-logo__Wordmark svg {
-  display: block;
-  width: 145.67019653320312px;
-  height: 25.00434112548828px;
-}
-
-.piqueray-logo__Wordmark {
-  display: inline-flex;
-  flex-shrink: 0;
-  position: absolute;
-  left: 34.329803466796875px;
-  top: 5.959875106811523px;
-  color: var(--pqr-color-bleu);
-}
-
-.piqueray-logo--couleur-blanc .piqueray-logo__Wordmark {
-  color: var(--pqr-color-blanc);
 }
 
 /* NavItem — from ds.nav-item v1.2.0 (core/emit-html.ts) */
