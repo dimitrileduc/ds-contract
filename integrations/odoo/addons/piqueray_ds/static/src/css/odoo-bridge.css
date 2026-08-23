@@ -33,6 +33,31 @@
 }
 /* ODOO-019-PRESENTATION-MECHANICS END */
 
+/* ODOO-PRESENTATION-MAXWIDTH BEGIN
+ *
+ * Couche COMPOSITION (NON gouvernée), même statut que le page container
+ * (ODOO-024-PAGE-LAYOUT plus bas) : parity et image-parity ne surveillent pas
+ * ces valeurs. La section suit sa cellule `content` (minmax(0,1fr)) jusqu'au
+ * viewport ; au resize large, les deux colonnes FILL grow=1 se repartagent une
+ * largeur infinie et le vide titre/paragraphe gonfle. On plafonne le bloc à sa
+ * largeur d'auteur Figma (referenceWidth 1287, presentation.contract.json l.94)
+ * et on le centre dans sa cellule via `margin-inline: auto`. Sous 1287 de
+ * cellule la contrainte est inerte : la section reprend toute la largeur.
+ *
+ * Littéral 1287 ASSUMÉ (pas de token minté) : le schéma classe le canal
+ * `max-width` « hors grammaire token » — il vit dans le code, le canvas dessine
+ * à taille réelle (contract-schema.ts l.481-484). C'est aussi pourquoi aucun
+ * geste canvas ni §VIII : le master Figma reste FILL. Le 50/50 interne des
+ * colonnes est hors périmètre (parqué → responsive plus tard).
+ *
+ * Scopé à la racine Piqueray (jamais un sélecteur nu) : la feuille part dans
+ * `web.assets_frontend`. */
+.s_pqr_presentation {
+  max-width: 1287px;
+  margin-inline: auto;
+}
+/* ODOO-PRESENTATION-MAXWIDTH END */
+
 /* ODOO-019-TEXTE-SEO-MECHANICS BEGIN
  * Mêmes états mécaniques que la FAQ : plan inactif sous `hidden`, classes
  * d'état posées par le mécanisme partagé (faq_toggle.js). Spécificité petit :
