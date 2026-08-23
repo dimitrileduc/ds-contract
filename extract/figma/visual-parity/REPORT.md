@@ -60,7 +60,7 @@ row against the committed baseline.json and FAILS on any regression beyond
 
 | subject | variant | gate/raw | masked diagnostic | mask coverage | surface | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|---|---|
-| hero-video | HeroVideo | 0.49% | 0.40% | 6.21% | light | 3456×1440 vs 3456×1440 | near-identical | **UNTRIAGED** | report-assets/hero-video--herovideo.triptych.png |
+| hero-video | HeroVideo | 0.18% | 0.08% | 6.21% | light | 3456×1440 vs 3456×1440 | near-identical | **UNTRIAGED** | report-assets/hero-video--herovideo.triptych.png |
 
 ## Not diffed (named, never dropped)
 
@@ -87,7 +87,7 @@ _none_
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| hero-video (contract) | v2390866014339355442 | repo tokens only | Montserrat |
+| hero-video (contract) | v2390886522869717227 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

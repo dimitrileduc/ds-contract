@@ -477,14 +477,13 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // à largeur FIXED.
   { id: 'hero', label: 'Hero (Piqueray)', kind: 'contract', contractId: 'ds.hero', fileKey: PIQUERAY, setNodeId: '2111:3382' , renderWidth: 1728},
   {
-    // 025 — standalone HeroVideo master. The background image is already
-    // pinned in the fixture manifest from the same Figma imageRef, so the
-    // comparison lends those verified source bytes to the code-only URL prop
-    // without creating a runtime default or committing a duplicate binary.
+    // Home media correction — the comparison lends the exact bytes applied to
+    // the master Background paint to the code-only URL prop. This remains
+    // comparison data, never a runtime default in the contract.
     id: 'hero-video', label: 'HeroVideo (Piqueray)', kind: 'contract', contractId: 'ds.hero-video',
     fileKey: PIQUERAY, setNodeId: '2151:5552', renderWidth: 1728,
-    comparisonProps: { backgroundUrl: { $asset: 'carte-image-dfaa8d204634' } },
-    fixtureAssetIds: ['carte-image-dfaa8d204634'],
+    comparisonProps: { backgroundUrl: { $asset: 'hero-video-background-8eb8b969759a' } },
+    fixtureAssetIds: ['hero-video-background-8eb8b969759a'],
   },
   { id: 'presentation', label: 'Presentation (Piqueray)', kind: 'contract', contractId: 'ds.presentation', fileKey: PIQUERAY, setNodeId: '2103:2824' , renderWidth: 1276.5},
   { id: 'reassurances', label: 'Reassurances (Piqueray)', kind: 'contract', contractId: 'ds.reassurances', fileKey: PIQUERAY, setNodeId: '2114:3721' , renderWidth: 1550},
