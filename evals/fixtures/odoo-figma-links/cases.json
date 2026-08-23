@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "requiredCases": [
+    "missing-panel",
+    "duplicate-panel",
+    "missing-contract",
+    "version-mismatch",
+    "missing-anchor",
+    "invalid-file-key",
+    "invalid-node-id",
+    "ambiguous-panel",
+    "generic-fallback",
+    "third-party-selector"
+  ],
+  "expectations": {
+    "generic-fallback": "No generated entry may contain a complete Figma URL or emit a file-only destination.",
+    "third-party-selector": "A selector outside Piqueray roots or the explicit Piqueray footer shell is rejected."
+  }
+}

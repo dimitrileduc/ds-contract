@@ -93,6 +93,46 @@ import {
     SetSavBackgroundAltAction,
     SetSavPhotoAltAction,
 } from "./media_action";
+import { FIGMA_PANEL_LINKS, findFigmaPanelLink } from "./generated/figma_links";
+
+// ODOO-025-FIGMA-LINKS-JS BEGIN
+/** Navigation externe pure : aucune écriture dans le DOM, l'historique ou les
+ * données Odoo. La destination est éphémère et construite uniquement au clic. */
+export class OpenFigmaAction extends BuilderAction {
+    static id = "pqrOpenFigma";
+
+    apply({ editingElement }) {
+        const entry = findFigmaPanelLink(editingElement);
+        if (!entry || entry.status !== "available") return;
+        const url = new URL(`https://www.figma.com/design/${entry.fileKey}`);
+        url.searchParams.set("node-id", entry.nodeId);
+        window.open(url.toString(), "_blank", "noopener,noreferrer");
+    }
+}
+
+/** Une seule option couvre l'union des sélecteurs générés. `matches()` (dans
+ * findFigmaPanelLink) exige l'élément sélectionné exact : aucune fuite vers un
+ * parent, enfant interne ou panneau tiers. */
+export class PiquerayFigmaLinkOption extends BaseOptionComponent {
+    static template = "piqueray_ds.FigmaLinkOption";
+    static selector = FIGMA_PANEL_LINKS.map((entry) => entry.selector).join(", ");
+    static editableOnly = false;
+
+    get figmaLink() {
+        // Les options sont montées par `<BuilderContext>` sans props : l'élément
+        // réellement sélectionné est fourni par son environnement Odoo.
+        return findFigmaPanelLink(this.env.getEditingElement());
+    }
+
+    get figmaLinkAvailable() {
+        return this.figmaLink?.status === "available";
+    }
+
+    get figmaLinkUnavailableReason() {
+        return this.figmaLink?.status === "unavailable" ? this.figmaLink.reason : "ambiguous-panel";
+    }
+}
+// ODOO-025-FIGMA-LINKS-JS END
 
 // ODOO-019-AUTHORING-ROOTS BEGIN
 /** Les seules racines posables. Fermées par défaut, sans exception.
@@ -666,8 +706,9 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
         builder_actions: {
+            OpenFigmaAction,
             SetCtaHrefAction,
             SetLinkHrefAction,
             SetColonnesAction,

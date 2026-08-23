@@ -72,6 +72,22 @@ convention de politesse :
 
 Chaque fichier généré porte un en-tête `DO NOT EDIT` nommant la commande qui le refait.
 
+### Liens Figma de l’éditeur
+
+`config/figma-panels.json` associe chaque panneau Piqueray réellement enregistré
+à une adresse de contrat — jamais à une URL. `npm run odoo:figma-links` résout
+cette adresse, lit exclusivement `anchors.figma.fileKey` et `nodeId`, puis écrit
+`static/src/js/generated/figma_links.js`. Le panneau et l’action Odoo restent
+génériques : une référence absente est affichée comme indisponible et ne possède
+aucun repli vers le fichier Figma.
+
+Avant livraison, exécuter `npm run odoo:figma-links:check`. La porte vérifie le
+census bidirectionnel des options `Piqueray*Option`, l’unicité des sélecteurs et
+la fraîcheur octet-à-octet de la projection ; elle refuse aussi toute entrée
+indisponible. La qualification réelle est `npx tsx
+integrations/odoo/qa/scenarios/figma-links.mts` : un reçu `skipped` ne vaut pas
+une qualification.
+
 **Si une valeur manque, elle manque en amont.** La corriger ici, c'est la rendre invisible au
 différentiel : la règle du dépôt est que la géométrie se porte en jetons, jamais en littéraux, et
 un littéral posé dans une sortie générée ne siège sur aucun axe.

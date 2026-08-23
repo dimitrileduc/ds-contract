@@ -23,6 +23,15 @@ import path from 'node:path';
 import { ContractSchema, type Contract, type Part } from '../../contract-schema.js';
 import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canonical.js';
 
+/** Entrées et sortie de la projection Figma de l'éditeur Odoo (spec 025).
+ * Les chemins restent centralisés ici : les gates et le générateur consultent
+ * exactement les mêmes sources, plutôt que des copies de littéraux qui
+ * dériveraient indépendamment. */
+export const FIGMA_PANELS_MANIFEST = repoPath('integrations', 'odoo', 'config', 'figma-panels.json');
+export const FIGMA_PANELS_CENSUS = repoPath('integrations', 'odoo', 'qa', 'fixtures', 'figma-panels.expected.json');
+export const FIGMA_LINKS_OUTPUT = repoPath('integrations', 'odoo', 'addons', 'piqueray_ds', 'static', 'src', 'js', 'generated', 'figma_links.js');
+export const FIGMA_AUTHORING_SOURCE = repoPath('integrations', 'odoo', 'addons', 'piqueray_ds', 'static', 'src', 'js', 'authoring.js');
+
 /** Les sections posables. Tout le reste de leur fermeture reste interne.
  *  Wave B (spec 022) ajoute `ds.coordonnees` et `ds.reassurances` : 8 → 10
  *  racines. La fermeture calculée tire `ds.carte` en plus (par Réassurances).

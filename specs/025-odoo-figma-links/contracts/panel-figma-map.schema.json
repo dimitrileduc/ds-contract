@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/panel-figma-map.schema.json",
+  "title": "Piqueray Odoo panel to contract mapping",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "panels"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "panels": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/panel" } }
+  },
+  "$defs": {
+    "contractRef": {
+      "type": "object", "additionalProperties": false, "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" },
+        "version": { "type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$" }
+      }
+    },
+    "segment": {
+      "type": "object", "additionalProperties": false, "required": ["contract"],
+      "properties": {
+        "contract": { "$ref": "#/$defs/contractRef" },
+        "viaPart": { "type": "string", "minLength": 1 },
+        "repeat": { "type": "boolean" }
+      }
+    },
+    "panel": {
+      "type": "object", "additionalProperties": false,
+      "required": ["panelId", "kind", "optionClass", "optionTemplate", "selector", "componentPath"],
+      "properties": {
+        "panelId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "kind": { "enum": ["root", "child", "shell"] },
+        "optionClass": { "type": "string", "pattern": "^Piqueray[A-Za-z0-9]+Option$" },
+        "optionTemplate": { "type": "string", "pattern": "^piqueray_ds\\.[A-Za-z0-9]+Option$" },
+        "selector": { "type": "string", "minLength": 1 },
+        "componentPath": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/segment" } }
+      }
+    }
+  }
+}

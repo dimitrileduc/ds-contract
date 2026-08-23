@@ -15,6 +15,12 @@ related: [08-status-what-doesnt-work, 12-reference]
 
 Le quickstart exécutable est `specs/019-odoo-production-foundation/quickstart.md`. Les portes spécifiques sont `odoo:inputs:check`, `odoo:authoring:check`, `odoo:assets -- --check`, `odoo:module:check`, `odoo:derivation:check`, les scénarios QA Docker et `odoo:qualification -- --require-qualified`. Le sweep final du 2026-08-09 a produit 199/199 evals; le nombre imprimé par le prochain run reste l'autorité.
 
+La feature 025 ajoute `odoo:figma-links` (projection depuis les seules ancres
+canoniques) et `odoo:figma-links:check` (census d’options, ancre précise,
+sortie byte-current et zéro entrée indisponible). La qualification browser est
+`integrations/odoo/qa/scenarios/figma-links.mts`; si Docker, Odoo ou Chromium
+manquent, son reçu est `skipped` et bloque toute claim de qualification live.
+
 ## The philosophy
 
 **No claim without an executable check.** Every capability in `07` maps to a

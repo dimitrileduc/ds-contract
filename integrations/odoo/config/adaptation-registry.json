@@ -1012,51 +1012,58 @@
     {
       "adaptationId": "ODOO-025-HERO-VIDEO-QWEB",
       "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
-      "rootContracts": [
-        "ds.hero-video"
-      ],
+      "rootContracts": ["ds.hero-video"],
       "reasonCode": "odoo-qweb-composition",
-      "decisionRefs": [
-        "hero-video.authoring.json"
-      ],
+      "decisionRefs": ["hero-video.authoring.json"],
       "mechanism": "qweb"
     },
     {
       "adaptationId": "ODOO-025-HERO-VIDEO-SNIPPET",
       "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
-      "rootContracts": [
-        "ds.hero-video"
-      ],
+      "rootContracts": ["ds.hero-video"],
       "reasonCode": "odoo-qweb-composition",
-      "decisionRefs": [
-        "hero-video.authoring.json"
-      ],
+      "decisionRefs": ["hero-video.authoring.json"],
       "mechanism": "qweb"
     },
     {
       "adaptationId": "ODOO-025-HERO-VIDEO-PANEL",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
-      "rootContracts": [
-        "ds.hero-video"
-      ],
+      "rootContracts": ["ds.hero-video"],
       "reasonCode": "odoo-builder-policy",
-      "decisionRefs": [
-        "hero-video.authoring.json"
-      ],
+      "decisionRefs": ["hero-video.authoring.json"],
       "mechanism": "builder-option"
     },
     {
       "adaptationId": "ODOO-025-HERO-VIDEO-MEDIA",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
-      "rootContracts": [
-        "ds.hero-video"
-      ],
+      "rootContracts": ["ds.hero-video"],
       "reasonCode": "odoo-media-dialog",
-      "decisionRefs": [
-        "hero-video-background-url",
-        "hero-video-background-alt"
-      ],
+      "decisionRefs": ["hero-video-background-url", "hero-video-background-alt"],
       "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-025-FIGMA-LINKS-JS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js",
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": ["specs/025-odoo-figma-links/plan.md", "integrations/odoo/config/figma-panels.json"],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-025-FIGMA-LINKS-XML",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": ["specs/025-odoo-figma-links/contracts/editor-action.md", "integrations/odoo/config/figma-panels.json"],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-025-FIGMA-LINKS-GENERATED",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/generated/figma_links.js",
+      "rootContracts": ["ds.categories-principales", "ds.coordonnees", "ds.devis", "ds.equipe", "ds.faq", "ds.footer", "ds.google-reviews", "ds.hero", "ds.hero-video", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": ["integrations/odoo/config/figma-panels.json", "contracts"],
+      "mechanism": "builder-option"
     }
   ]
 }

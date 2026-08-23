@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
+  <!-- ODOO-025-FIGMA-LINKS-XML BEGIN -->
+  <t t-name="piqueray_ds.FigmaLinkOption">
+    <BuilderRow label.translate="Référence design">
+      <t t-if="figmaLinkAvailable">
+        <span data-pqr-figma-link="available">
+          <BuilderButton action="'pqrOpenFigma'" preview="false">Ouvrir dans Figma ↗</BuilderButton>
+        </span>
+      </t>
+      <t t-else="">
+        <span data-pqr-figma-link="unavailable" class="text-muted small" role="button" aria-disabled="true" tabindex="-1" t-att-title="figmaLinkUnavailableReason">Référence Figma indisponible</span>
+      </t>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-025-FIGMA-LINKS-XML END -->
+
   <!-- La présence de ce composant inscrit la racine comme cible du builder et
        rend ses gestes structurels natifs accessibles. Les options métier
        dérivées des configs rejoindront ce panneau en T031. -->

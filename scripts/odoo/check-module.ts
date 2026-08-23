@@ -435,6 +435,44 @@ function testVersions() {
   else ok('les transcriptions de versions concordent avec le lock', `${lockVersions.size} contrats du lock, 3 transcriptions ancrées — versions de contrat, digest, module et authoring`);
 }
 
+/** Spec 025 — le fichier de projection est une sortie, mais son branchement
+ * dans le bundle et l'unicité du mécanisme restent des décisions manuelles.
+ * Sans ce contrôle, une action recopiée dans un panneau ou un asset chargé trop
+ * tard passerait les checks TypeScript tout en cassant l'éditeur réel. */
+function testFigmaLinks() {
+  const generated = path.join(ADDON, 'static', 'src', 'js', 'generated', 'figma_links.js');
+  const authoring = path.join(ADDON, 'static', 'src', 'js', 'authoring.js');
+  const xml = path.join(ADDON, 'static', 'src', 'xml', 'authoring.xml');
+  if (!existsSync(generated)) {
+    ko('la projection Figma générée existe', `${repoRelative(generated)} absent`);
+    return;
+  }
+  const output = readFileSync(generated, 'utf8');
+  if (!output.includes('DO NOT EDIT') || !output.includes('findFigmaPanelLink')) {
+    ko('la projection Figma est générée et identifiable', 'marqueur DO NOT EDIT ou helper absent');
+  } else ok('la projection Figma est générée et identifiable');
+
+  const authoringSrc = readFileSync(authoring, 'utf8');
+  const xmlSrc = readFileSync(xml, 'utf8');
+  const actionCount = (authoringSrc.match(/class OpenFigmaAction extends BuilderAction/g) ?? []).length;
+  const optionCount = (authoringSrc.match(/class PiquerayFigmaLinkOption extends BaseOptionComponent/g) ?? []).length;
+  const controlCount = (xmlSrc.match(/action="'pqrOpenFigma'"/g) ?? []).length;
+  const safeOpen = authoringSrc.includes('window.open(url.toString(), "_blank", "noopener,noreferrer")');
+  if (actionCount !== 1 || optionCount !== 1 || controlCount !== 1 || !safeOpen) {
+    ko('une unique action/option Figma ouvre un onglet isolé', `action=${actionCount}, option=${optionCount}, control=${controlCount}, safeOpen=${safeOpen}`);
+  } else ok('une unique action/option Figma ouvre un onglet isolé');
+  if (!authoringSrc.includes('findFigmaPanelLink(this.env.getEditingElement())')) {
+    ko('l’option Figma lit la sélection du BuilderContext', 'la résolution ne lit pas env.getEditingElement()');
+  } else ok('l’option Figma lit la sélection du BuilderContext');
+
+  const manifestSrc = readFileSync(MANIFEST, 'utf8');
+  const generatedAsset = 'piqueray_ds/static/src/js/generated/figma_links.js';
+  const authoringAsset = 'piqueray_ds/static/src/js/authoring.js';
+  if (manifestSrc.indexOf(generatedAsset) < 0 || manifestSrc.indexOf(generatedAsset) > manifestSrc.indexOf(authoringAsset)) {
+    ko('la projection Figma précède son consommateur dans les assets', `${generatedAsset} doit précéder ${authoringAsset}`);
+  } else ok('la projection Figma précède son consommateur dans les assets');
+}
+
 function main() {
   const strict = process.argv.includes('--strict');
   console.log('Porte de structure du module Odoo — sans instance, sans Docker.\n');
@@ -442,6 +480,7 @@ function main() {
   testVues();
   testImages();
   testVersions();
+  testFigmaLinks();
   const code = tally.resume(strict);
   if (code !== 0) process.exit(code);
 }

@@ -63,6 +63,129 @@ function avecSchemasOdoo<T>(fn: () => T): T {
 
 const cases: Case[] = [
   {
+    // 025 — la projection Figma doit rester une dérivation de contrats, jamais
+    // une seconde liste d'URLs saisies dans les panneaux Odoo. Ce cas couvre les
+    // racines/shell, les six enfants et les refus de gouvernance nommés.
+    id: 'odoo-figma-links-governance',
+    claim: 'C2-refusal',
+    run: () => {
+      const build = (...args: string[]) => run(TSX, ['scripts/odoo/build-figma-links.ts', ...args]);
+      const manifest = path.join(SCRATCH, 'integrations/odoo/config/figma-panels.json');
+      const generated = path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/static/src/js/generated/figma_links.js');
+      const authoring = path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js');
+      const xml = path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml');
+      const packageJson = path.join(SCRATCH, 'package.json');
+      // Le harnais n'embarque pas le sous-répertoire QA par défaut ; le census
+      // est une fixture relue, donc il doit rejoindre explicitement le scratch
+      // de ce cas avant d'exercer le générateur réel.
+      const census = path.join(SCRATCH, 'integrations/odoo/qa/fixtures/figma-panels.expected.json');
+      mkdirSync(path.dirname(census), { recursive: true });
+      cpSync(path.join(ROOT, 'integrations/odoo/qa/fixtures/figma-panels.expected.json'), census);
+      const refusalCases = JSON.parse(readFileSync(path.join(ROOT, 'evals/fixtures/odoo-figma-links/cases.json'), 'utf8'));
+      if (JSON.stringify(refusalCases.requiredCases) !== JSON.stringify([
+        'missing-panel', 'duplicate-panel', 'missing-contract', 'version-mismatch', 'missing-anchor',
+        'invalid-file-key', 'invalid-node-id', 'ambiguous-panel', 'generic-fallback', 'third-party-selector',
+      ])) throw new Error('fixture de refus Figma incomplète ou non déterministe');
+
+      const first = build();
+      if (first.status !== 0) throw new Error(`projection Figma initiale rouge:\n${first.out}`);
+      const output = readFileSync(generated, 'utf8');
+      if (!output.includes('DO NOT EDIT') || /https:\/\/www\.figma\.com/.test(output)) {
+        throw new Error('la projection doit être générée, marquée DO NOT EDIT et ne doit pas recopier une URL Figma');
+      }
+      for (const panelId of [
+        'presentation', 'google-reviews', 'hero', 'equipe', 'devis', 'faq', 'sav', 'texte-seo',
+        'coordonnees', 'reassurances', 'categories-principales', 'footer',
+        'review-card', 'member-card', 'faq-row', 'texte-seo-row', 'reassurances-card', 'category-card',
+      ]) {
+        if (!output.includes(`panelId: ${JSON.stringify(panelId)}`)) throw new Error(`panneau Figma absent : ${panelId}`);
+      }
+      if (build().status !== 0 || readFileSync(generated, 'utf8') !== output || build('--check').status !== 0) {
+        throw new Error('la projection Figma n\'est pas byte-stable ou --check est rouge');
+      }
+
+      const sourceAuthoring = readFileSync(authoring, 'utf8');
+      const sourceXml = readFileSync(xml, 'utf8');
+      const scripts = JSON.parse(readFileSync(packageJson, 'utf8')).scripts;
+      for (const needle of [
+        'class OpenFigmaAction extends BuilderAction',
+        'window.open(url.toString(), "_blank", "noopener,noreferrer")',
+        'class PiquerayFigmaLinkOption extends BaseOptionComponent',
+      ]) if (!sourceAuthoring.includes(needle)) throw new Error(`action/option Figma absente : ${needle}`);
+      for (const needle of ['Ouvrir dans Figma', 'Référence Figma indisponible']) {
+        if (!sourceXml.includes(needle)) throw new Error(`état de panneau Figma absent : ${needle}`);
+      }
+      if (scripts['odoo:figma-links'] !== 'tsx scripts/odoo/build-figma-links.ts' ||
+          scripts['odoo:figma-links:check'] !== 'tsx scripts/odoo/build-figma-links.ts --check') {
+        throw new Error('scripts odoo:figma-links absents ou divergents');
+      }
+
+      const originalManifest = readFileSync(manifest, 'utf8');
+      const restore = () => writeFileSync(manifest, originalManifest);
+      const mutate = (fn: (value: any) => void) => { const value = JSON.parse(originalManifest); fn(value); writeFileSync(manifest, JSON.stringify(value, null, 2) + '\n'); };
+
+      mutate((value) => { value.panels.pop(); });
+      const missing = build();
+      if (missing.status === 0 || !missing.out.includes('census missing mapping')) throw new Error(`panneau oublié non refusé par census :\n${missing.out}`);
+
+      mutate((value) => { value.panels.push({ ...value.panels[0] }); });
+      const duplicate = build();
+      if (duplicate.status === 0 || !duplicate.out.includes('duplicate panelId')) throw new Error(`panneau dupliqué non refusé :\n${duplicate.out}`);
+
+      mutate((value) => { value.panels[0].selector = '.o_native_option'; });
+      const thirdParty = build();
+      if (thirdParty.status === 0 || !thirdParty.out.includes('native/third-party selector')) throw new Error(`sélecteur tiers non refusé :\n${thirdParty.out}`);
+
+      mutate((value) => { value.panels[0].componentPath[0].contract.id = 'ds.introuvable'; });
+      const missingContract = build();
+      if (missingContract.status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "missing-contract"') || build('--check').status === 0) {
+        throw new Error('contrat absent doit produire unavailable et rendre --check rouge');
+      }
+
+      mutate((value) => { value.panels.find((panel: any) => panel.panelId === 'faq-row').componentPath[1].viaPart = 'Inconnue'; });
+      const ambiguous = build();
+      if (ambiguous.status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "ambiguous-panel"') || build('--check').status === 0) {
+        throw new Error('chemin ambigu/inatteignable doit produire unavailable et rendre --check rouge');
+      }
+
+      mutate((value) => { value.panels[0].componentPath[0].contract.version = '9.9.9'; });
+      const version = build();
+      if (version.status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "version-mismatch"') || build('--check').status === 0) {
+        throw new Error('version divergente doit produire unavailable et rendre --check rouge');
+      }
+      restore();
+
+      const contract = path.join(SCRATCH, 'contracts/presentation.contract.json');
+      const originalContract = readFileSync(contract, 'utf8');
+      const contractValue = JSON.parse(originalContract);
+      contractValue.anchors.figma.nodeId = '9999:9999';
+      writeFileSync(contract, JSON.stringify(contractValue, null, 2) + '\n');
+      if (build().status !== 0 || !readFileSync(generated, 'utf8').includes('nodeId: "9999:9999"')) {
+        throw new Error('une ancre canonique mutée ne se propage pas dans la projection');
+      }
+      contractValue.anchors.figma.fileKey = null;
+      delete contractValue.anchors.figma.nodeId;
+      writeFileSync(contract, JSON.stringify(contractValue, null, 2) + '\n');
+      if (build().status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "missing-anchor"') || build('--check').status === 0) {
+        throw new Error('ancre absente doit produire unavailable et rendre --check rouge');
+      }
+      const invalidFile = JSON.parse(originalContract);
+      invalidFile.anchors.figma.fileKey = 'not/a/file-key';
+      writeFileSync(contract, JSON.stringify(invalidFile, null, 2) + '\n');
+      if (build().status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "invalid-file-key"') || build('--check').status === 0) {
+        throw new Error('fileKey invalide doit produire unavailable et rendre --check rouge');
+      }
+      const invalidNode = JSON.parse(originalContract);
+      invalidNode.anchors.figma.nodeId = 'node-générique';
+      writeFileSync(contract, JSON.stringify(invalidNode, null, 2) + '\n');
+      if (build().status !== 0 || !readFileSync(generated, 'utf8').includes('reason: "invalid-node-id"') || build('--check').status === 0) {
+        throw new Error('nodeId invalide doit produire unavailable et rendre --check rouge');
+      }
+      writeFileSync(contract, originalContract);
+      if (build().status !== 0 || build('--check').status !== 0) throw new Error('la restauration canonique ne rend pas la projection verte');
+    },
+  },
+  {
     // 019 — les sorties générées de l'addon Odoo. La règle des claims place ce
     // cas AVANT toute phrase affirmant que le module est reproductible.
     //

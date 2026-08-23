@@ -87,6 +87,8 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/js/repeat_action.js",
             "piqueray_ds/static/src/js/media_action.js",
             # Politique d'éditabilité et garde rich-text (T019).
+            # Projection Figma générée : doit précéder l'option/action qui la lit.
+            "piqueray_ds/static/src/js/generated/figma_links.js",
             "piqueray_ds/static/src/js/authoring.js",
             "piqueray_ds/static/src/js/rich_text_guard.js",
             "piqueray_ds/static/src/js/version_guard.js",
