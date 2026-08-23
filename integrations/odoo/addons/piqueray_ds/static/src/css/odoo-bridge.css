@@ -99,6 +99,7 @@
  * part dans `web.assets_frontend`, donc un sélecteur nu habillerait aussi les
  * `a.button` du reste du site client. */
 .s_pqr_hero a.button,
+.s_pqr_hero_video a.button,
 .s_pqr_presentation a.button,
 .s_pqr_faq a.button,
 .s_pqr_devis a.button,
@@ -351,7 +352,7 @@
 }
 /* ODOO-023-FOOTER-BRIDGE END */
 
-/* ODOO-PAGE-LAYOUT BEGIN
+/* ODOO-024-PAGE-LAYOUT BEGIN
  *
  * Page container (COUCHE COMPOSITION, NON gouvernée). Le gutter horizontal et le
  * gap vertical des pages vivent ICI, une seule fois — JAMAIS dans un contrat de
@@ -383,7 +384,7 @@
 .o_pqr_page > .s_pqr_bleed {
   grid-column: full;
 }
-/* ODOO-PAGE-LAYOUT END */
+/* ODOO-024-PAGE-LAYOUT END */
 
 /* ODOO-PAGE-DEBUG BEGIN
  *

@@ -24,6 +24,14 @@
     </xpath>
   </template>
   <!-- ODOO-019-HERO-SNIPPET END -->
+  <!-- ODOO-025-HERO-VIDEO-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_hero_video" inherit_id="website.snippets" name="Piqueray · Hero vidéo dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_hero_video" string="Piqueray · Hero vidéo"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-025-HERO-VIDEO-SNIPPET END -->
   <!-- ODOO-019-EQUIPE-SNIPPET BEGIN -->
   <template id="snippets_piqueray_equipe" inherit_id="website.snippets" name="Piqueray · Équipe dans la bibliothèque">
     <xpath expr="//snippets[@id='snippet_structure']" position="inside">

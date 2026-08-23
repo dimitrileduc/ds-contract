@@ -2278,9 +2278,11 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       decls.push(`${cssProp}: ${value}`);
     }
     // Round 4: an absolutely-positioned REPLACED part (promoted Thumbnail
-    // img) fills its inset box — for replaced elements, auto width under
-    // inset-0 resolves to the intrinsic size, so the fill is emitter chrome.
-    if (part.element === 'img' && part.declared?.['position'] === 'absolute') {
+    // img, or a HeroVideo poster/video plane) fills its inset box — for
+    // replaced elements, auto width under inset-0 resolves to the intrinsic
+    // size (the UA honours top/left, drops bottom/right), so the fill is
+    // emitter chrome. `video` is a replaced element exactly like `img`.
+    if ((part.element === 'img' || part.element === 'video') && part.declared?.['position'] === 'absolute') {
       decls.push('width: 100%', 'height: 100%');
     }
     for (const [state, overrides] of Object.entries(part.declaredStates ?? {})) {

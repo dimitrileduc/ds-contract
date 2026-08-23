@@ -4,28 +4,49 @@
   "title": "Odoo Manual Adaptation Registry",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "reasonCodes", "adaptations"],
+  "required": [
+    "schemaVersion",
+    "reasonCodes",
+    "adaptations"
+  ],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
     "reasonCodes": {
       "type": "array",
-      "items": { "$ref": "#/$defs/reasonCode" },
+      "items": {
+        "$ref": "#/$defs/reasonCode"
+      },
       "minItems": 1
     },
     "adaptations": {
       "type": "array",
-      "items": { "$ref": "#/$defs/adaptation" }
+      "items": {
+        "$ref": "#/$defs/adaptation"
+      }
     }
   },
   "$defs": {
-    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._@/-]*$" },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._@/-]*$"
+    },
     "reasonCode": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["code", "description"],
+      "required": [
+        "code",
+        "description"
+      ],
       "properties": {
-        "code": { "$ref": "#/$defs/id" },
-        "description": { "type": "string", "minLength": 1 }
+        "code": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "adaptation": {
@@ -52,14 +73,35 @@
         "rootContracts": {
           "$comment": "`ds.header` ajouté (ADDITIF) par spec 022, `ds.footer` par spec 023 : les racines shell sont des racines de l'intégration au même titre que les posables.",
           "type": "array",
-          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header", "ds.categories-principales", "ds.footer"] },
+          "items": {
+            "enum": [
+              "ds.presentation",
+              "ds.google-reviews",
+              "ds.hero",
+              "ds.equipe",
+              "ds.sav",
+              "ds.devis",
+              "ds.texte-seo",
+              "ds.faq",
+              "ds.coordonnees",
+              "ds.reassurances",
+              "ds.header",
+              "ds.categories-principales",
+              "ds.footer",
+              "ds.hero-video"
+            ]
+          },
           "minItems": 1,
           "uniqueItems": true
         },
-        "reasonCode": { "$ref": "#/$defs/id" },
+        "reasonCode": {
+          "$ref": "#/$defs/id"
+        },
         "decisionRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/id" },
+          "items": {
+            "$ref": "#/$defs/id"
+          },
           "minItems": 1,
           "uniqueItems": true
         },

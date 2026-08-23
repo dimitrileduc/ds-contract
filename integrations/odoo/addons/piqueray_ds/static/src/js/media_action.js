@@ -577,3 +577,71 @@ export class SetCarteCategorieImageAltAction extends BuilderAction {
     }
 }
 // ODOO-023-CATEGORIES-MEDIA END
+
+// ODOO-025-HERO-VIDEO-MEDIA BEGIN
+function heroVideoRoot(editingElement) {
+    return editingElement?.closest?.(".s_pqr_hero_video") || null;
+}
+
+export function heroVideoPosterImage(editingElement) {
+    const image = heroVideoRoot(editingElement)?.querySelector(".hero-video__Background") || null;
+    // Le pipeline média natif reconstruit les attributs de l'image après upload
+    // et peut retirer l'adresse d'authoring. La classe contractuelle, elle,
+    // survit : on restaure donc l'adresse sur le même noeud, sans état parallèle.
+    if (image) image.dataset.pqrPart = "hero-video-poster";
+    return image;
+}
+
+/** Le poster est le SEUL transport d'image du HeroVideo : le contrat déclare le
+ * plan vidéo comme placeholder statique déterministe (canal `videoUrl` code-side,
+ * sans projection Odoo). La seule source autorisée en production est donc une
+ * pièce jointe publiée par le dialogue média Odoo. */
+export function reconcileHeroVideoPoster(editingElement) {
+    const image = heroVideoPosterImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    // Pendant le cycle natif, Odoo garde le bitmap traité en data URL et le
+    // marque explicitement pour ImageSavePlugin. Cette exception disparaît au
+    // before_save, qui produit ensuite une URL publiée /web/image. Sans la
+    // classe native, une data URL reste une source hostile et est supprimée.
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceHeroVideoPosterAction extends BuilderAction {
+    static id = "pqrReplaceHeroVideoPoster";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const root = heroVideoRoot(editingElement);
+        const image = heroVideoPosterImage(root);
+        if (!image) return null;
+        // Le dialogue remplace lui-même `node`, puis le pipeline before_save
+        // finalise toute image `o_modified_image_to_save`. Réécrire `src` dans
+        // onAttachmentChange casserait ce cycle et forcerait le placeholder.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileHeroVideoPoster(root);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileHeroVideoPoster(editingElement);
+    }
+}
+
+export class SetHeroVideoPosterAltAction extends BuilderAction {
+    static id = "pqrSetHeroVideoPosterAlt";
+    getValue({ editingElement }) {
+        return heroVideoPosterImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = heroVideoPosterImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileHeroVideoPoster(editingElement);
+    }
+}
+// ODOO-025-HERO-VIDEO-MEDIA END

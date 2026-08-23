@@ -81,9 +81,11 @@ import {
     ReplaceDevisBackgroundAction,
     ReplaceMemberPortraitAction,
     ReplaceHeroBackgroundAction,
+    ReplaceHeroVideoPosterAction,
     ReplaceReviewAvatarAction,
     SetMemberPortraitAltAction,
     SetHeroBackgroundAltAction,
+    SetHeroVideoPosterAltAction,
     SetDevisBackgroundAltAction,
     SetReviewAvatarAltAction,
     ReplaceSavBackgroundAction,
@@ -96,7 +98,7 @@ import {
 /** Les seules racines posables. Fermées par défaut, sans exception.
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
  *  (US2). Spec 023 ajoute `.s_pqr_categories_principales`. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales"];
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -130,6 +132,14 @@ export const HERO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_hero ${part}`);
 export const HERO_RICH_TEXT =
     '.s_pqr_hero [data-pqr-part="hero-title"], .s_pqr_hero [data-pqr-part="hero-subtitle"]';
+// HeroVideo (spec 025) : titre à poids UNIQUE Regular (Step 0) et libellé de CTA
+// — deux parts en TEXTE SIMPLE (`allowedMarks: []`). Aucune surface rich-text
+// n'est ouverte : le master ne porte aucun poids mixte, un mark sans fait source
+// serait une affordance non fidèle (research D6). D'où l'absence de HERO_VIDEO_RICH_TEXT.
+export const HERO_VIDEO_EDITABLE_PARTS = [
+    '[data-pqr-part="hero-video-title"]',
+    '[data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_hero_video ${part}`);
 export const EQUIPE_EDITABLE_PARTS = [
     '[data-pqr-member-card] [data-pqr-part="member-name"]',
     '[data-pqr-member-card] [data-pqr-part="member-role"]',
@@ -246,6 +256,7 @@ export const PIQUERAY_REOPENED = [
     ...COORDONNEES_EDITABLE_PARTS,
     ...REASSURANCES_EDITABLE_PARTS,
     ...CATEGORIES_EDITABLE_PARTS,
+    ...HERO_VIDEO_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -354,6 +365,12 @@ export class PiquerayPresentationOption extends BaseOptionComponent {
 export class PiquerayHeroOption extends BaseOptionComponent {
     static template = "piqueray_ds.HeroOption";
     static selector = ".s_pqr_hero";
+    static editableOnly = false;
+}
+
+export class PiquerayHeroVideoOption extends BaseOptionComponent {
+    static template = "piqueray_ds.HeroVideoOption";
+    static selector = ".s_pqr_hero_video";
     static editableOnly = false;
 }
 
@@ -649,7 +666,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayFooterOption],
         builder_actions: {
             SetCtaHrefAction,
             SetLinkHrefAction,
@@ -691,6 +708,8 @@ export class PiquerayAuthoringPlugin extends Plugin {
             SetReviewAvatarAltAction,
             ReplaceHeroBackgroundAction,
             SetHeroBackgroundAltAction,
+            ReplaceHeroVideoPosterAction,
+            SetHeroVideoPosterAltAction,
             ReplaceMemberPortraitAction,
             SetMemberPortraitAltAction,
             ReplaceDevisBackgroundAction,

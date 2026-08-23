@@ -60,17 +60,7 @@ row against the committed baseline.json and FAILS on any regression beyond
 
 | subject | variant | gate/raw | masked diagnostic | mask coverage | surface | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|---|---|
-| hero | Hero | 85.13% | 86.73% | 12.29% | light | 3456×1280 vs 3456×1280 | overall ink differs (ours #a2a2a2 vs figma #504a4b) | **UNTRIAGED** | report-assets/hero--hero.triptych.png |
-| devis | Devis | 75.22% | 75.38% | 12.41% | light | 3456×756 vs 3456×756 | overall ink differs (ours #020202 vs figma #505150) | **UNTRIAGED** | report-assets/devis--devis.triptych.png |
-| equipe | Equipe | 69.06% | 70.45% | 4.10% | light | 3456×4128 vs 3456×4128 | diffuse delta — see triptych | **UNTRIAGED** | report-assets/equipe--equipe.triptych.png |
-| reassurances | Disposition=4 cartes | 44.76% | 50.32% | 14.83% | light | 3110×1514 vs 3100×1458 | size ours 3110×1514 vs figma 3100×1458 (Δ10, Δ56 device px); overall ink differs (ours #a2a2a4 vs figma #84858b) | **UNTRIAGED** | report-assets/reassurances--disposition-4-cartes.triptych.png |
-| reassurances | Disposition=5 cartes | 42.58% | 46.68% | 11.85% | light | 3110×1514 vs 3891×1458 | size ours 3110×1514 vs figma 3891×1458 (Δ-781, Δ56 device px); overall ink differs (ours #a2a2a4 vs figma #7e7676) | **UNTRIAGED** | report-assets/reassurances--disposition-5-cartes.triptych.png |
-| reassurances | Disposition=QuatreCartesDeuxCta | 41.15% | 46.21% | 15.19% | light | 3110×1514 vs 3100×1458 | size ours 3110×1514 vs figma 3100×1458 (Δ10, Δ56 device px); overall ink differs (ours #9d9ea0 vs figma #81807d) | **UNTRIAGED** | report-assets/reassurances--disposition-quatrecartesdeuxcta.triptych.png |
-| sav | SAV | 40.48% | 43.83% | 9.64% | light | 3100×1354 vs 3100×1354 | overall ink differs (ours #e5e7eb vs figma #939497) | **UNTRIAGED** | report-assets/sav--sav.triptych.png |
-| coordonnees | Coordonnees | 8.62% | 8.25% | 7.47% | light | 3136×1224 vs 3456×1194 | size ours 3136×1224 vs figma 3456×1194 (Δ-320, Δ30 device px) | **UNTRIAGED** | report-assets/coordonnees--coordonnees.triptych.png |
-| texte-seo | TexteSEO | 4.68% | 2.49% | 23.72% | light | 2745×759 vs 3100×756 | size ours 2745×759 vs figma 3100×756 (Δ-355, Δ3 device px) | **UNTRIAGED** | report-assets/texte-seo--texteseo.triptych.png |
-| presentation | Presentation | 4.65% | 0.04% | 44.23% | light | 2533×254 vs 2553×255 | size ours 2533×254 vs figma 2553×255 (Δ-20, Δ-1 device px); text raster/family delta dominates | **UNTRIAGED** | report-assets/presentation--presentation.triptych.png |
-| faq | FAQ | 3.12% | 1.25% | 12.16% | light | 2745×841 vs 3100×839 | size ours 2745×841 vs figma 3100×839 (Δ-355, Δ2 device px); text raster/family delta dominates | **UNTRIAGED** | out/faq/faq.triptych.png |
+| hero-video | HeroVideo | 0.49% | 0.40% | 6.21% | light | 3456×1440 vs 3456×1440 | near-identical | **UNTRIAGED** | report-assets/hero-video--herovideo.triptych.png |
 
 ## Not diffed (named, never dropped)
 
@@ -78,34 +68,26 @@ _none_
 
 ## Distribution (authoritative raw score)
 
-- ≤ 1%: 0 variant(s)
+- ≤ 1%: 1 variant(s)
 - 1–3%: 0 variant(s)
-- 3–10%: 4 variant(s)
-- > 10%: 7 variant(s)
+- 3–10%: 0 variant(s)
+- > 10%: 0 variant(s)
 
-- diffed: 11 · skipped/refused/declined: 0
+- diffed: 1 · skipped/refused/declined: 0
 
 ## Gate read (triage classes)
 
-- **UNTRIAGED (raw score > 0%): 11** — hero :: Hero; presentation :: Presentation; reassurances :: Disposition=4 cartes; reassurances :: Disposition=QuatreCartesDeuxCta; reassurances :: Disposition=5 cartes; equipe :: Equipe; sav :: SAV; devis :: Devis; faq :: FAQ; coordonnees :: Coordonnees; texte-seo :: TexteSEO
-- > 10% by class: UNTRIAGED ×7
-- 3–10% by class: UNTRIAGED ×4
-- 0–3% by class: (empty)
+- **UNTRIAGED (raw score > 0%): 1** — hero-video :: HeroVideo
+- > 10% by class: (empty)
+- 3–10% by class: (empty)
+- 0–3% by class: UNTRIAGED ×1
 - open `engine`-class causes: 0 (an engine row is a tracked defect, not an accepted delta)
 
 ## Subjects
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| hero (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| presentation (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| reassurances (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| equipe (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| sav (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| devis (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| faq (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| coordonnees (contract) | v2390618778823981695 | repo tokens only | Montserrat |
-| texte-seo (contract) | v2390618778823981695 | repo tokens only | Montserrat |
+| hero-video (contract) | v2390866014339355442 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

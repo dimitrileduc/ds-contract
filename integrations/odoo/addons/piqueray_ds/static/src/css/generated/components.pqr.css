@@ -14,6 +14,7 @@
  *   ds.google-reviews → ds.google-reviews, ds.notation, ds.review-card
  *   ds.header → ds.button, ds.header, ds.nav-item, ds.piqueray-logo
  *   ds.hero → ds.button, ds.hero, ds.section-header
+ *   ds.hero-video → ds.button, ds.hero-video
  *   ds.presentation → ds.button, ds.presentation, ds.section-header
  *   ds.reassurances → ds.button, ds.carte, ds.reassurances, ds.section-header
  *   ds.sav → ds.button, ds.sav, ds.section-header
@@ -2073,6 +2074,85 @@
 
 .hero__sousTitre > strong {
   font-weight: var(--pqr-font-weight-bold);
+}
+
+/* HeroVideo — from ds.hero-video v1.0.0 (core/emit-html.ts) */
+
+.hero-video, .hero-video *, .hero-video *::before, .hero-video *::after {
+  box-sizing: border-box;
+}
+
+.hero-video {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  height: var(--pqr-size-hero-video-root);
+  gap: var(--pqr-space-10);
+  padding-top: var(--pqr-space-48);
+  padding-right: var(--pqr-space-89);
+  padding-bottom: var(--pqr-space-48);
+  padding-left: var(--pqr-space-89);
+  background-color: transparent;
+  position: relative;
+}
+
+.hero-video__Background {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-video__VoileBas {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-video__VoileNavigation {
+  background-image: linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-video__Text {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-video__Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--pqr-color-blanc);
+  font-family: var(--pqr-font-family-montserrat);
+  font-size: var(--pqr-font-size-44);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: var(--pqr-font-line-height-48);
 }
 
 /* Presentation — from ds.presentation v2.6.0 (core/emit-html.ts) */

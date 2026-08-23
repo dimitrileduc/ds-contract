@@ -1906,7 +1906,11 @@ async function main(): Promise<void> {
     revision: /chromium-(\d+)/.exec(browserExecutablePath)?.[1] ?? null,
   };
   const page = await browser.newPage({
-    viewport: { width: 1600, height: 1200 },
+    // Piqueray sections use a 1728px reference width. A 1600px viewport
+    // silently clipped their rightmost 128px while the receipt still reported
+    // the intended root box, manufacturing a ~7% visual delta. Keep enough
+    // room for the largest standing-gate subject plus body padding.
+    viewport: { width: 1800, height: 1200 },
     deviceScaleFactor: 2,
   });
 

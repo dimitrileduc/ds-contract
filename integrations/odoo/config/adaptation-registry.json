@@ -692,7 +692,8 @@
         "ds.devis",
         "ds.faq",
         "ds.header",
-        "ds.footer"
+        "ds.footer",
+        "ds.hero-video"
       ],
       "reasonCode": "odoo-layout-bridge",
       "decisionRefs": [
@@ -701,7 +702,8 @@
         "sav.authoring.json",
         "devis.authoring.json",
         "faq.authoring.json",
-        "header.authoring.json"
+        "header.authoring.json",
+        "hero-video.authoring.json"
       ],
       "mechanism": "odoo-bridge"
     },
@@ -998,14 +1000,76 @@
       "mechanism": "odoo-bridge"
     },
     {
-      "adaptationId": "ODOO-PAGE-LAYOUT",
+      "adaptationId": "ODOO-024-PAGE-LAYOUT",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
-      "rootContracts": [],
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.sav",
+        "ds.devis",
+        "ds.texte-seo",
+        "ds.faq",
+        "ds.coordonnees",
+        "ds.reassurances",
+        "ds.categories-principales",
+        "ds.hero-video"
+      ],
       "reasonCode": "odoo-page-layout",
       "decisionRefs": [
         "specs/tiny/odoo-page-gutter-gap.md"
       ],
-      "mechanism": "page-composition"
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-025-HERO-VIDEO-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.hero-video"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "hero-video.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-025-HERO-VIDEO-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.hero-video"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "hero-video.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-025-HERO-VIDEO-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.hero-video"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "hero-video.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-025-HERO-VIDEO-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.hero-video"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "hero-video-background-url",
+        "hero-video-background-alt"
+      ],
+      "mechanism": "media"
     }
   ]
 }
