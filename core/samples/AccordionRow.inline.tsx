@@ -134,7 +134,9 @@ const V: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "stretch",
-    "justifyContent": "flex-start"
+    "justifyContent": "flex-start",
+    "width": "100%",
+    "minWidth": "0"
   }
 };
 

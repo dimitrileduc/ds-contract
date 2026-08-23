@@ -52,7 +52,9 @@ const V: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "center",
-    "justifyContent": "space-between"
+    "justifyContent": "space-between",
+    "width": "100%",
+    "minWidth": "0"
   },
   "disposition-avecCta:Titre": {
     "fontSize": "32px",

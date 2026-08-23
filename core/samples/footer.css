@@ -213,7 +213,7 @@
   line-height: 24px;
 }
 
-/* Footer — from ds.footer v1.1.0 (core/emit-html.ts) */
+/* Footer — from ds.footer v1.2.0 (core/emit-html.ts) */
 
 .footer, .footer *, .footer *::before, .footer *::after {
   box-sizing: border-box;
@@ -247,7 +247,8 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  width: var(--size-footer-row);
+  flex: 1 1 auto;
+  min-width: 0;
   position: relative;
 }
 
@@ -286,7 +287,7 @@
 .footer__Facebook {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--color-noir-bleute);
+  color: var(--color-blanc);
 }
 
 .footer__Instagram svg {
@@ -298,7 +299,7 @@
 .footer__Instagram {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--color-noir-bleute);
+  color: var(--color-blanc);
 }
 
 .footer__Spacer {

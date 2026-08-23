@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.2.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.3.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -30,9 +30,10 @@ const S: Record<string, CSSProperties> = {
     "gap": "48px"
   },
   "items": {
-    "display": "flex",
-    "flexDirection": "row",
-    "justifyContent": "center",
+    "display": "grid",
+    "gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
+    "width": "100%",
+    "minWidth": 0,
     "gap": "32px",
     "alignSelf": "stretch"
   },
@@ -44,7 +45,14 @@ const S: Record<string, CSSProperties> = {
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "disposition-5Cartes:items": {
+    "display": "grid",
+    "width": "100%",
+    "minWidth": "0",
+    "gridTemplateColumns": "repeat(5, minmax(0, 1fr))"
+  }
+};
 
 export interface ReassurancesProps extends HTMLAttributes<HTMLDivElement> {
   disposition?: '4Cartes' | 'quatrecartesdeuxcta' | '5Cartes';
@@ -52,7 +60,7 @@ export interface ReassurancesProps extends HTMLAttributes<HTMLDivElement> {
   items?: Array<{ texte: string; titre: string; imageUrl: string }>;
 }
 
-/** Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). */
+/** Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). */
 export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(function Reassurances(
   { disposition = '4Cartes', items, style, children, ...rest },
   ref,
@@ -60,7 +68,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <SectionHeader titre={[{"text":"Pourquoi choisir nos portes de garage industrielles ?"}]} accroche="Plus de 50 ans d’expérience" accroche2 disposition="standard" />
-<div style={{ ...S.items }}>
+<div style={{ ...S.items, ...(V[`disposition-${disposition}:items`] ?? {}) }}>
 <Carte disposition="reassurance" texte={[{ text: "Respectent les normes des bâtiments publics et les réglementations pompiers." }]} titre="Sécurité et conformité" imageUrl="" />
 <Carte disposition="reassurance" texte={[{ text: "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit)." }]} titre="Intégration parfaite" imageUrl="" />
 <Carte disposition="reassurance" texte={[{ text: "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal." }]} titre="Moteur performant" imageUrl="" />

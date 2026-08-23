@@ -35,6 +35,17 @@ KEY_TO_PARTS = {
     "initiale": ("initiale",),
 }
 
+# Les dispositions de section restent des choix de COMPOSITION, jamais un
+# attribut libre du HTML sauvegardé. La homepage peut fixer 5Cartes sans ouvrir
+# un sélecteur dans l'éditeur; toute autre valeur est refusée avant écriture.
+COMPOSITION_DISPOSITIONS = {
+    "s_pqr_reassurances": {
+        "4Cartes": "reassurances--disposition-4Cartes",
+        "quatrecartesdeuxcta": "reassurances--disposition-quatrecartesdeuxcta",
+        "5Cartes": "reassurances--disposition-5Cartes",
+    },
+}
+
 _att = {}
 def img_url(name):
     if not name:
@@ -132,6 +143,22 @@ def fill_list(root, items, variant=""):
                 im.set("src", img_url(item["image"]))
         lst.append(card)
 
+def set_disposition(root, component, disposition):
+    if disposition is None:
+        return
+    allowed = COMPOSITION_DISPOSITIONS.get(component, {})
+    class_name = allowed.get(disposition)
+    if class_name is None:
+        raise ValueError("Disposition de composition non autorisée pour %s: %s" % (component, disposition))
+    sec_root = part(root, "root")
+    if sec_root is None:
+        raise ValueError("Racine absente pour la disposition de %s" % component)
+    classes = [c for c in (sec_root.get("class") or "").split() if not c.startswith("reassurances--disposition-")]
+    if class_name not in classes:
+        classes.append(class_name)
+    sec_root.set("class", " ".join(classes))
+    sec_root.set("data-pqr-disposition", disposition)
+
 def build():
     out = []
     for sec in DESC["sections"]:
@@ -145,6 +172,8 @@ def build():
             continue
 
         root = parse(render(comp))
+
+        set_disposition(root, comp, sec.get("disposition"))
 
         items = sec.get("cards") or sec.get("reviews")
         if items:

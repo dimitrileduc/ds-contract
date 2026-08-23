@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.0.1)
+ * Source of truth: contracts/carte.contract.json (ds.carte v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';

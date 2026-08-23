@@ -3478,6 +3478,57 @@ const cases: Case[] = [
     },
   },
   {
+    // A variant may own its width semantically. This is not a percentage token:
+    // every surface must resolve `width:fill` as the parent's width, including
+    // the canvas spec used by the Figma compiler.
+    id: 'width-override-fill-both-surfaces',
+    claim: 'C1-determinism',
+    run: () => {
+      const contract = ContractSchema.parse({
+        id: 'ds.evalfillwidth',
+        name: 'EvalFillWidth',
+        version: '1.0.0',
+        description: 'Eval fixture — per-variant Fill width.',
+        semantics: { element: 'div' },
+        props: [
+          {
+            name: 'mode', type: { enum: ['fixed', 'fluid'] }, default: 'fixed',
+            bindings: { figma: { kind: 'VARIANT', property: 'Mode' }, code: { prop: 'mode' } },
+          },
+        ],
+        anatomy: {
+          root: {
+            layout: { display: 'flex', direction: 'column' },
+            layoutByProp: { prop: 'mode', map: { fluid: { width: 'fill' } } },
+          },
+        },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/EvalFillWidth', export: 'EvalFillWidth' },
+        },
+      });
+      const errors: string[] = [];
+      coreValidateContract(contract, new Map([[contract.id, contract]]), errors, new Map());
+      if (errors.length > 0) throw new Error(`width override must validate: ${errors.join('; ')}`);
+      const cssCtx = { tokens: new Set<string>(), icons: new Map(), contracts: new Map([[contract.id, contract]]) };
+      const inlineCtx = { tokens: { primitives: {}, semantic: {}, light: {}, dark: {}, brands: { default: {} } }, icons: new Map(), contracts: new Map([[contract.id, contract]]), mode: 'light' as const };
+      for (const [surface, output] of [
+        ['react', coreEmitReact(contract, cssCtx).css],
+        ['html', coreEmitHtml(contract, cssCtx).css],
+        ['react-inline', coreEmitReactInline(contract, inlineCtx).tsx],
+      ] as Array<[string, string]>) {
+        const widthFill = /width:\s*["']?100%["']?/.test(output) || /"width":\s*"100%"/.test(output);
+        const minWidthFloor = /min-?width:\s*["']?0["']?/i.test(output) || /"minWidth":\s*"?0"?/.test(output);
+        if (!widthFill || !minWidthFloor) {
+          throw new Error(`${surface}: variant Fill width is missing`);
+        }
+      }
+      const figma = createFigmaEngine({ tokens: inlineCtx.tokens, icons: new Map() })
+        .buildComponentScript(contract, new Map([[contract.id, contract]]));
+      if (!figma.includes('"fillWidth": true')) throw new Error('figma: variant Fill width is missing');
+    },
+  },
+  {
     // spec 023 (E1): the section's `colonnes` {2,3} enum drives a grid part's
     // track count through a per-enum `columns` override on layoutByProp —
     // CARRY-BOTH (code emits grid-template-columns:repeat(N,minmax(0,1fr)) under
@@ -3560,6 +3611,59 @@ const cases: Case[] = [
       coreValidateContract(badc, new Map([[badc.id, badc]]), badErrs, new Map());
       if (!badErrs.some((e) => e.includes('sets columns but the part\'s base layout is not display:"grid"'))) {
         throw new Error(`columns override on non-grid part must refuse by name; got: ${badErrs.join('; ') || '(none)'}`);
+      }
+    },
+  },
+  {
+    // Réparation Reassurances 2026-08-23 : le choix à cinq colonnes est une
+    // variante, jamais une nouvelle règle globale. Cette porte protège donc
+    // simultanément les deux masters Figma à quatre cartes, la composition
+    // Accueil à cinq cartes et l'absence de sélecteur libre dans Odoo.
+    id: 'reassurances-grid-variant-isolation',
+    claim: 'C1-determinism',
+    run: () => {
+      const reassurances = ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts/reassurances.contract.json'), 'utf8')));
+      const carte = ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts/carte.contract.json'), 'utf8')));
+      const items = reassurances.anatomy.root.parts?.items;
+      if (reassurances.anatomy.root.layout?.width !== 'fill' || reassurances.anatomy.root.tokens?.width !== undefined ||
+          !items || items.layout?.display !== 'grid' || items.layout.columns !== 4 || items.layout.width !== 'fill') {
+        throw new Error('Reassurances: le Container doit posséder la largeur ; le root et sa grille doivent la remplir à 4 colonnes');
+      }
+      const tracks = items.layoutByProp;
+      if (Array.isArray(tracks) || !tracks || tracks.prop !== 'disposition' ||
+          JSON.stringify(tracks.map) !== JSON.stringify({ '5Cartes': { columns: 5 } })) {
+        throw new Error('Reassurances: seule la variante 5Cartes peut passer à 5 colonnes');
+      }
+      const carteRoot = carte.anatomy.root;
+      const carteWidth = Array.isArray(carteRoot.layoutByProp) ? undefined : carteRoot.layoutByProp;
+      if (!carteWidth || carteWidth.map.reassurance?.width !== 'fill' || carteWidth.map.categorie?.width === 'fill') {
+        throw new Error('Carte: seule la disposition reassurance doit remplir la piste');
+      }
+
+      const css = readFileSync(path.join(ROOT, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
+      if (!/\.items\s*\{[\s\S]*?grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);[\s\S]*?width: 100%;/.test(css) ||
+          !/\.disposition-5Cartes \.items\s*\{\s*grid-template-columns: repeat\(5, minmax\(0, 1fr\)\);/.test(css)) {
+        throw new Error('React: les pistes 4/5 ou le Fill généré sont divergents');
+      }
+      const figma = parseSyncComponent(readFileSync(path.join(ROOT, 'figma-sync/36-reassurances.js'), 'utf8'));
+      for (const [variant, columns] of [['Disposition=4 cartes', 4], ['Disposition=QuatreCartesDeuxCta', 4], ['Disposition=5 cartes', 5]] as const) {
+        const spec = figma.variants.find((item: { name: string }) => item.name === variant)?.spec;
+        const itemsSpec = spec?.children?.find((child: { name: string }) => child.name === 'items');
+        if (spec?.fillWidth !== true || itemsSpec?.fillWidth !== true || itemsSpec?.layout?.mode !== 'GRID' || itemsSpec?.layout?.columns !== columns) {
+          throw new Error(`Figma: ${variant} doit garder son root et sa grille en Fill à ${columns} colonnes`);
+        }
+      }
+
+      const home = JSON.parse(readFileSync(path.join(ROOT, 'integrations/odoo/authoring/pages/home.json'), 'utf8'));
+      const homeReassurances = home.sections.find((section: { component?: string }) => section.component === 's_pqr_reassurances');
+      if (!homeReassurances || homeReassurances.disposition !== '5Cartes' || homeReassurances.cards?.length !== 5) {
+        throw new Error('Accueil Odoo: la composition doit fixer exactement cinq cartes en variante 5Cartes');
+      }
+      const composer = readFileSync(path.join(ROOT, 'integrations/odoo/authoring/compose_page.py'), 'utf8');
+      const authoring = readFileSync(path.join(ROOT, 'integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml'), 'utf8');
+      if (!composer.includes('COMPOSITION_DISPOSITIONS') || !composer.includes('"5Cartes": "reassurances--disposition-5Cartes"') ||
+          authoring.includes('data-pqr-control="reassurances-disposition"')) {
+        throw new Error('Odoo: 5Cartes doit rester un choix de composition sans sélecteur éditeur');
       }
     },
   },
@@ -6139,8 +6243,22 @@ const cases: Case[] = [
       }
       const result = JSON.parse(preservationCheck.out);
       const clobbered = result.findings.filter((f: { state: string }) => f.state === 'clobbered');
-      if (clobbered.length !== 3) {
-        throw new Error(`expected exactly 3 clobbered entries (1 reverted + 2 dropped), got ${clobbered.length}: ${JSON.stringify(clobbered)}`);
+      // L'amendement Réassurances du 2026-08-23 remplace explicitement la
+      // largeur fixe 1550px par Fill. Le détecteur doit continuer à la
+      // remonter face au reçu historique — sinon il masquerait une régression
+      // réelle — mais ce n'est pas l'un des trois sabotages que cette fixture
+      // injecte (Footer seul). On le nomme et l'écarte du compte de l'attaque.
+      const supersededReassurancesWidth = clobbered.filter((f: { contractId: string; pointer: string }) =>
+        f.contractId === 'ds.reassurances' && f.pointer === '/anatomy/root/literals/width',
+      );
+      if (supersededReassurancesWidth.length !== 1) {
+        throw new Error(`la largeur historique Réassurances doit rester détectable une fois : ${JSON.stringify(clobbered)}`);
+      }
+      const injectedClobbers = clobbered.filter((f: { contractId: string; pointer: string }) =>
+        !(f.contractId === 'ds.reassurances' && f.pointer === '/anatomy/root/literals/width'),
+      );
+      if (injectedClobbers.length !== 3) {
+        throw new Error(`expected exactly 3 injected clobbers (1 reverted + 2 dropped), got ${injectedClobbers.length}: ${JSON.stringify(clobbered)}`);
       }
     },
   },

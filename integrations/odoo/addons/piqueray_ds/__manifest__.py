@@ -34,7 +34,7 @@ colonnes et du copyright sont éditables inline via `t-field` sur des champs
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.9.0",
+    "version": "19.0.1.11.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",

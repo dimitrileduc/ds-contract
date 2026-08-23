@@ -1927,7 +1927,7 @@ const COMPONENTS = [
     "setName": "Reassurances",
     "contractId": "ds.reassurances",
     "anchorKey": "a303bd661e06746baa62828633b5c6132714a8c8",
-    "description": "Reassurances — generated from contract ds.reassurances v1.2.0 †",
+    "description": "Reassurances — generated from contract ds.reassurances v1.3.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1949,13 +1949,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/reassurances/root"
-          },
           "bindings": {
             "itemSpacing": "space/48"
           },
+          "fillWidth": true,
           "children": [
             {
               "type":"instance",
@@ -1973,13 +1970,14 @@ const COMPONENTS = [
               "type": "frame",
               "name": "items",
               "layout": {
-                "mode": "HORIZONTAL",
-                "primary": "CENTER",
-                "counter": "MIN",
-                "stretchChildren": true
+                "mode": "GRID",
+                "columns": 4,
+                "primary": "MIN",
+                "counter": "MIN"
               },
               "bindings": {
-                "itemSpacing": "space/32"
+                "gridColumnGap": "space/32",
+                "gridRowGap": "space/32"
               },
               "children": [
                 {
@@ -2026,7 +2024,8 @@ const COMPONENTS = [
                     "Titre": "SAV & maintenance dédiés"
                   }
                 }
-              ]
+              ],
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2055,13 +2054,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/reassurances/root"
-          },
           "bindings": {
             "itemSpacing": "space/48"
           },
+          "fillWidth": true,
           "children": [
             {
               "type":"instance",
@@ -2079,13 +2075,14 @@ const COMPONENTS = [
               "type": "frame",
               "name": "items",
               "layout": {
-                "mode": "HORIZONTAL",
-                "primary": "CENTER",
-                "counter": "MIN",
-                "stretchChildren": true
+                "mode": "GRID",
+                "columns": 4,
+                "primary": "MIN",
+                "counter": "MIN"
               },
               "bindings": {
-                "itemSpacing": "space/32"
+                "gridColumnGap": "space/32",
+                "gridRowGap": "space/32"
               },
               "children": [
                 {
@@ -2132,7 +2129,8 @@ const COMPONENTS = [
                     "Titre": "SAV & maintenance dédiés"
                   }
                 }
-              ]
+              ],
+              "fillWidth": true
             },
             {
               "type": "frame",
@@ -2190,13 +2188,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/reassurances/root"
-          },
           "bindings": {
             "itemSpacing": "space/48"
           },
+          "fillWidth": true,
           "children": [
             {
               "type":"instance",
@@ -2214,13 +2209,14 @@ const COMPONENTS = [
               "type": "frame",
               "name": "items",
               "layout": {
-                "mode": "HORIZONTAL",
-                "primary": "CENTER",
-                "counter": "MIN",
-                "stretchChildren": true
+                "mode": "GRID",
+                "columns": 5,
+                "primary": "MIN",
+                "counter": "MIN"
               },
               "bindings": {
-                "itemSpacing": "space/32"
+                "gridColumnGap": "space/32",
+                "gridRowGap": "space/32"
               },
               "children": [
                 {
@@ -2267,7 +2263,8 @@ const COMPONENTS = [
                     "Titre": "SAV & maintenance dédiés"
                   }
                 }
-              ]
+              ],
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2285,7 +2282,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1610
+    "colW": 380
   },
   {
     "setName": "SAV",

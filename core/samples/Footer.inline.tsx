@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -52,7 +52,8 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "flex-start",
     "justifyContent": "space-between",
-    "width": "1385px",
+    "flex": "1 1 auto",
+    "minWidth": 0,
     "position": "relative"
   },
   "col1": {
@@ -80,12 +81,12 @@ const S: Record<string, CSSProperties> = {
   "Facebook": {
     "display": "inline-flex",
     "flexShrink": 0,
-    "color": "#26282C"
+    "color": "#FFFFFF"
   },
   "Instagram": {
     "display": "inline-flex",
     "flexShrink": 0,
-    "color": "#26282C"
+    "color": "#FFFFFF"
   },
   "Spacer": {
     "height": "121px"

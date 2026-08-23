@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carte",
   "name": "Carte",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
   "semantics": {
     "element": "div",
@@ -395,6 +395,14 @@
             "width": "{size.carte.root-categorie}",
             "gap": "{space.32}",
             "padding-bottom": "{space.0}"
+          }
+        }
+      },
+      "layoutByProp": {
+        "prop": "disposition",
+        "map": {
+          "reassurance": {
+            "width": "fill"
           }
         }
       }

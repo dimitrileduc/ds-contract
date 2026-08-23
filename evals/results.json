@@ -1,6 +1,6 @@
 {
-  "passed": 221,
-  "total": 221,
+  "passed": 223,
+  "total": 223,
   "quarantined": 48,
   "results": [
     {
@@ -859,8 +859,18 @@
       "pass": true
     },
     {
+      "id": "width-override-fill-both-surfaces",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
       "id": "columns-override-grid-only",
       "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "reassurances-grid-variant-isolation",
+      "claim": "C1-determinism",
       "pass": true
     },
     {

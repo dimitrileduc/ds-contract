@@ -114,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* Carte — from ds.carte v2.0.1 (core/emit-html.ts) */
+/* Carte — from ds.carte v2.1.0 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;
@@ -139,6 +139,11 @@
   gap: var(--space-32);
   padding-bottom: var(--space-0);
   background-color: transparent;
+}
+
+.carte--disposition-reassurance {
+  width: 100%;
+  min-width: 0;
 }
 
 .carte__reassuranceImage {
