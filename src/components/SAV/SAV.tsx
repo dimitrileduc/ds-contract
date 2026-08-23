@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.4.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v1.4.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -25,6 +25,8 @@ export interface SAVProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /** Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.
+
+v1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.
 
 Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.
 
