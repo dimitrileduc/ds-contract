@@ -102,6 +102,16 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 - `docs/reference/demo-archive/` — the pre-reconversion demo contracts (tag `demo-51`), materialized read-only. **Before modeling a new Piqueray component, read its INDEX.md row + file** — steal or reject with named reasons in the spec's research.md. Never build input; never copy into `contracts/` as-is.
 - `MILESTONES.md` (dated proof log — counts belong there, dated), `CHANGELOG.md` (releases), `ROADMAP.md`.
 
+## Odoo page authoring — scripting demo data (spec 024)
+
+The **content** of Odoo pages is scripted, separate from the **blocks** (governed components in `piqueray_ds`). Full guide: **`integrations/odoo/authoring/README.md`**.
+
+- **One JSON file per page** in `integrations/odoo/authoring/pages/<name>.json` = the page's content (which blocks, in order; per-instance settings: variant, card count, texts, images). This is the versioned source of truth for content. Images live in `integrations/odoo/authoring/assets/`.
+- **Build a page**: `npm run odoo:page -- <name> <docker-project>` (composes the governed blocks + injects the file's content into the page's DB view; addon untouched). Composer: `compose_page.py` (renders `piqueray_ds` templates via `ir.ui.view._render_template`, edits by `data-pqr-part`).
+- **Seed is a DERIVED snapshot**, not the source: `npm run odoo:save` / `odoo:restore` (spec 024, `scripts/odoo/*-seed.sh`). A composed Odoo page is **frozen HTML** (Odoo propagates nothing) — so a seed made with an OLD block does **not** reflect a modified block. After a block change: `odoo -u piqueray_ds` in the instance, **re-run `odoo:page`**, then re-save. The pair (descriptor + addon) rebuilds everything.
+- **Never target `piqueray-odoo-test` (8071, owner)** — agents build on a disposable/QA project (pass it as the 2nd arg).
+- Worktree gotcha (2026-08-23): compare against **local `main`**, not `origin/main` — local main can be ahead (that's where the `ds.hero` 1.6.0 layout fix lived).
+
 ## Active Technologies
 - TypeScript 5.x, Node ≥ 20, ESM (run via `tsx`) (001-piqueray-button)
 - Zod (`@ds-contracts/schema`), React 18 + CSS Modules (the `react` emitter), Vite, Storybook, `playwright-core` (visual parity), Figma Plugin API (001-piqueray-button)
