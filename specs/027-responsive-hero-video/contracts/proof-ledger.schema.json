@@ -1,0 +1,798 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "specs/027-responsive-hero-video/contracts/proof-ledger.schema.json",
+  "title": "Responsive HeroVideo Proof Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "featureId",
+    "sourcePins",
+    "decisionRef",
+    "breakpoints",
+    "designWitnesses",
+    "gates",
+    "protectedFacts",
+    "probes",
+    "comparisons",
+    "runs",
+    "closureStatus"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "2.1.0" },
+    "featureId": { "const": "027-responsive-hero-video" },
+    "sourcePins": { "$ref": "#/$defs/sourcePins" },
+    "decisionRef": { "type": "string", "minLength": 1 },
+    "breakpoints": { "$ref": "#/$defs/breakpoints" },
+    "designWitnesses": { "$ref": "#/$defs/designWitnesses" },
+    "gates": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/gate" },
+      "uniqueItems": true
+    },
+    "protectedFacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/protectedFact" }
+    },
+    "probes": {
+      "type": "array",
+      "minItems": 14,
+      "items": { "$ref": "#/$defs/probe" }
+    },
+    "comparisons": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": { "$ref": "#/$defs/comparison" },
+      "uniqueItems": true
+    },
+    "wideContinuityCheck": { "$ref": "#/$defs/wideContinuityCheck" },
+    "runs": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/run" }
+    },
+    "odooQualification": { "$ref": "#/$defs/odooQualification" },
+    "capitalizationRef": { "type": "string", "minLength": 1 },
+    "closureStatus": { "enum": ["draft", "blocked", "failed", "accepted"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "closureStatus": { "const": "accepted" } },
+        "required": ["closureStatus"]
+      },
+      "then": {
+        "required": ["odooQualification", "capitalizationRef", "wideContinuityCheck"],
+        "properties": {
+          "gates": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "gateId": { "const": "H1" },
+                    "decision": { "const": "accepted" }
+                  },
+                  "required": ["gateId", "decision"]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "gateId": { "const": "H2" },
+                    "decision": { "const": "accepted" }
+                  },
+                  "required": ["gateId", "decision"]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "gateId": { "const": "H3" },
+                    "decision": { "const": "accepted" }
+                  },
+                  "required": ["gateId", "decision"]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "gateId": { "const": "H4" },
+                    "decision": { "const": "accepted" }
+                  },
+                  "required": ["gateId", "decision"]
+                }
+              }
+            ]
+          },
+          "protectedFacts": {
+            "items": {
+              "allOf": [
+                { "$ref": "#/$defs/protectedFact" },
+                {
+                  "properties": {
+                    "status": { "enum": ["preserved", "approved-delta"] }
+                  }
+                }
+              ]
+            }
+          },
+          "probes": {
+            "items": {
+              "allOf": [
+                { "$ref": "#/$defs/probe" },
+                {
+                  "properties": {
+                    "status": { "const": "pass" },
+                    "artifacts": {
+                      "items": {
+                        "allOf": [
+                          { "$ref": "#/$defs/artifactRef" },
+                          { "properties": { "status": { "const": "valid" } } }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "comparisons": {
+            "items": {
+              "allOf": [
+                { "$ref": "#/$defs/comparison" },
+                {
+                  "properties": {
+                    "rawDeltaPercent": { "exclusiveMaximum": 2 },
+                    "status": { "const": "pass" },
+                    "artifacts": {
+                      "items": {
+                        "allOf": [
+                          { "$ref": "#/$defs/artifactRef" },
+                          { "properties": { "status": { "const": "valid" } } }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "wideContinuityCheck": {
+            "allOf": [
+              { "$ref": "#/$defs/wideContinuityCheck" },
+              {
+                "properties": {
+                  "rawDeltaPercent": { "exclusiveMaximum": 2 },
+                  "status": { "const": "pass" },
+                  "artifacts": {
+                    "items": {
+                      "allOf": [
+                        { "$ref": "#/$defs/artifactRef" },
+                        { "properties": { "status": { "const": "valid" } } }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "runs": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "run": { "const": "first" },
+                    "status": { "const": "applied" }
+                  },
+                  "required": ["run", "status"]
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "run": { "const": "second" },
+                    "status": { "const": "no-op" }
+                  },
+                  "required": ["run", "status"]
+                }
+              }
+            ]
+          },
+          "odooQualification": {
+            "allOf": [
+              { "$ref": "#/$defs/odooQualification" },
+              { "properties": { "status": { "const": "pass" } } }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "breakpoints": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "minWidthPx"],
+          "properties": {
+            "id": { "const": "desktop-start" },
+            "minWidthPx": { "const": 992 }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "minWidthPx"],
+          "properties": {
+            "id": { "const": "wide-start" },
+            "minWidthPx": { "const": 1400 }
+          }
+        }
+      ],
+      "items": false
+    },
+    "designWitnesses": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["witnessId", "widthPx", "compositionId"],
+          "properties": {
+            "witnessId": { "const": "mobile-390" },
+            "widthPx": { "const": 390 },
+            "compositionId": { "const": "compact" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["witnessId", "widthPx", "compositionId"],
+          "properties": {
+            "witnessId": { "const": "tablet-834" },
+            "widthPx": { "const": 834 },
+            "compositionId": { "const": "compact" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["witnessId", "widthPx", "compositionId"],
+          "properties": {
+            "witnessId": { "const": "desktop-1200" },
+            "widthPx": { "const": 1200 },
+            "compositionId": { "const": "desktop" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["witnessId", "widthPx", "compositionId"],
+          "properties": {
+            "witnessId": { "const": "wide-1728" },
+            "widthPx": { "const": 1728 },
+            "compositionId": { "const": "wide" }
+          }
+        }
+      ],
+      "items": false
+    },
+    "artifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "width", "height", "capturedAt", "status"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/digest" },
+        "width": { "type": "integer", "exclusiveMinimum": 0 },
+        "height": { "type": "integer", "exclusiveMinimum": 0 },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "status": {
+          "enum": [
+            "valid",
+            "missing",
+            "empty",
+            "wrong-size",
+            "unreadable",
+            "stale"
+          ]
+        }
+      }
+    },
+    "sourcePins": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gitHead",
+        "worktreeTree",
+        "figmaFileKey",
+        "figmaVersionBefore",
+        "masterNodeId",
+        "historicalComponentKey",
+        "homeInstanceNodeId"
+      ],
+      "properties": {
+        "gitHead": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "worktreeTree": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "figmaFileKey": { "type": "string", "minLength": 1 },
+        "figmaVersionBefore": { "type": "string", "minLength": 1 },
+        "figmaVersionAfter": { "type": "string", "minLength": 1 },
+        "masterNodeId": { "type": "string", "minLength": 1 },
+        "historicalComponentKey": { "type": "string", "minLength": 1 },
+        "componentSetKey": { "type": "string", "minLength": 1 },
+        "homeInstanceNodeId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gateId",
+        "decision",
+        "decisionMaker",
+        "decidedAt",
+        "evidenceRefs",
+        "acceptedTradeoffs",
+        "rejectedTopics",
+        "deferredTopics",
+        "authorizes"
+      ],
+      "properties": {
+        "gateId": { "enum": ["H1", "H2", "H3", "H4"] },
+        "decision": { "enum": ["accepted", "refused", "superseded"] },
+        "decisionMaker": { "type": "string", "minLength": 1 },
+        "decidedAt": { "type": "string", "format": "date-time" },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "acceptedTradeoffs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "rejectedTopics": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "deferredTopics": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "authorizes": {
+          "enum": [
+            "responsive-options",
+            "figma-source",
+            "contract-promotion",
+            "closure",
+            "nothing"
+          ]
+        }
+      }
+    },
+    "protectedFact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "factId",
+        "category",
+        "surface",
+        "address",
+        "beforeDigest",
+        "afterDigest",
+        "noOpDigest",
+        "status"
+      ],
+      "properties": {
+        "factId": { "type": "string", "minLength": 1 },
+        "category": {
+          "enum": [
+            "identity",
+            "property",
+            "content",
+            "text-style",
+            "variable",
+            "media",
+            "crop",
+            "nested-instance",
+            "override",
+            "geometry",
+            "authoring"
+          ]
+        },
+        "surface": {
+          "enum": ["figma-master", "figma-home", "contract", "web", "odoo"]
+        },
+        "address": { "type": "string", "minLength": 1 },
+        "beforeDigest": { "$ref": "#/$defs/digest" },
+        "afterDigest": { "$ref": "#/$defs/digest" },
+        "noOpDigest": { "$ref": "#/$defs/digest" },
+        "allowedDeltaRef": { "type": "string", "minLength": 1 },
+        "status": {
+          "enum": [
+            "preserved",
+            "approved-delta",
+            "missing",
+            "changed",
+            "unverifiable"
+          ]
+        }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "probe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "probeId",
+        "surface",
+        "width",
+        "height",
+        "rootWidth",
+        "boundaryCase",
+        "expectedComposition",
+        "activeComposition",
+        "fixtureId",
+        "contentCase",
+        "mediaCase",
+        "rootBounds",
+        "visibleDescendantBounds",
+        "horizontalOverflow",
+        "unintendedCrop",
+        "overlap",
+        "contentAccessible",
+        "artifacts",
+        "status"
+      ],
+      "properties": {
+        "probeId": { "type": "string", "minLength": 1 },
+        "surface": {
+          "enum": ["figma", "reference-web", "odoo-public", "odoo-editor"]
+        },
+        "width": { "type": "integer", "exclusiveMinimum": 0 },
+        "height": { "type": "integer", "exclusiveMinimum": 0 },
+        "rootWidth": { "type": "number", "exclusiveMinimum": 0 },
+        "boundaryCase": {
+          "enum": [
+            "none",
+            "desktop-start-1",
+            "desktop-start",
+            "desktop-start+1",
+            "wide-start-1",
+            "wide-start",
+            "wide-start+1"
+          ]
+        },
+        "witnessId": {
+          "enum": ["mobile-390", "tablet-834", "desktop-1200", "wide-1728"]
+        },
+        "expectedComposition": { "enum": ["compact", "desktop", "wide"] },
+        "activeComposition": { "enum": ["compact", "desktop", "wide"] },
+        "fixtureId": { "type": "string", "minLength": 1 },
+        "contentCase": { "enum": ["default", "long-title", "long-cta"] },
+        "mediaCase": { "enum": ["poster", "video-unavailable"] },
+        "rootBounds": { "$ref": "#/$defs/bounds" },
+        "visibleDescendantBounds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/bounds" }
+        },
+        "horizontalOverflow": { "const": 0 },
+        "unintendedCrop": { "const": false },
+        "overlap": { "const": false },
+        "groupCenterDeltaX": { "type": "number", "minimum": 0 },
+        "groupCenterDeltaY": { "type": "number", "minimum": 0 },
+        "contentFits": { "type": "boolean" },
+        "contentAccessible": { "const": true },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/artifactRef" }
+        },
+        "status": {
+          "enum": ["pass", "fail", "capture-failed", "dimension-mismatch"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "contentFits": { "const": true } },
+            "required": ["contentFits"]
+          },
+          "then": {
+            "required": ["groupCenterDeltaX", "groupCenterDeltaY"],
+            "properties": {
+              "groupCenterDeltaX": { "maximum": 2 },
+              "groupCenterDeltaY": { "maximum": 2 }
+            }
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparisonId",
+        "fromSurface",
+        "toSurface",
+        "witnessId",
+        "compositionId",
+        "fixtureId",
+        "viewportWidth",
+        "viewportHeight",
+        "conditionsDigest",
+        "thresholdPercent",
+        "rawDeltaPercent",
+        "excludedRegions",
+        "artifacts",
+        "status"
+      ],
+      "properties": {
+        "comparisonId": { "type": "string", "minLength": 1 },
+        "fromSurface": { "enum": ["figma", "reference-web"] },
+        "toSurface": { "enum": ["reference-web", "odoo"] },
+        "witnessId": {
+          "enum": ["mobile-390", "tablet-834", "desktop-1200", "wide-1728"]
+        },
+        "compositionId": { "enum": ["compact", "desktop", "wide"] },
+        "fixtureId": { "type": "string", "minLength": 1 },
+        "viewportWidth": { "enum": [390, 834, 1200, 1728] },
+        "viewportHeight": { "type": "integer", "exclusiveMinimum": 0 },
+        "conditionsDigest": { "$ref": "#/$defs/digest" },
+        "thresholdPercent": { "type": "number", "const": 2 },
+        "rawDeltaPercent": { "type": "number", "minimum": 0 },
+        "excludedRegions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["bounds", "reason", "approvalRef"],
+            "properties": {
+              "bounds": { "$ref": "#/$defs/bounds" },
+              "reason": { "type": "string", "minLength": 1 },
+              "approvalRef": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/artifactRef" }
+        },
+        "status": {
+          "enum": ["pass", "fail", "capture-failed", "dimension-mismatch"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "fromSurface": { "const": "figma" } },
+            "required": ["fromSurface"]
+          },
+          "then": {
+            "properties": { "toSurface": { "const": "reference-web" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "fromSurface": { "const": "reference-web" } },
+            "required": ["fromSurface"]
+          },
+          "then": { "properties": { "toSurface": { "const": "odoo" } } }
+        },
+        {
+          "if": {
+            "properties": { "witnessId": { "const": "mobile-390" } },
+            "required": ["witnessId"]
+          },
+          "then": {
+            "properties": {
+              "compositionId": { "const": "compact" },
+              "viewportWidth": { "const": 390 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "witnessId": { "const": "tablet-834" } },
+            "required": ["witnessId"]
+          },
+          "then": {
+            "properties": {
+              "compositionId": { "const": "compact" },
+              "viewportWidth": { "const": 834 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "witnessId": { "const": "desktop-1200" } },
+            "required": ["witnessId"]
+          },
+          "then": {
+            "properties": {
+              "compositionId": { "const": "desktop" },
+              "viewportWidth": { "const": 1200 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "witnessId": { "const": "wide-1728" } },
+            "required": ["witnessId"]
+          },
+          "then": {
+            "properties": {
+              "compositionId": { "const": "wide" },
+              "viewportWidth": { "const": 1728 }
+            }
+          }
+        }
+      ]
+    },
+    "wideContinuityCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checkId",
+        "fromSurface",
+        "toSurface",
+        "compositionId",
+        "fixtureId",
+        "viewportWidth",
+        "viewportHeight",
+        "conditionsDigest",
+        "thresholdPercent",
+        "rawDeltaPercent",
+        "excludedRegions",
+        "artifacts",
+        "status"
+      ],
+      "properties": {
+        "checkId": { "const": "wide-1440-continuity" },
+        "fromSurface": { "const": "figma" },
+        "toSurface": { "const": "reference-web" },
+        "compositionId": { "const": "wide" },
+        "fixtureId": { "type": "string", "minLength": 1 },
+        "viewportWidth": { "const": 1440 },
+        "viewportHeight": { "type": "integer", "exclusiveMinimum": 0 },
+        "conditionsDigest": { "$ref": "#/$defs/digest" },
+        "thresholdPercent": { "type": "number", "const": 2 },
+        "rawDeltaPercent": { "type": "number", "minimum": 0 },
+        "excludedRegions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["bounds", "reason", "approvalRef"],
+            "properties": {
+              "bounds": { "$ref": "#/$defs/bounds" },
+              "reason": { "type": "string", "minLength": 1 },
+              "approvalRef": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/artifactRef" }
+        },
+        "status": {
+          "enum": ["pass", "fail", "capture-failed", "dimension-mismatch"]
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run",
+        "decisionDigest",
+        "contractDigest",
+        "schemaDigest",
+        "generatedManifestDigest",
+        "createdNodeIds",
+        "changedNodeIds",
+        "duplicateNodeIds",
+        "pageWrites",
+        "status",
+        "receiptRef"
+      ],
+      "properties": {
+        "run": { "enum": ["first", "second"] },
+        "decisionDigest": { "$ref": "#/$defs/digest" },
+        "contractDigest": { "$ref": "#/$defs/digest" },
+        "schemaDigest": { "$ref": "#/$defs/digest" },
+        "generatedManifestDigest": { "$ref": "#/$defs/digest" },
+        "createdNodeIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "changedNodeIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "duplicateNodeIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "pageWrites": { "type": "array", "maxItems": 0 },
+        "status": { "enum": ["applied", "no-op", "blocked", "failed"] },
+        "receiptRef": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "run": { "const": "second" } },
+            "required": ["run"]
+          },
+          "then": {
+            "properties": {
+              "createdNodeIds": { "maxItems": 0 },
+              "changedNodeIds": { "maxItems": 0 },
+              "duplicateNodeIds": { "maxItems": 0 },
+              "status": { "const": "no-op" }
+            }
+          }
+        }
+      ]
+    },
+    "odooQualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "database",
+        "disposable",
+        "authoring",
+        "saveReopen",
+        "isolation",
+        "publicResponsive",
+        "editorResponsive",
+        "updateOuterHtmlUnchanged",
+        "status",
+        "evidenceRefs"
+      ],
+      "properties": {
+        "database": { "type": "string", "minLength": 1 },
+        "disposable": { "const": true },
+        "authoring": { "const": "pass" },
+        "saveReopen": { "const": "pass" },
+        "isolation": { "const": "pass" },
+        "publicResponsive": { "const": "pass" },
+        "editorResponsive": { "const": "pass" },
+        "updateOuterHtmlUnchanged": { "const": "pass" },
+        "status": { "enum": ["pass", "fail", "incomplete"] },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

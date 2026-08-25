@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preuve pixel Figma → HTML → Odoo — Button</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1920px; height: 1060px; overflow: hidden; }
+    body {
+      padding: 42px 50px;
+      color: #26282c;
+      background: #f5f4f0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 24px; }
+    h1 { margin: 0; font-size: 34px; line-height: 1; letter-spacing: -0.7px; }
+    .source { color: #696969; font-size: 16px; }
+    .proof {
+      padding: 22px 24px 24px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd9d0;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 3px 10px rgba(38, 40, 44, 0.06);
+    }
+    .proof-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+    h2 { margin: 0; font-size: 22px; }
+    .score { color: #12803b; font-size: 18px; font-weight: 700; }
+    .evidence { margin: 0 auto; }
+    .evidence.figma { width: 1338px; }
+    .evidence.odoo { width: 1776px; }
+    .columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 7px; }
+    .columns span { color: #ed6b00; font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-align: center; text-transform: uppercase; }
+    .triptych { display: block; width: 100%; height: auto; border: 1px solid #e7e4dd; }
+    footer { margin-top: 2px; color: #555; font-size: 15px; text-align: center; }
+    footer strong { color: #26282c; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bouton — preuve pixel Figma → HTML → Odoo</h1>
+    <div class="source">Deux comparaisons réelles du dépôt</div>
+  </header>
+
+  <main>
+    <section class="proof">
+      <div class="proof-head">
+        <h2>1 · Le contrat produit un HTML fidèle à Figma</h2>
+        <div class="score">2,70 % brut · 0,66 % hors texte</div>
+      </div>
+      <div class="evidence figma">
+        <div class="columns"><span>HTML généré</span><span>Figma</span><span>Diff pixel</span></div>
+        <img class="triptych" src="../../extract/figma/visual-parity/report-assets/button--style-default.triptych.png" alt="Triptyque HTML, Figma et différence pixel">
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="proof-head">
+        <h2>2 · Odoo reprend exactement le HTML de référence</h2>
+        <div class="score">0,00 % d’écart</div>
+      </div>
+      <div class="evidence odoo">
+        <div class="columns"><span>HTML de référence</span><span>Odoo</span><span>Diff pixel</span></div>
+        <img class="triptych" src="triptyque-pixel-html-odoo-button.png" alt="Triptyque HTML, Odoo et différence pixel">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Lecture du Diff :</strong> rouge = différence réelle · jaune = anticrénelage du texte · aucun rouge = mêmes pixels.
+  </footer>
+</body>
+</html>

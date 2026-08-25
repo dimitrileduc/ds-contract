@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+  <title id="title">Du contrat à Figma, HTML et Odoo</title>
+  <desc id="desc">Le contrat alimente deux émetteurs déterministes pour Figma et HTML. Un agent LLM guidé par le contrat, le HTML et les règles métier réalise ensuite l’intégration Odoo, contrôlée par des tests déterministes.</desc>
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34373c"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ed6b00"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#1d2025" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="780" rx="28" fill="#f6f4ef"/>
+  <text x="70" y="72" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#26282c">Comment le repo travaille</text>
+  <text x="70" y="108" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#686868">Une source commune, des sorties automatiques, puis une intégration Odoo assistée et contrôlée.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="175" width="300" height="128" rx="18" fill="#ed6b00"/>
+    <text x="220" y="220" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.8" fill="#fff">SOURCE DE VÉRITÉ</text>
+    <text x="220" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#fff">Contrat JSON</text>
+    <text x="220" y="286" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#fff4eb">structure · variantes · tokens</text>
+  </g>
+
+  <path d="M370 220 H445" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+  <path d="M370 270 H445" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="455" y="158" width="300" height="92" rx="16" fill="#292c31"/>
+    <text x="605" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.3" fill="#ff9a44">ÉMETTEUR FIGMA</text>
+    <text x="605" y="224" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#fff">transformation déterministe</text>
+
+    <rect x="455" y="265" width="300" height="92" rx="16" fill="#292c31"/>
+    <text x="605" y="302" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.3" fill="#ff9a44">ÉMETTEUR HTML</text>
+    <text x="605" y="331" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#fff">HTML + CSS automatiques</text>
+  </g>
+
+  <path d="M755 204 H825" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+  <path d="M755 311 H825" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="835" y="158" width="220" height="92" rx="16" fill="#fff" stroke="#d7d1c7" stroke-width="2"/>
+    <text x="945" y="214" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#26282c">Figma</text>
+
+    <rect x="835" y="265" width="220" height="92" rx="16" fill="#fff" stroke="#d7d1c7" stroke-width="2"/>
+    <text x="945" y="321" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#26282c">HTML/CSS</text>
+  </g>
+
+  <path d="M1055 311 H1130 V405" fill="none" stroke="#ed6b00" stroke-width="5" marker-end="url(#arrow-orange)"/>
+  <path d="M370 287 C700 450 925 430 1125 452" fill="none" stroke="#ed6b00" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-orange)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1128" y="138" width="402" height="170" rx="18" fill="#fff" stroke="#d7d1c7" stroke-width="2"/>
+    <text x="1329" y="180" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.4" fill="#686868">RÈGLES ODOO + CHOIX MÉTIER</text>
+    <text x="1160" y="220" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#26282c">• textes et images modifiables</text>
+    <text x="1160" y="252" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#26282c">• listes, sauvegarde et éditeur</text>
+    <text x="1160" y="284" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#26282c">• contraintes propres à Odoo</text>
+  </g>
+
+  <path d="M1329 308 V395" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1075" y="410" width="510" height="138" rx="20" fill="#6554c0"/>
+    <text x="1330" y="454" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.6" fill="#e9e5ff">ASSISTANCE, PAS SOURCE DE VÉRITÉ</text>
+    <text x="1330" y="494" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#fff">Agent / LLM guidé</text>
+    <text x="1330" y="524" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#f0edff">lit le contrat + le HTML + les règles Odoo</text>
+  </g>
+
+  <path d="M1330 548 V603" fill="none" stroke="#34373c" stroke-width="4" marker-end="url(#arrow-dark)"/>
+  <g filter="url(#shadow)">
+    <rect x="1128" y="614" width="402" height="82" rx="16" fill="#11823b"/>
+    <text x="1329" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#fff">Odoo</text>
+    <text x="1329" y="677" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#e6f7ec">QWeb + règles d’édition</text>
+  </g>
+
+  <g>
+    <rect x="70" y="445" width="850" height="251" rx="20" fill="#fff" stroke="#d7d1c7" stroke-width="2"/>
+    <text x="105" y="489" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="1.3" fill="#ed6b00">CONTRÔLES DÉTERMINISTES</text>
+    <line x1="105" y1="512" x2="885" y2="512" stroke="#e6e1d8" stroke-width="2"/>
+    <circle cx="132" cy="554" r="14" fill="#11823b"/>
+    <path d="M124 554 l6 6 11 -13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="561" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#26282c">Figma ↔ HTML : comparaison pixel</text>
+    <circle cx="132" cy="608" r="14" fill="#11823b"/>
+    <path d="M124 608 l6 6 11 -13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="615" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#26282c">HTML ↔ Odoo : comparaison pixel</text>
+    <circle cx="132" cy="662" r="14" fill="#11823b"/>
+    <path d="M124 662 l6 6 11 -13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="669" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#26282c">Éditeur, sauvegarde et comportement testés</text>
+  </g>
+
+  <text x="800" y="748" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#34373c">Le LLM accélère l’intégration. Les contrats et les tests gardent le contrôle.</text>
+</svg>

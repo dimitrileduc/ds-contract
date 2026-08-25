@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "specs/027-responsive-hero-video/contracts/responsive-decision.schema.json",
+  "title": "HeroVideo Owner Responsive Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "featureId",
+    "decisionId",
+    "baselineRef",
+    "status",
+    "profile",
+    "breakpoints",
+    "designWitnesses",
+    "options",
+    "rejectedTopics",
+    "deferredTopics"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "featureId": { "const": "027-responsive-hero-video" },
+    "decisionId": { "type": "string", "minLength": 1 },
+    "baselineRef": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "approved", "rejected", "superseded"] },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "basis", "source"],
+      "properties": {
+        "id": { "const": "piqueray-odoo19-992-1400" },
+        "basis": { "const": "viewport-width" },
+        "source": { "const": "odoo-bootstrap-19-subset" }
+      }
+    },
+    "breakpoints": { "$ref": "#/$defs/breakpoints" },
+    "designWitnesses": { "$ref": "#/$defs/designWitnesses" },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/option" }
+    },
+    "selectedOptionId": { "type": "string", "minLength": 1 },
+    "approvedCompositions": { "$ref": "#/$defs/editableCompositions" },
+    "decision": { "$ref": "#/$defs/ownerDecision" },
+    "rejectedTopics": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "deferredTopics": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "supersedes": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "approved" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["selectedOptionId", "approvedCompositions", "decision"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "status": { "const": "superseded" } },
+        "required": ["status"]
+      },
+      "then": { "required": ["supersedes", "decision"] }
+    }
+  ],
+  "$defs": {
+    "tokenRef": {
+      "type": "string",
+      "pattern": "^\\{[a-zA-Z0-9._-]+\\}$"
+    },
+    "partPath": {
+      "enum": [
+        "Background",
+        "VoileBas",
+        "VoileNavigation",
+        "Text",
+        "Text.Accroche",
+        "Bouton"
+      ]
+    },
+    "breakpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "minWidthPx", "operator", "probeEvidenceRefs"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "minWidthPx": { "type": "integer", "minimum": 240, "maximum": 2560 },
+        "operator": { "const": "min-width" },
+        "probeEvidenceRefs": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "breakpoints": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/breakpoint" },
+            {
+              "properties": {
+                "id": { "const": "desktop-start" },
+                "minWidthPx": { "const": 992 }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/breakpoint" },
+            {
+              "properties": {
+                "id": { "const": "wide-start" },
+                "minWidthPx": { "const": 1400 }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    },
+    "designWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["witnessId", "widthPx", "compositionId"],
+      "properties": {
+        "witnessId": { "type": "string", "minLength": 1 },
+        "widthPx": { "type": "integer", "minimum": 240, "maximum": 2560 },
+        "compositionId": { "enum": ["compact", "desktop", "wide"] }
+      }
+    },
+    "designWitnesses": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/designWitness" },
+            {
+              "properties": {
+                "witnessId": { "const": "mobile-390" },
+                "widthPx": { "const": 390 },
+                "compositionId": { "const": "compact" }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/designWitness" },
+            {
+              "properties": {
+                "witnessId": { "const": "tablet-834" },
+                "widthPx": { "const": 834 },
+                "compositionId": { "const": "compact" }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/designWitness" },
+            {
+              "properties": {
+                "witnessId": { "const": "desktop-1200" },
+                "widthPx": { "const": 1200 },
+                "compositionId": { "const": "desktop" }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/designWitness" },
+            {
+              "properties": {
+                "witnessId": { "const": "wide-1728" },
+                "widthPx": { "const": 1728 },
+                "compositionId": { "const": "wide" }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "paddingTop",
+        "paddingRight",
+        "paddingBottom",
+        "paddingLeft",
+        "gap"
+      ],
+      "properties": {
+        "paddingTop": { "$ref": "#/$defs/tokenRef" },
+        "paddingRight": { "$ref": "#/$defs/tokenRef" },
+        "paddingBottom": { "$ref": "#/$defs/tokenRef" },
+        "paddingLeft": { "$ref": "#/$defs/tokenRef" },
+        "gap": { "$ref": "#/$defs/tokenRef" },
+        "contentMaxWidth": {
+          "oneOf": [{ "$ref": "#/$defs/tokenRef" }, { "const": "none" }]
+        }
+      }
+    },
+    "ctaTreatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reuseCurrentButton",
+        "variant",
+        "sizeDecision",
+        "impactRefs"
+      ],
+      "properties": {
+        "reuseCurrentButton": { "type": "boolean" },
+        "variant": { "type": "string", "minLength": 1 },
+        "sizeDecision": { "enum": ["unchanged", "owner-approved-delta"] },
+        "impactRefs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sizeDecision": { "const": "owner-approved-delta" }
+            },
+            "required": ["sizeDecision"]
+          },
+          "then": { "properties": { "impactRefs": { "minItems": 1 } } }
+        }
+      ]
+    },
+    "mediaTreatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["posterPolicy", "fit", "cropDecision", "secondAsset"],
+      "properties": {
+        "posterPolicy": { "const": "preserve-owner-poster" },
+        "fit": { "const": "cover" },
+        "cropDecision": {
+          "enum": ["preserve-current", "owner-approved-focus"]
+        },
+        "objectPosition": { "type": "string", "minLength": 1 },
+        "secondAsset": { "enum": ["none", "owner-approved"] },
+        "approvalRef": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "cropDecision": { "const": "owner-approved-focus" }
+                },
+                "required": ["cropDecision"]
+              },
+              {
+                "properties": { "secondAsset": { "const": "owner-approved" } },
+                "required": ["secondAsset"]
+              }
+            ]
+          },
+          "then": { "required": ["approvalRef"] }
+        }
+      ]
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "presentParts",
+        "order",
+        "axis",
+        "align",
+        "justify",
+        "titleAlign",
+        "heightStrategy",
+        "spacing",
+        "textStyleTokenPath",
+        "ctaTreatment",
+        "mediaTreatment",
+        "shortLandscapeFallback",
+        "figmaStrategy"
+      ],
+      "properties": {
+        "presentParts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/partPath" },
+          "uniqueItems": true
+        },
+        "order": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/partPath" },
+          "uniqueItems": true
+        },
+        "axis": { "enum": ["row", "column", "overlay"] },
+        "align": { "enum": ["start", "center", "end", "stretch"] },
+        "justify": { "enum": ["start", "center", "end", "space-between"] },
+        "titleAlign": { "enum": ["left", "center", "right"] },
+        "heightStrategy": {
+          "enum": [
+            "fixed",
+            "visible-viewport-min-content",
+            "owner-approved-custom"
+          ]
+        },
+        "spacing": { "$ref": "#/$defs/spacing" },
+        "textStyleTokenPath": { "$ref": "#/$defs/tokenRef" },
+        "ctaTreatment": { "$ref": "#/$defs/ctaTreatment" },
+        "mediaTreatment": { "$ref": "#/$defs/mediaTreatment" },
+        "shortLandscapeFallback": {
+          "enum": [
+            "grow-with-content",
+            "owner-approved-compact-values",
+            "owner-approved-internal-scroll"
+          ]
+        },
+        "figmaStrategy": { "enum": ["auto-layout", "modes", "variant"] },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "editableCompositions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compact", "desktop"],
+      "properties": {
+        "compact": { "$ref": "#/$defs/composition" },
+        "desktop": { "$ref": "#/$defs/composition" }
+      }
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "optionId",
+        "label",
+        "summary",
+        "compositions",
+        "boundaryProbeRefs",
+        "evidenceRefs",
+        "tradeoffs",
+        "limits"
+      ],
+      "properties": {
+        "optionId": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "compositions": { "$ref": "#/$defs/editableCompositions" },
+        "boundaryProbeRefs": {
+          "type": "array",
+          "minItems": 6,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 4,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "tradeoffs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "limits": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "ownerDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decisionMaker",
+        "decidedAt",
+        "evidenceRefs",
+        "acceptedTradeoffs"
+      ],
+      "properties": {
+        "decisionMaker": { "type": "string", "minLength": 1 },
+        "decidedAt": { "type": "string", "format": "date-time" },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "acceptedTradeoffs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
