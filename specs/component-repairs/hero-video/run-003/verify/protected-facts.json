@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "1.0.0",
+  "taskId": "T046",
+  "status": "pass",
+  "identity": {
+    "historicalWide": {
+      "beforeNodeId": "2151:5552",
+      "afterNodeId": "2151:5552",
+      "beforeComponentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "afterComponentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "preserved": true
+    },
+    "container": {
+      "nodeId": "2448:4731",
+      "changed": true,
+      "authorization": "H3 accepted existing-node allowlist"
+    },
+    "componentSet": {
+      "nodeId": "2580:7392",
+      "name": "HeroVideo",
+      "propertyName": "Presentation",
+      "variants": [
+        "Presentation=Compact",
+        "Presentation=Desktop",
+        "Presentation=Wide"
+      ]
+    }
+  },
+  "commonComposition": {
+    "checkedPresentations": [
+      "Wide",
+      "Compact",
+      "Desktop"
+    ],
+    "commonNamesAndRoles": [
+      {
+        "structuralPath": "0",
+        "type": "FRAME",
+        "name": "Background"
+      },
+      {
+        "structuralPath": "1",
+        "type": "FRAME",
+        "name": "VoileBas"
+      },
+      {
+        "structuralPath": "2",
+        "type": "FRAME",
+        "name": "VoileNavigation"
+      },
+      {
+        "structuralPath": "3",
+        "type": "FRAME",
+        "name": "Text"
+      },
+      {
+        "structuralPath": "3/0",
+        "type": "TEXT",
+        "name": "Accroche"
+      },
+      {
+        "structuralPath": "4",
+        "type": "INSTANCE",
+        "name": "Bouton"
+      },
+      {
+        "structuralPath": "4/0",
+        "type": "INSTANCE",
+        "name": "iconLeft"
+      },
+      {
+        "structuralPath": "4/0/0",
+        "type": "VECTOR",
+        "name": "Tracé"
+      },
+      {
+        "structuralPath": "4/1",
+        "type": "TEXT",
+        "name": "label"
+      },
+      {
+        "structuralPath": "4/2",
+        "type": "INSTANCE",
+        "name": "ArrowRight"
+      },
+      {
+        "structuralPath": "4/2/0",
+        "type": "VECTOR",
+        "name": "Tracé"
+      }
+    ],
+    "memberSummaries": [
+      {
+        "presentationValue": "Wide",
+        "rootName": "Presentation=Wide",
+        "commonRoleCount": 11,
+        "imageHashes": [
+          "8eb8b969759a5802ffb70d883409664e1169ad32"
+        ],
+        "gradientPaintCount": 4,
+        "texts": [
+          {
+            "structuralPath": "3/0",
+            "name": "Accroche",
+            "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          },
+          {
+            "structuralPath": "4/1",
+            "name": "label",
+            "characters": "Contactez-nous"
+          }
+        ],
+        "componentPropertyPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ],
+        "sharedChildPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ]
+      },
+      {
+        "presentationValue": "Compact",
+        "rootName": "Presentation=Compact",
+        "commonRoleCount": 11,
+        "imageHashes": [
+          "8eb8b969759a5802ffb70d883409664e1169ad32"
+        ],
+        "gradientPaintCount": 4,
+        "texts": [
+          {
+            "structuralPath": "3/0",
+            "name": "Accroche",
+            "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          },
+          {
+            "structuralPath": "4/1",
+            "name": "label",
+            "characters": "Contactez-nous"
+          }
+        ],
+        "componentPropertyPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ],
+        "sharedChildPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ]
+      },
+      {
+        "presentationValue": "Desktop",
+        "rootName": "Presentation=Desktop",
+        "commonRoleCount": 11,
+        "imageHashes": [
+          "8eb8b969759a5802ffb70d883409664e1169ad32"
+        ],
+        "gradientPaintCount": 4,
+        "texts": [
+          {
+            "structuralPath": "3/0",
+            "name": "Accroche",
+            "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          },
+          {
+            "structuralPath": "4/1",
+            "name": "label",
+            "characters": "Contactez-nous"
+          }
+        ],
+        "componentPropertyPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ],
+        "sharedChildPaths": [
+          "4",
+          "4/0",
+          "4/2"
+        ]
+      }
+    ],
+    "posterImageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+    "posterCoverageAcrossScenarios": "cover",
+    "textValuesPreserved": [
+      "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "Contactez-nous"
+    ],
+    "responsiveTypography": {
+      "allowlistedCount": 2,
+      "globalTextStyleWrites": 0,
+      "facts": [
+        {
+          "presentationValue": "Compact",
+          "nodePath": "3/0",
+          "sourceRole": "Titre Hero vidéo",
+          "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+          "appliedFields": {
+            "fontSize": 32,
+            "lineHeight": 40,
+            "textAlignHorizontal": "CENTER"
+          },
+          "family": "Montserrat",
+          "weight": 400,
+          "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+          "debtStatus": "pending-responsive-text-style",
+          "status": "allowlisted"
+        },
+        {
+          "presentationValue": "Desktop",
+          "nodePath": "3/0",
+          "sourceRole": "Titre Hero vidéo",
+          "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+          "appliedFields": {
+            "fontSize": 40,
+            "lineHeight": 48,
+            "textAlignHorizontal": "CENTER"
+          },
+          "family": "Montserrat",
+          "weight": 400,
+          "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+          "debtStatus": "pending-responsive-text-style",
+          "status": "allowlisted"
+        }
+      ]
+    },
+    "primitiveBindings": {
+      "declaredCount": 13,
+      "attachedCount": 13,
+      "allAttached": true
+    }
+  },
+  "preservation": {
+    "comparisonOk": true,
+    "unexpectedDiffs": [],
+    "uniqueImageHashesPreserved": true,
+    "imageHashesBefore": 15,
+    "imageHashesAfter": 15,
+    "imageFingerprintsBefore": 18,
+    "imageFingerprintsAfter": 18,
+    "instanceLinksBefore": 96,
+    "instanceLinksAfter": 96,
+    "consumers": [
+      {
+        "consumerId": "nested-button-6-135",
+        "dependencyId": "ds.button",
+        "status": "revalidated",
+        "writePolicy": "read-only",
+        "evidenceRefs": [
+          "specs/027-responsive-hero-video/inventory/H1-fresh-audit.json",
+          "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+          "specs/component-repairs/hero-video/run-003/verify/comparison.json"
+        ]
+      },
+      {
+        "consumerId": "header-context-210-473",
+        "dependencyId": "ds.header",
+        "status": "revalidated",
+        "writePolicy": "read-only",
+        "evidenceRefs": [
+          "specs/027-responsive-hero-video/proofs/H1-before.manifest.json",
+          "specs/component-repairs/hero-video/run-003/before/hero-video_header-context.facts.json",
+          "specs/component-repairs/hero-video/run-003/after/hero-video_header-context.facts.json",
+          "specs/component-repairs/hero-video/run-003/verify/comparison.json"
+        ]
+      },
+      {
+        "consumerId": "home-instance-2170-6351",
+        "dependencyId": "hero-video",
+        "status": "revalidated",
+        "writePolicy": "read-only",
+        "evidenceRefs": [
+          "specs/027-responsive-hero-video/inventory/H1-fresh-audit.json",
+          "specs/component-repairs/hero-video/run-003/before/hero-video_home-instance.facts.json",
+          "specs/component-repairs/hero-video/run-003/after/hero-video_home-instance.facts.json",
+          "specs/component-repairs/hero-video/run-003/verify/comparison.json"
+        ]
+      }
+    ]
+  },
+  "nativeTransitionNormalization": {
+    "acceptedMechanics": [
+      "Accroche component-property suffix regenerated from #2439:0 to #2580:4",
+      "Presentation=Wide added to existing Home instances",
+      "standalone component-property definition lifted to the owning component set"
+    ],
+    "semanticChecksStillExact": [
+      "property values",
+      "instance overrides",
+      "shared child facts",
+      "historical node id",
+      "historical component key"
+    ]
+  },
+  "writeBoundary": {
+    "allowedChangedExistingNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "createdNodeIds": [
+      "2580:7392",
+      "2580:7378",
+      "2580:7385"
+    ],
+    "pageWrites": [],
+    "childWrites": [],
+    "protectedDependencies": [
+      "6:135",
+      "6:99",
+      "6:104"
+    ],
+    "readOnlySurfaces": [
+      "2170:6351",
+      "210:326",
+      "210:473"
+    ]
+  },
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+    "specs/component-repairs/hero-video/run-003/verify/comparison.json",
+    "specs/component-repairs/hero-video/run-003/before/hero-video_master.facts.json",
+    "specs/component-repairs/hero-video/run-003/after/hero-video_master.facts.json",
+    "specs/component-repairs/hero-video/run-003/before/hero-video_home-instance.facts.json",
+    "specs/component-repairs/hero-video/run-003/after/hero-video_home-instance.facts.json",
+    "specs/component-repairs/hero-video/run-003/before/hero-video_header-context.facts.json",
+    "specs/component-repairs/hero-video/run-003/after/hero-video_header-context.facts.json"
+  ]
+}

@@ -4,9 +4,9 @@
 
 ## R1 — Autorité de départ et gates humains
 
-**Decision**: traiter H1, H2, H3 et H4 comme des états d’exécution versionnés, jamais comme des `NEEDS CLARIFICATION` techniques. Le plan fixe le profil 992/1400, les quatre témoins, les champs, preuves et conditions d’arrêt ; seuls l’owner, la date et les valeurs esthétiques/métier Mobile/Desktop sont renseignés pendant l’exécution.
+**Decision**: traiter H1, H2, H3 et H4 comme des états d’exécution versionnés, jamais comme des `NEEDS CLARIFICATION` techniques. Le plan fixe le profil 992/1400, les quatre témoins, les champs, preuves et conditions d’arrêt. H2 enregistre uniquement la direction structurelle choisie par l’owner et une dépendance transverse `pending`; les valeurs de spacing, typographie et enfants seront fournies par une décision séparée avant H3.
 
-**Rationale**: l’owner a fixé Mobile, Desktop et XL comme compositions, conservé 1728 comme XL actuel, retenu 992/1400 et placé Tablet en contrôle secondaire. Les preuves 2026-08-11/23 confirment un master wide propre mais ne remplacent ni une lecture live fraîche ni les décisions de valeurs H2/H3.
+**Rationale**: l’owner a fixé Mobile, Desktop et XL comme compositions, conservé 1728 comme XL actuel, retenu 992/1400 et placé Tablet en contrôle secondaire. Les preuves 2026-08-11/23 confirment un master wide propre mais ne remplacent ni une lecture live fraîche ni la future décision transverse de valeurs.
 
 **Alternatives considered**: choisir les valeurs pendant le plan (usurpation de H1/H2) ; laisser le contexte technique indéterminé (confond un gate métier prévu avec un blocage d’architecture).
 
@@ -20,11 +20,13 @@
 
 ## R3 — Méthode de co-conception responsive
 
-**Decision**: préserver wide, construire les comportements Mobile et Desktop, employer des valeurs/modes lorsque seuls padding, hauteur ou typographie changent, et créer des variants uniquement lorsque H2 approuve une vraie différence de présence, ordre, parenté ou axe. Les options sont rendues dans un harness local non autoritatif ; elles n’écrivent pas le fichier Figma avant H2. Le témoin Tablet 834 réutilise compact et ne crée aucun quatrième état.
+**Decision**: préserver wide et faire porter H2 uniquement sur la structure Mobile/Desktop : présence, ordre, axe, alignements, stratégie de hauteur, relations entre enfants directs et contraintes de placement. Le titre garde le rôle `Titre Hero vidéo` et le Button actuel garde son identité et sa largeur intrinsèque ; H2 ne décide aucune valeur de padding, gap, typographie ou enfant. Le harness local peut faire varier ces valeurs pour éprouver la robustesse de la direction, à condition de les marquer comme previews non autoritatives, absentes de H2 et de Figma source. Une spec transverse ultérieure décidera le spacing, les styles responsive et les atoms à partir des patterns observés sur plusieurs composants. Le témoin Tablet 834 réutilise compact et ne crée aucun quatrième état.
 
-**Rationale**: c’est la règle établie par `docs/responsive-figma.md` et FR-013. Elle garde la décision humaine lisible, évite un component set inutile et ne crée pas un état Tablet sans besoin.
+**Rationale**: l’audit live montre que Piqueray dispose d’une échelle statique et de primitives de spacing, mais d’aucune politique responsive transverse ; `Titre2` et `Titre3` sont des niveaux partagés, pas des aliases de viewport. Choisir les valeurs pendant HeroVideo créerait le précédent local que l’approche multi-composants cherche précisément à éviter. Les previews restent utiles pour tester si le même layout supporte une plage plausible, sans transformer leur valeur en décision.
 
-**Alternatives considered**: toujours Auto Layout ; toujours un component set ; créer un état Tablet ; utiliser le design 1728 comme Desktop à toutes les largeurs.
+**Sources**: [Figma — The difference between variables and styles](https://help.figma.com/hc/en-us/articles/15871097384471-The-difference-between-variables-and-styles) ; [Figma — Modes for variables](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables) ; [Carbon — Spacing](https://carbondesignsystem.com/elements/spacing/overview/) ; [Carbon — Typography](https://carbondesignsystem.com/elements/typography/code/).
+
+**Alternatives considered**: valider spacing et typographie dans HeroVideo ; toujours Auto Layout ; toujours un component set ; créer un état Tablet ; utiliser le design 1728 comme Desktop à toutes les largeurs ; substituer `Titre3` en compact et `Titre2` en Desktop ; corriger localement la largeur ou le wrapping du Button.
 
 ## R4 — Modèle responsive contractuel générique
 
@@ -70,9 +72,9 @@ Ce bloc n’est jamais converti en prop React, propriété éditoriale Odoo ou e
 
 ## R8 — Média et dépendance Button
 
-**Decision**: conserver un seul poster owner dans les trois compositions, le même plan de couverture et les deux voiles. `videoUrl` reste un canal code distinct ; Figma et Odoo utilisent le poster statique nommé. Aucun second asset, point focal, variant/taille de Button ou icône mobile n’est ajouté sans H2 et inventaire de l’impact partagé.
+**Decision**: conserver un seul poster owner dans les trois compositions, le même plan de couverture et les deux voiles. `videoUrl` reste un canal code distinct ; Figma et Odoo utilisent le poster statique nommé. Le Button actuel est réutilisé sans changement de variante, taille, typographie, padding, icône, wrapping ou largeur intrinsèque ; la section ne possède que son placement. Aucun second asset, point focal ou changement de Button n’est ajouté dans cette feature.
 
-**Rationale**: ces faits sont protégés et déjà couverts par les mécanismes de récolte/restauration d’IMAGE. L’instance Home porte des overrides CTA historiques ; une reconstruction ou un changement Button non borné menacerait le contenu et d’autres consommateurs. Les émetteurs actuels ignorent les styles de placement portés directement par une part déclarée comme composant : si H2 demande un CTA full-width ou repositionné, un marqueur de placement parent générique doit être ajouté et testé sur chaque sortie, sans dupliquer le Button ni employer un ordre CSS divergent du DOM.
+**Rationale**: ces faits sont protégés et déjà couverts par les mécanismes de récolte/restauration d’IMAGE. L’instance Home porte des overrides CTA historiques ; une reconstruction ou un changement Button non borné menacerait le contenu et d’autres consommateurs. Un CTA full-width serait une nouvelle décision de l’atom, pas une conséquence du layout HeroVideo. Si H2 exige un repositionnement, un marqueur de placement parent générique peut être ajouté et testé sur chaque sortie, sans dupliquer le Button ni employer un ordre CSS divergent du DOM.
 
 **Alternatives considered**: inventer un crop mobile ; dupliquer le média ; tenter de transporter une vidéo native Figma ; modifier `ds.button` pour résoudre localement le CTA.
 
@@ -134,7 +136,7 @@ Ce bloc n’est jamais converti en prop React, propriété éditoriale Odoo ou e
 
 ## Clarifications techniques résolues
 
-- Les choix H1/H2/H3/H4 restent différés à leur gate pour les valeurs esthétiques/métier ; le profil 992/1400, les trois compositions et les quatre témoins sont déjà décidés.
+- H1 est accepté et H2 retient l’option 3 pour le layout uniquement ; les valeurs esthétiques/métier restent différées à une spec transverse avant toute mutation source. Le profil 992/1400, les trois compositions et les quatre témoins sont décidés.
 - Une nouvelle key de component set est acceptable uniquement comme identité additive ; la key/node du composant wide/XL historique reste protégée et exploitable.
 - La faible hauteur utilise une hauteur minimale de viewport avec croissance de contenu par défaut ; toute compaction différente revient à H2.
 - Le renderer React inline appartient au périmètre de fidélité générée et doit recevoir une règle responsive déterministe ou refuser explicitement la génération ; il n’est pas laissé Desktop silencieusement.

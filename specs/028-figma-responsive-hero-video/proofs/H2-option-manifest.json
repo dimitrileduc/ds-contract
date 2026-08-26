@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "status": "approved",
+  "workAreaRef": {
+    "nodeId": "2577:5984",
+    "pageId": "2052:1146"
+  },
+  "sourceRefs": {
+    "frames": "specs/028-figma-responsive-hero-video/proofs/H2-work-frames.bridge.json",
+    "captureBridge": "specs/028-figma-responsive-hero-video/proofs/H2-review-captures.bridge.json",
+    "simplifiedReview": "specs/028-figma-responsive-hero-video/proofs/H2-simplify-owner-review.bridge.json"
+  },
+  "ownerReview": {
+    "presentationRef": "specs/028-figma-responsive-hero-video/proofs/H2-owner-review.md",
+    "status": "approved",
+    "optionCount": 1,
+    "screenCount": 3,
+    "selectedOption": "option-a-balanced",
+    "visibleScreens": [
+      {
+        "context": "mobile-390",
+        "capture": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-default.png",
+        "frameId": "2577:6069"
+      },
+      {
+        "context": "desktop-1200",
+        "capture": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-default.png",
+        "frameId": "2577:6213"
+      },
+      {
+        "context": "wide-1728",
+        "capture": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1728-default.png",
+        "frameId": "2577:6357"
+      }
+    ],
+    "decisionRef": "specs/028-figma-responsive-hero-video/decisions/H2-design.json"
+  },
+  "options": [
+    {
+      "optionId": "option-a-balanced",
+      "label": "A — équilibrée",
+      "decisionStatus": "accepted",
+      "tradeoffs": [
+        "Meilleure respiration et lecture stable.",
+        "Impact un peu moins spectaculaire que B."
+      ],
+      "limits": [
+        "Le contenu centré recouvre nécessairement une partie du poster.",
+        "Aucun recadrage ni second média proposé."
+      ]
+    },
+    {
+      "optionId": "option-b-expressive",
+      "label": "B — expressive",
+      "decisionStatus": "rejected-removed-from-figma-canvas",
+      "tradeoffs": [
+        "Titre plus présent.",
+        "Sur mobile, le titre se rapproche trop du bord supérieur et recouvre davantage le point focal."
+      ],
+      "limits": [
+        "Moins robuste visuellement sur 390 px.",
+        "Aucun recadrage ni second média proposé."
+      ]
+    }
+  ],
+  "wideComparison": {
+    "referenceFrameId": "2577:6357",
+    "sameRendererEvidenceRef": "specs/028-figma-responsive-hero-video/proofs/H2-wide-comparison.bridge.json",
+    "historicalCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-wide-comparison/historical-master.png",
+    "proposalCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-wide-comparison/proposal-wide-1728.png",
+    "historicalSha256": "42926cbbf005c5298bf5671c21e7b02ff0a702432e45281b47a15dd4fe191c3e",
+    "proposalSha256": "42926cbbf005c5298bf5671c21e7b02ff0a702432e45281b47a15dd4fe191c3e",
+    "byteIdentical": true,
+    "pixelIdentical": true,
+    "historicalCompositionPreserved": true,
+    "typographyOverride": null
+  },
+  "protectedFacts": {
+    "unchanged": true,
+    "changedExistingNodeIds": [],
+    "masterWrites": [],
+    "containerWrites": [],
+    "homeWrites": [],
+    "headerWrites": [],
+    "sharedDependencyWrites": [],
+    "pageWrites": []
+  },
+  "captures": [
+    {
+      "nodeId": "2577:6021",
+      "optionId": "option-a-balanced",
+      "caseId": "control-320",
+      "fixtureId": "long-title",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-320-long-title.png",
+      "width": 320,
+      "height": 597,
+      "byteLength": 261376,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "2805f71882ca59ab744d37d8e3a1712c620fbf063cadc665c8400ace68f011a7",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6069",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-390",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-default.png",
+      "width": 390,
+      "height": 597,
+      "byteLength": 300368,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "c0f378537cd3bf2ffab3b47e4e6df12beae5a362ce65b5847ed75d4b06919677",
+      "reviewRole": "owner-comparison"
+    },
+    {
+      "nodeId": "2577:6093",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-390",
+      "fixtureId": "long-title",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-long-title.png",
+      "width": 390,
+      "height": 597,
+      "byteLength": 312807,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "139a5a4dac0e8d05a61b4876a95940ddc28161af0d34ab804a853c3c2d9b92e4",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6117",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-390",
+      "fixtureId": "long-cta",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-long-cta.png",
+      "width": 390,
+      "height": 597,
+      "byteLength": 300683,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "50110eddbd94ef2a53d331f6f330aac6c43d7be94fe1accc6fedca0c322163a1",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6141",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-834",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-834-default.png",
+      "width": 834,
+      "height": 597,
+      "byteLength": 637903,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "2b79cceb5a1fea693c3463d7d9450990fdf5db09ff04bb5b6173185c892ceb6c",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6165",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-834",
+      "fixtureId": "long-title",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-834-long-title.png",
+      "width": 834,
+      "height": 597,
+      "byteLength": 648476,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "40a0782dffac349b1d795ba596be1264a779cf5f6c47176374d86d99da0d90d8",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6213",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-1200",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-default.png",
+      "width": 1200,
+      "height": 597,
+      "byteLength": 893777,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "16e521a325d937def0e91e5065c4b5cabda3ea8cda619f93c8bfad6645201337",
+      "reviewRole": "owner-comparison"
+    },
+    {
+      "nodeId": "2577:6237",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-1200",
+      "fixtureId": "long-title",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-long-title.png",
+      "width": 1200,
+      "height": 597,
+      "byteLength": 908795,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "5d4af50f64691a96dfd3f5ed331a4eb0e8491d3b4132ba833b4f0c725ec193e4",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6261",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-1200",
+      "fixtureId": "long-cta",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-long-cta.png",
+      "width": 1200,
+      "height": 597,
+      "byteLength": 893922,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "4d359abfd172aa5e43db203e94d9647e822bda991c4f9972f4839a20bda10bcd",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6285",
+      "optionId": "option-a-balanced",
+      "caseId": "control-1440",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-1440-default.png",
+      "width": 1440,
+      "height": 720,
+      "byteLength": 1218459,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "b2f15ed054109b97735b5fa87d0ada4f47f8c66e912f64eb230b32789abb3c7b",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6357",
+      "optionId": "option-a-balanced",
+      "caseId": "witness-1728",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1728-default.png",
+      "width": 1728,
+      "height": 720,
+      "byteLength": 1360330,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "42926cbbf005c5298bf5671c21e7b02ff0a702432e45281b47a15dd4fe191c3e",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6429",
+      "optionId": "option-a-balanced",
+      "caseId": "control-short-landscape",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-short-landscape-default.png",
+      "width": 844,
+      "height": 597,
+      "byteLength": 645465,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "b791e4cebead3bc85736930743b4c77ca8cad141b582b87dd96cf02be14c8cd5",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6453",
+      "optionId": "option-a-balanced",
+      "caseId": "control-short-landscape",
+      "fixtureId": "long-title",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-short-landscape-long-title.png",
+      "width": 844,
+      "height": 597,
+      "byteLength": 655893,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "cac0d504aefe1edbbdbe6a70bf1b7b95b481f9ded2eb90d07272e08a07173849",
+      "reviewRole": "internal-quality-control"
+    },
+    {
+      "nodeId": "2577:6501",
+      "optionId": "option-b-expressive",
+      "caseId": "witness-390",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-b-expressive/witness-390-default.png",
+      "width": 390,
+      "height": 597,
+      "byteLength": 303094,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "87cec578790bf158b7aad46603d9dfc6c28e2fac28455a0342480ecdc55bb0cb",
+      "reviewRole": "owner-comparison"
+    },
+    {
+      "nodeId": "2577:6525",
+      "optionId": "option-b-expressive",
+      "caseId": "witness-1200",
+      "fixtureId": "default",
+      "path": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-b-expressive/witness-1200-default.png",
+      "width": 1200,
+      "height": 597,
+      "byteLength": 894856,
+      "authority": "read-only-export-of-proposal-frame",
+      "sha256": "a06ab3e9e3dadc9f54bcdb08cf89c0cd27d2551bee6afefce3ede45243ff755d",
+      "reviewRole": "owner-comparison"
+    }
+  ]
+}

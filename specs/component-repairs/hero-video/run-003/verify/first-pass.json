@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "taskId": "T044",
+  "status": "pass",
+  "campaignId": "figma-responsive-hero-video-run-003",
+  "run": "first",
+  "authority": {
+    "ownerDecision": "specs/028-figma-responsive-hero-video/decisions/H3-mutation.json",
+    "ownerEvidence": "alllez go"
+  },
+  "source": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersionId": "2391919921996014952",
+    "fileName": "Piqueray (Copy)",
+    "backupRef": "refs/codex/backups/028-hero-video-responsive"
+  },
+  "topology": {
+    "componentSet": {
+      "nodeId": "2580:7392",
+      "name": "HeroVideo",
+      "propertyName": "Presentation"
+    },
+    "historicalWide": {
+      "nodeId": "2151:5552",
+      "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490"
+    },
+    "variants": [
+      "Presentation=Compact",
+      "Presentation=Desktop",
+      "Presentation=Wide"
+    ]
+  },
+  "mutationReceipt": {
+    "operationId": "install-owner-approved-responsive-presentations",
+    "operationStatus": "applied",
+    "createdNodes": [
+      {
+        "nodeId": "2580:7392",
+        "role": "component-set",
+        "declaredName": "HeroVideo"
+      },
+      {
+        "nodeId": "2580:7378",
+        "role": "presentation-compact",
+        "declaredName": "Presentation=Compact",
+        "presentationValue": "Compact"
+      },
+      {
+        "nodeId": "2580:7385",
+        "role": "presentation-desktop",
+        "declaredName": "Presentation=Desktop",
+        "presentationValue": "Desktop"
+      }
+    ],
+    "changedExistingNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ]
+  },
+  "verification": {
+    "comparisonOk": true,
+    "unexpectedDiffCount": 0,
+    "expectedDiffCount": 6,
+    "scenarioCount": 19,
+    "scenarioPassCount": 19,
+    "bindingCount": 13,
+    "attachedBindingCount": 13,
+    "typographyOverrideCount": 2,
+    "allowlistedTypographyCount": 2,
+    "imageHashes": {
+      "mode": "authorized-rehost",
+      "beforeUnique": 15,
+      "afterUnique": 15
+    },
+    "imageFingerprints": {
+      "before": 18,
+      "after": 18
+    },
+    "instanceLinks": {
+      "before": 96,
+      "after": 96
+    },
+    "pendingConsumers": 0
+  },
+  "writeBoundary": {
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "recoveredInterruptedAttempts": [
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-first-recovery.json",
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-binding-recovery-finalizer.raw.json",
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-inspection-recovery.raw.json",
+    "specs/component-repairs/hero-video/run-003/receipts/layout-probe-recovery.raw.json"
+  ],
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+    "specs/component-repairs/hero-video/run-003/verify/comparison.json",
+    "specs/component-repairs/hero-video/run-003/after/presentation-scenarios.json"
+  ]
+}

@@ -1,8 +1,55 @@
 /** Deterministic receipts and terminal reporting for campaign 021. */
 import { canonicalize, sha256Of, stableJson } from './json.js';
+import type { LiveApplyReceipt } from './apply-receipt.js';
 import { type IdempotenceComparison } from './verify.js';
 import { validateRepairReceipt } from './campaign.js';
-import type { DiffFinding, RepairReceipt, RepairTargetId } from './types.js';
+import type { DiffFinding, RepairCampaign, RepairReceipt, RepairTargetId } from './types.js';
+
+export interface ResponsiveCapabilityReport {
+  schemaVersion: '1.0.0';
+  campaignId: string;
+  status: 'pass' | 'fail' | 'not-applicable';
+  topology: Array<{ targetId: string; setNodeId: string | null; historicalMemberNodeId: string; historicalMemberKey: string; memberNames: string[] }>;
+  createdNodes: LiveApplyReceipt['operations'][number]['createdNodes'];
+  selectedPresentations: Array<{ scenarioId: string; selectedPresentation: string }>;
+  primitiveBindings: LiveApplyReceipt['bindingFacts'];
+  typographyOverrides: LiveApplyReceipt['typographyFacts'];
+  boundaryViolations: string[];
+}
+
+export function buildResponsiveCapabilityReport(campaign: RepairCampaign, receipt: LiveApplyReceipt): ResponsiveCapabilityReport {
+  const responsiveTargets = campaign.targets.filter((target) => target.responsive);
+  if (responsiveTargets.length === 0) return {
+    schemaVersion: '1.0.0', campaignId: campaign.campaignId, status: 'not-applicable', topology: [], createdNodes: [],
+    selectedPresentations: [], primitiveBindings: [], typographyOverrides: [], boundaryViolations: [],
+  };
+  const boundaryViolations = [
+    ...receipt.pageWrites.map((nodeId) => `page-write-forbidden:${nodeId}`),
+    ...receipt.childWrites.map((nodeId) => `shared-child-write-forbidden:${nodeId}`),
+  ];
+  const topology = responsiveTargets.map((target) => {
+    const check = receipt.masters.find((entry) => entry.targetId === target.targetId);
+    return {
+      targetId: target.targetId,
+      setNodeId: check?.setNodeId ?? null,
+      historicalMemberNodeId: check?.nodeId ?? target.masterNodeId,
+      historicalMemberKey: check?.componentKey ?? '',
+      memberNames: check?.variantNames ?? [],
+    };
+  });
+  const status = boundaryViolations.length === 0 && topology.every((entry) => entry.setNodeId && entry.historicalMemberKey) &&
+    receipt.bindingFacts.every((entry) => entry.status === 'attached') && receipt.typographyFacts.every((entry) => entry.status === 'allowlisted') &&
+    receipt.scenarioChecks.every((entry) => entry.overflow === false && entry.clippedBy.length === 0 && entry.contentAccessible)
+    ? 'pass' : 'fail';
+  return {
+    schemaVersion: '1.0.0', campaignId: campaign.campaignId, status, topology,
+    createdNodes: receipt.operations.flatMap((operation) => operation.createdNodes),
+    selectedPresentations: receipt.scenarioChecks.map((scenario) => ({ scenarioId: scenario.scenarioId, selectedPresentation: scenario.selectedPresentation })),
+    primitiveBindings: receipt.bindingFacts,
+    typographyOverrides: receipt.typographyFacts,
+    boundaryViolations,
+  };
+}
 
 export interface ApplyOperationVerdict {
   operationId: string;

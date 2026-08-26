@@ -14,6 +14,8 @@
     "breakpoints",
     "designWitnesses",
     "options",
+    "foundationDependency",
+    "authorizes",
     "rejectedTopics",
     "deferredTopics"
   ],
@@ -44,6 +46,10 @@
     "selectedOptionId": { "type": "string", "minLength": 1 },
     "approvedCompositions": { "$ref": "#/$defs/editableCompositions" },
     "decision": { "$ref": "#/$defs/ownerDecision" },
+    "foundationDependency": { "$ref": "#/$defs/foundationDependency" },
+    "authorizes": {
+      "enum": ["transverse-foundation-handoff", "figma-source-adaptation"]
+    },
     "rejectedTopics": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },
@@ -72,6 +78,20 @@
         "required": ["status"]
       },
       "then": { "required": ["supersedes", "decision"] }
+    },
+    {
+      "if": {
+        "properties": { "authorizes": { "const": "figma-source-adaptation" } },
+        "required": ["authorizes"]
+      },
+      "then": {
+        "properties": {
+          "foundationDependency": {
+            "properties": { "status": { "const": "approved" } },
+            "required": ["decisionRef"]
+          }
+        }
+      }
     }
   ],
   "$defs": {
@@ -233,25 +253,15 @@
       ],
       "properties": {
         "reuseCurrentButton": { "type": "boolean" },
-        "variant": { "type": "string", "minLength": 1 },
-        "sizeDecision": { "enum": ["unchanged", "owner-approved-delta"] },
+        "variant": { "const": "Outline blanc" },
+        "sizeDecision": { "const": "unchanged" },
         "impactRefs": {
           "type": "array",
+          "maxItems": 0,
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
         }
-      },
-      "allOf": [
-        {
-          "if": {
-            "properties": {
-              "sizeDecision": { "const": "owner-approved-delta" }
-            },
-            "required": ["sizeDecision"]
-          },
-          "then": { "properties": { "impactRefs": { "minItems": 1 } } }
-        }
-      ]
+      }
     },
     "mediaTreatment": {
       "type": "object",
@@ -298,7 +308,6 @@
         "justify",
         "titleAlign",
         "heightStrategy",
-        "spacing",
         "textStyleTokenPath",
         "ctaTreatment",
         "mediaTreatment",
@@ -329,8 +338,7 @@
             "owner-approved-custom"
           ]
         },
-        "spacing": { "$ref": "#/$defs/spacing" },
-        "textStyleTokenPath": { "$ref": "#/$defs/tokenRef" },
+        "textStyleTokenPath": { "const": "{typography.titre-hero-video}" },
         "ctaTreatment": { "$ref": "#/$defs/ctaTreatment" },
         "mediaTreatment": { "$ref": "#/$defs/mediaTreatment" },
         "shortLandscapeFallback": {
@@ -354,6 +362,23 @@
       "properties": {
         "compact": { "$ref": "#/$defs/composition" },
         "desktop": { "$ref": "#/$defs/composition" }
+      }
+    },
+    "foundationDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "requiredTopics"],
+      "properties": {
+        "status": { "enum": ["pending", "approved"] },
+        "requiredTopics": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "enum": ["responsive-spacing", "responsive-typography", "responsive-child-components"]
+          },
+          "uniqueItems": true
+        },
+        "decisionRef": { "type": "string", "minLength": 1 }
       }
     },
     "option": {

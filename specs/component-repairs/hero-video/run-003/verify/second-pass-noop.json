@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "taskId": "T047",
+  "status": "pass",
+  "campaignId": "figma-responsive-hero-video-run-003",
+  "run": "second",
+  "operation": {
+    "operationId": "install-owner-approved-responsive-presentations",
+    "targetId": "hero-video",
+    "nodeId": "2151:5552",
+    "status": "no-op",
+    "createdNodeIds": [],
+    "createdNodes": [],
+    "changedNodeIds": []
+  },
+  "strictNoOp": {
+    "operationStatus": "no-op",
+    "createdNodeCount": 0,
+    "createdNodeDeclarationCount": 0,
+    "changedNodeCount": 0,
+    "pageWriteCount": 0,
+    "childWriteCount": 0
+  },
+  "topology": {
+    "targetId": "hero-video",
+    "nodeId": "2151:5552",
+    "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+    "masterCount": 1,
+    "variantNames": [
+      "Presentation=Compact",
+      "Presentation=Desktop",
+      "Presentation=Wide"
+    ],
+    "setNodeId": "2580:7392",
+    "setName": "HeroVideo",
+    "propertyName": "Presentation"
+  },
+  "responsiveReplay": {
+    "scenarioCount": 19,
+    "passedScenarioCount": 19,
+    "bindingCount": 13,
+    "attachedBindingCount": 13,
+    "typographyOverrideCount": 2,
+    "allowlistedTypographyCount": 2
+  },
+  "captureComparison": {
+    "comparisonHash": "1ba98f5c5c81f359708cd42d82c87de36de8636632a5ea2c03e690002f1a15c9",
+    "afterFileVersionId": "2391919921996014952",
+    "idempotenceFileVersionId": "2391919921996014952",
+    "afterArtifactCount": 17,
+    "idempotenceArtifactCount": 17,
+    "afterImageFingerprintCount": 18,
+    "idempotenceImageFingerprintCount": 18,
+    "afterInstanceLinkCount": 96,
+    "idempotenceInstanceLinkCount": 96,
+    "differences": {
+      "geometry": 0,
+      "properties": 0,
+      "render": 0,
+      "images": 0,
+      "instances": 0,
+      "statuses": 0,
+      "normalizedReceipt": 0
+    }
+  },
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-003/receipts/apply-second.json",
+    "specs/component-repairs/hero-video/run-003/idempotence-receipt.json",
+    "specs/component-repairs/hero-video/run-003/verdict.md",
+    "specs/component-repairs/hero-video/run-003/idempotence/presentation-scenarios.json"
+  ]
+}

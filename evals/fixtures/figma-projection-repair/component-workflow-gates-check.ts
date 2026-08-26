@@ -1,4 +1,4 @@
-import { validateRepairCampaign } from '../../../extract/figma/projection-repair/campaign.js';
+import { selectFinalOwnerDecisions, validateRepairCampaign } from '../../../extract/figma/projection-repair/campaign.js';
 import { assertComponentTopology } from '../../../extract/figma/projection-repair/capture.js';
 import { REQUIRED_COMPONENT_PROTECTION_FACTS } from '../../../extract/figma/projection-repair/types.js';
 import { expectedChildOrderIssues, organismContainerIssues } from '../../../extract/figma/projection-repair/audit.js';
@@ -183,4 +183,31 @@ let usageRefused = false;
 try { assertComponentTopology(campaign as never, missingUsageNodes); } catch { usageRefused = true; }
 if (!usageRefused) throw new Error('consumer cardinality drift was not refused');
 
-console.log('✔ component workflow gates: one organism or shared component, audit-before-backup, bounded generated amend, scoped Container/FILL, protected facts, Page denylist, master uniqueness and consumer cardinality');
+const closureSelection = selectFinalOwnerDecisions([
+  { name: 'H1-audit.json', value: { gateId: 'H1', status: 'approved' } },
+  { name: 'H2-design.json', value: { gateId: 'H2', status: 'approved' } },
+  {
+    name: 'H4-closure.json',
+    value: {
+      targetId: 'hero-video', decision: 'accepted',
+      rationale: 'Owner accepted the final component and its named limits.',
+      decidedAt: '2026-08-26T09:22:40Z',
+    },
+  },
+], ['hero-video']);
+if (!closureSelection.ok || closureSelection.value.length !== 1 || closureSelection.value[0].sourceName !== 'H4-closure.json') {
+  throw new Error('finalize did not isolate the target-bound H4 decision from earlier gate records');
+}
+
+const malformedClosure = selectFinalOwnerDecisions([
+  { name: 'H4-closure.json', value: { targetId: 'hero-video', decision: 'accepted' } },
+], ['hero-video']);
+if (malformedClosure.ok) throw new Error('malformed target-bound closure decision was accepted');
+
+const duplicateClosure = selectFinalOwnerDecisions([
+  { name: 'hero-video.json', value: closureSelection.ok ? closureSelection.value[0] : {} },
+  { name: 'H4-closure.json', value: closureSelection.ok ? closureSelection.value[0] : {} },
+], ['hero-video']);
+if (duplicateClosure.ok) throw new Error('duplicate target-bound closure decisions were accepted');
+
+console.log('✔ component workflow gates: one organism or shared component, audit-before-backup, bounded generated amend, scoped Container/FILL, protected facts, Page denylist, master uniqueness, consumer cardinality and target-bound final owner decisions');

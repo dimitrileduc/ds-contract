@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0.0",
+  "incidentId": "hero-video-run-003-interrupted-first-2026-08-26",
+  "status": "recovered-to-fresh-standalone-baseline",
+  "attemptedAt": "2026-08-26T06:28:31Z",
+  "recoveredAt": "2026-08-26T06:36:35.002Z",
+  "failure": {
+    "message": "in set_layoutSizingHorizontal: FILL can only be set on children of auto-layout frames",
+    "receiptProduced": false,
+    "campaignStateAdvanced": false,
+    "cause": "The newly formed native COMPONENT_SET retained layoutMode=NONE while Compact member layout was being applied."
+  },
+  "observedPartialState": {
+    "componentSetNodeId": "2578:6551",
+    "componentSetName": "HeroVideo",
+    "createdMemberNodeIds": [
+      "2578:6537",
+      "2578:6544"
+    ],
+    "historicalNodeId": "2151:5552",
+    "historicalComponentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+    "hostNodeId": "2448:4731",
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "recovery": {
+    "scriptRef": "specs/028-figma-responsive-hero-video/tools/h3-recover-interrupted-first-run.js",
+    "rawReceiptRef": "specs/component-repairs/hero-video/run-003/receipts/interrupted-first-recovery.raw.json",
+    "removedCreatedNodeIds": [
+      "2578:6551",
+      "2578:6537",
+      "2578:6544"
+    ],
+    "restoredExistingNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "postRecovery": {
+    "historical": {
+      "nodeId": "2151:5552",
+      "name": "HeroVideo",
+      "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "parentNodeId": "2448:4731",
+      "width": 1728,
+      "height": 720,
+      "layoutMode": "HORIZONTAL",
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "FIXED"
+    },
+    "home": {
+      "nodeId": "2170:6351",
+      "mainComponentNodeId": "2151:5552",
+      "overridesPreserved": true
+    },
+    "heroVideoComponentSetCount": 0,
+    "visualBaselineRestored": true
+  },
+  "runnerCorrection": {
+    "sourceRef": "extract/figma/projection-repair/bridge-script.ts",
+    "fixtureRef": "evals/fixtures/figma-responsive-component-set-check.ts",
+    "targetedResponsiveEvals": "4/4 pass",
+    "typechecks": "2/2 pass"
+  },
+  "freshRetryPin": "2391919921996014952"
+}

@@ -1,0 +1,115 @@
+{
+  "campaignId": "figma-responsive-hero-video-run-003",
+  "filePin": "2391919921996014952",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-owner-approved-responsive-presentations",
+      "targetId": "hero-video",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2151:5552"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "wide.nodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "wide.componentKey",
+          "equals": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490"
+        },
+        {
+          "field": "variantNames",
+          "equals": [
+            "Presentation=Compact",
+            "Presentation=Desktop",
+            "Presentation=Wide"
+          ]
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-owner-approved-responsive-presentations",
+      "count": 1,
+      "declaredName": "HeroVideo"
+    },
+    {
+      "role": "presentation-compact",
+      "operationId": "install-owner-approved-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Compact",
+      "presentationValue": "Compact"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-owner-approved-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    }
+  ],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2170:6351",
+      "210:326",
+      "210:473"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:135",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [
+      "2563:5956",
+      "2563:5957",
+      "2563:5958",
+      "2563:5960",
+      "2563:5966",
+      "I2170:6351;2563:5966",
+      "I2170:6351;2563:5966;2410:6133"
+    ],
+    "protectedChildPaths": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "3/0",
+      "4",
+      "4/0",
+      "4/1",
+      "4/2"
+    ],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-compact",
+      "presentation-desktop"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

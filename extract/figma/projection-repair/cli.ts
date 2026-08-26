@@ -4,7 +4,7 @@ import path from 'node:path';
 import { captureCampaign, discoverAffectedSurfaces, figmaToken, inspectFigmaCampaign } from './capture.js';
 import { dryRunCampaign } from './apply.js';
 import { normalizeBridgeApplyEnvelope, validateLiveApplyReceipt } from './apply-receipt.js';
-import { transitionCampaign, validateRepairCampaign } from './campaign.js';
+import { selectFinalOwnerDecisions, transitionCampaign, validateRepairCampaign } from './campaign.js';
 import { buildImpactInventory, impactInventoryIsComplete, mergeConsumerImpacts } from './impact.js';
 import { buildIdempotenceReceipt, buildRepairReceipt } from './report.js';
 import type { CapturePhase, RepairCampaign } from './types.js';
@@ -273,15 +273,12 @@ async function finalize(campaignPath: string): Promise<void> {
   const idempotence = JSON.parse(readFileSync(idempotencePath, 'utf8')) as { status?: string };
   if (!comparison.ok || idempotence.status !== 'pass') fail('finalize requires green comparison and idempotence');
   const decisionFiles = readdirSync(decisionRoot).filter((name) => name.endsWith('.json')).sort();
-  if (decisionFiles.length !== current.targets.length) fail(`finalize requires exactly ${current.targets.length} owner decision(s), got ${decisionFiles.length}`);
-  const decisions = new Map<string, { targetId: string; decision: 'accepted' | 'refused'; rationale: string; decidedAt: string }>();
-  for (const name of decisionFiles) {
-    const decision = JSON.parse(readFileSync(path.join(decisionRoot, name), 'utf8')) as { targetId?: string; decision?: string; rationale?: string; decidedAt?: string };
-    if (!decision.targetId || !['accepted', 'refused'].includes(String(decision.decision)) || !decision.rationale || !decision.decidedAt || decisions.has(decision.targetId)) {
-      fail(`invalid or duplicate owner decision: ${name}`);
-    }
-    decisions.set(decision.targetId, decision as { targetId: string; decision: 'accepted' | 'refused'; rationale: string; decidedAt: string });
-  }
+  const selection = selectFinalOwnerDecisions(decisionFiles.map((name) => ({
+    name,
+    value: JSON.parse(readFileSync(path.join(decisionRoot, name), 'utf8')) as unknown,
+  })), current.targets.map((target) => target.targetId));
+  if (!selection.ok) fail(selection.issues.map((entry) => `${entry.code}@${entry.path}: ${entry.message}`).join(', '));
+  const decisions = new Map(selection.value.map((decision) => [decision.targetId, decision]));
   const receiptRoot = path.resolve(process.cwd(), paths.finalReceiptRoot);
   mkdirSync(receiptRoot, { recursive: true });
   const receipts = [];
@@ -318,7 +315,7 @@ async function finalize(campaignPath: string): Promise<void> {
       evidenceRefs: [
         beforeEvidence, afterEvidence,
         paths.comparisonPath,
-        path.posix.join(paths.ownerDecisionRoot, `${target.targetId}.json`),
+        path.posix.join(paths.ownerDecisionRoot, decision.sourceName),
         path.posix.join(paths.evidenceRoot, 'idempotence-receipt.json'),
       ],
       limits: verdict.limits,

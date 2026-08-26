@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0.0",
+  "receiptId": "hero-video-run-003-pre-h3",
+  "recordedAt": "2026-08-25T22:17:03Z",
+  "status": "ready-for-h3-review",
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2391777832416511066",
+    "freshAtReceipt": true
+  },
+  "sourceBaseline": {
+    "gitHead": "2a56908b3ca23f7b6dd1b7bfe38459c3983650cd",
+    "worktreeTree": "18075acdc12dd3a40ceaec352108fec337562906",
+    "backupRef": "refs/codex/backups/028-hero-video-responsive",
+    "backupCommit": "bc715dc88756a392ea87b2b85bedc5c8e6d5370a",
+    "recoverable": true
+  },
+  "preflight": {
+    "result": "pass",
+    "targetCount": 1,
+    "surfaceCount": 4,
+    "consumerCount": 3,
+    "observedVersionId": "2391777832416511066"
+  },
+  "beforeCapture": {
+    "captureSetId": "figma-responsive-hero-video-run-003-before-2391777832416511066",
+    "complete": true,
+    "artifactCount": 17,
+    "imageFingerprintCount": 18,
+    "instanceLinkCount": 96,
+    "masterPng": {
+      "path": "specs/component-repairs/hero-video/run-003/before/hero-video_master.png",
+      "width": 1728,
+      "height": 720,
+      "byteLength": 1494542
+    },
+    "homePng": {
+      "path": "specs/component-repairs/hero-video/run-003/before/hero-video_home-instance.png",
+      "width": 1728,
+      "height": 720,
+      "byteLength": 1493897
+    },
+    "homeWithHeaderPng": {
+      "path": "specs/component-repairs/hero-video/run-003/before/hero-video_home-with-header-context.png",
+      "width": 1728,
+      "height": 5462,
+      "byteLength": 5683498
+    },
+    "headerPng": {
+      "path": "specs/component-repairs/hero-video/run-003/before/hero-video_header-context.png",
+      "width": 1728,
+      "height": 86,
+      "byteLength": 10672
+    }
+  },
+  "dryRun": {
+    "result": "pass",
+    "operationCount": 1,
+    "expectedCreateCount": 3,
+    "expectedChangedExistingNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "pageWrites": [],
+    "childWrites": [],
+    "ref": "specs/component-repairs/hero-video/run-003/dry-run.json"
+  },
+  "runnerCapability": {
+    "status": "qualified-with-owner-accepted-pre-existing-baseline-debt",
+    "targetedResponsiveEvals": "pass",
+    "typechecks": "pass",
+    "fullSweep": "229/234",
+    "preExistingFailures": [
+      "baseline-parity-clean",
+      "baseline-acknowledges-without-failing",
+      "promotion-converges",
+      "golden-generated-output",
+      "preservation-013-clobber-detected"
+    ],
+    "ref": "specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md"
+  },
+  "mechanismSpike": {
+    "first": "pass",
+    "second": "pass-no-op",
+    "firstRef": "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-first.json",
+    "secondRef": "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-second-noop.json"
+  },
+  "hashes": {
+    "campaign": "0c8af6b556d6263da9d3cb7389701f592e3ab39d867bbf405023259fd422a2cb",
+    "dryRun": "cc43598abdb9090af94a95391a414d1a359c4a74453530426e3b3c0581e6df2e",
+    "mechanismSpikeFirst": "253716ea2dfe2b801125127dae465ddae2911a075bf59a81071eb7314598a530",
+    "mechanismSpikeSecond": "492506be6530ddbb566f937d12669eb7f585e04b39695fbeb53b65399e8b5b3f"
+  },
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "mutationAllowed": false
+}

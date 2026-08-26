@@ -1,12 +1,98 @@
 /** Strict, deterministic comparison gates for campaign 021. */
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import { compareProtectedFacts, type SurfaceFacts } from './facts.js';
+import { compareProtectedFacts, compareResponsiveTransitionProtectedFacts, comparableResponsiveMemberFacts, validateResponsiveFacts, type SurfaceFacts } from './facts.js';
 import { canonicalize, isObject, stableJson, type JsonRecord } from './json.js';
-import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, RepairCampaign, RepairTarget, RepairTargetId } from './types.js';
+import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, PresentationScenario, RepairCampaign, RepairTarget, RepairTargetId } from './types.js';
 
 const record = isObject;
 export { canonicalize, stableJson };
+
+export interface PresentationScenarioValidation {
+  ok: boolean;
+  issues: string[];
+}
+
+/** Scenario identity includes the explicitly selected presentation. Resizing a
+ * single active root cannot satisfy this gate, even when its outer bounds fit. */
+export function validatePresentationScenarioResults(
+  expected: readonly PresentationScenario[],
+  actual: readonly unknown[],
+): PresentationScenarioValidation {
+  const issues: string[] = [];
+  const expectedById = new Map(expected.map((scenario) => [scenario.scenarioId, scenario]));
+  const actualRows = actual.filter(record);
+  const actualIds = actualRows.map((result) => String(result.scenarioId ?? ''));
+  if (actualRows.length !== actual.length || actualRows.length !== expected.length || new Set(actualIds).size !== actualIds.length) {
+    issues.push('presentation-scenario-cardinality');
+  }
+  for (const result of actualRows) {
+    const scenarioId = String(result.scenarioId ?? '');
+    const scenario = expectedById.get(scenarioId);
+    if (!scenario) { issues.push(`presentation-scenario-undeclared:${scenarioId}`); continue; }
+    if (result.selectedPresentation !== scenario.presentationValue) issues.push(`presentation-not-selected:${scenarioId}`);
+    if (result.width !== scenario.width || result.height !== scenario.height || result.fixtureId !== scenario.fixtureId) {
+      issues.push(`presentation-scenario-drift:${scenarioId}`);
+    }
+    if (!record(result.rootBounds) || Math.abs(Number(result.rootBounds.width) - scenario.width) > 0.01 ||
+      !Array.isArray(result.descendantBounds) || result.descendantBounds.length === 0 ||
+      result.overflow !== scenario.expectedOverflow || !Array.isArray(result.clippedBy) || result.clippedBy.length !== 0 ||
+      result.contentAccessible !== true || result.posterCoverage !== 'cover' || typeof result.captureRef !== 'string' || result.captureRef.length === 0) {
+      issues.push(`presentation-scenario-inaccessible:${scenarioId}`);
+    }
+  }
+  for (const scenarioId of expectedById.keys()) if (!actualIds.includes(scenarioId)) issues.push(`presentation-scenario-missing:${scenarioId}`);
+  return { ok: issues.length === 0, issues: [...new Set(issues)] };
+}
+
+export function validateResponsiveClosureEvidence(
+  campaign: RepairCampaign,
+  receipt: unknown,
+): { ok: boolean; issues: string[] } {
+  const issues: string[] = [];
+  if (!record(receipt)) return { ok: false, issues: ['responsive-receipt-missing'] };
+  if (!Array.isArray(receipt.pageWrites) || receipt.pageWrites.length !== 0) issues.push('page-write-forbidden');
+  if (!Array.isArray(receipt.childWrites) || receipt.childWrites.length !== 0) issues.push('shared-child-write-forbidden');
+  const masters = Array.isArray(receipt.masters) ? receipt.masters.filter(record) : [];
+  const scenarios = Array.isArray(receipt.scenarioChecks) ? receipt.scenarioChecks : [];
+  const bindings = Array.isArray(receipt.bindingFacts) ? receipt.bindingFacts : [];
+  const typography = Array.isArray(receipt.typographyFacts) ? receipt.typographyFacts : [];
+  const members = Array.isArray(receipt.memberFacts) ? receipt.memberFacts.filter(record) : [];
+  for (const target of campaign.targets.filter((entry) => entry.responsive)) {
+    const responsive = target.responsive!;
+    const topology = responsive.componentSetTopology;
+    const master = masters.filter((entry) => entry.targetId === target.targetId);
+    if (master.length !== 1 || master[0].nodeId !== target.masterNodeId || master[0].componentKey !== topology.historicalMember.componentKey ||
+      typeof master[0].setNodeId !== 'string' || master[0].setName !== topology.setName || master[0].propertyName !== topology.propertyName ||
+      master[0].defaultPresentationValue !== topology.defaultPresentationValue ||
+      stableJson([...(master[0].variantNames as unknown[] ?? [])].sort()) !== stableJson([...topology.expectedMemberNames].sort())) {
+      issues.push(`responsive-topology-drift:${target.targetId}`);
+    }
+    const targetScenarios = scenarios.filter((entry) => !record(entry) || entry.targetId === undefined || entry.targetId === target.targetId);
+    const scenarioGate = validatePresentationScenarioResults(responsive.presentationScenarios, targetScenarios);
+    issues.push(...scenarioGate.issues.map((entry) => `${entry}:${target.targetId}`));
+    const factGate = validateResponsiveFacts(responsive, bindings, typography);
+    issues.push(...factGate.issues.map((entry) => `${entry}:${target.targetId}`));
+    const expectedPresentations = [topology.historicalMember.presentationValue, ...topology.createdMembers.map((entry) => entry.presentationValue)];
+    const targetMembers = members.filter((entry) => entry.targetId === undefined || entry.targetId === target.targetId);
+    if (targetMembers.length !== expectedPresentations.length) issues.push(`responsive-member-facts-cardinality:${target.targetId}`);
+    const previewWidths = new Map([
+      [topology.historicalMember.presentationValue, topology.historicalMember.authoringPreviewWidth],
+      ...topology.createdMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const),
+    ]);
+    if (targetMembers.some((entry) => !record(entry.authoringPreview) || entry.authoringPreview.layoutSizingHorizontal !== 'FIXED' ||
+      Math.abs(Number(entry.authoringPreview.width) - Number(previewWidths.get(String(entry.presentationValue)))) > 0.01)) {
+      issues.push(`responsive-authoring-preview-drift:${target.targetId}`);
+    }
+    const historical = targetMembers.find((entry) => entry.presentationValue === topology.historicalMember.presentationValue);
+    const baseline = historical ? comparableResponsiveMemberFacts(historical) : null;
+    if (!historical || expectedPresentations.some((presentation) => {
+      const rows = targetMembers.filter((entry) => entry.presentationValue === presentation);
+      return rows.length !== 1 || comparableResponsiveMemberFacts(rows[0]) !== baseline;
+    })) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+  }
+  return { ok: issues.length === 0, issues: [...new Set(issues)] };
+}
 
 export interface ReconstructionMaterial {
   capture: CaptureSet;
@@ -77,8 +163,12 @@ export function normalizeReconstruction(material: ReconstructionMaterial): Recor
       `${left.instanceNodeId}/${left.structuralPath}`.localeCompare(`${right.instanceNodeId}/${right.structuralPath}`)),
     statuses: {
       complete: material.capture.complete,
-      artifacts: material.capture.artifacts.map((artifact) => ({ artifactId: artifact.artifactId, status: artifact.status }))
-        .sort((left, right) => left.artifactId.localeCompare(right.artifactId)),
+      artifacts: material.capture.artifacts.map((artifact) => ({
+        // Report ids carry their capture phase (`after`/`idempotence`) while
+        // the governed surface and kind remain the same comparison address.
+        artifactId: artifact.kind === 'report' ? `${artifact.surfaceId}:report` : artifact.artifactId,
+        status: artifact.status,
+      })).sort((left, right) => left.artifactId.localeCompare(right.artifactId)),
     },
     receipt: material.applyReceipt ?? null,
   };
@@ -251,11 +341,26 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
   const afterHashes = new Set(after.imageFingerprints.map((image) => image.imageHash));
   const uniqueImageHashesPreserved = beforeHashes.size === afterHashes.size && [...beforeHashes].every((hash) => afterHashes.has(hash));
   const pendingConsumers = campaign.consumerImpacts.filter((consumer) => consumer.status === 'pending').length;
+  let responsiveClosureIssues: string[] = [];
+  if (campaign.targets.some((target) => target.responsive)) {
+    const receiptPath = campaign.workflow?.applyReceiptPaths.first;
+    if (!receiptPath || !existsSync(path.resolve(root, receiptPath))) responsiveClosureIssues = ['responsive-receipt-missing'];
+    else {
+      try {
+        const receipt = JSON.parse(readFileSync(path.resolve(root, receiptPath), 'utf8'));
+        responsiveClosureIssues = validateResponsiveClosureEvidence(campaign, receipt).issues;
+      } catch { responsiveClosureIssues = ['responsive-receipt-unreadable']; }
+    }
+  }
   const targets: TargetClosureVerdict[] = campaign.targets.map((target) => {
     const surfaces = campaign.affectedSurfaces.filter((surface) => surface.targetId === target.targetId);
     const expectedDiffs: DiffFinding[] = [];
     const unexpectedDiffs: DiffFinding[] = [];
     let unchangedArtifactCount = 0;
+    if (target.responsive) for (const responsiveIssue of responsiveClosureIssues) unexpectedDiffs.push({
+      surfaceId: `${target.targetId}:responsive`, kind: 'unexpected', description: responsiveIssue, diffCount: 1,
+      evidenceRef: campaign.workflow?.applyReceiptPaths.first ?? campaign.workflow?.comparisonPath ?? 'proofs/comparison.json',
+    });
     for (const surface of surfaces) {
       const artifactKinds = surface.role === 'hidden-instance' ? ['structure', 'properties'] as const : ['structure', 'properties', 'png'] as const;
       for (const kind of artifactKinds) {
@@ -295,7 +400,9 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
             evidenceRef: artifactFor(after, surface.surfaceId, 'facts')?.path ?? campaign.workflow?.comparisonPath ?? 'proofs/comparison.json',
           });
         } else {
-          const differences = compareProtectedFacts(leftFacts, rightFacts, target.protectedFacts);
+          const differences = target.responsive
+            ? compareResponsiveTransitionProtectedFacts(leftFacts, rightFacts, target.protectedFacts, target.responsive)
+            : compareProtectedFacts(leftFacts, rightFacts, target.protectedFacts);
           for (const difference of differences) unexpectedDiffs.push({
             surfaceId: surface.surfaceId,
             kind: 'unexpected',

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "spikeId": "responsive-component-set-mechanism",
+  "run": "second",
+  "executedAt": "2026-08-25T22:16:00Z",
+  "result": "pass",
+  "environment": {
+    "kind": "same-in-memory-disposable-figma-plugin-api-mock",
+    "authoritativeSource": false,
+    "fileKey": "responsive-file-key",
+    "fileVersionId": "123456",
+    "sourceMutation": false,
+    "pageMutation": false
+  },
+  "replayedOperationIds": [
+    "install-responsive"
+  ],
+  "operation": {
+    "operationId": "install-responsive",
+    "status": "no-op",
+    "createdNodeIds": [],
+    "createdNodes": [],
+    "changedNodeIds": []
+  },
+  "topologyAfterReplay": {
+    "setNodeId": "9:25",
+    "setName": "Card",
+    "propertyName": "Presentation",
+    "memberNames": [
+      "Presentation=Compact",
+      "Presentation=Desktop",
+      "Presentation=Wide"
+    ],
+    "historicalMemberNodeId": "1:1",
+    "historicalMemberKey": "historical-key",
+    "hostNodeId": "1:0"
+  },
+  "homeAfterReplay": {
+    "nodeId": "2:1",
+    "mainComponentNodeId": "1:1",
+    "linkPreserved": true,
+    "overridesPreserved": true
+  },
+  "proofFactsAfterReplay": {
+    "scenarioCount": 19,
+    "allPresentationsExplicitlySelected": true,
+    "allScenariosGreen": true,
+    "allPrimitiveBindingsAttached": true,
+    "allTypographyFieldsAllowlisted": true,
+    "memberMediaTextsPropertiesAndSharedChildrenStable": true
+  },
+  "writeBoundary": {
+    "pageWrites": [],
+    "childWrites": [],
+    "unexpectedCreates": []
+  },
+  "idempotence": {
+    "allOperationsNoOp": true,
+    "zeroCreatedNodes": true,
+    "zeroChangedNodes": true,
+    "sameWideIdentity": true,
+    "sameHomeLinkAndOverrides": true
+  },
+  "evidenceRefs": [
+    "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-first.json",
+    "evals/fixtures/figma-responsive-component-set-check.ts",
+    "evals/fixtures/figma-responsive-write-boundary-idempotence-check.ts"
+  ]
+}

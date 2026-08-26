@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-hero-video-run-003",
+  "targetId": "hero-video",
+  "inspectedAt": "2026-08-25T20:46:26.183Z",
+  "fileVersionId": "2391670501431838845",
+  "verdict": "green",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "source": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "currentVersionId": "2391670501431838845",
+    "repinnedAt": "2026-08-25T20:49:58.205Z",
+    "freshnessResult": "current Figma version re-read; version unchanged since the accepted 027 baseline",
+    "transports": [
+      "Figma REST read-only via component:repair audit and exports",
+      "Figma Plugin API read-only via Desktop Bridge for local variable names"
+    ]
+  },
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2151:5552",
+    "parentNodeId": "2448:4731",
+    "parentName": "Container · HeroVideo",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2563:5960",
+      "structuralPath": "3/0",
+      "name": "Accroche",
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "classification": "named-exact",
+      "textStyleId": "2170:6388",
+      "textStyleName": "Titre Hero vidéo",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2563:5966;2410:6133",
+      "structuralPath": "4/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button"
+    ],
+    "observed": [
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "surfaceAudit": {
+    "master": {
+      "nodeId": "2151:5552",
+      "name": "HeroVideo",
+      "type": "COMPONENT",
+      "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "sameNamedMasterCount": 1,
+      "variantCount": 0,
+      "bounds": {
+        "x": 9322,
+        "y": 844,
+        "width": 1728,
+        "height": 720
+      },
+      "layout": {
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FILL",
+        "layoutSizingVertical": "FIXED",
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MAX",
+        "itemSpacing": 10,
+        "paddingTop": 48,
+        "paddingRight": 89,
+        "paddingBottom": 48,
+        "paddingLeft": 89,
+        "clipsContent": false
+      },
+      "rootBindings": {
+        "itemSpacing": {
+          "variableId": "VariableID:2027:969",
+          "variableName": "space/10"
+        },
+        "paddingTop": {
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48"
+        },
+        "paddingRight": {
+          "variableId": "VariableID:2183:7972",
+          "variableName": "space/89"
+        },
+        "paddingBottom": {
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48"
+        },
+        "paddingLeft": {
+          "variableId": "VariableID:2183:7972",
+          "variableName": "space/89"
+        },
+        "height": {
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root"
+        }
+      },
+      "publicProperties": {
+        "Accroche#2439:0": {
+          "type": "TEXT",
+          "defaultValue": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+        }
+      }
+    },
+    "container": {
+      "nodeId": "2448:4731",
+      "name": "Container · HeroVideo",
+      "type": "FRAME",
+      "bounds": {
+        "width": 1728,
+        "height": 720
+      },
+      "directParentOfMaster": true,
+      "componentChildCount": 1,
+      "writePolicy": "read-only-before-H3"
+    },
+    "homeUsage": {
+      "nodeId": "2170:6351",
+      "name": "HeroVideo",
+      "type": "INSTANCE",
+      "mainComponentNodeId": "2151:5552",
+      "usageCountForMainComponent": 1,
+      "bounds": {
+        "x": 301,
+        "y": 0,
+        "width": 1728,
+        "height": 720
+      },
+      "writePolicy": "read-only"
+    },
+    "headerContext": {
+      "nodeId": "210:473",
+      "name": "Header",
+      "type": "INSTANCE",
+      "bounds": {
+        "x": 301,
+        "y": 0,
+        "width": 1728,
+        "height": 86
+      },
+      "scope": "read-only visual context; not a HeroVideo dependency or write target"
+    },
+    "button": {
+      "masterNodeId": "6:135",
+      "masterName": "Style=Outline blanc",
+      "componentKey": "79d92a0042c840703a0afe8d81dae1d3c1a9c241",
+      "nestedMasterPath": "4",
+      "homeVariant": "Outline blanc",
+      "homeLabel": "En savoir plus",
+      "iconLeft": false,
+      "iconRight": true,
+      "writePolicy": "read-only/non-blocking"
+    },
+    "media": {
+      "poster": {
+        "hostNodeId": "2563:5956",
+        "structuralPath": "0",
+        "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+        "scaleMode": "FILL",
+        "imageTransform": [
+          [1, 0, 0],
+          [0, 1, 0]
+        ]
+      },
+      "videoPaintCount": 0,
+      "scrims": [
+        {
+          "nodeId": "2563:5957",
+          "name": "VoileBas",
+          "type": "GRADIENT_LINEAR",
+          "stopPositions": [0.800000011920929, 1],
+          "endAlpha": 0.5
+        },
+        {
+          "nodeId": "2563:5958",
+          "name": "VoileNavigation",
+          "type": "GRADIENT_LINEAR",
+          "stopPositions": [0.75, 1],
+          "endAlpha": 0.5
+        }
+      ]
+    },
+    "overrides": {
+      "homeAccroche": "preserved",
+      "homeButtonProperties": "preserved",
+      "homeButtonLabelTextStyle": {
+        "nodeId": "I2170:6351;2563:5966;2410:6133",
+        "historicalTextStyleId": "2162:5834",
+        "currentTextStyleId": null,
+        "currentMetrics": "Montserrat Medium 16/22",
+        "classification": "pre-existing-defect/read-only/non-blocking",
+        "disposition": "028 does not repair or reconfigure the CTA"
+      }
+    }
+  },
+  "variableAudit": {
+    "restVariablesEndpoint": "unavailable-403-or-404",
+    "desktopBridgeReadOnly": "pass",
+    "localFloatVariableCount": 199,
+    "candidateInventoryRef": "specs/028-figma-responsive-hero-video/inventory/H1-primitives.json",
+    "rawEvidenceRef": "specs/028-figma-responsive-hero-video/proofs/H1-bridge-read-only.json",
+    "variableCreates": []
+  },
+  "historicalComparison": {
+    "baselineVersionId": "2391670501431838845",
+    "currentVersionId": "2391670501431838845",
+    "masterArtifactsByteIdentical": true,
+    "homeArtifactsByteIdentical": true,
+    "homeWithHeaderArtifactsByteIdentical": true,
+    "deltaRef": "specs/028-figma-responsive-hero-video/inventory/H1-baseline-delta.md"
+  },
+  "evidenceRefs": [
+    "specs/028-figma-responsive-hero-video/proofs/H1-surface-manifest.json",
+    "specs/028-figma-responsive-hero-video/proofs/H1-bridge-read-only.json",
+    "specs/027-responsive-hero-video/inventory/H1-fresh-audit.json",
+    "specs/027-responsive-hero-video/decisions/H1-baseline.json",
+    "specs/027-responsive-hero-video/decisions/H2-responsive.json"
+  ],
+  "findings": [],
+  "proposedChanges": []
+}

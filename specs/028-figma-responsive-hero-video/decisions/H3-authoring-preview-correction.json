@@ -1,0 +1,38 @@
+{
+  "gateId": "H3-authoring-preview-correction",
+  "status": "approved",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T08:08:00.000Z",
+  "ownerInstruction": "fini la phase",
+  "supersedes": "specs/028-figma-responsive-hero-video/decisions/H3-mutation.json#authoring-layout-only",
+  "acceptedFacts": [
+    "Presentation=Compact uses a 390 px authoring preview",
+    "Presentation=Desktop uses a 1200 px authoring preview",
+    "Presentation=Wide keeps its historical 1728 px authoring preview",
+    "variant roots are FIXED only inside the component-set authoring catalogue",
+    "proof and consumer instances remain FILL in their breakpoint parent"
+  ],
+  "authorizes": [
+    "generic runner correction for explicit authoring preview widths",
+    "live changes to component set 2580:7392 and its three direct member roots",
+    "automatic Container height consequence from the component-set catalogue layout"
+  ],
+  "forbids": [
+    "Page writes",
+    "shared-child writes",
+    "contract, HTML, React, CSS or Odoo changes",
+    "component or member recreation"
+  ],
+  "expectedResult": {
+    "componentSetLayoutMode": "NONE",
+    "authoringPreviewWidths": {
+      "Compact": 390,
+      "Desktop": 1200,
+      "Wide": 1728
+    },
+    "instanceSizing": "FILL",
+    "createdNodeIds": [],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

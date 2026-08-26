@@ -1,0 +1,93 @@
+{
+  "campaignId": "figma-responsive-hero-video-run-004",
+  "filePin": "2391931922674193920",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "correct-responsive-authoring-previews",
+      "targetId": "hero-video",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2151:5552"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "set.layoutMode",
+          "equals": "NONE"
+        },
+        {
+          "field": "Compact.authoringPreviewWidth",
+          "equals": 390
+        },
+        {
+          "field": "Desktop.authoringPreviewWidth",
+          "equals": 1200
+        },
+        {
+          "field": "Wide.authoringPreviewWidth",
+          "equals": 1728
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2448:4731",
+      "2580:7392",
+      "2580:7378",
+      "2580:7385",
+      "2151:5552"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2170:6351",
+      "210:326",
+      "210:473"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:135",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [
+      "2563:5956",
+      "2563:5957",
+      "2563:5958",
+      "2563:5960",
+      "2563:5966",
+      "I2170:6351;2563:5966",
+      "I2170:6351;2563:5966;2410:6133"
+    ],
+    "protectedChildPaths": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "3/0",
+      "4",
+      "4/0",
+      "4/1",
+      "4/2"
+    ],
+    "allowedCreateRoles": [],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

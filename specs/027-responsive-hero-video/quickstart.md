@@ -1,10 +1,12 @@
 # Quickstart — Validate Responsive HeroVideo
 
+> **Statut : Superseded — 2026-08-25.** Ce guide est conservé comme historique de la campagne arrêtée après H2. Ses commandes ne doivent plus être exécutées pour poursuivre la feature 027.
+
 This is the execution and validation guide for the completed feature. It does not authorize any owner gate or live mutation by itself. Model details are in [data-model.md](data-model.md); interface and persistence rules are in [contracts/](contracts/).
 
 ## Prerequisites
 
-Implementation must run in a clean dedicated `027-responsive-hero-video` worktree, not the current dirty `main` checkout. Inside that worktree:
+Implementation runs in the active Superset worktree, which is already the isolated implementation boundary. Do not create or switch to a sibling worktree. Inside the active workspace:
 
 ```bash
 npm install
@@ -44,22 +46,28 @@ Generate the local, non-authoritative option packet and its width probes with th
 npx tsx specs/027-responsive-hero-video/tools/build-option-packet.ts
 npx tsx specs/027-responsive-hero-video/tools/validate-decision.ts \
   specs/027-responsive-hero-video/decisions/H2-responsive.json
+```
+
+Expected:
+
+- two or three options cover compact and Desktop parts, order, axis, alignments, height strategy, governed `Titre Hero vidéo` role, unchanged intrinsic-width Button placement, media and short landscape while wide remains the baseline;
+- every padding, gap or typography value used to render or stress-test the layout is visibly labeled non-authoritative and stays out of H2 and Figma source;
+- default and long content are rendered at 320, 390, 834, 1200 and 1728 plus short landscape, with probes at 991/992/993 and 1399/1400/1401;
+- the layout-only decision validates against [responsive-decision.schema.json](contracts/responsive-decision.schema.json), records option 3 and authorizes only the transverse-foundation handoff under the fixed 992/1400 profile;
+- the authoritative Figma source is still unchanged.
+
+Stop after explicit H2 layout acceptance. Do not execute the source commands below until `decisions/H2-foundation-dependency.json` links an owner-approved transverse spacing/typography/atom decision.
+
+## 3. Prove and apply the Figma transition; close H3
+
+First verify that `decisions/H2-foundation-dependency.json` points to an approved transverse decision covering responsive spacing, typography and child components. A missing or provisional receipt stops here. Then prepare the source campaign:
+
+```bash
 npm run component:repair -- --campaign specs/component-repairs/hero-video/run-002/campaign.json --snapshot-source --backup-ref refs/codex/backups/027-hero-video-responsive-apply
 npm run component:repair -- --campaign specs/component-repairs/hero-video/run-002/campaign.json --preflight
 npm run component:repair -- --campaign specs/component-repairs/hero-video/run-002/campaign.json --capture-before
 npm run component:repair -- --campaign specs/component-repairs/hero-video/run-002/campaign.json --dry-run
 ```
-
-Expected:
-
-- two or three options cover compact and Desktop parts, order, axis, alignments, height, spacing, governed Text Style, CTA, media and short landscape while wide remains the baseline;
-- default and long content are rendered at 320, 390, 834, 1200 and 1728 plus short landscape, with probes at 991/992/993 and 1399/1400/1401;
-- the approved decision validates against [responsive-decision.schema.json](contracts/responsive-decision.schema.json), names one option and resolves every Mobile/Desktop value under the fixed 992/1400 profile;
-- the authoritative Figma source is still unchanged.
-
-Do not proceed without explicit H2 acceptance.
-
-## 3. Prove and apply the Figma transition; close H3
 
 Run the registered headless fixtures first:
 

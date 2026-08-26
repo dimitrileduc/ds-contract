@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "layout-probe-recovery",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "recoveredAt": "2026-08-26T06:54:32.140Z",
+  "scriptResults": [
+    {
+      "operationId": "recover-verified-layout-probe",
+      "status": "recovered-to-fresh-standalone-baseline",
+      "historicalNodeId": "2151:5552",
+      "historicalComponentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "hostNodeId": "2448:4731",
+      "removedCreatedNodeIds": [
+        "2580:6873",
+        "2580:6859",
+        "2580:6866"
+      ]
+    }
+  ],
+  "inspection": {
+    "master": {
+      "nodeId": "2151:5552",
+      "name": "HeroVideo",
+      "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "parentNodeId": "2448:4731",
+      "width": 1728,
+      "height": 720,
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "FIXED",
+      "heightVariableId": "VariableID:2434:5919"
+    },
+    "hostChildren": [
+      {
+        "nodeId": "2151:5552",
+        "type": "COMPONENT",
+        "name": "HeroVideo"
+      }
+    ],
+    "figmaWrites": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "removedCreatedNodeIds": [
+      "2580:6873",
+      "2580:6859",
+      "2580:6866"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

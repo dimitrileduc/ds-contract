@@ -1,0 +1,5072 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "027-responsive-hero-video",
+  "authority": "non-authoritative",
+  "generatedAt": "2026-08-25T17:48:00.664Z",
+  "source": "specs/027-responsive-hero-video/inventory/H2-option-harness.html",
+  "runner": "Superset in-app browser via CDP exact device metrics",
+  "profile": {
+    "compact": "<992",
+    "desktop": "992-1399",
+    "wide": ">=1400"
+  },
+  "figmaWrites": [],
+  "summary": {
+    "options": 3,
+    "probes": 14,
+    "fixtures": 4,
+    "checks": 168,
+    "passed": 168,
+    "failed": 0
+  },
+  "screenshots": [
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/continuite-wide-390-default.png",
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/continuite-wide-1200-default.png",
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/pile-editoriale-390-default.png",
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/pile-editoriale-1200-default.png",
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/centre-immersif-390-default.png",
+    "specs/027-responsive-hero-video/proofs/H2-option-visuals/centre-immersif-1200-default.png"
+  ],
+  "records": [
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 646,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "320",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 640,
+          "width": 320
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 640,
+          "width": 320
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 844,
+          "width": 390
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "834",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 1112,
+          "width": 834
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 1112,
+          "width": 834
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "991",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 991
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 991
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "992",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 992
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 992
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "993",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 993
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 993
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1024",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1024
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1200",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1200
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1200
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1399",
+      "expectedComposition": "desktop",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "desktop",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 800,
+          "width": 1399
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1399
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1400",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1400
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1400
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1401",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1401
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1401
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1440",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1440
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 800,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "1728",
+      "expectedComposition": "wide",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "wide",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 720,
+          "width": 1728
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 720,
+          "width": 1728
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "continuite-wide",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "continuite-wide",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "pile-editoriale",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "pile-editoriale",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-title-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-title-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "long-cta-poster",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "long-cta-poster",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    },
+    {
+      "probeId": "short-landscape-844x390",
+      "expectedComposition": "compact",
+      "optionId": "centre-immersif",
+      "fixtureId": "default-video-unavailable",
+      "pass": true,
+      "state": {
+        "compositionId": "compact",
+        "contentWithinHero": true,
+        "ctaComplete": true,
+        "figmaWrites": [],
+        "fixtureId": "default-video-unavailable",
+        "fontLoaded": true,
+        "hero": {
+          "height": 390,
+          "width": 844
+        },
+        "horizontalOverflowPx": 0,
+        "mediaCoversHero": true,
+        "optionId": "centre-immersif",
+        "partCount": 6,
+        "posterLoaded": true,
+        "titleComplete": true,
+        "titleCtaOverlap": false,
+        "viewport": {
+          "height": 390,
+          "width": 844
+        }
+      }
+    }
+  ]
+}

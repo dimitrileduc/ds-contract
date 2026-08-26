@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "gateId": "H4",
+  "decisionId": "H4-closure-v1",
+  "status": "approved",
+  "targetId": "hero-video",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T09:22:40Z",
+  "rationale": "The owner accepts the final Figma HeroVideo source, its named limits and its handoff, and explicitly authorizes closure of phase 5 and execution of phase 6 without creating a commit.",
+  "h3DecisionRef": "specs/028-figma-responsive-hero-video/decisions/H3-mutation.json",
+  "firstApplyReceiptRef": "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+  "afterVerifyRef": "specs/component-repairs/hero-video/run-005/verify/first-pass.json",
+  "responsiveMatrixRef": "specs/028-figma-responsive-hero-video/proofs/ledger.json#/responsiveControls",
+  "protectedFactsRef": "specs/component-repairs/hero-video/run-005/verify/protected-facts.json",
+  "wideBeforeAfterComparisonRef": "specs/component-repairs/hero-video/run-005/verify/comparison.json",
+  "secondApplyReceiptRef": "specs/component-repairs/hero-video/run-005/receipts/apply-second.json",
+  "idempotenceCaptureRef": "specs/component-repairs/hero-video/run-005/idempotence",
+  "secondPassVerifyRef": "specs/component-repairs/hero-video/run-005/verify/second-pass-noop.json",
+  "createdNodeIdsFirst": [
+    "2580:7392",
+    "2580:7378",
+    "2580:7385"
+  ],
+  "changedNodeIdsFirst": [
+    "2151:5552",
+    "2448:4731"
+  ],
+  "canonicalCorrectionFirst": {
+    "campaignId": "figma-responsive-hero-video-run-005",
+    "createdNodeIds": [],
+    "changedNodeIds": [
+      "2151:5552",
+      "2580:7378",
+      "2580:7385",
+      "2580:7392"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "createdNodeIdsSecond": [],
+  "changedNodeIdsSecond": [],
+  "pageWritesFirst": [],
+  "childWritesFirst": [],
+  "pageWritesSecond": [],
+  "childWritesSecond": [],
+  "handoffRefs": [
+    "specs/028-figma-responsive-hero-video/handoff/compositions.md",
+    "specs/028-figma-responsive-hero-video/handoff/primitives-and-typography.md",
+    "specs/028-figma-responsive-hero-video/handoff/deferred-and-limits.md",
+    "specs/028-figma-responsive-hero-video/proofs/maintainer-rehearsal.md"
+  ],
+  "evidenceRefs": [
+    "specs/028-figma-responsive-hero-video/proofs/ledger.json",
+    "specs/028-figma-responsive-hero-video/proofs/maintainer-rehearsal.md",
+    "specs/028-figma-responsive-hero-video/proofs/phase-4-authoring-layout-correction.md",
+    "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+    "specs/component-repairs/hero-video/run-003/verify/first-pass.json",
+    "specs/component-repairs/hero-video/run-005/receipts/apply-first.json",
+    "specs/component-repairs/hero-video/run-005/verify/first-pass.json",
+    "specs/component-repairs/hero-video/run-005/verify/protected-facts.json",
+    "specs/component-repairs/hero-video/run-005/receipts/apply-second.json",
+    "specs/component-repairs/hero-video/run-005/verify/second-pass-noop.json"
+  ],
+  "acceptedFacts": [
+    "HeroVideo is one component set with Presentation=Compact, Desktop and Wide, with Wide remaining the default presentation.",
+    "The historical Wide member keeps node id 2151:5552 and component key 36011e51b8bc0b221a1ba6f9108709b5bd1c4490.",
+    "All 19 responsive scenarios pass with explicit presentation selection, zero overflow, zero clipping and accessible content.",
+    "All 13 primitive bindings are attached and both local typography overrides remain allowlisted pending-responsive-text-style debt.",
+    "Home, Header, Button, Pages and shared children remain read-only with zero Page or child writes.",
+    "The canonical second application is strictly no-op with zero created or changed nodes and zero observable differences.",
+    "A distinct maintainer can replay the evidence path without oral context."
+  ],
+  "acceptedLimits": [
+    "Figma Design presentation selection remains explicit; no automatic breakpoint behavior is claimed.",
+    "Compact and Desktop typography overrides remain local pending-responsive-text-style observations until the transverse Home campaign.",
+    "The pre-existing Home CTA label Text Style defect remains read-only, unresolved and non-blocking in 028.",
+    "The global eval sweep remains 229/234 because of five named pre-existing parity and golden debts; this is not described as full-suite-green.",
+    "Generated descendant ids may be normalized while the component set, historical Wide id/key, Container and usages remain authoritative."
+  ],
+  "rejectedOptions": [],
+  "deferredTopics": [
+    "responsive Text Style and primitive promotion across the Home campaign",
+    "contract, token, code, HTML and Odoo convergence",
+    "automatic runtime breakpoint behavior",
+    "the pre-existing Home CTA Text Style defect and any shared-child need"
+  ],
+  "authorizes": [
+    "finalize the verified run-005 component-repair campaign",
+    "close the phase-5 ledger as accepted",
+    "execute phase-6 repository validation without extending product scope"
+  ],
+  "forbids": [
+    "any additional Figma mutation",
+    "any Page, Home, Header, Button or shared-child write",
+    "any contract, token-global, React, HTML, CSS or Odoo promotion",
+    "creating a git commit"
+  ],
+  "regenerationGuard": "active",
+  "nonConvergenceStatus": "figma-ahead/pending-home-responsive-promotion",
+  "contractClaim": false,
+  "codeClaim": false,
+  "odooClaim": false,
+  "automaticBreakpointClaim": false,
+  "supersedes": null,
+  "conversationEvidence": "After H4 was explained in plain language as acceptance of the final Figma result and its limits, the owner replied: c ok pr moi. go phase 6. ne commit pas, then clarified: fin phase 5 + phase 6."
+}

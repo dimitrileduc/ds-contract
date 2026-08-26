@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "decisionId": "H3-mutation-v1",
+  "gateId": "H3",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T06:26:35Z",
+  "ownerEvidence": "Owner replied: \"alllez go\" after the exact single-component-set topology and mutation boundary were restated.",
+  "supersedes": null,
+  "h1DecisionRef": "specs/028-figma-responsive-hero-video/decisions/H1-audit.json",
+  "h2DecisionRef": "specs/028-figma-responsive-hero-video/decisions/H2-design.json",
+  "campaignRef": "specs/component-repairs/hero-video/run-003/campaign.json",
+  "freshFilePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "versionId": "2391919921996014952",
+    "capturedAt": "2026-08-26T06:38:14Z"
+  },
+  "interruptedFirstRunRecovery": {
+    "status": "recovered-and-repinned-before-retry",
+    "failure": "Figma refused layoutSizingHorizontal=FILL while the newly created component set still had layoutMode=NONE.",
+    "partialCreatedNodeIds": [
+      "2578:6551",
+      "2578:6537",
+      "2578:6544"
+    ],
+    "recoveryRef": "specs/component-repairs/hero-video/run-003/receipts/interrupted-first-recovery.json",
+    "postRecoveryFacts": [
+      "historical HeroVideo node id/key/name/parent and FILL/FIXED sizing restored",
+      "Home instance link and overrides preserved",
+      "zero HeroVideo component set remained before retry",
+      "pageWrites and childWrites remained empty"
+    ],
+    "runnerCorrection": "The generic runner now prepares the additive component set as a vertical auto-layout host before applying declared member FILL/HUG sizing.",
+    "ownerVisibleTopologyChanged": false
+  },
+  "postApprovalRecoveredNativeGaps": {
+    "status": "all-partials-rolled-back-exactly-before-canonical-first-pass",
+    "topologyOrBlastRadiusChanged": false,
+    "recoveries": [
+      {
+        "reason": "combineAsVariants detached the historical height binding and changed member sizing semantics",
+        "recoveryRef": "specs/component-repairs/hero-video/run-003/receipts/interrupted-binding-recovery-finalizer.raw.json",
+        "runnerCorrection": "restore the declared primitive height binding before the declared Wide layout authority"
+      },
+      {
+        "reason": "native dynamic-page getters refused component property and main-component inspection after the transition",
+        "recoveryRef": "specs/component-repairs/hero-video/run-003/receipts/interrupted-inspection-recovery.raw.json",
+        "runnerCorrection": "use REST-authoritative captures and the exposed componentId without forbidden synchronous getters"
+      },
+      {
+        "reason": "the first scenario proof frame hugged width and could mask overflow",
+        "recoveryRef": "specs/component-repairs/hero-video/run-003/receipts/layout-probe-recovery.raw.json",
+        "runnerCorrection": "keep the proof frame counter-axis FIXED and require measured root width to equal the requested width"
+      }
+    ],
+    "postRecoveryInvariant": "historical id/key/height binding restored, zero temporary set remained, and Page/child writes stayed empty before the canonical first pass"
+  },
+  "sourceBaselineRef": {
+    "backupRef": "refs/codex/backups/028-hero-video-responsive",
+    "backupCommit": "bc715dc88756a392ea87b2b85bedc5c8e6d5370a",
+    "worktreeTree": "18075acdc12dd3a40ceaec352108fec337562906"
+  },
+  "dryRunRef": "specs/component-repairs/hero-video/run-003/dry-run.json",
+  "runnerCapabilityRef": {
+    "status": "qualified-with-owner-accepted-pre-existing-baseline-debt",
+    "requiredNominalStatus": "full-suite-green",
+    "targetedEvalIds": [
+      "figma-responsive-component-set-declared-creates",
+      "figma-responsive-presentation-scenarios-explicit",
+      "figma-responsive-bindings-typography-allowlisted",
+      "figma-responsive-boundary-idempotence"
+    ],
+    "targetedResult": "pass",
+    "typechecksResult": "pass",
+    "fullSweepResult": "229/234",
+    "knownBaselineDebtRef": "specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md",
+    "exceptionRequiringExplicitH3Acknowledgement": true
+  },
+  "mechanismSpikeFirstRef": "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-first.json",
+  "mechanismSpikeSecondNoopRef": "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-second-noop.json",
+  "beforeCaptureRefs": {
+    "master": [
+      "specs/component-repairs/hero-video/run-003/before/hero-video_master.png",
+      "specs/component-repairs/hero-video/run-003/before/hero-video_master.facts.json"
+    ],
+    "home": [
+      "specs/component-repairs/hero-video/run-003/before/hero-video_home-instance.png",
+      "specs/component-repairs/hero-video/run-003/before/hero-video_home-instance.facts.json"
+    ],
+    "homeWithHeader": [
+      "specs/component-repairs/hero-video/run-003/before/hero-video_home-with-header-context.png",
+      "specs/component-repairs/hero-video/run-003/before/hero-video_home-with-header-context.facts.json"
+    ],
+    "header": [
+      "specs/component-repairs/hero-video/run-003/before/hero-video_header-context.png",
+      "specs/component-repairs/hero-video/run-003/before/hero-video_header-context.facts.json"
+    ]
+  },
+  "operations": [
+    {
+      "operationId": "install-owner-approved-responsive-presentations",
+      "mechanism": "responsive-component-set",
+      "targetNodeId": "2151:5552",
+      "propertyName": "Presentation",
+      "presentations": [
+        "Compact",
+        "Desktop",
+        "Wide"
+      ],
+      "layouts": {
+        "Compact": "vertical, centered, min-height 597, padding 24, gap 24",
+        "Desktop": "vertical, centered, min-height 597, padding 48, gap 24",
+        "Wide": "historical layout and 720 height binding preserved"
+      },
+      "temporaryTypography": {
+        "Compact": "Montserrat Regular 32/40 centered",
+        "Desktop": "Montserrat Regular 40/48 centered",
+        "Wide": "historical Text Style and metrics preserved",
+        "debtStatus": "pending-responsive-text-style"
+      }
+    }
+  ],
+  "expectedCreatedNodes": [
+    {
+      "role": "component-set",
+      "count": 1,
+      "declaredName": "HeroVideo"
+    },
+    {
+      "role": "presentation-compact",
+      "count": 1,
+      "declaredName": "Presentation=Compact"
+    },
+    {
+      "role": "presentation-desktop",
+      "count": 1,
+      "declaredName": "Presentation=Desktop"
+    }
+  ],
+  "expectedChangedNodes": [
+    {
+      "nodeId": "2151:5552",
+      "role": "historical-wide-member",
+      "change": "renamed Presentation=Wide and reparented into the additive component set; node id/key preserved"
+    },
+    {
+      "nodeId": "2448:4731",
+      "role": "local-container-host",
+      "change": "direct child changes from the standalone historical component to the additive HeroVideo component set"
+    }
+  ],
+  "blastRadius": {
+    "existingWritableNodeIds": [
+      "2151:5552",
+      "2448:4731"
+    ],
+    "createdNodeCount": 3,
+    "readOnlySurfaceNodeIds": [
+      "2170:6351",
+      "210:326",
+      "210:473"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:135",
+      "6:99",
+      "6:104"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "protectedFacts": [
+    "Wide node id and component key",
+    "Home instance link and overrides",
+    "Accroche property and text content",
+    "poster IMAGE hash, FILL crop and transform",
+    "two gradient scrims",
+    "Wide Text Style and metrics",
+    "Button master, properties, typography, padding and icons",
+    "Header and Page structures",
+    "all existing child identities and shared component links",
+    "zero overflow, clipping or inaccessible content in every declared scenario"
+  ],
+  "rollbackRef": "refs/codex/backups/028-hero-video-responsive",
+  "wideIdentityBefore": {
+    "nodeId": "2151:5552",
+    "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+    "name": "HeroVideo",
+    "containerNodeId": "2448:4731"
+  },
+  "homeLinkBefore": {
+    "nodeId": "2170:6351",
+    "mainComponentNodeId": "2151:5552",
+    "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+  },
+  "homeOverridesBefore": {
+    "Accroche#2439:0": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+    "nestedButtonStyle": "Outline blanc",
+    "nestedButtonLabel": "En savoir plus",
+    "nestedButtonRightIcon": true,
+    "nestedButtonLeftIcon": false,
+    "ctaTextStyleDefect": "pre-existing/read-only/non-blocking"
+  },
+  "pageWrites": [],
+  "childWrites": [],
+  "acceptedFacts": [
+    "HeroVideo becomes one component set with the Presentation property and exactly three members: Compact, Desktop and historical Wide.",
+    "Compact and Desktop are additive clones; the historical Wide component keeps node id 2151:5552 and component key 36011e51b8bc0b221a1ba6f9108709b5bd1c4490.",
+    "The local Container 2448:4731 and historical Wide member 2151:5552 are the only existing nodes allowed to change.",
+    "The dry-run declares exactly three creations: the HeroVideo component set, Presentation=Compact and Presentation=Desktop.",
+    "Home, Header, Button, Pages and all existing children remain read-only; pageWrites and childWrites remain empty.",
+    "The responsive runner targeted gates and both typechecks pass; the full eval sweep remains 229/234 because five named pre-existing parity/golden failures are accepted as baseline debt for this H3 only.",
+    "A verified first live pass must be followed by the exact same campaign as a strict no-op proof."
+  ],
+  "rejectedOptions": [],
+  "deferredTopics": [
+    "five pre-existing parity/golden eval failures remain named debt",
+    "responsive Text Style promotion across Home",
+    "contract/code/Odoo convergence",
+    "automatic breakpoint behavior outside Figma Design"
+  ],
+  "authorizes": [
+    "exactly-one-first-live-application-of-install-owner-approved-responsive-presentations",
+    "capture-and-verification-of-the-first-live-application",
+    "one-identical-second-live-run-only-as-a-strict-no-op-idempotence-proof"
+  ],
+  "forbids": [
+    "any live Figma mutation outside the single approved responsive-component-set operation and its strict no-op replay",
+    "any Page, Home, Header, Button or existing-child write",
+    "any undeclared creation or mutation",
+    "contract, code, Odoo, token-global or Text-Style-global promotion"
+  ],
+  "conversationEvidence": "After clarification that the H2 review frames were separate witnesses but the H3 result would be one HeroVideo component set with Presentation=Compact, Presentation=Desktop and the historical Presentation=Wide member, the owner replied: \"alllez go\". This approves the exact dry-run boundary and the previously disclosed 229/234 pre-existing baseline exception.",
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-003/receipts/pre-h3.json",
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-first-recovery.json",
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-binding-recovery-finalizer.raw.json",
+    "specs/component-repairs/hero-video/run-003/receipts/interrupted-inspection-recovery.raw.json",
+    "specs/component-repairs/hero-video/run-003/receipts/layout-probe-recovery.raw.json",
+    "specs/component-repairs/hero-video/run-003/dry-run.json",
+    "specs/028-figma-responsive-hero-video/proofs/runner-targeted-gates.md",
+    "specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md",
+    "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-first.json",
+    "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-second-noop.json"
+  ]
+}

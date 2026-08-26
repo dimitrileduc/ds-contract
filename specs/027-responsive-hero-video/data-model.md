@@ -28,13 +28,13 @@ Option Mobile/Desktop comparable proposée avant H2 dans un harness non autorita
 | ------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `optionId`               | string   | Unique dans le packet ; au moins deux options.                                                                                                                         |
 | `label` / `summary`      | string   | Lisibles par l’owner.                                                                                                                                                  |
-| `compositions`           | object   | Valeurs complètes `compact` et `desktop`; chaque entrée porte parts, ordre, layout, hauteur, spacing, Text Style gouverné, CTA et média. `wide` référence le baseline. |
+| `compositions`           | object   | Structures `compact` et `desktop` : parts, ordre, axe, alignements, stratégie de hauteur, placement, rôle Text Style conservé, Button inchangé et média. Les valeurs de preview ne font pas partie de la décision ; `wide` référence le baseline. |
 | `boundaryProbeRefs`      | path[]   | Preuves 991/992/993 et 1399/1400/1401.                                                                                                                                 |
 | `shortLandscapeFallback` | string   | Croissance/compaction/scroll explicitement proposé.                                                                                                                    |
 | `evidenceRefs`           | path[]   | Probes par défaut/long/320/390/834/1200/1728/paysage.                                                                                                                  |
 | `tradeoffs` / `limits`   | string[] | Non vides.                                                                                                                                                             |
 
-Une option ne modifie ni le master ni une Page. Son rendu est une aide à la décision, pas une nouvelle vérité.
+Une option ne modifie ni le master ni une Page. Son rendu est une aide à la décision, pas une nouvelle vérité. Padding, gap et typographie peuvent varier comme previews de robustesse mais n’entrent ni dans `approvedCompositions` ni dans la source Figma.
 
 ## OwnerResponsiveDecision
 
@@ -48,14 +48,31 @@ Document autoritatif produit par H2 et validé par [responsive-decision.schema.j
 | `selectedOptionId`                  | string                        | Référence une option du même document.                             |
 | `breakpoints`                       | object[2]                     | `desktop-start=992`, `wide-start=1400`, opérateur `min-width`.     |
 | `designWitnesses`                   | object[4]                     | 390→compact, 834→compact, 1200→desktop, 1728→wide.                 |
-| `approvedCompositions`              | object                        | Valeurs Mobile/compact et Desktop ; wide référence le baseline H1. |
+| `approvedCompositions`              | object                        | Structures Mobile/compact et Desktop sans spacing ni valeurs typographiques ; wide référence le baseline H1. |
+| `foundationDependency`              | object                        | `pending` après H2 layout-only ; doit devenir `approved` avec une `decisionRef` transverse avant toute mutation source. |
+| `authorizes`                        | enum                          | `transverse-foundation-handoff` après H2 ; `figma-source-adaptation` est refusé tant que la dépendance n’est pas approuvée. |
 | `decisionMaker` / `decidedAt`       | string/date-time              | Obligatoires.                                                      |
 | `evidenceRefs`                      | path[]                        | Preuves réellement consultées.                                     |
 | `acceptedTradeoffs`                 | string[]                      | Au moins une entrée ou justification explicite `none`.             |
 | `rejectedTopics` / `deferredTopics` | string[]                      | Présents même si vides.                                            |
 | `status`                            | enum                          | `draft`, `approved`, `rejected`, `superseded`.                     |
 
-Une décision `approved` ne contient aucun champ Mobile/Desktop indécis. Toute nouvelle observation qui invalide un champ ou le profil 992/1400 la fait passer à `superseded` et impose un nouveau H2.
+Une décision H2 `approved` contient tous les champs structurels Mobile/Desktop, enregistre la dépendance de fondation comme `pending` et n’autorise que son handoff. Elle ne devient jamais une autorisation de mutation source par ajout implicite de valeurs. Toute nouvelle observation qui invalide un champ structurel ou le profil 992/1400 la fait passer à `superseded` et impose un nouveau H2.
+
+## FoundationDependencyReceipt
+
+Reçu séparé vérifié par T020F avant toute campagne source. Il ne redéfinit pas le layout H2 et ne peut pointer vers une proposition ou une preview.
+
+| Champ | Type | Validation |
+| --- | --- | --- |
+| `layoutDecisionRef` | path | Pointe vers le H2 option 3 approuvé. |
+| `foundationDecisionRef` | path | Pointe vers une décision transverse owner-approved existante. |
+| `coveredTopics` | enum[] | Contient exactement spacing responsive, typographie responsive et composants enfants. |
+| `compatibility` | enum | `compatible` uniquement après vérification contre le layout H2 et le baseline wide. |
+| `authorizes` | const | `figma-source-adaptation`. |
+| `verifiedAt` / `verifiedBy` | date-time/string | Obligatoires et traçables. |
+
+Un reçu manquant, périmé, incomplet ou incompatible refuse T020A. Il n’autorise aucune modification d’un enfant au-delà de ce que la décision transverse approuve explicitement.
 
 ## ResponsiveComposition
 
@@ -248,7 +265,8 @@ OwnerResponsiveDecision ──defines──> ResponsiveComposition[compact, desk
 ResponsiveComposition ──presented by──> DesignWitness[390, 834, 1200, 1728]
 ResponsiveComposition ──encoded by──> ResponsiveContractCapability
 ResponsiveComposition ──protects──> ProtectedFact[*]
-H2 ──authorizes──> Figma source adaptation ──accepted by──> H3
+H2 layout ──authorizes──> transverse foundation handoff
+H2 layout + approved foundation ──authorizes──> Figma source adaptation ──accepted by──> H3
 H3 ──authorizes promotion──> Contract ──projects to──> Web + Odoo
 SavedHeroVideoInstance ──qualified by──> ResponsiveProbe + update proof
 ResponsiveProbe[*] + SurfaceComparison[*] + ReconciliationRun(no-op) ──support──> H4

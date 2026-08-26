@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "1.0.0",
+  "taskId": "T045",
+  "status": "pass",
+  "sourceReceipt": "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+  "requirements": {
+    "widths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "fixtures": [
+      "default",
+      "long-title",
+      "long-cta"
+    ],
+    "additionalScenario": "844x390-compact-short-landscape",
+    "explicitPresentationSelection": true,
+    "passRule": "rootBounds.width equals requested width; overflow=false; clippedBy empty; contentAccessible=true; posterCoverage=cover"
+  },
+  "summary": {
+    "scenarioCount": 19,
+    "passedScenarioCount": 19,
+    "failedScenarioCount": 0,
+    "presentations": [
+      "Compact",
+      "Desktop",
+      "Wide"
+    ],
+    "widthsCovered": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728,
+      844
+    ]
+  },
+  "scenarios": [
+    {
+      "scenarioId": "320-compact-default",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-320-compact-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "320-compact-long-title",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-320-compact-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "320-compact-long-cta",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-320-compact-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "390-compact-default",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-390-compact-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "390-compact-long-title",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-390-compact-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "390-compact-long-cta",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-390-compact-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "834-compact-default",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 834,
+        "height": 1112
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-834-compact-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "834-compact-long-title",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 834,
+        "height": 1112
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-834-compact-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "834-compact-long-cta",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 834,
+        "height": 1112
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-834-compact-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1200-desktop-default",
+      "presentation": "Desktop",
+      "requestedViewport": {
+        "width": 1200,
+        "height": 800
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1200-desktop-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1200-desktop-long-title",
+      "presentation": "Desktop",
+      "requestedViewport": {
+        "width": 1200,
+        "height": 800
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1200-desktop-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1200-desktop-long-cta",
+      "presentation": "Desktop",
+      "requestedViewport": {
+        "width": 1200,
+        "height": 800
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1200-desktop-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1440-wide-default",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 192
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1440-wide-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1440-wide-long-title",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 240
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1440-wide-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1440-wide-long-cta",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 192
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1440-wide-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1728-wide-default",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "default",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 150
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1728-wide-default-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1728-wide-long-title",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "long-title",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 192
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1728-wide-long-title-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "1728-wide-long-cta",
+      "presentation": "Wide",
+      "requestedViewport": {
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "long-cta",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 150
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-1728-wide-long-cta-first.png",
+      "pass": true
+    },
+    {
+      "scenarioId": "844x390-compact-short-landscape",
+      "presentation": "Compact",
+      "requestedViewport": {
+        "width": 844,
+        "height": 390
+      },
+      "fixtureId": "short-landscape",
+      "measuredRootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 597
+      },
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-003/scenario-844x390-compact-short-landscape-first.png",
+      "pass": true
+    }
+  ]
+}

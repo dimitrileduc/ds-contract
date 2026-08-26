@@ -1,0 +1,3905 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-hero-video-run-005",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2391949441294093693",
+  "run": "first",
+  "operations": [
+    {
+      "operationId": "restore-wide-default-authoring-order",
+      "targetId": "hero-video",
+      "nodeId": "2151:5552",
+      "status": "applied",
+      "createdNodeIds": [],
+      "createdNodes": [],
+      "changedNodeIds": [
+        "2151:5552",
+        "2580:7378",
+        "2580:7385",
+        "2580:7392"
+      ]
+    }
+  ],
+  "masters": [
+    {
+      "targetId": "hero-video",
+      "nodeId": "2151:5552",
+      "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "masterCount": 1,
+      "variantNames": [
+        "Presentation=Compact",
+        "Presentation=Desktop",
+        "Presentation=Wide"
+      ],
+      "setNodeId": "2580:7392",
+      "setName": "HeroVideo",
+      "propertyName": "Presentation",
+      "defaultPresentationValue": "Wide"
+    }
+  ],
+  "pageWrites": [],
+  "childWrites": [],
+  "responsiveChecks": [],
+  "scenarioChecks": [
+    {
+      "targetId": "hero-video",
+      "scenarioId": "320-compact-default",
+      "selectedPresentation": "Compact",
+      "width": 320,
+      "height": 640,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8145",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8145;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8145;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8145;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8145;2580:7382",
+          "x": 24,
+          "y": 179.5,
+          "width": 272,
+          "height": 160
+        },
+        {
+          "nodeId": "I2584:8145;2580:7383",
+          "x": 24,
+          "y": 179.5,
+          "width": 272,
+          "height": 160
+        },
+        {
+          "nodeId": "I2584:8145;2580:7384",
+          "x": 50.5,
+          "y": 363.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8145;2580:7384;2410:6133",
+          "x": 82.5,
+          "y": 379.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-320-compact-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "320-compact-long-title",
+      "selectedPresentation": "Compact",
+      "width": 320,
+      "height": 640,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8158",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8158;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8158;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8158;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8158;2580:7382",
+          "x": 24,
+          "y": 99.5,
+          "width": 272,
+          "height": 320
+        },
+        {
+          "nodeId": "I2584:8158;2580:7383",
+          "x": 24,
+          "y": 99.5,
+          "width": 272,
+          "height": 320
+        },
+        {
+          "nodeId": "I2584:8158;2580:7384",
+          "x": 50.5,
+          "y": 443.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8158;2580:7384;2410:6133",
+          "x": 82.5,
+          "y": 459.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-320-compact-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "320-compact-long-cta",
+      "selectedPresentation": "Compact",
+      "width": 320,
+      "height": 640,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8171",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8171;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8171;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8171;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8171;2580:7382",
+          "x": 24,
+          "y": 179.5,
+          "width": 272,
+          "height": 160
+        },
+        {
+          "nodeId": "I2584:8171;2580:7383",
+          "x": 24,
+          "y": 179.5,
+          "width": 272,
+          "height": 160
+        },
+        {
+          "nodeId": "I2584:8171;2580:7384",
+          "x": 39.5,
+          "y": 363.5,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8171;2580:7384;2410:6133",
+          "x": 71.5,
+          "y": 379.5,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-320-compact-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "390-compact-default",
+      "selectedPresentation": "Compact",
+      "width": 390,
+      "height": 844,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8184",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8184;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8184;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8184;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8184;2580:7382",
+          "x": 24,
+          "y": 199.5,
+          "width": 342,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8184;2580:7383",
+          "x": 24,
+          "y": 199.5,
+          "width": 342,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8184;2580:7384",
+          "x": 85.5,
+          "y": 343.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8184;2580:7384;2410:6133",
+          "x": 117.5,
+          "y": 359.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-390-compact-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "390-compact-long-title",
+      "selectedPresentation": "Compact",
+      "width": 390,
+      "height": 844,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8197",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8197;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8197;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8197;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8197;2580:7382",
+          "x": 24,
+          "y": 139.5,
+          "width": 342,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8197;2580:7383",
+          "x": 24,
+          "y": 139.5,
+          "width": 342,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8197;2580:7384",
+          "x": 85.5,
+          "y": 403.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8197;2580:7384;2410:6133",
+          "x": 117.5,
+          "y": 419.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-390-compact-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "390-compact-long-cta",
+      "selectedPresentation": "Compact",
+      "width": 390,
+      "height": 844,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8210",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8210;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8210;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8210;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8210;2580:7382",
+          "x": 24,
+          "y": 199.5,
+          "width": 342,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8210;2580:7383",
+          "x": 24,
+          "y": 199.5,
+          "width": 342,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8210;2580:7384",
+          "x": 74.5,
+          "y": 343.5,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8210;2580:7384;2410:6133",
+          "x": 106.5,
+          "y": 359.5,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-390-compact-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "834-compact-default",
+      "selectedPresentation": "Compact",
+      "width": 834,
+      "height": 1112,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8223",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8223;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8223;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8223;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8223;2580:7382",
+          "x": 24,
+          "y": 219.5,
+          "width": 786,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8223;2580:7383",
+          "x": 24,
+          "y": 219.5,
+          "width": 786,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8223;2580:7384",
+          "x": 307.5,
+          "y": 323.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8223;2580:7384;2410:6133",
+          "x": 339.5,
+          "y": 339.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-834-compact-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "834-compact-long-title",
+      "selectedPresentation": "Compact",
+      "width": 834,
+      "height": 1112,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8236",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8236;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8236;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8236;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8236;2580:7382",
+          "x": 24,
+          "y": 199.5,
+          "width": 786,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8236;2580:7383",
+          "x": 24,
+          "y": 199.5,
+          "width": 786,
+          "height": 120
+        },
+        {
+          "nodeId": "I2584:8236;2580:7384",
+          "x": 307.5,
+          "y": 343.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8236;2580:7384;2410:6133",
+          "x": 339.5,
+          "y": 359.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-834-compact-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "834-compact-long-cta",
+      "selectedPresentation": "Compact",
+      "width": 834,
+      "height": 1112,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8249",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8249;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8249;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8249;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8249;2580:7382",
+          "x": 24,
+          "y": 219.5,
+          "width": 786,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8249;2580:7383",
+          "x": 24,
+          "y": 219.5,
+          "width": 786,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8249;2580:7384",
+          "x": 296.5,
+          "y": 323.5,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8249;2580:7384;2410:6133",
+          "x": 328.5,
+          "y": 339.5,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-834-compact-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1200-desktop-default",
+      "selectedPresentation": "Desktop",
+      "width": 1200,
+      "height": 800,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8262",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8262;2580:7386",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8262;2580:7387",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8262;2580:7388",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8262;2580:7389",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8262;2580:7390",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8262;2580:7391",
+          "x": 490.5,
+          "y": 331.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8262;2580:7391;2410:6133",
+          "x": 522.5,
+          "y": 347.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1200-desktop-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1200-desktop-long-title",
+      "selectedPresentation": "Desktop",
+      "width": 1200,
+      "height": 800,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8275",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8275;2580:7386",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8275;2580:7387",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8275;2580:7388",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8275;2580:7389",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8275;2580:7390",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8275;2580:7391",
+          "x": 490.5,
+          "y": 331.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8275;2580:7391;2410:6133",
+          "x": 522.5,
+          "y": 347.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1200-desktop-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1200-desktop-long-cta",
+      "selectedPresentation": "Desktop",
+      "width": 1200,
+      "height": 800,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8288",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8288;2580:7386",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8288;2580:7387",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8288;2580:7388",
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8288;2580:7389",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8288;2580:7390",
+          "x": 48,
+          "y": 211.5,
+          "width": 1104,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8288;2580:7391",
+          "x": 479.5,
+          "y": 331.5,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8288;2580:7391;2410:6133",
+          "x": 511.5,
+          "y": 347.5,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1200-desktop-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1440-wide-default",
+      "selectedPresentation": "Wide",
+      "width": 1440,
+      "height": 720,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 192
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8301",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8301;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8301;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8301;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8301;2563:5959",
+          "x": 89,
+          "y": 48,
+          "width": 1033,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8301;2563:5960",
+          "x": 89,
+          "y": 48,
+          "width": 1033,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8301;2563:5966",
+          "x": 1132,
+          "y": 90,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8301;2563:5966;2410:6133",
+          "x": 1164,
+          "y": 106,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1440-wide-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1440-wide-long-title",
+      "selectedPresentation": "Wide",
+      "width": 1440,
+      "height": 720,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 240
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8314",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8314;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8314;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8314;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 240
+        },
+        {
+          "nodeId": "I2584:8314;2563:5959",
+          "x": 89,
+          "y": 48,
+          "width": 1033,
+          "height": 144
+        },
+        {
+          "nodeId": "I2584:8314;2563:5960",
+          "x": 89,
+          "y": 48,
+          "width": 1033,
+          "height": 144
+        },
+        {
+          "nodeId": "I2584:8314;2563:5966",
+          "x": 1132,
+          "y": 138,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8314;2563:5966;2410:6133",
+          "x": 1164,
+          "y": 154,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1440-wide-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1440-wide-long-cta",
+      "selectedPresentation": "Wide",
+      "width": 1440,
+      "height": 720,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 192
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8327",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8327;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8327;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8327;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8327;2563:5959",
+          "x": 89,
+          "y": 48,
+          "width": 1011,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8327;2563:5960",
+          "x": 89,
+          "y": 48,
+          "width": 1011,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8327;2563:5966",
+          "x": 1110,
+          "y": 90,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8327;2563:5966;2410:6133",
+          "x": 1142,
+          "y": 106,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1440-wide-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1728-wide-default",
+      "selectedPresentation": "Wide",
+      "width": 1728,
+      "height": 720,
+      "fixtureId": "default",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 150
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8340",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8340;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8340;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8340;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8340;2563:5959",
+          "x": 89,
+          "y": 54,
+          "width": 1321,
+          "height": 48
+        },
+        {
+          "nodeId": "I2584:8340;2563:5960",
+          "x": 89,
+          "y": 54,
+          "width": 1321,
+          "height": 48
+        },
+        {
+          "nodeId": "I2584:8340;2563:5966",
+          "x": 1420,
+          "y": 48,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8340;2563:5966;2410:6133",
+          "x": 1452,
+          "y": 64,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1728-wide-default-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1728-wide-long-title",
+      "selectedPresentation": "Wide",
+      "width": 1728,
+      "height": 720,
+      "fixtureId": "long-title",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 192
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8353",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8353;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8353;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8353;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 192
+        },
+        {
+          "nodeId": "I2584:8353;2563:5959",
+          "x": 89,
+          "y": 48,
+          "width": 1321,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8353;2563:5960",
+          "x": 89,
+          "y": 48,
+          "width": 1321,
+          "height": 96
+        },
+        {
+          "nodeId": "I2584:8353;2563:5966",
+          "x": 1420,
+          "y": 90,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8353;2563:5966;2410:6133",
+          "x": 1452,
+          "y": 106,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1728-wide-long-title-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "1728-wide-long-cta",
+      "selectedPresentation": "Wide",
+      "width": 1728,
+      "height": 720,
+      "fixtureId": "long-cta",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 150
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8366",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8366;2563:5956",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8366;2563:5957",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8366;2563:5958",
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 150
+        },
+        {
+          "nodeId": "I2584:8366;2563:5959",
+          "x": 89,
+          "y": 54,
+          "width": 1299,
+          "height": 48
+        },
+        {
+          "nodeId": "I2584:8366;2563:5960",
+          "x": 89,
+          "y": 54,
+          "width": 1299,
+          "height": 48
+        },
+        {
+          "nodeId": "I2584:8366;2563:5966",
+          "x": 1398,
+          "y": 48,
+          "width": 241,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8366;2563:5966;2410:6133",
+          "x": 1430,
+          "y": 64,
+          "width": 177,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-1728-wide-long-cta-first.png"
+    },
+    {
+      "targetId": "hero-video",
+      "scenarioId": "844x390-compact-short-landscape",
+      "selectedPresentation": "Compact",
+      "width": 844,
+      "height": 390,
+      "fixtureId": "short-landscape",
+      "rootBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 597
+      },
+      "descendantBounds": [
+        {
+          "nodeId": "2584:8379",
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8379;2580:7379",
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8379;2580:7380",
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8379;2580:7381",
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 597
+        },
+        {
+          "nodeId": "I2584:8379;2580:7382",
+          "x": 24,
+          "y": 219.5,
+          "width": 796,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8379;2580:7383",
+          "x": 24,
+          "y": 219.5,
+          "width": 796,
+          "height": 80
+        },
+        {
+          "nodeId": "I2584:8379;2580:7384",
+          "x": 312.5,
+          "y": 323.5,
+          "width": 219,
+          "height": 54
+        },
+        {
+          "nodeId": "I2584:8379;2580:7384;2410:6133",
+          "x": 344.5,
+          "y": 339.5,
+          "width": 155,
+          "height": 22
+        }
+      ],
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover",
+      "captureRef": "specs/component-repairs/hero-video/run-005/scenario-844x390-compact-short-landscape-first.png"
+    }
+  ],
+  "bindingFacts": [
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "minHeight",
+      "variableId": "VariableID:2188:9590",
+      "variableName": "space/597",
+      "resolvedValue": 597,
+      "boundVariableId": "VariableID:2188:9590",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "paddingTop",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "paddingRight",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "paddingBottom",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "paddingLeft",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "itemSpacing",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "minHeight",
+      "variableId": "VariableID:2188:9590",
+      "variableName": "space/597",
+      "resolvedValue": 597,
+      "boundVariableId": "VariableID:2188:9590",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "paddingTop",
+      "variableId": "VariableID:2183:7970",
+      "variableName": "space/48",
+      "resolvedValue": 48,
+      "boundVariableId": "VariableID:2183:7970",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "paddingRight",
+      "variableId": "VariableID:2183:7970",
+      "variableName": "space/48",
+      "resolvedValue": 48,
+      "boundVariableId": "VariableID:2183:7970",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "paddingBottom",
+      "variableId": "VariableID:2183:7970",
+      "variableName": "space/48",
+      "resolvedValue": 48,
+      "boundVariableId": "VariableID:2183:7970",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "paddingLeft",
+      "variableId": "VariableID:2183:7970",
+      "variableName": "space/48",
+      "resolvedValue": 48,
+      "boundVariableId": "VariableID:2183:7970",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "itemSpacing",
+      "variableId": "VariableID:2183:7969",
+      "variableName": "space/24",
+      "resolvedValue": 24,
+      "boundVariableId": "VariableID:2183:7969",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Wide",
+      "nodePath": "",
+      "property": "height",
+      "variableId": "VariableID:2434:5919",
+      "variableName": "size/hero-video/root",
+      "resolvedValue": 720,
+      "boundVariableId": "VariableID:2434:5919",
+      "status": "attached"
+    }
+  ],
+  "typographyFacts": [
+    {
+      "presentationValue": "Compact",
+      "nodePath": "3/0",
+      "sourceRole": "Titre Hero vidéo",
+      "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+      "appliedFields": {
+        "fontSize": 32,
+        "lineHeight": 40,
+        "textAlignHorizontal": "CENTER"
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "debtStatus": "pending-responsive-text-style",
+      "status": "allowlisted"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "3/0",
+      "sourceRole": "Titre Hero vidéo",
+      "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+      "appliedFields": {
+        "fontSize": 40,
+        "lineHeight": 48,
+        "textAlignHorizontal": "CENTER"
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "debtStatus": "pending-responsive-text-style",
+      "status": "allowlisted"
+    }
+  ],
+  "memberFacts": [
+    {
+      "targetId": "hero-video",
+      "presentationValue": "Wide",
+      "authoringPreview": {
+        "width": 1728,
+        "layoutSizingHorizontal": "FIXED"
+      },
+      "namesAndRoles": [
+        {
+          "structuralPath": "",
+          "type": "COMPONENT",
+          "name": "Presentation=Wide"
+        },
+        {
+          "structuralPath": "0",
+          "type": "FRAME",
+          "name": "Background"
+        },
+        {
+          "structuralPath": "1",
+          "type": "FRAME",
+          "name": "VoileBas"
+        },
+        {
+          "structuralPath": "2",
+          "type": "FRAME",
+          "name": "VoileNavigation"
+        },
+        {
+          "structuralPath": "3",
+          "type": "FRAME",
+          "name": "Text"
+        },
+        {
+          "structuralPath": "3/0",
+          "type": "TEXT",
+          "name": "Accroche"
+        },
+        {
+          "structuralPath": "4",
+          "type": "INSTANCE",
+          "name": "Bouton"
+        },
+        {
+          "structuralPath": "4/0",
+          "type": "INSTANCE",
+          "name": "iconLeft"
+        },
+        {
+          "structuralPath": "4/0/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        },
+        {
+          "structuralPath": "4/1",
+          "type": "TEXT",
+          "name": "label"
+        },
+        {
+          "structuralPath": "4/2",
+          "type": "INSTANCE",
+          "name": "ArrowRight"
+        },
+        {
+          "structuralPath": "4/2/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        }
+      ],
+      "media": [
+        {
+          "structuralPath": "0",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "0",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        }
+      ],
+      "texts": [
+        {
+          "structuralPath": "3/0",
+          "name": "Accroche",
+          "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+        },
+        {
+          "structuralPath": "4/1",
+          "name": "label",
+          "characters": "Contactez-nous"
+        }
+      ],
+      "componentProperties": [
+        {
+          "structuralPath": "4",
+          "definitions": {},
+          "values": {
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "references": {}
+        },
+        {
+          "structuralPath": "4/0",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone gauche#2024:0",
+            "mainComponent": "Glyphe gauche#2028:14"
+          }
+        },
+        {
+          "structuralPath": "4/2",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone droite#2024:7",
+            "mainComponent": "Glyphe droite#2028:21"
+          }
+        }
+      ],
+      "sharedChildren": [
+        {
+          "structuralPath": "4",
+          "componentId": null,
+          "componentProperties": {
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          }
+        },
+        {
+          "structuralPath": "4/0",
+          "componentId": null,
+          "componentProperties": {}
+        },
+        {
+          "structuralPath": "4/2",
+          "componentId": null,
+          "componentProperties": {}
+        }
+      ]
+    },
+    {
+      "targetId": "hero-video",
+      "presentationValue": "Compact",
+      "authoringPreview": {
+        "width": 390,
+        "layoutSizingHorizontal": "FIXED"
+      },
+      "namesAndRoles": [
+        {
+          "structuralPath": "",
+          "type": "COMPONENT",
+          "name": "Presentation=Compact"
+        },
+        {
+          "structuralPath": "0",
+          "type": "FRAME",
+          "name": "Background"
+        },
+        {
+          "structuralPath": "1",
+          "type": "FRAME",
+          "name": "VoileBas"
+        },
+        {
+          "structuralPath": "2",
+          "type": "FRAME",
+          "name": "VoileNavigation"
+        },
+        {
+          "structuralPath": "3",
+          "type": "FRAME",
+          "name": "Text"
+        },
+        {
+          "structuralPath": "3/0",
+          "type": "TEXT",
+          "name": "Accroche"
+        },
+        {
+          "structuralPath": "4",
+          "type": "INSTANCE",
+          "name": "Bouton"
+        },
+        {
+          "structuralPath": "4/0",
+          "type": "INSTANCE",
+          "name": "iconLeft"
+        },
+        {
+          "structuralPath": "4/0/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        },
+        {
+          "structuralPath": "4/1",
+          "type": "TEXT",
+          "name": "label"
+        },
+        {
+          "structuralPath": "4/2",
+          "type": "INSTANCE",
+          "name": "ArrowRight"
+        },
+        {
+          "structuralPath": "4/2/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        }
+      ],
+      "media": [
+        {
+          "structuralPath": "0",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "0",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        }
+      ],
+      "texts": [
+        {
+          "structuralPath": "3/0",
+          "name": "Accroche",
+          "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+        },
+        {
+          "structuralPath": "4/1",
+          "name": "label",
+          "characters": "Contactez-nous"
+        }
+      ],
+      "componentProperties": [
+        {
+          "structuralPath": "4",
+          "definitions": {},
+          "values": {
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "references": {}
+        },
+        {
+          "structuralPath": "4/0",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone gauche#2024:0",
+            "mainComponent": "Glyphe gauche#2028:14"
+          }
+        },
+        {
+          "structuralPath": "4/2",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone droite#2024:7",
+            "mainComponent": "Glyphe droite#2028:21"
+          }
+        }
+      ],
+      "sharedChildren": [
+        {
+          "structuralPath": "4",
+          "componentId": null,
+          "componentProperties": {
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          }
+        },
+        {
+          "structuralPath": "4/0",
+          "componentId": null,
+          "componentProperties": {}
+        },
+        {
+          "structuralPath": "4/2",
+          "componentId": null,
+          "componentProperties": {}
+        }
+      ]
+    },
+    {
+      "targetId": "hero-video",
+      "presentationValue": "Desktop",
+      "authoringPreview": {
+        "width": 1200,
+        "layoutSizingHorizontal": "FIXED"
+      },
+      "namesAndRoles": [
+        {
+          "structuralPath": "",
+          "type": "COMPONENT",
+          "name": "Presentation=Desktop"
+        },
+        {
+          "structuralPath": "0",
+          "type": "FRAME",
+          "name": "Background"
+        },
+        {
+          "structuralPath": "1",
+          "type": "FRAME",
+          "name": "VoileBas"
+        },
+        {
+          "structuralPath": "2",
+          "type": "FRAME",
+          "name": "VoileNavigation"
+        },
+        {
+          "structuralPath": "3",
+          "type": "FRAME",
+          "name": "Text"
+        },
+        {
+          "structuralPath": "3/0",
+          "type": "TEXT",
+          "name": "Accroche"
+        },
+        {
+          "structuralPath": "4",
+          "type": "INSTANCE",
+          "name": "Bouton"
+        },
+        {
+          "structuralPath": "4/0",
+          "type": "INSTANCE",
+          "name": "iconLeft"
+        },
+        {
+          "structuralPath": "4/0/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        },
+        {
+          "structuralPath": "4/1",
+          "type": "TEXT",
+          "name": "label"
+        },
+        {
+          "structuralPath": "4/2",
+          "type": "INSTANCE",
+          "name": "ArrowRight"
+        },
+        {
+          "structuralPath": "4/2/0",
+          "type": "VECTOR",
+          "name": "Tracé"
+        }
+      ],
+      "media": [
+        {
+          "structuralPath": "0",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "0",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "IMAGE",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "scaleMode": "FILL",
+            "scalingFactor": 1,
+            "rotation": 0,
+            "filters": {
+              "exposure": 0,
+              "contrast": 0,
+              "saturation": 0,
+              "temperature": 0,
+              "tint": 0,
+              "highlights": 0,
+              "shadows": 0
+            },
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32"
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "1",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "fills",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        },
+        {
+          "structuralPath": "2",
+          "field": "backgrounds",
+          "index": 0,
+          "paint": {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        }
+      ],
+      "texts": [
+        {
+          "structuralPath": "3/0",
+          "name": "Accroche",
+          "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+        },
+        {
+          "structuralPath": "4/1",
+          "name": "label",
+          "characters": "Contactez-nous"
+        }
+      ],
+      "componentProperties": [
+        {
+          "structuralPath": "4",
+          "definitions": {},
+          "values": {
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "references": {}
+        },
+        {
+          "structuralPath": "4/0",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone gauche#2024:0",
+            "mainComponent": "Glyphe gauche#2028:14"
+          }
+        },
+        {
+          "structuralPath": "4/2",
+          "definitions": {},
+          "values": {},
+          "references": {
+            "visible": "Icone droite#2024:7",
+            "mainComponent": "Glyphe droite#2028:21"
+          }
+        }
+      ],
+      "sharedChildren": [
+        {
+          "structuralPath": "4",
+          "componentId": null,
+          "componentProperties": {
+            "Libelle#2044:28": {
+              "type": "TEXT",
+              "value": "Contactez-nous"
+            },
+            "Glyphe droite#2028:21": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:104",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone droite#2024:7": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Glyphe gauche#2028:14": {
+              "type": "INSTANCE_SWAP",
+              "value": "6:99",
+              "preferredValues": [
+                {
+                  "type": "COMPONENT",
+                  "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                },
+                {
+                  "type": "COMPONENT",
+                  "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                }
+              ]
+            },
+            "Icone gauche#2024:0": {
+              "type": "BOOLEAN",
+              "value": false
+            },
+            "Style": {
+              "value": "Outline blanc",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          }
+        },
+        {
+          "structuralPath": "4/0",
+          "componentId": null,
+          "componentProperties": {}
+        },
+        {
+          "structuralPath": "4/2",
+          "componentId": null,
+          "componentProperties": {}
+        }
+      ]
+    }
+  ]
+}

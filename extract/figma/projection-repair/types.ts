@@ -47,7 +47,133 @@ export type ProtectedFact =
   | (typeof REQUIRED_COMPONENT_PROTECTION_FACTS)[number]
   | 'video-paints'
   | 'geometry'
-  | 'responsive-overflow';
+  | 'responsive-overflow'
+  | 'component-set-topology'
+  | 'historical-member-identity'
+  | 'component-properties'
+  | 'primitive-bindings'
+  | 'temporary-typography'
+  | 'shared-child-facts';
+
+export interface ResponsiveComponentMember {
+  presentationValue: string;
+  declaredName: string;
+  sourcePresentationValue: string;
+  /** Stable only when repairing an already-existing set. Additive transitions
+   * deliberately omit it because Figma assigns the id at combine time. */
+  nodeId?: string;
+  /** Representative authoring width on the component-set canvas. This is not
+   * the runtime sizing contract: proof instances still use FILL. */
+  authoringPreviewWidth: number;
+}
+
+export interface ResponsiveComponentSetTopology {
+  propertyName: string;
+  setName: string;
+  setIdentityPolicy: 'additive' | 'existing';
+  setNodeId?: string;
+  defaultPresentationValue: string;
+  authoringLayout: {
+    direction: 'VERTICAL';
+    gap: number;
+    order: string[];
+  };
+  historicalMember: {
+    presentationValue: string;
+    nodeId: string;
+    componentKey: string;
+    declaredName: string;
+    authoringPreviewWidth: number;
+  };
+  createdMembers: ResponsiveComponentMember[];
+  expectedMemberNames: string[];
+}
+
+export interface ExpectedNodeCreate {
+  role: string;
+  operationId: string;
+  count: 1;
+  declaredName: string;
+  presentationValue?: string;
+}
+
+export interface ResponsiveContentFixture {
+  fixtureId: string;
+  /** Structural TEXT path → proof-only characters. Never applied to a Page. */
+  textValues: Record<string, string>;
+}
+
+export interface PresentationScenario {
+  scenarioId: string;
+  presentationValue: string;
+  width: number;
+  height: number;
+  fixtureId: string;
+  expectedOverflow: false;
+}
+
+export interface PrimitiveBindingDeclaration {
+  presentationValue: string;
+  nodePath: string;
+  property: 'itemSpacing' | 'paddingTop' | 'paddingRight' | 'paddingBottom' | 'paddingLeft'
+    | 'width' | 'height' | 'minWidth' | 'maxWidth' | 'minHeight' | 'maxHeight';
+  variableId: string;
+  variableName: string;
+  resolvedValue: number;
+}
+
+export interface ResponsivePresentationLayout {
+  presentationValue: string;
+  nodePath: string;
+  properties: Partial<{
+    layoutMode: 'HORIZONTAL' | 'VERTICAL';
+    layoutSizingHorizontal: 'FILL' | 'HUG' | 'FIXED';
+    layoutSizingVertical: 'FILL' | 'HUG' | 'FIXED';
+    primaryAxisAlignItems: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
+    counterAxisAlignItems: 'MIN' | 'CENTER' | 'MAX' | 'BASELINE';
+    clipsContent: boolean;
+    textAutoResize: 'NONE' | 'HEIGHT';
+  }>;
+}
+
+export interface TemporaryTypographyOverride {
+  presentationValue: string;
+  nodePath: string;
+  sourceRole: string;
+  sourceTextStyleId: string;
+  allowedFields: Array<'fontSize' | 'lineHeight' | 'textAlignHorizontal'>;
+  before: Partial<Record<'fontSize' | 'lineHeight' | 'textAlignHorizontal', number | string>>;
+  after: Partial<Record<'fontSize' | 'lineHeight' | 'textAlignHorizontal', number | string>>;
+  family: string;
+  weight: number;
+  characters: string;
+  debtStatus: 'pending-responsive-text-style';
+  ownerDecisionRef: string;
+}
+
+export interface ResponsiveComponentCapability {
+  componentSetTopology: ResponsiveComponentSetTopology;
+  expectedCreates: ExpectedNodeCreate[];
+  contentFixtures: ResponsiveContentFixture[];
+  presentationScenarios: PresentationScenario[];
+  presentationLayouts: ResponsivePresentationLayout[];
+  primitiveBindings: PrimitiveBindingDeclaration[];
+  typographyOverrides: TemporaryTypographyOverride[];
+}
+
+export interface ResponsiveWriteBoundary {
+  allowedExistingNodeIds: string[];
+  /** Exact first-run mutations. Kept distinct from allowedExistingNodeIds,
+   * which may also contain an unchanged host required for safe traversal. */
+  expectedChangedNodeIds?: string[];
+  readOnlySurfaceNodeIds: string[];
+  protectedDependencyNodeIds: string[];
+  protectedChildNodeIds: string[];
+  protectedChildPaths: string[];
+  allowedCreateRoles: string[];
+  pageWrites: [];
+  childWrites: [];
+}
 
 export interface SourceBaseline {
   gitHead: string;
@@ -108,6 +234,26 @@ export interface ComponentAuditReport {
     observed: string[];
     undeclared: string[];
   };
+  responsive?: {
+    status: 'not-declared' | 'standalone-before-transition' | 'component-set-observed';
+    propertyName: string | null;
+    memberNames: string[];
+    historicalMemberNodeId: string | null;
+    historicalMemberKey: string | null;
+    expectedDefaultPresentationValue: string | null;
+    observedDefaultPresentationValue: string | null;
+    authoringPreviews: Array<{
+      presentationValue: string;
+      nodeId: string | null;
+      expectedWidth: number;
+      observedWidth: number | null;
+      layoutSizingHorizontal: string | null;
+    }>;
+    scenarioCount: number;
+    primitiveBindingCount: number;
+    typographyOverrideCount: number;
+    boundaryViolations: string[];
+  };
   findings: Array<{ code: string; severity: 'proposal' | 'blocked'; message: string }>;
   proposedChanges: string[];
 }
@@ -141,6 +287,9 @@ export interface RepairTarget {
   expectedVariantNames?: string[];
   /** Reduced desktop widths exercised on an isolated instance after apply. */
   responsiveWidths?: number[];
+  /** Generic standalone→component-set capability. Absence keeps all earlier
+   *  v2 campaigns byte-compatible and on their existing execution path. */
+  responsive?: ResponsiveComponentCapability;
   ownerDecision?: 'accepted' | 'refused' | null;
 }
 
@@ -216,7 +365,7 @@ export interface ConsumerImpact {
 export interface RepairOperation {
   operationId: string;
   targetId: RepairTargetId;
-  mechanism: 'generated-amend' | 'ensure-organism-container' | 'set-properties' | 'reorder-children' | 'resize' | 'reposition' | 'property-reference';
+  mechanism: 'generated-amend' | 'ensure-organism-container' | 'set-properties' | 'reorder-children' | 'resize' | 'reposition' | 'property-reference' | 'responsive-component-set';
   nodeId: string;
   structuralPath?: string | null;
   preconditions: Record<string, unknown>[];
@@ -238,6 +387,7 @@ export interface RepairCampaign {
   createdAt: string;
   sourceBaseline?: SourceBaseline;
   workflow?: ComponentRepairWorkflow;
+  writeBoundary?: ResponsiveWriteBoundary;
 }
 
 export interface DiffFinding {

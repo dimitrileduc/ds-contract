@@ -1,0 +1,328 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "run": "canvas-cleanup-audit",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "executedAt": "2026-08-26T08:50:38.983Z",
+  "state": {
+    "workArea": {
+      "status": "retired",
+      "node": null,
+      "marker": null,
+      "reviewMode": null
+    },
+    "placement": "organized",
+    "heroSection": {
+      "id": "2170:6360",
+      "type": "SECTION",
+      "name": "Hero vidéo",
+      "parentId": "2052:1146",
+      "x": 7173,
+      "y": 118,
+      "width": 1808,
+      "height": 2090,
+      "bounds": {
+        "x": 7173,
+        "y": 118,
+        "width": 1808,
+        "height": 2090
+      },
+      "layoutMode": null,
+      "layoutSizingHorizontal": null,
+      "childIds": [
+        "2448:4731"
+      ],
+      "mainComponentId": null,
+      "componentProperties": null
+    },
+    "container": {
+      "id": "2448:4731",
+      "type": "FRAME",
+      "name": "Container · HeroVideo",
+      "parentId": "2170:6360",
+      "x": 40,
+      "y": 40,
+      "width": 1728,
+      "height": 2010,
+      "bounds": {
+        "x": 7213,
+        "y": 158,
+        "width": 1728,
+        "height": 2010
+      },
+      "layoutMode": "HORIZONTAL",
+      "layoutSizingHorizontal": "FIXED",
+      "childIds": [
+        "2580:7392"
+      ],
+      "mainComponentId": null,
+      "componentProperties": null
+    },
+    "componentSet": {
+      "id": "2580:7392",
+      "type": "COMPONENT_SET",
+      "name": "HeroVideo",
+      "parentId": "2448:4731",
+      "x": 0,
+      "y": 0,
+      "width": 1728,
+      "height": 2010,
+      "bounds": {
+        "x": 7213,
+        "y": 158,
+        "width": 1728,
+        "height": 2010
+      },
+      "layoutMode": "NONE",
+      "layoutSizingHorizontal": "FILL",
+      "childIds": [
+        "2151:5552",
+        "2580:7378",
+        "2580:7385"
+      ],
+      "mainComponentId": null,
+      "componentProperties": null
+    },
+    "protectedFacts": [
+      {
+        "id": "2151:5552",
+        "type": "COMPONENT",
+        "name": "Presentation=Wide",
+        "parentId": "2580:7392",
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 720,
+        "bounds": {
+          "x": 7213,
+          "y": 158,
+          "width": 1728,
+          "height": 720
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FIXED",
+        "childIds": [
+          "2563:5956",
+          "2563:5957",
+          "2563:5958",
+          "2563:5959",
+          "2563:5966"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "2580:7378",
+        "type": "COMPONENT",
+        "name": "Presentation=Compact",
+        "parentId": "2580:7392",
+        "x": 0,
+        "y": 768,
+        "width": 390,
+        "height": 597,
+        "bounds": {
+          "x": 7213,
+          "y": 926,
+          "width": 390,
+          "height": 597
+        },
+        "layoutMode": "VERTICAL",
+        "layoutSizingHorizontal": "FIXED",
+        "childIds": [
+          "2580:7379",
+          "2580:7380",
+          "2580:7381",
+          "2580:7382",
+          "2580:7384"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "2580:7385",
+        "type": "COMPONENT",
+        "name": "Presentation=Desktop",
+        "parentId": "2580:7392",
+        "x": 0,
+        "y": 1413,
+        "width": 1200,
+        "height": 597,
+        "bounds": {
+          "x": 7213,
+          "y": 1571,
+          "width": 1200,
+          "height": 597
+        },
+        "layoutMode": "VERTICAL",
+        "layoutSizingHorizontal": "FIXED",
+        "childIds": [
+          "2580:7386",
+          "2580:7387",
+          "2580:7388",
+          "2580:7389",
+          "2580:7391"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "2580:7392",
+        "type": "COMPONENT_SET",
+        "name": "HeroVideo",
+        "parentId": "2448:4731",
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 2010,
+        "bounds": {
+          "x": 7213,
+          "y": 158,
+          "width": 1728,
+          "height": 2010
+        },
+        "layoutMode": "NONE",
+        "layoutSizingHorizontal": "FILL",
+        "childIds": [
+          "2151:5552",
+          "2580:7378",
+          "2580:7385"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "2167:5842",
+        "type": "SECTION",
+        "name": "Header",
+        "parentId": "2052:1146",
+        "x": 9282,
+        "y": 2012,
+        "width": 1848,
+        "height": 312,
+        "bounds": {
+          "x": 9282,
+          "y": 2012,
+          "width": 1848,
+          "height": 312
+        },
+        "layoutMode": null,
+        "layoutSizingHorizontal": null,
+        "childIds": [
+          "84:285"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "210:473",
+        "type": "INSTANCE",
+        "name": "Header",
+        "parentId": "210:472",
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 86,
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 86
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FIXED",
+        "childIds": [
+          "I210:473;2341:32396",
+          "I210:473;2341:32409"
+        ],
+        "mainComponentId": "84:286",
+        "componentProperties": {
+          "Fond": {
+            "value": "Transparent",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      },
+      {
+        "id": "6:135",
+        "type": "COMPONENT",
+        "name": "Style=Outline blanc",
+        "parentId": "6:122",
+        "x": 40,
+        "y": 322,
+        "width": 219,
+        "height": 54,
+        "bounds": {
+          "x": 80,
+          "y": 670,
+          "width": 219,
+          "height": 54
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "HUG",
+        "childIds": [
+          "2410:6131",
+          "2410:6133",
+          "2410:6134"
+        ],
+        "mainComponentId": null,
+        "componentProperties": null
+      },
+      {
+        "id": "2170:6351",
+        "type": "INSTANCE",
+        "name": "HeroVideo",
+        "parentId": "210:328",
+        "x": 0,
+        "y": 0,
+        "width": 1728,
+        "height": 720,
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 720
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FIXED",
+        "childIds": [
+          "I2170:6351;2563:5956",
+          "I2170:6351;2563:5957",
+          "I2170:6351;2563:5958",
+          "I2170:6351;2563:5959",
+          "I2170:6351;2563:5966"
+        ],
+        "mainComponentId": "2151:5552",
+        "componentProperties": {
+          "Accroche#2580:4": {
+            "type": "TEXT",
+            "value": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          },
+          "Presentation": {
+            "value": "Wide",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      }
+    ]
+  },
+  "inspection": {
+    "readOnly": true,
+    "createdNodeIds": [],
+    "removedNodeIds": [],
+    "changedNodeIds": [],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "scriptResults": [
+    {
+      "operationId": "audit-hero-video-canvas-cleanup",
+      "result": {
+        "applied": false,
+        "workAreaStatus": "retired",
+        "placement": "organized"
+      }
+    }
+  ]
+}

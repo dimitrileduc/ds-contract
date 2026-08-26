@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { isCaptureSetComplete } from './campaign.js';
 import { isObject } from './json.js';
-import type { RepairCampaign, RepairOperation, RepairTargetId } from './types.js';
+import type { ExpectedNodeCreate, RepairCampaign, RepairOperation, RepairTargetId, ResponsiveWriteBoundary } from './types.js';
 
 export interface DirectRepairInput {
   pin: string;
@@ -53,7 +53,12 @@ export interface PlannedOperation {
   postconditions: Record<string, unknown>[]; source: string;
 }
 export interface DryRun {
-  campaignId: string; filePin: string; state: string; operations: PlannedOperation[];
+  campaignId: string;
+  filePin: string;
+  state: string;
+  operations: PlannedOperation[];
+  expectedCreates: ExpectedNodeCreate[];
+  writeBoundary: ResponsiveWriteBoundary | null;
 }
 
 const directFiles: Record<'categories-principales' | 'realisations', string> = {
@@ -111,5 +116,17 @@ export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), t
   for (const [targetId, file] of Object.entries(configuredDirectFiles)) {
     if (includes(targetId)) operations.push(...loadDirect(path.resolve(root, file), campaign));
   }
-  return { campaignId: campaign.campaignId, filePin: campaign.filePin.versionId, state: campaign.state, operations };
+  const operationIds = new Set(operations.map((operation) => operation.operationId));
+  const expectedCreates = campaign.targets
+    .filter((target) => includes(target.targetId))
+    .flatMap((target) => target.responsive?.expectedCreates ?? [])
+    .filter((expected) => operationIds.has(expected.operationId));
+  return {
+    campaignId: campaign.campaignId,
+    filePin: campaign.filePin.versionId,
+    state: campaign.state,
+    operations,
+    expectedCreates,
+    writeBoundary: campaign.writeBoundary ?? null,
+  };
 }

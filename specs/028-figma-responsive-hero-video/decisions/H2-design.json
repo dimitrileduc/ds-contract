@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "decisionId": "H2-design-v1",
+  "gateId": "H2",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-25T21:19:31Z",
+  "ownerEvidence": "Owner replied: je valide",
+  "baselineRef": "specs/028-figma-responsive-hero-video/decisions/H1-audit.json",
+  "historicalDirectionRef": "specs/027-responsive-hero-video/decisions/H2-responsive.json#centre-immersif",
+  "selectedOption": {
+    "optionId": "option-a-balanced",
+    "label": "Option équilibrée",
+    "direction": "centered title and CTA for Compact/Desktop; historical Wide preserved"
+  },
+  "rejectedOptions": [
+    {
+      "optionId": "option-b-expressive",
+      "disposition": "removed-from-figma-canvas",
+      "reason": "Not selected; the owner requested one clear proposal instead of a comparison surface."
+    }
+  ],
+  "presentation": {
+    "optionCount": 1,
+    "screenCount": 3,
+    "ref": "specs/028-figma-responsive-hero-video/proofs/H2-owner-review.md",
+    "figmaWorkAreaId": "2577:5984",
+    "figmaWorkAreaName": "VALIDÉ · HeroVideo · OPTION RETENUE · 3 ÉCRANS",
+    "retainedFrameIds": [
+      "2577:6069",
+      "2577:6213",
+      "2577:6357"
+    ]
+  },
+  "compositions": {
+    "Compact": {
+      "axis": "vertical",
+      "contentAlign": "center/center",
+      "titleAlign": "center",
+      "heightStrategy": "min-597-plus-grow",
+      "paddingVariable": "VariableID:2183:7969",
+      "gapVariable": "VariableID:2183:7969",
+      "typography": "Montserrat Regular 32/40 centered",
+      "debtStatus": "pending-responsive-text-style"
+    },
+    "Desktop": {
+      "axis": "vertical",
+      "contentAlign": "center/center",
+      "titleAlign": "center",
+      "heightStrategy": "min-597-plus-grow",
+      "paddingVariable": "VariableID:2183:7970",
+      "gapVariable": "VariableID:2183:7969",
+      "typography": "Montserrat Regular 40/48 centered",
+      "debtStatus": "pending-responsive-text-style"
+    },
+    "Wide": {
+      "axis": "historical-horizontal",
+      "contentAlign": "historical-bottom",
+      "titleAlign": "historical-left",
+      "heightStrategy": "historical-720",
+      "heightVariable": "VariableID:2434:5919",
+      "typography": "historical exact Text Style",
+      "wideEvidence": "byte-and-pixel-identical-same-renderer"
+    }
+  },
+  "witnesses": [
+    {
+      "width": 390,
+      "presentation": "Compact",
+      "frameId": "2577:6069",
+      "disposition": "retained-accepted"
+    },
+    {
+      "width": 834,
+      "presentation": "Compact",
+      "historicalWorkFrameId": "2577:6141",
+      "disposition": "tested-then-removed-from-review-canvas"
+    },
+    {
+      "width": 1200,
+      "presentation": "Desktop",
+      "frameId": "2577:6213",
+      "disposition": "retained-accepted"
+    },
+    {
+      "width": 1728,
+      "presentation": "Wide",
+      "frameId": "2577:6357",
+      "disposition": "retained-accepted"
+    }
+  ],
+  "controlCases": [
+    "320 Compact",
+    "1440 Wide",
+    "844x390 short landscape Compact"
+  ],
+  "fixtures": [
+    "default",
+    "long-title",
+    "long-cta"
+  ],
+  "primitiveBindingsRef": "specs/028-figma-responsive-hero-video/inventory/H2-bindings.json",
+  "typographyOverridesRef": "specs/028-figma-responsive-hero-video/inventory/H2-typography.json",
+  "mediaDecision": {
+    "poster": "preserved",
+    "crop": "preserved",
+    "scrims": "preserved",
+    "namedLimit": "Centered content covers part of the poster focal area; no crop or media change is authorized."
+  },
+  "childDecisions": {
+    "Button": "unchanged",
+    "Header": "unchanged",
+    "Home": "read-only",
+    "sharedChildren": "unchanged"
+  },
+  "tradeoffs": [
+    "The centered composition prioritizes readability and consistency over the historical bottom anchoring below 1400.",
+    "Responsive typography remains local and marked pending-responsive-text-style until the transverse Home typography campaign."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "initialProposalFrameCount": 23,
+    "retainedAcceptedFrameCount": 3,
+    "removedProposalFrameCount": 20,
+    "evidenceRef": "specs/028-figma-responsive-hero-video/proofs/H2-simplify-owner-review.bridge.json"
+  },
+  "masterMutationAuthorized": false,
+  "authorizes": [
+    "freeze-the-selected-H2-design",
+    "prepare-the-generic-runner-capability",
+    "prepare-the-exact-H3-mutation-plan"
+  ],
+  "doesNotAuthorize": [
+    "master-mutation",
+    "Container-mutation",
+    "Home-or-Page-write",
+    "Header-or-Button-write",
+    "contract-code-odoo-or-global-token-promotion"
+  ],
+  "deferredTopics": [
+    "responsive Text Style promotion across the Home campaign",
+    "contract/code/Odoo convergence",
+    "automatic breakpoint behavior outside Figma Design"
+  ],
+  "ownerFeedback": [
+    {
+      "recordedAt": "2026-08-25T21:11:52Z",
+      "evidence": "Owner rejected an excessive many-screen decision surface.",
+      "response": "The Figma work area was reduced to one proposal and three screens."
+    },
+    {
+      "recordedAt": "2026-08-25T21:19:31Z",
+      "evidence": "Owner replied: je valide",
+      "response": "Option équilibrée accepted as H2; no master mutation authorized."
+    }
+  ],
+  "evidenceRefs": [
+    "specs/028-figma-responsive-hero-video/proofs/H2-owner-review.md",
+    "specs/028-figma-responsive-hero-video/proofs/H2-option-manifest.json",
+    "specs/028-figma-responsive-hero-video/proofs/H2-work-frames.bridge.json",
+    "specs/028-figma-responsive-hero-video/proofs/H2-simplify-owner-review.bridge.json",
+    "specs/028-figma-responsive-hero-video/proofs/H2-finalize-approved-review.bridge.json",
+    "specs/028-figma-responsive-hero-video/proofs/H2-wide-comparison.bridge.json"
+  ]
+}

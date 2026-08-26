@@ -4,7 +4,9 @@
 
 **Created**: 2026-08-25
 
-**Status**: Draft
+**Status**: Superseded
+
+> **Avis de remplacement — 2026-08-25** : cette feature a été arrêtée après le gate humain H2. Son audit, le baseline XL, les options étudiées, la décision de layout, les recherches et les preuves restent conservés comme historique réutilisable. Les exigences et étapes situées après H2 ne sont plus autorisées et ne doivent pas être implémentées. Le périmètre de remplacement sera défini dans une nouvelle spec séparée.
 
 **Input**: User description: "Faire du HeroVideo le premier composant responsive complet de Piqueray : protéger le design actuel 1728 comme XL, concevoir Mobile et Desktop, contrôler Tablet sans lui imposer une variante, promouvoir la décision dans le contrat, régénérer les surfaces de référence et Odoo sans régression, puis conserver toutes les décisions et preuves utiles à une future skill `component-to-responsive`."
 
@@ -14,16 +16,16 @@
 
 Le propriétaire du design system et l’agent examinent ensemble le HeroVideo XL existant, confrontent plusieurs propositions Mobile/Desktop et choisissent explicitement celles qui répondent au besoin métier avant toute modification de la source.
 
-**Why this priority**: Le responsive ne se résume pas à réduire des dimensions. La présence des éléments, leur ordre, leur alignement, la hauteur du Hero, la typographie et le point de bascule sont des décisions de design qui ne peuvent pas être inventées par l’agent.
+**Why this priority**: Cette étape fixe seulement la structure responsive : présence, ordre, axe, alignement, stratégie de hauteur, comportement du média et point de bascule. Les valeurs de spacing, la typographie responsive et les adaptations internes des enfants sont des décisions transverses du design system, pas des valeurs à improviser dans HeroVideo.
 
-**Independent Test**: À partir du HeroVideo XL actuel, l’agent présente des options Mobile/Desktop comparables avec leurs compromis. L’owner choisit une option et valide une fiche de décision suffisamment précise pour qu’un designer distinct puisse reproduire les trois compositions sans interprétation supplémentaire.
+**Independent Test**: À partir du HeroVideo XL actuel, l’agent présente des options Mobile/Desktop comparables avec leurs compromis. L’owner choisit une direction de layout suffisamment précise pour qu’un designer distinct puisse reproduire la structure des trois compositions, tout en identifiant immédiatement les valeurs simulées qui restent hors décision.
 
 **Acceptance Scenarios**:
 
 1. **Given** le HeroVideo XL actuel et ses usages recensés, **When** l’agent prépare la discussion responsive, **Then** il distingue les faits existants, les contraintes techniques, les options Mobile/Desktop et les choix réservés à l’humain.
-2. **Given** plusieurs propositions viables, **When** elles sont présentées à l’owner, **Then** chaque option montre pour Mobile et Desktop les éléments conservés ou retirés, leur ordre, leur alignement, la hauteur du Hero, le comportement du média, le traitement du titre et du CTA, ainsi que ses limites.
+2. **Given** plusieurs propositions viables, **When** elles sont présentées à l’owner, **Then** chaque option montre pour Mobile et Desktop les éléments conservés ou retirés, leur ordre, leur axe, leurs alignements, la stratégie de hauteur, le comportement du média, le rôle du titre et le placement du CTA actuel ; tout padding, gap ou valeur typographique utilisé pour rendre l’option est marqué comme simulation.
 3. **Given** qu’aucune option n’a encore été acceptée, **When** le travail atteint une décision qui modifierait l’apparence mobile, **Then** aucune mutation Figma, aucun changement de contrat et aucune adaptation du site ne sont autorisés.
-4. **Given** une option choisie, **When** l’owner la valide, **Then** les structures Mobile/Desktop, le profil 992/1400, les valeurs responsive et les éventuelles différences du CTA sont consignés comme décision autoritative et datée.
+4. **Given** une option choisie, **When** l’owner valide sa direction de layout, **Then** les structures Mobile/Desktop et le profil 992/1400 sont consignés comme décision autoritative et datée ; les valeurs de spacing, la typographie responsive et les adaptations internes des enfants restent explicitement différées et cette décision n’autorise aucune mutation Figma.
 5. **Given** une nouvelle observation pendant la réalisation, **When** elle remet en cause une décision humaine approuvée, **Then** le travail revient devant l’owner au lieu de choisir silencieusement une autre solution.
 
 ---
@@ -120,7 +122,7 @@ L’équipe dispose à la clôture d’un dossier lisible qui explique comment l
 - Le mobile est très étroit, très haut ou en paysage très court : le contenu reste accessible et les marges de sécurité sont respectées.
 - Le média possède un cadrage défavorable sur mobile : le recadrage est présenté à l’owner ; aucun second asset, point focal ou déplacement arbitraire n’est inventé.
 - Le Header est superposé au HeroVideo : son contexte est capturé pour vérifier la lisibilité, mais son propre responsive ne devient pas implicitement modifiable.
-- Le CTA mobile semble nécessiter une autre taille ou variante : l’impact sur le composant Button partagé est inventorié et soumis à l’owner avant tout changement.
+- Le CTA mobile semble nécessiter une autre taille, un retour à la ligne ou une variante : le besoin est consigné pour la passe dédiée au Button partagé ; HeroVideo ne modifie pas son padding, sa typographie, sa largeur intrinsèque ni ses enfants.
 - La conversion du composant autonome en ensemble de variantes menace l’identité historique ou les instances : la mutation est refusée tant qu’une migration préservant ces faits n’est pas prouvée.
 - Figma Design ne bascule pas automatiquement de composition lors d’un simple resize : cette limite est indiquée aux designers ; le site conserve, lui, un changement automatique selon la largeur.
 - Une différence n’est visible que dans Figma, le web ou le site administrable : elle est classée et résolue à sa source la plus basse, jamais compensée sur une autre surface.
@@ -133,13 +135,13 @@ L’équipe dispose à la clôture d’un dossier lisible qui explique comment l
 - **FR-002**: L’état de départ MUST être capturé avant toute mutation : identité du master, structure, dimensions, média, voiles, textes, styles, variables, CTA, propriétés, instance Home, overrides et contexte visuel.
 - **FR-003**: Le premier gate humain MUST valider que l’état de départ 1728 constitue la référence XL/wide à préserver et nommer tout défaut préexistant séparément du responsive.
 - **FR-004**: Avant toute mutation, l’agent MUST présenter à l’owner des options Mobile/Desktop avec leurs compromis ; il MUST NOT choisir seul les structures finales.
-- **FR-005**: La décision humaine MUST couvrir au minimum, pour Mobile et Desktop : éléments présents, éléments absents, ordre, axe de composition, alignements, hauteur, marges, Text Style gouverné, CTA et comportement du média.
+- **FR-005**: La décision humaine de cette étape MUST couvrir au minimum, pour Mobile et Desktop : éléments présents, éléments absents, ordre, axe de composition, alignements, stratégie de hauteur, contraintes structurelles de largeur, rôle Text Style conservé, placement du CTA actuel et comportement du média. Elle MUST NOT approuver de padding, gap, taille typographique ou dimension interne d’enfant.
 - **FR-006**: La politique responsive autoritative de cette feature MUST être Mobile/compact sous 992 px, Desktop de 992 à 1399 px inclus et XL/wide à partir de 1400 px. Elle réemploie les seuils Odoo/Bootstrap `lg` et `xxl` sans modifier la grille globale ; tout changement de seuil exige une nouvelle décision owner.
-- **FR-007**: Aucun changement Figma, contrat, référence web ou site administrable MUST commencer avant l’approbation explicite des structures Mobile/Desktop et de leurs valeurs.
+- **FR-007**: L’acceptation du layout H2 autorise uniquement le passage à une future décision transverse sur le spacing, la typographie responsive et les composants enfants. Aucun changement Figma, contrat, référence web ou site administrable MUST commencer avant qu’une décision transverse approuvée fournisse les valeurs exactes nécessaires et soit liée à cette feature.
 - **FR-008**: La composition wide MUST conserver la référence 1728 px et rester sans débordement à 1440 px ; la composition Desktop MUST avoir un témoin approuvé à 1200 px.
 - **FR-009**: La composition mobile MUST remplir la largeur et la hauteur visibles du viewport, avec le groupe de contenu centré horizontalement et verticalement selon la décision owner.
-- **FR-010**: Le titre mobile MUST être centré, pouvoir se replier sur plusieurs lignes et utiliser un style typographique gouverné ; aucune valeur brute non approuvée ne peut remplacer un style ou une variable existante.
-- **FR-011**: Le CTA mobile MUST rester contenu et utilisable. Il réutilise par défaut le Button actuel ; toute variante, taille ou structure enfant différente nécessite une décision owner et une analyse de l’impact partagé.
+- **FR-010**: Le titre mobile MUST être centré, pouvoir se replier sur plusieurs lignes et conserver le rôle sémantique gouverné `Titre Hero vidéo`. Cette feature MUST NOT substituer `Titre2` ou `Titre3` selon le viewport ni fixer une taille responsive brute ; les valeurs du rôle seront définies dans une passe typographique transverse.
+- **FR-011**: Le CTA mobile MUST réutiliser le Button actuel sans modifier sa variante, sa taille, sa typographie, son padding, ses icônes ou sa largeur intrinsèque ajustée au contenu. HeroVideo décide uniquement de son placement et de son alignement ; toute évolution interne du Button nécessite une décision transverse et une analyse de l’impact partagé.
 - **FR-012**: Le média et les deux voiles MUST couvrir l’intégralité du HeroVideo dans chaque composition et préserver le poster propriétaire actuel. Le canal vidéo reste distinct du poster statique utilisé dans la source de design.
 - **FR-013**: La méthode de design MUST utiliser l’adaptation fluide tant que la composition reste identique, des valeurs responsive lorsque seules des valeurs changent, et une variante responsive uniquement pour une différence réelle de composition.
 - **FR-014**: La source de design MUST présenter quatre témoins identifiés : Mobile 390, Tablet 834 utilisant compact, Desktop 1200 et XL 1728. Tablet MUST NOT devenir une quatrième composition dans cette feature ; un échec à 834 retourne devant l’owner.
@@ -162,12 +164,16 @@ L’équipe dispose à la clôture d’un dossier lisible qui explique comment l
 - **FR-031**: La présente feature MUST NOT créer ni prétendre valider la future skill `component-to-responsive` ; elle produit seulement le cas de référence et les exigences candidates nécessaires à une spécification ultérieure.
 - **FR-032**: Les comparateurs MUST utiliser le viewport navigateur exact de chaque cas et enregistrer le témoin, la composition et la fixture actifs ; une largeur de root, un clip rembourré ou une capture périmée MUST NOT être accepté comme preuve du breakpoint.
 - **FR-033**: Les règles responsive MUST provenir du contrat, rester limitées au HeroVideo et MUST NOT modifier la politique globale de breakpoints, de grille ou de containers du site Odoo.
+- **FR-034**: La décision H2 MUST porter uniquement sur le layout de HeroVideo : présence, ordre, axe, alignement, stratégie de hauteur, relation structurelle entre enfants directs et contraintes de placement. Le spacing de section et le layout interne, padding ou dimensions intrinsèques de chaque enfant restent hors de cette décision.
+- **FR-035**: Le harness de brainstorm MAY utiliser ou faire varier padding, gap, taille et hauteur de ligne afin d’éprouver la robustesse du layout. Toute valeur simulée MUST être identifiée comme non autoritative et rester hors de la décision H2 et de la source Figma ; l’agent MAY tester plusieurs valeurs plausibles sans modifier la direction approuvée.
+- **FR-036**: La future décision transverse MUST déterminer si le spacing responsive sélectionne directement des primitives stables ou justifie des rôles sémantiques multi-modes à partir de patterns observés sur plusieurs composants. Cette feature MUST NOT créer seule une variable générique `spacing S/M`.
 
 ### Key Entities
 
 - **Baseline HeroVideo**: L’état XL/wide 1728 protégé avant responsive, incluant le master, son média, ses propriétés, son CTA et son usage Home.
-- **Option responsive**: Une proposition comparable qui décrit les compositions Mobile/Desktop, contenu, alignements, média, typographie, CTA et compromis, sans modifier le XL protégé.
-- **Décision responsive owner**: Le choix humain daté qui autorise une option Mobile/Desktop sous le profil 992/1400 et ses deltas acceptables.
+- **Option responsive**: Une proposition comparable qui décrit les structures Mobile/Desktop, leur contenu, alignements, média, rôle typographique et placement CTA, avec des valeurs de preview clairement non autoritatives, sans modifier le XL protégé.
+- **Décision responsive owner**: Le choix humain daté d’une direction de layout Mobile/Desktop sous le profil 992/1400. Tant que la décision transverse de fondation est absente, elle n’autorise aucune mutation source.
+- **Reçu de fondation transverse**: La référence vérifiée vers une future décision owner couvrant spacing responsive, typographie responsive et composants enfants. Elle est obligatoire avant toute reprise de la campagne source.
 - **Composition responsive**: Un état `compact`, `desktop` ou `wide` du même HeroVideo métier, avec ses règles fluides et ses valeurs gouvernées.
 - **Témoin responsive**: Un frame de revue à largeur exacte, distinct d’un breakpoint runtime ; les témoins sont 390, 834, 1200 et 1728 px.
 - **Fait protégé**: Une identité, un contenu, un média, un style, un lien ou un override qui ne peut pas changer sans autorisation explicite.
@@ -219,6 +225,7 @@ L’équipe dispose à la clôture d’un dossier lisible qui explique comment l
 - Une composition Tablet distincte ; le frame 834 de contrôle réutilise compact.
 - Figma Sites et ses breakpoints automatiques ; la cible de design est Figma Design.
 - Une refonte du média, du message marketing, de la vidéo, des interactions ou du comportement d’autoplay.
+- La définition des valeurs responsive de spacing, de typographie ou des composants enfants ; elles relèvent d’une future spec transverse avant reprise de l’implémentation source.
 - La migration silencieuse des pages déjà sauvegardées.
 - La création de la skill `component-to-responsive` elle-même.
 
@@ -227,7 +234,7 @@ L’équipe dispose à la clôture d’un dossier lisible qui explique comment l
 | Gate                           | Décision humaine obligatoire                                            | Preuve minimale avant décision                                               | Interdit avant acceptation                       |
 | ------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------ |
 | **H1 — Baseline**              | Confirmer l’état XL 1728 à protéger et séparer les défauts préexistants | Inventaire du master, usage Home et captures avant                           | Toute mutation Figma ou contrat                  |
-| **H2 — Structures responsive** | Choisir l’option Mobile/Desktop et ses valeurs sous le profil 992/1400  | Options comparées à 390/834/1200/1728 avec compromis et probes de frontières | Toute réalisation des structures choisies        |
+| **H2 — Direction de layout**   | Choisir uniquement la structure Mobile/Desktop sous le profil 992/1400 ; conserver le rôle du titre et le Button actuel | Options comparées à 390/834/1200/1728, valeurs de preview signalées et probes de frontières | Toute mutation source ; H2 autorise seulement la spec transverse de fondation |
 | **H3 — Source de design**      | Accepter les quatre témoins Mobile/Tablet/Desktop/XL et leurs limites   | Captures, contrôles de texte, CTA, média et overflow                         | Promotion dans le contrat et propagation         |
 | **H4 — Convergence**           | Accepter le résultat sur toutes les surfaces et les différés            | Parités, contrôles éditoriaux, préservation et second passage sans effet     | Clôture et déclaration du pilote comme référence |
 

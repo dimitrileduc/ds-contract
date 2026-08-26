@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "spikeId": "responsive-component-set-mechanism",
+  "run": "first",
+  "executedAt": "2026-08-25T22:16:00Z",
+  "result": "pass",
+  "environment": {
+    "kind": "in-memory-disposable-figma-plugin-api-mock",
+    "authoritativeSource": false,
+    "fileKey": "responsive-file-key",
+    "fileVersionId": "123456",
+    "sourceMutation": false,
+    "pageMutation": false
+  },
+  "inputTopology": {
+    "kind": "standalone-component",
+    "historicalMember": {
+      "nodeId": "1:1",
+      "componentKey": "historical-key",
+      "name": "Card"
+    },
+    "host": {
+      "nodeId": "1:0",
+      "type": "FRAME",
+      "name": "Container"
+    }
+  },
+  "expectedCreatedNodeRoles": [
+    "component-set",
+    "presentation-compact",
+    "presentation-desktop"
+  ],
+  "operation": {
+    "operationId": "install-responsive",
+    "status": "applied",
+    "createdNodes": [
+      {
+        "nodeId": "9:25",
+        "role": "component-set",
+        "declaredName": "Card"
+      },
+      {
+        "nodeId": "9:15",
+        "role": "presentation-compact",
+        "declaredName": "Presentation=Compact",
+        "presentationValue": "Compact"
+      },
+      {
+        "nodeId": "9:20",
+        "role": "presentation-desktop",
+        "declaredName": "Presentation=Desktop",
+        "presentationValue": "Desktop"
+      }
+    ],
+    "changedNodeIds": [
+      "1:1",
+      "1:0"
+    ]
+  },
+  "outputTopology": {
+    "setNodeId": "9:25",
+    "setName": "Card",
+    "propertyName": "Presentation",
+    "memberNames": [
+      "Presentation=Compact",
+      "Presentation=Desktop",
+      "Presentation=Wide"
+    ],
+    "hostNodeId": "1:0"
+  },
+  "wideIdentityBeforeAfter": {
+    "before": {
+      "nodeId": "1:1",
+      "componentKey": "historical-key",
+      "name": "Card"
+    },
+    "after": {
+      "nodeId": "1:1",
+      "componentKey": "historical-key",
+      "name": "Presentation=Wide",
+      "parentNodeId": "9:25",
+      "parentType": "COMPONENT_SET"
+    },
+    "identityPreserved": true
+  },
+  "homeLinkBeforeAfter": {
+    "before": {
+      "nodeId": "2:1",
+      "mainComponentNodeId": "1:1",
+      "componentProperties": {
+        "Title#1:4": {
+          "type": "TEXT",
+          "value": "Home-specific title"
+        },
+        "Action#1:5": {
+          "type": "TEXT",
+          "value": "Home-specific action"
+        }
+      },
+      "overrides": [
+        {
+          "id": "2:1;1:4",
+          "overriddenFields": [
+            "characters"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "nodeId": "2:1",
+      "mainComponentNodeId": "1:1",
+      "componentProperties": {
+        "Title#1:4": {
+          "type": "TEXT",
+          "value": "Home-specific title"
+        },
+        "Action#1:5": {
+          "type": "TEXT",
+          "value": "Home-specific action"
+        }
+      },
+      "overrides": [
+        {
+          "id": "2:1;1:4",
+          "overriddenFields": [
+            "characters"
+          ]
+        }
+      ]
+    },
+    "linkPreserved": true,
+    "overridesPreserved": true
+  },
+  "variantScenarioCoverage": {
+    "scenarioCount": 19,
+    "presentations": [
+      "Compact",
+      "Desktop",
+      "Wide"
+    ],
+    "widths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728,
+      844
+    ],
+    "fixtures": [
+      "default",
+      "long-title",
+      "long-cta",
+      "short-landscape"
+    ],
+    "allExplicitlySelected": true,
+    "allOverflowFalse": true,
+    "allClippedByEmpty": true,
+    "allContentAccessible": true,
+    "posterCoverage": "cover"
+  },
+  "bindingCoverage": [
+    {
+      "presentationValue": "Compact",
+      "nodePath": "",
+      "property": "itemSpacing",
+      "variableId": "VariableID:1:10",
+      "boundVariableId": "VariableID:1:10",
+      "status": "attached"
+    },
+    {
+      "presentationValue": "Desktop",
+      "nodePath": "",
+      "property": "paddingLeft",
+      "variableId": "VariableID:1:11",
+      "boundVariableId": "VariableID:1:11",
+      "status": "attached"
+    }
+  ],
+  "typographyExceptionCoverage": [
+    {
+      "presentationValue": "Compact",
+      "nodePath": "0/0",
+      "sourceTextStyleId": "S:title",
+      "appliedFields": {
+        "fontSize": 32,
+        "lineHeight": 40,
+        "textAlignHorizontal": "CENTER"
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "characters": "Default title",
+      "debtStatus": "pending-responsive-text-style",
+      "status": "allowlisted"
+    }
+  ],
+  "commonFacts": {
+    "samePosterImageHashAcrossMembers": "poster",
+    "samePosterScaleModeAcrossMembers": "FILL",
+    "sameTextsAcrossMembers": true,
+    "sameComponentPropertiesAcrossMembers": true,
+    "sameSharedChildrenAcrossMembers": true
+  },
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "1:0",
+      "1:1"
+    ],
+    "pageWrites": [],
+    "childWrites": [],
+    "unexpectedCreates": []
+  },
+  "refusalCoverage": [
+    "unexpected-created-node",
+    "presentation-not-selected",
+    "primitive-binding-detached",
+    "typography-field-not-allowlisted",
+    "page-write-forbidden",
+    "shared-child-write-forbidden",
+    "second-pass-not-noop"
+  ],
+  "evidenceRefs": [
+    "evals/fixtures/figma-responsive-component-set-check.ts",
+    "evals/fixtures/figma-responsive-presentation-scenarios-check.ts",
+    "evals/fixtures/figma-responsive-bindings-and-typography-check.ts",
+    "evals/fixtures/figma-responsive-write-boundary-idempotence-check.ts",
+    "specs/028-figma-responsive-hero-video/proofs/runner-targeted-gates.md"
+  ],
+  "sourceHashes": {
+    "componentSetFixture": "da96bcda497ae5546b6b372d416e58acfea71bbf0d02b378448d6116a8988b12",
+    "responsiveFixture": "011d5b61c60d5183b2a3f103dd404a5228e73b7e238b33f5b5f1286e42fecd6b",
+    "boundaryFixture": "4340e81394cd9134e0e87632a156bfb96c835c4e7b0bd1045cd26d17de3eb642",
+    "bridgeEmitter": "56b1e932158209d3539e8f6c4eac66aa69b72d7e5e3f42ce868fcb375ce51cf1",
+    "receiptGate": "2cea92898f6786bd12b85d499ee31c04f4ee5f9f316e93be08a00cf9b12bdc11"
+  }
+}

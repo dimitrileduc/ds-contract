@@ -1,0 +1,295 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "027-responsive-hero-video",
+  "auditId": "H1-fresh-audit-2391670501431838845",
+  "auditedAt": "2026-08-25T17:03:50Z",
+  "source": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "versionId": "2391670501431838845",
+    "lastModified": "2026-08-25T14:37:41Z",
+    "transport": "Figma REST read-only through component:repair audit and capture primitives",
+    "figmaWrites": [],
+    "pageWrites": []
+  },
+  "runner": {
+    "reportRef": "specs/027-responsive-hero-video/proofs/audit.json",
+    "verdict": "green",
+    "findingCount": 0,
+    "proposedChanges": []
+  },
+  "identityFindings": {
+    "master": {
+      "nodeId": "2151:5552",
+      "name": "HeroVideo",
+      "type": "COMPONENT",
+      "historicalComponentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "sameNamedMasterCount": 1,
+      "variantCount": 0,
+      "variantNames": []
+    },
+    "homeUsage": {
+      "nodeId": "2170:6351",
+      "name": "HeroVideo",
+      "type": "INSTANCE",
+      "mainComponentNodeId": "2151:5552",
+      "usageCountForMainComponent": 1
+    },
+    "directDependency": {
+      "contractId": "ds.button",
+      "masterNodeId": "6:135",
+      "masterStructuralPath": "4"
+    }
+  },
+  "positionFindings": {
+    "master": {
+      "structuralAddress": "DS · Organisms(2052:1146) / Hero vidéo(2170:6360) / Container · HeroVideo(2448:4731) / HeroVideo(2151:5552)",
+      "absoluteBounds": {
+        "x": 9322,
+        "y": 844,
+        "width": 1728,
+        "height": 720
+      },
+      "container": {
+        "nodeId": "2448:4731",
+        "name": "Container · HeroVideo",
+        "type": "FRAME",
+        "layoutMode": "HORIZONTAL",
+        "masterLayoutSizingHorizontal": "FILL",
+        "componentChildCount": 1
+      }
+    },
+    "homeUsage": {
+      "structuralAddress": "Pages(210:325) / Accueil(210:326) / Hero et catégories(210:328) / HeroVideo(2170:6351)",
+      "absoluteBounds": {
+        "x": 301,
+        "y": 0,
+        "width": 1728,
+        "height": 720
+      }
+    },
+    "headerContext": {
+      "structuralAddress": "Pages(210:325) / Accueil(210:326) / Header nav(210:472) / Header(210:473)",
+      "nodeId": "210:473",
+      "componentId": "84:286",
+      "absoluteBounds": {
+        "x": 301,
+        "y": 0,
+        "width": 1728,
+        "height": 86
+      },
+      "scope": "read-only visual context; not a HeroVideo dependency or write target"
+    }
+  },
+  "propertyFindings": {
+    "rootLayout": {
+      "layoutMode": "HORIZONTAL",
+      "counterAxisAlignItems": "MAX",
+      "itemSpacing": 10,
+      "paddingTop": 48,
+      "paddingRight": 89,
+      "paddingBottom": 48,
+      "paddingLeft": 89,
+      "clipsContent": false
+    },
+    "publicProperties": {
+      "Accroche#2439:0": {
+        "type": "TEXT",
+        "defaultValue": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+      }
+    },
+    "masterText": {
+      "nodeId": "2563:5960",
+      "structuralPath": "3/0",
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "textStyleId": "2170:6388",
+      "textStyleName": "Titre Hero vidéo",
+      "fontFamily": "Montserrat",
+      "fontWeight": 400,
+      "fontSize": 44,
+      "lineHeightPx": 48,
+      "classification": "named-exact"
+    },
+    "masterButtonLabel": {
+      "nodeId": "I2563:5966;2410:6133",
+      "structuralPath": "4/1",
+      "characters": "Contactez-nous",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "fontFamily": "Montserrat",
+      "fontWeight": 500,
+      "fontSize": 16,
+      "lineHeightPx": 22,
+      "classification": "named-exact"
+    }
+  },
+  "mediaFindings": {
+    "poster": {
+      "hostNodeId": "2563:5956",
+      "structuralPath": "0",
+      "field": "fills",
+      "paintIndex": 0,
+      "type": "IMAGE",
+      "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+      "scaleMode": "FILL",
+      "ownerAuthorityRef": "specs/tiny/hero-video-facade.md"
+    },
+    "videoPaintCount": 0,
+    "videoProjectionDecision": "static owner poster in Figma; video remains code-only",
+    "scrims": [
+      {
+        "hostNodeId": "2563:5957",
+        "structuralPath": "1",
+        "name": "VoileBas",
+        "type": "GRADIENT_LINEAR",
+        "stopPositions": [
+          0.800000011920929,
+          1
+        ],
+        "endAlpha": 0.5
+      },
+      {
+        "hostNodeId": "2563:5958",
+        "structuralPath": "2",
+        "name": "VoileNavigation",
+        "type": "GRADIENT_LINEAR",
+        "stopPositions": [
+          0.75,
+          1
+        ],
+        "endAlpha": 0.5
+      }
+    ]
+  },
+  "linkFindings": {
+    "homeMainComponent": {
+      "instanceNodeId": "2170:6351",
+      "masterNodeId": "2151:5552",
+      "status": "preserved"
+    },
+    "masterNestedInstances": [
+      {
+        "structuralPath": "4",
+        "componentId": "6:135",
+        "role": "Button"
+      },
+      {
+        "structuralPath": "4/0",
+        "componentId": "6:99",
+        "role": "left glyph"
+      },
+      {
+        "structuralPath": "4/2",
+        "componentId": "6:104",
+        "role": "right glyph"
+      }
+    ]
+  },
+  "overrideFindings": {
+    "homeAccroche": {
+      "value": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "status": "preserved"
+    },
+    "homeButton": {
+      "nodeId": "I2170:6351;2563:5966",
+      "structuralPath": "4",
+      "label": "En savoir plus",
+      "variant": "Outline blanc",
+      "iconLeft": false,
+      "iconRight": true,
+      "rightGlyphComponentId": "6:104",
+      "status": "content-and-component-properties-preserved"
+    },
+    "homeButtonLabelTextStyle": {
+      "nodeId": "I2170:6351;2563:5966;2410:6133",
+      "structuralPath": "4/1",
+      "historicalTextStyleId": "2162:5834",
+      "currentTextStyleId": null,
+      "currentMetrics": "Montserrat Medium 16/22",
+      "classification": "pre-existing-defect",
+      "reason": "metrics remain pixel-equivalent but the governed Text Style link is absent and an explicit inherited-style override is now recorded",
+      "introducedAt": {
+        "versionId": "2391628413984182696",
+        "createdAt": "2026-08-25T11:49:22Z",
+        "figmaUserHandle": "dl studio",
+        "attributionScope": "Figma account only; manual versus agent/bridge action is not distinguishable"
+      },
+      "ownerDisposition": {
+        "recordedAt": "2026-08-25",
+        "decision": "defer-remediation-to-T020A",
+        "authorizedNow": false,
+        "requiredBefore": "first responsive Figma write",
+        "requiredChange": "restore only Text Style 2162:5834 on the Home CTA label under a distinct Page authorization",
+        "requiredVerification": "fresh audit, before/after master + Home instance + Home-with-Header comparison, all non-style protected facts preserved, pixel-identical rendering, second pass no-op"
+      }
+    }
+  },
+  "protectedFactDigests": {
+    "master": {
+      "geometry": "6d8e6fa555a4b92e63faa173be432dcd16168266628bb25e7a5e0b1fe949451f",
+      "gradient-paints": "79b7829451645cdb449a75676d25c6b1fce21807c57531e11b6cb82e198a4698",
+      "image-paints": "da90e462e3ee069386ec4b6d6d226848ae5455feffb9e65e956b1fe1d1f2e164",
+      "instance-links": "ea6551ccad77bc098215e75731ff0c307cf0fad7ed43e46f8fc824cde9a98723",
+      "instance-overrides": "10a3bebf20c841b55b0af01fba2406b50acf512540eb3fb6e505c3ce5136469f",
+      "master-identity": "15454fbc2e78b93180627f7eb52af4b8e50321170fe6bbcfe1f32a17be03be53",
+      "responsive-overflow": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "text-content": "899910bd2153133d7c092330741580a766cd535862c45f3548bd3e17147c64fd",
+      "text-ranges": "8175723ed493e2b8cdce38839e1f21892b0cd4b009d5f516a3e4f32e8f0867d5",
+      "text-styles": "ee48cf336e7c722ab3287b86dda3743a170b443d36203cff4320f80cbba8813d",
+      "variant-cardinality": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "variant-names": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "video-paints": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "homeUsage": {
+      "geometry": "25391c41c68d05e3f43bca6679bfda36d5a164452660e72ac29ce782823117a4",
+      "gradient-paints": "79b7829451645cdb449a75676d25c6b1fce21807c57531e11b6cb82e198a4698",
+      "image-paints": "da90e462e3ee069386ec4b6d6d226848ae5455feffb9e65e956b1fe1d1f2e164",
+      "instance-links": "1395dfe9e036b8ee479563325da6ad043dc6fe31aa844c7041b1fb7771c6f8c0",
+      "instance-overrides": "8e7b6b092a4b1cee9439349d233e16b4a562edb045fb4e6cafe33538bef5454f",
+      "master-identity": "2018bd90ad247fc4b8b66c2995d6d729b49bb84199dbd53ebd8526e36ef131d5",
+      "responsive-overflow": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "text-content": "e0568d5ddd7cd7f3b3804f34d85b3181ec41cc9f302ebf9363df70e5ec49c9fc",
+      "text-ranges": "8175723ed493e2b8cdce38839e1f21892b0cd4b009d5f516a3e4f32e8f0867d5",
+      "text-styles": "0289a9098560f9615702f9abe3f5fda9f511d42eb48d8904f1dd2d9b3d8e70f5",
+      "variant-cardinality": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "variant-names": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "video-paints": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "historicalDifferences": [
+    {
+      "differenceId": "poster-owner-facade",
+      "classification": "approved-delta",
+      "historicalValue": "dfaa8d2046343398e067aade577f177137d32cce",
+      "currentValue": "8eb8b969759a5802ffb70d883409664e1169ad32",
+      "authorityRef": "specs/tiny/hero-video-facade.md"
+    },
+    {
+      "differenceId": "master-descendant-node-ids",
+      "classification": "unexplained-regeneration",
+      "historicalValue": "children 2439:4691..2439:4701",
+      "currentValue": "children 2563:5956..2563:5966",
+      "introducedAt": {
+        "versionId": "2391628413984182696",
+        "createdAt": "2026-08-25T11:49:22Z",
+        "figmaUserHandle": "dl studio"
+      },
+      "reason": "the master node/key, structural paths, rendered values and usage links are preserved; no consulted authority explains the descendant replacement, so this is provenance drift rather than a visible defect",
+      "ownerDisposition": "record-current-identities; no identity restoration authorized"
+    },
+    {
+      "differenceId": "home-button-label-text-style-link",
+      "classification": "pre-existing-defect",
+      "historicalValue": "Text Style 2162:5834",
+      "currentValue": "null with matching Montserrat Medium 16/22 metrics",
+      "introducedAt": {
+        "versionId": "2391628413984182696",
+        "createdAt": "2026-08-25T11:49:22Z",
+        "figmaUserHandle": "dl studio"
+      },
+      "reason": "the visual metrics, Button 6:135 and its component properties are preserved, but the governed Text Style link and historical override digest are not",
+      "ownerDisposition": "defer remediation to T020A before any responsive Figma write; require distinct Page authorization and complete no-regression proof"
+    }
+  ],
+  "status": "owner-review-required"
+}

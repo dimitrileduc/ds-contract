@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "status": "approved",
+  "authority": "H2-approved-design; no master mutation authorized",
+  "historicalWide": {
+    "presentation": "Wide",
+    "textStyleName": "Titre Hero vidéo",
+    "textStylePolicy": "preserve-exact",
+    "override": null,
+    "referenceFrameId": "2577:6357"
+  },
+  "candidates": [
+    {
+      "optionId": "option-a-balanced",
+      "presentation": "Compact",
+      "decisionStatus": "accepted-owner-H2",
+      "referenceFrameId": "2577:6069",
+      "role": "Titre Hero vidéo",
+      "sourceTextStyleName": "Titre Hero vidéo",
+      "fields": {
+        "fontSize": {
+          "before": 44,
+          "after": 32
+        },
+        "lineHeight": {
+          "before": 48,
+          "after": 40
+        },
+        "textAlignHorizontal": {
+          "before": "LEFT",
+          "after": "CENTER"
+        }
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "charactersChangedOnlyByFixture": false,
+      "debtStatus": "pending-responsive-text-style"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "presentation": "Desktop",
+      "decisionStatus": "accepted-owner-H2",
+      "referenceFrameId": "2577:6213",
+      "role": "Titre Hero vidéo",
+      "sourceTextStyleName": "Titre Hero vidéo",
+      "fields": {
+        "fontSize": {
+          "before": 44,
+          "after": 40
+        },
+        "lineHeight": {
+          "before": 48,
+          "after": 48
+        },
+        "textAlignHorizontal": {
+          "before": "LEFT",
+          "after": "CENTER"
+        }
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "charactersChangedOnlyByFixture": false,
+      "debtStatus": "pending-responsive-text-style"
+    },
+    {
+      "optionId": "option-b-expressive",
+      "presentation": "Compact",
+      "decisionStatus": "rejected-owner-H2-removed-from-canvas",
+      "referenceFrameId": "2577:6501",
+      "role": "Titre Hero vidéo",
+      "sourceTextStyleName": "Titre Hero vidéo",
+      "fields": {
+        "fontSize": {
+          "before": 44,
+          "after": 40
+        },
+        "lineHeight": {
+          "before": 48,
+          "after": 48
+        },
+        "textAlignHorizontal": {
+          "before": "LEFT",
+          "after": "CENTER"
+        }
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "charactersChangedOnlyByFixture": false,
+      "debtStatus": "pending-responsive-text-style"
+    },
+    {
+      "optionId": "option-b-expressive",
+      "presentation": "Desktop",
+      "decisionStatus": "rejected-owner-H2-removed-from-canvas",
+      "referenceFrameId": "2577:6525",
+      "role": "Titre Hero vidéo",
+      "sourceTextStyleName": "Titre Hero vidéo",
+      "fields": {
+        "fontSize": {
+          "before": 44,
+          "after": 44
+        },
+        "lineHeight": {
+          "before": 48,
+          "after": 48
+        },
+        "textAlignHorizontal": {
+          "before": "LEFT",
+          "after": "CENTER"
+        }
+      },
+      "family": "Montserrat",
+      "weight": 400,
+      "charactersChangedOnlyByFixture": false,
+      "debtStatus": "pending-responsive-text-style"
+    }
+  ],
+  "invariants": {
+    "rolePreserved": true,
+    "familyPreserved": "Montserrat",
+    "weightPreserved": 400,
+    "defaultContentPreserved": true,
+    "fixtureContentChangesAreTestOnly": true,
+    "sharedTextStyleCreated": false,
+    "sharedTextStyleChanged": false
+  },
+  "debt": {
+    "status": "pending-responsive-text-style",
+    "scope": "new Compact/Desktop compositions only after owner approval",
+    "reason": "Responsive typography remains local until the transverse Home typography campaign."
+  }
+}

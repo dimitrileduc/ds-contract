@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-hero-video-run-004",
+  "filePins": {
+    "before": "2391931922674193920",
+    "after": "2391931922674193920",
+    "idempotence": null
+  },
+  "ok": false,
+  "targetCount": 1,
+  "targets": [
+    {
+      "targetId": "hero-video",
+      "surfaceCount": 4,
+      "expectedDiffs": [
+        {
+          "surfaceId": "hero-video:master",
+          "kind": "expected",
+          "description": "structure changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/hero-video/run-004/after/hero-video_master.structure.json"
+        },
+        {
+          "surfaceId": "hero-video:master",
+          "kind": "expected",
+          "description": "properties changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/hero-video/run-004/after/hero-video_master.properties.json"
+        },
+        {
+          "surfaceId": "hero-video:master",
+          "kind": "expected",
+          "description": "png changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/hero-video/run-004/after/hero-video_master.png"
+        }
+      ],
+      "unexpectedDiffs": [
+        {
+          "surfaceId": "hero-video:master",
+          "kind": "unexpected",
+          "description": "protected fact changed: component-set-topology",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/hero-video/run-004/after/hero-video_master.facts.json"
+        }
+      ],
+      "unchangedArtifactCount": 9,
+      "imagePreservation": "pass",
+      "imageComparison": {
+        "mode": "authorized-rehost",
+        "beforeUnique": 15,
+        "afterUnique": 15
+      },
+      "instancePreservation": "pass",
+      "consumerCount": 0,
+      "consumersClosed": true,
+      "limits": [
+        "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+      ]
+    }
+  ],
+  "global": {
+    "beforeArtifacts": 17,
+    "afterArtifacts": 17,
+    "beforeImageFingerprints": 20,
+    "afterImageFingerprints": 20,
+    "uniqueImageHashesPreserved": true,
+    "beforeInstanceLinks": 102,
+    "afterInstanceLinks": 102,
+    "pendingConsumers": 0
+  }
+}

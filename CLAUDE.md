@@ -58,6 +58,7 @@ Notes:
 
 - `npm run eval` prints the live `N/N` — that output is the only authoritative count; never hardcode it in prose (dated logs like `MILESTONES.md` are the exception).
 - Feature specs run in git worktrees: make the worktree self-sufficient first (`npm install` + `npx playwright install chromium` inside it), then the FULL sweep — including `npm run eval` — runs there (constitution: Worktree Gates, F1). The runner symlinks *the checkout's own* `node_modules` into its scratch dir, which is exactly why a bare worktree fails it.
+- **Superset workspace safety:** when working under `.superset/worktrees/`, the active checkout is already the user-visible isolated worktree. Verify the active path, branch and status before mutation; never create or use a sibling/nested worktree unless the user explicitly asks. Before reporting completion, verify that the changes are visible in this active workspace. Full cross-agent rule: `AGENTS.md`.
 - Two checks (one eval + the visual-parity instrument) drive real Chromium; if missing, the error names the fix (`npx playwright install chromium` or set `PLAYWRIGHT_CHROMIUM_PATH`).
 - Targeted checks (there is **no single-eval filter flag**): `npm run emitters:check`, `npm run mint:check`, `npm run mint:code:check`, `npm run extract:figma:*:check` (dialog, composite, tooltip, theme, repeat, …), `npm run parity`.
 

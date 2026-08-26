@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "responsive-hero-video",
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "organism",
+    "evidenceRoot": "specs/027-responsive-hero-video/proofs",
+    "ownerDecisionRoot": "specs/027-responsive-hero-video/decisions",
+    "comparisonPath": "specs/027-responsive-hero-video/proofs/US4-figma-reference-visual.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/hero-video/run-002/apply-first.json",
+      "second": "specs/component-repairs/hero-video/run-002/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ds.button"
+    ],
+    "sharedDependencies": []
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2386482317851487818",
+    "fileName": "Piqueray--Copy-",
+    "capturedAt": "2026-08-25T15:29:26.000Z"
+  },
+  "authorityRefs": [
+    "specs/021-figma-projection-repair/proofs/hero-video-recovery.json",
+    "specs/027-responsive-hero-video/inventory/docs-first-receipt.md",
+    "specs/027-responsive-hero-video/inventory/worktree-pin.json"
+  ],
+  "targets": [
+    {
+      "targetId": "hero-video",
+      "kind": "generated-master",
+      "masterNodeId": "2151:5552",
+      "reference": {
+        "referenceId": "hero-video-responsive-owner-reference",
+        "sourceKind": "contract-and-history",
+        "figmaVersionId": "2386482317851487818",
+        "subjectNodeId": "2151:5552",
+        "visualFacts": [
+          "historical 1728x720 wide composition",
+          "historical poster IMAGE and scrim paints",
+          "nested Button identity",
+          "Home instance link and overrides"
+        ],
+        "decisionRef": "specs/021-figma-projection-repair/proofs/hero-video-recovery.json"
+      },
+      "affectedSurfaceIds": [
+        "hero-video:master",
+        "hero-video:page:2170-6351",
+        "hero-video:page-context:210-328"
+      ],
+      "projectionDefectIds": [
+        "responsive-compositions"
+      ],
+      "allowedFields": [
+        "layoutMode",
+        "layoutSizingHorizontal",
+        "itemSpacing",
+        "padding",
+        "childOrder",
+        "textStyleId",
+        "textAlignHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "variant-cardinality",
+        "variant-names",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity"
+      ],
+      "allowedFactChanges": [
+        "video-paints",
+        "geometry",
+        "responsive-overflow"
+      ],
+      "expectedMasterName": "HeroVideo",
+      "expectedVariantNames": [],
+      "responsiveWidths": [
+        1440
+      ]
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "hero-video:master",
+      "targetId": "hero-video",
+      "role": "master",
+      "nodeId": "2151:5552",
+      "pageComposition": null,
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 720
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "hero-video:page:2170-6351",
+      "targetId": "hero-video",
+      "role": "page-instance",
+      "nodeId": "2170:6351",
+      "pageComposition": "Hero et catégories",
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 720
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "hero-video:page-context:210-328",
+      "targetId": "hero-video",
+      "role": "page-context",
+      "nodeId": "210:328",
+      "pageComposition": "Hero et catégories",
+      "structuralPath": "0",
+      "contextForSurfaceId": "hero-video:page:2170-6351",
+      "expectedSize": {
+        "width": 1728,
+        "height": 1186
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [],
+  "allowedOperations": [
+    {
+      "operationId": "materialize-owner-approved-responsive-compositions",
+      "targetId": "hero-video",
+      "mechanism": "generated-amend",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "preconditions": [
+        {
+          "field": "ownerDecision.status",
+          "equals": "approved"
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        }
+      ],
+      "changes": {
+        "generatedScriptRef": "specs/027-responsive-hero-video/tools/apply-approved-responsive-hero-video.js",
+        "decisionRef": "specs/027-responsive-hero-video/decisions/H2-responsive.json",
+        "pageWrites": []
+      },
+      "expectedPostconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "responsive-hero-video-before-2386482317851487818",
+      "phase": "before",
+      "fileVersionId": "2386482317851487818",
+      "artifacts": [],
+      "imageFingerprints": [],
+      "instanceLinks": [],
+      "complete": false
+    },
+    "after": {
+      "captureSetId": "responsive-hero-video-after-pending",
+      "phase": "after",
+      "fileVersionId": "pending",
+      "artifacts": [],
+      "imageFingerprints": [],
+      "instanceLinks": [],
+      "complete": false
+    },
+    "idempotence": {
+      "captureSetId": "responsive-hero-video-idempotence-pending",
+      "phase": "idempotence",
+      "fileVersionId": "pending",
+      "artifacts": [],
+      "imageFingerprints": [],
+      "instanceLinks": [],
+      "complete": false
+    }
+  },
+  "state": "draft",
+  "createdAt": "2026-08-25T15:29:26.000Z"
+}

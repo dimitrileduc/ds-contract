@@ -1,6 +1,8 @@
 import { isObject as object } from './json.js';
 import type { DryRun } from './apply.js';
-import type { RepairCampaign } from './types.js';
+import { comparableResponsiveMemberFacts, validateResponsiveFacts } from './facts.js';
+import type { PrimitiveBindingDeclaration, RepairCampaign } from './types.js';
+import { validatePresentationScenarioResults } from './verify.js';
 
 export interface LiveOperationReceipt {
   operationId: string;
@@ -8,6 +10,7 @@ export interface LiveOperationReceipt {
   nodeId: string;
   status: 'applied' | 'amended' | 'no-op';
   createdNodeIds: string[];
+  createdNodes: Array<{ nodeId: string; role: string; declaredName: string; presentationValue?: string }>;
   changedNodeIds: string[];
 }
 
@@ -17,6 +20,55 @@ export interface LiveMasterCheck {
   componentKey: string;
   masterCount: number;
   variantNames: string[];
+  setNodeId?: string;
+  setName?: string;
+  propertyName?: string;
+  defaultPresentationValue?: string;
+}
+
+export interface PresentationScenarioResult {
+  targetId?: string;
+  scenarioId: string;
+  selectedPresentation: string;
+  width: number;
+  height: number;
+  fixtureId: string;
+  rootBounds: unknown;
+  descendantBounds: unknown[];
+  overflow: boolean;
+  clippedBy: string[];
+  contentAccessible: boolean;
+  posterCoverage: string;
+  captureRef: string;
+}
+
+export interface PrimitiveBindingFact extends PrimitiveBindingDeclaration {
+  boundVariableId: string | null;
+  status: 'attached' | 'detached';
+}
+
+export interface TypographyOverrideFact {
+  presentationValue: string;
+  nodePath: string;
+  sourceRole: string;
+  sourceTextStyleId: string;
+  appliedFields: Record<string, unknown>;
+  family: string;
+  weight: number;
+  characters: string;
+  debtStatus: string;
+  status: 'allowlisted' | 'drifted';
+}
+
+export interface ResponsiveMemberFact {
+  targetId?: string;
+  presentationValue: string;
+  authoringPreview: { width: number; layoutSizingHorizontal: string | null };
+  namesAndRoles: unknown[];
+  media: unknown[];
+  texts: unknown[];
+  componentProperties: unknown[];
+  sharedChildren: unknown[];
 }
 
 export interface LiveApplyReceipt {
@@ -28,6 +80,7 @@ export interface LiveApplyReceipt {
   operations: LiveOperationReceipt[];
   masters: LiveMasterCheck[];
   pageWrites: string[];
+  childWrites: string[];
   responsiveChecks: Array<{
     targetId: string;
     width: number;
@@ -36,6 +89,10 @@ export interface LiveApplyReceipt {
     overflowIssues?: Array<{ nodeId: string; reason: string }>;
     screenshotRef: string;
   }>;
+  scenarioChecks: PresentationScenarioResult[];
+  bindingFacts: PrimitiveBindingFact[];
+  typographyFacts: TypographyOverrideFact[];
+  memberFacts: ResponsiveMemberFact[];
 }
 
 export interface BridgeApplyEnvelope {
@@ -54,6 +111,11 @@ export interface BridgeApplyEnvelope {
     masters: LiveMasterCheck[];
     pageWrites: string[];
     responsiveChecks: LiveApplyReceipt['responsiveChecks'];
+    childWrites?: string[];
+    scenarioChecks?: PresentationScenarioResult[];
+    bindingFacts?: PrimitiveBindingFact[];
+    typographyFacts?: TypographyOverrideFact[];
+    memberFacts?: ResponsiveMemberFact[];
   };
 }
 
@@ -96,6 +158,12 @@ export function normalizeBridgeApplyEnvelope(
     const applied = result.applied === true || result.status === 'applied';
     if (!noOp && !amended && !applied) throw new Error(`bridge operation has no explicit amend/apply/no-op verdict: ${expected.operationId}`);
     const createdNodeIds = stringArray(result.createdNodeIds) ? result.createdNodeIds : [];
+    const createdNodes = Array.isArray(result.createdNodes) ? result.createdNodes.filter(object).map((entry) => ({
+      nodeId: String(entry.nodeId ?? ''),
+      role: String(entry.role ?? ''),
+      declaredName: String(entry.declaredName ?? ''),
+      ...(typeof entry.presentationValue === 'string' ? { presentationValue: entry.presentationValue } : {}),
+    })) : [];
     const changedNodeIds = stringArray(result.changedNodeIds)
       ? result.changedNodeIds
       : noOp ? [] : [expected.nodeId];
@@ -105,6 +173,7 @@ export function normalizeBridgeApplyEnvelope(
       nodeId: expected.nodeId,
       status: noOp ? 'no-op' : amended ? 'amended' : 'applied',
       createdNodeIds,
+      createdNodes,
       changedNodeIds,
     };
   });
@@ -118,7 +187,12 @@ export function normalizeBridgeApplyEnvelope(
     operations,
     masters: candidate.inspection.masters as LiveMasterCheck[],
     pageWrites: candidate.inspection.pageWrites as string[],
+    childWrites: stringArray(candidate.inspection.childWrites) ? candidate.inspection.childWrites : [],
     responsiveChecks: candidate.inspection.responsiveChecks as LiveApplyReceipt['responsiveChecks'],
+    scenarioChecks: Array.isArray(candidate.inspection.scenarioChecks) ? candidate.inspection.scenarioChecks as PresentationScenarioResult[] : [],
+    bindingFacts: Array.isArray(candidate.inspection.bindingFacts) ? candidate.inspection.bindingFacts as PrimitiveBindingFact[] : [],
+    typographyFacts: Array.isArray(candidate.inspection.typographyFacts) ? candidate.inspection.typographyFacts as TypographyOverrideFact[] : [],
+    memberFacts: Array.isArray(candidate.inspection.memberFacts) ? candidate.inspection.memberFacts as ResponsiveMemberFact[] : [],
   };
 }
 
@@ -138,6 +212,8 @@ export function validateLiveApplyReceipt(
   if (candidate.fileVersionId !== campaign.filePin.versionId) issues.push('file-version');
   if (candidate.run !== expectedRun) issues.push('run');
   if (!stringArray(candidate.pageWrites) || candidate.pageWrites.length !== 0) issues.push('page-writes');
+  const responsiveCampaign = campaign.targets.some((target) => target.responsive !== undefined);
+  if ((candidate.childWrites !== undefined || responsiveCampaign) && (!stringArray(candidate.childWrites) || candidate.childWrites.length !== 0)) issues.push('child-writes');
   if (!Array.isArray(candidate.responsiveChecks)) issues.push('responsive-checks-shape');
   if (!Array.isArray(candidate.operations)) issues.push('operations-shape');
   if (!Array.isArray(candidate.masters)) issues.push('masters-shape');
@@ -155,11 +231,13 @@ export function validateLiveApplyReceipt(
     const expected = expectedOperations.get(operation.operationId);
     if (!expected || operation.targetId !== expected.targetId || operation.nodeId !== expected.nodeId) issues.push(`operation-target:${operation.operationId}`);
     const createdNodeIds = stringArray(operation.createdNodeIds) ? operation.createdNodeIds : null;
+    const createdNodes = Array.isArray(operation.createdNodes) ? operation.createdNodes.filter(object) : [];
     const changedNodeIds = stringArray(operation.changedNodeIds) ? operation.changedNodeIds : null;
     if (!['applied', 'amended', 'no-op'].includes(String(operation.status)) || !createdNodeIds || !changedNodeIds) {
       issues.push(`operation-shape:${operation.operationId}`);
     }
-    if (expectedRun === 'second' && (operation.status !== 'no-op' || (createdNodeIds?.length ?? 1) > 0 || (changedNodeIds?.length ?? 1) > 0)) {
+    if (expectedRun === 'second' && (operation.status !== 'no-op' || (createdNodeIds?.length ?? 1) > 0 || createdNodes.length > 0 || (changedNodeIds?.length ?? 1) > 0)) {
+      issues.push(`second-pass-not-noop:${operation.operationId}`);
       issues.push(`second-run-mutated:${operation.operationId}`);
     }
   }
@@ -171,9 +249,65 @@ export function validateLiveApplyReceipt(
     const checks = masters.filter((entry) => object(entry) && entry.targetId === target.targetId);
     if (checks.length !== 1) { issues.push(`master-check:${target.targetId}`); continue; }
     const check = checks[0] as Record<string, unknown>;
+    const expectedVariants = target.responsive?.componentSetTopology.expectedMemberNames ?? target.expectedVariantNames ?? [];
+    const responsiveIdentityInvalid = target.responsive ?
+      check.componentKey !== target.responsive.componentSetTopology.historicalMember.componentKey ||
+        typeof check.setNodeId !== 'string' || check.setNodeId.length === 0 || check.setName !== target.responsive.componentSetTopology.setName ||
+        check.propertyName !== target.responsive.componentSetTopology.propertyName ||
+        check.defaultPresentationValue !== target.responsive.componentSetTopology.defaultPresentationValue
+      : false;
     if (check.nodeId !== target.masterNodeId || check.masterCount !== 1 || typeof check.componentKey !== 'string' || check.componentKey.length === 0 ||
-      !stringArray(check.variantNames) || stableStrings(check.variantNames) !== stableStrings(target.expectedVariantNames ?? [])) {
+      !stringArray(check.variantNames) || stableStrings(check.variantNames) !== stableStrings(expectedVariants) || responsiveIdentityInvalid) {
       issues.push(`master-drift:${target.targetId}`);
+    }
+    if (target.responsive) {
+      const expectedCreates = (plan.expectedCreates ?? []).filter((entry) => entry.operationId && plan.operations.some((operation) => operation.operationId === entry.operationId && operation.targetId === target.targetId));
+      const targetOperations = operations.filter((operation) => object(operation) && operation.targetId === target.targetId);
+      const createdNodes = targetOperations.flatMap((operation) => object(operation) && Array.isArray(operation.createdNodes) ? operation.createdNodes.filter(object) : []);
+      const createdIds = targetOperations.flatMap((operation) => object(operation) && stringArray(operation.createdNodeIds) ? operation.createdNodeIds : []);
+      const changedIds = targetOperations.flatMap((operation) => object(operation) && stringArray(operation.changedNodeIds) ? operation.changedNodeIds : []);
+      const expectedChangedIds = campaign.writeBoundary?.expectedChangedNodeIds ?? campaign.writeBoundary?.allowedExistingNodeIds ?? [];
+      const undeclaredChangedIds = changedIds.filter((nodeId) => !expectedChangedIds.includes(nodeId) && !createdIds.includes(nodeId));
+      if (expectedRun === 'first') {
+        const expectedRoles = expectedCreates.flatMap((entry) => Array.from({ length: entry.count }, () => `${entry.role}\0${entry.declaredName}\0${entry.presentationValue ?? ''}`)).sort();
+        const actualRoles = createdNodes.map((entry) => `${String(entry.role)}\0${String(entry.declaredName)}\0${String(entry.presentationValue ?? '')}`).sort();
+        const nodeIds = createdNodes.map((entry) => String(entry.nodeId));
+        if (stableStrings(expectedRoles) !== stableStrings(actualRoles) || new Set(nodeIds).size !== nodeIds.length || stableStrings(nodeIds) !== stableStrings(createdIds)) {
+          issues.push(`unexpected-created-node:${target.targetId}`);
+        }
+        if (stableStrings(changedIds) !== stableStrings(expectedChangedIds) || undeclaredChangedIds.length > 0) {
+          issues.push(`responsive-operation-not-allowlisted:${target.targetId}:changed-nodes`);
+        }
+      } else if (createdNodes.length > 0 || createdIds.length > 0) issues.push(`second-pass-not-noop:${target.targetId}`);
+      const scenarioChecks = Array.isArray(candidate.scenarioChecks)
+        ? candidate.scenarioChecks.filter((entry) => object(entry) && (entry.targetId === undefined || entry.targetId === target.targetId))
+        : [];
+      const scenarios = validatePresentationScenarioResults(target.responsive.presentationScenarios, scenarioChecks as never);
+      if (!scenarios.ok) issues.push(...scenarios.issues.map((entry) => `${entry}:${target.targetId}`));
+      const facts = validateResponsiveFacts(target.responsive, Array.isArray(candidate.bindingFacts) ? candidate.bindingFacts : [], Array.isArray(candidate.typographyFacts) ? candidate.typographyFacts : []);
+      if (!facts.ok) issues.push(...facts.issues.map((entry) => `${entry}:${target.targetId}`));
+      const memberFacts = Array.isArray(candidate.memberFacts)
+        ? candidate.memberFacts.filter((entry) => object(entry) && (entry.targetId === undefined || entry.targetId === target.targetId))
+        : [];
+      const expectedPresentations = [target.responsive.componentSetTopology.historicalMember.presentationValue,
+        ...target.responsive.componentSetTopology.createdMembers.map((entry) => entry.presentationValue)];
+      if (memberFacts.length !== expectedPresentations.length || expectedPresentations.some((presentation) =>
+        memberFacts.filter((entry) => object(entry) && entry.presentationValue === presentation).length !== 1)) {
+        issues.push(`responsive-member-facts-cardinality:${target.targetId}`);
+      } else {
+        const previewWidths = new Map([
+          [target.responsive.componentSetTopology.historicalMember.presentationValue, target.responsive.componentSetTopology.historicalMember.authoringPreviewWidth],
+          ...target.responsive.componentSetTopology.createdMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const),
+        ]);
+        if (memberFacts.some((entry) => {
+          if (!object(entry) || !object(entry.authoringPreview)) return true;
+          return entry.authoringPreview.layoutSizingHorizontal !== 'FIXED' ||
+            Math.abs(Number(entry.authoringPreview.width) - Number(previewWidths.get(String(entry.presentationValue)))) > 0.01;
+        })) issues.push(`responsive-authoring-preview-drift:${target.targetId}`);
+        const baseline = comparableResponsiveMemberFacts(memberFacts.find((entry) => object(entry) && entry.presentationValue === target.responsive!.componentSetTopology.historicalMember.presentationValue) as Record<string, unknown>);
+        if (memberFacts.some((entry) => !object(entry) || comparableResponsiveMemberFacts(entry) !== baseline)) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+      }
+      continue;
     }
     const responsiveChecks = Array.isArray(candidate.responsiveChecks)
       ? candidate.responsiveChecks.filter((entry) => object(entry) && entry.targetId === target.targetId)

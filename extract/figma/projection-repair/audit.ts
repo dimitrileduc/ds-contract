@@ -148,9 +148,53 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     }
   }
   const parent = parents.get(target.masterNodeId) ?? null;
+  const responsiveSet = target.responsive && parent?.type === 'COMPONENT_SET' ? parent : null;
+  const presentationRoot = responsiveSet ?? master;
+  const presentationParent = parents.get(String(presentationRoot.id)) ?? null;
   const containerApplicable = campaign.workflow.subjectKind === 'organism';
-  const containerIssues = containerApplicable ? organismContainerIssues(master, parent) : [];
+  const containerIssues = containerApplicable ? organismContainerIssues(presentationRoot, presentationParent) : [];
   const childOrderIssues = expectedChildOrderIssues(campaign, target.targetId, master);
+  const responsiveMembers = responsiveSet && Array.isArray(responsiveSet.children)
+    ? responsiveSet.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => String(child.name ?? '')).sort()
+    : [];
+  const authoringPreviews = target.responsive ? [
+    target.responsive.componentSetTopology.historicalMember,
+    ...target.responsive.componentSetTopology.createdMembers,
+  ].map((declaration) => {
+    const member = responsiveSet && Array.isArray(responsiveSet.children)
+      ? responsiveSet.children.find((child) => object(child) && child.type === 'COMPONENT' && child.name === declaration.declaredName) as Json | undefined
+      : undefined;
+    const box = member && object(member.absoluteBoundingBox) ? member.absoluteBoundingBox : null;
+    return {
+      presentationValue: declaration.presentationValue,
+      nodeId: typeof member?.id === 'string' ? member.id : null,
+      expectedWidth: declaration.authoringPreviewWidth,
+      observedWidth: typeof box?.width === 'number' ? box.width : null,
+      layoutSizingHorizontal: typeof member?.layoutSizingHorizontal === 'string' ? member.layoutSizingHorizontal : null,
+    };
+  }) : [];
+  const presentationDefinition = responsiveSet && object(responsiveSet.componentPropertyDefinitions)
+    ? responsiveSet.componentPropertyDefinitions[target.responsive?.componentSetTopology.propertyName ?? '']
+    : null;
+  const observedDefaultPresentationValue = object(presentationDefinition) && typeof presentationDefinition.defaultValue === 'string'
+    ? presentationDefinition.defaultValue
+    : null;
+  const authoringPreviewIssues = target.responsive && responsiveSet ? [
+    ...(responsiveSet.layoutMode !== undefined && responsiveSet.layoutMode !== null && responsiveSet.layoutMode !== 'NONE'
+      ? [`component set layoutMode is ${String(responsiveSet.layoutMode)}; expected NONE`]
+      : []),
+    ...(observedDefaultPresentationValue !== target.responsive.componentSetTopology.defaultPresentationValue
+      ? [`default ${target.responsive.componentSetTopology.propertyName} is ${String(observedDefaultPresentationValue)}; expected ${target.responsive.componentSetTopology.defaultPresentationValue}`]
+      : []),
+    ...authoringPreviews.filter((preview) => preview.observedWidth === null || Math.abs(preview.observedWidth - preview.expectedWidth) > 0.01 || preview.layoutSizingHorizontal !== 'FIXED')
+      .map((preview) => `${preview.presentationValue} authoring preview is ${String(preview.observedWidth)} px/${String(preview.layoutSizingHorizontal)}; expected ${preview.expectedWidth} px/FIXED`),
+  ] : [];
+  const boundary = campaign.writeBoundary;
+  const boundaryViolations = target.responsive && boundary
+    ? campaign.allowedOperations.filter((operation) => operation.targetId === target.targetId &&
+      [...boundary.readOnlySurfaceNodeIds, ...boundary.protectedDependencyNodeIds, ...boundary.protectedChildNodeIds].includes(operation.nodeId))
+      .map((operation) => operation.operationId)
+    : [];
 
   // The shared loader parses contracts through the schema, so a malformed
   // contract refuses the audit by name instead of shaping a wrong report.
@@ -187,19 +231,22 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const undeclaredDependencies = observedDependencies.filter((name) => !declaredNormalized.has(name.toLowerCase()));
   const findings: ComponentAuditReport['findings'] = [];
   if (containerIssues.length > 0) findings.push({ code: 'organism-container', severity: 'proposal', message: containerIssues.join('; ') });
+  if (authoringPreviewIssues.length > 0) findings.push({ code: 'responsive-authoring-preview', severity: 'proposal', message: authoringPreviewIssues.join('; ') });
   if (childOrderIssues.length > 0) findings.push({ code: 'child-order', severity: 'proposal', message: childOrderIssues.join('; ') });
   if (undeclaredDependencies.length > 0) findings.push({ code: 'dependency-inventory', severity: 'proposal', message: `undeclared direct dependencies: ${undeclaredDependencies.join(', ')}` });
+  if (boundaryViolations.length > 0) findings.push({ code: 'responsive-write-boundary', severity: 'blocked', message: `responsive operation targets a protected node: ${boundaryViolations.join(', ')}` });
   for (const text of texts.filter((entry) => entry.classification === 'defect')) {
     findings.push({ code: 'text-style', severity: 'proposal', message: `${text.name} (${text.nodeId}): ${text.reasons.join('; ')}` });
   }
 
   const proposedChanges = [
     ...(containerIssues.length > 0 ? ['present the existing master in one local auto-layout Container and set its horizontal sizing to FILL'] : []),
+    ...(authoringPreviewIssues.length > 0 ? ['keep the component set as a freeform authoring catalogue and restore the declared FIXED preview width on each direct variant member; consumer proof instances remain FILL'] : []),
     ...(childOrderIssues.length > 0 ? ['reorder the existing master children to the declared childOrder without recreating nodes'] : []),
     ...(undeclaredDependencies.length > 0 ? [`declare direct dependencies: ${undeclaredDependencies.join(', ')}`] : []),
     ...texts.filter((entry) => entry.classification === 'defect').map((entry) => `repair Text Style classification for ${entry.name} (${entry.nodeId})`),
   ];
-  const masterBox = object(master.absoluteBoundingBox) ? master.absoluteBoundingBox : null;
+  const masterBox = object(presentationRoot.absoluteBoundingBox) ? presentationRoot.absoluteBoundingBox : null;
 
   return {
     schemaVersion: '1.0.0',
@@ -211,18 +258,36 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     figmaWrites: [],
     container: {
       status: !containerApplicable ? 'not-applicable' : containerIssues.length === 0 ? 'pass' : 'fail',
-      masterNodeId: target.masterNodeId,
-      parentNodeId: typeof parent?.id === 'string' ? parent.id : null,
-      parentName: typeof parent?.name === 'string' ? parent.name : null,
-      parentType: typeof parent?.type === 'string' ? parent.type : null,
-      parentLayoutMode: typeof parent?.layoutMode === 'string' ? parent.layoutMode : null,
-      masterLayoutSizingHorizontal: typeof master.layoutSizingHorizontal === 'string' ? master.layoutSizingHorizontal : null,
+      masterNodeId: String(presentationRoot.id ?? target.masterNodeId),
+      parentNodeId: typeof presentationParent?.id === 'string' ? presentationParent.id : null,
+      parentName: typeof presentationParent?.name === 'string' ? presentationParent.name : null,
+      parentType: typeof presentationParent?.type === 'string' ? presentationParent.type : null,
+      parentLayoutMode: typeof presentationParent?.layoutMode === 'string' ? presentationParent.layoutMode : null,
+      masterLayoutSizingHorizontal: typeof presentationRoot.layoutSizingHorizontal === 'string' ? presentationRoot.layoutSizingHorizontal : null,
       referenceWidth: typeof masterBox?.width === 'number' ? masterBox.width : null,
       responsiveWidths: [...(target.responsiveWidths ?? [])],
       issues: containerIssues,
     },
     texts,
     dependencies: { declared: declaredDependencies, observed: observedDependencies, undeclared: undeclaredDependencies },
+    responsive: target.responsive ? {
+      status: responsiveSet ? 'component-set-observed' : 'standalone-before-transition',
+      propertyName: target.responsive.componentSetTopology.propertyName,
+      memberNames: responsiveMembers,
+      historicalMemberNodeId: target.masterNodeId,
+      historicalMemberKey: typeof master.key === 'string' ? master.key : target.responsive.componentSetTopology.historicalMember.componentKey,
+      expectedDefaultPresentationValue: target.responsive.componentSetTopology.defaultPresentationValue,
+      observedDefaultPresentationValue,
+      authoringPreviews,
+      scenarioCount: target.responsive.presentationScenarios.length,
+      primitiveBindingCount: target.responsive.primitiveBindings.length,
+      typographyOverrideCount: target.responsive.typographyOverrides.length,
+      boundaryViolations,
+    } : {
+      status: 'not-declared', propertyName: null, memberNames: [], historicalMemberNodeId: null, historicalMemberKey: null,
+      expectedDefaultPresentationValue: null, observedDefaultPresentationValue: null, authoringPreviews: [],
+      scenarioCount: 0, primitiveBindingCount: 0, typographyOverrideCount: 0, boundaryViolations: [],
+    },
     findings,
     proposedChanges,
   };

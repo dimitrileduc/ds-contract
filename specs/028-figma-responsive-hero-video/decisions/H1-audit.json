@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "gateId": "H1",
+  "decisionId": "H1-audit-v1",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-25T20:57:52Z",
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-003/audit.json",
+    "specs/028-figma-responsive-hero-video/inventory/H1-baseline-delta.md",
+    "specs/028-figma-responsive-hero-video/inventory/H1-primitives.json",
+    "specs/028-figma-responsive-hero-video/proofs/H1-surface-manifest.json",
+    "specs/028-figma-responsive-hero-video/proofs/H1-bridge-read-only.json",
+    "specs/027-responsive-hero-video/decisions/H1-baseline.json",
+    "specs/027-responsive-hero-video/decisions/H2-responsive.json"
+  ],
+  "factsPresented": [
+    "The current Figma version remains 2391670501431838845 and was freshly re-read through REST and Desktop Bridge.",
+    "Master 2151:5552, component key, Container 2448:4731 and the unique Home instance 2170:6351 are preserved.",
+    "Master, Home and Home-with-Header artifacts are byte-identical to the accepted 027 baseline.",
+    "Poster, crop/FILL, two scrims, texts, properties, Button identity and Home overrides remain preserved.",
+    "The missing Home CTA label Text Style link remains a pre-existing read-only, non-blocking defect under the 028 clarification.",
+    "The 027 centre-immersif direction is historical structure only; all exact H2 values remain undecided.",
+    "Twenty-two existing Primitives candidates are inventoried; no variable is created or approved by H1."
+  ],
+  "proposedAuthorization": "Create only separate H2 work frames outside the governed Container and outside Pages; keep master, Container, Home, Header, Button, media and every existing child read-only.",
+  "authorizes": [
+    "Create only separate H2 work frames outside the governed Container and outside Pages."
+  ],
+  "forbiddenAfterApproval": [
+    "master or variant mutation",
+    "Page write",
+    "child or shared dependency mutation",
+    "snapshot-source, preflight application sequence or dry-run"
+  ],
+  "conversationEvidence": "Owner replied 'go' after the plain-language H1 authorization prompt.",
+  "supersedes": null
+}

@@ -1,0 +1,6601 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "run": "h2-work-frames",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "sourceVersionId": "2391670501431838845",
+  "h1DecisionRef": "specs/028-figma-responsive-hero-video/decisions/H1-audit.json",
+  "h1ApprovedAt": "2026-08-25T20:57:52Z",
+  "executedAt": "2026-08-25T21:07:33.701Z",
+  "workArea": {
+    "nodeId": "2577:5984",
+    "name": "028 · HeroVideo responsive · Propositions H2",
+    "pageId": "2052:1146",
+    "pageName": "DS · Organisms",
+    "outsideGovernedContainer": true,
+    "outsideProductPages": true,
+    "authority": "proposal-only-before-H2"
+  },
+  "options": {
+    "option-a-balanced": {
+      "label": "Option A · Équilibrée",
+      "description": "Titre plus compact, gap 24; priorité à la lisibilité et au point focal du poster.",
+      "compact": {
+        "paddingRole": "space24",
+        "gapRole": "space24",
+        "fontSize": 32,
+        "lineHeight": 40
+      },
+      "desktop": {
+        "paddingRole": "space48",
+        "gapRole": "space24",
+        "fontSize": 40,
+        "lineHeight": 48
+      }
+    },
+    "option-b-expressive": {
+      "label": "Option B · Plus expressive",
+      "description": "Titre plus grand, gap 32; davantage d’impact mais plus de recouvrement média.",
+      "compact": {
+        "paddingRole": "space24",
+        "gapRole": "space32",
+        "fontSize": 40,
+        "lineHeight": 48
+      },
+      "desktop": {
+        "paddingRole": "space48",
+        "gapRole": "space32",
+        "fontSize": 44,
+        "lineHeight": 48
+      }
+    }
+  },
+  "frames": [
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:5997",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-320 · Default",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-320",
+      "width": 320,
+      "requestedHeight": 640,
+      "actualBounds": {
+        "x": 12090,
+        "y": 560,
+        "width": 320,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:5997",
+        "backgroundId": "2577:5998",
+        "titleId": "2577:6002",
+        "buttonId": "2577:6003"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12250,
+            "y": 819.5
+          },
+          "buttonCenter": {
+            "x": 12250,
+            "y": 950.5
+          },
+          "posterCenter": {
+            "x": 12250,
+            "y": 858.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 640,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-320-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6021",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-320 · Titre long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-320",
+      "width": 320,
+      "requestedHeight": 640,
+      "actualBounds": {
+        "x": 12570,
+        "y": 560,
+        "width": 320,
+        "height": 597
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6021",
+        "backgroundId": "2577:6022",
+        "titleId": "2577:6026",
+        "buttonId": "2577:6027"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": true,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12730,
+            "y": 819.5
+          },
+          "buttonCenter": {
+            "x": 12730,
+            "y": 1030.5
+          },
+          "posterCenter": {
+            "x": 12730,
+            "y": 858.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 640,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-320-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6045",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-320 · CTA long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-320",
+      "width": 320,
+      "requestedHeight": 640,
+      "actualBounds": {
+        "x": 13050,
+        "y": 560,
+        "width": 320,
+        "height": 597
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6045",
+        "backgroundId": "2577:6046",
+        "titleId": "2577:6050",
+        "buttonId": "2577:6051"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 13210,
+            "y": 819.5
+          },
+          "buttonCenter": {
+            "x": 13210,
+            "y": 950.5
+          },
+          "posterCenter": {
+            "x": 13210,
+            "y": 858.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 640,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-320-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6069",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-390 · Default",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-390",
+      "width": 390,
+      "requestedHeight": 844,
+      "actualBounds": {
+        "x": 12090,
+        "y": 1357,
+        "width": 390,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6069",
+        "backgroundId": "2577:6070",
+        "titleId": "2577:6074",
+        "buttonId": "2577:6075"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12285,
+            "y": 1616.5
+          },
+          "buttonCenter": {
+            "x": 12285,
+            "y": 1727.5
+          },
+          "posterCenter": {
+            "x": 12285,
+            "y": 1655.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 844,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6093",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-390 · Titre long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-390",
+      "width": 390,
+      "requestedHeight": 844,
+      "actualBounds": {
+        "x": 12640,
+        "y": 1357,
+        "width": 390,
+        "height": 597
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6093",
+        "backgroundId": "2577:6094",
+        "titleId": "2577:6098",
+        "buttonId": "2577:6099"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": true,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12835,
+            "y": 1616.5
+          },
+          "buttonCenter": {
+            "x": 12835,
+            "y": 1787.5
+          },
+          "posterCenter": {
+            "x": 12835,
+            "y": 1655.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 844,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6117",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-390 · CTA long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-390",
+      "width": 390,
+      "requestedHeight": 844,
+      "actualBounds": {
+        "x": 13190,
+        "y": 1357,
+        "width": 390,
+        "height": 597
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6117",
+        "backgroundId": "2577:6118",
+        "titleId": "2577:6122",
+        "buttonId": "2577:6123"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 13385,
+            "y": 1616.5
+          },
+          "buttonCenter": {
+            "x": 13385,
+            "y": 1727.5
+          },
+          "posterCenter": {
+            "x": 13385,
+            "y": 1655.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 844,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-390-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6141",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-834 · Default",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-834",
+      "width": 834,
+      "requestedHeight": 1112,
+      "actualBounds": {
+        "x": 12090,
+        "y": 2154,
+        "width": 834,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6141",
+        "backgroundId": "2577:6142",
+        "titleId": "2577:6146",
+        "buttonId": "2577:6147"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12507,
+            "y": 2413.5
+          },
+          "buttonCenter": {
+            "x": 12507,
+            "y": 2504.5
+          },
+          "posterCenter": {
+            "x": 12507,
+            "y": 2452.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 1112,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-834-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6165",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-834 · Titre long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-834",
+      "width": 834,
+      "requestedHeight": 1112,
+      "actualBounds": {
+        "x": 13084,
+        "y": 2154,
+        "width": 834,
+        "height": 597
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6165",
+        "backgroundId": "2577:6166",
+        "titleId": "2577:6170",
+        "buttonId": "2577:6171"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": true,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 13501,
+            "y": 2413.5
+          },
+          "buttonCenter": {
+            "x": 13501,
+            "y": 2524.5
+          },
+          "posterCenter": {
+            "x": 13501,
+            "y": 2452.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 1112,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-834-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6189",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · witness-834 · CTA long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-834",
+      "width": 834,
+      "requestedHeight": 1112,
+      "actualBounds": {
+        "x": 14078,
+        "y": 2154,
+        "width": 834,
+        "height": 597
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6189",
+        "backgroundId": "2577:6190",
+        "titleId": "2577:6194",
+        "buttonId": "2577:6195"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 14495,
+            "y": 2413.5
+          },
+          "buttonCenter": {
+            "x": 14495,
+            "y": 2504.5
+          },
+          "posterCenter": {
+            "x": 14495,
+            "y": 2452.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 1112,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-834-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6213",
+      "frameName": "028 H2 · Option A · Équilibrée · Desktop · witness-1200 · Default",
+      "presentation": "Desktop",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-1200",
+      "width": 1200,
+      "requestedHeight": 800,
+      "actualBounds": {
+        "x": 12090,
+        "y": 2951,
+        "width": 1200,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6213",
+        "backgroundId": "2577:6214",
+        "titleId": "2577:6218",
+        "buttonId": "2577:6219"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 40
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 48
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12690,
+            "y": 3210.5
+          },
+          "buttonCenter": {
+            "x": 12690,
+            "y": 3309.5
+          },
+          "posterCenter": {
+            "x": 12690,
+            "y": 3249.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 800,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6237",
+      "frameName": "028 H2 · Option A · Équilibrée · Desktop · witness-1200 · Titre long",
+      "presentation": "Desktop",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-1200",
+      "width": 1200,
+      "requestedHeight": 800,
+      "actualBounds": {
+        "x": 13450,
+        "y": 2951,
+        "width": 1200,
+        "height": 597
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6237",
+        "backgroundId": "2577:6238",
+        "titleId": "2577:6242",
+        "buttonId": "2577:6243"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 40
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 48
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": true,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 14050,
+            "y": 3210.5
+          },
+          "buttonCenter": {
+            "x": 14050,
+            "y": 3309.5
+          },
+          "posterCenter": {
+            "x": 14050,
+            "y": 3249.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 800,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6261",
+      "frameName": "028 H2 · Option A · Équilibrée · Desktop · witness-1200 · CTA long",
+      "presentation": "Desktop",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-1200",
+      "width": 1200,
+      "requestedHeight": 800,
+      "actualBounds": {
+        "x": 14810,
+        "y": 2951,
+        "width": 1200,
+        "height": 597
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6261",
+        "backgroundId": "2577:6262",
+        "titleId": "2577:6266",
+        "buttonId": "2577:6267"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 40
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 48
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 15410,
+            "y": 3210.5
+          },
+          "buttonCenter": {
+            "x": 15410,
+            "y": 3309.5
+          },
+          "posterCenter": {
+            "x": 15410,
+            "y": 3249.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 800,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1200-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6285",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · control-1440 · Default",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-1440",
+      "width": 1440,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 12090,
+        "y": 3748,
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6285",
+        "backgroundId": "2577:6286",
+        "titleId": "2577:6290",
+        "buttonId": "2577:6291"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12695.5,
+            "y": 4372
+          },
+          "buttonCenter": {
+            "x": 13331.5,
+            "y": 4393
+          },
+          "posterCenter": {
+            "x": 12810,
+            "y": 4108
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-1440-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6309",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · control-1440 · Titre long",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-1440",
+      "width": 1440,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 13690,
+        "y": 3748,
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6309",
+        "backgroundId": "2577:6310",
+        "titleId": "2577:6314",
+        "buttonId": "2577:6315"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 14295.5,
+            "y": 4348
+          },
+          "buttonCenter": {
+            "x": 14931.5,
+            "y": 4393
+          },
+          "posterCenter": {
+            "x": 14410,
+            "y": 4108
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-1440-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6333",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · control-1440 · CTA long",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-1440",
+      "width": 1440,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 15290,
+        "y": 3748,
+        "width": 1440,
+        "height": 720
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6333",
+        "backgroundId": "2577:6334",
+        "titleId": "2577:6338",
+        "buttonId": "2577:6339"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 15884.5,
+            "y": 4372
+          },
+          "buttonCenter": {
+            "x": 16520.5,
+            "y": 4393
+          },
+          "posterCenter": {
+            "x": 16010,
+            "y": 4108
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-1440-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6357",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · witness-1728 · Default",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-1728",
+      "width": 1728,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 12090,
+        "y": 4668,
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6357",
+        "backgroundId": "2577:6358",
+        "titleId": "2577:6362",
+        "buttonId": "2577:6363"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12839.5,
+            "y": 5316
+          },
+          "buttonCenter": {
+            "x": 13619.5,
+            "y": 5313
+          },
+          "posterCenter": {
+            "x": 12954,
+            "y": 5028
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1728-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6381",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · witness-1728 · Titre long",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-1728",
+      "width": 1728,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 13978,
+        "y": 4668,
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6381",
+        "backgroundId": "2577:6382",
+        "titleId": "2577:6386",
+        "buttonId": "2577:6387"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 14727.5,
+            "y": 5292
+          },
+          "buttonCenter": {
+            "x": 15507.5,
+            "y": 5313
+          },
+          "posterCenter": {
+            "x": 14842,
+            "y": 5028
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1728-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6405",
+      "frameName": "028 H2 · Option A · Équilibrée · Wide · witness-1728 · CTA long",
+      "presentation": "Wide",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "witness-1728",
+      "width": 1728,
+      "requestedHeight": 720,
+      "actualBounds": {
+        "x": 15866,
+        "y": 4668,
+        "width": 1728,
+        "height": 720
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6405",
+        "backgroundId": "2577:6406",
+        "titleId": "2577:6410",
+        "buttonId": "2577:6411"
+      },
+      "bindingRows": [
+        {
+          "property": "height",
+          "variableId": "VariableID:2434:5919",
+          "variableName": "size/hero-video/root",
+          "resolvedValue": 720,
+          "authority": "historical-binding-preserved"
+        }
+      ],
+      "typographyOverride": null,
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 16604.5,
+            "y": 5316
+          },
+          "buttonCenter": {
+            "x": 17384.5,
+            "y": 5313
+          },
+          "posterCenter": {
+            "x": 16730,
+            "y": 5028
+          },
+          "namedLimit": null
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 720,
+        "actualHeight": 720,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/witness-1728-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6429",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-short-landscape · Default",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-short-landscape",
+      "width": 844,
+      "requestedHeight": 390,
+      "actualBounds": {
+        "x": 12090,
+        "y": 5588,
+        "width": 844,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6429",
+        "backgroundId": "2577:6430",
+        "titleId": "2577:6434",
+        "buttonId": "2577:6435"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12512,
+            "y": 5847.5
+          },
+          "buttonCenter": {
+            "x": 12512,
+            "y": 5938.5
+          },
+          "posterCenter": {
+            "x": 12512,
+            "y": 5886.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 390,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": true,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-short-landscape-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6453",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-short-landscape · Titre long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-short-landscape",
+      "width": 844,
+      "requestedHeight": 390,
+      "actualBounds": {
+        "x": 13094,
+        "y": 5588,
+        "width": 844,
+        "height": 597
+      },
+      "fixtureId": "long-title",
+      "content": {
+        "title": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6453",
+        "backgroundId": "2577:6454",
+        "titleId": "2577:6458",
+        "buttonId": "2577:6459"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": true,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 13516,
+            "y": 5847.5
+          },
+          "buttonCenter": {
+            "x": 13516,
+            "y": 5958.5
+          },
+          "posterCenter": {
+            "x": 13516,
+            "y": 5886.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 390,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": true,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-short-landscape-long-title.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-a-balanced",
+      "optionLabel": "Option A · Équilibrée",
+      "frameId": "2577:6477",
+      "frameName": "028 H2 · Option A · Équilibrée · Compact · control-short-landscape · CTA long",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": false,
+      "caseId": "control-short-landscape",
+      "width": 844,
+      "requestedHeight": 390,
+      "actualBounds": {
+        "x": 14098,
+        "y": 5588,
+        "width": 844,
+        "height": 597
+      },
+      "fixtureId": "long-cta",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Toutes nos portes",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6477",
+        "backgroundId": "2577:6478",
+        "titleId": "2577:6482",
+        "buttonId": "2577:6483"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 32
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 40
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 14520,
+            "y": 5847.5
+          },
+          "buttonCenter": {
+            "x": 14520,
+            "y": 5938.5
+          },
+          "posterCenter": {
+            "x": 14520,
+            "y": 5886.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 390,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": true,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-a-balanced/control-short-landscape-long-cta.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-b-expressive",
+      "optionLabel": "Option B · Plus expressive",
+      "frameId": "2577:6501",
+      "frameName": "028 H2 · Option B · Plus expressive · Compact · witness-390 · Default",
+      "presentation": "Compact",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-390",
+      "width": 390,
+      "requestedHeight": 844,
+      "actualBounds": {
+        "x": 12090,
+        "y": 6385,
+        "width": 390,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6501",
+        "backgroundId": "2577:6502",
+        "titleId": "2577:6506",
+        "buttonId": "2577:6507"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7969",
+          "variableName": "space/24",
+          "resolvedValue": 24
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2027:971",
+          "variableName": "space/32",
+          "resolvedValue": 32
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 40
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 48
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12285,
+            "y": 6640.5
+          },
+          "buttonCenter": {
+            "x": 12285,
+            "y": 6795.5
+          },
+          "posterCenter": {
+            "x": 12285,
+            "y": 6683.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 844,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-b-expressive/witness-390-default.png",
+      "authority": "proposal-only-before-H2"
+    },
+    {
+      "optionId": "option-b-expressive",
+      "optionLabel": "Option B · Plus expressive",
+      "frameId": "2577:6525",
+      "frameName": "028 H2 · Option B · Plus expressive · Desktop · witness-1200 · Default",
+      "presentation": "Desktop",
+      "explicitSelection": true,
+      "witness": true,
+      "caseId": "witness-1200",
+      "width": 1200,
+      "requestedHeight": 800,
+      "actualBounds": {
+        "x": 12090,
+        "y": 7182,
+        "width": 1200,
+        "height": 597
+      },
+      "fixtureId": "default",
+      "content": {
+        "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "defaultTitle": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+        "buttonLabel": "Contactez-nous",
+        "defaultButtonLabel": "Contactez-nous"
+      },
+      "nodeRefs": {
+        "heroRootId": "2577:6525",
+        "backgroundId": "2577:6526",
+        "titleId": "2577:6530",
+        "buttonId": "2577:6531"
+      },
+      "bindingRows": [
+        {
+          "property": "minHeight",
+          "variableId": "VariableID:2188:9590",
+          "variableName": "space/597",
+          "resolvedValue": 597
+        },
+        {
+          "property": "paddingTop",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingRight",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingBottom",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "paddingLeft",
+          "variableId": "VariableID:2183:7970",
+          "variableName": "space/48",
+          "resolvedValue": 48
+        },
+        {
+          "property": "itemSpacing",
+          "variableId": "VariableID:2027:971",
+          "variableName": "space/32",
+          "resolvedValue": 32
+        }
+      ],
+      "typographyOverride": {
+        "role": "Titre Hero vidéo",
+        "sourceTextStyleName": "Titre Hero vidéo",
+        "fields": {
+          "fontSize": {
+            "before": 44,
+            "after": 44
+          },
+          "lineHeight": {
+            "before": 48,
+            "after": 48
+          },
+          "textAlignHorizontal": {
+            "before": "LEFT",
+            "after": "CENTER"
+          }
+        },
+        "family": "Montserrat",
+        "weight": 400,
+        "charactersChangedOnlyByFixture": false,
+        "debtStatus": "pending-responsive-text-style"
+      },
+      "media": {
+        "posterPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "IMAGE",
+            "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+            "scaleMode": "FILL",
+            "imageTransform": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "bottomScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.800000011920929,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                -5.551115123125783e-17
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ],
+        "navigationScrimPaints": [
+          {
+            "field": "fills",
+            "index": 0,
+            "type": "GRADIENT_LINEAR",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75,
+                "boundVariables": {}
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1,
+                "boundVariables": {}
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                -1,
+                1
+              ],
+              [
+                1,
+                6.123234262925839e-17,
+                -3.0616171314629196e-17
+              ]
+            ]
+          }
+        ],
+        "contentPosterOverlap": {
+          "titleCenter": {
+            "x": 12690,
+            "y": 7437.5
+          },
+          "buttonCenter": {
+            "x": 12690,
+            "y": 7544.5
+          },
+          "posterCenter": {
+            "x": 12690,
+            "y": 7480.5
+          },
+          "namedLimit": "Centered content can cover the poster focal area; no crop or asset change is proposed."
+        }
+      },
+      "responsiveCheck": {
+        "requestedHeight": 800,
+        "actualHeight": 597,
+        "growsBeyondRequestedHeight": false,
+        "horizontalOverflow": false,
+        "verticalOverflowInsideRoot": false,
+        "issues": [],
+        "contentAccessible": true,
+        "ancestorClipping": []
+      },
+      "plannedCaptureRef": "specs/028-figma-responsive-hero-video/proofs/H2-options/option-b-expressive/witness-1200-default.png",
+      "authority": "proposal-only-before-H2"
+    }
+  ],
+  "inspection": {
+    "protectedExistingFactsUnchanged": true,
+    "beforeProtected": {
+      "master": {
+        "id": "2151:5552",
+        "key": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+        "parentId": "2448:4731",
+        "rows": [
+          {
+            "path": "",
+            "id": "2151:5552",
+            "name": "HeroVideo",
+            "type": "COMPONENT",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MAX",
+            "itemSpacing": 10,
+            "paddingTop": 48,
+            "paddingRight": 89,
+            "paddingBottom": 48,
+            "paddingLeft": 89,
+            "boundVariables": {
+              "itemSpacing": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:969"
+              },
+              "paddingLeft": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7972"
+              },
+              "paddingTop": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7970"
+              },
+              "paddingRight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7972"
+              },
+              "paddingBottom": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7970"
+              },
+              "height": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2434:5919"
+              }
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "0",
+            "id": "2563:5956",
+            "name": "Background",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "IMAGE",
+                "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+                "scaleMode": "FILL",
+                "imageTransform": [
+                  [
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "1",
+            "id": "2563:5957",
+            "name": "VoileBas",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "GRADIENT_LINEAR",
+                "gradientStops": [
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0
+                    },
+                    "position": 0.800000011920929,
+                    "boundVariables": {}
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.5
+                    },
+                    "position": 1,
+                    "boundVariables": {}
+                  }
+                ],
+                "gradientTransform": [
+                  [
+                    6.123234262925839e-17,
+                    1,
+                    -5.551115123125783e-17
+                  ],
+                  [
+                    -1,
+                    6.123234262925839e-17,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "2",
+            "id": "2563:5958",
+            "name": "VoileNavigation",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "GRADIENT_LINEAR",
+                "gradientStops": [
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0
+                    },
+                    "position": 0.75,
+                    "boundVariables": {}
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.5
+                    },
+                    "position": 1,
+                    "boundVariables": {}
+                  }
+                ],
+                "gradientTransform": [
+                  [
+                    6.123234262925839e-17,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    6.123234262925839e-17,
+                    -3.0616171314629196e-17
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "3",
+            "id": "2563:5959",
+            "name": "Text",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9411,
+              "y": 1468,
+              "width": 1321,
+              "height": 48
+            },
+            "layoutMode": "VERTICAL",
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "3/0",
+            "id": "2563:5960",
+            "name": "Accroche",
+            "type": "TEXT",
+            "visible": true,
+            "bounds": {
+              "x": 9411,
+              "y": 1468,
+              "width": 1321,
+              "height": 48
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": {
+              "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+              "fontName": {
+                "family": "Montserrat",
+                "style": "Regular"
+              },
+              "fontSize": 44,
+              "lineHeight": {
+                "unit": "PIXELS",
+                "value": 48
+              },
+              "textAlignHorizontal": "LEFT",
+              "textStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,"
+            }
+          },
+          {
+            "path": "4",
+            "id": "2563:5966",
+            "name": "Bouton",
+            "type": "INSTANCE",
+            "visible": true,
+            "bounds": {
+              "x": 10742,
+              "y": 1462,
+              "width": 219,
+              "height": 54
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "itemSpacing": 10,
+            "paddingTop": 16,
+            "paddingRight": 32,
+            "paddingBottom": 16,
+            "paddingLeft": 32,
+            "boundVariables": {
+              "itemSpacing": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:969"
+              },
+              "paddingLeft": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:971"
+              },
+              "paddingTop": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:970"
+              },
+              "paddingRight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:971"
+              },
+              "paddingBottom": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:970"
+              },
+              "strokeTopWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeBottomWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeLeftWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeRightWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ],
+              "strokes": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": {
+              "Glyphe droite#2028:21": {
+                "type": "INSTANCE_SWAP",
+                "value": "6:104",
+                "preferredValues": [
+                  {
+                    "type": "COMPONENT",
+                    "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                  }
+                ]
+              },
+              "Libelle#2044:28": {
+                "type": "TEXT",
+                "value": "Contactez-nous"
+              },
+              "Icone droite#2024:7": {
+                "type": "BOOLEAN",
+                "value": false
+              },
+              "Glyphe gauche#2028:14": {
+                "type": "INSTANCE_SWAP",
+                "value": "6:99",
+                "preferredValues": [
+                  {
+                    "type": "COMPONENT",
+                    "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                  }
+                ]
+              },
+              "Icone gauche#2024:0": {
+                "type": "BOOLEAN",
+                "value": false
+              },
+              "Style": {
+                "value": "Outline blanc",
+                "type": "VARIANT",
+                "boundVariables": {}
+              }
+            },
+            "mainComponent": {
+              "id": "6:135",
+              "key": "79d92a0042c840703a0afe8d81dae1d3c1a9c241"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/0",
+            "id": "I2563:5966;2410:6131",
+            "name": "iconLeft",
+            "type": "INSTANCE",
+            "visible": false,
+            "bounds": {
+              "x": 10774,
+              "y": 1479,
+              "width": 20,
+              "height": 20
+            },
+            "layoutMode": "NONE",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": {},
+            "mainComponent": {
+              "id": "6:99",
+              "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/0/0",
+            "id": "I2563:5966;2410:6131;6:98",
+            "name": "Tracé",
+            "type": "VECTOR",
+            "visible": true,
+            "bounds": {
+              "x": 10774.7353515625,
+              "y": 1483.7413330078125,
+              "width": 18.69124984741211,
+              "height": 10.517420768737793
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:5:40"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/1",
+            "id": "I2563:5966;2410:6133",
+            "name": "label",
+            "type": "TEXT",
+            "visible": true,
+            "bounds": {
+              "x": 10774,
+              "y": 1478,
+              "width": 155,
+              "height": 22
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": {
+              "characters": "Contactez-nous",
+              "fontName": {
+                "family": "Montserrat",
+                "style": "Medium"
+              },
+              "fontSize": 16,
+              "lineHeight": {
+                "unit": "PIXELS",
+                "value": 22
+              },
+              "textAlignHorizontal": "LEFT",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          },
+          {
+            "path": "4/2",
+            "id": "I2563:5966;2410:6134",
+            "name": "ArrowRight",
+            "type": "INSTANCE",
+            "visible": false,
+            "bounds": {
+              "x": 10939,
+              "y": 1479,
+              "width": 20,
+              "height": 20
+            },
+            "layoutMode": "NONE",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": {},
+            "mainComponent": {
+              "id": "6:104",
+              "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/2/0",
+            "id": "I2563:5966;2410:6134;6:103",
+            "name": "Tracé",
+            "type": "VECTOR",
+            "visible": true,
+            "bounds": {
+              "x": 10939.625,
+              "y": 1483.7413330078125,
+              "width": 18.691328048706055,
+              "height": 10.517420768737793
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:5:40"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          }
+        ]
+      },
+      "container": {
+        "id": "2448:4731",
+        "name": "Container · HeroVideo",
+        "childIds": [
+          "2151:5552"
+        ]
+      },
+      "home": {
+        "id": "2170:6351",
+        "mainComponentId": "2151:5552",
+        "componentProperties": {
+          "Accroche#2439:0": {
+            "type": "TEXT",
+            "value": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          }
+        },
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 720
+        }
+      },
+      "header": {
+        "id": "210:473",
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 86
+        },
+        "componentProperties": {
+          "Fond": {
+            "value": "Transparent",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      },
+      "buttonMaster": {
+        "id": "6:135",
+        "key": "79d92a0042c840703a0afe8d81dae1d3c1a9c241",
+        "name": "Style=Outline blanc"
+      }
+    },
+    "afterProtected": {
+      "master": {
+        "id": "2151:5552",
+        "key": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+        "parentId": "2448:4731",
+        "rows": [
+          {
+            "path": "",
+            "id": "2151:5552",
+            "name": "HeroVideo",
+            "type": "COMPONENT",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MAX",
+            "itemSpacing": 10,
+            "paddingTop": 48,
+            "paddingRight": 89,
+            "paddingBottom": 48,
+            "paddingLeft": 89,
+            "boundVariables": {
+              "itemSpacing": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:969"
+              },
+              "paddingLeft": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7972"
+              },
+              "paddingTop": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7970"
+              },
+              "paddingRight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7972"
+              },
+              "paddingBottom": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2183:7970"
+              },
+              "height": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2434:5919"
+              }
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "0",
+            "id": "2563:5956",
+            "name": "Background",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "IMAGE",
+                "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+                "scaleMode": "FILL",
+                "imageTransform": [
+                  [
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "1",
+            "id": "2563:5957",
+            "name": "VoileBas",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "GRADIENT_LINEAR",
+                "gradientStops": [
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0
+                    },
+                    "position": 0.800000011920929,
+                    "boundVariables": {}
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.5
+                    },
+                    "position": 1,
+                    "boundVariables": {}
+                  }
+                ],
+                "gradientTransform": [
+                  [
+                    6.123234262925839e-17,
+                    1,
+                    -5.551115123125783e-17
+                  ],
+                  [
+                    -1,
+                    6.123234262925839e-17,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "2",
+            "id": "2563:5958",
+            "name": "VoileNavigation",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9322,
+              "y": 844,
+              "width": 1728,
+              "height": 720
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [
+              {
+                "field": "fills",
+                "index": 0,
+                "type": "GRADIENT_LINEAR",
+                "gradientStops": [
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0
+                    },
+                    "position": 0.75,
+                    "boundVariables": {}
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.5
+                    },
+                    "position": 1,
+                    "boundVariables": {}
+                  }
+                ],
+                "gradientTransform": [
+                  [
+                    6.123234262925839e-17,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    6.123234262925839e-17,
+                    -3.0616171314629196e-17
+                  ]
+                ]
+              }
+            ],
+            "text": null
+          },
+          {
+            "path": "3",
+            "id": "2563:5959",
+            "name": "Text",
+            "type": "FRAME",
+            "visible": true,
+            "bounds": {
+              "x": 9411,
+              "y": 1468,
+              "width": 1321,
+              "height": 48
+            },
+            "layoutMode": "VERTICAL",
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "3/0",
+            "id": "2563:5960",
+            "name": "Accroche",
+            "type": "TEXT",
+            "visible": true,
+            "bounds": {
+              "x": 9411,
+              "y": 1468,
+              "width": 1321,
+              "height": 48
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": {
+              "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+              "fontName": {
+                "family": "Montserrat",
+                "style": "Regular"
+              },
+              "fontSize": 44,
+              "lineHeight": {
+                "unit": "PIXELS",
+                "value": 48
+              },
+              "textAlignHorizontal": "LEFT",
+              "textStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,"
+            }
+          },
+          {
+            "path": "4",
+            "id": "2563:5966",
+            "name": "Bouton",
+            "type": "INSTANCE",
+            "visible": true,
+            "bounds": {
+              "x": 10742,
+              "y": 1462,
+              "width": 219,
+              "height": 54
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "itemSpacing": 10,
+            "paddingTop": 16,
+            "paddingRight": 32,
+            "paddingBottom": 16,
+            "paddingLeft": 32,
+            "boundVariables": {
+              "itemSpacing": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:969"
+              },
+              "paddingLeft": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:971"
+              },
+              "paddingTop": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:970"
+              },
+              "paddingRight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:971"
+              },
+              "paddingBottom": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:970"
+              },
+              "strokeTopWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeBottomWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeLeftWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "strokeRightWeight": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:2027:974"
+              },
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ],
+              "strokes": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": {
+              "Glyphe droite#2028:21": {
+                "type": "INSTANCE_SWAP",
+                "value": "6:104",
+                "preferredValues": [
+                  {
+                    "type": "COMPONENT",
+                    "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                  }
+                ]
+              },
+              "Libelle#2044:28": {
+                "type": "TEXT",
+                "value": "Contactez-nous"
+              },
+              "Icone droite#2024:7": {
+                "type": "BOOLEAN",
+                "value": false
+              },
+              "Glyphe gauche#2028:14": {
+                "type": "INSTANCE_SWAP",
+                "value": "6:99",
+                "preferredValues": [
+                  {
+                    "type": "COMPONENT",
+                    "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "260b884e25dbeb857d92c788868f075448c25d16"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "4583f5973482fbd560e3a81035d3225b04410045"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+                  },
+                  {
+                    "type": "COMPONENT",
+                    "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+                  }
+                ]
+              },
+              "Icone gauche#2024:0": {
+                "type": "BOOLEAN",
+                "value": false
+              },
+              "Style": {
+                "value": "Outline blanc",
+                "type": "VARIANT",
+                "boundVariables": {}
+              }
+            },
+            "mainComponent": {
+              "id": "6:135",
+              "key": "79d92a0042c840703a0afe8d81dae1d3c1a9c241"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/0",
+            "id": "I2563:5966;2410:6131",
+            "name": "iconLeft",
+            "type": "INSTANCE",
+            "visible": false,
+            "bounds": {
+              "x": 10774,
+              "y": 1479,
+              "width": 20,
+              "height": 20
+            },
+            "layoutMode": "NONE",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": {},
+            "mainComponent": {
+              "id": "6:99",
+              "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/0/0",
+            "id": "I2563:5966;2410:6131;6:98",
+            "name": "Tracé",
+            "type": "VECTOR",
+            "visible": true,
+            "bounds": {
+              "x": 10774.7353515625,
+              "y": 1483.7413330078125,
+              "width": 18.69124984741211,
+              "height": 10.517420768737793
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:5:40"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/1",
+            "id": "I2563:5966;2410:6133",
+            "name": "label",
+            "type": "TEXT",
+            "visible": true,
+            "bounds": {
+              "x": 10774,
+              "y": 1478,
+              "width": 155,
+              "height": 22
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:4:29"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": {
+              "characters": "Contactez-nous",
+              "fontName": {
+                "family": "Montserrat",
+                "style": "Medium"
+              },
+              "fontSize": 16,
+              "lineHeight": {
+                "unit": "PIXELS",
+                "value": 22
+              },
+              "textAlignHorizontal": "LEFT",
+              "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,"
+            }
+          },
+          {
+            "path": "4/2",
+            "id": "I2563:5966;2410:6134",
+            "name": "ArrowRight",
+            "type": "INSTANCE",
+            "visible": false,
+            "bounds": {
+              "x": 10939,
+              "y": 1479,
+              "width": 20,
+              "height": 20
+            },
+            "layoutMode": "NONE",
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "itemSpacing": 0,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "boundVariables": {},
+            "componentProperties": {},
+            "mainComponent": {
+              "id": "6:104",
+              "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+            },
+            "paints": [],
+            "text": null
+          },
+          {
+            "path": "4/2/0",
+            "id": "I2563:5966;2410:6134;6:103",
+            "name": "Tracé",
+            "type": "VECTOR",
+            "visible": true,
+            "bounds": {
+              "x": 10939.625,
+              "y": 1483.7413330078125,
+              "width": 18.691328048706055,
+              "height": 10.517420768737793
+            },
+            "layoutMode": null,
+            "layoutSizingHorizontal": "FIXED",
+            "layoutSizingVertical": "FIXED",
+            "primaryAxisAlignItems": null,
+            "counterAxisAlignItems": null,
+            "itemSpacing": null,
+            "paddingTop": null,
+            "paddingRight": null,
+            "paddingBottom": null,
+            "paddingLeft": null,
+            "boundVariables": {
+              "fills": [
+                {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:5:40"
+                }
+              ]
+            },
+            "componentProperties": null,
+            "mainComponent": null,
+            "paints": [],
+            "text": null
+          }
+        ]
+      },
+      "container": {
+        "id": "2448:4731",
+        "name": "Container · HeroVideo",
+        "childIds": [
+          "2151:5552"
+        ]
+      },
+      "home": {
+        "id": "2170:6351",
+        "mainComponentId": "2151:5552",
+        "componentProperties": {
+          "Accroche#2439:0": {
+            "type": "TEXT",
+            "value": "Le numéro 1 des portes HÖRMANN en Province de Liège !"
+          }
+        },
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 720
+        }
+      },
+      "header": {
+        "id": "210:473",
+        "bounds": {
+          "x": 301,
+          "y": 0,
+          "width": 1728,
+          "height": 86
+        },
+        "componentProperties": {
+          "Fond": {
+            "value": "Transparent",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      },
+      "buttonMaster": {
+        "id": "6:135",
+        "key": "79d92a0042c840703a0afe8d81dae1d3c1a9c241",
+        "name": "Style=Outline blanc"
+      }
+    },
+    "masterWrites": [],
+    "containerWrites": [],
+    "homeWrites": [],
+    "headerWrites": [],
+    "sharedDependencyWrites": [],
+    "existingChildWrites": [],
+    "pageWrites": []
+  },
+  "figmaWrites": {
+    "createdWorkAreaNodeId": "2577:5984",
+    "createdWorkFrameNodeIds": [
+      "2577:5997",
+      "2577:6021",
+      "2577:6045",
+      "2577:6069",
+      "2577:6093",
+      "2577:6117",
+      "2577:6141",
+      "2577:6165",
+      "2577:6189",
+      "2577:6213",
+      "2577:6237",
+      "2577:6261",
+      "2577:6285",
+      "2577:6309",
+      "2577:6333",
+      "2577:6357",
+      "2577:6381",
+      "2577:6405",
+      "2577:6429",
+      "2577:6453",
+      "2577:6477",
+      "2577:6501",
+      "2577:6525"
+    ],
+    "createdNodeIds": [
+      "2577:5984",
+      "2577:5997",
+      "2577:6021",
+      "2577:6045",
+      "2577:6069",
+      "2577:6093",
+      "2577:6117",
+      "2577:6141",
+      "2577:6165",
+      "2577:6189",
+      "2577:6213",
+      "2577:6237",
+      "2577:6261",
+      "2577:6285",
+      "2577:6309",
+      "2577:6333",
+      "2577:6357",
+      "2577:6381",
+      "2577:6405",
+      "2577:6429",
+      "2577:6453",
+      "2577:6477",
+      "2577:6501",
+      "2577:6525"
+    ],
+    "changedExistingNodeIds": []
+  },
+  "scriptResults": [
+    {
+      "operationId": "create-h2-proposal-work-frames-after-H1",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [
+          "2577:5984",
+          "2577:5997",
+          "2577:6021",
+          "2577:6045",
+          "2577:6069",
+          "2577:6093",
+          "2577:6117",
+          "2577:6141",
+          "2577:6165",
+          "2577:6189",
+          "2577:6213",
+          "2577:6237",
+          "2577:6261",
+          "2577:6285",
+          "2577:6309",
+          "2577:6333",
+          "2577:6357",
+          "2577:6381",
+          "2577:6405",
+          "2577:6429",
+          "2577:6453",
+          "2577:6477",
+          "2577:6501",
+          "2577:6525"
+        ],
+        "changedNodeIds": [],
+        "protectedExistingFactsUnchanged": true
+      }
+    }
+  ]
+}

@@ -142,11 +142,19 @@ mais protège son poster IMAGE et ses gradients.
 
 ### Container local obligatoire pour un organisme
 
-Un organisme est présenté une seule fois par son master historique, directement
-dans une FRAME locale auto-layout nommée `Container`. Le master garde son id et
-doit avoir `layoutSizingHorizontal = FILL` dans ce parent. Le Container ne doit
-pas contenir un second master ou une instance de démonstration du même
-organisme : le master lui-même exerce le Fill.
+Un organisme est présenté une seule fois par sa racine authoring, directement
+dans une FRAME locale auto-layout nommée `Container`. Tant que le composant est
+autonome, cette racine est le master historique. Après une transition gouvernée
+vers un component set, la racine devient le set et le membre historique reste
+un enfant protégé de celui-ci. Dans les deux cas, la racine directe du Container
+doit avoir `layoutSizingHorizontal = FILL`.
+
+Les membres directs d'un component set forment le catalogue d'authoring, pas
+des parents breakpoint. Ils gardent donc des largeurs d'aperçu `FIXED`
+explicitement déclarées, tandis que les instances transitoires placées dans les
+frames de contrôle exercent `FILL`. Une largeur d'aperçu ne devient ni une
+propriété de variante ni une largeur fixe du contrat/code. Le Container ne doit
+contenir ni second master ni instance de démonstration du même organisme.
 
 La règle n'impose aucune largeur universelle. La largeur de référence vient de
 la cible et les largeurs réduites viennent de son tableau `responsiveWidths` ;
@@ -275,6 +283,68 @@ sur Page sont refusés avant mutation.
 
 Le second reçu passe par la même porte avec `--run second`. Chaque opération
 doit alors être `no-op`, avec zéro nœud créé et zéro nœud modifié.
+
+### Transition responsive additive vers un component set
+
+Le mécanisme générique `responsive-component-set` couvre une transition bornée
+d'un composant historique autonome vers un set de présentations explicites. Il
+est protégé par les evals enregistrées
+`figma-responsive-component-set-declared-creates`,
+`figma-responsive-presentation-scenarios-explicit`,
+`figma-responsive-bindings-typography-allowlisted` et
+`figma-responsive-boundary-idempotence`.
+
+La campagne déclare avant émission :
+
+- le nom de la propriété de présentation, le membre historique et sa key, les
+  membres créés et les noms finaux du set ;
+- chaque création attendue avec un rôle, un nom et un compte exacts ;
+- les layouts Auto Layout autorisés, les bindings de variables existantes et
+  les seuls champs typographiques locaux permis ;
+- chaque scénario avec présentation, largeur, hauteur et fixture de contenu
+  explicitement sélectionnées ;
+- les nœuds existants autorisés, les surfaces Page en lecture seule, les
+  dépendances et enfants protégés, ainsi que les rôles de création autorisés.
+- l'état du set (`additive` ou `existing`), sa présentation par défaut, l'ordre
+  d'authoring et la largeur d'aperçu de chaque membre ; la présentation par
+  défaut doit rester le premier membre de cet ordre ;
+- séparément, les nœuds existants autorisés pour une traversée sûre et les IDs
+  exacts attendus comme modifiés au premier passage.
+
+Le parent local qui accueille le nouveau component set est lui aussi un nœud
+existant modifié par la transition : son id doit être explicitement allowlisté
+et apparaître dans `changedNodeIds` avec le membre historique. Le masquer comme
+une simple conséquence de la création du set est refusé par
+`responsive-operation-not-allowlisted`.
+
+Le transport clone les nouveaux membres depuis le composant historique, adopte
+ce dernier comme membre préservé et crée le set comme identité additive. Il ne
+reconstruit pas le membre historique et ne change aucun descendant existant. Les
+preuves de scénario utilisent uniquement des instances transitoires hors Page,
+puis les suppriment après capture.
+
+Le set reste un catalogue libre (`layoutMode=NONE`) et remplit le Container.
+Ses membres utilisent les largeurs d'aperçu déclarées en `FIXED`; leurs enfants
+internes peuvent rester Fill/Hug. Chaque scénario crée ensuite une instance dans
+une frame à la largeur contrôlée, sélectionne explicitement `Presentation` et
+met cette instance en `FILL`. Le runner refuse un set auto-layout qui égalise les
+largeurs, une présentation par défaut non déclarée ou un membre dont la largeur
+d'aperçu dérive.
+
+Le premier reçu doit énumérer exactement `createdNodes` avec les rôles déclarés,
+la topologie set+membres, l'identité du membre historique, la présentation active
+de chaque scénario, les bindings attachés, les overrides typographiques bornés et
+les faits communs des membres. Les diagnostics stables sont
+`responsive-operation-not-allowlisted`, `unexpected-created-node`,
+`presentation-not-selected`, `primitive-binding-detached`,
+`typography-field-not-allowlisted`, `page-write-forbidden`,
+`shared-child-write-forbidden` et `second-pass-not-noop`.
+
+Au second passage, les mêmes operation ids sont rejoués. Le reçu n'est accepté
+que si toutes les opérations sont `no-op`, avec `createdNodeIds: []`,
+`createdNodes: []`, `changedNodeIds: []`, `pageWrites: []` et `childWrites: []`.
+Les captures after/idempotence et tous les faits protégés restent ensuite soumis
+à la comparaison canonique du workflow.
 
 ## Comparaison
 

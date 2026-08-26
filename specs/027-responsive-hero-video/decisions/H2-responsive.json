@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "2.0.0",
+  "featureId": "027-responsive-hero-video",
+  "decisionId": "H2-responsive-v1",
+  "baselineRef": "specs/027-responsive-hero-video/decisions/H1-baseline.json",
+  "status": "approved",
+  "profile": {
+    "id": "piqueray-odoo19-992-1400",
+    "basis": "viewport-width",
+    "source": "odoo-bootstrap-19-subset"
+  },
+  "breakpoints": [
+    {
+      "id": "desktop-start",
+      "minWidthPx": 992,
+      "operator": "min-width",
+      "probeEvidenceRefs": [
+        "991",
+        "992",
+        "993"
+      ]
+    },
+    {
+      "id": "wide-start",
+      "minWidthPx": 1400,
+      "operator": "min-width",
+      "probeEvidenceRefs": [
+        "1399",
+        "1400",
+        "1401"
+      ]
+    }
+  ],
+  "designWitnesses": [
+    {
+      "witnessId": "mobile-390",
+      "widthPx": 390,
+      "compositionId": "compact"
+    },
+    {
+      "witnessId": "tablet-834",
+      "widthPx": 834,
+      "compositionId": "compact"
+    },
+    {
+      "witnessId": "desktop-1200",
+      "widthPx": 1200,
+      "compositionId": "desktop"
+    },
+    {
+      "witnessId": "wide-1728",
+      "widthPx": 1728,
+      "compositionId": "wide"
+    }
+  ],
+  "options": [
+    {
+      "optionId": "continuite-wide",
+      "label": "Continuité avec le wide",
+      "summary": "Compact centré pour la lisibilité ; Desktop conserve la ligne basse du Hero XL avec des valeurs resserrées.",
+      "compositions": {
+        "compact": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "column",
+          "align": "center",
+          "justify": "center",
+          "titleAlign": "center",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "variant",
+          "notes": [
+            "Le CTA suit le titre dans le flux compact.",
+            "Le contenu grandit au-delà de la hauteur visible si nécessaire."
+          ]
+        },
+        "desktop": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "row",
+          "align": "end",
+          "justify": "start",
+          "titleAlign": "left",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "modes",
+          "notes": [
+            "La relation titre à gauche / CTA à droite reste proche du baseline 1728.",
+            "Le titre long peut prendre plusieurs lignes."
+          ]
+        }
+      },
+      "boundaryProbeRefs": [
+        "991",
+        "992",
+        "993",
+        "1399",
+        "1400",
+        "1401"
+      ],
+      "evidenceRefs": [
+        "specs/027-responsive-hero-video/inventory/H2-option-harness.html",
+        "specs/027-responsive-hero-video/proofs/H2-option-harness.json",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#probes-communes",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#1-continuite-avec-le-wide-continuite-wide",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#2-pile-editoriale-en-bas-pile-editoriale",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#3-centrage-immersif-centre-immersif"
+      ],
+      "tradeoffs": [
+        "La continuité XL est maximale, mais le Desktop 1200 reste plus dense avec le CTA sur la même ligne."
+      ],
+      "limits": [
+        "Le titre ou CTA exceptionnellement long peut augmenter la hauteur à 1200 ; aucun contenu n’est masqué."
+      ]
+    },
+    {
+      "optionId": "pile-editoriale",
+      "label": "Pile éditoriale en bas",
+      "summary": "Titre et CTA restent groupés en bas à gauche en compact et Desktop pour absorber les contenus longs.",
+      "compositions": {
+        "compact": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "column",
+          "align": "start",
+          "justify": "end",
+          "titleAlign": "left",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "variant",
+          "notes": [
+            "Le groupe reste ancré en bas à gauche.",
+            "Le CTA passe sous le titre et ne concurrence jamais sa largeur."
+          ]
+        },
+        "desktop": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "column",
+          "align": "start",
+          "justify": "end",
+          "titleAlign": "left",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "variant",
+          "notes": [
+            "Le Desktop reprend la même lecture éditoriale que compact.",
+            "Le passage wide restaure le baseline horizontal historique."
+          ]
+        }
+      },
+      "boundaryProbeRefs": [
+        "991",
+        "992",
+        "993",
+        "1399",
+        "1400",
+        "1401"
+      ],
+      "evidenceRefs": [
+        "specs/027-responsive-hero-video/inventory/H2-option-harness.html",
+        "specs/027-responsive-hero-video/proofs/H2-option-harness.json",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#probes-communes",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#1-continuite-avec-le-wide-continuite-wide",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#2-pile-editoriale-en-bas-pile-editoriale",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#3-centrage-immersif-centre-immersif"
+      ],
+      "tradeoffs": [
+        "La robustesse aux contenus longs est maximale, au prix d’un changement de composition visible à 1400px."
+      ],
+      "limits": [
+        "La pile occupe davantage de hauteur du poster et demande une revue attentive du contraste sur la zone basse."
+      ]
+    },
+    {
+      "optionId": "centre-immersif",
+      "label": "Centrage immersif",
+      "summary": "Titre et CTA forment un groupe centré sur le poster jusqu’à 1399px ; le wide historique reste inchangé.",
+      "compositions": {
+        "compact": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "column",
+          "align": "center",
+          "justify": "center",
+          "titleAlign": "center",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "variant",
+          "notes": [
+            "Le groupe est centré horizontalement et verticalement.",
+            "Le paysage court grandit avec le contenu au lieu de scroller."
+          ]
+        },
+        "desktop": {
+          "presentParts": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Text.Accroche",
+            "Bouton"
+          ],
+          "order": [
+            "Background",
+            "VoileBas",
+            "VoileNavigation",
+            "Text",
+            "Bouton"
+          ],
+          "axis": "column",
+          "align": "center",
+          "justify": "center",
+          "titleAlign": "center",
+          "heightStrategy": "visible-viewport-min-content",
+          "textStyleTokenPath": "{typography.titre-hero-video}",
+          "ctaTreatment": {
+            "reuseCurrentButton": true,
+            "variant": "Outline blanc",
+            "sizeDecision": "unchanged",
+            "impactRefs": []
+          },
+          "mediaTreatment": {
+            "posterPolicy": "preserve-owner-poster",
+            "fit": "cover",
+            "cropDecision": "preserve-current",
+            "secondAsset": "none"
+          },
+          "shortLandscapeFallback": "grow-with-content",
+          "figmaStrategy": "variant",
+          "notes": [
+            "La composition conserve le même geste entre Mobile et Desktop.",
+            "Le wide rétablit le contenu horizontal en bas."
+          ]
+        }
+      },
+      "boundaryProbeRefs": [
+        "991",
+        "992",
+        "993",
+        "1399",
+        "1400",
+        "1401"
+      ],
+      "evidenceRefs": [
+        "specs/027-responsive-hero-video/inventory/H2-option-harness.html",
+        "specs/027-responsive-hero-video/proofs/H2-option-harness.json",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#probes-communes",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#1-continuite-avec-le-wide-continuite-wide",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#2-pile-editoriale-en-bas-pile-editoriale",
+        "specs/027-responsive-hero-video/inventory/H2-option-packet.md#3-centrage-immersif-centre-immersif"
+      ],
+      "tradeoffs": [
+        "La lecture est très claire et homogène, mais s’éloigne le plus de l’ancrage bas du Hero actuel."
+      ],
+      "limits": [
+        "Le centrage peut recouvrir le point d’intérêt du poster ; aucun recadrage ou second asset n’est autorisé sans nouveau choix owner."
+      ]
+    }
+  ],
+  "selectedOptionId": "centre-immersif",
+  "approvedCompositions": {
+    "compact": {
+      "presentParts": [
+        "Background",
+        "VoileBas",
+        "VoileNavigation",
+        "Text",
+        "Text.Accroche",
+        "Bouton"
+      ],
+      "order": [
+        "Background",
+        "VoileBas",
+        "VoileNavigation",
+        "Text",
+        "Bouton"
+      ],
+      "axis": "column",
+      "align": "center",
+      "justify": "center",
+      "titleAlign": "center",
+      "heightStrategy": "visible-viewport-min-content",
+      "textStyleTokenPath": "{typography.titre-hero-video}",
+      "ctaTreatment": {
+        "reuseCurrentButton": true,
+        "variant": "Outline blanc",
+        "sizeDecision": "unchanged",
+        "impactRefs": []
+      },
+      "mediaTreatment": {
+        "posterPolicy": "preserve-owner-poster",
+        "fit": "cover",
+        "cropDecision": "preserve-current",
+        "secondAsset": "none"
+      },
+      "shortLandscapeFallback": "grow-with-content",
+      "figmaStrategy": "variant",
+      "notes": [
+        "Le groupe est centré horizontalement et verticalement.",
+        "Le paysage court grandit avec le contenu au lieu de scroller."
+      ]
+    },
+    "desktop": {
+      "presentParts": [
+        "Background",
+        "VoileBas",
+        "VoileNavigation",
+        "Text",
+        "Text.Accroche",
+        "Bouton"
+      ],
+      "order": [
+        "Background",
+        "VoileBas",
+        "VoileNavigation",
+        "Text",
+        "Bouton"
+      ],
+      "axis": "column",
+      "align": "center",
+      "justify": "center",
+      "titleAlign": "center",
+      "heightStrategy": "visible-viewport-min-content",
+      "textStyleTokenPath": "{typography.titre-hero-video}",
+      "ctaTreatment": {
+        "reuseCurrentButton": true,
+        "variant": "Outline blanc",
+        "sizeDecision": "unchanged",
+        "impactRefs": []
+      },
+      "mediaTreatment": {
+        "posterPolicy": "preserve-owner-poster",
+        "fit": "cover",
+        "cropDecision": "preserve-current",
+        "secondAsset": "none"
+      },
+      "shortLandscapeFallback": "grow-with-content",
+      "figmaStrategy": "variant",
+      "notes": [
+        "La composition conserve le même geste entre Mobile et Desktop.",
+        "Le wide rétablit le contenu horizontal en bas."
+      ]
+    }
+  },
+  "decision": {
+    "decisionMaker": "owner",
+    "decidedAt": "2026-08-25T18:33:17Z",
+    "evidenceRefs": [
+      "specs/027-responsive-hero-video/inventory/H2-option-packet.md#direction-owner-enregistree",
+      "specs/027-responsive-hero-video/inventory/H2-option-harness.html"
+    ],
+    "acceptedTradeoffs": [
+      "Option 3 is accepted for structure only; preview spacing and typography remain non-authoritative and no source mutation is authorized."
+    ]
+  },
+  "foundationDependency": {
+    "status": "pending",
+    "requiredTopics": [
+      "responsive-spacing",
+      "responsive-typography",
+      "responsive-child-components"
+    ]
+  },
+  "authorizes": "transverse-foundation-handoff",
+  "rejectedTopics": [
+    "A fourth Tablet composition; 834 remains a compact witness.",
+    "A consumer-controlled viewport or responsive prop.",
+    "Treating any preview spacing or typography value as an approved HeroVideo source value.",
+    "A second mobile poster, crop change or local Button size/variant/wrapping/full-width delta."
+  ],
+  "deferredTopics": [
+    "Restore the Home CTA Text Style link at T020A under distinct Page authorization before any responsive Figma write.",
+    "Define responsive values for the semantic Titre Hero vidéo role during the transverse typography pass; H2 preserves the role only.",
+    "Assess long-label wrapping or full-width behavior during the transverse Button pass; H2 preserves the current intrinsic-width Button.",
+    "Define responsive section spacing from multi-component evidence; the H2 padding and gap values are preview-only."
+  ]
+}

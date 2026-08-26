@@ -1,5 +1,5 @@
 import { isObject as object, sha256Of, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
-import type { ProtectedFact } from './types.js';
+import type { ProtectedFact, ResponsiveComponentCapability } from './types.js';
 
 const digest = (value: unknown): string => sha256Of(stableJson(value));
 
@@ -27,6 +27,12 @@ export interface SurfaceFacts {
   instanceOverrides: unknown[];
   geometry: unknown[];
   responsiveOverflow: unknown[];
+  componentSetTopology: unknown;
+  componentMembers: Array<{ nodeId: unknown; name: unknown; componentKey: unknown }>;
+  componentProperties: unknown[];
+  primitiveBindings: unknown[];
+  temporaryTypography: unknown[];
+  sharedChildFacts: unknown[];
   digests: Record<ProtectedFact, string>;
 }
 
@@ -43,6 +49,10 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
   const instanceOverrides: unknown[] = [];
   const geometry: unknown[] = [];
   const responsiveOverflow: unknown[] = [];
+  const componentProperties: unknown[] = [];
+  const primitiveBindings: unknown[] = [];
+  const temporaryTypography: unknown[] = [];
+  const sharedChildFacts: unknown[] = [];
   const rootBox = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : null;
 
   walk(node, (entry, structuralPath) => {
@@ -72,6 +82,22 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
         letterSpacing: style.letterSpacing ?? null,
         textAlignHorizontal: style.textAlignHorizontal ?? null,
       });
+      const pluginData = object(entry.sharedPluginData) ? entry.sharedPluginData : {};
+      const namespace = object(pluginData.ds_contracts) ? pluginData.ds_contracts : {};
+      const debtStatus = namespace.responsiveTypographyDebt ?? entry.responsiveTypographyDebt ??
+        (typeof entry.getSharedPluginData === 'string' ? entry.getSharedPluginData : null);
+      if (debtStatus) temporaryTypography.push({
+        structuralPath,
+        name: entry.name ?? null,
+        textStyleId: entry.textStyleId ?? (object(entry.styles) ? entry.styles.text ?? null : null),
+        fontFamily: entry.fontName && object(entry.fontName) ? entry.fontName.family ?? null : style.fontFamily ?? null,
+        fontWeight: entry.fontWeight ?? style.fontWeight ?? null,
+        fontSize: entry.fontSize ?? style.fontSize ?? null,
+        lineHeight: entry.lineHeight ?? style.lineHeightPx ?? null,
+        textAlignHorizontal: entry.textAlignHorizontal ?? style.textAlignHorizontal ?? null,
+        characters: entry.characters ?? '',
+        debtStatus,
+      });
     }
     if (entry.type === 'INSTANCE') {
       // Descendant instance ids may be regenerated inside an amended master.
@@ -83,6 +109,31 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
         componentProperties: entry.componentProperties ?? {},
         overrides: entry.overrides ?? [],
       });
+      sharedChildFacts.push({
+        structuralPath,
+        componentId: entry.componentId ?? null,
+        componentProperties: entry.componentProperties ?? {},
+        overrides: entry.overrides ?? [],
+      });
+    }
+    if (entry.componentPropertyDefinitions || entry.componentProperties || entry.componentPropertyReferences) {
+      componentProperties.push({
+        structuralPath,
+        definitions: entry.componentPropertyDefinitions ?? {},
+        values: entry.componentProperties ?? {},
+        references: entry.componentPropertyReferences ?? {},
+      });
+    }
+    if (object(entry.boundVariables)) {
+      for (const [property, binding] of Object.entries(entry.boundVariables)) {
+        const bindings = Array.isArray(binding) ? binding : [binding];
+        primitiveBindings.push({
+          structuralPath,
+          property,
+          variableIds: bindings.filter(object).map((value) => value.id ?? value.variableId ?? null),
+          resolvedValue: entry[property] ?? (object(entry.style) ? (entry.style as Json)[property] ?? null : null),
+        });
+      }
     }
     const box = object(entry.absoluteBoundingBox) ? entry.absoluteBoundingBox : null;
     geometry.push({
@@ -113,6 +164,19 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
   const variants = node.type === 'COMPONENT_SET' && Array.isArray(node.children)
     ? node.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => ({ id: (child as Json).id ?? null, name: (child as Json).name ?? null }))
     : [];
+  const componentMembers = node.type === 'COMPONENT_SET' && Array.isArray(node.children)
+    ? node.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => ({
+      nodeId: (child as Json).id ?? null,
+      name: (child as Json).name ?? null,
+      componentKey: (child as Json).key ?? (child as Json).componentKey ?? null,
+    }))
+    : node.type === 'COMPONENT' ? [{ nodeId: node.id ?? null, name: node.name ?? null, componentKey: node.key ?? node.componentKey ?? null }] : [];
+  const componentSetTopology = node.type === 'COMPONENT_SET' ? {
+    nodeId: node.id ?? null,
+    name: node.name ?? null,
+    propertyDefinitions: node.componentPropertyDefinitions ?? {},
+    memberNames: componentMembers.map((member) => member.name),
+  } : null;
   // One identity value serves two fact names: each surface digests its own
   // root, so the master surface reads it as master identity and the page-host
   // surface as page-node identity. The names stay distinct because campaign
@@ -133,6 +197,12 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     'page-node-identity': rootIdentity,
     geometry,
     'responsive-overflow': responsiveOverflow,
+    'component-set-topology': componentSetTopology,
+    'historical-member-identity': componentMembers,
+    'component-properties': componentProperties,
+    'primitive-bindings': primitiveBindings,
+    'temporary-typography': temporaryTypography,
+    'shared-child-facts': sharedChildFacts,
   };
   const digests = Object.fromEntries(Object.entries(values).map(([fact, value]) => [fact, digest(value)])) as Record<ProtectedFact, string>;
   return {
@@ -149,8 +219,70 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     instanceOverrides,
     geometry,
     responsiveOverflow,
+    componentSetTopology,
+    componentMembers,
+    componentProperties,
+    primitiveBindings,
+    temporaryTypography,
+    sharedChildFacts,
     digests,
   };
+}
+
+export interface ResponsiveFactValidation {
+  ok: boolean;
+  issues: string[];
+}
+
+/** Compare live/fixture facts to the exact declarations. Resolved values alone
+ * never satisfy a binding, and typography accepts no field outside its local
+ * owner-approved allowlist. */
+export function validateResponsiveFacts(
+  capability: ResponsiveComponentCapability,
+  bindingFacts: readonly unknown[],
+  typographyFacts: readonly unknown[],
+): ResponsiveFactValidation {
+  const issues: string[] = [];
+  const rows = bindingFacts.filter(object);
+  for (const expected of capability.primitiveBindings) {
+    const matches = rows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath && row.property === expected.property);
+    if (matches.length !== 1 || matches[0].status !== 'attached' || matches[0].boundVariableId !== expected.variableId ||
+      matches[0].variableId !== expected.variableId || matches[0].variableName !== expected.variableName || matches[0].resolvedValue !== expected.resolvedValue) {
+      issues.push(`primitive-binding-detached:${expected.presentationValue}/${expected.nodePath}/${expected.property}`);
+    }
+  }
+  if (rows.length !== capability.primitiveBindings.length) issues.push('primitive-binding-detached:cardinality');
+
+  const typographyRows = typographyFacts.filter(object);
+  for (const expected of capability.typographyOverrides) {
+    const matches = typographyRows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath);
+    const row = matches[0];
+    const applied = row && object(row.appliedFields) ? row.appliedFields : {};
+    const appliedKeys = Object.keys(applied);
+    const valid = matches.length === 1 && row.status === 'allowlisted' && row.sourceRole === expected.sourceRole &&
+      row.sourceTextStyleId === expected.sourceTextStyleId && row.family === expected.family && row.weight === expected.weight &&
+      row.characters === expected.characters && row.debtStatus === expected.debtStatus &&
+      appliedKeys.length === expected.allowedFields.length && appliedKeys.every((field) => expected.allowedFields.includes(field as never)) &&
+      expected.allowedFields.every((field) => stableJson(applied[field]) === stableJson(expected.after[field]));
+    if (!valid) issues.push(`typography-field-not-allowlisted:${expected.presentationValue}/${expected.nodePath}`);
+  }
+  if (typographyRows.length !== capability.typographyOverrides.length) issues.push('typography-field-not-allowlisted:cardinality');
+  return { ok: issues.length === 0, issues: [...new Set(issues)] };
+}
+
+/** Normalize one responsive member's comparable facts (names/roles below the
+ * root, media, texts, component properties and shared children) into a stable
+ * string. Both the live-receipt gate and the closure gate diff members against
+ * the historical baseline through this one address, so the two cannot silently
+ * disagree on what counts as member drift. */
+export function comparableResponsiveMemberFacts(entry: Record<string, unknown>): string {
+  return stableJson({
+    namesAndRoles: Array.isArray(entry.namesAndRoles) ? entry.namesAndRoles.filter((row) => object(row) && row.structuralPath !== '') : [],
+    media: entry.media ?? [],
+    texts: entry.texts ?? [],
+    componentProperties: entry.componentProperties ?? [],
+    sharedChildren: entry.sharedChildren ?? [],
+  });
 }
 
 export interface ProtectedFactDifference {
@@ -169,5 +301,105 @@ export function compareProtectedFacts(
     const left = before.digests[typed];
     const right = after.digests[typed];
     return left === right ? [] : [{ fact: typed, before: left ?? '(missing)', after: right ?? '(missing)' }];
+  });
+}
+
+const responsiveSemanticFacts = new Set<ProtectedFact>([
+  'historical-member-identity',
+  'component-properties',
+  'instance-overrides',
+  'shared-child-facts',
+]);
+
+const propertyToken = (value: string): string => /^.+#\d+:\d+$/.test(value) ? value.slice(0, value.lastIndexOf('#')) : value;
+
+/** Native combineAsVariants regenerates component-property suffix ids and adds
+ * the selected Presentation property to existing instances. These two changes
+ * are additive topology mechanics, not override loss. Normalize only those
+ * mechanics; semantic values, links, override arrays and child identities stay
+ * fully compared. */
+function normalizeResponsiveSemanticValue(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(normalizeResponsiveSemanticValue);
+  if (!object(value)) return typeof value === 'string' ? propertyToken(value) : value;
+  const rows = Object.entries(value)
+    .filter(([key]) => propertyToken(key) !== 'Presentation')
+    .map(([key, entry]) => [propertyToken(key), normalizeResponsiveSemanticValue(entry)] as const)
+    .sort(([left], [right]) => left.localeCompare(right));
+  return Object.fromEntries(rows);
+}
+
+/** A standalone component owns its component-property definitions. Once Figma
+ * moves that component into a component set, the set owns those definitions
+ * and the member capture only retains the descendant property references. Drop
+ * only root definitions that are still referenced by the captured member; an
+ * unreferenced definition remains protected and therefore still fails closed. */
+function normalizeResponsiveComponentProperties(value: unknown): unknown {
+  if (!Array.isArray(value)) return normalizeResponsiveSemanticValue(value);
+  const referencedTokens = new Set(value.flatMap((row) => {
+    if (!object(row) || !object(row.references)) return [];
+    return Object.values(row.references)
+      .filter((reference): reference is string => typeof reference === 'string')
+      .map(propertyToken);
+  }));
+  const withoutLiftedDefinitions = value.map((row) => {
+    if (!object(row) || row.structuralPath !== '' || !object(row.definitions)) return row;
+    const definitions = Object.fromEntries(Object.entries(row.definitions)
+      .filter(([key]) => !referencedTokens.has(propertyToken(key))));
+    return { ...row, definitions };
+  }).filter((row) => {
+    if (!object(row) || row.structuralPath !== '') return true;
+    return [row.definitions, row.values, row.references].some((entry) => object(entry) && Object.keys(entry).length > 0);
+  });
+  return normalizeResponsiveSemanticValue(withoutLiftedDefinitions);
+}
+
+export function compareResponsiveTransitionProtectedFacts(
+  before: SurfaceFacts,
+  after: SurfaceFacts,
+  protectedFacts: readonly string[],
+  capability?: ResponsiveComponentCapability,
+): ProtectedFactDifference[] {
+  return protectedFacts.flatMap((fact) => {
+    const typed = fact as ProtectedFact;
+    if (typed === 'component-set-topology' && capability?.componentSetTopology.setIdentityPolicy === 'existing') {
+      const propertyName = capability.componentSetTopology.propertyName;
+      const expectedDefault = capability.componentSetTopology.defaultPresentationValue;
+      const normalizeDefault = (value: unknown): unknown => {
+        if (!object(value) || !object(value.propertyDefinitions)) return value;
+        const definitions = { ...value.propertyDefinitions };
+        const definition = definitions[propertyName];
+        if (object(definition)) {
+          const { defaultValue: _defaultValue, ...stableDefinition } = definition;
+          definitions[propertyName] = stableDefinition;
+        }
+        return { ...value, propertyDefinitions: definitions };
+      };
+      const afterDefinition = object(after.componentSetTopology) && object(after.componentSetTopology.propertyDefinitions)
+        ? after.componentSetTopology.propertyDefinitions[propertyName]
+        : null;
+      if (object(afterDefinition) && afterDefinition.defaultValue === expectedDefault &&
+        digest(normalizeDefault(before.componentSetTopology)) === digest(normalizeDefault(after.componentSetTopology))) {
+        return [];
+      }
+    }
+    if (!responsiveSemanticFacts.has(typed)) {
+      const left = before.digests[typed];
+      const right = after.digests[typed];
+      return left === right ? [] : [{ fact: typed, before: left ?? '(missing)', after: right ?? '(missing)' }];
+    }
+    const rawBefore = typed === 'historical-member-identity'
+      ? before.componentMembers.map(({ nodeId, componentKey }) => ({ nodeId, componentKey }))
+      : typed === 'component-properties' ? before.componentProperties
+        : typed === 'instance-overrides' ? before.instanceOverrides : before.sharedChildFacts;
+    const rawAfter = typed === 'historical-member-identity'
+      ? after.componentMembers.map(({ nodeId, componentKey }) => ({ nodeId, componentKey }))
+      : typed === 'component-properties' ? after.componentProperties
+        : typed === 'instance-overrides' ? after.instanceOverrides : after.sharedChildFacts;
+    const normalize = typed === 'component-properties'
+      ? normalizeResponsiveComponentProperties
+      : normalizeResponsiveSemanticValue;
+    const left = digest(normalize(rawBefore));
+    const right = digest(normalize(rawAfter));
+    return left === right ? [] : [{ fact: typed, before: left, after: right }];
   });
 }

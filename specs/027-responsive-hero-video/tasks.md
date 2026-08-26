@@ -5,6 +5,8 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 # Tasks: Rendre HeroVideo responsive
 
+> **Statut : Superseded — 2026-08-25.** Les tâches terminées restent des preuves historiques. Toutes les tâches non terminées sont annulées et ne doivent pas être reprises depuis ce fichier. La suite sera régénérée depuis une nouvelle spec séparée.
+
 **Input**: Design documents from `/specs/027-responsive-hero-video/`
 
 **Prerequisites**: [plan.md](plan.md), [spec.md](spec.md), [research.md](research.md), [data-model.md](data-model.md), [quickstart.md](quickstart.md), and [contracts/](contracts/)
@@ -31,11 +33,12 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 **Purpose**: Establish a clean, pinned implementation boundary and the common artifacts used by all gates and validation runners.
 
-- [ ] T001 Create a clean dedicated `027-responsive-hero-video` worktree, run `npm install` and `npx playwright install chromium` inside it, verify the versioned visual-parity baseline is available there, and record the Git/Figma source pins, bootstrap results, master `2151:5552`, historical key, and Home instance `2170:6351` in `specs/027-responsive-hero-video/inventory/worktree-pin.json`
-- [ ] T001A Before any fixture, modeling, or coding decision, consult the applicable handoffs, `docs/responsive-figma.md`, `docs/FIGMA-CAPABILITY-MATRIX.md`, page-parity, and Odoo documentation through auggie; record the consulted documents, questions, verbatim governing answers, and applicability in `specs/027-responsive-hero-video/inventory/docs-first-receipt.md`
-- [ ] T002 Create the single-writer HeroVideo campaign with the allowlist, `pageWrites: []`, before/after/idempotence capture targets, and bridge receipt locations in `specs/component-repairs/hero-video/run-002/campaign.json`
-- [ ] T003 [P] Define the canonical default, long-title, long-CTA, poster, unavailable-video, four-witness, thirteen-width, and short-landscape fixtures in `specs/027-responsive-hero-video/tools/responsive-fixtures.ts`
-- [ ] T004 [P] Document the required artifact naming, exact-viewport, SHA-256, freshness, and surface-pair conventions in `specs/027-responsive-hero-video/proofs/README.md`
+- [X] T001 Use the active clean Superset worktree as the dedicated implementation boundary, run `npm install` and `npx playwright install chromium` inside it, verify the versioned visual-parity baseline is available there, and record the active workspace, Git/Figma source pins, bootstrap results, master `2151:5552`, historical key, and Home instance `2170:6351` in `specs/027-responsive-hero-video/inventory/worktree-pin.json`
+- [X] T001A Before any fixture, modeling, or coding decision, consult the applicable handoffs, `docs/responsive-figma.md`, `docs/FIGMA-CAPABILITY-MATRIX.md`, page-parity, and Odoo documentation through Auggie when available, or by direct versioned-file research under an explicit owner waiver; record the transport status, consulted documents, questions, governing answers, and applicability in `specs/027-responsive-hero-video/inventory/docs-first-receipt.md`
+- [X] T002 Create the single-writer HeroVideo campaign with the allowlist, `pageWrites: []`, before/after/idempotence capture targets, and bridge receipt locations in `specs/component-repairs/hero-video/run-002/campaign.json`
+- [X] T003 [P] Define the canonical default, long-title, long-CTA, poster, unavailable-video, four-witness, thirteen-width, and short-landscape fixtures in `specs/027-responsive-hero-video/tools/responsive-fixtures.ts`
+- [X] T004 [P] Document the required artifact naming, exact-viewport, SHA-256, freshness, and surface-pair conventions in `specs/027-responsive-hero-video/proofs/README.md`
+- [X] T004A [P] Add and register adversarial regression coverage for the H2 decision, artifact, proof-ledger, and component-campaign validators in `evals/fixtures/responsive-hero-video/foundation-validator-check.ts` and `evals/run.ts`
 
 ---
 
@@ -45,10 +48,10 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 **⚠️ CRITICAL**: No user-story implementation begins until this phase is complete. These tools enforce the claims rule and preserve one evidence vocabulary across Figma, web, and Odoo.
 
-- [ ] T005 Implement JSON-schema validation plus feature/profile invariants for H2 owner decisions in `specs/027-responsive-hero-video/tools/validate-decision.ts`
-- [ ] T006 [P] Implement freshness, SHA-256, exact-dimension, fixture-condition, and duplicate-pair checks for captured artifacts in `specs/027-responsive-hero-video/tools/validate-artifacts.mts`
-- [ ] T007 [P] Implement the proof-ledger assembler/validator that requires H1–H4, protected facts, probes, eight witness comparisons, the 1440-wide continuity check, Odoo qualification, and first/second runs in `specs/027-responsive-hero-video/tools/validate-proof-ledger.mts`
-- [ ] T008 Add reproducible `hero-video:options`, `hero-video:decision:check`, `hero-video:responsive:check`, and `hero-video:ledger:check` commands that invoke the feature tools in `package.json`
+- [X] T005 Implement JSON-schema validation plus feature/profile invariants for H2 owner decisions in `specs/027-responsive-hero-video/tools/validate-decision.ts`
+- [X] T006 [P] Implement freshness, SHA-256, exact-dimension, fixture-condition, and duplicate-pair checks for captured artifacts in `specs/027-responsive-hero-video/tools/validate-artifacts.mts`
+- [X] T007 [P] Implement the proof-ledger assembler/validator that requires H1–H4, protected facts, probes, eight witness comparisons, the 1440-wide continuity check, Odoo qualification, and first/second runs in `specs/027-responsive-hero-video/tools/validate-proof-ledger.mts`
+- [X] T008 Add reproducible `hero-video:options`, `hero-video:decision:check`, `hero-video:responsive:check`, and `hero-video:ledger:check` commands that invoke the feature tools in `package.json`
 
 **Checkpoint**: A clean self-sufficient feature worktree, a Docs-First receipt, a page-write-free campaign, fixed fixtures, and deterministic validators exist before the owner is asked to review any design decision.
 
@@ -56,27 +59,27 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 ## Phase 3: User Story 1 — Co-concevoir et valider Mobile et Desktop (Priority: P1) 🎯 MVP
 
-**Goal**: Protect the accepted 1728 XL baseline, present comparable Mobile/Desktop options without source mutation, and obtain authoritative H1 and H2 decisions.
+**Goal**: Protect the accepted 1728 XL baseline, present comparable Mobile/Desktop layout options without source mutation, and record the owner-selected structural direction while deferring all responsive values to a transverse foundation spec.
 
-**Independent Test**: A separate designer can use the H2 record and its option packet to reproduce compact, Desktop, and unchanged wide behavior at 390, 834, 1200, and 1728 without inferring undecided values.
+**Independent Test**: A separate designer can use the H2 record and its option packet to reproduce compact, Desktop, and unchanged wide structure at 390, 834, 1200, and 1728, identify every preview value as non-authoritative, and see that no source mutation is authorized.
 
 ### Tests for User Story 1
 
-- [ ] T009 [P] [US1] Add an evaluator fixture that rejects an option packet missing a composition field, fixed breakpoint probe, long-content case, or explicit tradeoff in `evals/fixtures/responsive-hero-video/option-packet-check.ts`
-- [ ] T010 [US1] Register the option-packet fixture in the deterministic evaluator manifest in `evals/run.ts`
+- [X] T009 [P] [US1] Add an evaluator fixture that rejects an option packet missing a composition field, fixed breakpoint probe, long-content case, or explicit tradeoff in `evals/fixtures/responsive-hero-video/option-packet-check.ts`
+- [X] T010 [US1] Register the option-packet fixture in the deterministic evaluator manifest in `evals/run.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Run the read-only master/Home/Container audit and store identity-, position-, property-, media-, link-, and override-addressed findings in `specs/027-responsive-hero-video/inventory/H1-fresh-audit.json`
-- [ ] T012 [US1] Capture non-empty master, Home-instance, and Home-plus-Header before evidence with their protected-fact digests in `specs/027-responsive-hero-video/proofs/H1-before.manifest.json`
-- [ ] T013 [US1] Classify all differences between the new audit and supporting historical evidence as preserved baseline, approved delta, or pre-existing defect in `specs/027-responsive-hero-video/inventory/H1-baseline-delta.md`
-- [ ] T014 [US1] Obtain and record the explicit owner H1 acceptance/refusal, evidence consulted, tradeoffs, rejected/deferred topics, and next authorized step in `specs/027-responsive-hero-video/decisions/H1-baseline.json`
-- [ ] T015 [US1] Implement the non-authoritative Mobile/Desktop option renderer that consumes the fixed fixtures and never writes Figma in `specs/027-responsive-hero-video/tools/build-option-packet.ts`
-- [ ] T016 [US1] Generate two or three comparable options with 320/390/834/1200/1728, short-landscape, 991/992/993, and 1399/1400/1401 probes in `specs/027-responsive-hero-video/inventory/H2-option-packet.md`
-- [ ] T017 [US1] Validate the selected profile, witnesses, compact/Desktop values, governed styles, CTA/media choices, and rejected alternatives against the decision schema in `specs/027-responsive-hero-video/decisions/H2-responsive.json`
-- [ ] T018 [US1] Obtain and record the explicit owner H2 acceptance/refusal that authorizes only the selected Figma-source adaptation in `specs/027-responsive-hero-video/decisions/H2-responsive.json`
+- [X] T011 [US1] Run the read-only master/Home/Container audit and store identity-, position-, property-, media-, link-, and override-addressed findings in `specs/027-responsive-hero-video/inventory/H1-fresh-audit.json`
+- [X] T012 [US1] Capture non-empty master, Home-instance, and Home-plus-Header before evidence with their protected-fact digests in `specs/027-responsive-hero-video/proofs/H1-before.manifest.json`
+- [X] T013 [US1] Classify all differences between the new audit and supporting historical evidence as preserved baseline, approved delta, or pre-existing defect in `specs/027-responsive-hero-video/inventory/H1-baseline-delta.md`
+- [X] T014 [US1] Obtain and record the explicit owner H1 acceptance/refusal, evidence consulted, tradeoffs, rejected/deferred topics, and next authorized step in `specs/027-responsive-hero-video/decisions/H1-baseline.json`
+- [X] T015 [US1] Implement the non-authoritative Mobile/Desktop option renderer that consumes the fixed fixtures and never writes Figma in `specs/027-responsive-hero-video/tools/build-option-packet.ts`
+- [X] T016 [US1] Generate two or three comparable section-layout options at 320/390/834/1200/1728, short-landscape, 991/992/993, and 1399/1400/1401 probes; preserve `Titre Hero vidéo` and the unchanged intrinsic-width Button, and mark every padding/gap/typography value as a modifiable preview in `specs/027-responsive-hero-video/inventory/H2-option-packet.md`
+- [X] T017 [US1] Validate the selected profile, witnesses, compact/Desktop structural fields, preserved title/Button roles, media choices, non-authoritative previews, deferred transverse foundations, and rejected alternatives in `specs/027-responsive-hero-video/decisions/H2-responsive.json`
+- [X] T018 [US1] Record the explicit owner selection of option 3 as a layout-only H2 decision that authorizes only the transverse-foundation handoff and explicitly forbids Figma, contract, web and Odoo mutation in `specs/027-responsive-hero-video/decisions/H2-responsive.json`
 
-**Checkpoint**: H1 and H2 are accepted, the 992/1400 profile is fixed, Tablet 834 is explicitly compact, and no contract, Figma, web, or Odoo mutation has happened before this point.
+**Checkpoint**: H1 and the option-3 layout direction are accepted, the 992/1400 profile is fixed, Tablet 834 is compact, all preview values have zero decision authority, spacing/typography/atom work is deferred to a transverse spec, and no Figma, contract, web or Odoo mutation is authorized.
 
 ---
 
@@ -93,7 +96,9 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 ### Implementation for User Story 2
 
+- [ ] T020F [US2] Before any source campaign work, link an owner-approved transverse-foundation decision covering the exact spacing, typography and child-component values required by H2; refuse while it is missing, provisional or incompatible in `specs/027-responsive-hero-video/decisions/H2-foundation-dependency.json`
 - [ ] T020A [US2] After H2 and immediately before any Figma write, re-audit the historical master and every usage by identity and position; record the clean result or an owner-approved cleanup plus re-audit, and refuse the campaign while any source fact remains unclean in `specs/027-responsive-hero-video/inventory/H2-pre-mutation-source-cleanliness.json`
+  > **Owner direction 2026-08-25:** the Home CTA label cleanup is deliberately deferred to this gate. Before any responsive Figma write, restore only Text Style `2162:5834` on “En savoir plus” under a distinct Page authorization; preserve Button `6:135`, its variant/properties/icons, all Hero content/media/scrims and Header context; prove master/Home/Home+Header no-regression and a true second-pass no-op. Do not attempt to restore the recreated descendant IDs.
 - [ ] T021 [US2] Configure the approved wide member and Desktop composition, their anchors, and only their allowlisted transition operations in `specs/component-repairs/hero-video/run-002/campaign.json`
 - [ ] T022 [US2] Implement the isolated, non-authoritative migration spike that proves a standalone-to-set transition keeps all recorded protected facts in `specs/027-responsive-hero-video/tools/prove-figma-transition.mts`
 - [ ] T023 [US2] Run the campaign snapshot/preflight/dry-run and store the no-Page-write, protected-fact, and expected-transition receipt in `specs/027-responsive-hero-video/proofs/US2-figma-preflight.json`
@@ -147,7 +152,7 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 - [ ] T038 [US4] Apply the shared lowering to HTML, React CSS Modules, and inline React (using scoped deterministic `<style>` or refusing unsupported output) in `core/emit-html.ts`, `core/emit-react.ts`, and `core/emit-react-inline.ts`
 - [ ] T039 [US4] Apply the shared lowering to the Shadow-DOM stylesheet and reject unrepresentable responsive output in `packages/emitter-web-components/src/emit-wc.ts`
 - [ ] T040 [US4] Project the accepted Design mechanism and anchors without claiming automatic resize behavior in `core/emit-figma-script.ts` and `scripts/generate-figma.ts`
-- [ ] T041 [US4] Promote only H2/H3-approved compact/Desktop/wide facts, retain the existing public content API, preserve the historical wide anchor, and apply the minor contract version bump in `contracts/hero-video.contract.json`
+- [ ] T041 [US4] Promote only H2/H3-approved compact/Desktop/wide section-layout facts plus the stable `Titre Hero vidéo` role, retain the existing public content API and unchanged Button internals, preserve the historical wide anchor, and apply the minor contract version bump in `contracts/hero-video.contract.json`
 - [ ] T042 [US4] Document the additive responsive vocabulary, projection limits, and semver rule in `docs/02-contract-spec.md`, `docs/responsive-figma.md`, and `docs/FIGMA-CAPABILITY-MATRIX.md`
 - [ ] T043 [US4] Regenerate the contract schema, web references, component source, Figma sync, catalog, and Odoo derived CSS in `contracts/contract.schema.json`, `src/components/HeroVideo/HeroVideo.module.css`, `core/samples/hero-video.css`, `figma-sync/32-herovideo.js`, `catalog/components/hero-video.json`, and `integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css`
 - [ ] T044 [US4] Run `schema`, `generate`, `figma:plan`, `catalog`, `build`, emitter checks, `parity`, `eval`, `plugin:check`, deterministic roundtrip, `core-browser-check`, both TypeScript checks, and Storybook from the pinned worktree; record generated-file cleanliness plus H3-source reconciliation results in `specs/027-responsive-hero-video/proofs/US4-contract-projection.json`
@@ -209,7 +214,7 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 **Purpose**: Execute the complete closure sweep, make scope compliance reviewable, and preserve the final receipts.
 
 - [ ] T059 From the pinned worktree, rerun the complete constitutional suite: `schema`, `generate`, `figma:plan`, `catalog`, `build`, emitter checks, `parity`, `eval`, `plugin:check`, deterministic roundtrip, `core-browser-check`, both TypeScript checks, and Storybook; record commands, pins, digests, and outcomes in `specs/027-responsive-hero-video/proofs/final-gates.json`
-- [ ] T060 [P] Verify that only `ds.hero-video`, its direct `ds.button` dependency where owner-approved, the protected Home usage, and their declared generated outputs changed; record all exclusions in `specs/027-responsive-hero-video/proofs/scope-and-protected-facts-review.md`
+- [ ] T060 [P] Verify that only `ds.hero-video`, the explicitly linked transverse-foundation outputs, the protected Home usage, and their declared generated outputs changed; confirm that no local Button internals changed in `specs/027-responsive-hero-video/proofs/scope-and-protected-facts-review.md`
 - [ ] T061 Validate every referenced decision, ledger, artifact manifest, and capitalization link from the completed quickstart flow in `specs/027-responsive-hero-video/proofs/quickstart-validation.md`
 
 ---
@@ -220,8 +225,8 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 
 - **Setup (Phase 1)**: Starts by making the dedicated worktree self-sufficient and recording the Docs-First consultation.
 - **Foundational (Phase 2)**: Depends on Setup and blocks all user-story work.
-- **US1 (Phase 3)**: Depends on Foundational; H1 must precede the local option packet, and H2 must be accepted before any source mutation.
-- **US2 (Phase 4)**: Depends on accepted H2 and a fresh clean-source receipt from T020A; owns the first portion of the sole Figma write zone.
+- **US1 (Phase 3)**: Depends on Foundational; H1 precedes the local option packet, and layout-only H2 completes this phase without authorizing source mutation.
+- **US2 (Phase 4)**: Depends on accepted layout-only H2, an approved transverse-foundation receipt from T020F, and a fresh clean-source receipt from T020A; owns the first portion of the sole Figma write zone.
 - **US3 (Phase 5)**: Depends on US2's protected migration and the repeated clean-source receipt from T025A; it owns the remaining compact/witness work in that same write zone, and H3 closes only after both stories' Figma evidence is valid.
 - **US4 (Phase 6)**: Depends on accepted H3; contract promotion and all generated surfaces start here.
 - **US5 (Phase 7)**: Depends on US4's reviewed contract, generated Odoo CSS, and its completed reference matrix/Figma↔reference evidence.
@@ -231,9 +236,11 @@ description: "Actionable implementation tasks for governed responsive HeroVideo"
 ### User Story Dependencies
 
 ```text
-Setup → Foundation → US1 (H1 → H2)
+Setup → Foundation → US1 (H1 → layout-only H2)
                       ↓
-             US2 clean-source gate + Desktop/wide Figma
+          transverse spacing/typography/atoms decision
+                      ↓
+       US2 foundation receipt + clean-source gate + Desktop/wide Figma
                       ↓  (one Figma write zone)
                  US3 clean-source gate + compact + H3
                       ↓
@@ -244,7 +251,7 @@ Setup → Foundation → US1 (H1 → H2)
                  US6 ledger + no-op + H4 → Polish
 ```
 
-The equal P1 stories are deliberately serial: H2 authorizes source work, US2 protects the historical wide transition, and US3 completes the same single-writer Figma campaign before H3. Contract and Odoo work may not bypass those human gates.
+The equal P1 stories are deliberately serial: H2 selects only the layout, T020F imports the separately approved foundation values, US2 protects the historical wide transition, and US3 completes the same single-writer Figma campaign before H3. Contract and Odoo work may not bypass either decision.
 
 ### Within Each User Story
 
@@ -282,14 +289,14 @@ Task: "Limit authoring in integrations/odoo/config/hero-video.authoring.json"
 ### MVP First (User Story 1 Only)
 
 1. Complete Setup and Foundational phases.
-2. Complete US1 through an accepted H1 baseline and H2 owner decision.
-3. Stop: the responsive design is authoritative but no live source has been mutated.
-4. Validate that the option packet independently reproduces the three intended compositions and gives a clear refusal path for unresolved values.
+2. Complete US1 through an accepted H1 baseline and an owner-selected layout direction for H2.
+3. Stop: only the responsive structure is authoritative; no live source mutation is authorized.
+4. Validate that the option packet reproduces the three intended structures, labels all value previews, and names the transverse foundation dependency.
 
 ### Incremental Delivery
 
-1. H1/H2 establish a safe baseline and selected design.
-2. US2 + US3 establish accepted Figma Desktop, compact, and wide witnesses (H3).
+1. H1/H2 establish a safe baseline and selected layout direction.
+2. A separate transverse foundation decision supplies exact spacing, typography and child-component values; only then may US2 + US3 establish accepted Figma Desktop, compact, and wide witnesses (H3).
 3. US4 produces one deterministic contract and generated reference surfaces.
 4. US5 qualifies the non-destructive Odoo projection.
 5. US6 assembles evidence, proves no-op behavior, obtains H4, and captures reusable lessons.

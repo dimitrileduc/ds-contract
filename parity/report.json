@@ -1,11 +1,58 @@
 {
   "summary": {
-    "total": 0,
+    "total": 6,
     "acknowledged": 9,
     "pending": 0,
-    "bySurface": {}
+    "bySurface": {
+      "figma": {
+        "behind": 6
+      }
+    }
   },
-  "findings": [],
+  "findings": [
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Titre",
+      "detail": "Contract prop \"titre\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Accroche",
+      "detail": "Contract prop \"accroche\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Qualificatif",
+      "detail": "Contract prop \"qualificatif\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Note globale",
+      "detail": "Contract prop \"noteGlobale\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Volume",
+      "detail": "Contract prop \"volume\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "GoogleReviewsSection.Contrôles",
+      "detail": "Contract prop \"montrerControles\" has no BOOLEAN property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    }
+  ],
   "acknowledged": [
     {
       "surface": "figma",

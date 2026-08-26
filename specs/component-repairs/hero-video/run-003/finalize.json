@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "taskId": "T054",
+  "status": "pass",
+  "finalizedAt": "2026-08-26T09:27:49Z",
+  "installationCampaign": {
+    "campaignId": "figma-responsive-hero-video-run-003",
+    "campaignRef": "specs/component-repairs/hero-video/run-003/campaign.json",
+    "purpose": "initial responsive component-set installation"
+  },
+  "canonicalClosureCampaign": {
+    "campaignId": "figma-responsive-hero-video-run-005",
+    "campaignRef": "specs/component-repairs/hero-video/run-005/campaign.json",
+    "campaignSha256": "96d5833b15ff63b8fab7315282e5f36b69c57e265bfb457fa64181020c82fb14",
+    "terminalState": "owner-accepted",
+    "purpose": "default-Wide authoring correction and authoritative closure"
+  },
+  "ownerDecision": {
+    "gateId": "H4",
+    "decision": "accepted",
+    "decisionRef": "specs/028-figma-responsive-hero-video/decisions/H4-closure.json",
+    "sha256": "ce817feba742c8e0d6eb6629a0fb45686aaf913e62b9992553129786d9c0722a"
+  },
+  "finalReceipt": {
+    "receiptId": "figma-responsive-hero-video-run-005-hero-video-accepted",
+    "receiptRef": "specs/component-repairs/hero-video/run-005/receipts/hero-video.json",
+    "sha256": "4bcd9b7cd0a5db6babc4b2fcbfd6b0a3f16b585c0bae9beb1c6a4ebb0782eff5"
+  },
+  "closure": {
+    "closureRef": "specs/component-repairs/hero-video/run-005/closure.md",
+    "sha256": "55da21d7751bc12bb8bc772c2335f62c41c24d89e370a0870fd609bc2cae85f2",
+    "comparisonOk": true,
+    "idempotence": "pass",
+    "unexpectedDiffs": [],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "ledgerRef": "specs/028-figma-responsive-hero-video/proofs/ledger.json",
+  "scope": {
+    "figmaWritesDuringFinalize": [],
+    "contractWrites": [],
+    "htmlWrites": [],
+    "odooWrites": [],
+    "productScopeExtended": false,
+    "gitCommitCreated": false
+  },
+  "nonConvergenceStatus": "figma-ahead/pending-home-responsive-promotion"
+}

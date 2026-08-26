@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "027-responsive-hero-video",
+  "gateId": "H1",
+  "decision": "accepted",
+  "status": "approved",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-25T17:32:44Z",
+  "optionsReviewed": [
+    "Preserve the current 1728px HeroVideo as the XL/wide visual baseline",
+    "Refuse the current baseline and stop before local responsive option work"
+  ],
+  "evidenceRefs": [
+    "specs/027-responsive-hero-video/inventory/H1-fresh-audit.json",
+    "specs/027-responsive-hero-video/inventory/H1-baseline-delta.md",
+    "specs/027-responsive-hero-video/proofs/H1-before.manifest.json",
+    "specs/027-responsive-hero-video/proofs/audit.json"
+  ],
+  "acceptedTradeoffs": [
+    "The current 1728px composition, poster, title, Button, scrims and Home rendering are the wide baseline to preserve.",
+    "The recreated internal descendant identities are recorded as provenance drift and are not restored.",
+    "The Home CTA label remains pixel-equivalent while its governed Text Style link is repaired later under the mandatory T020A source-cleanliness gate."
+  ],
+  "rejectedTopics": [
+    "Restoring historical descendant node IDs during H1",
+    "Treating Header as a HeroVideo dependency or write target",
+    "Writing Figma, Page, contract, web or Odoo state before H2"
+  ],
+  "deferredTopics": [
+    "At T020A and before any responsive Figma write, restore Text Style 2162:5834 only on the Home CTA label under a distinct Page authorization and prove complete no-regression plus a second-pass no-op."
+  ],
+  "authorizes": "Generate and validate the local non-authoritative Mobile/Desktop option packet for H2 (T015-T017) with zero Figma or Page write.",
+  "nextAuthorizedStep": "T015-build-local-option-renderer",
+  "conversationEvidence": "Owner replied 'ok go' immediately after the explicit H1 acceptance prompt on 2026-08-25."
+}

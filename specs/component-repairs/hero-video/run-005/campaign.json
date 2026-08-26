@@ -1,0 +1,3716 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "figma-responsive-hero-video-run-005",
+  "featureId": "028-figma-responsive-hero-video",
+  "runId": "run-005",
+  "freshCampaign": {
+    "status": "fresh",
+    "supersedesRun": null,
+    "historicalContextRuns": [
+      "specs/component-repairs/hero-video/run-001",
+      "specs/component-repairs/hero-video/run-002"
+    ],
+    "copiedExecutionEvidence": [],
+    "reusePolicy": "historical-context-only; never copy audit, capture, receipt or verify artifacts"
+  },
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "organism",
+    "evidenceRoot": "specs/component-repairs/hero-video/run-005",
+    "ownerDecisionRoot": "specs/028-figma-responsive-hero-video/decisions",
+    "comparisonPath": "specs/component-repairs/hero-video/run-005/verify/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/hero-video/run-005/receipts/apply-first.json",
+      "second": "specs/component-repairs/hero-video/run-005/receipts/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ds.button"
+    ],
+    "sharedDependencies": []
+  },
+  "artifactRoots": {
+    "audit": "specs/component-repairs/hero-video/run-005/audit.json",
+    "captures": {
+      "before": "specs/component-repairs/hero-video/run-005/before",
+      "after": "specs/component-repairs/hero-video/run-005/after",
+      "idempotence": "specs/component-repairs/hero-video/run-005/idempotence"
+    },
+    "receipts": "specs/component-repairs/hero-video/run-005/receipts",
+    "verify": "specs/component-repairs/hero-video/run-005/verify",
+    "dryRun": "specs/component-repairs/hero-video/run-005/dry-run.json",
+    "bridgeScripts": {
+      "first": "specs/component-repairs/hero-video/run-005/bridge-first.js",
+      "second": "specs/component-repairs/hero-video/run-005/bridge-second.js"
+    }
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2391949441294093693",
+    "fileName": "Piqueray (Copy)",
+    "capturedAt": "2026-08-26T08:39:00.000Z",
+    "pinStatus": "fresh read-only pin after run-004 verification caught default Presentation drift"
+  },
+  "authorityRefs": [
+    "specs/028-figma-responsive-hero-video/inventory/worktree-pin.json",
+    "specs/028-figma-responsive-hero-video/inventory/docs-first-receipt.md",
+    "specs/028-figma-responsive-hero-video/spec.md",
+    "specs/028-figma-responsive-hero-video/plan.md",
+    "specs/028-figma-responsive-hero-video/contracts/figma-design-decision.md",
+    "specs/028-figma-responsive-hero-video/contracts/non-destructive-transition.md",
+    "specs/028-figma-responsive-hero-video/contracts/proof-ledger.md",
+    "specs/028-figma-responsive-hero-video/decisions/H2-design.json",
+    "specs/028-figma-responsive-hero-video/inventory/H2-bindings.json",
+    "specs/028-figma-responsive-hero-video/inventory/H2-typography.json",
+    "specs/028-figma-responsive-hero-video/proofs/runner-targeted-gates.md",
+    "specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md",
+    "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-first.json",
+    "specs/028-figma-responsive-hero-video/proofs/mechanism-spike-second-noop.json",
+    "specs/027-responsive-hero-video/decisions/H1-baseline.json",
+    "specs/027-responsive-hero-video/decisions/H2-responsive.json",
+    "specs/028-figma-responsive-hero-video/decisions/H3-authoring-preview-correction.json",
+    "specs/028-figma-responsive-hero-video/decisions/H3-default-wide-recovery.json"
+  ],
+  "targets": [
+    {
+      "targetId": "hero-video",
+      "kind": "generated-master",
+      "masterNodeId": "2151:5552",
+      "reference": {
+        "referenceId": "hero-video-wide-historical-context",
+        "sourceKind": "current-owner-approved-correction",
+        "figmaVersionId": "2391949441294093693",
+        "subjectNodeId": "2151:5552",
+        "visualFacts": [
+          "historical Wide 1728x720 composition",
+          "historical component key 36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+          "owner poster IMAGE in FILL and two scrims",
+          "nested ds.button identity and anatomy",
+          "Home instance link and overrides"
+        ],
+        "decisionRef": "specs/028-figma-responsive-hero-video/decisions/H3-default-wide-recovery.json"
+      },
+      "affectedSurfaceIds": [
+        "hero-video:master",
+        "hero-video:home-instance",
+        "hero-video:home-with-header-context",
+        "hero-video:header-context"
+      ],
+      "projectionDefectIds": [
+        "responsive-default-presentation-order"
+      ],
+      "allowedFields": [
+        "componentSetTopology",
+        "presentationProperty",
+        "layoutMode",
+        "layoutSizingHorizontal",
+        "layoutSizingVertical",
+        "minHeight",
+        "itemSpacing",
+        "padding",
+        "primaryAxisAlignItems",
+        "counterAxisAlignItems",
+        "boundVariables",
+        "fontSize",
+        "lineHeight",
+        "textAlignHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity",
+        "responsive-overflow",
+        "component-set-topology",
+        "historical-member-identity",
+        "component-properties",
+        "primitive-bindings",
+        "temporary-typography",
+        "shared-child-facts"
+      ],
+      "allowedFactChanges": [
+        "variant-cardinality",
+        "variant-names",
+        "geometry"
+      ],
+      "expectedMasterName": "HeroVideo",
+      "expectedVariantNames": [],
+      "responsiveWidths": [
+        320,
+        390,
+        834,
+        1200,
+        1440,
+        1728
+      ],
+      "responsive": {
+        "componentSetTopology": {
+          "propertyName": "Presentation",
+          "setName": "HeroVideo",
+          "setIdentityPolicy": "existing",
+          "historicalMember": {
+            "presentationValue": "Wide",
+            "nodeId": "2151:5552",
+            "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+            "declaredName": "Presentation=Wide",
+            "authoringPreviewWidth": 1728
+          },
+          "createdMembers": [
+            {
+              "presentationValue": "Compact",
+              "declaredName": "Presentation=Compact",
+              "sourcePresentationValue": "Wide",
+              "nodeId": "2580:7378",
+              "authoringPreviewWidth": 390
+            },
+            {
+              "presentationValue": "Desktop",
+              "declaredName": "Presentation=Desktop",
+              "sourcePresentationValue": "Wide",
+              "nodeId": "2580:7385",
+              "authoringPreviewWidth": 1200
+            }
+          ],
+          "expectedMemberNames": [
+            "Presentation=Compact",
+            "Presentation=Desktop",
+            "Presentation=Wide"
+          ],
+          "setNodeId": "2580:7392",
+          "authoringLayout": {
+            "direction": "VERTICAL",
+            "gap": 48,
+            "order": [
+              "Wide",
+              "Compact",
+              "Desktop"
+            ]
+          },
+          "defaultPresentationValue": "Wide"
+        },
+        "expectedCreates": [],
+        "contentFixtures": [
+          {
+            "fixtureId": "default",
+            "textValues": {}
+          },
+          {
+            "fixtureId": "long-title",
+            "textValues": {
+              "3/0": "Des portes de garage et d’entrée pensées pour votre maison, installées et entretenues par nos équipes"
+            }
+          },
+          {
+            "fixtureId": "long-cta",
+            "textValues": {
+              "4/1": "Toutes nos portes"
+            }
+          },
+          {
+            "fixtureId": "short-landscape",
+            "textValues": {}
+          }
+        ],
+        "presentationScenarios": [
+          {
+            "scenarioId": "320-compact-default",
+            "presentationValue": "Compact",
+            "width": 320,
+            "height": 640,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-compact-long-title",
+            "presentationValue": "Compact",
+            "width": 320,
+            "height": 640,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-compact-long-cta",
+            "presentationValue": "Compact",
+            "width": 320,
+            "height": 640,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-compact-default",
+            "presentationValue": "Compact",
+            "width": 390,
+            "height": 844,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-compact-long-title",
+            "presentationValue": "Compact",
+            "width": 390,
+            "height": 844,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-compact-long-cta",
+            "presentationValue": "Compact",
+            "width": 390,
+            "height": 844,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-compact-default",
+            "presentationValue": "Compact",
+            "width": 834,
+            "height": 1112,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-compact-long-title",
+            "presentationValue": "Compact",
+            "width": 834,
+            "height": 1112,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-compact-long-cta",
+            "presentationValue": "Compact",
+            "width": 834,
+            "height": 1112,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-desktop-default",
+            "presentationValue": "Desktop",
+            "width": 1200,
+            "height": 800,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-desktop-long-title",
+            "presentationValue": "Desktop",
+            "width": 1200,
+            "height": 800,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-desktop-long-cta",
+            "presentationValue": "Desktop",
+            "width": 1200,
+            "height": 800,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-wide-default",
+            "presentationValue": "Wide",
+            "width": 1440,
+            "height": 720,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-wide-long-title",
+            "presentationValue": "Wide",
+            "width": 1440,
+            "height": 720,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-wide-long-cta",
+            "presentationValue": "Wide",
+            "width": 1440,
+            "height": 720,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-wide-default",
+            "presentationValue": "Wide",
+            "width": 1728,
+            "height": 720,
+            "fixtureId": "default",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-wide-long-title",
+            "presentationValue": "Wide",
+            "width": 1728,
+            "height": 720,
+            "fixtureId": "long-title",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-wide-long-cta",
+            "presentationValue": "Wide",
+            "width": 1728,
+            "height": 720,
+            "fixtureId": "long-cta",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "844x390-compact-short-landscape",
+            "presentationValue": "Compact",
+            "width": 844,
+            "height": 390,
+            "fixtureId": "short-landscape",
+            "expectedOverflow": false
+          }
+        ],
+        "presentationLayouts": [
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "HUG",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "3",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "counterAxisAlignItems": "CENTER",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "3/0",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "4",
+            "properties": {
+              "layoutSizingHorizontal": "HUG",
+              "layoutSizingVertical": "HUG"
+            }
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "HUG",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "3",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "counterAxisAlignItems": "CENTER",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "3/0",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "4",
+            "properties": {
+              "layoutSizingHorizontal": "HUG",
+              "layoutSizingVertical": "HUG"
+            }
+          },
+          {
+            "presentationValue": "Wide",
+            "nodePath": "",
+            "properties": {
+              "layoutMode": "HORIZONTAL",
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "counterAxisAlignItems": "MAX",
+              "clipsContent": false
+            }
+          }
+        ],
+        "primitiveBindings": [
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "minHeight",
+            "variableId": "VariableID:2188:9590",
+            "variableName": "space/597",
+            "resolvedValue": 597
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "paddingTop",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "paddingRight",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "paddingBottom",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "paddingLeft",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Compact",
+            "nodePath": "",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "minHeight",
+            "variableId": "VariableID:2188:9590",
+            "variableName": "space/597",
+            "resolvedValue": 597
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "paddingTop",
+            "variableId": "VariableID:2183:7970",
+            "variableName": "space/48",
+            "resolvedValue": 48
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "paddingRight",
+            "variableId": "VariableID:2183:7970",
+            "variableName": "space/48",
+            "resolvedValue": 48
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "paddingBottom",
+            "variableId": "VariableID:2183:7970",
+            "variableName": "space/48",
+            "resolvedValue": 48
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "paddingLeft",
+            "variableId": "VariableID:2183:7970",
+            "variableName": "space/48",
+            "resolvedValue": 48
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2183:7969",
+            "variableName": "space/24",
+            "resolvedValue": 24
+          },
+          {
+            "presentationValue": "Wide",
+            "nodePath": "",
+            "property": "height",
+            "variableId": "VariableID:2434:5919",
+            "variableName": "size/hero-video/root",
+            "resolvedValue": 720
+          }
+        ],
+        "typographyOverrides": [
+          {
+            "presentationValue": "Compact",
+            "nodePath": "3/0",
+            "sourceRole": "Titre Hero vidéo",
+            "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+            "allowedFields": [
+              "fontSize",
+              "lineHeight",
+              "textAlignHorizontal"
+            ],
+            "before": {
+              "fontSize": 44,
+              "lineHeight": 48,
+              "textAlignHorizontal": "LEFT"
+            },
+            "after": {
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlignHorizontal": "CENTER"
+            },
+            "family": "Montserrat",
+            "weight": 400,
+            "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+            "debtStatus": "pending-responsive-text-style",
+            "ownerDecisionRef": "specs/028-figma-responsive-hero-video/decisions/H2-design.json"
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "3/0",
+            "sourceRole": "Titre Hero vidéo",
+            "sourceTextStyleId": "S:4d9e45c66ab28d215c049c57e17d71aa93272912,",
+            "allowedFields": [
+              "fontSize",
+              "lineHeight",
+              "textAlignHorizontal"
+            ],
+            "before": {
+              "fontSize": 44,
+              "lineHeight": 48,
+              "textAlignHorizontal": "LEFT"
+            },
+            "after": {
+              "fontSize": 40,
+              "lineHeight": 48,
+              "textAlignHorizontal": "CENTER"
+            },
+            "family": "Montserrat",
+            "weight": 400,
+            "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+            "debtStatus": "pending-responsive-text-style",
+            "ownerDecisionRef": "specs/028-figma-responsive-hero-video/decisions/H2-design.json"
+          }
+        ]
+      },
+      "ownerDecision": "accepted"
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "hero-video:master",
+      "targetId": "hero-video",
+      "role": "master",
+      "nodeId": "2580:7392",
+      "pageComposition": null,
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 2010
+      },
+      "impactStatus": "pending",
+      "writePolicy": "set-and-member-roots-only-after-owner-go"
+    },
+    {
+      "surfaceId": "hero-video:home-instance",
+      "targetId": "hero-video",
+      "role": "page-instance",
+      "nodeId": "2170:6351",
+      "pageComposition": "Pages / Accueil / Hero et catégories",
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 720
+      },
+      "impactStatus": "pending",
+      "writePolicy": "read-only"
+    },
+    {
+      "surfaceId": "hero-video:home-with-header-context",
+      "targetId": "hero-video",
+      "role": "page-context",
+      "nodeId": "210:326",
+      "pageComposition": "Pages / Accueil",
+      "structuralPath": "0",
+      "contextForSurfaceId": "hero-video:home-instance",
+      "expectedSize": {
+        "width": 1728,
+        "height": 5461.56982421875
+      },
+      "impactStatus": "pending",
+      "writePolicy": "read-only"
+    },
+    {
+      "surfaceId": "hero-video:header-context",
+      "targetId": "hero-video",
+      "role": "shared-consumer",
+      "nodeId": "210:473",
+      "pageComposition": "Pages / Accueil / Header nav",
+      "structuralPath": null,
+      "expectedSize": {
+        "width": 1728,
+        "height": 86
+      },
+      "impactStatus": "pending",
+      "writePolicy": "read-only"
+    }
+  ],
+  "consumerImpacts": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2448:4731",
+      "2580:7392",
+      "2580:7378",
+      "2580:7385",
+      "2151:5552"
+    ],
+    "expectedChangedNodeIds": [
+      "2580:7392",
+      "2580:7378",
+      "2580:7385",
+      "2151:5552"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2170:6351",
+      "210:326",
+      "210:473"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:135",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [
+      "2563:5956",
+      "2563:5957",
+      "2563:5958",
+      "2563:5960",
+      "2563:5966",
+      "I2170:6351;2563:5966",
+      "I2170:6351;2563:5966;2410:6133"
+    ],
+    "protectedChildPaths": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "3/0",
+      "4",
+      "4/0",
+      "4/1",
+      "4/2"
+    ],
+    "allowedCreateRoles": [],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "allowedOperations": [
+    {
+      "operationId": "restore-wide-default-authoring-order",
+      "targetId": "hero-video",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2151:5552"
+        }
+      ],
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "set.layoutMode",
+          "equals": "NONE"
+        },
+        {
+          "field": "Presentation.defaultValue",
+          "equals": "Wide"
+        },
+        {
+          "field": "Compact.authoringPreviewWidth",
+          "equals": 390
+        },
+        {
+          "field": "Desktop.authoringPreviewWidth",
+          "equals": 1200
+        },
+        {
+          "field": "Wide.authoringPreviewWidth",
+          "equals": 1728
+        },
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "figma-responsive-hero-video-run-005-before-2391949441294093693",
+      "phase": "before",
+      "fileVersionId": "2391949441294093693",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_master.structure.json",
+          "sha256": "b9b369a68728b74cd3cf4469b216b7cdcdf0f32deb012c7980564c7a4402c765",
+          "width": null,
+          "height": null,
+          "byteLength": 113780,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_master.properties.json",
+          "sha256": "41371bc0fd1bbc239a908ece9d36453072337b23a3ee2d1b9d38471498ec39c9",
+          "width": null,
+          "height": null,
+          "byteLength": 20450,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_master.facts.json",
+          "sha256": "e5d67ca7b673179cef2fbbe6b8d8352cdccbc82bdb7bc45a75e7ea7544ca1ee9",
+          "width": null,
+          "height": null,
+          "byteLength": 96002,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_master.png",
+          "sha256": "0e70a5268a714b59d9bcd7ac6c384ed59418a838116d33b04454f73497947de3",
+          "width": 1728,
+          "height": 2010,
+          "byteLength": 2869118,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:structure",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-instance.structure.json",
+          "sha256": "1483cb4151898d15a27245498793573a7a7965754916ad657ed050a1d85c7383",
+          "width": null,
+          "height": null,
+          "byteLength": 34457,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:properties",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-instance.properties.json",
+          "sha256": "521e47a4150b152d9ff14c00e89b9b2938d8636a9a83ba328af351e1422bbbf0",
+          "width": null,
+          "height": null,
+          "byteLength": 7136,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:facts",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-instance.facts.json",
+          "sha256": "4825d91931b33d2cbca8987c03e9b78d7aa126c7a2a8f8b659027669276edb71",
+          "width": null,
+          "height": null,
+          "byteLength": 36995,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:png",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-instance.png",
+          "sha256": "af47cddd3bce374cdde8f77f1d99d38cac2c63c435b8d945c094e14619d12b3e",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 1493897,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:structure",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-with-header-context.structure.json",
+          "sha256": "5dc4759a0d2c504d84bdf3735ee387b81b34280238cf885454fc8cb0269c0507",
+          "width": null,
+          "height": null,
+          "byteLength": 1468036,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:properties",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-with-header-context.properties.json",
+          "sha256": "57a47bb7b7615be0ed6e939488deccb45e5f7be075e5c36557105f92e22b2603",
+          "width": null,
+          "height": null,
+          "byteLength": 102902,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:facts",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-with-header-context.facts.json",
+          "sha256": "59d082dd78dc2d9913a7b39bd4d4a9f55911d8773801b3add0a318469f4f7272",
+          "width": null,
+          "height": null,
+          "byteLength": 648381,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:png",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_home-with-header-context.png",
+          "sha256": "6e66336c6bba1e0078ddfba1c9191dbb1818b5e27748d27d7a6569f276e49a6f",
+          "width": 1728,
+          "height": 5462,
+          "byteLength": 5683498,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:structure",
+          "surfaceId": "hero-video:header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_header-context.structure.json",
+          "sha256": "f393891c6c9dfbabb52a221688fca0d085ea8268161952a88334c73f37ce8582",
+          "width": null,
+          "height": null,
+          "byteLength": 116957,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:properties",
+          "surfaceId": "hero-video:header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_header-context.properties.json",
+          "sha256": "de267188380584a830754369fce73051b085a80691e41f0cdeb4158b98c8a881",
+          "width": null,
+          "height": null,
+          "byteLength": 11386,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:facts",
+          "surfaceId": "hero-video:header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_header-context.facts.json",
+          "sha256": "8082a212423b812a1d1c39789ff2e7a8a29295b04b88de3467e6f85d012e4155",
+          "width": null,
+          "height": null,
+          "byteLength": 65423,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:png",
+          "surfaceId": "hero-video:header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/before/hero-video_header-context.png",
+          "sha256": "8e567e2272fed08cc0892fce574a11d088df1d1030e2c7ed5872e0d69695e57a",
+          "width": 1728,
+          "height": 86,
+          "byteLength": 10672,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:presentation-scenarios:before",
+          "surfaceId": "hero-video:master",
+          "kind": "report",
+          "path": "specs/component-repairs/hero-video/run-005/before/presentation-scenarios.json",
+          "sha256": "4ddce47458c5b7f4ad848dfe0d677931a8f158810eb1131e1f564a2157289b13",
+          "width": null,
+          "height": null,
+          "byteLength": 5312,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2563:5956",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7379",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7386",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2096:2705",
+          "structuralPath": "4",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2096:2705;2351:38176",
+          "structuralPath": "4/0",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6938",
+          "structuralPath": "2/0/0",
+          "paintIndex": 0,
+          "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6958",
+          "structuralPath": "2/0/1/1/1",
+          "paintIndex": 0,
+          "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+          "scaleMode": "FIT",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37651;2407:4745",
+          "structuralPath": "5/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "d62d8bf32a1935f6f709cd2a9be8081b7c7bfb96",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37656;2407:4745",
+          "structuralPath": "5/1/1/0",
+          "paintIndex": 0,
+          "imageHash": "d3234fc1d13b0ddd3231ea573353dc466c44ea71",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37661;2407:4745",
+          "structuralPath": "5/1/2/0",
+          "paintIndex": 0,
+          "imageHash": "b434ddd16a1162695251a8e9b233872997147294",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37666;2407:4745",
+          "structuralPath": "5/1/3/0",
+          "paintIndex": 0,
+          "imageHash": "e0f8dd0b3654f98e9f308399acf7c10c7227623d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:39999;2407:4745",
+          "structuralPath": "5/1/4/0",
+          "paintIndex": 0,
+          "imageHash": "79e37f4c0d4e8d9cddc48ad6234eb5f3e227c59d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "0/1/0/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4470;2351:35672",
+          "structuralPath": "3/1/0/0/0",
+          "paintIndex": 0,
+          "imageHash": "1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4471;2351:35672",
+          "structuralPath": "3/1/0/1/0",
+          "paintIndex": 0,
+          "imageHash": "51b2d6d67c7fa001e5f9c60835be516e26a35a89",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4472;2351:35672",
+          "structuralPath": "3/1/0/2/0",
+          "paintIndex": 0,
+          "imageHash": "2e0e3ad062ccc49ee6ba8a0b1ab77e59fd972397",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4473;2351:35672",
+          "structuralPath": "3/1/0/3/0",
+          "paintIndex": 0,
+          "imageHash": "cfd3b7776d43764fb8f4eec4f29226c395989583",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0/0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7384",
+          "masterNodeId": "6:135",
+          "structuralPath": "1/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7391",
+          "masterNodeId": "6:135",
+          "structuralPath": "2/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2093:2449",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "6/0",
+          "overrideDigest": "a488db2267768ab5ff0880515fad7f1d560f6f747dee3d9122e8ca46185eefcc"
+        },
+        {
+          "instanceNodeId": "2096:2705",
+          "masterNodeId": "2096:2524",
+          "structuralPath": "4",
+          "overrideDigest": "9e5df5717496c6353d68cc98dcf0a310220b97385823eabb862e897f9e4349f6"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "8/0",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "2106:3000",
+          "masterNodeId": "2103:2824",
+          "structuralPath": "1",
+          "overrideDigest": "68589377e1e63fc43c798166690477eb54cbffcd60c31766d4ed5e195f877170"
+        },
+        {
+          "instanceNodeId": "2108:3135",
+          "masterNodeId": "2108:3105",
+          "structuralPath": "2",
+          "overrideDigest": "a516de66fd02a8588a0ec305cbee4246de20a7fb06acaab45ff114c55cd42873"
+        },
+        {
+          "instanceNodeId": "2115:3892",
+          "masterNodeId": "2114:3693",
+          "structuralPath": "5",
+          "overrideDigest": "421d67dd77366622d3c30c369a7acc2129cfd623ff9f770ddda284eee1450b5f"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "0/1/0",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "2116:4595",
+          "masterNodeId": "2116:4475",
+          "structuralPath": "3",
+          "overrideDigest": "6e2b21a2329c398e35375039924a50517e4d5cc34bd00e4abe355624120b8d3d"
+        },
+        {
+          "instanceNodeId": "2121:5128",
+          "masterNodeId": "2120:4785",
+          "structuralPath": "7/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0/0",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "2183:8026",
+          "masterNodeId": "2178:7381",
+          "structuralPath": "6/1",
+          "overrideDigest": "d4d56c0ae2b9f58ae4ea47b7ea59b83a4dde13c4513d8e4d7a89263c68394e32"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197",
+          "masterNodeId": "6:135",
+          "structuralPath": "4/2/1",
+          "overrideDigest": "1fe580d4c599415e703bf4303624752c8e4ee92f0c156c84c11b89bb7b37a959"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/2/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "8/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "8/0/1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "8/0/1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "8/0/1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/1/1",
+          "overrideDigest": "253f127403dd91d431ba80bdab2a735a138d9d1f3c46863fb5478e642293e459"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6136",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6139",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6943",
+          "masterNodeId": "2338:29029",
+          "structuralPath": "2/0/1/0/1/0",
+          "overrideDigest": "1f62cfbca1c779e87f1995d7c40bc604b75496d94da6a28864b045487ff1c7eb"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950",
+          "masterNodeId": "6:107",
+          "structuralPath": "2/0/1/0/1/2",
+          "overrideDigest": "be426e69f4d8bf8a44c449228c04dfe4a41b14d8141a97d50320dcfe2fb61d67"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6099",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/0/1/0/1/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6116",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/0/1/0/1/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37641",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "5/0",
+          "overrideDigest": "1045fe44a49dc9775dbbdff95375e0522e7ab157d7e781e84376ed3a19027717"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37651",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/0",
+          "overrideDigest": "2e0fb37f994a65aebccf84ecd12987564ec6b25fb9dac880ef2d125f7442d695"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37656",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/1",
+          "overrideDigest": "7304b345479ef7a06a3ed2bf969f8b78a0576fe86fb608680a1fee32fb2312b9"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37661",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/2",
+          "overrideDigest": "689e1537216f329ba637a762de2afbcf39eb246ff70af205922cacb995fcc237"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37666",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/3",
+          "overrideDigest": "fcfe748af98fe0caa2a2f4b2aa6fce87df6770d162b411d2f861cff8dd977cd7"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713",
+          "masterNodeId": "28:114",
+          "structuralPath": "5/2",
+          "overrideDigest": "dc53ec29e3d5c2ff8e5bbb26ea9c8d2cb7a20672fd7e1c9d6e5e446a2fcadbaa"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "5/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "5/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:39999",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/4",
+          "overrideDigest": "1ecfd729d53ea4323ae0b882b037c8fa1701d67b1a39387e879b7d673bcdf2c9"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4470",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/0",
+          "overrideDigest": "3f235164cbf6b377db4bdef28d7f7b8fab80317e3943eed3f327194a7da55f5a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4471",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/1",
+          "overrideDigest": "6f701b2654d3d0fd6ba0e46ee8b886a59365d5cfe8ed0b21d341afe66d298af0"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4472",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/2",
+          "overrideDigest": "9ca6b7fb26afdab6a04dcfbbf5cd4cb2a8545333b454dc1a941bc46eab1d6ad7"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4473",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/3",
+          "overrideDigest": "c4ecaf10b6da6ee9b710d3046727f8f0ebfe1da57da9881db6c7e29488bd365d"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474",
+          "masterNodeId": "2077:2191",
+          "structuralPath": "3/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/0",
+          "overrideDigest": "e21ee894ab9d2af60f4835422a86048306f7ff5a92a2f29c561b0e23edd97bc4"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6187",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6189",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/1",
+          "overrideDigest": "1eb1ac244936299ba4593d333cac5aee91acd7f3cf7d9b917edfc475db657915"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6187",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6189",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012",
+          "masterNodeId": "28:114",
+          "structuralPath": "3/0/1",
+          "overrideDigest": "f1f333522ba78bbe9b80b0566b1fe82a354d242c5eaab423e45ab52773e282fc"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "3/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33107",
+          "masterNodeId": "4:15",
+          "structuralPath": "7/0/1/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132",
+          "masterNodeId": "6:135",
+          "structuralPath": "7/0/1/0/1",
+          "overrideDigest": "3028a33eb43e819530a1bc7a93c434373f2983239f1eb59bd3c883684352cee5"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "7/0/1/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "7/0/1/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33143",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/1",
+          "overrideDigest": "a42ff27d8a04106be8b3452740d08527e8a6e38db0b0eda46b47658b923e0448"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33146",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/2",
+          "overrideDigest": "2284d9df6534c362cb4d33b02bbb78b29f347676ede00c866ddbb3ccdb6a9643"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33149",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/3",
+          "overrideDigest": "0fb50173e05eeda63dfed377b742b1641c0c5b7ef43abafea63ca617f0d6c492"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33522",
+          "masterNodeId": "2086:2330",
+          "structuralPath": "7/0/5",
+          "overrideDigest": "65946a64f3aa0edf26261583258d7661b4f05e57b5e72f5c640fc70ea390456c"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/0",
+          "overrideDigest": "afaa88d70f9ba0d011ea3116e64ee3093a17129363717305c0200d25a3bd1a75"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/0/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/1",
+          "overrideDigest": "004b0fa8ced2e15b76238ce1afef74a37353df4320fbf36bfdef54d767aae6a6"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/1/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/2",
+          "overrideDigest": "4ebbb76bd5400e66243989aad95f60dfcf3a7e72e63730efe88ddb29a7b43a12"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/2/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/3",
+          "overrideDigest": "596347357557bbfccfd812070f2128270371a66667f911560bc4089f94a2e6b4"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/3/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/4",
+          "overrideDigest": "057cbb1a7d94953afdc11adcb82f557a91348a5ded06a9dd8ba14c5500c51005"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/4/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2480:5264",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/0/0/2/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "after": {
+      "captureSetId": "figma-responsive-hero-video-run-005-after-2391949441294093693",
+      "phase": "after",
+      "fileVersionId": "2391949441294093693",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_master.structure.json",
+          "sha256": "32a1ee8b79af65ce2dda6bea493121ecb0bb763c4f6d844359ddd4a8f2501cb8",
+          "width": null,
+          "height": null,
+          "byteLength": 113780,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_master.properties.json",
+          "sha256": "20c06607b5c5c87f099c1b91ed6395cc2f3aebab408373168bbe73dbcdcd584b",
+          "width": null,
+          "height": null,
+          "byteLength": 20447,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_master.facts.json",
+          "sha256": "73277e29aa9f61b25328c5779dd1954dc8645526d2576e25fbdf57df5ec6b873",
+          "width": null,
+          "height": null,
+          "byteLength": 96002,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_master.png",
+          "sha256": "81dada4c2c74f7295411c8631fe895a43df4ceff2cc0e3a4edb19ffca2676314",
+          "width": 1728,
+          "height": 2010,
+          "byteLength": 2869605,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:structure",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-instance.structure.json",
+          "sha256": "1483cb4151898d15a27245498793573a7a7965754916ad657ed050a1d85c7383",
+          "width": null,
+          "height": null,
+          "byteLength": 34457,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:properties",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-instance.properties.json",
+          "sha256": "521e47a4150b152d9ff14c00e89b9b2938d8636a9a83ba328af351e1422bbbf0",
+          "width": null,
+          "height": null,
+          "byteLength": 7136,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:facts",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-instance.facts.json",
+          "sha256": "4825d91931b33d2cbca8987c03e9b78d7aa126c7a2a8f8b659027669276edb71",
+          "width": null,
+          "height": null,
+          "byteLength": 36995,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:png",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-instance.png",
+          "sha256": "af47cddd3bce374cdde8f77f1d99d38cac2c63c435b8d945c094e14619d12b3e",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 1493897,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:structure",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-with-header-context.structure.json",
+          "sha256": "5dc4759a0d2c504d84bdf3735ee387b81b34280238cf885454fc8cb0269c0507",
+          "width": null,
+          "height": null,
+          "byteLength": 1468036,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:properties",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-with-header-context.properties.json",
+          "sha256": "57a47bb7b7615be0ed6e939488deccb45e5f7be075e5c36557105f92e22b2603",
+          "width": null,
+          "height": null,
+          "byteLength": 102902,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:facts",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-with-header-context.facts.json",
+          "sha256": "59d082dd78dc2d9913a7b39bd4d4a9f55911d8773801b3add0a318469f4f7272",
+          "width": null,
+          "height": null,
+          "byteLength": 648381,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:png",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_home-with-header-context.png",
+          "sha256": "6e66336c6bba1e0078ddfba1c9191dbb1818b5e27748d27d7a6569f276e49a6f",
+          "width": 1728,
+          "height": 5462,
+          "byteLength": 5683498,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:structure",
+          "surfaceId": "hero-video:header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_header-context.structure.json",
+          "sha256": "f393891c6c9dfbabb52a221688fca0d085ea8268161952a88334c73f37ce8582",
+          "width": null,
+          "height": null,
+          "byteLength": 116957,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:properties",
+          "surfaceId": "hero-video:header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_header-context.properties.json",
+          "sha256": "de267188380584a830754369fce73051b085a80691e41f0cdeb4158b98c8a881",
+          "width": null,
+          "height": null,
+          "byteLength": 11386,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:facts",
+          "surfaceId": "hero-video:header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_header-context.facts.json",
+          "sha256": "8082a212423b812a1d1c39789ff2e7a8a29295b04b88de3467e6f85d012e4155",
+          "width": null,
+          "height": null,
+          "byteLength": 65423,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:png",
+          "surfaceId": "hero-video:header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/after/hero-video_header-context.png",
+          "sha256": "8e567e2272fed08cc0892fce574a11d088df1d1030e2c7ed5872e0d69695e57a",
+          "width": 1728,
+          "height": 86,
+          "byteLength": 10672,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:presentation-scenarios:after",
+          "surfaceId": "hero-video:master",
+          "kind": "report",
+          "path": "specs/component-repairs/hero-video/run-005/after/presentation-scenarios.json",
+          "sha256": "bbfde3a3bd9f906b5ac754e67f05e8a102ea8981e3137745b9956e2240b290dd",
+          "width": null,
+          "height": null,
+          "byteLength": 5311,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2563:5956",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7379",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7386",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2096:2705",
+          "structuralPath": "4",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2096:2705;2351:38176",
+          "structuralPath": "4/0",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6938",
+          "structuralPath": "2/0/0",
+          "paintIndex": 0,
+          "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6958",
+          "structuralPath": "2/0/1/1/1",
+          "paintIndex": 0,
+          "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+          "scaleMode": "FIT",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37651;2407:4745",
+          "structuralPath": "5/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "d62d8bf32a1935f6f709cd2a9be8081b7c7bfb96",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37656;2407:4745",
+          "structuralPath": "5/1/1/0",
+          "paintIndex": 0,
+          "imageHash": "d3234fc1d13b0ddd3231ea573353dc466c44ea71",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37661;2407:4745",
+          "structuralPath": "5/1/2/0",
+          "paintIndex": 0,
+          "imageHash": "b434ddd16a1162695251a8e9b233872997147294",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37666;2407:4745",
+          "structuralPath": "5/1/3/0",
+          "paintIndex": 0,
+          "imageHash": "e0f8dd0b3654f98e9f308399acf7c10c7227623d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:39999;2407:4745",
+          "structuralPath": "5/1/4/0",
+          "paintIndex": 0,
+          "imageHash": "79e37f4c0d4e8d9cddc48ad6234eb5f3e227c59d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "0/1/0/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4470;2351:35672",
+          "structuralPath": "3/1/0/0/0",
+          "paintIndex": 0,
+          "imageHash": "1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4471;2351:35672",
+          "structuralPath": "3/1/0/1/0",
+          "paintIndex": 0,
+          "imageHash": "51b2d6d67c7fa001e5f9c60835be516e26a35a89",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4472;2351:35672",
+          "structuralPath": "3/1/0/2/0",
+          "paintIndex": 0,
+          "imageHash": "2e0e3ad062ccc49ee6ba8a0b1ab77e59fd972397",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4473;2351:35672",
+          "structuralPath": "3/1/0/3/0",
+          "paintIndex": 0,
+          "imageHash": "cfd3b7776d43764fb8f4eec4f29226c395989583",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0/0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7384",
+          "masterNodeId": "6:135",
+          "structuralPath": "1/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7391",
+          "masterNodeId": "6:135",
+          "structuralPath": "2/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2093:2449",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "6/0",
+          "overrideDigest": "a488db2267768ab5ff0880515fad7f1d560f6f747dee3d9122e8ca46185eefcc"
+        },
+        {
+          "instanceNodeId": "2096:2705",
+          "masterNodeId": "2096:2524",
+          "structuralPath": "4",
+          "overrideDigest": "9e5df5717496c6353d68cc98dcf0a310220b97385823eabb862e897f9e4349f6"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "8/0",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "2106:3000",
+          "masterNodeId": "2103:2824",
+          "structuralPath": "1",
+          "overrideDigest": "68589377e1e63fc43c798166690477eb54cbffcd60c31766d4ed5e195f877170"
+        },
+        {
+          "instanceNodeId": "2108:3135",
+          "masterNodeId": "2108:3105",
+          "structuralPath": "2",
+          "overrideDigest": "a516de66fd02a8588a0ec305cbee4246de20a7fb06acaab45ff114c55cd42873"
+        },
+        {
+          "instanceNodeId": "2115:3892",
+          "masterNodeId": "2114:3693",
+          "structuralPath": "5",
+          "overrideDigest": "421d67dd77366622d3c30c369a7acc2129cfd623ff9f770ddda284eee1450b5f"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "0/1/0",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "2116:4595",
+          "masterNodeId": "2116:4475",
+          "structuralPath": "3",
+          "overrideDigest": "6e2b21a2329c398e35375039924a50517e4d5cc34bd00e4abe355624120b8d3d"
+        },
+        {
+          "instanceNodeId": "2121:5128",
+          "masterNodeId": "2120:4785",
+          "structuralPath": "7/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0/0",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "2183:8026",
+          "masterNodeId": "2178:7381",
+          "structuralPath": "6/1",
+          "overrideDigest": "d4d56c0ae2b9f58ae4ea47b7ea59b83a4dde13c4513d8e4d7a89263c68394e32"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197",
+          "masterNodeId": "6:135",
+          "structuralPath": "4/2/1",
+          "overrideDigest": "1fe580d4c599415e703bf4303624752c8e4ee92f0c156c84c11b89bb7b37a959"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/2/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "8/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "8/0/1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "8/0/1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "8/0/1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/1/1",
+          "overrideDigest": "253f127403dd91d431ba80bdab2a735a138d9d1f3c46863fb5478e642293e459"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6136",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6139",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6943",
+          "masterNodeId": "2338:29029",
+          "structuralPath": "2/0/1/0/1/0",
+          "overrideDigest": "1f62cfbca1c779e87f1995d7c40bc604b75496d94da6a28864b045487ff1c7eb"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950",
+          "masterNodeId": "6:107",
+          "structuralPath": "2/0/1/0/1/2",
+          "overrideDigest": "be426e69f4d8bf8a44c449228c04dfe4a41b14d8141a97d50320dcfe2fb61d67"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6099",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/0/1/0/1/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6116",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/0/1/0/1/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37641",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "5/0",
+          "overrideDigest": "1045fe44a49dc9775dbbdff95375e0522e7ab157d7e781e84376ed3a19027717"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37651",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/0",
+          "overrideDigest": "2e0fb37f994a65aebccf84ecd12987564ec6b25fb9dac880ef2d125f7442d695"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37656",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/1",
+          "overrideDigest": "7304b345479ef7a06a3ed2bf969f8b78a0576fe86fb608680a1fee32fb2312b9"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37661",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/2",
+          "overrideDigest": "689e1537216f329ba637a762de2afbcf39eb246ff70af205922cacb995fcc237"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37666",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/3",
+          "overrideDigest": "fcfe748af98fe0caa2a2f4b2aa6fce87df6770d162b411d2f861cff8dd977cd7"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713",
+          "masterNodeId": "28:114",
+          "structuralPath": "5/2",
+          "overrideDigest": "dc53ec29e3d5c2ff8e5bbb26ea9c8d2cb7a20672fd7e1c9d6e5e446a2fcadbaa"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "5/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "5/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:39999",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/4",
+          "overrideDigest": "1ecfd729d53ea4323ae0b882b037c8fa1701d67b1a39387e879b7d673bcdf2c9"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4470",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/0",
+          "overrideDigest": "3f235164cbf6b377db4bdef28d7f7b8fab80317e3943eed3f327194a7da55f5a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4471",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/1",
+          "overrideDigest": "6f701b2654d3d0fd6ba0e46ee8b886a59365d5cfe8ed0b21d341afe66d298af0"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4472",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/2",
+          "overrideDigest": "9ca6b7fb26afdab6a04dcfbbf5cd4cb2a8545333b454dc1a941bc46eab1d6ad7"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4473",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/3",
+          "overrideDigest": "c4ecaf10b6da6ee9b710d3046727f8f0ebfe1da57da9881db6c7e29488bd365d"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474",
+          "masterNodeId": "2077:2191",
+          "structuralPath": "3/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/0",
+          "overrideDigest": "e21ee894ab9d2af60f4835422a86048306f7ff5a92a2f29c561b0e23edd97bc4"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6187",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6189",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/1",
+          "overrideDigest": "1eb1ac244936299ba4593d333cac5aee91acd7f3cf7d9b917edfc475db657915"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6187",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6189",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012",
+          "masterNodeId": "28:114",
+          "structuralPath": "3/0/1",
+          "overrideDigest": "f1f333522ba78bbe9b80b0566b1fe82a354d242c5eaab423e45ab52773e282fc"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "3/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33107",
+          "masterNodeId": "4:15",
+          "structuralPath": "7/0/1/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132",
+          "masterNodeId": "6:135",
+          "structuralPath": "7/0/1/0/1",
+          "overrideDigest": "3028a33eb43e819530a1bc7a93c434373f2983239f1eb59bd3c883684352cee5"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "7/0/1/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "7/0/1/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33143",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/1",
+          "overrideDigest": "a42ff27d8a04106be8b3452740d08527e8a6e38db0b0eda46b47658b923e0448"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33146",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/2",
+          "overrideDigest": "2284d9df6534c362cb4d33b02bbb78b29f347676ede00c866ddbb3ccdb6a9643"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33149",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/3",
+          "overrideDigest": "0fb50173e05eeda63dfed377b742b1641c0c5b7ef43abafea63ca617f0d6c492"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33522",
+          "masterNodeId": "2086:2330",
+          "structuralPath": "7/0/5",
+          "overrideDigest": "65946a64f3aa0edf26261583258d7661b4f05e57b5e72f5c640fc70ea390456c"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/0",
+          "overrideDigest": "afaa88d70f9ba0d011ea3116e64ee3093a17129363717305c0200d25a3bd1a75"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/0/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/1",
+          "overrideDigest": "004b0fa8ced2e15b76238ce1afef74a37353df4320fbf36bfdef54d767aae6a6"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/1/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/2",
+          "overrideDigest": "4ebbb76bd5400e66243989aad95f60dfcf3a7e72e63730efe88ddb29a7b43a12"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/2/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/3",
+          "overrideDigest": "596347357557bbfccfd812070f2128270371a66667f911560bc4089f94a2e6b4"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/3/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/4",
+          "overrideDigest": "057cbb1a7d94953afdc11adcb82f557a91348a5ded06a9dd8ba14c5500c51005"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/4/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2480:5264",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/0/0/2/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "idempotence": {
+      "captureSetId": "figma-responsive-hero-video-run-005-idempotence-2391949441294093693",
+      "phase": "idempotence",
+      "fileVersionId": "2391949441294093693",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_master.structure.json",
+          "sha256": "32a1ee8b79af65ce2dda6bea493121ecb0bb763c4f6d844359ddd4a8f2501cb8",
+          "width": null,
+          "height": null,
+          "byteLength": 113780,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_master.properties.json",
+          "sha256": "20c06607b5c5c87f099c1b91ed6395cc2f3aebab408373168bbe73dbcdcd584b",
+          "width": null,
+          "height": null,
+          "byteLength": 20447,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_master.facts.json",
+          "sha256": "73277e29aa9f61b25328c5779dd1954dc8645526d2576e25fbdf57df5ec6b873",
+          "width": null,
+          "height": null,
+          "byteLength": 96002,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_master.png",
+          "sha256": "81dada4c2c74f7295411c8631fe895a43df4ceff2cc0e3a4edb19ffca2676314",
+          "width": 1728,
+          "height": 2010,
+          "byteLength": 2869605,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:structure",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-instance.structure.json",
+          "sha256": "1483cb4151898d15a27245498793573a7a7965754916ad657ed050a1d85c7383",
+          "width": null,
+          "height": null,
+          "byteLength": 34457,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:properties",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-instance.properties.json",
+          "sha256": "521e47a4150b152d9ff14c00e89b9b2938d8636a9a83ba328af351e1422bbbf0",
+          "width": null,
+          "height": null,
+          "byteLength": 7136,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:facts",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-instance.facts.json",
+          "sha256": "4825d91931b33d2cbca8987c03e9b78d7aa126c7a2a8f8b659027669276edb71",
+          "width": null,
+          "height": null,
+          "byteLength": 36995,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-instance:png",
+          "surfaceId": "hero-video:home-instance",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-instance.png",
+          "sha256": "af47cddd3bce374cdde8f77f1d99d38cac2c63c435b8d945c094e14619d12b3e",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 1493897,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:structure",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-with-header-context.structure.json",
+          "sha256": "5dc4759a0d2c504d84bdf3735ee387b81b34280238cf885454fc8cb0269c0507",
+          "width": null,
+          "height": null,
+          "byteLength": 1468036,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:properties",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-with-header-context.properties.json",
+          "sha256": "57a47bb7b7615be0ed6e939488deccb45e5f7be075e5c36557105f92e22b2603",
+          "width": null,
+          "height": null,
+          "byteLength": 102902,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:facts",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-with-header-context.facts.json",
+          "sha256": "59d082dd78dc2d9913a7b39bd4d4a9f55911d8773801b3add0a318469f4f7272",
+          "width": null,
+          "height": null,
+          "byteLength": 648381,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:home-with-header-context:png",
+          "surfaceId": "hero-video:home-with-header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_home-with-header-context.png",
+          "sha256": "6e66336c6bba1e0078ddfba1c9191dbb1818b5e27748d27d7a6569f276e49a6f",
+          "width": 1728,
+          "height": 5462,
+          "byteLength": 5683498,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:structure",
+          "surfaceId": "hero-video:header-context",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_header-context.structure.json",
+          "sha256": "f393891c6c9dfbabb52a221688fca0d085ea8268161952a88334c73f37ce8582",
+          "width": null,
+          "height": null,
+          "byteLength": 116957,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:properties",
+          "surfaceId": "hero-video:header-context",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_header-context.properties.json",
+          "sha256": "de267188380584a830754369fce73051b085a80691e41f0cdeb4158b98c8a881",
+          "width": null,
+          "height": null,
+          "byteLength": 11386,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:facts",
+          "surfaceId": "hero-video:header-context",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_header-context.facts.json",
+          "sha256": "8082a212423b812a1d1c39789ff2e7a8a29295b04b88de3467e6f85d012e4155",
+          "width": null,
+          "height": null,
+          "byteLength": 65423,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:header-context:png",
+          "surfaceId": "hero-video:header-context",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/hero-video_header-context.png",
+          "sha256": "8e567e2272fed08cc0892fce574a11d088df1d1030e2c7ed5872e0d69695e57a",
+          "width": 1728,
+          "height": 86,
+          "byteLength": 10672,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:presentation-scenarios:idempotence",
+          "surfaceId": "hero-video:master",
+          "kind": "report",
+          "path": "specs/component-repairs/hero-video/run-005/idempotence/presentation-scenarios.json",
+          "sha256": "b43a36bd2871471908e659e345c4a076280fcb62d60fd6992bae05387e067023",
+          "width": null,
+          "height": null,
+          "byteLength": 5317,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2563:5956",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7379",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2580:7386",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2096:2705",
+          "structuralPath": "4",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2096:2705;2351:38176",
+          "structuralPath": "4/0",
+          "paintIndex": 0,
+          "imageHash": "7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6938",
+          "structuralPath": "2/0/0",
+          "paintIndex": 0,
+          "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2108:3135;2410:6958",
+          "structuralPath": "2/0/1/1/1",
+          "paintIndex": 0,
+          "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+          "scaleMode": "FIT",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37651;2407:4745",
+          "structuralPath": "5/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "d62d8bf32a1935f6f709cd2a9be8081b7c7bfb96",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37656;2407:4745",
+          "structuralPath": "5/1/1/0",
+          "paintIndex": 0,
+          "imageHash": "d3234fc1d13b0ddd3231ea573353dc466c44ea71",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37661;2407:4745",
+          "structuralPath": "5/1/2/0",
+          "paintIndex": 0,
+          "imageHash": "b434ddd16a1162695251a8e9b233872997147294",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:37666;2407:4745",
+          "structuralPath": "5/1/3/0",
+          "paintIndex": 0,
+          "imageHash": "e0f8dd0b3654f98e9f308399acf7c10c7227623d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:3892;2351:39999;2407:4745",
+          "structuralPath": "5/1/4/0",
+          "paintIndex": 0,
+          "imageHash": "79e37f4c0d4e8d9cddc48ad6234eb5f3e227c59d",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0/1/0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "0/1/0/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4470;2351:35672",
+          "structuralPath": "3/1/0/0/0",
+          "paintIndex": 0,
+          "imageHash": "1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4471;2351:35672",
+          "structuralPath": "3/1/0/1/0",
+          "paintIndex": 0,
+          "imageHash": "51b2d6d67c7fa001e5f9c60835be516e26a35a89",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4472;2351:35672",
+          "structuralPath": "3/1/0/2/0",
+          "paintIndex": 0,
+          "imageHash": "2e0e3ad062ccc49ee6ba8a0b1ab77e59fd972397",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2116:4595;2116:4473;2351:35672",
+          "structuralPath": "3/1/0/3/0",
+          "paintIndex": 0,
+          "imageHash": "cfd3b7776d43764fb8f4eec4f29226c395989583",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2563:5956",
+          "structuralPath": "0/0/0",
+          "paintIndex": 0,
+          "imageHash": "8eb8b969759a5802ffb70d883409664e1169ad32",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7384",
+          "masterNodeId": "6:135",
+          "structuralPath": "1/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "2580:7391",
+          "masterNodeId": "6:135",
+          "structuralPath": "2/4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7384;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2580:7391;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2093:2449",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "6/0",
+          "overrideDigest": "a488db2267768ab5ff0880515fad7f1d560f6f747dee3d9122e8ca46185eefcc"
+        },
+        {
+          "instanceNodeId": "2096:2705",
+          "masterNodeId": "2096:2524",
+          "structuralPath": "4",
+          "overrideDigest": "9e5df5717496c6353d68cc98dcf0a310220b97385823eabb862e897f9e4349f6"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "8/0",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "2106:3000",
+          "masterNodeId": "2103:2824",
+          "structuralPath": "1",
+          "overrideDigest": "68589377e1e63fc43c798166690477eb54cbffcd60c31766d4ed5e195f877170"
+        },
+        {
+          "instanceNodeId": "2108:3135",
+          "masterNodeId": "2108:3105",
+          "structuralPath": "2",
+          "overrideDigest": "a516de66fd02a8588a0ec305cbee4246de20a7fb06acaab45ff114c55cd42873"
+        },
+        {
+          "instanceNodeId": "2115:3892",
+          "masterNodeId": "2114:3693",
+          "structuralPath": "5",
+          "overrideDigest": "421d67dd77366622d3c30c369a7acc2129cfd623ff9f770ddda284eee1450b5f"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "0/1/0",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "2116:4595",
+          "masterNodeId": "2116:4475",
+          "structuralPath": "3",
+          "overrideDigest": "6e2b21a2329c398e35375039924a50517e4d5cc34bd00e4abe355624120b8d3d"
+        },
+        {
+          "instanceNodeId": "2121:5128",
+          "masterNodeId": "2120:4785",
+          "structuralPath": "7/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0/0",
+          "overrideDigest": "52bdac3fc9ab254edce06592b6eb687bcc5b4f71369943c9596b8b8cc5b2a7f3"
+        },
+        {
+          "instanceNodeId": "2183:8026",
+          "masterNodeId": "2178:7381",
+          "structuralPath": "6/1",
+          "overrideDigest": "d4d56c0ae2b9f58ae4ea47b7ea59b83a4dde13c4513d8e4d7a89263c68394e32"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197",
+          "masterNodeId": "6:135",
+          "structuralPath": "4/2/1",
+          "overrideDigest": "1fe580d4c599415e703bf4303624752c8e4ee92f0c156c84c11b89bb7b37a959"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/2/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2096:2705;2351:38197;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "8/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "8/0/1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "8/0/1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "8/0/1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "8/0/1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/1/1",
+          "overrideDigest": "253f127403dd91d431ba80bdab2a735a138d9d1f3c46863fb5478e642293e459"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6136",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2106:3000;2351:37050;2410:6139",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6943",
+          "masterNodeId": "2338:29029",
+          "structuralPath": "2/0/1/0/1/0",
+          "overrideDigest": "1f62cfbca1c779e87f1995d7c40bc604b75496d94da6a28864b045487ff1c7eb"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950",
+          "masterNodeId": "6:107",
+          "structuralPath": "2/0/1/0/1/2",
+          "overrideDigest": "be426e69f4d8bf8a44c449228c04dfe4a41b14d8141a97d50320dcfe2fb61d67"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6099",
+          "masterNodeId": "6:99",
+          "structuralPath": "2/0/1/0/1/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2108:3135;2410:6950;2410:6116",
+          "masterNodeId": "6:104",
+          "structuralPath": "2/0/1/0/1/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37641",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "5/0",
+          "overrideDigest": "1045fe44a49dc9775dbbdff95375e0522e7ab157d7e781e84376ed3a19027717"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37651",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/0",
+          "overrideDigest": "2e0fb37f994a65aebccf84ecd12987564ec6b25fb9dac880ef2d125f7442d695"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37656",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/1",
+          "overrideDigest": "7304b345479ef7a06a3ed2bf969f8b78a0576fe86fb608680a1fee32fb2312b9"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37661",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/2",
+          "overrideDigest": "689e1537216f329ba637a762de2afbcf39eb246ff70af205922cacb995fcc237"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37666",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/3",
+          "overrideDigest": "fcfe748af98fe0caa2a2f4b2aa6fce87df6770d162b411d2f861cff8dd977cd7"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713",
+          "masterNodeId": "28:114",
+          "structuralPath": "5/2",
+          "overrideDigest": "dc53ec29e3d5c2ff8e5bbb26ea9c8d2cb7a20672fd7e1c9d6e5e446a2fcadbaa"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "5/2/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:37713;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "5/2/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:3892;2351:39999",
+          "masterNodeId": "2063:1606",
+          "structuralPath": "5/1/4",
+          "overrideDigest": "1ecfd729d53ea4323ae0b882b037c8fa1701d67b1a39387e879b7d673bcdf2c9"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4470",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/0",
+          "overrideDigest": "3f235164cbf6b377db4bdef28d7f7b8fab80317e3943eed3f327194a7da55f5a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4471",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/1",
+          "overrideDigest": "6f701b2654d3d0fd6ba0e46ee8b886a59365d5cfe8ed0b21d341afe66d298af0"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4472",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/2",
+          "overrideDigest": "9ca6b7fb26afdab6a04dcfbbf5cd4cb2a8545333b454dc1a941bc46eab1d6ad7"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4473",
+          "masterNodeId": "2068:1972",
+          "structuralPath": "3/1/0/3",
+          "overrideDigest": "c4ecaf10b6da6ee9b710d3046727f8f0ebfe1da57da9881db6c7e29488bd365d"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474",
+          "masterNodeId": "2077:2191",
+          "structuralPath": "3/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/0",
+          "overrideDigest": "e21ee894ab9d2af60f4835422a86048306f7ff5a92a2f29c561b0e23edd97bc4"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6187",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6189",
+          "masterNodeId": "27:83",
+          "structuralPath": "3/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6685;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720",
+          "masterNodeId": "2238:4417",
+          "structuralPath": "3/1/1/1",
+          "overrideDigest": "1eb1ac244936299ba4593d333cac5aee91acd7f3cf7d9b917edfc475db657915"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6187",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6189",
+          "masterNodeId": "27:86",
+          "structuralPath": "3/1/1/1/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2116:4474;2410:6720;2410:6191",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/1/1/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012",
+          "masterNodeId": "28:114",
+          "structuralPath": "3/0/1",
+          "overrideDigest": "f1f333522ba78bbe9b80b0566b1fe82a354d242c5eaab423e45ab52773e282fc"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6162",
+          "masterNodeId": "6:99",
+          "structuralPath": "3/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2116:4595;2545:6012;2410:6165",
+          "masterNodeId": "6:104",
+          "structuralPath": "3/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33107",
+          "masterNodeId": "4:15",
+          "structuralPath": "7/0/1/0/0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132",
+          "masterNodeId": "6:135",
+          "structuralPath": "7/0/1/0/1",
+          "overrideDigest": "3028a33eb43e819530a1bc7a93c434373f2983239f1eb59bd3c883684352cee5"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "7/0/1/0/1/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33132;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "7/0/1/0/1/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33143",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/1",
+          "overrideDigest": "a42ff27d8a04106be8b3452740d08527e8a6e38db0b0eda46b47658b923e0448"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33146",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/2",
+          "overrideDigest": "2284d9df6534c362cb4d33b02bbb78b29f347676ede00c866ddbb3ccdb6a9643"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33149",
+          "masterNodeId": "2079:2246",
+          "structuralPath": "7/0/1/3",
+          "overrideDigest": "0fb50173e05eeda63dfed377b742b1641c0c5b7ef43abafea63ca617f0d6c492"
+        },
+        {
+          "instanceNodeId": "I2121:5128;2342:33522",
+          "masterNodeId": "2086:2330",
+          "structuralPath": "7/0/5",
+          "overrideDigest": "65946a64f3aa0edf26261583258d7661b4f05e57b5e72f5c640fc70ea390456c"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2563:5966;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/0",
+          "overrideDigest": "afaa88d70f9ba0d011ea3116e64ee3093a17129363717305c0200d25a3bd1a75"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38520;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/0/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/1",
+          "overrideDigest": "004b0fa8ced2e15b76238ce1afef74a37353df4320fbf36bfdef54d767aae6a6"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38551;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/1/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/2",
+          "overrideDigest": "4ebbb76bd5400e66243989aad95f60dfcf3a7e72e63730efe88ddb29a7b43a12"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38582;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/2/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/3",
+          "overrideDigest": "596347357557bbfccfd812070f2128270371a66667f911560bc4089f94a2e6b4"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38613;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/3/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "6/1/1/1/4",
+          "overrideDigest": "057cbb1a7d94953afdc11adcb82f557a91348a5ded06a9dd8ba14c5500c51005"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2351:38644;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/1/1/4/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2183:8026;2480:5264",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "6/1/0/0/2/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "210:473",
+          "masterNodeId": "84:286",
+          "structuralPath": "",
+          "overrideDigest": "ef023f82c40721448070939fb3ce88f970f45cd89c8f2b6a52227dc1eb2293cd"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32396",
+          "masterNodeId": "4:15",
+          "structuralPath": "0",
+          "overrideDigest": "0a274d07cc418dd11cee9a0675a6a95f55998dc815a02695b90b3da1613859b9"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32528",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/0",
+          "overrideDigest": "2938ca08ed527e933e43970b16dbb60b106715c1306274f1960aca66d88279d0"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32533",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "8cb3f7c1e48cf951610b08e86ccb650f9a1b137ca286cc05a837131e2943543e"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32538",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/2",
+          "overrideDigest": "213f747da34cfd0d0cd29f7b03c75d26d4544007893487c3cb6fd76aa7878d90"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32543",
+          "masterNodeId": "2152:5554",
+          "structuralPath": "1/0/3",
+          "overrideDigest": "730b3d9e8e113ddfa40646d8f765a05f66b0148f4db2970e9b628638e9cb1106"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548",
+          "masterNodeId": "6:129",
+          "structuralPath": "1/0/4",
+          "overrideDigest": "adc52df1a7074a3b34348c2a1c35eba11229f7e67d2dad74ee48ae316c9c0ea2"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6126",
+          "masterNodeId": "6:99",
+          "structuralPath": "1/0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I210:473;2341:32548;2410:6129",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    }
+  },
+  "executionGates": {
+    "H1": "approved",
+    "H2": "approved",
+    "runnerCapability": "qualified-with-owner-accepted-pre-existing-baseline-debt",
+    "mechanismSpike": "pass-first-and-second-noop",
+    "H3": "approved",
+    "H4": "pending",
+    "mutationAllowed": true
+  },
+  "state": "owner-accepted",
+  "createdAt": "2026-08-26T08:39:00.000Z",
+  "sourceBaseline": {
+    "gitHead": "2a56908b3ca23f7b6dd1b7bfe38459c3983650cd",
+    "worktreeTree": "9504e58065327cdeed59313ffc684c2b5ce340e6",
+    "backupRef": "refs/codex/backups/028-hero-video-responsive-run-005",
+    "capturedAt": "2026-08-26T08:26:49.665Z"
+  }
+}

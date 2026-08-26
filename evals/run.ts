@@ -497,6 +497,40 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'responsive-hero-video-foundation-validators',
+    claim: 'C2-refusal',
+    run: () => {
+      // The shared eval scratch intentionally omits specs/. This feature's
+      // validator fixture executes the real versioned schemas/tools and the
+      // actual run-002 envelope, so copy only that bounded input set.
+      cpSync(
+        path.join(ROOT, 'specs/027-responsive-hero-video'),
+        path.join(SCRATCH, 'specs/027-responsive-hero-video'),
+        { recursive: true },
+      );
+      mkdirSync(path.join(SCRATCH, 'specs/component-repairs/hero-video/run-002'), { recursive: true });
+      cpSync(
+        path.join(ROOT, 'specs/component-repairs/hero-video/run-002/campaign.json'),
+        path.join(SCRATCH, 'specs/component-repairs/hero-video/run-002/campaign.json'),
+      );
+      const r = run(TSX, ['evals/fixtures/responsive-hero-video/foundation-validator-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture responsive-hero-video foundation rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'responsive-hero-video-option-packet',
+    claim: 'C2-refusal',
+    run: () => {
+      cpSync(
+        path.join(ROOT, 'specs/027-responsive-hero-video'),
+        path.join(SCRATCH, 'specs/027-responsive-hero-video'),
+        { recursive: true },
+      );
+      const r = run(TSX, ['evals/fixtures/responsive-hero-video/option-packet-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture responsive-hero-video option packet rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'component-repair-source-baseline',
     claim: 'C2-refusal',
     run: () => {
@@ -518,6 +552,38 @@ const cases: Case[] = [
     run: () => {
       const r = run(TSX, ['evals/fixtures/figma-projection-repair/live-apply-receipt-check.ts']);
       if (r.status !== 0) throw new Error(`fixture component-repair-live-apply-receipt rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-component-set-declared-creates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-component-set-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive component-set/créations rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-presentation-scenarios-explicit',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-presentation-scenarios-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive scénarios explicites rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-bindings-typography-allowlisted',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-bindings-and-typography-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive bindings/typographie rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-boundary-idempotence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-write-boundary-idempotence-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive frontières/idempotence rouge:\n${r.out}`);
     },
   },
   {

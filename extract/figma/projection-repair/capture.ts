@@ -42,6 +42,33 @@ async function mapBounded<T, R>(items: T[], limit: number, run: (item: T) => Pro
 
 export interface FigmaInspection { versionId: string; nodes: Map<string, Json>; file: Json; }
 
+export interface PresentationCaptureRequest {
+  targetId: string;
+  scenarioId: string;
+  presentationValue: string;
+  width: number;
+  height: number;
+  fixtureId: string;
+  mutationSurface: 'transient-proof-instance';
+  pageWrites: [];
+}
+
+/** Build the explicit scenario queue consumed by the Bridge proof pass. The
+ * selected presentation is part of every request; width alone is never used
+ * as a proxy for variant selection. */
+export function buildPresentationCaptureRequests(campaign: RepairCampaign): PresentationCaptureRequest[] {
+  return campaign.targets.flatMap((target) => (target.responsive?.presentationScenarios ?? []).map((scenario) => ({
+    targetId: target.targetId,
+    scenarioId: scenario.scenarioId,
+    presentationValue: scenario.presentationValue,
+    width: scenario.width,
+    height: scenario.height,
+    fixtureId: scenario.fixtureId,
+    mutationSurface: 'transient-proof-instance' as const,
+    pageWrites: [] as [],
+  })));
+}
+
 function dimensions(node: Json): { width: number; height: number } | null {
   const box = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : object(node.boundingBox) ? node.boundingBox : null;
   return box && typeof box.width === 'number' && box.width > 0 && typeof box.height === 'number' && box.height > 0
@@ -99,6 +126,20 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
   for (const target of campaign.targets) {
     const master = nodes.get(target.masterNodeId);
     if (!master) throw new Error(`preflight: master ${target.masterNodeId} is absent`);
+    if (target.responsive?.componentSetTopology.setIdentityPolicy === 'existing') {
+      const topology = target.responsive.componentSetTopology;
+      const set = topology.setNodeId ? nodes.get(topology.setNodeId) : null;
+      const members = set?.type === 'COMPONENT_SET' && Array.isArray(set.children)
+        ? set.children.filter((child) => object(child) && child.type === 'COMPONENT') as Json[]
+        : [];
+      const actualNames = members.map((member) => String(member.name ?? '')).sort();
+      const expectedNames = [...topology.expectedMemberNames].sort();
+      const expectedIds = new Set([topology.historicalMember.nodeId, ...topology.createdMembers.map((member) => member.nodeId)]);
+      if (!set || set.name !== topology.setName || stable(actualNames) !== stable(expectedNames) ||
+        members.some((member) => !expectedIds.has(String(member.id))) || !members.some((member) => member.id === master.id)) {
+        throw new Error(`preflight: existing responsive component-set topology drift for ${target.targetId}`);
+      }
+    } else {
     // v2 validation guarantees a non-empty name; an absent one matches nothing,
     // exactly as the previous `node.name === target.expectedMasterName` filter did.
     const expectedName = target.expectedMasterName;
@@ -112,6 +153,7 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
     const expectedVariantNames = [...(target.expectedVariantNames ?? [])].sort();
     if (stable(actualVariantNames) !== stable(expectedVariantNames)) {
       throw new Error(`preflight: variant snapshot drift for ${target.targetId}: expected ${expectedVariantNames.join(' | ') || '(none)'}, observed ${actualVariantNames.join(' | ') || '(none)'}`);
+    }
     }
     const componentIds = new Set([target.masterNodeId, ...(target.variantNodeIds ?? [])]);
     const actualInstanceIds = [...componentIds]
@@ -204,7 +246,10 @@ export async function captureCampaign(
   outputRoot: string,
   token = figmaToken(),
 ): Promise<{ campaign: RepairCampaign; capture: CaptureSet }> {
-  const inspection = await inspectFigmaCampaign(campaign, token, { enforceVersionPin: phase === 'before' });
+  const inspection = await inspectFigmaCampaign(campaign, token, {
+    enforceVersionPin: phase === 'before',
+    enforceTopology: phase === 'before',
+  });
   const surfaces = campaign.affectedSurfaces.filter((surface) => surface.nodeId !== null);
   const ids = surfaces.map((surface) => surface.nodeId!);
   // Node documents and render URLs both derive their ids from the campaign,
@@ -267,6 +312,24 @@ export async function captureCampaign(
     // The Figma export can include overflow outside a component's layout box; capture that
     // real raster dimension as evidence instead of hiding the defect behind a false mismatch.
     artifacts.push({ artifactId: `${surface.surfaceId}:png`, surfaceId: surface.surfaceId, kind: 'png', path: path.relative(process.cwd(), pngPath), sha256: sha256(bytes), width: raster?.width ?? null, height: raster?.height ?? null, byteLength: bytes.length, status: bytes.length === 0 ? 'empty' : raster ? 'valid' : 'wrong-size' });
+  }
+  const presentationRequests = buildPresentationCaptureRequests(campaign);
+  if (presentationRequests.length > 0) {
+    const manifestPath = path.join(phaseRoot, 'presentation-scenarios.json');
+    const manifestBytes = `${stable({ schemaVersion: '1.0.0', phase, requests: presentationRequests })}\n`;
+    writeFileSync(manifestPath, manifestBytes);
+    const surfaceId = campaign.targets.find((target) => target.responsive)?.affectedSurfaceIds[0] ?? surfaces[0]?.surfaceId;
+    if (surfaceId) artifacts.push({
+      artifactId: `${surfaceId}:presentation-scenarios:${phase}`,
+      surfaceId,
+      kind: 'report',
+      path: path.relative(process.cwd(), manifestPath),
+      sha256: sha256(manifestBytes),
+      width: null,
+      height: null,
+      byteLength: Buffer.byteLength(manifestBytes),
+      status: 'valid',
+    });
   }
   const complete = surfaces.length > 0 && surfaces.every((surface) => {
     const own = artifacts.filter((artifact) => artifact.surfaceId === surface.surfaceId);

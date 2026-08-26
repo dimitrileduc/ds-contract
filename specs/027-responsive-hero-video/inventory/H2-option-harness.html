@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H2 HeroVideo — harness non autoritatif</title>
+  <style>
+    @font-face { font-family: Montserrat; src: url('/node_modules/@fontsource/montserrat/files/montserrat-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: Montserrat; src: url('/node_modules/@fontsource/montserrat/files/montserrat-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; min-width: 0; background: #101820; color: #fff; font-family: Montserrat, Arial, sans-serif; }
+    .hero { position: relative; display: flex; width: 100%; min-width: 0; overflow: hidden; background: #27343e; }
+    .hero__poster, .hero__scrim-bottom, .hero__scrim-top { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero__poster { z-index: 0; object-fit: cover; }
+    .hero__scrim-bottom { z-index: 1; pointer-events: none; background: linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,.72) 100%); }
+    .hero__scrim-top { z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,.5) 100%); }
+    .hero__text { position: relative; z-index: 2; min-width: 0; }
+    .hero__title { display: block; width: 100%; margin: 0; color: #fff; overflow-wrap: anywhere; }
+    .hero__cta { position: relative; z-index: 2; display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; border: 0; box-shadow: inset 0 0 0 2px #fff; background: transparent; color: #fff; padding: 16px 32px; font: 500 16px/22px Montserrat, Arial, sans-serif; text-transform: uppercase; text-align: center; white-space: nowrap; }
+    .evidence { position: fixed; z-index: 20; left: 12px; top: 12px; max-width: calc(100vw - 24px); padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 4px; background: rgba(10,18,25,.78); color: #fff; font: 500 11px/15px Montserrat, Arial, sans-serif; backdrop-filter: blur(6px); }
+    .controls { position: fixed; z-index: 21; right: 12px; top: 12px; display: grid; gap: 8px; width: min(340px, calc(100vw - 24px)); padding: 12px; border: 1px solid rgba(255,255,255,.25); background: rgba(10,18,25,.9); }
+    .controls strong { font-size: 13px; }
+    .controls label { display: grid; grid-template-columns: 78px 1fr; align-items: center; gap: 8px; font-size: 11px; }
+    .controls select { width: 100%; padding: 6px; border: 1px solid #80909d; background: #fff; color: #101820; font: 12px Montserrat, Arial, sans-serif; }
+    body[data-clean='true'] .controls { display: none; }
+    @media (max-width: 640px) { body:not([data-clean='true']) .evidence { top: auto; bottom: 12px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="hero" class="hero" aria-label="Aperçu HeroVideo non autoritatif">
+      <img id="poster" class="hero__poster" data-part="Background" alt="" src="/extract/figma/visual-parity/fixture-assets/hero-video--background--8eb8b969759a.jpg">
+      <div class="hero__scrim-bottom" data-part="VoileBas"></div>
+      <div class="hero__scrim-top" data-part="VoileNavigation"></div>
+      <div class="hero__text" data-part="Text"><h1 id="title" class="hero__title" data-part="Text.Accroche">Le numéro 1 des portes HÖRMANN en Province de Liège !</h1></div>
+      <button id="cta" class="hero__cta" data-part="Bouton" type="button">Contactez-nous</button>
+    </section>
+  </main>
+  <div id="evidence" class="evidence"></div>
+  <form class="controls" aria-label="Contrôles du harness">
+    <strong>H2 — aide locale, 0 write</strong>
+    <label>Option <select id="option"></select></label>
+    <label>Fixture <select id="fixture"></select></label>
+  </form>
+  <script>
+    const packet = {"schemaVersion":"1.0.0","featureId":"027-responsive-hero-video","authority":"non-authoritative","baselineRef":"specs/027-responsive-hero-video/decisions/H1-baseline.json","profile":{"id":"piqueray-odoo19-992-1400","compact":"\u003c992","desktop":"992-1399","wide":">=1400"},"decisionScope":{"authoritativeFields":["structure","breakpoint-profile","semantic-roles"],"previewOnlyFields":["spacing","typography-values"],"sourceMutationAuthorized":false},"figmaWrites":[],"fixtures":[{"fixtureId":"default-poster","contentCase":"default","mediaCase":"poster"},{"fixtureId":"long-title-poster","contentCase":"long-title","mediaCase":"poster"},{"fixtureId":"long-cta-poster","contentCase":"long-cta","mediaCase":"poster"},{"fixtureId":"default-video-unavailable","contentCase":"default","mediaCase":"video-unavailable"}],"witnesses":[{"viewportId":"390","width":390,"height":844,"expectedComposition":"compact","witnessId":"mobile-390"},{"viewportId":"834","width":834,"height":1112,"expectedComposition":"compact","witnessId":"tablet-834"},{"viewportId":"1200","width":1200,"height":800,"expectedComposition":"desktop","witnessId":"desktop-1200"},{"viewportId":"1728","width":1728,"height":720,"expectedComposition":"wide","witnessId":"wide-1728"}],"options":[{"optionId":"continuite-wide","label":"Continuité avec le wide","summary":"Compact centré pour la lisibilité ; Desktop conserve la ligne basse du Hero XL avec des valeurs resserrées.","compositions":{"compact":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"column","align":"center","justify":"center","titleAlign":"center","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.24}","paddingRight":"{space.24}","paddingBottom":"{space.24}","paddingLeft":"{space.24}","gap":"{space.16}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"variant","notes":["Le CTA suit le titre dans le flux compact.","Le contenu grandit au-delà de la hauteur visible si nécessaire."]},"desktop":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"row","align":"end","justify":"start","titleAlign":"left","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.48}","paddingRight":"{space.48}","paddingBottom":"{space.48}","paddingLeft":"{space.48}","gap":"{space.24}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"modes","notes":["La relation titre à gauche / CTA à droite reste proche du baseline 1728.","Le titre long peut prendre plusieurs lignes."]},"wide":{"baselineRef":"specs/027-responsive-hero-video/decisions/H1-baseline.json"}},"probeIds":["320","390","834","991","992","993","1024","1200","1399","1400","1401","1440","1728","short-landscape-844x390"],"contentCases":["default","long-title","long-cta"],"mediaCases":["poster","video-unavailable"],"tradeoffs":["La continuité XL est maximale, mais le Desktop 1200 reste plus dense avec le CTA sur la même ligne."],"limits":["Le titre ou CTA exceptionnellement long peut augmenter la hauteur à 1200 ; aucun contenu n’est masqué."]},{"optionId":"pile-editoriale","label":"Pile éditoriale en bas","summary":"Titre et CTA restent groupés en bas à gauche en compact et Desktop pour absorber les contenus longs.","compositions":{"compact":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"column","align":"start","justify":"end","titleAlign":"left","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.24}","paddingRight":"{space.24}","paddingBottom":"{space.24}","paddingLeft":"{space.24}","gap":"{space.16}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"variant","notes":["Le groupe reste ancré en bas à gauche.","Le CTA passe sous le titre et ne concurrence jamais sa largeur."]},"desktop":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"column","align":"start","justify":"end","titleAlign":"left","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.48}","paddingRight":"{space.48}","paddingBottom":"{space.48}","paddingLeft":"{space.48}","gap":"{space.24}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"variant","notes":["Le Desktop reprend la même lecture éditoriale que compact.","Le passage wide restaure le baseline horizontal historique."]},"wide":{"baselineRef":"specs/027-responsive-hero-video/decisions/H1-baseline.json"}},"probeIds":["320","390","834","991","992","993","1024","1200","1399","1400","1401","1440","1728","short-landscape-844x390"],"contentCases":["default","long-title","long-cta"],"mediaCases":["poster","video-unavailable"],"tradeoffs":["La robustesse aux contenus longs est maximale, au prix d’un changement de composition visible à 1400px."],"limits":["La pile occupe davantage de hauteur du poster et demande une revue attentive du contraste sur la zone basse."]},{"optionId":"centre-immersif","label":"Centrage immersif","summary":"Titre et CTA forment un groupe centré sur le poster jusqu’à 1399px ; le wide historique reste inchangé.","compositions":{"compact":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"column","align":"center","justify":"center","titleAlign":"center","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.24}","paddingRight":"{space.24}","paddingBottom":"{space.24}","paddingLeft":"{space.24}","gap":"{space.24}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"variant","notes":["Le groupe est centré horizontalement et verticalement.","Le paysage court grandit avec le contenu au lieu de scroller."]},"desktop":{"presentParts":["Background","VoileBas","VoileNavigation","Text","Text.Accroche","Bouton"],"absentParts":[],"order":["Background","VoileBas","VoileNavigation","Text","Bouton"],"axis":"column","align":"center","justify":"center","titleAlign":"center","heightStrategy":"visible-viewport-min-content","spacing":{"paddingTop":"{space.48}","paddingRight":"{space.48}","paddingBottom":"{space.48}","paddingLeft":"{space.48}","gap":"{space.24}","contentMaxWidth":"none"},"textStyleTokenPath":"{typography.titre-hero-video}","ctaTreatment":{"reuseCurrentButton":true,"variant":"Outline blanc","sizeDecision":"unchanged","impactRefs":[]},"mediaTreatment":{"posterPolicy":"preserve-owner-poster","fit":"cover","cropDecision":"preserve-current","secondAsset":"none"},"shortLandscapeFallback":"grow-with-content","figmaStrategy":"variant","notes":["La composition conserve le même geste entre Mobile et Desktop.","Le wide rétablit le contenu horizontal en bas."]},"wide":{"baselineRef":"specs/027-responsive-hero-video/decisions/H1-baseline.json"}},"probeIds":["320","390","834","991","992","993","1024","1200","1399","1400","1401","1440","1728","short-landscape-844x390"],"contentCases":["default","long-title","long-cta"],"mediaCases":["poster","video-unavailable"],"tradeoffs":["La lecture est très claire et homogène, mais s’éloigne le plus de l’ancrage bas du Hero actuel."],"limits":["Le centrage peut recouvrir le point d’intérêt du poster ; aucun recadrage ou second asset n’est autorisé sans nouveau choix owner."]}]};
+    const fixtures = [{"fixtureId":"default-poster","contentCase":"default","mediaCase":"poster","title":"Le numéro 1 des portes HÖRMANN en Province de Liège !","ctaLabel":"Contactez-nous","ctaHref":"/contact","poster":"extract/figma/visual-parity/fixture-assets/hero-video--background--8eb8b969759a.jpg","locale":"fr-BE","fontFamily":"Montserrat","video":{"src":null,"available":false}},{"fixtureId":"long-title-poster","contentCase":"long-title","mediaCase":"poster","title":"Le numéro un des portes HÖRMANN sur mesure, de la conception à la pose et au service après-vente, pour chaque projet résidentiel ou professionnel en Province de Liège.","ctaLabel":"Contactez-nous","ctaHref":"/contact","poster":"extract/figma/visual-parity/fixture-assets/hero-video--background--8eb8b969759a.jpg","locale":"fr-BE","fontFamily":"Montserrat","video":{"src":null,"available":false}},{"fixtureId":"long-cta-poster","contentCase":"long-cta","mediaCase":"poster","title":"Le numéro 1 des portes HÖRMANN en Province de Liège !","ctaLabel":"Demander une étude personnalisée gratuite pour votre projet de porte","ctaHref":"/contact","poster":"extract/figma/visual-parity/fixture-assets/hero-video--background--8eb8b969759a.jpg","locale":"fr-BE","fontFamily":"Montserrat","video":{"src":null,"available":false}},{"fixtureId":"default-video-unavailable","contentCase":"default","mediaCase":"video-unavailable","title":"Le numéro 1 des portes HÖRMANN en Province de Liège !","ctaLabel":"Contactez-nous","ctaHref":"/contact","poster":"extract/figma/visual-parity/fixture-assets/hero-video--background--8eb8b969759a.jpg","locale":"fr-BE","fontFamily":"Montserrat","video":{"src":"https://media.example.invalid/hero-video.mp4","available":false}}];
+    const baseline = {
+      axis: 'row', align: 'end', justify: 'start', titleAlign: 'left',
+      spacing: { paddingTop: '48px', paddingRight: '89px', paddingBottom: '48px', paddingLeft: '89px', gap: '10px' },
+      textStyleTokenPath: '{typography.titre-hero-video}', heightStrategy: 'fixed', shortLandscapeFallback: 'baseline'
+    };
+    const params = new URLSearchParams(location.search);
+    const optionSelect = document.querySelector('#option');
+    const fixtureSelect = document.querySelector('#fixture');
+    const hero = document.querySelector('#hero');
+    const title = document.querySelector('#title');
+    const cta = document.querySelector('#cta');
+    const poster = document.querySelector('#poster');
+    const evidence = document.querySelector('#evidence');
+    const compositionAt = (width) => width >= 1400 ? 'wide' : width >= 992 ? 'desktop' : 'compact';
+    const tokenPx = (value) => Number(String(value).match(/(\d+)/)?.[1] ?? 0);
+    const flex = (value) => value === 'start' ? 'flex-start' : value === 'end' ? 'flex-end' : value;
+    const setOptions = (select, values, selected, label) => {
+      select.innerHTML = values.map((value) => '<option value="' + value.id + '"' + (value.id === selected ? ' selected' : '') + '>' + label(value) + '</option>').join('');
+    };
+    const chosenOptionId = params.get('option') || 'centre-immersif';
+    const chosenFixtureId = params.get('fixture') || 'default-poster';
+    setOptions(optionSelect, packet.options.map((value) => ({ id: value.optionId, value })), chosenOptionId, ({ value }) => value.label);
+    setOptions(fixtureSelect, fixtures.map((value) => ({ id: value.fixtureId, value })), chosenFixtureId, ({ value }) => value.fixtureId);
+    document.body.dataset.clean = String(params.get('clean') === '1');
+
+    function apply() {
+      const option = packet.options.find(({ optionId }) => optionId === optionSelect.value) || packet.options[0];
+      const fixture = fixtures.find(({ fixtureId }) => fixtureId === fixtureSelect.value) || fixtures[0];
+      const compositionId = compositionAt(innerWidth);
+      const composition = compositionId === 'wide' ? baseline : option.compositions[compositionId];
+      const row = composition.axis === 'row';
+      hero.dataset.option = option.optionId;
+      hero.dataset.fixture = fixture.fixtureId;
+      hero.dataset.composition = compositionId;
+      hero.style.flexDirection = composition.axis;
+      hero.style.alignItems = flex(composition.align);
+      hero.style.justifyContent = flex(composition.justify);
+      hero.style.gap = tokenPx(composition.spacing.gap) + 'px';
+      hero.style.paddingTop = tokenPx(composition.spacing.paddingTop) + 'px';
+      hero.style.paddingRight = tokenPx(composition.spacing.paddingRight) + 'px';
+      hero.style.paddingBottom = tokenPx(composition.spacing.paddingBottom) + 'px';
+      hero.style.paddingLeft = tokenPx(composition.spacing.paddingLeft) + 'px';
+      hero.style.height = compositionId === 'wide' ? '720px' : 'auto';
+      hero.style.minHeight = compositionId === 'wide' ? '720px' : '100svh';
+      title.style.textAlign = composition.titleAlign;
+      title.style.fontSize = '44px';
+      title.style.lineHeight = '48px';
+      title.style.fontWeight = '400';
+      document.querySelector('.hero__text').style.flex = row ? (compositionId === 'wide' ? '1 1 auto' : '1 1 0%') : '0 1 auto';
+      document.querySelector('.hero__text').style.width = row ? '100%' : '100%';
+      title.textContent = fixture.title;
+      cta.textContent = fixture.ctaLabel;
+      poster.src = '/' + fixture.poster;
+      evidence.textContent = option.label + ' · ' + innerWidth + '×' + innerHeight + ' · ' + compositionId + ' · ' + fixture.fixtureId + ' · non autoritatif';
+      document.title = option.label + ' — ' + innerWidth + 'px — ' + fixture.fixtureId;
+    }
+
+    function intersects(a, b) {
+      return !(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top);
+    }
+
+    function textBounds(element) {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return range.getBoundingClientRect();
+    }
+
+    function contained(inner, outer, tolerance = 2) {
+      return inner.left >= outer.left - tolerance && inner.right <= outer.right + tolerance && inner.top >= outer.top - tolerance && inner.bottom <= outer.bottom + tolerance;
+    }
+
+    window.__H2_HARNESS__ = {
+      apply,
+      getState() {
+        const titleRect = title.getBoundingClientRect();
+        const ctaRect = cta.getBoundingClientRect();
+        const heroRect = hero.getBoundingClientRect();
+        const posterRect = poster.getBoundingClientRect();
+        const titleContentRect = textBounds(title);
+        const ctaContentRect = textBounds(cta);
+        return {
+          optionId: hero.dataset.option,
+          fixtureId: hero.dataset.fixture,
+          compositionId: hero.dataset.composition,
+          viewport: { width: innerWidth, height: innerHeight },
+          hero: { width: heroRect.width, height: heroRect.height },
+          horizontalOverflowPx: Math.max(0, document.documentElement.scrollWidth - innerWidth),
+          titleComplete: contained(titleContentRect, heroRect),
+          ctaComplete: contained(ctaContentRect, ctaRect),
+          titleCtaOverlap: intersects(titleRect, ctaRect),
+          contentWithinHero: [titleRect, ctaRect].every((rect) => rect.left >= heroRect.left - 1 && rect.right <= heroRect.right + 1 && rect.top >= heroRect.top - 1 && rect.bottom <= heroRect.bottom + 1),
+          mediaCoversHero: Math.abs(posterRect.width - heroRect.width) <= 1 && Math.abs(posterRect.height - heroRect.height) <= 1,
+          posterLoaded: poster.complete && poster.naturalWidth > 0,
+          fontLoaded: document.fonts.status === 'loaded',
+          partCount: hero.querySelectorAll('[data-part]').length,
+          figmaWrites: packet.figmaWrites,
+        };
+      },
+    };
+    optionSelect.addEventListener('change', () => { params.set('option', optionSelect.value); history.replaceState(null, '', '?' + params); apply(); });
+    fixtureSelect.addEventListener('change', () => { params.set('fixture', fixtureSelect.value); history.replaceState(null, '', '?' + params); apply(); });
+    addEventListener('resize', apply);
+    document.fonts.ready.then(apply);
+    apply();
+  </script>
+</body>
+</html>

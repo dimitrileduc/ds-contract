@@ -84,6 +84,19 @@ try {
   if (!envelope || typeof envelope !== 'object') throw new Error('figma_execute returned no bridge envelope');
   const outputRoot = process.cwd();
   const responsiveImages = Array.isArray(envelope.responsiveImages) ? envelope.responsiveImages : [];
+  const scenarioChecks = Array.isArray(envelope.inspection?.scenarioChecks) ? envelope.inspection.scenarioChecks : [];
+  const imagePaths = new Set(responsiveImages.map((image) => image?.path).filter((value) => typeof value === 'string'));
+  for (const scenario of scenarioChecks) {
+    if (!scenario || typeof scenario.scenarioId !== 'string' || typeof scenario.selectedPresentation !== 'string' ||
+      typeof scenario.captureRef !== 'string' || !imagePaths.has(scenario.captureRef)) {
+      throw new Error('responsive scenario envelope lost its explicit presentation or capture payload');
+    }
+  }
+  for (const field of ['bindingFacts', 'typographyFacts', 'memberFacts', 'childWrites']) {
+    if (envelope.inspection?.[field] !== undefined && !Array.isArray(envelope.inspection[field])) {
+      throw new Error(`responsive bridge inspection field is not lossless: ${field}`);
+    }
+  }
   for (const image of responsiveImages) {
     if (!image || typeof image.path !== 'string' || typeof image.base64 !== 'string') throw new Error('invalid responsive image payload');
     const absoluteImagePath = path.resolve(outputRoot, image.path);

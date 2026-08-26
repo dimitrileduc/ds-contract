@@ -1,0 +1,26 @@
+{
+  "gateId": "H3-default-wide-recovery",
+  "status": "approved-recovery-within-existing-go",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T08:38:00.000Z",
+  "ownerInstruction": "fini la phase",
+  "authorityRef": "specs/028-figma-responsive-hero-video/decisions/H3-authoring-preview-correction.json",
+  "trigger": "run-004 verify refused the unintended Presentation default change Wide to Compact",
+  "authorizes": [
+    "restore Wide as the top-left and default Presentation",
+    "retain Compact 390, Desktop 1200 and Wide 1728 authoring preview widths"
+  ],
+  "forbids": [
+    "node creation or recreation",
+    "Page or shared-child writes",
+    "contract, HTML, React, CSS or Odoo changes"
+  ],
+  "expectedResult": {
+    "defaultPresentationValue": "Wide",
+    "componentSetLayoutMode": "NONE",
+    "authoringPreviewWidths": { "Compact": 390, "Desktop": 1200, "Wide": 1728 },
+    "createdNodeIds": [],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

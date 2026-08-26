@@ -1,0 +1,438 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "028-figma-responsive-hero-video",
+  "ledgerId": "hero-video-responsive-handoff-v1",
+  "generatedAt": "2026-08-26T09:33:37Z",
+  "hashAlgorithm": "sha256",
+  "authority": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "canonicalVersionId": "2391949441294093693",
+    "canonicalCampaignId": "figma-responsive-hero-video-run-005",
+    "installationCampaignRef": "specs/component-repairs/hero-video/run-003/campaign.json",
+    "canonicalCorrectionCampaignRef": "specs/component-repairs/hero-video/run-005/campaign.json",
+    "lineageRef": "specs/028-figma-responsive-hero-video/proofs/phase-4-authoring-layout-correction.md"
+  },
+  "identities": {
+    "container": {
+      "nodeId": "2448:4731",
+      "name": "Container · HeroVideo"
+    },
+    "componentSet": {
+      "nodeId": "2580:7392",
+      "name": "HeroVideo",
+      "layoutMode": "NONE",
+      "layoutSizingHorizontal": "FILL",
+      "defaultPresentationValue": "Wide"
+    },
+    "members": [
+      {
+        "presentation": "Compact",
+        "nodeId": "2580:7378",
+        "authoringPreviewWidth": 390,
+        "layoutSizingHorizontal": "FIXED"
+      },
+      {
+        "presentation": "Desktop",
+        "nodeId": "2580:7385",
+        "authoringPreviewWidth": 1200,
+        "layoutSizingHorizontal": "FIXED"
+      },
+      {
+        "presentation": "Wide",
+        "nodeId": "2151:5552",
+        "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+        "authoringPreviewWidth": 1728,
+        "layoutSizingHorizontal": "FIXED",
+        "historicalIdentityPreserved": true
+      }
+    ],
+    "readOnlySurfaces": [
+      {
+        "role": "home-instance",
+        "nodeId": "2170:6351"
+      },
+      {
+        "role": "home-with-header-context",
+        "nodeId": "210:326"
+      },
+      {
+        "role": "header-context",
+        "nodeId": "210:473"
+      }
+    ]
+  },
+  "gateRecords": [
+    {
+      "gateId": "H1",
+      "status": "approved",
+      "decisionMaker": "owner",
+      "decidedAt": "2026-08-25T20:57:52Z",
+      "path": "specs/028-figma-responsive-hero-video/decisions/H1-audit.json",
+      "sha256": "ec00dc120cecb1d58d9404bcb9f1897702861bd981ac1276bac18be958fcc605"
+    },
+    {
+      "gateId": "H2",
+      "status": "approved",
+      "decisionMaker": "owner",
+      "decidedAt": "2026-08-25T21:19:31Z",
+      "path": "specs/028-figma-responsive-hero-video/decisions/H2-design.json",
+      "sha256": "1293ce87aed1c116bb08ad9ac9da547e4ae7932fa61e63d7ea6bb9dfb02badfa"
+    },
+    {
+      "gateId": "H3",
+      "status": "approved",
+      "decisionMaker": "owner",
+      "decidedAt": "2026-08-26T06:26:35Z",
+      "path": "specs/028-figma-responsive-hero-video/decisions/H3-mutation.json",
+      "sha256": "c82351cd7f8853f40b1d197fc9151f1c0139f358cc53bf3d7b6a5071b3614c92",
+      "amendments": [
+        {
+          "path": "specs/028-figma-responsive-hero-video/decisions/H3-authoring-preview-correction.json",
+          "sha256": "964b869faffcb444d663270c4d91ec51b8a0759ebf2fd9caa44ecb4dfb3c232a"
+        },
+        {
+          "path": "specs/028-figma-responsive-hero-video/decisions/H3-default-wide-recovery.json",
+          "sha256": "70a5a4e257dcfe84dfdf9207f4b4af6a1eba14961d77d4295b2345ca1021812b"
+        }
+      ]
+    },
+    {
+      "gateId": "H4",
+      "status": "approved",
+      "decisionMaker": "owner",
+      "decidedAt": "2026-08-26T09:22:40Z",
+      "path": "specs/028-figma-responsive-hero-video/decisions/H4-closure.json",
+      "sha256": "ce817feba742c8e0d6eb6629a0fb45686aaf913e62b9992553129786d9c0722a"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "purpose": "initial-responsive-installation",
+      "backupRef": "refs/codex/backups/028-hero-video-responsive",
+      "backupCommit": "bc715dc88756a392ea87b2b85bedc5c8e6d5370a",
+      "tree": "18075acdc12dd3a40ceaec352108fec337562906",
+      "parent": "2a56908b3ca23f7b6dd1b7bfe38459c3983650cd"
+    },
+    {
+      "purpose": "canonical-default-wide-correction",
+      "backupRef": "refs/codex/backups/028-hero-video-responsive-run-005",
+      "backupCommit": "ede12b0fdd36476d349c69df0827b8b566332dbd",
+      "tree": "9504e58065327cdeed59313ffc684c2b5ce340e6",
+      "parent": "2a56908b3ca23f7b6dd1b7bfe38459c3983650cd"
+    }
+  ],
+  "captureSets": [
+    {
+      "phase": "before",
+      "captureSetId": "figma-responsive-hero-video-run-005-before-2391949441294093693",
+      "fileVersionId": "2391949441294093693",
+      "artifactCount": 17,
+      "complete": true,
+      "manifestRef": "specs/component-repairs/hero-video/run-005/campaign.json#/captureSets/before",
+      "manifestSha256": "2dd6c98680e46970c3173f97ebd2aa76ec77bdbcc03f132ed3bce6a295f2ec7b"
+    },
+    {
+      "phase": "after",
+      "captureSetId": "figma-responsive-hero-video-run-005-after-2391949441294093693",
+      "fileVersionId": "2391949441294093693",
+      "artifactCount": 17,
+      "complete": true,
+      "manifestRef": "specs/component-repairs/hero-video/run-005/campaign.json#/captureSets/after",
+      "manifestSha256": "192d75d2acf38220fe64765dc587030e416eaf26e767197568a72b6a69264b6b"
+    },
+    {
+      "phase": "idempotence",
+      "captureSetId": "figma-responsive-hero-video-run-005-idempotence-2391949441294093693",
+      "fileVersionId": "2391949441294093693",
+      "artifactCount": 17,
+      "complete": true,
+      "manifestRef": "specs/component-repairs/hero-video/run-005/campaign.json#/captureSets/idempotence",
+      "manifestSha256": "d5fde068b34d39bfbb3ac2800f3ed2071671fe622a5da969159e1e5cc22d5843"
+    }
+  ],
+  "executionProofs": [
+    {
+      "role": "installation-dry-run",
+      "path": "specs/component-repairs/hero-video/run-003/dry-run.json",
+      "sha256": "c3dfa99920270348a480a3835ad217f13403989e883320aa4b0be4363e30a0c3"
+    },
+    {
+      "role": "installation-first-apply-receipt",
+      "path": "specs/component-repairs/hero-video/run-003/receipts/apply-first.json",
+      "sha256": "74cd272b5f2f50768ab16939541713a496f82a26f33a4364e7486a893737a709"
+    },
+    {
+      "role": "installation-second-apply-receipt",
+      "path": "specs/component-repairs/hero-video/run-003/receipts/apply-second.json",
+      "sha256": "ac703dc39053b3417ce6b52e5fcb70f4d880481128d03c5ce5ab42bcab3c089d"
+    },
+    {
+      "role": "installation-comparison",
+      "path": "specs/component-repairs/hero-video/run-003/verify/comparison.json",
+      "sha256": "4c263de2e545efe19794a2332b66c1bc40f85e0a1e9c33b2b8c08c2bbc182034"
+    },
+    {
+      "role": "installation-first-pass-summary",
+      "path": "specs/component-repairs/hero-video/run-003/verify/first-pass.json",
+      "sha256": "417c160569219e28cecfcef55b48d664cd4b2adb812967f14b5a8fc7ace8e1ac"
+    },
+    {
+      "role": "installation-protected-facts",
+      "path": "specs/component-repairs/hero-video/run-003/verify/protected-facts.json",
+      "sha256": "728b50338cf28dac05a055591c205f9bfbd7ea3787ef7883f3559a7a69dd4200"
+    },
+    {
+      "role": "installation-second-pass-noop-summary",
+      "path": "specs/component-repairs/hero-video/run-003/verify/second-pass-noop.json",
+      "sha256": "53a9250f8983dc1987e7c9a1928c829b936ed31e14cd71be27bec7644b234849"
+    },
+    {
+      "role": "installation-idempotence-receipt",
+      "path": "specs/component-repairs/hero-video/run-003/idempotence-receipt.json",
+      "sha256": "bc0c3b74d90132e1059a3ed952e5de23fc4f5caa0f1541a1d1bbf48b837137fb"
+    },
+    {
+      "role": "installation-responsive-matrix",
+      "path": "specs/028-figma-responsive-hero-video/proofs/responsive-matrix.json",
+      "sha256": "0d5e22555659239ee645d1824d1df068d18e93df11d7e125ff5e57d515ad5b84"
+    },
+    {
+      "role": "canonical-campaign",
+      "path": "specs/component-repairs/hero-video/run-005/campaign.json",
+      "sha256": "96d5833b15ff63b8fab7315282e5f36b69c57e265bfb457fa64181020c82fb14"
+    },
+    {
+      "role": "audit",
+      "path": "specs/component-repairs/hero-video/run-005/audit.json",
+      "sha256": "e3ea43febfdc69a97f1df0a3c7b0e9d6679ba43aae7a77411707139b4dc336c3"
+    },
+    {
+      "role": "dry-run",
+      "path": "specs/component-repairs/hero-video/run-005/dry-run.json",
+      "sha256": "7a24e44147301f28874b72ba7cef09f7f145dccc44c6c68c172627117f637ed9"
+    },
+    {
+      "role": "first-apply-receipt",
+      "path": "specs/component-repairs/hero-video/run-005/receipts/apply-first.json",
+      "sha256": "5125b75617d6d59b9cf7001836240a431dfa825e5513b4d2244698c431f9e822"
+    },
+    {
+      "role": "second-apply-receipt",
+      "path": "specs/component-repairs/hero-video/run-005/receipts/apply-second.json",
+      "sha256": "f36ef11aa2f33799b2183f14a188e69296b40775bf0f739f4c0e7e21367b91be"
+    },
+    {
+      "role": "comparison",
+      "path": "specs/component-repairs/hero-video/run-005/verify/comparison.json",
+      "sha256": "bc5b0e230b619e11fd250346dd113f6ac2b0905498fe0bb07a881ab54c9b9795"
+    },
+    {
+      "role": "first-pass-summary",
+      "path": "specs/component-repairs/hero-video/run-005/verify/first-pass.json",
+      "sha256": "82de1eb537c8e604961bb92f5866dc24905fd54346b6db57e4ec4866ccd8fc0c"
+    },
+    {
+      "role": "protected-facts",
+      "path": "specs/component-repairs/hero-video/run-005/verify/protected-facts.json",
+      "sha256": "c7cf40ca93102f3959bfc2301c897235d52417242ac921d7bbdb738973fb8767"
+    },
+    {
+      "role": "second-pass-noop-summary",
+      "path": "specs/component-repairs/hero-video/run-005/verify/second-pass-noop.json",
+      "sha256": "9682fc052964322bc4cc4313fb1937979674b3cd58b25bad0c37a22952a88ac2"
+    },
+    {
+      "role": "idempotence-receipt",
+      "path": "specs/component-repairs/hero-video/run-005/idempotence-receipt.json",
+      "sha256": "af6f3bc6a0f2f7c3b728dcc1cd9c8bce44d2f68de10cf150fe428c0479ff380b"
+    },
+    {
+      "role": "responsive-scenarios-after",
+      "path": "specs/component-repairs/hero-video/run-005/after/presentation-scenarios.json",
+      "sha256": "bbfde3a3bd9f906b5ac754e67f05e8a102ea8981e3137745b9956e2240b290dd"
+    },
+    {
+      "role": "responsive-scenarios-idempotence",
+      "path": "specs/component-repairs/hero-video/run-005/idempotence/presentation-scenarios.json",
+      "sha256": "b43a36bd2871471908e659e345c4a076280fcb62d60fd6992bae05387e067023"
+    },
+    {
+      "role": "phase-4-correction-lineage",
+      "path": "specs/028-figma-responsive-hero-video/proofs/phase-4-authoring-layout-correction.md",
+      "sha256": "3f0223d02513f56c9133faa8aa83e8ea0ab29be8913a5dfb231a9a1bb69ddade"
+    },
+    {
+      "role": "targeted-runner-gates",
+      "path": "specs/028-figma-responsive-hero-video/proofs/runner-targeted-gates.md",
+      "sha256": "33448772be2585b6f4648b62d1fc5b789e157c4815ecd4a4d842619ffee9f217"
+    },
+    {
+      "role": "full-runner-gates",
+      "path": "specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md",
+      "sha256": "454594d82fbc9b60be5615ecb6f44e569eb76660ed81b4536bac50f037fe1bdf"
+    },
+    {
+      "role": "handoff-compositions",
+      "path": "specs/028-figma-responsive-hero-video/handoff/compositions.md",
+      "sha256": "2919732cac0a81d27312e6537ce3bb81e9f0a9c6b93807383010b488bb5d692d"
+    },
+    {
+      "role": "handoff-primitives-and-typography",
+      "path": "specs/028-figma-responsive-hero-video/handoff/primitives-and-typography.md",
+      "sha256": "b10c3be4c1328f9511df7c7a031b8dbf7ebf8c3d9678a0f216542c2e8dd68393"
+    },
+    {
+      "role": "handoff-deferred-and-limits",
+      "path": "specs/028-figma-responsive-hero-video/handoff/deferred-and-limits.md",
+      "sha256": "31f636f0ef34aa695c1c2a56f6ea0f436e1b6bb31a00172517313e3910a9fcaa"
+    },
+    {
+      "role": "maintainer-rehearsal",
+      "path": "specs/028-figma-responsive-hero-video/proofs/maintainer-rehearsal.md",
+      "sha256": "d3c0fc75df18cac613317ecb80a306561f7f0acd482bd92f60601d059f901024"
+    },
+    {
+      "role": "installation-lineage-finalize",
+      "path": "specs/component-repairs/hero-video/run-003/finalize.json",
+      "sha256": "47aebca3bf67ad6e29054883f717ca000d7f243be3adcc9a072ffa7bb9a0d757"
+    },
+    {
+      "role": "canonical-owner-receipt",
+      "path": "specs/component-repairs/hero-video/run-005/receipts/hero-video.json",
+      "sha256": "4bcd9b7cd0a5db6babc4b2fcbfd6b0a3f16b585c0bae9beb1c6a4ebb0782eff5"
+    },
+    {
+      "role": "canonical-closure",
+      "path": "specs/component-repairs/hero-video/run-005/closure.md",
+      "sha256": "55da21d7751bc12bb8bc772c2335f62c41c24d89e370a0870fd609bc2cae85f2"
+    },
+    {
+      "role": "final-constitution-gates",
+      "path": "specs/028-figma-responsive-hero-video/proofs/final-constitution-gates.md",
+      "sha256": "2cdea638bed15853c66280307461a725358f51c5269ffb519903ec9b78efad56"
+    },
+    {
+      "role": "final-scope-and-status",
+      "path": "specs/028-figma-responsive-hero-video/proofs/final-scope-and-status.md",
+      "sha256": "851c0fa610b63c3ddaa9194caaa61cf124c113194f1e263aff1ca0c1216845bc"
+    }
+  ],
+  "responsiveControls": {
+    "status": "pass",
+    "scenarioCount": 19,
+    "passedScenarioCount": 19,
+    "selectionMode": "explicit",
+    "universalAssertions": {
+      "overflow": false,
+      "clippedBy": [],
+      "contentAccessible": true,
+      "posterCoverage": "cover"
+    },
+    "capturePairPattern": "specs/component-repairs/hero-video/run-005/scenario-{scenarioId}-{first|second}.png",
+    "capturePairs": [
+      { "scenarioId": "320-compact-default", "presentation": "Compact", "width": 320, "height": 640, "fixtureId": "default", "sha256": "b2faa3df621e33c8128b633bcf006c0965e7ec2a692018ff5e81f2060acf74a1" },
+      { "scenarioId": "320-compact-long-title", "presentation": "Compact", "width": 320, "height": 640, "fixtureId": "long-title", "sha256": "817acbaa6fcf297af611f17bdb5b138d9dc3cb4fb488c7d45e6d13a99642ca0c" },
+      { "scenarioId": "320-compact-long-cta", "presentation": "Compact", "width": 320, "height": 640, "fixtureId": "long-cta", "sha256": "1c127d4911078734842a58931964f80d12c31933a6e1856bf881bb8fa005c64e" },
+      { "scenarioId": "390-compact-default", "presentation": "Compact", "width": 390, "height": 844, "fixtureId": "default", "sha256": "a724b0b9c121a0816bcc85a26b7f03a90f6ce3b1de7c661e0b5d9307e14c2577" },
+      { "scenarioId": "390-compact-long-title", "presentation": "Compact", "width": 390, "height": 844, "fixtureId": "long-title", "sha256": "103bae1f17f0c876341ec9b2abbecebc3a7207077619e28008ab5c752c58c029" },
+      { "scenarioId": "390-compact-long-cta", "presentation": "Compact", "width": 390, "height": 844, "fixtureId": "long-cta", "sha256": "2b39161f8595328c042d2d5f970dbfdfabd68883588cae945e14fdae025520df" },
+      { "scenarioId": "834-compact-default", "presentation": "Compact", "width": 834, "height": 1112, "fixtureId": "default", "sha256": "be6ffe378343341d999c0f18f926652723c5d925ab044696f5664e0523a80a20" },
+      { "scenarioId": "834-compact-long-title", "presentation": "Compact", "width": 834, "height": 1112, "fixtureId": "long-title", "sha256": "39c10419bc8ebf5e939dfd4fafd268468fb02e9d239cdfc3ee8b90cbec4077b2" },
+      { "scenarioId": "834-compact-long-cta", "presentation": "Compact", "width": 834, "height": 1112, "fixtureId": "long-cta", "sha256": "1a4ba0cfc240d60255c03a749dc5bb100aa1bc433b84bb48e3df6201248a7f2d" },
+      { "scenarioId": "1200-desktop-default", "presentation": "Desktop", "width": 1200, "height": 800, "fixtureId": "default", "sha256": "e2a2c3d141d313e9cab898744d2c99a7d40eb382158030ddeed19ded6f999451" },
+      { "scenarioId": "1200-desktop-long-title", "presentation": "Desktop", "width": 1200, "height": 800, "fixtureId": "long-title", "sha256": "c87c5e48596b3018a91419826269da0ef6c24372651ebd80947b4c814cac80c8" },
+      { "scenarioId": "1200-desktop-long-cta", "presentation": "Desktop", "width": 1200, "height": 800, "fixtureId": "long-cta", "sha256": "0318d5c0ed6489078c16bb14f597c9af804972fcfd387481f3a122e830e432f6" },
+      { "scenarioId": "1440-wide-default", "presentation": "Wide", "width": 1440, "height": 720, "fixtureId": "default", "sha256": "802e9ed3716eae831aea52c03066809ea8d5195feb5c0c962318725b28f0c506" },
+      { "scenarioId": "1440-wide-long-title", "presentation": "Wide", "width": 1440, "height": 720, "fixtureId": "long-title", "sha256": "9fc77ce61ce41589533a3b36ec931a2804437abc88e1ed151f16bf186f3a4ba7" },
+      { "scenarioId": "1440-wide-long-cta", "presentation": "Wide", "width": 1440, "height": 720, "fixtureId": "long-cta", "sha256": "a2afe971ce09d17d3de0627a7cfb7afa65d6f0ee7286ad5cbd6763dd6dfde65c" },
+      { "scenarioId": "1728-wide-default", "presentation": "Wide", "width": 1728, "height": 720, "fixtureId": "default", "sha256": "4e79e05c14a858ff3319105c876e0f23954533532c3fa8f44efb6a28e94a0d12" },
+      { "scenarioId": "1728-wide-long-title", "presentation": "Wide", "width": 1728, "height": 720, "fixtureId": "long-title", "sha256": "f73bbbbc340897ed600d5aef5e2a37a311828afa06e209edaddc8c92533da758" },
+      { "scenarioId": "1728-wide-long-cta", "presentation": "Wide", "width": 1728, "height": 720, "fixtureId": "long-cta", "sha256": "5b1d42dda155c6d4ca49dc51b37b5ee09ed1fd8c1daec125a9c8c4c7fdb1b4a1" },
+      { "scenarioId": "844x390-compact-short-landscape", "presentation": "Compact", "width": 844, "height": 390, "fixtureId": "short-landscape", "sha256": "b791e4cebead3bc85736930743b4c77ca8cad141b582b87dd96cf02be14c8cd5" }
+    ]
+  },
+  "verificationSummary": {
+    "initialInstallation": {
+      "campaignId": "figma-responsive-hero-video-run-003",
+      "firstPass": {
+        "status": "pass",
+        "createdNodeIds": [
+          "2580:7392",
+          "2580:7378",
+          "2580:7385"
+        ],
+        "changedNodeIds": [
+          "2151:5552",
+          "2448:4731"
+        ],
+        "pageWrites": [],
+        "childWrites": [],
+        "scenarioCount": 19,
+        "primitiveBindingCount": 13,
+        "typographyOverrideCount": 2
+      },
+      "secondPass": {
+        "status": "pass",
+        "operationStatus": "no-op",
+        "createdNodeIds": [],
+        "changedNodeIds": [],
+        "pageWrites": [],
+        "childWrites": []
+      }
+    },
+    "canonicalCorrection": {
+      "campaignId": "figma-responsive-hero-video-run-005",
+      "firstPass": {
+      "status": "pass",
+      "createdNodeIds": [],
+      "changedNodeIds": [
+        "2151:5552",
+        "2580:7378",
+        "2580:7385",
+        "2580:7392"
+      ],
+      "pageWrites": [],
+      "childWrites": [],
+      "primitiveBindingCount": 13,
+      "typographyOverrideCount": 2
+      },
+      "protectedFacts": {
+      "status": "pass",
+      "unexpectedDiffs": [],
+      "beforeArtifactCount": 17,
+      "afterArtifactCount": 17,
+      "imageFingerprintCount": 20,
+      "instanceLinkCount": 102,
+      "pageWrites": [],
+      "childWrites": [],
+      "contractWrites": [],
+      "htmlWrites": [],
+      "odooWrites": []
+      },
+      "secondPass": {
+      "status": "pass",
+      "operationStatus": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": [],
+      "pageWrites": [],
+      "childWrites": [],
+        "observableDifferences": []
+      }
+    }
+  },
+  "closure": {
+    "figmaStatus": "owner-accepted",
+    "finalizedAt": "2026-08-26T09:27:49Z",
+    "ownerDecisionRef": "specs/028-figma-responsive-hero-video/decisions/H4-closure.json",
+    "finalReceiptRef": "specs/component-repairs/hero-video/run-005/receipts/hero-video.json",
+    "canonicalClosureRef": "specs/component-repairs/hero-video/run-005/closure.md",
+    "installationLineageClosureRef": "specs/component-repairs/hero-video/run-003/finalize.json",
+    "nonConvergenceStatus": "figma-ahead/pending-home-responsive-promotion",
+    "contractClaim": false,
+    "codeClaim": false,
+    "odooClaim": false,
+    "automaticBreakpointClaim": false,
+    "regenerationGuard": "active"
+  }
+}

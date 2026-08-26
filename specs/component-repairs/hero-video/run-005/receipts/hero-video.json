@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "figma-responsive-hero-video-run-005-hero-video-accepted",
+  "campaignId": "figma-responsive-hero-video-run-005",
+  "targetId": "hero-video",
+  "referenceId": "hero-video-wide-historical-context",
+  "appliedOperationIds": [
+    "restore-wide-default-authoring-order"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "hero-video:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/hero-video/run-005/after/hero-video_master.structure.json"
+    },
+    {
+      "surfaceId": "hero-video:master",
+      "kind": "expected",
+      "description": "properties changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/hero-video/run-005/after/hero-video_master.properties.json"
+    },
+    {
+      "surfaceId": "hero-video:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/hero-video/run-005/after/hero-video_master.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "The owner accepts the final Figma HeroVideo source, its named limits and its handoff, and explicitly authorizes closure of phase 5 and execution of phase 6 without creating a commit.",
+  "evidenceRefs": [
+    "specs/component-repairs/hero-video/run-005/before/hero-video_master.structure.json",
+    "specs/component-repairs/hero-video/run-005/after/hero-video_master.structure.json",
+    "specs/component-repairs/hero-video/run-005/verify/comparison.json",
+    "specs/028-figma-responsive-hero-video/decisions/H4-closure.json",
+    "specs/component-repairs/hero-video/run-005/idempotence-receipt.json"
+  ],
+  "limits": [
+    "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+  ],
+  "decidedAt": "2026-08-26T09:22:40Z"
+}
