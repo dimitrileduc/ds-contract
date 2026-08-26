@@ -1,6 +1,6 @@
 {
-  "passed": 229,
-  "total": 234,
+  "passed": 236,
+  "total": 237,
   "quarantined": 48,
   "results": [
     {
@@ -36,8 +36,7 @@
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 6 drift finding(s) (+9 acknowledged in parity/baseline.json):\n    figma — behind: 6\n\n  [figma BEHIND] GoogleReviewsSection.Titre\n    Contract prop \"titre\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] GoogleReviewsSection.Accroche\n    Contract prop \"accroche\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] GoogleReviewsSection.Qualificatif\n    Contract prop \"qualificatif\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] GoogleReviewsSection.Note globale\n    Contract prop \"noteGlobale\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] GoogleReviewsSection.Volume\n    Contract prop \"volume\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] GoogleReviewsSection.Contrôles\n    Contract prop \"montrerControles\" has no BOOLEAN property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  — acknowledged (baselined, does not fail the check) —\n\n  [figma BEHIND] CarteCategorie.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma BEHIND] CarteCategorie.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma BEHIND] Carte.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma BEHIND] Coordonnees.Accroche\n    Contract prop \"accroche\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] Coordonnees.Titre\n    Contract prop \"titre\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] Formulaire.Accroche\n    Contract prop \"accroche\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma BEHIND] Formulaire.Titre\n    Contract prop \"titre\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [figma AHEAD] Header.Fond\n    Figma set declares VARIANT property \"Fond\" the contract does not define\n    proposed patch: {\"name\":\"fond\",\"type\":{\"enum\":[\"Transparent\"]},\"bindings\":{\"figma\":{\"kind\":\"VARIANT\",\"property\":\"Fond\"},\"code\":{\"prop\":\"fond\"}}}\n    → Review + append to the contract props[], bump version, then npm run build\n\n  [icons AHEAD] assets/icons/close.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n"
+      "pass": true
     },
     {
       "id": "section-header-v3-api",
@@ -125,6 +124,16 @@
       "pass": true
     },
     {
+      "id": "figma-responsive-existing-set-topology",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "figma-responsive-multiaxis-scenarios",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
       "id": "figma-responsive-presentation-scenarios-explicit",
       "claim": "C3-detection",
       "pass": true
@@ -136,6 +145,11 @@
     },
     {
       "id": "figma-responsive-boundary-idempotence",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "figma-responsive-boundary-propagation-idempotence",
       "claim": "C2-refusal",
       "pass": true
     },
@@ -437,14 +451,12 @@
     {
       "id": "baseline-acknowledges-without-failing",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baselined finding still failed the exit code"
+      "pass": true
     },
     {
       "id": "promotion-converges",
       "claim": "C4-convergence",
-      "pass": false,
-      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Titre\",\"detail\":\"Contract prop \\\"titre\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Accroche\",\"detail\":\"Contract prop \\\"accroche\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Qualificatif\",\"detail\":\"Contract prop \\\"qualificatif\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Note globale\",\"detail\":\"Contract prop \\\"noteGlobale\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Volume\",\"detail\":\"Contract prop \\\"volume\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"GoogleReviewsSection.Contrôles\",\"detail\":\"Contract prop \\\"montrerControles\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"}]"
+      "pass": true
     },
     {
       "id": "detect-icon-registry-divergence",
@@ -1150,8 +1162,7 @@
     {
       "id": "preservation-013-clobber-detected",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: parity is not the instrument for this class of drift — it must stay clean here"
+      "pass": true
     },
     {
       "id": "figma-readiness-foundation",

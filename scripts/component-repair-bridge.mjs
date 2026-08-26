@@ -87,12 +87,16 @@ try {
   const scenarioChecks = Array.isArray(envelope.inspection?.scenarioChecks) ? envelope.inspection.scenarioChecks : [];
   const imagePaths = new Set(responsiveImages.map((image) => image?.path).filter((value) => typeof value === 'string'));
   for (const scenario of scenarioChecks) {
-    if (!scenario || typeof scenario.scenarioId !== 'string' || typeof scenario.selectedPresentation !== 'string' ||
+    const selection = scenario?.selectedVariantSelection;
+    const hasExplicitSelection = selection && typeof selection === 'object' && !Array.isArray(selection) &&
+      Object.keys(selection).length > 0 && Object.values(selection).every((value) => typeof value === 'string' && value.length > 0);
+    if (!scenario || typeof scenario.scenarioId !== 'string' ||
+      (typeof scenario.selectedPresentation !== 'string' && !hasExplicitSelection) ||
       typeof scenario.captureRef !== 'string' || !imagePaths.has(scenario.captureRef)) {
-      throw new Error('responsive scenario envelope lost its explicit presentation or capture payload');
+      throw new Error('responsive scenario envelope lost its explicit variant selection or capture payload');
     }
   }
-  for (const field of ['bindingFacts', 'typographyFacts', 'memberFacts', 'childWrites']) {
+  for (const field of ['bindingFacts', 'typographyFacts', 'memberFacts', 'propagatedDeltas', 'childWrites']) {
     if (envelope.inspection?.[field] !== undefined && !Array.isArray(envelope.inspection[field])) {
       throw new Error(`responsive bridge inspection field is not lossless: ${field}`);
     }

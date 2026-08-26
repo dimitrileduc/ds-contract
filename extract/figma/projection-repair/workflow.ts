@@ -3,6 +3,7 @@ import type { RepairCampaign } from './types.js';
 
 export interface RepairWorkflowPaths {
   evidenceRoot: string;
+  captureRoot: string;
   auditPath: string;
   bridgeScriptPaths: { first: string; second: string };
   dryRunPath: string;
@@ -24,22 +25,25 @@ export function workflowPaths(campaign: RepairCampaign): RepairWorkflowPaths {
   if (campaign.schemaVersion === '2.0.0') {
     if (!campaign.workflow) throw new Error('component repair v2 requires workflow configuration');
     const root = campaign.workflow.evidenceRoot;
+    const artifacts = campaign.artifactRoots;
     return {
       evidenceRoot: root,
-      auditPath: relativeJoin(root, 'audit.json'),
-      bridgeScriptPaths: { first: relativeJoin(root, 'bridge-first.js'), second: relativeJoin(root, 'bridge-second.js') },
-      dryRunPath: relativeJoin(root, 'dry-run.json'),
+      captureRoot: artifacts ? path.posix.dirname(artifacts.captures.before) : root,
+      auditPath: artifacts?.audit ?? relativeJoin(root, 'audit.json'),
+      bridgeScriptPaths: artifacts?.bridgeScripts ?? { first: relativeJoin(root, 'bridge-first.js'), second: relativeJoin(root, 'bridge-second.js') },
+      dryRunPath: artifacts?.dryRun ?? relativeJoin(root, 'dry-run.json'),
       comparisonPath: campaign.workflow.comparisonPath,
       firstApplyReceiptPath: campaign.workflow.applyReceiptPaths.first,
       secondApplyReceiptPath: campaign.workflow.applyReceiptPaths.second,
       ownerDecisionRoot: campaign.workflow.ownerDecisionRoot,
-      finalReceiptRoot: relativeJoin(root, 'receipts'),
+      finalReceiptRoot: artifacts?.receipts ?? relativeJoin(root, 'receipts'),
       closurePath: relativeJoin(root, 'closure.md'),
     };
   }
   const root = 'specs/021-figma-projection-repair/proofs';
   return {
     evidenceRoot: root,
+    captureRoot: root,
     auditPath: relativeJoin(root, 'audit.json'),
     bridgeScriptPaths: { first: relativeJoin(root, 'bridge-first.js'), second: relativeJoin(root, 'bridge-second.js') },
     dryRunPath: relativeJoin(root, 'us1/dry-run.json'),

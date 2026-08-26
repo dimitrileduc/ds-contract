@@ -1,5 +1,6 @@
 import { isObject as object, sha256Of, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
-import type { ProtectedFact, ResponsiveComponentCapability } from './types.js';
+import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
+import type { ProtectedFact, ResponsiveComponentCapability, VariantSelection } from './types.js';
 
 const digest = (value: unknown): string => sha256Of(stableJson(value));
 
@@ -33,6 +34,11 @@ export interface SurfaceFacts {
   primitiveBindings: unknown[];
   temporaryTypography: unknown[];
   sharedChildFacts: unknown[];
+  setIdentity: unknown;
+  memberIdsKeys: unknown[];
+  axisNamesValues: unknown;
+  layerNamesRoles: unknown[];
+  columnsEnumHonesty: unknown;
   digests: Record<ProtectedFact, string>;
 }
 
@@ -53,9 +59,11 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
   const primitiveBindings: unknown[] = [];
   const temporaryTypography: unknown[] = [];
   const sharedChildFacts: unknown[] = [];
+  const layerNamesRoles: unknown[] = [];
   const rootBox = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : null;
 
   walk(node, (entry, structuralPath) => {
+    layerNamesRoles.push({ structuralPath, type: entry.type ?? null, name: entry.name ?? null });
     for (const { field, index, paint } of paints(entry)) {
       const address = { structuralPath, field, index };
       if (paint.type === 'IMAGE') imagePaints.push({ ...address, paint });
@@ -177,6 +185,23 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     propertyDefinitions: node.componentPropertyDefinitions ?? {},
     memberNames: componentMembers.map((member) => member.name),
   } : null;
+  const propertyDefinitions = node.type === 'COMPONENT_SET' && object(node.componentPropertyDefinitions)
+    ? node.componentPropertyDefinitions : {};
+  const axisNamesValues = Object.fromEntries(Object.entries(propertyDefinitions)
+    .filter(([, definition]) => object(definition) && definition.type === 'VARIANT')
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([name, definition]) => [name, {
+      values: Array.isArray((definition as Json).variantOptions) ? (definition as Json).variantOptions : [],
+      defaultValue: (definition as Json).defaultValue ?? null,
+    }] as const));
+  const setIdentity = node.type === 'COMPONENT_SET'
+    ? { nodeId: node.id ?? null, componentKey: node.key ?? node.componentKey ?? null, name: node.name ?? null }
+    : null;
+  const memberIdsKeys = componentMembers.map(({ nodeId, componentKey }) => ({ nodeId, componentKey }));
+  const columnsEnumHonesty = object(axisNamesValues.Colonnes) ? {
+    values: (axisNamesValues.Colonnes as Json).values ?? [],
+    defaultValue: (axisNamesValues.Colonnes as Json).defaultValue ?? null,
+  } : null;
   // One identity value serves two fact names: each surface digests its own
   // root, so the master surface reads it as master identity and the page-host
   // surface as page-node identity. The names stay distinct because campaign
@@ -203,6 +228,16 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     'primitive-bindings': primitiveBindings,
     'temporary-typography': temporaryTypography,
     'shared-child-facts': sharedChildFacts,
+    'set-identity': setIdentity,
+    'member-ids-keys': memberIdsKeys,
+    'axis-names-values': axisNamesValues,
+    'card-identity-key': rootIdentity,
+    'card-variant-cardinality': componentMembers.length,
+    'layer-names-roles': layerNamesRoles,
+    'media-text-content': { imagePaints, videoPaints, gradientPaints, textContent },
+    'usage-instance-links': instanceLinks,
+    'usage-overrides': instanceOverrides,
+    'columns-enum-honesty': columnsEnumHonesty,
   };
   const digests = Object.fromEntries(Object.entries(values).map(([fact, value]) => [fact, digest(value)])) as Record<ProtectedFact, string>;
   return {
@@ -225,6 +260,11 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     primitiveBindings,
     temporaryTypography,
     sharedChildFacts,
+    setIdentity,
+    memberIdsKeys,
+    axisNamesValues,
+    layerNamesRoles,
+    columnsEnumHonesty,
     digests,
   };
 }
@@ -244,8 +284,13 @@ export function validateResponsiveFacts(
 ): ResponsiveFactValidation {
   const issues: string[] = [];
   const rows = bindingFacts.filter(object);
+  const multiAxis = capability.componentSetTopology.variantProperties !== undefined;
   for (const expected of capability.primitiveBindings) {
-    const matches = rows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath && row.property === expected.property);
+    const expectedSelection = multiAxis ? canonicalVariantSelection(expected.variantSelection ??
+      memberVariantSelection(capability.componentSetTopology, responsiveTopologyMembers(capability.componentSetTopology)
+        .find((member) => member.presentationValue === expected.presentationValue)!)) : '';
+    const matches = rows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath && row.property === expected.property &&
+      (multiAxis ? canonicalVariantSelection(row.variantSelection as VariantSelection | undefined) : '') === expectedSelection);
     if (matches.length !== 1 || matches[0].status !== 'attached' || matches[0].boundVariableId !== expected.variableId ||
       matches[0].variableId !== expected.variableId || matches[0].variableName !== expected.variableName || matches[0].resolvedValue !== expected.resolvedValue) {
       issues.push(`primitive-binding-detached:${expected.presentationValue}/${expected.nodePath}/${expected.property}`);
@@ -255,7 +300,11 @@ export function validateResponsiveFacts(
 
   const typographyRows = typographyFacts.filter(object);
   for (const expected of capability.typographyOverrides) {
-    const matches = typographyRows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath);
+    const expectedSelection = multiAxis ? canonicalVariantSelection(expected.variantSelection ??
+      memberVariantSelection(capability.componentSetTopology, responsiveTopologyMembers(capability.componentSetTopology)
+        .find((member) => member.presentationValue === expected.presentationValue)!)) : '';
+    const matches = typographyRows.filter((row) => row.presentationValue === expected.presentationValue && row.nodePath === expected.nodePath &&
+      (multiAxis ? canonicalVariantSelection(row.variantSelection as VariantSelection | undefined) : '') === expectedSelection);
     const row = matches[0];
     const applied = row && object(row.appliedFields) ? row.appliedFields : {};
     const appliedKeys = Object.keys(applied);
@@ -314,16 +363,16 @@ const responsiveSemanticFacts = new Set<ProtectedFact>([
 const propertyToken = (value: string): string => /^.+#\d+:\d+$/.test(value) ? value.slice(0, value.lastIndexOf('#')) : value;
 
 /** Native combineAsVariants regenerates component-property suffix ids and adds
- * the selected Presentation property to existing instances. These two changes
+ * the selected variant properties to existing instances. These two changes
  * are additive topology mechanics, not override loss. Normalize only those
  * mechanics; semantic values, links, override arrays and child identities stay
  * fully compared. */
-function normalizeResponsiveSemanticValue(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(normalizeResponsiveSemanticValue);
+function normalizeResponsiveSemanticValue(value: unknown, variantPropertyNames: ReadonlySet<string>): unknown {
+  if (Array.isArray(value)) return value.map((entry) => normalizeResponsiveSemanticValue(entry, variantPropertyNames));
   if (!object(value)) return typeof value === 'string' ? propertyToken(value) : value;
   const rows = Object.entries(value)
-    .filter(([key]) => propertyToken(key) !== 'Presentation')
-    .map(([key, entry]) => [propertyToken(key), normalizeResponsiveSemanticValue(entry)] as const)
+    .filter(([key]) => !variantPropertyNames.has(propertyToken(key)))
+    .map(([key, entry]) => [propertyToken(key), normalizeResponsiveSemanticValue(entry, variantPropertyNames)] as const)
     .sort(([left], [right]) => left.localeCompare(right));
   return Object.fromEntries(rows);
 }
@@ -333,8 +382,8 @@ function normalizeResponsiveSemanticValue(value: unknown): unknown {
  * and the member capture only retains the descendant property references. Drop
  * only root definitions that are still referenced by the captured member; an
  * unreferenced definition remains protected and therefore still fails closed. */
-function normalizeResponsiveComponentProperties(value: unknown): unknown {
-  if (!Array.isArray(value)) return normalizeResponsiveSemanticValue(value);
+function normalizeResponsiveComponentProperties(value: unknown, variantPropertyNames: ReadonlySet<string>): unknown {
+  if (!Array.isArray(value)) return normalizeResponsiveSemanticValue(value, variantPropertyNames);
   const referencedTokens = new Set(value.flatMap((row) => {
     if (!object(row) || !object(row.references)) return [];
     return Object.values(row.references)
@@ -350,7 +399,7 @@ function normalizeResponsiveComponentProperties(value: unknown): unknown {
     if (!object(row) || row.structuralPath !== '') return true;
     return [row.definitions, row.values, row.references].some((entry) => object(entry) && Object.keys(entry).length > 0);
   });
-  return normalizeResponsiveSemanticValue(withoutLiftedDefinitions);
+  return normalizeResponsiveSemanticValue(withoutLiftedDefinitions, variantPropertyNames);
 }
 
 export function compareResponsiveTransitionProtectedFacts(
@@ -359,6 +408,9 @@ export function compareResponsiveTransitionProtectedFacts(
   protectedFacts: readonly string[],
   capability?: ResponsiveComponentCapability,
 ): ProtectedFactDifference[] {
+  const variantPropertyNames = new Set(Object.keys(capability?.componentSetTopology.variantProperties ?? {
+    [capability?.componentSetTopology.propertyName ?? 'Presentation']: [],
+  }));
   return protectedFacts.flatMap((fact) => {
     const typed = fact as ProtectedFact;
     if (typed === 'component-set-topology' && capability?.componentSetTopology.setIdentityPolicy === 'existing') {
@@ -396,8 +448,8 @@ export function compareResponsiveTransitionProtectedFacts(
       : typed === 'component-properties' ? after.componentProperties
         : typed === 'instance-overrides' ? after.instanceOverrides : after.sharedChildFacts;
     const normalize = typed === 'component-properties'
-      ? normalizeResponsiveComponentProperties
-      : normalizeResponsiveSemanticValue;
+      ? (value: unknown) => normalizeResponsiveComponentProperties(value, variantPropertyNames)
+      : (value: unknown) => normalizeResponsiveSemanticValue(value, variantPropertyNames);
     const left = digest(normalize(rawBefore));
     const right = digest(normalize(rawAfter));
     return left === right ? [] : [{ fact: typed, before: left, after: right }];

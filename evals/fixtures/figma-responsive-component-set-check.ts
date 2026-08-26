@@ -107,7 +107,9 @@ for (const declaration of correctionCampaign.targets[0].responsive.componentSetT
 correctionCampaign.targets[0].responsive.expectedCreates = [];
 correctionCampaign.writeBoundary.allowedCreateRoles = [];
 correctionCampaign.writeBoundary.allowedExistingNodeIds = ['1:0', set.id, ...set.children.map((member: any) => member.id)];
-correctionCampaign.writeBoundary.expectedChangedNodeIds = [...correctionCampaign.writeBoundary.allowedExistingNodeIds];
+// The existing set's parent is traversal-only: repairing member previews and
+// set bounds must not report or require a parent mutation.
+correctionCampaign.writeBoundary.expectedChangedNodeIds = [set.id, ...set.children.map((member: any) => member.id)];
 const correctionValidation = validateRepairCampaign(correctionCampaign);
 if (!correctionValidation.ok) throw new Error(`existing component-set correction refused: ${correctionValidation.issues.map((issue) => issue.message).join(', ')}`);
 const correctionPlan = dryRunCampaign(correctionValidation.value);

@@ -1,7 +1,8 @@
 import { isObject as object } from './json.js';
 import type { DryRun } from './apply.js';
 import { comparableResponsiveMemberFacts, validateResponsiveFacts } from './facts.js';
-import type { PrimitiveBindingDeclaration, RepairCampaign } from './types.js';
+import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
+import type { ExpectedPropagatedDelta, PrimitiveBindingDeclaration, RepairCampaign, VariantSelection } from './types.js';
 import { validatePresentationScenarioResults } from './verify.js';
 
 export interface LiveOperationReceipt {
@@ -21,15 +22,20 @@ export interface LiveMasterCheck {
   masterCount: number;
   variantNames: string[];
   setNodeId?: string;
+  setKey?: string;
   setName?: string;
   propertyName?: string;
   defaultPresentationValue?: string;
+  variantProperties?: Record<string, string[]>;
+  defaultVariantSelection?: VariantSelection;
+  memberIdentities?: Array<{ nodeId: string; componentKey: string; variantSelection: VariantSelection }>;
 }
 
 export interface PresentationScenarioResult {
   targetId?: string;
   scenarioId: string;
   selectedPresentation: string;
+  selectedVariantSelection?: VariantSelection;
   width: number;
   height: number;
   fixtureId: string;
@@ -40,6 +46,7 @@ export interface PresentationScenarioResult {
   contentAccessible: boolean;
   posterCoverage: string;
   captureRef: string;
+  cardsPerRow?: number;
 }
 
 export interface PrimitiveBindingFact extends PrimitiveBindingDeclaration {
@@ -49,6 +56,7 @@ export interface PrimitiveBindingFact extends PrimitiveBindingDeclaration {
 
 export interface TypographyOverrideFact {
   presentationValue: string;
+  variantSelection?: VariantSelection;
   nodePath: string;
   sourceRole: string;
   sourceTextStyleId: string;
@@ -63,12 +71,19 @@ export interface TypographyOverrideFact {
 export interface ResponsiveMemberFact {
   targetId?: string;
   presentationValue: string;
+  variantSelection?: VariantSelection;
+  nodeId?: string;
+  componentKey?: string;
   authoringPreview: { width: number; layoutSizingHorizontal: string | null };
   namesAndRoles: unknown[];
   media: unknown[];
   texts: unknown[];
   componentProperties: unknown[];
   sharedChildren: unknown[];
+}
+
+export interface PropagatedDeltaFact extends ExpectedPropagatedDelta {
+  status: 'attributed' | 'unattributed';
 }
 
 export interface LiveApplyReceipt {
@@ -93,6 +108,7 @@ export interface LiveApplyReceipt {
   bindingFacts: PrimitiveBindingFact[];
   typographyFacts: TypographyOverrideFact[];
   memberFacts: ResponsiveMemberFact[];
+  propagatedDeltas: PropagatedDeltaFact[];
 }
 
 export interface BridgeApplyEnvelope {
@@ -116,6 +132,7 @@ export interface BridgeApplyEnvelope {
     bindingFacts?: PrimitiveBindingFact[];
     typographyFacts?: TypographyOverrideFact[];
     memberFacts?: ResponsiveMemberFact[];
+    propagatedDeltas?: PropagatedDeltaFact[];
   };
 }
 
@@ -193,6 +210,7 @@ export function normalizeBridgeApplyEnvelope(
     bindingFacts: Array.isArray(candidate.inspection.bindingFacts) ? candidate.inspection.bindingFacts as PrimitiveBindingFact[] : [],
     typographyFacts: Array.isArray(candidate.inspection.typographyFacts) ? candidate.inspection.typographyFacts as TypographyOverrideFact[] : [],
     memberFacts: Array.isArray(candidate.inspection.memberFacts) ? candidate.inspection.memberFacts as ResponsiveMemberFact[] : [],
+    propagatedDeltas: Array.isArray(candidate.inspection.propagatedDeltas) ? candidate.inspection.propagatedDeltas as PropagatedDeltaFact[] : [],
   };
 }
 
@@ -211,9 +229,9 @@ export function validateLiveApplyReceipt(
   if (candidate.fileKey !== campaign.filePin.fileKey) issues.push('file-key');
   if (candidate.fileVersionId !== campaign.filePin.versionId) issues.push('file-version');
   if (candidate.run !== expectedRun) issues.push('run');
-  if (!stringArray(candidate.pageWrites) || candidate.pageWrites.length !== 0) issues.push('page-writes');
+  if (!stringArray(candidate.pageWrites) || candidate.pageWrites.length !== 0) issues.push('page-writes', 'page-write-forbidden');
   const responsiveCampaign = campaign.targets.some((target) => target.responsive !== undefined);
-  if ((candidate.childWrites !== undefined || responsiveCampaign) && (!stringArray(candidate.childWrites) || candidate.childWrites.length !== 0)) issues.push('child-writes');
+  if ((candidate.childWrites !== undefined || responsiveCampaign) && (!stringArray(candidate.childWrites) || candidate.childWrites.length !== 0)) issues.push('child-writes', 'shared-child-write-forbidden');
   if (!Array.isArray(candidate.responsiveChecks)) issues.push('responsive-checks-shape');
   if (!Array.isArray(candidate.operations)) issues.push('operations-shape');
   if (!Array.isArray(candidate.masters)) issues.push('masters-shape');
@@ -250,12 +268,24 @@ export function validateLiveApplyReceipt(
     if (checks.length !== 1) { issues.push(`master-check:${target.targetId}`); continue; }
     const check = checks[0] as Record<string, unknown>;
     const expectedVariants = target.responsive?.componentSetTopology.expectedMemberNames ?? target.expectedVariantNames ?? [];
-    const responsiveIdentityInvalid = target.responsive ?
-      check.componentKey !== target.responsive.componentSetTopology.historicalMember.componentKey ||
-        typeof check.setNodeId !== 'string' || check.setNodeId.length === 0 || check.setName !== target.responsive.componentSetTopology.setName ||
-        check.propertyName !== target.responsive.componentSetTopology.propertyName ||
-        check.defaultPresentationValue !== target.responsive.componentSetTopology.defaultPresentationValue
-      : false;
+    const responsiveIdentityInvalid = target.responsive ? (() => {
+      const topology = target.responsive!.componentSetTopology;
+      const members = responsiveTopologyMembers(topology);
+      const existing = topology.setIdentityPolicy === 'existing';
+      const legacyExisting = existing && topology.preservedMembers === undefined && topology.createdMembers.length > 0 && topology.createdMembers.every((member) => member.nodeId !== undefined);
+      const expectedComponentKey = existing && !legacyExisting ? topology.setComponentKey : topology.historicalMember.componentKey;
+      const observedMembers = Array.isArray(check.memberIdentities) ? check.memberIdentities.filter(object) : [];
+      const memberIdentityInvalid = existing && (observedMembers.length !== members.length || members.some((member) => {
+        const row = observedMembers.find((entry) => entry.nodeId === member.nodeId);
+        return !row || (!legacyExisting && row.componentKey !== member.componentKey) || canonicalVariantSelection(row.variantSelection as VariantSelection) !==
+          canonicalVariantSelection(memberVariantSelection(topology, member));
+      }));
+      return check.componentKey !== expectedComponentKey || check.setNodeId !== topology.setNodeId && existing ||
+        typeof check.setNodeId !== 'string' || check.setNodeId.length === 0 || check.setName !== topology.setName ||
+        check.propertyName !== topology.propertyName || check.defaultPresentationValue !== topology.defaultPresentationValue || memberIdentityInvalid ||
+        (topology.variantProperties !== undefined && (canonicalVariantSelection(check.defaultVariantSelection as VariantSelection) !== canonicalVariantSelection(topology.defaultVariantSelection) ||
+          JSON.stringify(check.variantProperties) !== JSON.stringify(topology.variantProperties)));
+    })() : false;
     if (check.nodeId !== target.masterNodeId || check.masterCount !== 1 || typeof check.componentKey !== 'string' || check.componentKey.length === 0 ||
       !stringArray(check.variantNames) || stableStrings(check.variantNames) !== stableStrings(expectedVariants) || responsiveIdentityInvalid) {
       issues.push(`master-drift:${target.targetId}`);
@@ -289,23 +319,43 @@ export function validateLiveApplyReceipt(
       const memberFacts = Array.isArray(candidate.memberFacts)
         ? candidate.memberFacts.filter((entry) => object(entry) && (entry.targetId === undefined || entry.targetId === target.targetId))
         : [];
-      const expectedPresentations = [target.responsive.componentSetTopology.historicalMember.presentationValue,
-        ...target.responsive.componentSetTopology.createdMembers.map((entry) => entry.presentationValue)];
+      const topologyMembers = responsiveTopologyMembers(target.responsive.componentSetTopology);
+      const expectedPresentations = topologyMembers.map((entry) => entry.presentationValue);
       if (memberFacts.length !== expectedPresentations.length || expectedPresentations.some((presentation) =>
         memberFacts.filter((entry) => object(entry) && entry.presentationValue === presentation).length !== 1)) {
         issues.push(`responsive-member-facts-cardinality:${target.targetId}`);
       } else {
-        const previewWidths = new Map([
-          [target.responsive.componentSetTopology.historicalMember.presentationValue, target.responsive.componentSetTopology.historicalMember.authoringPreviewWidth],
-          ...target.responsive.componentSetTopology.createdMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const),
-        ]);
+        const previewWidths = new Map(topologyMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const));
         if (memberFacts.some((entry) => {
           if (!object(entry) || !object(entry.authoringPreview)) return true;
           return entry.authoringPreview.layoutSizingHorizontal !== 'FIXED' ||
             Math.abs(Number(entry.authoringPreview.width) - Number(previewWidths.get(String(entry.presentationValue)))) > 0.01;
         })) issues.push(`responsive-authoring-preview-drift:${target.targetId}`);
-        const baseline = comparableResponsiveMemberFacts(memberFacts.find((entry) => object(entry) && entry.presentationValue === target.responsive!.componentSetTopology.historicalMember.presentationValue) as Record<string, unknown>);
-        if (memberFacts.some((entry) => !object(entry) || comparableResponsiveMemberFacts(entry) !== baseline)) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+        const legacyExisting = target.responsive.componentSetTopology.setIdentityPolicy === 'existing' &&
+          target.responsive.componentSetTopology.preservedMembers === undefined && target.responsive.componentSetTopology.createdMembers.length > 0 &&
+          target.responsive.componentSetTopology.createdMembers.every((member) => member.nodeId !== undefined);
+        if (target.responsive.componentSetTopology.setIdentityPolicy === 'existing' && topologyMembers.some((member) => {
+          const fact = memberFacts.find((entry) => object(entry) && entry.presentationValue === member.presentationValue) as Record<string, unknown> | undefined;
+          return !fact || fact.nodeId !== member.nodeId || (!legacyExisting && fact.componentKey !== member.componentKey) ||
+            canonicalVariantSelection(fact.variantSelection as VariantSelection) !== canonicalVariantSelection(memberVariantSelection(target.responsive!.componentSetTopology, member));
+        })) issues.push(`responsive-member-identity-drift:${target.targetId}`);
+        // Additive members are clones and must remain structurally equivalent
+        // to their historical source. Existing multi-axis sets legitimately
+        // contain different Style/Colonnes structures; their preservation is
+        // proven per identity/path by before→after protected-fact captures.
+        if (target.responsive.componentSetTopology.setIdentityPolicy !== 'existing') {
+          const baseline = comparableResponsiveMemberFacts(memberFacts.find((entry) => object(entry) && entry.presentationValue === target.responsive!.componentSetTopology.historicalMember.presentationValue) as Record<string, unknown>);
+          if (memberFacts.some((entry) => !object(entry) || comparableResponsiveMemberFacts(entry) !== baseline)) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+        }
+      }
+      const propagated = Array.isArray(candidate.propagatedDeltas) ? candidate.propagatedDeltas.filter(object) : [];
+      const expectedPropagated = target.responsive.expectedPropagatedDeltas ?? [];
+      const propagatedKey = (entry: Record<string, unknown> | ExpectedPropagatedDelta): string =>
+        `${String(entry.surfaceId)}\0${String(entry.nodeId)}\0${String(entry.sourceNodeId)}\0${String(entry.fact)}\0${String(entry.attribution)}`;
+      const expectedKeys = expectedPropagated.map((entry) => propagatedKey(entry)).sort();
+      const actualKeys = propagated.map((entry) => propagatedKey(entry)).sort();
+      if (JSON.stringify(expectedKeys) !== JSON.stringify(actualKeys) || propagated.some((entry) => entry.status !== 'attributed')) {
+        issues.push(`propagated-delta-unattributed:${target.targetId}`);
       }
       continue;
     }

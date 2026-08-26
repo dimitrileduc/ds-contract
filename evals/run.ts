@@ -563,6 +563,22 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-responsive-existing-set-topology',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-existing-set-topology-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive topologie de set existant rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-multiaxis-scenarios',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-multiaxis-scenarios-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive scénarios multi-axes rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'figma-responsive-presentation-scenarios-explicit',
     claim: 'C3-detection',
     run: () => {
@@ -584,6 +600,14 @@ const cases: Case[] = [
     run: () => {
       const r = run(TSX, ['evals/fixtures/figma-responsive-write-boundary-idempotence-check.ts']);
       if (r.status !== 0) throw new Error(`fixture figma-responsive frontières/idempotence rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-responsive-boundary-propagation-idempotence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-responsive-write-boundary-propagation-idempotence-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-responsive frontières/propagation/idempotence rouge:\n${r.out}`);
     },
   },
   {

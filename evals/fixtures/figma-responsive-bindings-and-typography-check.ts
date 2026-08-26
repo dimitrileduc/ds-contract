@@ -1,5 +1,10 @@
 import { collectSurfaceFacts, compareResponsiveTransitionProtectedFacts, validateResponsiveFacts } from '../../extract/figma/projection-repair/facts.js';
 import { expectedBindingFacts, expectedTypographyFacts, responsiveCampaign } from './figma-responsive-fixture.js';
+import {
+  existingSetCampaign,
+  expectedExistingSetBindingFacts,
+  expectedExistingSetTypographyFacts,
+} from './figma-responsive-existing-set-topology-check.js';
 
 const target = responsiveCampaign.targets[0];
 const valid = validateResponsiveFacts(target.responsive, expectedBindingFacts, expectedTypographyFacts);
@@ -17,6 +22,16 @@ foreignField[0].appliedFields.fontFamily = 'Inter';
 const foreignResult = validateResponsiveFacts(target.responsive, expectedBindingFacts, foreignField);
 if (foreignResult.ok || !foreignResult.issues.some((issue) => issue.includes('typography-field-not-allowlisted'))) {
   throw new Error('typography-field-not-allowlisted was not reported');
+}
+
+const existingCapability = existingSetCampaign.targets[0].responsive;
+const multiAxisValid = validateResponsiveFacts(existingCapability, expectedExistingSetBindingFacts, expectedExistingSetTypographyFacts);
+if (!multiAxisValid.ok) throw new Error(`valid multi-axis bindings/typography refused: ${multiAxisValid.issues.join(', ')}`);
+const wrongSelection = structuredClone(expectedExistingSetBindingFacts);
+wrongSelection[0].variantSelection = { Style: 'Superpose', Colonnes: '3' };
+const wrongSelectionResult = validateResponsiveFacts(existingCapability, wrongSelection, expectedExistingSetTypographyFacts);
+if (wrongSelectionResult.ok || !wrongSelectionResult.issues.some((issue) => issue.includes('primitive-binding-detached'))) {
+  throw new Error('a primitive binding attached to the wrong Style×Colonnes pair was accepted');
 }
 
 const factSource = {

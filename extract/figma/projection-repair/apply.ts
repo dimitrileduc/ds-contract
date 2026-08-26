@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { isCaptureSetComplete } from './campaign.js';
 import { isObject } from './json.js';
-import type { ExpectedNodeCreate, RepairCampaign, RepairOperation, RepairTargetId, ResponsiveWriteBoundary } from './types.js';
+import type { ExpectedNodeCreate, ExpectedPropagatedDelta, RepairCampaign, RepairOperation, RepairTargetId, ResponsiveWriteBoundary } from './types.js';
 
 export interface DirectRepairInput {
   pin: string;
@@ -58,6 +58,10 @@ export interface DryRun {
   state: string;
   operations: PlannedOperation[];
   expectedCreates: ExpectedNodeCreate[];
+  expectedChangedNodeIds: string[];
+  expectedPropagatedDeltas: ExpectedPropagatedDelta[];
+  pageWrites: [];
+  childWrites: [];
   writeBoundary: ResponsiveWriteBoundary | null;
 }
 
@@ -121,12 +125,19 @@ export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), t
     .filter((target) => includes(target.targetId))
     .flatMap((target) => target.responsive?.expectedCreates ?? [])
     .filter((expected) => operationIds.has(expected.operationId));
+  const expectedPropagatedDeltas = campaign.targets
+    .filter((target) => includes(target.targetId))
+    .flatMap((target) => target.responsive?.expectedPropagatedDeltas ?? []);
   return {
     campaignId: campaign.campaignId,
     filePin: campaign.filePin.versionId,
     state: campaign.state,
     operations,
     expectedCreates,
+    expectedChangedNodeIds: [...(campaign.writeBoundary?.expectedChangedNodeIds ?? [])],
+    expectedPropagatedDeltas,
+    pageWrites: [],
+    childWrites: [],
     writeBoundary: campaign.writeBoundary ?? null,
   };
 }

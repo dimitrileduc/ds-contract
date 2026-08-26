@@ -2,6 +2,7 @@ import type { TokenCorpus } from '../../../core/token-corpus.js';
 import { loadRepoData } from '../../fidelity-matrix/scripts/lib.js';
 import { inspectFigmaCampaign, figmaToken } from './capture.js';
 import { isObject, walkStructural as walk } from './json.js';
+import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
 import type { ComponentAuditReport, RepairCampaign, TextAuditClassification } from './types.js';
 
 /** `any` here is deliberate: the audit visitors read Figma dump fields loosely. */
@@ -148,7 +149,9 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     }
   }
   const parent = parents.get(target.masterNodeId) ?? null;
-  const responsiveSet = target.responsive && parent?.type === 'COMPONENT_SET' ? parent : null;
+  const responsiveSet = target.responsive && master.type === 'COMPONENT_SET'
+    ? master
+    : target.responsive && parent?.type === 'COMPONENT_SET' ? parent : null;
   const presentationRoot = responsiveSet ?? master;
   const presentationParent = parents.get(String(presentationRoot.id)) ?? null;
   const containerApplicable = campaign.workflow.subjectKind === 'organism';
@@ -157,10 +160,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const responsiveMembers = responsiveSet && Array.isArray(responsiveSet.children)
     ? responsiveSet.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => String(child.name ?? '')).sort()
     : [];
-  const authoringPreviews = target.responsive ? [
-    target.responsive.componentSetTopology.historicalMember,
-    ...target.responsive.componentSetTopology.createdMembers,
-  ].map((declaration) => {
+  const authoringPreviews = target.responsive ? responsiveTopologyMembers(target.responsive.componentSetTopology).map((declaration) => {
     const member = responsiveSet && Array.isArray(responsiveSet.children)
       ? responsiveSet.children.find((child) => object(child) && child.type === 'COMPONENT' && child.name === declaration.declaredName) as Json | undefined
       : undefined;
@@ -176,9 +176,16 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const presentationDefinition = responsiveSet && object(responsiveSet.componentPropertyDefinitions)
     ? responsiveSet.componentPropertyDefinitions[target.responsive?.componentSetTopology.propertyName ?? '']
     : null;
-  const observedDefaultPresentationValue = object(presentationDefinition) && typeof presentationDefinition.defaultValue === 'string'
-    ? presentationDefinition.defaultValue
+  const observedDefaultSelection = target.responsive?.componentSetTopology.variantProperties && responsiveSet && object(responsiveSet.componentPropertyDefinitions)
+    ? Object.fromEntries(Object.keys(target.responsive.componentSetTopology.variantProperties).map((axis) => {
+      const definition = responsiveSet.componentPropertyDefinitions[axis];
+      return [axis, object(definition) && typeof definition.defaultValue === 'string' ? definition.defaultValue : ''];
+    }))
     : null;
+  const observedDefaultPresentationValue = target.responsive?.componentSetTopology.variantProperties
+    ? responsiveTopologyMembers(target.responsive.componentSetTopology).find((member) =>
+      canonicalVariantSelection(memberVariantSelection(target.responsive!.componentSetTopology, member)) === canonicalVariantSelection(observedDefaultSelection ?? undefined))?.presentationValue ?? null
+    : object(presentationDefinition) && typeof presentationDefinition.defaultValue === 'string' ? presentationDefinition.defaultValue : null;
   const authoringPreviewIssues = target.responsive && responsiveSet ? [
     ...(responsiveSet.layoutMode !== undefined && responsiveSet.layoutMode !== null && responsiveSet.layoutMode !== 'NONE'
       ? [`component set layoutMode is ${String(responsiveSet.layoutMode)}; expected NONE`]
@@ -273,15 +280,28 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     responsive: target.responsive ? {
       status: responsiveSet ? 'component-set-observed' : 'standalone-before-transition',
       propertyName: target.responsive.componentSetTopology.propertyName,
+      variantProperties: target.responsive.componentSetTopology.variantProperties,
       memberNames: responsiveMembers,
-      historicalMemberNodeId: target.masterNodeId,
-      historicalMemberKey: typeof master.key === 'string' ? master.key : target.responsive.componentSetTopology.historicalMember.componentKey,
+      memberIdentities: responsiveTopologyMembers(target.responsive.componentSetTopology).map((declaration) => {
+        const member = responsiveSet && Array.isArray(responsiveSet.children)
+          ? responsiveSet.children.find((child) => object(child) && child.type === 'COMPONENT' && child.name === declaration.declaredName) as Json | undefined
+          : undefined;
+        return {
+          nodeId: typeof member?.id === 'string' ? member.id : null,
+          componentKey: typeof member?.key === 'string' ? member.key : null,
+          variantSelection: memberVariantSelection(target.responsive!.componentSetTopology, declaration),
+        };
+      }),
+      historicalMemberNodeId: target.responsive.componentSetTopology.historicalMember.nodeId,
+      historicalMemberKey: target.responsive.componentSetTopology.historicalMember.componentKey,
       expectedDefaultPresentationValue: target.responsive.componentSetTopology.defaultPresentationValue,
       observedDefaultPresentationValue,
       authoringPreviews,
       scenarioCount: target.responsive.presentationScenarios.length,
       primitiveBindingCount: target.responsive.primitiveBindings.length,
       typographyOverrideCount: target.responsive.typographyOverrides.length,
+      usageSurfaceCount: target.responsive.usageSurfaces?.length ?? 0,
+      propagatedDeltaCount: target.responsive.expectedPropagatedDeltas?.length ?? 0,
       boundaryViolations,
     } : {
       status: 'not-declared', propertyName: null, memberNames: [], historicalMemberNodeId: null, historicalMemberKey: null,

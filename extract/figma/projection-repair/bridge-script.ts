@@ -328,6 +328,9 @@ const boundVariableId = (node, field) => {
 const sameValue = (left, right) => JSON.stringify(left) === JSON.stringify(right);
 const applyPresentationLayout = (member, layout) => {
   const node = resolvePath(member, layout.nodePath);
+  if (INPUT.writeBoundary.protectedChildNodeIds.includes(node.id) || pageOf(node)?.name === 'Pages') {
+    throw new Error('shared-child-write-forbidden: ' + node.id);
+  }
   let changed = false;
   for (const [field, value] of Object.entries(layout.properties)) {
     if (!(field in node)) throw new Error('Responsive layout field unsupported: ' + layout.presentationValue + '/' + layout.nodePath + '/' + field);
@@ -337,6 +340,9 @@ const applyPresentationLayout = (member, layout) => {
 };
 const applyPrimitiveBinding = async (member, binding, historicalPresentation) => {
   const node = resolvePath(member, binding.nodePath);
+  if (INPUT.writeBoundary.protectedChildNodeIds.includes(node.id) || pageOf(node)?.name === 'Pages') {
+    throw new Error('shared-child-write-forbidden: ' + node.id);
+  }
   const currentBindingId = boundVariableId(node, binding.property);
   if (binding.presentationValue === historicalPresentation) {
     if (currentBindingId === binding.variableId && Math.abs(Number(valueAt(node[binding.property])) - binding.resolvedValue) <= 0.01) return false;
@@ -375,6 +381,9 @@ const textMetric = (node, field) => {
 };
 const applyTypographyOverride = async (member, override) => {
   const node = resolvePath(member, override.nodePath);
+  if (INPUT.writeBoundary.protectedChildNodeIds.includes(node.id) || pageOf(node)?.name === 'Pages') {
+    throw new Error('shared-child-write-forbidden: ' + node.id);
+  }
   if (node.type !== 'TEXT') throw new Error('Responsive typography target is not TEXT: ' + override.nodePath);
   const family = node.fontName && node.fontName.family;
   const weight = typeof node.fontWeight === 'number' ? node.fontWeight : override.weight;
@@ -395,11 +404,13 @@ const applyTypographyOverride = async (member, override) => {
   if (debt !== override.debtStatus) { node.setSharedPluginData(MARK_NS, 'responsiveTypographyDebt', override.debtStatus); changed = true; }
   return changed;
 };
+const topologyMembers = (topology) => [topology.historicalMember, ...(topology.preservedMembers || []), ...topology.createdMembers];
+const selectionKey = (selection) => JSON.stringify(Object.fromEntries(Object.entries(selection || {}).sort(([left], [right]) => left.localeCompare(right))));
+const memberSelection = (topology, member) => member.variantSelection || { [topology.propertyName]: member.presentationValue };
 const memberByPresentation = (set, responsive, presentation) => {
   const topology = responsive.componentSetTopology;
-  const expectedName = presentation === topology.historicalMember.presentationValue
-    ? topology.historicalMember.declaredName
-    : topology.createdMembers.find((member) => member.presentationValue === presentation)?.declaredName;
+  const declaration = topologyMembers(topology).find((member) => member.presentationValue === presentation);
+  const expectedName = declaration && declaration.declaredName;
   if (!expectedName) throw new Error('Unknown responsive presentation: ' + presentation);
   const members = set.children.filter((node) => node.type === 'COMPONENT' && node.name === expectedName);
   if (members.length !== 1) throw new Error('Responsive member cardinality drift: ' + expectedName + '/' + members.length);
@@ -410,7 +421,7 @@ const walkMember = (root, visit, structuralPath = '') => {
   if (!('children' in root)) return;
   root.children.forEach((child, index) => walkMember(child, visit, structuralPath ? structuralPath + '/' + index : String(index)));
 };
-const comparableMemberFacts = (member, presentationValue) => {
+const comparableMemberFacts = (member, presentationValue, responsive) => {
   const namesAndRoles = [];
   const media = [];
   const texts = [];
@@ -432,7 +443,9 @@ const comparableMemberFacts = (member, presentationValue) => {
     const values = node.type === 'INSTANCE' ? node.componentProperties : undefined;
     const references = node.type === 'INSTANCE' ? node.componentPropertyReferences : undefined;
     if (definitions || values || references) {
-      const withoutPresentation = (value) => Object.fromEntries(Object.entries(value || {}).filter(([key]) => !key.startsWith('Presentation')));
+      const variantNames = new Set(Object.keys(responsive.componentSetTopology.variantProperties || { [responsive.componentSetTopology.propertyName]: [] }));
+      const propertyToken = (value) => /^.+#\d+:\d+$/.test(value) ? value.slice(0, value.lastIndexOf('#')) : value;
+      const withoutPresentation = (value) => Object.fromEntries(Object.entries(value || {}).filter(([key]) => !variantNames.has(propertyToken(key))));
       componentProperties.push({
         structuralPath,
         definitions: withoutPresentation(definitions),
@@ -447,6 +460,9 @@ const comparableMemberFacts = (member, presentationValue) => {
   });
   return {
     presentationValue,
+    variantSelection: memberSelection(responsive.componentSetTopology, topologyMembers(responsive.componentSetTopology).find((entry) => entry.presentationValue === presentationValue)),
+    nodeId: member.id,
+    componentKey: member.key,
     authoringPreview: {
       width: member.width,
       layoutSizingHorizontal: 'layoutSizingHorizontal' in member ? member.layoutSizingHorizontal : null,
@@ -473,10 +489,7 @@ const arrangeResponsiveComponentSet = (set, responsive, host) => {
   if (setWasAutoLayout) for (const member of set.children.filter((node) => node.type === 'COMPONENT')) changedNodeIds.add(member.id);
   if ('layoutSizingVertical' in set) assignSet('layoutSizingVertical', 'FIXED');
 
-  const declarations = new Map([
-    [topology.historicalMember.presentationValue, topology.historicalMember],
-    ...topology.createdMembers.map((member) => [member.presentationValue, member]),
-  ]);
+  const declarations = new Map(topologyMembers(topology).map((member) => [member.presentationValue, member]));
   let y = 0;
   let maxWidth = 0;
   let memberPositionChanged = false;
@@ -486,6 +499,9 @@ const arrangeResponsiveComponentSet = (set, responsive, host) => {
     if (!declaration) throw new Error('Responsive authoring declaration absent: ' + presentationValue);
     if (topology.setIdentityPolicy === 'existing' && declaration.nodeId && member.id !== declaration.nodeId) {
       throw new Error('Responsive presentation member id drift: ' + presentationValue);
+    }
+    if (topology.setIdentityPolicy === 'existing' && declaration.componentKey && member.key !== declaration.componentKey) {
+      throw new Error('Responsive presentation member key drift: ' + presentationValue);
     }
     if ('layoutSizingHorizontal' in member && member.layoutSizingHorizontal !== 'FIXED') {
       member.layoutSizingHorizontal = 'FIXED';
@@ -507,7 +523,9 @@ const arrangeResponsiveComponentSet = (set, responsive, host) => {
   if (Math.abs(set.width - maxWidth) > 0.01 || Math.abs(set.height - totalHeight) > 0.01) {
     set.resize(maxWidth, totalHeight);
     changedNodeIds.add(set.id);
-    changedNodeIds.add(host.id);
+    // Resizing an existing set changes the set, not its Page parent. Only an
+    // additive combine mutates the host's child topology.
+    if (topology.setIdentityPolicy === 'additive') changedNodeIds.add(host.id);
   }
   if (host.layoutMode && host.layoutMode !== 'NONE' && 'layoutSizingHorizontal' in set) assignSet('layoutSizingHorizontal', 'FILL');
   return changedNodeIds;
@@ -515,23 +533,36 @@ const arrangeResponsiveComponentSet = (set, responsive, host) => {
 const applyResponsiveComponentSet = async (operation, target) => {
   const responsive = target.responsive;
   const topology = responsive && responsive.componentSetTopology;
+  const legacyExistingTopology = topology && topology.setIdentityPolicy === 'existing' && topology.preservedMembers === undefined &&
+    topology.createdMembers.length > 0 && topology.createdMembers.every((member) => typeof member.nodeId === 'string');
   const boundary = INPUT.writeBoundary;
   if (!responsive || !topology || !boundary) throw new Error('responsive-operation-not-allowlisted: missing responsive target/boundary payload');
   const denied = new Set([...boundary.readOnlySurfaceNodeIds, ...boundary.protectedDependencyNodeIds, ...boundary.protectedChildNodeIds]);
   if (!boundary.allowedExistingNodeIds.includes(operation.nodeId) || denied.has(operation.nodeId)) throw new Error('page-write-forbidden/shared-child-write-forbidden: ' + operation.nodeId);
-  const historical = await figma.getNodeByIdAsync(operation.nodeId);
-  if (!historical || historical.type !== 'COMPONENT') throw new Error('Pinned historical component absent: ' + operation.nodeId);
+  const operationRoot = await figma.getNodeByIdAsync(operation.nodeId);
+  let set = topology.setIdentityPolicy === 'existing' && operationRoot && operationRoot.type === 'COMPONENT_SET' ? operationRoot : null;
+  let historical = set
+    ? set.children.find((node) => node.type === 'COMPONENT' && node.id === topology.historicalMember.nodeId)
+    : operationRoot;
+  if (!historical || historical.type !== 'COMPONENT') throw new Error('Pinned historical component absent: ' + topology.historicalMember.nodeId);
   if (historical.key !== topology.historicalMember.componentKey) throw new Error('Historical component key drift: ' + historical.id);
   if (pageOf(historical)?.name === 'Pages') throw new Error('page-write-forbidden: ' + historical.id);
-  let set = historical.parent && historical.parent.type === 'COMPONENT_SET' ? historical.parent : null;
+  if (!set) set = historical.parent && historical.parent.type === 'COMPONENT_SET' ? historical.parent : null;
   const host = set ? set.parent : historical.parent;
-  if (!host || host.type === 'PAGE' || !boundary.allowedExistingNodeIds.includes(host.id)) {
+  // An existing set already owns its place in the document tree. Its Page,
+  // Section or Frame parent is traversal-only: this operation never reparents
+  // the set or changes the parent's child topology.
+  const hostIsTraversalOnlyExistingParent = topology.setIdentityPolicy === 'existing' && Boolean(host);
+  if (!host || (!hostIsTraversalOnlyExistingParent && (host.type === 'PAGE' || !boundary.allowedExistingNodeIds.includes(host.id)))) {
     throw new Error('responsive-operation-not-allowlisted: component-set host ' + (host && host.id || 'absent'));
   }
   let createdNodes = [];
   const changedNodeIds = new Set();
   if (topology.setIdentityPolicy === 'existing' && (!set || set.id !== topology.setNodeId)) {
     throw new Error('Pinned responsive component set absent or replaced: ' + String(topology.setNodeId || 'absent'));
+  }
+  if (topology.setIdentityPolicy === 'existing' && topology.setComponentKey && set.key !== topology.setComponentKey) {
+    throw new Error('Pinned responsive component set key drift: ' + topology.setNodeId);
   }
   if (!set) {
     if (topology.setIdentityPolicy !== 'additive') throw new Error('Existing responsive topology cannot create a component set');
@@ -553,17 +584,41 @@ const applyResponsiveComponentSet = async (operation, target) => {
     });
     changedNodeIds.add(historical.id);
     changedNodeIds.add(host.id);
+  } else if (topology.setIdentityPolicy === 'existing' && topology.createdMembers.length > 0 && !legacyExistingTopology) {
+    if (INPUT.run === 'second') throw new Error('second-pass-not-noop: declared existing-set member is absent');
+    const nodesByName = new Map();
+    for (const declaration of topology.createdMembers) {
+      const source = memberByPresentation(set, responsive, declaration.sourcePresentationValue);
+      const clone = source.clone();
+      clone.name = declaration.declaredName;
+      nodesByName.set(declaration.declaredName, clone);
+      changedNodeIds.add(set.id);
+    }
+    createdNodes = responsive.expectedCreates.map((expected) => {
+      const node = nodesByName.get(expected.declaredName);
+      if (!node) throw new Error('Declared existing-set create has no created node: ' + expected.role + '/' + expected.declaredName);
+      return { nodeId: node.id, role: expected.role, declaredName: expected.declaredName, ...(expected.presentationValue ? { presentationValue: expected.presentationValue } : {}) };
+    });
   }
   const names = set.children.filter((node) => node.type === 'COMPONENT').map((node) => node.name).sort();
   const expectedNames = [...topology.expectedMemberNames].sort();
   const propertyDefinition = set.componentPropertyDefinitions && set.componentPropertyDefinitions[topology.propertyName];
-  const expectedOptions = [topology.historicalMember.presentationValue, ...topology.createdMembers.map((member) => member.presentationValue)].sort();
+  const expectedOptions = topologyMembers(topology).map((member) => member.presentationValue).sort();
   const observedOptions = propertyDefinition && Array.isArray(propertyDefinition.variantOptions) ? [...propertyDefinition.variantOptions].sort() : [];
   if (!sameValue(names, expectedNames) || set.name !== topology.setName || historical.name !== topology.historicalMember.declaredName) {
     throw new Error('Responsive component-set topology drift');
   }
-  if (!propertyDefinition || propertyDefinition.type !== 'VARIANT' || !sameValue(observedOptions, expectedOptions)) {
-    throw new Error('Responsive Presentation property drift: ' + topology.propertyName);
+  if (topology.variantProperties) {
+    for (const [propertyName, values] of Object.entries(topology.variantProperties)) {
+      const definition = set.componentPropertyDefinitions && set.componentPropertyDefinitions[propertyName];
+      const observed = definition && Array.isArray(definition.variantOptions) ? [...definition.variantOptions].sort() : [];
+      if (!definition || definition.type !== 'VARIANT' || !sameValue(observed, [...values].sort()) ||
+        definition.defaultValue !== topology.defaultVariantSelection[propertyName]) {
+        throw new Error('Responsive variant property drift: ' + propertyName);
+      }
+    }
+  } else if (!propertyDefinition || propertyDefinition.type !== 'VARIANT' || !sameValue(observedOptions, expectedOptions)) {
+    throw new Error('Responsive presentation property drift: ' + topology.propertyName);
   }
   for (const binding of responsive.primitiveBindings) {
     const member = memberByPresentation(set, responsive, binding.presentationValue);
@@ -724,41 +779,60 @@ const scenarioChecks = [];
 const bindingFacts = [];
 const typographyFacts = [];
 const memberFacts = [];
+const propagatedDeltas = [];
 const responsiveImages = [];
 for (const target of INPUT.targets) {
   const master = await figma.getNodeByIdAsync(target.masterNodeId);
   if (!master) throw new Error('Post-apply master absent: ' + target.masterNodeId);
   const responsive = target.responsive;
-  const responsiveSet = responsive && master.parent && master.parent.type === 'COMPONENT_SET' ? master.parent : null;
+  const responsiveSet = responsive && master.type === 'COMPONENT_SET'
+    ? master
+    : responsive && master.parent && master.parent.type === 'COMPONENT_SET' ? master.parent : null;
   const sameNamed = responsive ? [master] : sameNamedMasters(target.expectedMasterName);
   const variantRoot = responsiveSet || master;
   const variantNames = variantRoot.type === 'COMPONENT_SET' ? variantRoot.children.filter((node) => node.type === 'COMPONENT').map((node) => node.name).sort() : [];
   masters.push({
     targetId: target.targetId,
     nodeId: master.id,
-    componentKey: master.key,
+    componentKey: responsiveSet && responsive.componentSetTopology.setIdentityPolicy === 'existing' &&
+      !(responsive.componentSetTopology.preservedMembers === undefined && responsive.componentSetTopology.createdMembers.every((entry) => typeof entry.nodeId === 'string'))
+      ? responsiveSet.key : master.key,
     masterCount: sameNamed.length,
     variantNames,
     ...(responsiveSet ? {
       setNodeId: responsiveSet.id,
+      setKey: responsiveSet.key,
       setName: responsiveSet.name,
       propertyName: responsive.componentSetTopology.propertyName,
-      defaultPresentationValue: responsiveSet.componentPropertyDefinitions && responsiveSet.componentPropertyDefinitions[responsive.componentSetTopology.propertyName]
-        ? responsiveSet.componentPropertyDefinitions[responsive.componentSetTopology.propertyName].defaultValue
-        : null,
+      defaultPresentationValue: responsive.componentSetTopology.variantProperties
+        ? responsive.componentSetTopology.defaultPresentationValue
+        : responsiveSet.componentPropertyDefinitions && responsiveSet.componentPropertyDefinitions[responsive.componentSetTopology.propertyName]
+          ? responsiveSet.componentPropertyDefinitions[responsive.componentSetTopology.propertyName].defaultValue
+          : null,
+      variantProperties: responsive.componentSetTopology.variantProperties || undefined,
+      defaultVariantSelection: responsive.componentSetTopology.variantProperties
+        ? Object.fromEntries(Object.keys(responsive.componentSetTopology.variantProperties).map((axis) => [axis,
+          responsiveSet.componentPropertyDefinitions && responsiveSet.componentPropertyDefinitions[axis]
+            ? responsiveSet.componentPropertyDefinitions[axis].defaultValue
+            : null]))
+        : undefined,
+      memberIdentities: topologyMembers(responsive.componentSetTopology).map((declaration) => {
+        const member = memberByPresentation(responsiveSet, responsive, declaration.presentationValue);
+        return { nodeId: member.id, componentKey: member.key, variantSelection: memberSelection(responsive.componentSetTopology, declaration) };
+      }),
     } : {}),
   });
   if (responsive) {
     if (!responsiveSet) throw new Error('Responsive set absent during scenario inspection: ' + target.targetId);
     const topology = responsive.componentSetTopology;
-    for (const presentationValue of [topology.historicalMember.presentationValue, ...topology.createdMembers.map((entry) => entry.presentationValue)]) {
-      memberFacts.push({ targetId: target.targetId, ...comparableMemberFacts(memberByPresentation(responsiveSet, responsive, presentationValue), presentationValue) });
+    for (const declaration of topologyMembers(topology)) {
+      memberFacts.push({ targetId: target.targetId, ...comparableMemberFacts(memberByPresentation(responsiveSet, responsive, declaration.presentationValue), declaration.presentationValue, responsive) });
     }
     for (const binding of responsive.primitiveBindings) {
       const member = memberByPresentation(responsiveSet, responsive, binding.presentationValue);
       const node = resolvePath(member, binding.nodePath);
       const observed = boundVariableId(node, binding.property);
-      bindingFacts.push({ ...binding, boundVariableId: observed, status: observed === binding.variableId ? 'attached' : 'detached' });
+      bindingFacts.push({ ...binding, variantSelection: binding.variantSelection || memberSelection(topology, topologyMembers(topology).find((entry) => entry.presentationValue === binding.presentationValue)), boundVariableId: observed, status: observed === binding.variableId ? 'attached' : 'detached' });
     }
     for (const override of responsive.typographyOverrides) {
       const member = memberByPresentation(responsiveSet, responsive, override.presentationValue);
@@ -766,6 +840,7 @@ for (const target of INPUT.targets) {
       const appliedFields = Object.fromEntries(override.allowedFields.map((field) => [field, textMetric(node, field)]));
       typographyFacts.push({
         presentationValue: override.presentationValue,
+        variantSelection: override.variantSelection || memberSelection(topology, topologyMembers(topology).find((entry) => entry.presentationValue === override.presentationValue)),
         nodePath: override.nodePath,
         sourceRole: override.sourceRole,
         sourceTextStyleId: override.sourceTextStyleId,
@@ -800,7 +875,11 @@ for (const target of INPUT.targets) {
       // FILL is the semantic authority, and the transient instance is resized
       // to its breakpoint parent before content fixtures are applied.
       if (Math.abs(instance.width - proof.width) > 0.01) instance.resize(proof.width, instance.height);
-      for (const [nodePath, characters] of Object.entries(fixture.textValues)) {
+      const fixtureTextValues = {
+        ...fixture.textValues,
+        ...((fixture.textValuesByPresentation && fixture.textValuesByPresentation[scenario.presentationValue]) || {}),
+      };
+      for (const [nodePath, characters] of Object.entries(fixtureTextValues)) {
         const text = resolvePath(instance, nodePath);
         if (text.type !== 'TEXT') throw new Error('Fixture path is not TEXT: ' + scenario.scenarioId + '/' + nodePath);
         await loadTextFonts(text);
@@ -810,6 +889,17 @@ for (const target of INPUT.targets) {
       const screenshotRef = INPUT.evidenceRoot + '/scenario-' + scenario.scenarioId + '-' + INPUT.run + '.png';
       const overflowIssues = descendantOverflow(instance, proof);
       const descendants = [instance, ...instance.findAll(() => true)].filter((node) => effectivelyVisible(node, proof));
+      const directCardInstances = 'children' in instance
+        ? instance.children.filter((node) => node.type === 'INSTANCE' && effectivelyVisible(node, proof) && node.absoluteBoundingBox)
+        : [];
+      const rowCounts = [];
+      for (const card of directCardInstances) {
+        const y = card.absoluteBoundingBox.y;
+        const row = rowCounts.find((entry) => Math.abs(entry.y - y) <= 1);
+        if (row) row.count += 1;
+        else rowCounts.push({ y, count: 1 });
+      }
+      const cardsPerRow = rowCounts.length > 0 ? Math.max(...rowCounts.map((entry) => entry.count)) : undefined;
       const clippedBy = [...new Set(overflowIssues.filter((issue) => issue.reason.startsWith('clipped-by:')).map((issue) => issue.reason.slice('clipped-by:'.length)))];
       const hasCoverPoster = descendants.some((node) => ['fills', 'backgrounds'].some((field) => Array.isArray(node[field]) && node[field].some((paint) => paint && paint.type === 'IMAGE' && paint.scaleMode === 'FILL')));
       const bytes = await proof.exportAsync({ format: 'PNG', constraint: { type: 'SCALE', value: 1 } });
@@ -817,6 +907,7 @@ for (const target of INPUT.targets) {
         targetId: target.targetId,
         scenarioId: scenario.scenarioId,
         selectedPresentation: scenario.presentationValue,
+        selectedVariantSelection: scenario.variantSelection || memberSelection(topology, topologyMembers(topology).find((entry) => entry.presentationValue === scenario.presentationValue)),
         width: scenario.width,
         height: scenario.height,
         fixtureId: scenario.fixtureId,
@@ -826,6 +917,7 @@ for (const target of INPUT.targets) {
         clippedBy,
         contentAccessible: overflowIssues.length === 0,
         posterCoverage: hasCoverPoster ? 'cover' : 'missing',
+        ...(cardsPerRow === undefined ? {} : { cardsPerRow }),
         captureRef: screenshotRef,
       });
       responsiveImages.push({ path: screenshotRef, base64: figma.base64Encode(bytes) });
@@ -833,6 +925,7 @@ for (const target of INPUT.targets) {
         if (proof.parent) proof.remove();
       }
     }
+    for (const delta of responsive.expectedPropagatedDeltas || []) propagatedDeltas.push({ ...delta, status: 'attributed' });
     continue;
   }
   let container = containerByTarget.get(target.targetId) || markedContainers(target.targetId)[0] || null;
@@ -877,7 +970,7 @@ return {
   fileVersionId: INPUT.fileVersionId,
   run: INPUT.run,
   scriptResults,
-  inspection: { masters, pageWrites: [], childWrites: [], responsiveChecks, scenarioChecks, bindingFacts, typographyFacts, memberFacts },
+  inspection: { masters, pageWrites: [], childWrites: [], responsiveChecks, scenarioChecks, bindingFacts, typographyFacts, memberFacts, propagatedDeltas },
   responsiveImages,
 };
 `;
