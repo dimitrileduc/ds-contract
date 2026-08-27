@@ -1,7 +1,7 @@
 /** Guarded operation planning for campaign 021. This module has no Figma I/O. */
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isCaptureSetComplete } from './campaign.js';
+import { isCaptureSetComplete, pngExemptSurfaceIds } from './campaign.js';
 import { isObject } from './json.js';
 import type { ExpectedNodeCreate, ExpectedPropagatedDelta, RepairCampaign, RepairOperation, RepairTargetId, ResponsiveWriteBoundary } from './types.js';
 
@@ -104,8 +104,11 @@ function loadDirect(file: string, campaign: RepairCampaign): PlannedOperation[] 
 
 /** Creates an executable-authority plan but deliberately does not invoke a canvas writer. */
 export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), targetFilter?: readonly RepairTargetId[]): DryRun {
-  const hiddenSurfaces = campaign.affectedSurfaces.filter((surface) => surface.role === 'hidden-instance').map((surface) => surface.surfaceId);
-  if (campaign.state !== 'ready-to-apply' || !isCaptureSetComplete(campaign.captureSets.before, campaign.affectedSurfaces.map((surface) => surface.surfaceId), hiddenSurfaces)) {
+  // Which surfaces owe a PNG is the campaign's capture mode to say, not this file's:
+  // `pngExemptSurfaceIds` derives from the single authority the capture, the validation
+  // and the comparison all read, so the dry-run gate cannot drift from what was captured.
+  const pngExempt = [...pngExemptSurfaceIds(campaign, 'before')];
+  if (campaign.state !== 'ready-to-apply' || !isCaptureSetComplete(campaign.captureSets.before, campaign.affectedSurfaces.map((surface) => surface.surfaceId), pngExempt)) {
     throw new Error('dry-run requires a complete before capture and ready-to-apply state');
   }
   const includes = (targetId: RepairTargetId): boolean => !targetFilter || targetFilter.includes(targetId);

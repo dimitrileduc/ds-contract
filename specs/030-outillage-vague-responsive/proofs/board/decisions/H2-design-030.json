@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.1.0",
+  "featureId": "030-outillage-vague-responsive",
+  "gateId": "H2",
+  "decisionId": "H2-design",
+  "targetId": "categories-principales",
+  "note": "REJEU. Les faits sont ceux de specs/029-figma-responsive-categories/decisions/H2-design.json, portés dans le schéma étendu de contracts/decision-design.md. Aucune décision owner nouvelle n'est prise ici : 030 ne mute aucun canevas et ne sollicite pas l'owner. Ce fichier existe pour montrer ce que la même décision aurait dû porter.",
+  "pickerConsequence": "Le sélecteur de variantes de CategoriesPrincipales restera Style × Colonnes : vous n’aurez pas de variantes Wide/Desktop/Mobile comme HeroVideo.",
+  "acceptedFacts": [
+    {
+      "fact": "L’étendue de la carte est une adaptation interne seule ; aucun nouvel état ni aucune nouvelle variante de carte n’est ajouté.",
+      "nature": "structurel",
+      "witnessRef": "proofs/board/picker-avant.png"
+    },
+    {
+      "fact": "Option 1 / A : à 834 px en composition intermédiaire à trois colonnes, la carte orpheline garde une largeur de piste.",
+      "nature": "visuel",
+      "witnessRef": "proofs/board/temoin-834.png"
+    },
+    {
+      "fact": "En mobile, une carte par ligne, sans contrôle de colonnes exposé.",
+      "nature": "visuel",
+      "witnessRef": "proofs/board/temoin-390.png"
+    }
+  ],
+  "youWillSee": [
+    "À 834 px en 3 colonnes, la dernière carte garde la largeur de sa piste.",
+    "En mobile, une carte pleine largeur par ligne.",
+    "En desktop et wide, l’énumération Colonnes 2|3 est conservée."
+  ],
+  "youWillNotGet": [
+    "Vous n’aurez pas de variantes Wide/Desktop/Mobile comme HeroVideo : le sélecteur reste Style × Colonnes.",
+    "Aucun nouvel état ni aucune nouvelle variante de carte ne sera créé.",
+    "Aucun contrôle de colonnes ne sera exposé en mobile.",
+    "Pas de nouveau Text Style : aucun override typographique responsive n’est requis."
+  ],
+  "conversationEvidence": "029, mots owner cités tels quels : « ok je vois . option 1 » pour l’option 1/A, puis « go » sur l’étendue de carte. La conséquence sur le sélecteur n’a JAMAIS été présentée en français — c’est l’écart E2, et c’est ce que le champ pickerConsequence ci-dessus rend impossible à omettre."
+}

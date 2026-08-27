@@ -36,6 +36,8 @@
     "hero-video:ledger:check": "tsx specs/027-responsive-hero-video/tools/validate-proof-ledger.mts",
     "projection:repair": "tsx extract/figma/projection-repair/cli.ts",
     "component:repair": "tsx extract/figma/projection-repair/cli.ts",
+    "component:repair:manifest": "tsx extract/figma/projection-repair/cli.ts --generate-manifest",
+    "component:repair:board": "tsx extract/figma/projection-repair/cli.ts --generate-board",
     "component:repair:bridge": "node scripts/component-repair-bridge.mjs",
     "parity": "tsx parity/diff.ts",
     "eval": "tsx evals/run.ts",

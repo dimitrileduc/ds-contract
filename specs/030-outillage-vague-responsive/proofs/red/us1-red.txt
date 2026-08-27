@@ -1,0 +1,34 @@
+=== T005 figma-projection-repair-manifest-generator ===
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/extract/figma/projection-repair/manifest-generator.js' imported from /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/evals/fixtures/figma-projection-repair/manifest-generator-check.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolveBaseSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:9115)
+    at resolveDirectorySync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:10328)
+    at resolveTsPathsSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:11560)
+    at resolve (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:13343) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/extract/figma/projection-repair/manifest-generator.js'
+}
+
+Node.js v24.19.0
+EXIT=
+
+=== T006 figma-projection-repair-inherited-lock-preflight ===
+/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium/evals/fixtures/figma-projection-repair/inherited-lock-preflight-check.ts:20
+  buildPreflightLockReport,
+  ^
+SyntaxError: The requested module '../../../extract/figma/projection-repair/campaign.js' does not provide an export named 'buildPreflightLockReport'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

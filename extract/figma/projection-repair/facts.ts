@@ -1,6 +1,6 @@
 import { isObject as object, sha256Of, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
 import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
-import type { ProtectedFact, ResponsiveComponentCapability, VariantSelection } from './types.js';
+import type { InheritedLockProperty, ProtectedFact, ResponsiveComponentCapability, VariantSelection } from './types.js';
 
 const digest = (value: unknown): string => sha256Of(stableJson(value));
 
@@ -12,6 +12,48 @@ function paints(entry: Json): Array<{ field: string; index: number; paint: Json 
     value.forEach((paint, index) => { if (object(paint)) rows.push({ field, index, paint }); });
   }
   return rows;
+}
+
+/** One dimensional constraint carried by ONE node. The node that carries it is the
+ *  node named here; whether it is inherited BY a target surface is a question about a
+ *  tree, and the tree belongs to preflight, not to this reader. */
+export interface NodeSizeLock {
+  nodeId: string;
+  property: InheritedLockProperty;
+  value: number;
+}
+
+/**
+ * Read the size floors, ceilings and frozen dimensions of ONE node.
+ *
+ * 029 paid 33 minutes and a manual restore for a 744 px width floor the runner only
+ * met after the mutation was posed (retro, puits secondaire B). This is the reader
+ * that lets preflight meet it first. It reports what it sees and classifies nothing:
+ * a `FIXED` authoring root and an inherited floor come back as the same kind of row,
+ * and the gate in `campaign.ts` decides which of them blocks.
+ */
+export function collectNodeSizeLocks(node: Json): NodeSizeLock[] {
+  const id = typeof node.id === 'string' ? node.id : null;
+  if (!id) return [];
+  const locks: NodeSizeLock[] = [];
+  for (const property of ['minWidth', 'maxWidth', 'minHeight', 'maxHeight'] as const) {
+    const value = node[property];
+    if (typeof value === 'number' && Number.isFinite(value)) locks.push({ nodeId: id, property, value });
+  }
+  const box = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : null;
+  const frozen = (
+    axis: 'layoutSizingHorizontal' | 'layoutSizingVertical',
+    dimension: 'width' | 'height',
+    property: 'fixedWidth' | 'fixedHeight',
+  ): void => {
+    if (node[axis] !== 'FIXED') return;
+    const observed = typeof node[dimension] === 'number' ? node[dimension] as number
+      : typeof box?.[dimension] === 'number' ? box[dimension] as number : null;
+    if (observed !== null && Number.isFinite(observed)) locks.push({ nodeId: id, property, value: observed });
+  };
+  frozen('layoutSizingHorizontal', 'width', 'fixedWidth');
+  frozen('layoutSizingVertical', 'height', 'fixedHeight');
+  return locks;
 }
 
 export interface SurfaceFacts {
@@ -38,6 +80,11 @@ export interface SurfaceFacts {
   memberIdsKeys: unknown[];
   axisNamesValues: unknown;
   layerNamesRoles: unknown[];
+  /** Size floors/ceilings/frozen dimensions, node by node, in walk order. Carried in
+   *  the capture so a lock is visible in the EVIDENCE, not only in a transient
+   *  preflight report. Deliberately outside `digests`: it adds a fact to read, it
+   *  changes no protected fact. */
+  sizeLocks: NodeSizeLock[];
   columnsEnumHonesty: unknown;
   digests: Record<ProtectedFact, string>;
 }
@@ -60,10 +107,12 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
   const temporaryTypography: unknown[] = [];
   const sharedChildFacts: unknown[] = [];
   const layerNamesRoles: unknown[] = [];
+  const sizeLocks: NodeSizeLock[] = [];
   const rootBox = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : null;
 
   walk(node, (entry, structuralPath) => {
     layerNamesRoles.push({ structuralPath, type: entry.type ?? null, name: entry.name ?? null });
+    sizeLocks.push(...collectNodeSizeLocks(entry));
     for (const { field, index, paint } of paints(entry)) {
       const address = { structuralPath, field, index };
       if (paint.type === 'IMAGE') imagePaints.push({ ...address, paint });
@@ -264,6 +313,7 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     memberIdsKeys,
     axisNamesValues,
     layerNamesRoles,
+    sizeLocks,
     columnsEnumHonesty,
     digests,
   };

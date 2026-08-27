@@ -7,9 +7,10 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { figmaRestGet } from '../rest/fetch.js';
 import { figmaToken } from '../../fidelity-matrix/scripts/env.js';
-import { collectSurfaceFacts } from './facts.js';
+import { collectNodeSizeLocks, collectSurfaceFacts } from './facts.js';
 import { isObject as object, sha256Of as sha256, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
 import { responsiveTopologyMembers } from './types.js';
+import { pngRequiredSurfaceIds, type ObservedSurfaceLocks } from './campaign.js';
 import type { AffectedSurface, CapturePhase, CaptureSet, EvidenceArtifact, ImageFingerprint, InstanceLink, RepairCampaign, VariantSelection } from './types.js';
 
 const safeName = (value: string): string => value.replace(/[^a-zA-Z0-9._-]+/g, '_');
@@ -209,6 +210,39 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
   }
 }
 
+/**
+ * Read the size locks of every target surface and of the ancestors that carry one.
+ *
+ * Scope, stated because it is a limit and not an accident: the walk goes UP from each
+ * master/variant surface and stops at the first ancestor that is neither a COMPONENT
+ * nor a COMPONENT_SET. A floor sitting on the DS canvas frame that hosts the catalogue
+ * is therefore NOT reported here — it is not part of the governed component, and
+ * making every campaign waive its page furniture would turn a fail-closed gate into
+ * noise nobody reads. Descendant locks are likewise out of scope for the gate; they
+ * are still captured, in `facts.sizeLocks`, for whoever looks.
+ */
+export function observeSurfaceLocks(campaign: RepairCampaign, inspection: FigmaInspection): ObservedSurfaceLocks[] {
+  const rows: ObservedSurfaceLocks[] = [];
+  for (const surface of campaign.affectedSurfaces) {
+    if (surface.role !== 'master' && surface.role !== 'variant') continue;
+    const node = surface.nodeId ? inspection.nodes.get(surface.nodeId) : undefined;
+    if (!node || !surface.nodeId) continue;
+    const locks = [...collectNodeSizeLocks(node)];
+    const ancestorIds = Array.isArray(node.__ancestorIds)
+      ? node.__ancestorIds.filter((id): id is string => typeof id === 'string')
+      : [];
+    // `__ancestorIds` is root-first; the carrying ancestors are the ones nearest the
+    // surface, so read it backwards and stop leaving the component.
+    for (let index = ancestorIds.length - 1; index >= 0; index -= 1) {
+      const ancestor = inspection.nodes.get(ancestorIds[index]);
+      if (!ancestor || (ancestor.type !== 'COMPONENT' && ancestor.type !== 'COMPONENT_SET')) break;
+      locks.push(...collectNodeSizeLocks(ancestor));
+    }
+    rows.push({ surfaceId: surface.surfaceId, nodeId: surface.nodeId, locks });
+  }
+  return rows;
+}
+
 /** Adds every instance by component identity; names never participate. */
 export function discoverAffectedSurfaces(campaign: RepairCampaign, inspection: FigmaInspection): RepairCampaign {
   const existing = new Set(campaign.affectedSurfaces.map((surface) => surface.nodeId).filter((id): id is string => id !== null));
@@ -293,11 +327,20 @@ export async function captureCampaign(
   });
   const surfaces = campaign.affectedSurfaces.filter((surface) => surface.nodeId !== null);
   const ids = surfaces.map((surface) => surface.nodeId!);
+  // Light mode's saving starts HERE, not at the download: `/v1/images` bills a
+  // server-side render per id, so a mode that asked for every render and then declined
+  // to fetch some of them would have paid the campaign's slowest round trip in full.
+  // The two id lists are independent by design — node documents are still read for
+  // EVERY surface, which is what keeps structure, properties and facts unchanged.
+  const pngRequired = pngRequiredSurfaceIds(campaign, phase);
+  const renderIds = surfaces.filter((surface) => pngRequired.has(surface.surfaceId)).map((surface) => surface.nodeId!);
   // Node documents and render URLs both derive their ids from the campaign,
   // not from each other — one round trip instead of two sequential ones.
   const [response, images] = await Promise.all([
     getJson<{ nodes?: Record<string, { document?: Json }> }>(`/v1/files/${campaign.filePin.fileKey}/nodes?ids=${encodeURIComponent(ids.join(','))}`, token),
-    getJson<{ images?: Record<string, string | null> }>(`/v1/images/${campaign.filePin.fileKey}?ids=${encodeURIComponent(ids.join(','))}&format=png&scale=1`, token),
+    renderIds.length === 0
+      ? Promise.resolve({ images: {} as Record<string, string | null> })
+      : getJson<{ images?: Record<string, string | null> }>(`/v1/images/${campaign.filePin.fileKey}?ids=${encodeURIComponent(renderIds.join(','))}&format=png&scale=1`, token),
   ]);
   const phaseRoot = path.resolve(outputRoot, phase);
   mkdirSync(phaseRoot, { recursive: true });
@@ -308,8 +351,11 @@ export async function captureCampaign(
   // Fetching them serially inside the loop below spent the whole capture
   // waiting on one round trip at a time; the loop itself is unchanged and still
   // writes and hashes in surface order.
+  // A surface that owes no PNG in this phase is never rendered, never downloaded, never
+  // written and never hashed. Facts, structure and properties are untouched below —
+  // the volume goes, the guarantees stay.
   const pngTargets = surfaces.filter((surface) =>
-    surface.role !== 'hidden-instance' &&
+    pngRequired.has(surface.surfaceId) &&
     response.nodes?.[surface.nodeId!]?.document &&
     images.images?.[surface.nodeId!]);
   const pngBytes = new Map<string, Uint8Array>();
@@ -341,6 +387,7 @@ export async function captureCampaign(
       if (node.visible !== false) throw new Error(`capture: hidden instance ${surface.nodeId} is no longer hidden`);
       continue;
     }
+    if (!pngRequired.has(surface.surfaceId)) continue;
     const url = images.images?.[surface.nodeId!];
     const pngPath = path.join(phaseRoot, `${base}.png`);
     if (!url || !size) {
@@ -374,7 +421,8 @@ export async function captureCampaign(
   }
   const complete = surfaces.length > 0 && surfaces.every((surface) => {
     const own = artifacts.filter((artifact) => artifact.surfaceId === surface.surfaceId);
-    return (surface.role === 'hidden-instance' || own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid')) &&
+    return (!pngRequired.has(surface.surfaceId) ||
+      own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid')) &&
       own.some((artifact) => artifact.kind === 'structure' && artifact.status === 'valid') &&
       (campaign.schemaVersion !== '2.0.0' || own.some((artifact) => artifact.kind === 'facts' && artifact.status === 'valid'));
   });

@@ -497,6 +497,85 @@ const cases: Case[] = [
     },
   },
   {
+    // 030 US1 — the manifest is inverted from a relevé instead of hand-written.
+    // The scratch deliberately omits specs/, so this copies exactly the bounded
+    // input set the fixture reads: the 029 audit relevé, the documents that relevé
+    // references, and the hand-written manifest it is compared against.
+    id: 'figma-projection-repair-manifest-generator',
+    claim: 'C5-extraction',
+    run: () => {
+      for (const relative of [
+        'specs/component-repairs/categories-principales/run-001/audit.json',
+        'specs/component-repairs/categories-principales/run-001/campaign.json',
+        'specs/029-figma-responsive-categories/inventory/H1-usages.json',
+        'specs/029-figma-responsive-categories/inventory/H1-primitives.json',
+        'specs/029-figma-responsive-categories/proofs/H1-bridge-read-only.json',
+        'specs/029-figma-responsive-categories/proofs/H1-surface-manifest.json',
+      ]) {
+        mkdirSync(path.join(SCRATCH, path.dirname(relative)), { recursive: true });
+        cpSync(path.join(ROOT, relative), path.join(SCRATCH, relative));
+      }
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/manifest-generator-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-manifest-generator rouge:\n${r.out}`);
+    },
+  },
+  {
+    // 030 US1 — an inherited width floor is met at preflight, not after the pose.
+    id: 'figma-projection-repair-inherited-lock-preflight',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/inherited-lock-preflight-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-inherited-lock-preflight rouge:\n${r.out}`);
+    },
+  },
+  {
+    // 030 US2 / FR-001 — écart E8: two campaigns share one owner-decision directory.
+    // Replays the REAL committed 029 artifacts, in place, with nothing moved.
+    id: 'figma-projection-repair-shared-decision-root',
+    claim: 'C2-refusal',
+    run: () => {
+      for (const relative of [
+        'specs/029-figma-responsive-categories/decisions',
+        'specs/component-repairs/carte-categorie/run-001/campaign.json',
+        'specs/component-repairs/categories-principales/run-001/campaign.json',
+      ]) {
+        mkdirSync(path.join(SCRATCH, path.dirname(relative)), { recursive: true });
+        cpSync(path.join(ROOT, relative), path.join(SCRATCH, relative), { recursive: true });
+      }
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/shared-decision-root-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-shared-decision-root rouge:\n${r.out}`);
+    },
+  },
+  {
+    // 030 US2 / FR-004 + FR-005 — light captures less, and refuses exactly as much.
+    id: 'figma-projection-repair-capture-light-verdicts',
+    claim: 'C1-determinism',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/capture-light-verdicts-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-capture-light-verdicts rouge:\n${r.out}`);
+    },
+  },
+  {
+    // 030 US2 / FR-006 + FR-011 — the chain in one invocation, and the dress rehearsal
+    // of the declared-creates branch 029 built but never ran.
+    id: 'figma-projection-repair-driver-chain-resume',
+    claim: 'C8-journey',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/driver-chain-resume-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-driver-chain-resume rouge:\n${r.out}`);
+    },
+  },
+  {
+    // 030 US3 / FR-008 + FR-009 — the §XII board generated, and the corollary that
+    // closes écart E2: a structural fact is witnessed by the PICKER or not at all.
+    id: 'figma-projection-repair-board-structural-witness',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/board-structural-witness-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-board-structural-witness rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'responsive-hero-video-foundation-validators',
     claim: 'C2-refusal',
     run: () => {

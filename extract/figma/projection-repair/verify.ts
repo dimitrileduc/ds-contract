@@ -2,6 +2,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { compareProtectedFacts, compareResponsiveTransitionProtectedFacts, comparableResponsiveMemberFacts, validateResponsiveFacts, type SurfaceFacts } from './facts.js';
+import { pngRequiredSurfaceIds } from './campaign.js';
 import { canonicalize, isObject, stableJson, type JsonRecord } from './json.js';
 import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
 import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, PresentationScenario, RepairCampaign, RepairTarget, RepairTargetId, VariantSelection } from './types.js';
@@ -381,6 +382,8 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
       } catch { responsiveClosureIssues = ['responsive-receipt-unreadable']; }
     }
   }
+  const pngRequiredBefore = pngRequiredSurfaceIds(campaign, 'before');
+  const pngRequiredAfter = pngRequiredSurfaceIds(campaign, 'after');
   const targets: TargetClosureVerdict[] = campaign.targets.map((target) => {
     const surfaces = campaign.affectedSurfaces.filter((surface) => surface.targetId === target.targetId);
     const expectedDiffs: DiffFinding[] = [];
@@ -391,7 +394,18 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
       evidenceRef: campaign.workflow?.applyReceiptPaths.first ?? campaign.workflow?.comparisonPath ?? 'proofs/comparison.json',
     });
     for (const surface of surfaces) {
-      const artifactKinds = surface.role === 'hidden-instance' ? ['structure', 'properties'] as const : ['structure', 'properties', 'png'] as const;
+      // FR-005 — the comparison reads exactly what the capture wrote. A surface that
+      // owes no PNG in this mode is compared on structure/properties/facts, which is
+      // where every VERDICT already lived: a PNG that differs is an `expected` diff and
+      // never flipped `ok`, while a PNG that is missing is `unexpected` and would flip
+      // it. Skipping a shot nobody was asked to take keeps the verdicts identical;
+      // demanding it would invent a failure out of the mode itself.
+      // Hidden instances are already outside `pngRequiredSurfaceIds`, so this one test
+      // covers them too — no second hidden-instance rule to keep in step.
+      const comparablePng = pngRequiredBefore.has(surface.surfaceId) && pngRequiredAfter.has(surface.surfaceId);
+      const artifactKinds = comparablePng
+        ? ['structure', 'properties', 'png'] as const
+        : ['structure', 'properties'] as const;
       for (const kind of artifactKinds) {
         const left = artifactFor(before, surface.surfaceId, kind);
         const right = artifactFor(after, surface.surfaceId, kind);

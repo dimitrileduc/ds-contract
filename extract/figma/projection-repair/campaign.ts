@@ -3,6 +3,7 @@ import path from 'node:path';
 import { isObject } from './json.js';
 import {
   canonicalVariantSelection,
+  CAPTURE_MODES,
   COMPONENT_REPAIR_SCHEMA_VERSION,
   memberVariantSelection,
   REQUIRED_COMPONENT_PROTECTION_FACTS,
@@ -11,7 +12,11 @@ import {
   REPAIR_TARGET_IDS,
   responsiveTopologyMembers,
   type CampaignState,
+  type CapturePhase,
   type CaptureSet,
+  type InheritedLockProperty,
+  type InheritedSizeLock,
+  type PreflightLockReport,
   type RepairCampaign,
   type RepairReceipt,
 } from './types.js';
@@ -33,7 +38,9 @@ type RecordValue = Record<string, unknown>;
 const nodeId = /^[0-9]+:[0-9]+$/;
 const sha256 = /^[a-f0-9]{64}$/;
 const gitObject = /^[a-f0-9]{40,64}$/;
-const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+/** The governed slug shape. Exported for the same reason as `isBoundedPath`. */
+export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const slug = SLUG_PATTERN;
 const knownProtectedFacts = new Set<string>([
   ...REQUIRED_COMPONENT_PROTECTION_FACTS,
   'video-paints', 'geometry', 'responsive-overflow',
@@ -44,8 +51,16 @@ const knownProtectedFacts = new Set<string>([
   'usage-instance-links', 'usage-overrides', 'columns-enum-honesty',
 ]);
 const targetIds = new Set<string>(REPAIR_TARGET_IDS);
-const safePath = (value: unknown): value is string =>
+const captureModes = new Set<string>(CAPTURE_MODES);
+const INHERITED_LOCK_PROPERTIES = new Set<string>([
+  'minWidth', 'maxWidth', 'minHeight', 'maxHeight', 'fixedWidth', 'fixedHeight',
+]);
+/** A repo-relative path with no escape. Exported because the manifest GENERATOR must
+ *  emit paths this validator accepts — one predicate, so a document the generator calls
+ *  bounded can never be one the gate refuses. */
+export const isBoundedPath = (value: unknown): value is string =>
   typeof value === 'string' && value.length > 0 && !path.isAbsolute(value) && !value.split(/[\\/]+/).includes('..');
+const safePath = isBoundedPath;
 const record = isObject as (value: unknown) => value is RecordValue;
 /** An empty array satisfies this: `every` is vacuously true. The former
  *  `stringArrayOrEmpty` spelling was the same predicate under a second name. */
@@ -81,10 +96,18 @@ export function selectFinalOwnerDecisions(
     const decision = entry.value.decision;
     const rationale = entry.value.rationale;
     const decidedAt = entry.value.decidedAt;
-    if (typeof targetId !== 'string' || !expected.has(targetId)) {
-      issue(issues, 'owner-decision', `${entryPath}.targetId`, `owner decision targets an undeclared campaign target: ${String(targetId)}`);
+    if (typeof targetId !== 'string') {
+      issue(issues, 'owner-decision', `${entryPath}.targetId`, `owner decision carries a non-string target: ${String(targetId)}`);
       continue;
     }
+    // 030 / FR-001 — écart E8. A decision bound to ANOTHER campaign's target is
+    // ignored, exactly as a targetless gate record already is above. The directory is
+    // shared by design (a wave of 12 sections shares one), and refusing the neighbour's
+    // file made every campaign but the last unfinalizable — worked around in 029 by
+    // moving files out of the directory by hand. Nothing is lost: each declared target
+    // still requires its own decision, and the duplicate / malformed / missing gates
+    // below are untouched.
+    if (!expected.has(targetId)) continue;
     if (selected.has(targetId)) {
       issue(issues, 'owner-decision', `${entryPath}.targetId`, `duplicate final owner decision for ${targetId}`);
       continue;
@@ -113,7 +136,10 @@ export function selectFinalOwnerDecisions(
   }), issues);
 }
 
-function completeCapture(value: unknown, surfaceIds: Set<string>, hiddenSurfaceIds = new Set<string>()): boolean {
+/** `pngExempt` are the surfaces that owe no PNG in this phase — the complement of
+ *  `pngRequiredSurfaceIds`, which callers get from `pngExemptSurfaceIds`. Everything
+ *  else is unchanged. */
+function completeCapture(value: unknown, surfaceIds: Set<string>, pngExempt = new Set<string>()): boolean {
   if (!record(value) || value.complete !== true || !Array.isArray(value.artifacts)) return false;
   const bySurface = new Map<string, Set<string>>();
   for (const artifact of value.artifacts) {
@@ -126,7 +152,7 @@ function completeCapture(value: unknown, surfaceIds: Set<string>, hiddenSurfaceI
     bySurface.set(artifact.surfaceId, kinds);
   }
   return [...surfaceIds].every((surfaceId) => bySurface.get(surfaceId)?.has('structure') &&
-    (hiddenSurfaceIds.has(surfaceId) || bySurface.get(surfaceId)?.has('png')));
+    (pngExempt.has(surfaceId) || bySurface.get(surfaceId)?.has('png')));
 }
 
 function completeFactCapture(value: unknown, surfaceIds: Set<string>): boolean {
@@ -460,6 +486,195 @@ function validateResponsiveCapability(
   }
 }
 
+/**
+ * Which surfaces owe a PNG in a given phase. ONE authority, read by the capture that
+ * writes the evidence, by the validation that gates the state transitions, and by the
+ * comparison that reads the evidence back — so the three can never disagree about what
+ * "complete" means.
+ *
+ * `full` is the historical behaviour and the default: every visible surface, every
+ * phase. `light` cuts VOLUME, never a guarantee (FR-005):
+ *
+ *   - facts and structure are captured everywhere in both modes — this function does
+ *     not touch them;
+ *   - `before` keeps a PNG on the DECLARED write surfaces (the master, its members, and
+ *     anything the write boundary allowlists) and drops the doubled page-context shots;
+ *   - `after` keeps a PNG on the surfaces the campaign says will CHANGE, plus every
+ *     usage it expects a propagation on;
+ *   - `idempotence` keeps none: the no-op is proven by the second-run receipt gate
+ *     (`second-pass-not-noop`), which is structural, not pixel — documented as such in
+ *     `docs/internal/component-repair-workflow.md`.
+ *
+ * §X does not weaken: a surface that DOES owe a PNG and comes back empty or wrongly
+ * sized is refused in light exactly as in full.
+ */
+export function pngRequiredSurfaceIds(campaign: RepairCampaign, phase: CapturePhase): Set<string> {
+  const visible = campaign.affectedSurfaces.filter((surface) => surface.role !== 'hidden-instance' && surface.nodeId !== null);
+  if ((campaign.captureMode ?? 'full') === 'full') return new Set(visible.map((surface) => surface.surfaceId));
+  if (phase === 'idempotence') return new Set();
+
+  const boundary = campaign.writeBoundary;
+  const declared = new Set<string>(boundary?.allowedExistingNodeIds ?? []);
+  if (phase === 'before') {
+    return new Set(visible
+      .filter((surface) => surface.role === 'master' || surface.role === 'variant' || declared.has(surface.nodeId!))
+      .map((surface) => surface.surfaceId));
+  }
+  // `after` is the surfaces the campaign says will CHANGE — not every write surface.
+  // A declared write host that the campaign does not expect to change has nothing new
+  // to show, and its before/after pair is already compared on structure and facts.
+  const changed = new Set<string>(boundary?.expectedChangedNodeIds ?? boundary?.allowedExistingNodeIds ?? []);
+  const propagated = new Set<string>(campaign.targets.flatMap((target) =>
+    (target.responsive?.expectedPropagatedDeltas ?? []).map((delta) => delta.surfaceId)));
+  return new Set(visible
+    .filter((surface) => changed.has(surface.nodeId!) || propagated.has(surface.surfaceId))
+    .map((surface) => surface.surfaceId));
+}
+
+/** The complement of `pngRequiredSurfaceIds` over the campaign's surfaces: hidden
+ *  instances (the API exports none), surfaces with no node, and — in light mode — the
+ *  surfaces this phase asks no shot of. Derived from the same authority rather than
+ *  recomposed, so the capture, the dry-run gate, the validation and the comparison
+ *  cannot disagree about who owes a PNG. */
+export function pngExemptSurfaceIds(campaign: RepairCampaign, phase: CapturePhase): Set<string> {
+  const required = pngRequiredSurfaceIds(campaign, phase);
+  return new Set(campaign.affectedSurfaces
+    .map((surface) => surface.surfaceId)
+    .filter((surfaceId) => !required.has(surfaceId)));
+}
+
+/** What preflight observed for ONE target surface: the surface's own size locks and
+ *  those carried by its ancestors, each row naming the node that carries it. */
+export interface ObservedSurfaceLocks {
+  surfaceId: string;
+  nodeId: string;
+  locks: ReadonlyArray<{ nodeId: string; property: InheritedLockProperty; value: number }>;
+}
+
+const lockRefOf = (surfaceId: string, nodeId: string, property: string, value: number): string =>
+  `${surfaceId}:${nodeId}.${property}=${value}`;
+
+/**
+ * Classify the size locks preflight observed on a campaign's target surfaces.
+ *
+ * The distinction the whole gate turns on:
+ *
+ *   - a FLOOR or CEILING (`minWidth`/`maxWidth`/`minHeight`/`maxHeight`) contradicts
+ *     responsive behaviour wherever it sits. That is the 744 px class.
+ *   - a FROZEN dimension is only a lock when an ANCESTOR carries it. A variant root
+ *     that is FIXED at its authoring width is the catalogue convention this very
+ *     runner requires (`responsive-authoring-preview-required`); a gate that blocked
+ *     it would block every responsive campaign in the repository.
+ *
+ * A lock the campaign already declares it will shed — `presentationLayouts[].properties
+ * .minWidth: null`, the closed removal-only capability — is recorded as declared, not
+ * as blocking: refusing it would refuse the very repair that removes it.
+ */
+export function buildPreflightLockReport(
+  campaign: RepairCampaign,
+  observed: readonly ObservedSurfaceLocks[],
+  inspectedAt: string,
+): PreflightLockReport {
+  const targetSurfaceIds = new Set(
+    campaign.affectedSurfaces
+      .filter((surface) => surface.role === 'master' || surface.role === 'variant')
+      .map((surface) => surface.surfaceId),
+  );
+  const waivers = campaign.lockWaivers ?? [];
+  const declaredRemovals = new Map<string, string>();
+  for (const target of campaign.targets) {
+    for (const layout of target.responsive?.presentationLayouts ?? []) {
+      if (layout.properties.minWidth === null) {
+        declaredRemovals.set(`${target.targetId}\0minWidth`, `presentationLayouts:${layout.presentationValue}`);
+      }
+    }
+  }
+  const targetIdOf = new Map(campaign.affectedSurfaces.map((surface) => [surface.surfaceId, surface.targetId]));
+
+  const locks: InheritedSizeLock[] = [];
+  const waived: Array<{ lockRef: string; waiverRef: string }> = [];
+  const blocking: string[] = [];
+
+  for (const surface of observed) {
+    if (!targetSurfaceIds.has(surface.surfaceId)) continue;
+    for (const row of surface.locks) {
+      const isFrozen = row.property === 'fixedWidth' || row.property === 'fixedHeight';
+      if (isFrozen && row.nodeId === surface.nodeId) continue;
+      const lock: InheritedSizeLock = {
+        surfaceId: surface.surfaceId,
+        nodeId: surface.nodeId,
+        property: row.property,
+        value: row.value,
+        inheritedFrom: row.nodeId,
+      };
+      locks.push(lock);
+      const lockRef = lockRefOf(lock.surfaceId, lock.nodeId, lock.property, lock.value);
+      const waiver = waivers.find((entry) => entry.nodeId === row.nodeId && entry.property === row.property && entry.value === row.value);
+      if (waiver) { waived.push({ lockRef, waiverRef: waiver.decisionRef }); continue; }
+      const removal = declaredRemovals.get(`${targetIdOf.get(surface.surfaceId) ?? ''}\0${row.property}`);
+      if (removal) { waived.push({ lockRef, waiverRef: removal }); continue; }
+      blocking.push(lockRef);
+    }
+  }
+
+  return {
+    schemaVersion: '1.0.0',
+    campaignId: campaign.campaignId,
+    targetId: campaign.targets[0]?.targetId ?? '',
+    inspectedAt,
+    locks,
+    waived,
+    blocking,
+  };
+}
+
+/** The named refusal, or `null` when nothing blocks. Wording is the CLI contract's. */
+export function preflightLockRefusal(report: PreflightLockReport): string | null {
+  if (report.blocking.length === 0) return null;
+  const byRef = new Map(report.locks.map((lock) =>
+    [lockRefOf(lock.surfaceId, lock.nodeId, lock.property, lock.value), lock]));
+  return report.blocking.map((lockRef) => {
+    const lock = byRef.get(lockRef)!;
+    return `inherited-size-lock: ${lock.nodeId}.${lock.property}=${lock.value} (hérité de ${lock.inheritedFrom}) — corriger à la source ou déclarer une dérogation référencée`;
+  }).join('\n');
+}
+
+/** 030 additive campaign vocabulary. Every field is optional: a campaign that
+ *  declares none of them validates exactly as it did before, which is the
+ *  non-regression this function is written to preserve. */
+function validate030AdditiveFields(candidate: RecordValue, issues: RepairValidationIssue[]): void {
+  if (candidate.captureMode !== undefined && !captureModes.has(String(candidate.captureMode))) {
+    issue(issues, 'campaign-shape', '$.captureMode', 'captureMode must be "full" or "light"');
+  }
+
+  if (candidate.lockWaivers !== undefined) {
+    if (!Array.isArray(candidate.lockWaivers)) {
+      issue(issues, 'campaign-shape', '$.lockWaivers', 'lockWaivers must be an array of declared exemptions');
+    } else for (const [index, waiver] of candidate.lockWaivers.entries()) {
+      const waiverPath = `$.lockWaivers[${index}]`;
+      if (!record(waiver) || !nodeId.test(String(waiver.nodeId)) || !INHERITED_LOCK_PROPERTIES.has(String(waiver.property)) ||
+        typeof waiver.value !== 'number' || !Number.isFinite(waiver.value) ||
+        !nonEmptyString(waiver.reason)) {
+        issue(issues, 'campaign-shape', waiverPath, 'a lock waiver must pin a node id, a known size property, a finite value and a reason');
+        continue;
+      }
+      // The runner never grants itself an exemption: a waiver without an owner
+      // decision behind it would be exactly that.
+      if (!safePath(waiver.decisionRef)) {
+        issue(issues, 'campaign-shape', `${waiverPath}.decisionRef`, 'a lock waiver must reference an owner decision by bounded repository path');
+      }
+    }
+  }
+
+  if (candidate.generated !== undefined) {
+    const generated = candidate.generated;
+    if (!record(generated) || generated.by !== 'manifest-generator' || !safePath(generated.sourceReleve) ||
+      !Array.isArray(generated.nonDeductible) || generated.nonDeductible.some((entry) => !nonEmptyString(entry))) {
+      issue(issues, 'campaign-shape', '$.generated', 'generated provenance must name the manifest generator, its source relevé and the non-deducible fields it refused to invent');
+    }
+  }
+}
+
 export function validateRepairCampaign(candidate: unknown): RepairValidation<RepairCampaign> {
   const issues: RepairValidationIssue[] = [];
   if (!record(candidate)) {
@@ -529,7 +744,6 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
 
   const surfaces = candidate.affectedSurfaces;
   const surfaceIds = new Set<string>();
-  const hiddenSurfaceIds = new Set<string>();
   if (!Array.isArray(surfaces) || surfaces.length < dynamicTargetIds.size) {
     issue(issues, 'surface-coverage', '$.affectedSurfaces', 'every target must have at least one affected surface');
   } else {
@@ -540,7 +754,6 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
         issue(issues, 'surface-coverage', `$.affectedSurfaces[${index}]`, 'surfaces must be unique, target-bound and have positive expected dimensions');
       } else {
         surfaceIds.add(surface.surfaceId);
-        if (surface.role === 'hidden-instance') hiddenSurfaceIds.add(surface.surfaceId);
       }
     }
     for (const targetId of dynamicTargetIds) {
@@ -561,6 +774,7 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
   }
 
   if (component) validateComponentWorkflow(candidate, dynamicTargetIds, issues);
+  validate030AdditiveFields(candidate, issues);
 
   const captures = candidate.captureSets;
   if (!record(captures) || !('before' in captures)) {
@@ -575,7 +789,12 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
   // keys ARE the state list; `hasOwn` keeps prototype keys out of the gate.
   if (!Object.hasOwn(normalTransitions, String(candidate.state))) issue(issues, 'state', '$.state', 'state is not part of the campaign state machine');
   const state = candidate.state as CampaignState;
-  const beforeComplete = record(captures) && completeCapture(captures.before, surfaceIds, hiddenSurfaceIds);
+  // The gate itself is unchanged: a surface that DOES owe a PNG still has to have it.
+  // `pngRequiredSurfaceIds` already leaves out hidden instances, so the exempt set is
+  // its plain complement — no second hidden-instance rule to keep in step.
+  const pngRequired = pngRequiredSurfaceIds(candidate as unknown as RepairCampaign, 'before');
+  const pngExempt = new Set([...surfaceIds].filter((surfaceId) => !pngRequired.has(surfaceId)));
+  const beforeComplete = record(captures) && completeCapture(captures.before, surfaceIds, pngExempt);
   if (['captured', 'ready-to-apply', 'applied', 'verified', 'owner-accepted', 'owner-refused'].includes(state) && !beforeComplete) {
     issue(issues, 'capture-invalid', '$.captureSets.before', 'a complete valid before capture is required before the campaign can leave preflight');
   }
@@ -641,6 +860,6 @@ export function validateRepairReceipt(candidate: unknown): RepairValidation<Repa
   return result(candidate as unknown as RepairReceipt, issues);
 }
 
-export function isCaptureSetComplete(capture: CaptureSet, surfaces: readonly string[], hiddenSurfaces: readonly string[] = []): boolean {
-  return completeCapture(capture, new Set(surfaces), new Set(hiddenSurfaces));
+export function isCaptureSetComplete(capture: CaptureSet, surfaces: readonly string[], pngExemptSurfaces: readonly string[] = []): boolean {
+  return completeCapture(capture, new Set(surfaces), new Set(pngExemptSurfaces));
 }

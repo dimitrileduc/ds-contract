@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "boardName": "030 · CategoriesPrincipales · VALIDATION (rejeu)",
+  "targetId": "categories-principales",
+  "zones": {
+    "usage": {
+      "zoneId": "usage",
+      "title": "Usage réel",
+      "lines": [
+        "7 usage(s) relevé(s) sur Pages.",
+        "Colonnes=2, Style=Empile — 4 usage(s) sur 7.",
+        "Colonnes=2, Style=Superpose — 2 usage(s) sur 7.",
+        "Colonnes=3, Style=Empile — 1 usage sur 7 (exception)."
+      ],
+      "images": []
+    },
+    "youWillSee": {
+      "zoneId": "youWillSee",
+      "title": "Ce que vous verrez",
+      "lines": [
+        "À 834 px en 3 colonnes, la dernière carte garde la largeur de sa piste.",
+        "En mobile, une carte pleine largeur par ligne.",
+        "En desktop et wide, l’énumération Colonnes 2|3 est conservée."
+      ],
+      "images": []
+    },
+    "youWillNotGet": {
+      "zoneId": "youWillNotGet",
+      "title": "Ce que vous n’aurez pas",
+      "lines": [
+        "Vous n’aurez pas de variantes Wide/Desktop/Mobile comme HeroVideo : le sélecteur reste Style × Colonnes.",
+        "Aucun nouvel état ni aucune nouvelle variante de carte ne sera créé.",
+        "Aucun contrôle de colonnes ne sera exposé en mobile.",
+        "Pas de nouveau Text Style : aucun override typographique responsive n’est requis."
+      ],
+      "images": []
+    },
+    "pickerBeforeAfter": {
+      "zoneId": "pickerBeforeAfter",
+      "title": "Sélecteur de variantes — avant → après",
+      "lines": [
+        "Le témoin propre à un changement invisible au rendu."
+      ],
+      "images": [
+        {
+          "ref": "proofs/board/picker-avant.png",
+          "label": "avant",
+          "width": 320,
+          "height": 240
+        },
+        {
+          "ref": "proofs/board/picker-apres.png",
+          "label": "après",
+          "width": 320,
+          "height": 300
+        }
+      ]
+    },
+    "witnesses": {
+      "zoneId": "witnesses",
+      "title": "Témoins 1:1 — seulement là où la sortie diffère",
+      "lines": [
+        "Mobile — 390 px, 1:1.",
+        "Tablette — 834 px, 1:1."
+      ],
+      "images": [
+        {
+          "ref": "proofs/board/temoin-390.png",
+          "label": "Mobile · 390 px · 1:1",
+          "width": 390,
+          "height": 1800
+        },
+        {
+          "ref": "proofs/board/temoin-834.png",
+          "label": "Tablette · 834 px · 1:1",
+          "width": 834,
+          "height": 1200
+        }
+      ]
+    },
+    "decisions": {
+      "zoneId": "decisions",
+      "title": "Décisions",
+      "lines": [
+        "H2-design — Le sélecteur de variantes de CategoriesPrincipales restera Style × Colonnes : vous n’aurez pas de variantes Wide/Desktop/Mobile comme HeroVideo.",
+        "  · STRUCTUREL — L’étendue de la carte est une adaptation interne seule ; aucun nouvel état ni aucune nouvelle variante de carte n’est ajouté. (témoin proofs/board/picker-avant.png)",
+        "  · VISUEL — Option 1 / A : à 834 px en composition intermédiaire à trois colonnes, la carte orpheline garde une largeur de piste. (témoin proofs/board/temoin-834.png)",
+        "  · VISUEL — En mobile, une carte par ligne, sans contrôle de colonnes exposé. (témoin proofs/board/temoin-390.png)"
+      ],
+      "images": []
+    },
+    "footer": {
+      "zoneId": "footer",
+      "title": "Pied",
+      "lines": [
+        "Identiques entre options : 1200 px, 1440 px, 1728 px.",
+        "Archive technique masquée : 9:900, 28 frames — specs/029-figma-responsive-categories/proofs/H2-option-manifest.json."
+      ],
+      "images": []
+    }
+  },
+  "checks": {
+    "structuralFactsAllWitnessed": true,
+    "negativeStatementsInFrench": true,
+    "noScaledThumbnails": true,
+    "archiveRef": "specs/029-figma-responsive-categories/proofs/H2-option-manifest.json"
+  }
+}

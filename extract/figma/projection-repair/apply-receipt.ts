@@ -5,6 +5,18 @@ import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMe
 import type { ExpectedPropagatedDelta, PrimitiveBindingDeclaration, RepairCampaign, VariantSelection } from './types.js';
 import { validatePresentationScenarioResults } from './verify.js';
 
+/**
+ * What a member the manifest declares as CREATED must show to be accepted: a real node
+ * id, a real component key, and an id that is NOT one a preserved member already holds.
+ * The manifest cannot pin the id — Figma assigns it at creation time — so identity is
+ * proven by freshness instead of by a match. One spelling, read by both the master
+ * identity check and the protected-fact check, so the two gates cannot drift apart.
+ */
+function createdIdentityInvalid(row: Record<string, unknown> | undefined, pinnedIds: ReadonlySet<string>): boolean {
+  return !row || typeof row.nodeId !== 'string' || row.nodeId.length === 0 || pinnedIds.has(row.nodeId) ||
+    typeof row.componentKey !== 'string' || row.componentKey.length === 0;
+}
+
 export interface LiveOperationReceipt {
   operationId: string;
   targetId: string;
@@ -275,7 +287,21 @@ export function validateLiveApplyReceipt(
       const legacyExisting = existing && topology.preservedMembers === undefined && topology.createdMembers.length > 0 && topology.createdMembers.every((member) => member.nodeId !== undefined);
       const expectedComponentKey = existing && !legacyExisting ? topology.setComponentKey : topology.historicalMember.componentKey;
       const observedMembers = Array.isArray(check.memberIdentities) ? check.memberIdentities.filter(object) : [];
+      // A member the manifest PINS is matched by that pinned id and key. A member the
+      // manifest declares as CREATED has no pinned identity to match — Figma assigns
+      // the id at creation time, which is exactly why `ResponsiveComponentMember.nodeId`
+      // is optional. Matching it against `undefined` refused every truthful receipt for
+      // a declared create in an existing set: the branch 029 built and never ran, found
+      // by rehearsing it (030 / FR-011). What it is held to instead is stricter where
+      // it counts: addressed by its exact axis pair, carrying a real id and key, and
+      // never re-using a preserved member's identity.
+      const pinnedMemberIds = new Set(members.map((member) => member.nodeId).filter((id): id is string => typeof id === 'string'));
       const memberIdentityInvalid = existing && (observedMembers.length !== members.length || members.some((member) => {
+        if (member.nodeId === undefined) {
+          const created = observedMembers.find((entry) => canonicalVariantSelection(entry.variantSelection as VariantSelection) ===
+            canonicalVariantSelection(memberVariantSelection(topology, member)));
+          return createdIdentityInvalid(created, pinnedMemberIds);
+        }
         const row = observedMembers.find((entry) => entry.nodeId === member.nodeId);
         return !row || (!legacyExisting && row.componentKey !== member.componentKey) || canonicalVariantSelection(row.variantSelection as VariantSelection) !==
           canonicalVariantSelection(memberVariantSelection(topology, member));
@@ -334,10 +360,19 @@ export function validateLiveApplyReceipt(
         const legacyExisting = target.responsive.componentSetTopology.setIdentityPolicy === 'existing' &&
           target.responsive.componentSetTopology.preservedMembers === undefined && target.responsive.componentSetTopology.createdMembers.length > 0 &&
           target.responsive.componentSetTopology.createdMembers.every((member) => member.nodeId !== undefined);
+        const pinnedFactIds = new Set(topologyMembers.map((member) => member.nodeId).filter((id): id is string => typeof id === 'string'));
         if (target.responsive.componentSetTopology.setIdentityPolicy === 'existing' && topologyMembers.some((member) => {
           const fact = memberFacts.find((entry) => object(entry) && entry.presentationValue === member.presentationValue) as Record<string, unknown> | undefined;
-          return !fact || fact.nodeId !== member.nodeId || (!legacyExisting && fact.componentKey !== member.componentKey) ||
-            canonicalVariantSelection(fact.variantSelection as VariantSelection) !== canonicalVariantSelection(memberVariantSelection(target.responsive!.componentSetTopology, member));
+          if (!fact) return true;
+          if (canonicalVariantSelection(fact.variantSelection as VariantSelection) !== canonicalVariantSelection(memberVariantSelection(target.responsive!.componentSetTopology, member))) return true;
+          // Same rule as the master identity check above: a declared create is proven
+          // by carrying a NEW identity that the first run actually reported creating,
+          // never by matching an id the manifest could not know in advance.
+          if (member.nodeId === undefined) {
+            return createdIdentityInvalid(fact, pinnedFactIds) ||
+              (expectedRun === 'first' && !createdIds.includes(String(fact.nodeId)));
+          }
+          return fact.nodeId !== member.nodeId || (!legacyExisting && fact.componentKey !== member.componentKey);
         })) issues.push(`responsive-member-identity-drift:${target.targetId}`);
         // Additive members are clones and must remain structurally equivalent
         // to their historical source. Existing multi-axis sets legitimately

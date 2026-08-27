@@ -415,6 +415,201 @@ Une différence de PNG ou de structure dans la surface autorisée n'est pas à
 elle seule une réussite : tous les faits protégés doivent rester identiques et
 le gate owner reste obligatoire.
 
+## Outillage de vague (spec 030)
+
+Cinq ajouts, tous **additifs** : une campagne qui n'en déclare aucun se comporte
+exactement comme avant. Chacun a sa fixture rouge et son eval enregistrée sous
+`figma-projection-repair-*` ; les limites sont écrites ici, à l'endroit où la
+capacité est revendiquée.
+
+### Générateur de manifeste
+
+```bash
+npm run component:repair:manifest -- --releve <audit.json|dump.json> --out <campaign.json> [--component <id>]
+```
+
+Inverse un relevé **déjà acquis** vers un `campaign.json`. Aucune lecture Figma
+vive. Le manifeste produit repasse par `validateRepairCampaign` avant d'être
+écrit : la génération ne contourne aucun refus. Sorties : le manifeste et
+`manifest-report.json`.
+
+Fonction pure, sans horloge — `createdAt` et `filePin.capturedAt` sont lus dans
+le relevé, donc deux exécutions sur la même entrée sont byte-identiques. Le CLI
+lit les documents que le relevé **nomme** (`*Ref` bornés) et les lui passe ; le
+générateur, lui, ne touche pas au système de fichiers.
+
+Refus nommés : `releve-unreadable`, `component-not-found-in-releve`,
+`generated-campaign-invalid` (avec les issues de validation citées verbatim).
+
+**Ce qu'il ne fait pas, et c'est écrit dans le manifeste.** Tout champ qu'il ne
+sait pas déduire est émis à sa valeur la plus conservatrice **et nommé** dans
+`generated.nonDeductible[]`. Sur la section de 029 cela fait 17 champs, dont
+l'espacement d'authoring du catalogue, les largeurs témoins, la référence de
+décision owner et les fixtures de contenu. Un manifeste généré est **légal**,
+pas **prêt à poser** : les 17 sont des décisions.
+
+**Limite.** Un dump de pont read-only (`H1-bridge-read-only.json`) inventorie les
+nœuds mais **n'épingle aucune version de fichier**. Seul, il est refusé
+`releve-unreadable` en nommant la version manquante, plutôt que de se voir
+inventer un pin ; accompagné d'un document qui en épingle une, il produit le même
+set et les mêmes membres qu'un audit.
+
+**Limite.** Le générateur refuse de choisir : un relevé portant plusieurs
+component sets exige `--component`.
+
+### Preflight des verrous hérités
+
+Le preflight écrit `preflight-locks.json` (`locks` / `waived` / `blocking`) dans
+le dossier de run, et refuse `inherited-size-lock` **avant le dry-run** si un
+verrou n'est couvert ni par une dérogation ni par une suppression déclarée.
+
+```
+inherited-size-lock: <nodeId>.<property>=<value> (hérité de <inheritedFrom>) — corriger à la source ou déclarer une dérogation référencée
+```
+
+La distinction sur laquelle tout repose :
+
+- un **plancher ou un plafond** (`minWidth`/`maxWidth`/`minHeight`/`maxHeight`)
+  contredit un comportement responsive où qu'il soit. C'est la classe du verrou
+  744 px qui a coûté 33 minutes et une restauration manuelle en 029 ;
+- une **dimension figée** n'est un verrou que si un **ancêtre** la porte. Une
+  racine de variante `FIXED` à sa largeur d'authoring est la convention de
+  catalogue que ce runner exige déjà (`responsive-authoring-preview-required`) ;
+  la bloquer bloquerait toutes les campagnes du dépôt.
+
+Une dérogation (`lockWaivers[]`) exige un `decisionRef` : le runner ne
+s'auto-autorise jamais. Un plancher que la campagne déclare retirer
+(`presentationLayouts[].properties.minWidth: null`, la capacité fermée
+removal-only décrite plus haut) est enregistré comme **déclaré**, pas comme
+bloquant — refuser la réparation qui supprime le verrou serait absurde.
+
+**Limite de portée.** Le relevé remonte depuis chaque surface master/variant et
+**s'arrête au premier ancêtre qui n'est ni COMPONENT ni COMPONENT_SET** : un
+plancher posé sur la frame de canevas qui héberge le catalogue n'est pas
+rapporté par cette porte. Les verrous de **descendants** sont capturés — dans
+`facts.sizeLocks`, sur toute la sous-arborescence — mais ne bloquent pas non
+plus. La classe « enfants re-fixés par héritage » est donc **visible** dans la
+preuve, pas **bloquante** au preflight.
+
+### Capture allégée
+
+```bash
+npm run component:repair -- --campaign <c.json> --capture-before --capture-mode light
+```
+
+**Opt-in.** Sans le drapeau, le mode reste `full` et le comportement est
+inchangé. Le mode est écrit dans la campagne au premier usage ; une
+contradiction ensuite est refusée `capture-mode-mismatch` — un run ne change pas
+de mode en cours de route, sinon l'avant et l'après ne mesurent pas la même chose.
+
+Ce que `light` change, et rien d'autre : **les PNG**.
+
+| Phase | `full` | `light` |
+|---|---|---|
+| faits + structure + propriétés | toutes les surfaces | **toutes les surfaces** |
+| PNG avant | toutes | surfaces **déclarées** (master, membres, allowlist d'écriture) |
+| PNG après | toutes | surfaces que la campagne dit **changées** + deltas propagés déclarés |
+| PNG idempotence | toutes | **aucune** |
+
+Pourquoi couper le cycle d'idempotence est sûr : la porte de no-op du second
+passage est **structurelle, pas pixel** — « chaque opération doit être `no-op`,
+avec zéro nœud créé et zéro nœud modifié », plus haut dans ce document. Le pixel
+n'a jamais porté ce verdict.
+
+**§X ne s'affaiblit pas.** Une surface qui doit un cliché et revient vide ou mal
+dimensionnée est refusée en `light` exactement comme en `full`. Le patron est
+celui de `hidden-instance`, déjà dans ce document : alléger le cliché, garder le
+fait, refuser le changement silencieux.
+
+Une seule autorité décide quelle surface doit un cliché
+(`pngRequiredSurfaceIds`), lue par la capture qui écrit, la validation qui garde
+les transitions et la comparaison qui relit — elles ne peuvent pas diverger.
+Mesure sur le recensement réel de 029 (19 surfaces) : **57 clichés → 10**, soit
+**−81,3 % de volume**, à verdicts identiques sur les neuf portes comparées.
+
+### Driver de campagne
+
+```bash
+node scripts/component-repair-drive.mjs --campaign <c.json> [--capture-mode full|light] [--until <action>] [--backup-ref <ref>] [--resume] [--journal <path>]
+```
+
+Enchaîne les 17 étapes de « Ordre obligatoire » ci-dessus (18 avec
+`--backup-ref`, qui insère `snapshot-source`) en **une** invocation, au lieu des
+treize appels manuels de 029. Écrit `drive-journal.jsonl` : une ligne par étape,
+avec son verdict, son intervalle et — en cas de refus — **le texte du runner cité
+verbatim**. Codes retour : 0 chaîne verte, 2 refus, 3 interruption.
+
+`--resume` reprend à la première étape non verte du journal et ne rejoue rien de
+vert. `--until <action>` s'arrête après l'action nommée.
+
+**Le driver n'implémente AUCUNE porte.** Il invoque `npm run component:repair` et
+`scripts/component-repair-bridge.mjs`, et rapporte leurs verdicts sans les
+reformuler. Deux autorités sur la même question, c'est ainsi qu'elles divergent.
+
+L'invariant « jamais d'écriture sans son dry-run » est porté par **l'ordre de la
+chaîne et l'arrêt au premier refus**, pas par une garde : la garde
+`drive-write-without-dry-run` existe dans le source, mais elle est
+**inatteignable par construction** et nommée comme telle — un filet pour qu'un
+futur réordonnancement échoue fermé.
+
+### Décision de design : `pickerConsequence` et natures VISUEL / STRUCTUREL
+
+Schéma dans `specs/030-outillage-vague-responsive/contracts/decision-design.md`.
+Le README de décisions de 029 n'est pas réécrit : l'histoire se lit, elle ne se
+falsifie pas.
+
+Deux champs obligatoires pour toute décision de design à partir de 030 :
+
+- `pickerConsequence` — **une phrase française** décrivant l'état du sélecteur de
+  variantes après application ;
+- par fait accepté, `nature` (`visuel` | `structurel`) et `witnessRef`.
+
+Un fait `visuel` est témoigné par un rendu 1:1. Un fait **`structurel`** — topologie
+du set, sélecteur, axes, Text Styles — est témoigné par une **capture du
+sélecteur** : aucun rendu ne peut le montrer, un wrap interne et un axe
+Presentation ont les mêmes pixels. C'est l'écart E2 de 029, qui a coûté une
+journée, et le principe §XII ne le couvre pas : §XII impose la fidélité de
+*présentation*, et sa première phrase (« seulement les alternatives qui produisent
+une différence visible ») pourrait même légitimer l'omission.
+
+Refus nommés : `picker-consequence-missing`, `picker-consequence-not-in-french`,
+`structural-fact-unwitnessed`, `accepted-fact-short-form` (la forme
+`acceptedFacts: string[]` de 029 est **lue** pour l'histoire, jamais écrite).
+
+### Générateur de planche owner
+
+```bash
+npm run component:repair:board -- --decisions <dir> --witnesses <manifest.json> --usages <inventaire.json> --out <dir>
+```
+
+Produit `zones.json` (le contrat vérifiable machine) et `board.bridge.js` (le
+script de construction, exécutable par le pont **ou** par le mock). Les 7 zones
+du gabarit §XII + corollaire E2 : usage pondéré · « ce que vous verrez » · « ce
+que vous n'aurez pas » · sélecteur avant→après · témoins 1:1 delta-only ·
+décisions une-ligne · pied avec archive référencée.
+
+Checks machine : `structuralFactsAllWitnessed`, `negativeStatementsInFrench`,
+`noScaledThumbnails`, `archiveRef`. Ce sont des **reçus de portes qui ont
+tourné** : chaque chemin de refus sort avant de les poser.
+
+Refus nommés : `structural-fact-unwitnessed`, `witness-missing-for-width`,
+`negative-statements-missing`, `scaled-witness-refused`,
+`board-input-unreadable`.
+
+L'archive technique reste **référencée, pas étalée** : zéro image au pied. Le
+défaut de 029 était l'absence de témoin structurel, pas l'existence de l'archive
+— ne pas sur-corriger.
+
+**Limite.** `negativeStatementsInFrench` **n'identifie pas une langue**. Il
+vérifie que chaque mention négative ouvre sur un marqueur d'une liste française
+fermée (« Vous n'aurez pas », « Aucun/Aucune », « Pas de », « Le sélecteur
+ne »…) et porte des marqueurs grammaticaux français. C'est assez pour attraper la
+panne qui s'est produite — une conséquence scellée en anglais abstrait — et c'est
+vérifiable par machine, ce que de la prose libre n'est pas.
+
+**Limite.** L'exécution vive du script est **hors du périmètre de 030**, qui ne
+mute aucun canevas : la pose appartient à la spec de vague, où §X s'applique.
+
 ## Frontière actuelle
 
 Le runner prend en charge l'audit read-only et écrit son rapport avant le

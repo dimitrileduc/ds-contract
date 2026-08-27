@@ -4,6 +4,66 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-08-27 — 030 : l'outillage de la vague — six capacités, et deux défauts trouvés en répétant ce que 029 n'avait jamais joué
+
+Les sept prérequis P1–P7 de la rétro 029 sont livrés comme **six capacités du runner**,
+chacune fixture rouge → eval enregistrée → capacité, dans cet ordre, aucune mutation de
+canevas vif de bout en bout.
+
+- **E8 corrigé** (P1) — deux campagnes partageant un `ownerDecisionRoot` se clôturent.
+  Prouvé sur les artefacts **réels** de 029 : `carte-categorie` et
+  `categories-principales` lisent `specs/029-…/decisions/` en place, **rien n'est
+  déplacé**. Le rouge d'avant est E8 mot pour mot. Doublon interne, décision manquante,
+  décision malformée et `targetId` non-string restent refusés par nom.
+- **Générateur de manifeste** (P2) — `npm run component:repair:manifest`. Le
+  `campaign.json` de `CategoriesPrincipales` regénéré depuis son `audit.json` en
+  **0,58 s** (plafond : 2 min), byte-identique ×2, **23 des 28 faits d'identité
+  byte-égaux** à l'écrit-main — dont les 7 usages avec leurs `positionPath` au caractère
+  près. Les 5 écarts sont tous nommés ou explicables ; **17 champs non déductibles sont
+  NOMMÉS** dans le manifeste plutôt qu'inventés.
+- **`--capture-mode light`** (P3) — sur le recensement réel de 029 (19 surfaces) :
+  **57 clichés → 10, −81,3 % de volume**, à **verdicts identiques sur 9 portes**
+  comparées en jouant le même scénario deux fois. Facts et structure partout dans les
+  deux modes ; §X ne s'affaiblit pas (surface déclarée vide ⇒ toujours refusée) ; opt-in,
+  et `capture-mode-mismatch` refuse un changement de mode en cours de run.
+- **Driver de campagne** (P4) — `scripts/component-repair-drive.mjs` : les 17 étapes de
+  l'ordre obligatoire en **une** invocation, `drive-journal.jsonl` une ligne par étape,
+  arrêt au premier refus **cité verbatim**, `--until`, `--resume` qui ne rejoue rien de
+  vert. Aucune porte dupliquée : le driver invoque le runner et rapporte ses verdicts.
+- **Preflight des verrous hérités** (P5) — `preflight-locks.json` + refus
+  `inherited-size-lock` **avant le dry-run**, nommant nœud, propriété, valeur et
+  héritage. La classe qui a coûté 33 min et une restauration manuelle en 029.
+- **Planche owner générée** (P6) + **`pickerConsequence` / natures VISUEL-STRUCTUREL**
+  (P7) — les 7 zones §XII + corollaire E2, déterministes, exécutées sur mock. La décision
+  H2 **réelle** de 029, passée à la nouvelle porte, est refusée `picker-consequence-missing`
+  même en lecture historique indulgente : c'est le reçu d'E2.
+
+**Deux défauts trouvés en répétant, et c'est le résultat le plus utile de la spec.**
+(1) La branche « créations déclarées dans un set existant », construite par 029 et
+**jamais exécutée** (run-002 l'avait court-circuitée), refusait tout reçu **honnête** :
+les deux portes d'identité de membre exigeaient qu'un membre *créé* porte l'id que le
+manifeste épingle, alors que Figma le lui attribue à la création. Corrigée, avec une
+règle plus stricte là où elle est vérifiable. Sans cette répétition, la vague le
+découvrait en vif après la pose de la section 1. (2) La garde
+`drive-write-without-dry-run` du driver s'est révélée **inatteignable** — l'invariant est
+porté par l'ordre de la chaîne et l'arrêt au premier refus. Gardée comme filet **nommé
+tel quel** dans le source, et la fixture testée sur ce qui la porte vraiment, plutôt
+qu'une assertion tortueuse autour de code mort. Les deux sont au registre
+`inventory/ecarts.md` (W1, plus W2–W5).
+
+Sweep : build, parity, plugin, roundtrip, core-browser, 2 typechecks — verts.
+`npm run eval` **242/243** ; six cas neufs enregistrés (237 → 243), tous verts ;
+l'unique rouge reste la dette golden 028 (25 sorties), **mot pour mot identique** à la
+baseline relevée avant la première ligne de code. **Surface de re-pin : zéro**, vérifiée
+par `git status --porcelain src/ figma-sync/ catalog/ evals/golden.json` vide. Preuve
+adverse : les six capacités retirées une à une font tomber leur fixture
+(`proofs/adversarial-check.py`, reproductible, auto-restaurant).
+
+Ce qui reste ouvert et nommé : aucune exécution vive (Assumption 1 tenue jusqu'au bout),
+le gain de ~25 min/section **non mesuré** — le chrono du driver est un plafond sur mock,
+pas la vague — `parity/snapshots/figma-components.json` toujours pas rafraîchi, et les
+décisions de vague D1–D9 qui appartiennent à l'ouverture de 031.
+
 ## 2026-08-26 — 029 : CategoriesPrincipales responsive — deux campagnes runner + un correctif de topologie, et la leçon qui devient un principe
 
 La section `CategoriesPrincipales` et sa carte exclusive `Carte/Categorie` sont

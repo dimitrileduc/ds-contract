@@ -462,6 +462,58 @@ export interface RepairOperation {
   expectedPostconditions: Record<string, unknown>[];
 }
 
+/** Proof volume, never guarantees. `full` is the historical behaviour and stays
+ *  the default: absence of the field means `full`. A run does not silently
+ *  change mode — `capture-mode-mismatch` refuses the second spelling. */
+/** The closed capture-mode list. Derived from ONE array so the type, the campaign
+ *  validator and the CLI flag cannot go out of step — adding a mode is one edit. */
+export const CAPTURE_MODES = ['full', 'light'] as const;
+
+export type CaptureMode = (typeof CAPTURE_MODES)[number];
+
+/** Dimensional locks a target surface inherits. Removal-only remains the closed
+ *  capability (`ResponsivePresentationLayout.minWidth: null`); this vocabulary
+ *  only ever DESCRIBES a lock so preflight can refuse it by name. */
+export type InheritedLockProperty =
+  | 'minWidth' | 'maxWidth' | 'minHeight' | 'maxHeight' | 'fixedWidth' | 'fixedHeight';
+
+export interface InheritedSizeLock {
+  surfaceId: string;
+  nodeId: string;
+  property: InheritedLockProperty;
+  value: number;
+  /** Node id the lock is carried by: the surface itself, or an ancestor. */
+  inheritedFrom: string;
+}
+
+/** An owner-declared exemption. `decisionRef` is mandatory: a waiver without a
+ *  decision behind it would be the runner deciding, which it never does. */
+export interface InheritedLockWaiver {
+  nodeId: string;
+  property: InheritedLockProperty;
+  value: number;
+  reason: string;
+  decisionRef: string;
+}
+
+export interface PreflightLockReport {
+  schemaVersion: '1.0.0';
+  campaignId: string;
+  targetId: RepairTargetId;
+  inspectedAt: string;
+  locks: InheritedSizeLock[];
+  waived: Array<{ lockRef: string; waiverRef: string }>;
+  blocking: string[];
+}
+
+/** Provenance of a generated manifest. `nonDeductible` NAMES what the generator
+ *  could not read from the relevé — the honesty convention, never an invention. */
+export interface GeneratedCampaignProvenance {
+  by: 'manifest-generator';
+  sourceReleve: string;
+  nonDeductible: string[];
+}
+
 export interface RepairCampaign {
   schemaVersion: typeof REPAIR_SCHEMA_VERSION | typeof COMPONENT_REPAIR_SCHEMA_VERSION;
   campaignId: string;
@@ -478,6 +530,10 @@ export interface RepairCampaign {
   workflow?: ComponentRepairWorkflow;
   artifactRoots?: ComponentRepairArtifactRoots;
   writeBoundary?: ResponsiveWriteBoundary;
+  /** Absent means `full`; written by the first capture action that names a mode. */
+  captureMode?: CaptureMode;
+  lockWaivers?: InheritedLockWaiver[];
+  generated?: GeneratedCampaignProvenance;
 }
 
 export interface DiffFinding {
@@ -507,4 +563,67 @@ export interface RepairReceipt {
   evidenceRefs: string[];
   limits?: string[];
   decidedAt: string;
+}
+
+/* ------------------------------------------------------------------------- *
+ * 030 — outillage de la vague responsive.
+ * Additive vocabulary only. No existing field changes meaning.
+ * ------------------------------------------------------------------------- */
+
+/** Why a rendered witness is not always enough: a fact can be STRUCTURAL —
+ *  set topology, variant picker, axes, Text Styles — and a render cannot tell an
+ *  internal wrap from a Presentation axis, the pixels are identical (029 E2).
+ *  A structural fact is witnessed by a capture of the PICKER, never by a render. */
+export type DesignFactNature = 'visuel' | 'structurel';
+
+export interface DesignAcceptedFact {
+  fact: string;
+  nature: DesignFactNature;
+  /** 1:1 render for `visuel`; before→after picker capture for `structurel`. */
+  witnessRef: string;
+}
+
+/** The 029 decision schema, extended. The short `string[]` spelling of
+ *  `acceptedFacts` is READ for history and never written from 030 onward. */
+export interface DesignDecisionDocument {
+  decisionId: string;
+  targetId?: RepairTargetId;
+  /** One French sentence naming the state of the variant picker after apply. */
+  pickerConsequence: string;
+  acceptedFacts: Array<DesignAcceptedFact | string>;
+}
+
+export const BOARD_ZONE_IDS = [
+  'usage',
+  'youWillSee',
+  'youWillNotGet',
+  'pickerBeforeAfter',
+  'witnesses',
+  'decisions',
+  'footer',
+] as const;
+
+export type BoardZoneId = (typeof BOARD_ZONE_IDS)[number];
+
+export interface BoardZone {
+  zoneId: BoardZoneId;
+  /** French heading shown on the canvas. */
+  title: string;
+  /** Ordered text lines of the zone. Empty only for image-only zones. */
+  lines: string[];
+  /** Image nodes the zone places, at true size — never a rescaled thumbnail. */
+  images: Array<{ ref: string; label: string; width: number; height: number }>;
+}
+
+export interface BoardZonesManifest {
+  schemaVersion: '1.0.0';
+  boardName: string;
+  targetId: RepairTargetId;
+  zones: Record<BoardZoneId, BoardZone>;
+  checks: {
+    structuralFactsAllWitnessed: boolean;
+    negativeStatementsInFrench: boolean;
+    noScaledThumbnails: boolean;
+    archiveRef: string;
+  };
 }

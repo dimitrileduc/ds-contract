@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "030-outillage-vague-responsive",
+  "task": "T001",
+  "capturedAt": "2026-08-27",
+  "worktree": {
+    "path": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/just-euphonium",
+    "isSupersetIsolatedWorktree": true,
+    "branch": "just-euphonium",
+    "note": "Le plan nomme la branche `030-outillage-vague-responsive` ; la branche RÉELLE du worktree Superset actif est `just-euphonium`. Écart nommé, pas corrigé : la règle Superset interdit de créer un worktree frère. Toute la feature est livrée ici.",
+    "gitHead": "448244fad73960f1003b8dd01fcd2945d0e697e1",
+    "statusAtStart": [
+      " M .specify/feature.json",
+      "?? specs/030-outillage-vague-responsive/"
+    ],
+    "siblingWorktrees": [
+      "/Users/dlstudio/Documents/ds-contract [main] 448244fa",
+      "/Users/dlstudio/.superset/worktrees/.../027-responsive-hero-video [027-responsive-hero-video] 2a56908b",
+      "/Users/dlstudio/.superset/worktrees/.../section-header-v3 [026-simplify-section-header] 9348bd07"
+    ]
+  },
+  "selfSufficiency": {
+    "rule": "constitution Worktree Gates F1",
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "nodeModules": "present (aucun `npm install` requis)",
+    "playwrightChromium": "présent — ~/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64 (INSTALLATION_COMPLETE), CLI 1.62.1, pin dépôt playwright-core ^1.61.1",
+    "verdict": "worktree autosuffisant sans action — ni `npm install` ni `npx playwright install chromium` n'ont été nécessaires"
+  }
+}
