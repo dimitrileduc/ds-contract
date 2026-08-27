@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "status": "pass",
+  "widths": [320, 390, 834, 1200, 1440, 1728],
+  "fixtures": ["normal", "long"],
+  "sectionConfigurations": [2, 3],
+  "cardScenarioCount": 24,
+  "sectionScenarioCount": 24,
+  "failedScenarioCount": 0,
+  "commonAssertions": {
+    "overflow": false,
+    "clippedBy": [],
+    "contentAccessible": true,
+    "explicitVariantSelection": true
+  },
+  "cardsPerRow": [
+    {"width": 320, "columns2": 1, "columns3": 1},
+    {"width": 390, "columns2": 1, "columns3": 1},
+    {"width": 834, "columns2": 2, "columns3": 2},
+    {"width": 1200, "columns2": 2, "columns3": 3},
+    {"width": 1440, "columns2": 2, "columns3": 3},
+    {"width": 1728, "columns2": 2, "columns3": 3}
+  ],
+  "cardEvidenceRef": "specs/component-repairs/carte-categorie/run-001/receipts/apply-first.json",
+  "sectionEvidenceRef": "specs/component-repairs/categories-principales/run-001/receipts/apply-first.json",
+  "mobileCaptureRefs": [
+    "specs/component-repairs/categories-principales/run-001/scenario-320-c2-normal-first.png",
+    "specs/component-repairs/categories-principales/run-001/scenario-320-c3-long-first.png",
+    "specs/component-repairs/categories-principales/run-001/scenario-390-c2-normal-first.png",
+    "specs/component-repairs/categories-principales/run-001/scenario-390-c3-long-first.png"
+  ],
+  "intermediateThreeColumnCaptureRef": "specs/component-repairs/categories-principales/run-001/scenario-834-c3-normal-first.png"
+}

@@ -267,6 +267,10 @@ si le contour externe du master reste dans le Container. Le Container garde sa
 largeur de référence mais HUG sa hauteur afin qu'un texte qui reflowe ne soit pas
 maquillé par une hauteur fixe.
 
+Une racine de variante peut explicitement retirer un ancien `minWidth` avec la
+valeur `null`. Cette capacité est volontairement
+fermée : elle sait supprimer un verrou de largeur hérité, jamais en ajouter un.
+
 Le transport générique accepte quatre familles bornées : création/adoption du
 Container d'organisme, propriétés Auto Layout explicitement allowlistées sur un
 nœud résolu par chemin structurel (sizing, padding, axe, positionnement et
@@ -345,6 +349,52 @@ que si toutes les opérations sont `no-op`, avec `createdNodeIds: []`,
 `createdNodes: []`, `changedNodeIds: []`, `pageWrites: []` et `childWrites: []`.
 Les captures after/idempotence et tous les faits protégés restent ensuite soumis
 à la comparaison canonique du workflow.
+
+### Adaptation responsive dans un set existant et sélection multi-axes
+
+Le même mécanisme `responsive-component-set` accepte aussi une topologie déjà
+formée. Dans ce cas, l'opération cible l'identité épinglée du set, et non un nom
+de composant. Le manifeste sépare explicitement `preservedMembers` (node IDs et
+keys inchangés) de `createdMembers` (créations réellement attendues, liste vide
+autorisée). Le dry-run et le reçu ne peuvent donc pas transformer une création
+nulle en création implicite ni masquer une création inattendue.
+
+Cette branche est qualifiée par les evals
+`figma-responsive-existing-set-topology`,
+`figma-responsive-multiaxis-scenarios`,
+`figma-responsive-bindings-typography-allowlisted` et
+`figma-responsive-boundary-propagation-idempotence`. Elle ajoute aux déclarations
+de campagne :
+
+- le vocabulaire fermé de chaque axe de variante (`variantProperties`) et la
+  sélection exacte de chaque membre ;
+- la paire ou combinaison d'axes sélectionnée pour chaque scénario, binding,
+  layout et override typographique — une largeur seule ne sélectionne jamais un
+  état ;
+- les `authorizedTargetNodeIds`, disjoints des Pages, dépendances et enfants
+  partagés protégés ;
+- chaque usage read-only par `surfaceId`, node ID et chemin de position ;
+- les deltas de propagation attendus avec surface, source, fait et attribution.
+
+Le Bridge ne modifie jamais une instance d'usage. Il applique seulement les
+layouts, bindings et exceptions typographiques déclarés à l'intérieur du set,
+sur les membres sélectionnés. Les changements master→instances sont transportés
+dans `propagatedDeltas` et le reçu refuse toute ligne absente, supplémentaire ou
+`unattributed`. `pageWrites` et `childWrites` restent des listes vides ; côté
+composite, une instance du composant enfant appartient à la frontière
+`shared-child-write-forbidden`, même si son rendu évolue par propagation native.
+
+Le parent document d'un set existant (`Page`, `Section` ou `Frame`) est
+strictement traversé pour retrouver le set : il n'est ni allowlisté comme cible,
+ni déclaré modifié. Seule une transition additive qui combine des composants en
+nouveau set peut modifier la topologie de son parent.
+
+La capture de scénarios utilise des instances transitoires et sélectionne la
+combinaison d'axes déclarée avant d'appliquer la fixture. Les surfaces d'usage
+restent couvertes par le cycle global before/after/idempotence et ne sont jamais
+réutilisées comme surfaces de mutation. Le reçu distingue créations, changements
+existants, no-op et propagations attribuées. Au second passage, toute création,
+mutation ou propagation non identique est refusée par `second-pass-not-noop`.
 
 ## Comparaison
 

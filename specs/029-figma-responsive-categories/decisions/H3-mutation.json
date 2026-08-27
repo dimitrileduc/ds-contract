@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "gateId": "H3",
+  "decisionId": "H3-mutation-v2-full-width",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T17:12:44Z",
+  "ownerDecision": "GO PUT1",
+  "h1DecisionRef": "specs/029-figma-responsive-categories/decisions/H1-audit.json",
+  "h2DecisionRef": "specs/029-figma-responsive-categories/decisions/H2-design.json",
+  "freshFilePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2392091518820622154",
+    "capturedAt": "2026-08-26T17:41:08Z"
+  },
+  "correctionRecord": {
+    "supersedes": "H3-mutation-blocked-v1",
+    "reason": "The blocked draft incorrectly treated the master reference width as a runtime minimum width. Fresh facts prove that all direct cards in the four section members and all seven section usages use horizontal FILL sizing.",
+    "discardedProposal": "Bind CarteCategorie minWidth to size/carte/root=363.5.",
+    "ownerCorrection": "The approved H2 plan and the governed Figma sections/organisms are full width.",
+    "result": "No component-level width constraint may be added. The inherited Superpose master minWidth=744 is removed. CategoriesPrincipales keeps width ownership and its ten direct card instances remain FILL; a section-owned 320 px wrap floor triggers 1/2/3-column reflow without fixing their rendered width."
+  },
+  "preH3Proofs": {
+    "runnerCapabilityRef": "specs/029-figma-responsive-categories/proofs/runner-targeted-gates.md",
+    "runnerFullRef": "specs/029-figma-responsive-categories/proofs/runner-full-gates.md",
+    "mechanismSpikeFirstRef": "specs/029-figma-responsive-categories/proofs/mechanism-spike-first.json",
+    "mechanismSpikeSecondNoopRef": "specs/029-figma-responsive-categories/proofs/mechanism-spike-second-noop.json",
+    "cardCaptureSet": {
+      "campaignRef": "specs/component-repairs/carte-categorie/run-001/campaign.json",
+      "captureRef": "specs/component-repairs/carte-categorie/run-001/captures/before/",
+      "surfaceCount": 10,
+      "artifactCount": 41,
+      "complete": true
+    },
+    "sectionCaptureSet": {
+      "campaignRef": "specs/component-repairs/categories-principales/run-001/campaign.json",
+      "captureRef": "specs/component-repairs/categories-principales/run-001/captures/before/",
+      "surfaceCount": 19,
+      "artifactCount": 77,
+      "complete": true
+    }
+  },
+  "approvedOrder": [
+    "carte-categorie",
+    "categories-principales"
+  ],
+  "approvedPlans": [
+    {
+      "campaignRef": "specs/component-repairs/carte-categorie/run-001/campaign.json",
+      "dryRunRef": "specs/component-repairs/carte-categorie/run-001/receipts/dry-run.json",
+      "operationId": "adapt-carte-categorie-existing-set",
+      "expectedCreatedNodes": [],
+      "expectedChangedNodes": [
+        "2495:6770",
+        "2495:6762",
+        "2495:6763"
+      ],
+      "approvedChanges": [
+        "preserve the CarteCategorie set and both Style member ids and keys",
+        "preserve full-width behavior: clear the inherited Superpose master minWidth=744; add no component master minWidth, maxWidth or fixed runtime width",
+        "keep section-owned card instances FILL and adapt only internal Fill/Hug, text growth and non-clipping behavior",
+        "preserve media behavior and bind only the approved existing spacing and image-height primitives"
+      ],
+      "expectedPropagatedDeltaCount": 7,
+      "pageWrites": [],
+      "childWrites": []
+    },
+    {
+      "campaignRef": "specs/component-repairs/categories-principales/run-001/campaign.json",
+      "dryRunRef": "specs/component-repairs/categories-principales/run-001/receipts/dry-run.json",
+      "operationId": "adapt-categories-principales-existing-set",
+      "expectedCreatedNodes": [],
+      "expectedChangedNodes": [
+        "2115:4277",
+        "2115:4273",
+        "2115:4274",
+        "2115:4275",
+        "2495:7122"
+      ],
+      "approvedChanges": [
+        "preserve the CategoriesPrincipales set, four member ids and keys, and Style by Colonnes axes",
+        "preserve full-width section usages and direct card instances",
+        "enable governed wrap on the four existing members without creating a responsive state",
+        "keep every direct card instance FILL and give the section-owned instances a 320 px wrap floor so mobile stacks one full-width card per row",
+        "preserve the existing 64 px desktop spacing through the existing space/64 primitive",
+        "write only layoutSizingHorizontal=FILL and minWidth=320 on the ten section-owned direct CarteCategorie instances; write no card internals, shared child or Page"
+      ],
+      "expectedPropagatedDeltaCount": 7,
+      "pageWrites": [],
+      "childWrites": []
+    }
+  ],
+  "fullWidthFacts": {
+    "directCardInstances": "All direct CarteCategorie instances in the four existing CategoriesPrincipales members have layoutSizingHorizontal=FILL in the fresh BEFORE facts.",
+    "sectionUsages": "All seven CategoriesPrincipales usages have layoutSizingHorizontal=FILL in the fresh BEFORE facts.",
+    "widthOwnership": "CategoriesPrincipales controls column distribution; CarteCategorie fills the width allocated by its parent.",
+    "forbiddenWidthChanges": [
+      "non-null CarteCategorie master minWidth",
+      "maxWidth",
+      "fixed runtime width"
+    ],
+    "historicalConstraintRemoval": "Superpose master minWidth=744 is cleared; this removes a component-level constraint. Section-owned card instances keep FILL and receive a 320 px wrap floor solely to trigger 1/2/3-column reflow. The native targetAspectRatio is read-only and is not mutated."
+  },
+  "rollback": {
+    "figmaRecoveryPoint": "Figma version 2392091518820622154 plus complete BEFORE captures for every declared surface",
+    "cardSourceBackupRef": "refs/codex/backups/029-carte-categorie-responsive-h3-v8",
+    "sectionSourceBackupRef": "refs/codex/backups/029-categories-principales-responsive-h3-v8",
+    "stopRule": "Any pin, operation, creation, boundary or visual-matrix drift stops before the next campaign; no Page compensation is permitted."
+  },
+  "blastRadius": {
+    "writableExistingNodeIds": [
+      "2495:6770",
+      "2495:6762",
+      "2495:6763",
+      "2115:4277",
+      "2115:4273",
+      "2115:4274",
+      "2115:4275",
+      "2495:7122"
+    ],
+    "expectedCreatedNodeCount": 0,
+    "readOnlyUsageNodeIds": [
+      "2115:4392",
+      "2115:4278",
+      "2115:4438",
+      "2115:4297",
+      "2115:4411",
+      "2115:4324",
+      "2115:4364"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "authorizes": [
+    "Execute the CarteCategorie campaign first, then verify before CategoriesPrincipales.",
+    "Execute CategoriesPrincipales only if the first campaign stays inside its receipt and protected-fact boundary."
+  ],
+  "forbids": [
+    "Adding a card width constraint",
+    "Creating a state, member, variable or Text Style",
+    "Writing a Page, nested card internals or shared child",
+    "Executing the section campaign before the card campaign is verified"
+  ],
+  "liveMutationStatus": "verified-second-pass-noop",
+  "figmaWrites": [
+    "Attempt 1 changed only the declared CarteCategorie set and members, failed the 320/390 Superpose accessibility proof, and was restored to the complete BEFORE geometry before the clean retry.",
+    "CarteCategorie clean apply cleared the inherited Superpose master minWidth, restored responsive Fill/Hug behavior, and passed 24/24 card scenarios.",
+    "CategoriesPrincipales apply enabled wrap, preserved FILL on all ten direct cards, added the section-owned 320 px wrap floor, and passed 24/24 section scenarios.",
+    "Both second passes were strict no-op with createdNodeIds=[], changedNodeIds=[], pageWrites=[] and childWrites=[]."
+  ],
+  "pageWrites": [],
+  "childWrites": [],
+  "conversationEvidence": "The owner approved the corrected full-width option with the explicit message 'GO PUT1'."
+}

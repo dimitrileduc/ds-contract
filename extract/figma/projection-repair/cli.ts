@@ -123,7 +123,7 @@ async function capture(campaignPath: string, phase: CapturePhase): Promise<void>
     if (current.state !== 'verified') fail(`capture-idempotence requires verified, got ${current.state}`);
     requireConfiguredApplyReceipt(current, 'second');
   }
-  const captured = await captureCampaign(current, phase, workflowPaths(current).evidenceRoot, figmaToken());
+  const captured = await captureCampaign(current, phase, workflowPaths(current).captureRoot, figmaToken());
   if (!captured.capture.complete) fail(`capture-${phase} is incomplete; no transition or mutation is allowed`, 1);
   writeCampaign(campaignPath, captured.campaign);
   console.log(`projection:repair ${phase} capture complete — ${captured.capture.artifacts.length} artifacts, ${captured.capture.imageFingerprints.length} image fingerprints, ${captured.capture.instanceLinks.length} instance links`);

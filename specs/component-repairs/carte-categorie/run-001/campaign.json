@@ -1,0 +1,4021 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "figma-responsive-carte-categorie-run-001",
+  "featureId": "029-figma-responsive-categories",
+  "runId": "run-001",
+  "freshCampaign": {
+    "status": "fresh",
+    "supersedesRun": null,
+    "historicalContextRuns": [],
+    "copiedExecutionEvidence": [],
+    "reusePolicy": "historical-context-only; never copy audit, capture, receipt or verify artifacts"
+  },
+  "scopePolicy": {
+    "cardTarget": "mutable-under-fresh-whole-file-exclusivity-proof",
+    "exclusivityEvidenceRef": "specs/029-figma-responsive-categories/inventory/H1-card-exclusivity.json",
+    "onExclusivityFailure": "out-of-scope/owner-decision",
+    "pageUsages": "read-only-by-position",
+    "sharedChildrenOtherThanTarget": "protected-read-only",
+    "forbiddenWrites": [
+      "Page",
+      "section-master",
+      "section-member",
+      "shared-child"
+    ]
+  },
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "shared-component",
+    "evidenceRoot": "specs/component-repairs/carte-categorie/run-001",
+    "ownerDecisionRoot": "specs/029-figma-responsive-categories/decisions",
+    "comparisonPath": "specs/component-repairs/carte-categorie/run-001/verify/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/carte-categorie/run-001/receipts/apply-first.json",
+      "second": "specs/component-repairs/carte-categorie/run-001/receipts/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ArrowRight",
+      "ds.button"
+    ],
+    "sharedDependencies": [
+      "ds.categories-principales"
+    ]
+  },
+  "artifactRoots": {
+    "audit": "specs/component-repairs/carte-categorie/run-001/audit.json",
+    "captures": {
+      "before": "specs/component-repairs/carte-categorie/run-001/captures/before",
+      "after": "specs/component-repairs/carte-categorie/run-001/captures/after",
+      "idempotence": "specs/component-repairs/carte-categorie/run-001/captures/idempotence"
+    },
+    "receipts": "specs/component-repairs/carte-categorie/run-001/receipts",
+    "verify": "specs/component-repairs/carte-categorie/run-001/verify",
+    "dryRun": "specs/component-repairs/carte-categorie/run-001/receipts/dry-run.json",
+    "bridgeScripts": {
+      "first": "specs/component-repairs/carte-categorie/run-001/bridge-first.js",
+      "second": "specs/component-repairs/carte-categorie/run-001/bridge-second.js"
+    }
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2392091518820622154",
+    "fileName": "Piqueray (Copy)",
+    "capturedAt": "2026-08-26T17:41:08Z",
+    "pinStatus": "fresh read-only pin for pre-H3 snapshot/preflight/capture; live apply must revalidate exact pin"
+  },
+  "authorityRefs": [
+    "specs/029-figma-responsive-categories/inventory/worktree-pin.json",
+    "specs/029-figma-responsive-categories/inventory/docs-first-receipt.md",
+    "specs/029-figma-responsive-categories/spec.md",
+    "specs/029-figma-responsive-categories/plan.md",
+    "specs/029-figma-responsive-categories/contracts/figma-design-decision.md",
+    "specs/029-figma-responsive-categories/contracts/non-destructive-mutation.md",
+    "specs/029-figma-responsive-categories/contracts/proof-ledger.md",
+    "specs/023-categories-gouvernees/gates/gate-c-contrats.json"
+  ],
+  "targets": [
+    {
+      "targetId": "carte-categorie",
+      "kind": "direct-canvas",
+      "masterNodeId": "2495:6770",
+      "variantNodeIds": [
+        "2495:6762",
+        "2495:6763"
+      ],
+      "reference": {
+        "referenceId": "carte-categorie-023-historical-context",
+        "sourceKind": "historical-version",
+        "figmaVersionId": "2391982289745917433",
+        "subjectNodeId": "2495:6770",
+        "visualFacts": [
+          "existing Style component set with Superpose and Empile members",
+          "existing image paints, texts and nested CTA/icon identities",
+          "mutable only if the fresh whole-file audit proves a single composer"
+        ],
+        "decisionRef": "specs/023-categories-gouvernees/gates/gate-c-contrats.json"
+      },
+      "affectedSurfaceIds": [
+        "carte-categorie:master",
+        "carte-categorie:variant:superpose",
+        "carte-categorie:variant:empile",
+        "carte-categorie:usage:2115-4392",
+        "carte-categorie:usage:2115-4278",
+        "carte-categorie:usage:2115-4438",
+        "carte-categorie:usage:2115-4297",
+        "carte-categorie:usage:2115-4411",
+        "carte-categorie:usage:2115-4324",
+        "carte-categorie:usage:2115-4364"
+      ],
+      "projectionDefectIds": [
+        "responsive-existing-set-topology",
+        "responsive-card-internal-adaptation",
+        "responsive-propagated-usage-deltas"
+      ],
+      "allowedFields": [
+        "componentSetTopology",
+        "layoutMode",
+        "layoutWrap",
+        "layoutSizingHorizontal",
+        "layoutSizingVertical",
+        "minWidth",
+        "minHeight",
+        "maxHeight",
+        "itemSpacing",
+        "counterAxisSpacing",
+        "padding",
+        "boundVariables",
+        "fontSize",
+        "lineHeight",
+        "textAlignHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "variant-cardinality",
+        "variant-names",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity",
+        "component-set-topology",
+        "historical-member-identity",
+        "component-properties",
+        "temporary-typography",
+        "shared-child-facts"
+      ],
+      "allowedFactChanges": [
+        "geometry",
+        "responsive-overflow",
+        "primitive-bindings"
+      ],
+      "expectedMasterName": "CarteCategorie",
+      "expectedVariantNames": [
+        "Style=Superpose",
+        "Style=Empile"
+      ],
+      "responsiveWidths": [
+        320,
+        390,
+        834,
+        1200,
+        1440,
+        1728
+      ],
+      "ownerDecision": "accepted",
+      "responsive": {
+        "componentSetTopology": {
+          "propertyName": "Style",
+          "setName": "CarteCategorie",
+          "setIdentityPolicy": "existing",
+          "setNodeId": "2495:6770",
+          "setComponentKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
+          "defaultPresentationValue": "Superpose",
+          "authoringLayout": {
+            "direction": "VERTICAL",
+            "gap": 64,
+            "order": [
+              "Superpose",
+              "Empile"
+            ]
+          },
+          "historicalMember": {
+            "presentationValue": "Superpose",
+            "nodeId": "2495:6762",
+            "componentKey": "715ab63ed657ce8217be6b55bbcc5f3101912fbd",
+            "declaredName": "Style=Superpose",
+            "authoringPreviewWidth": 744
+          },
+          "preservedMembers": [
+            {
+              "presentationValue": "Empile",
+              "nodeId": "2495:6763",
+              "componentKey": "a65093a506e9250af2afecbe142e1a368fea1256",
+              "declaredName": "Style=Empile",
+              "authoringPreviewWidth": 743
+            }
+          ],
+          "createdMembers": [],
+          "expectedMemberNames": [
+            "Style=Superpose",
+            "Style=Empile"
+          ]
+        },
+        "expectedCreates": [],
+        "authorizedTargetNodeIds": [
+          "2495:6770",
+          "2495:6762",
+          "2495:6763"
+        ],
+        "usageSurfaces": [
+          {
+            "surfaceId": "carte-categorie:usage:2115-4392",
+            "nodeId": "2115:4392",
+            "positionPath": "210:325/210:326/210:328/2496:7189/2115:4392",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4278",
+            "nodeId": "2115:4278",
+            "positionPath": "210:325/226:112/226:114/2496:7190/2115:4278",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4438",
+            "nodeId": "2115:4438",
+            "positionPath": "210:325/230:376/230:378/2496:7191/2115:4438",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4297",
+            "nodeId": "2115:4297",
+            "positionPath": "210:325/387:720/387:722/2496:7192/2115:4297",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4411",
+            "nodeId": "2115:4411",
+            "positionPath": "210:325/237:969/237:970/237:971/2496:7193/2115:4411",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4324",
+            "nodeId": "2115:4324",
+            "positionPath": "210:325/237:705/237:707/2496:7194/2115:4324",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4364",
+            "nodeId": "2115:4364",
+            "positionPath": "210:325/249:1510/2496:7195/2115:4364",
+            "writePolicy": "read-only"
+          }
+        ],
+        "expectedPropagatedDeltas": [
+          {
+            "surfaceId": "carte-categorie:usage:2115-4392",
+            "nodeId": "2115:4392",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4278",
+            "nodeId": "2115:4278",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4438",
+            "nodeId": "2115:4438",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4297",
+            "nodeId": "2115:4297",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4411",
+            "nodeId": "2115:4411",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4324",
+            "nodeId": "2115:4324",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          },
+          {
+            "surfaceId": "carte-categorie:usage:2115-4364",
+            "nodeId": "2115:4364",
+            "sourceNodeId": "2495:6770",
+            "fact": "responsive-card-internal-layout",
+            "attribution": "card-master-to-nested-instances"
+          }
+        ],
+        "contentFixtures": [
+          {
+            "fixtureId": "normal",
+            "textValues": {}
+          },
+          {
+            "fixtureId": "long",
+            "textValues": {},
+            "textValuesByPresentation": {
+              "Superpose": {
+                "1/0/0/0": "UNE CATÉGORIE AU TITRE VOLONTAIREMENT TRÈS LONG POUR VÉRIFIER LE RETOUR À LA LIGNE",
+                "1/0/0/1": "Cette description volontairement plus longue vérifie que tout le contenu reste accessible, que la carte grandit sans couper le texte et que les cartes voisines gardent une hauteur cohérente."
+              },
+              "Empile": {
+                "1/0": "UNE CATÉGORIE AU TITRE VOLONTAIREMENT TRÈS LONG POUR VÉRIFIER LE RETOUR À LA LIGNE",
+                "1/1": "Cette description volontairement plus longue vérifie que tout le contenu reste accessible, que la carte grandit sans couper le texte et que les cartes voisines gardent une hauteur cohérente."
+              }
+            }
+          }
+        ],
+        "presentationScenarios": [
+          {
+            "scenarioId": "320-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 320,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 320,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-empile-normal",
+            "presentationValue": "Empile",
+            "width": 320,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-empile-long",
+            "presentationValue": "Empile",
+            "width": 320,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 390,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 390,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-empile-normal",
+            "presentationValue": "Empile",
+            "width": 390,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-empile-long",
+            "presentationValue": "Empile",
+            "width": 390,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 834,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 834,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-empile-normal",
+            "presentationValue": "Empile",
+            "width": 834,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-empile-long",
+            "presentationValue": "Empile",
+            "width": 834,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 1200,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 1200,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-empile-normal",
+            "presentationValue": "Empile",
+            "width": 1200,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-empile-long",
+            "presentationValue": "Empile",
+            "width": 1200,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 1440,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 1440,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-empile-normal",
+            "presentationValue": "Empile",
+            "width": 1440,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-empile-long",
+            "presentationValue": "Empile",
+            "width": 1440,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-superpose-normal",
+            "presentationValue": "Superpose",
+            "width": 1728,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-superpose-long",
+            "presentationValue": "Superpose",
+            "width": 1728,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-empile-normal",
+            "presentationValue": "Empile",
+            "width": 1728,
+            "height": 900,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-empile-long",
+            "presentationValue": "Empile",
+            "width": 1728,
+            "height": 900,
+            "fixtureId": "long",
+            "expectedOverflow": false
+          }
+        ],
+        "presentationLayouts": [
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "HUG",
+              "primaryAxisAlignItems": "MAX",
+              "counterAxisAlignItems": "MIN",
+              "clipsContent": false,
+              "minWidth": null
+            }
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0",
+            "properties": {
+              "layoutMode": "HORIZONTAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0/0",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0/0/0",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0/0/1",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "HUG",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "0",
+            "properties": {
+              "layoutMode": "HORIZONTAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "1",
+            "properties": {
+              "layoutMode": "VERTICAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "clipsContent": false
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "1/0",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "1/1",
+            "properties": {
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "textAutoResize": "HEIGHT"
+            }
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "2",
+            "properties": {
+              "layoutMode": "HORIZONTAL",
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "clipsContent": false
+            }
+          }
+        ],
+        "primitiveBindings": [
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "",
+            "property": "minHeight",
+            "variableId": "VariableID:2309:4426",
+            "variableName": "size/carte/categorie-image",
+            "resolvedValue": 418
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "property": "paddingTop",
+            "variableId": "VariableID:2027:971",
+            "variableName": "space/32",
+            "resolvedValue": 32
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "property": "paddingRight",
+            "variableId": "VariableID:2027:971",
+            "variableName": "space/32",
+            "resolvedValue": 32
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "property": "paddingBottom",
+            "variableId": "VariableID:2027:971",
+            "variableName": "space/32",
+            "resolvedValue": 32
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "property": "paddingLeft",
+            "variableId": "VariableID:2027:971",
+            "variableName": "space/32",
+            "resolvedValue": 32
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2183:7967",
+            "variableName": "space/8",
+            "resolvedValue": 8
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2027:970",
+            "variableName": "space/16",
+            "resolvedValue": 16
+          },
+          {
+            "presentationValue": "Superpose",
+            "nodePath": "1/0/0",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2183:7967",
+            "variableName": "space/8",
+            "resolvedValue": 8
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2027:971",
+            "variableName": "space/32",
+            "resolvedValue": 32
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "0",
+            "property": "height",
+            "variableId": "VariableID:2309:4426",
+            "variableName": "size/carte/categorie-image",
+            "resolvedValue": 418
+          },
+          {
+            "presentationValue": "Empile",
+            "nodePath": "1",
+            "property": "itemSpacing",
+            "variableId": "VariableID:2027:970",
+            "variableName": "space/16",
+            "resolvedValue": 16
+          }
+        ],
+        "typographyOverrides": []
+      }
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "carte-categorie:master",
+      "targetId": "carte-categorie",
+      "role": "master",
+      "nodeId": "2495:6770",
+      "pageComposition": null,
+      "structuralPath": "DS · Molécules/023 · CarteCategorie/CarteCategorie",
+      "expectedSize": {
+        "width": 3743,
+        "height": 4022
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:variant:superpose",
+      "targetId": "carte-categorie",
+      "role": "variant",
+      "nodeId": "2495:6762",
+      "pageComposition": null,
+      "structuralPath": "Style=Superpose",
+      "expectedSize": {
+        "width": 744,
+        "height": 418
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:variant:empile",
+      "targetId": "carte-categorie",
+      "role": "variant",
+      "nodeId": "2495:6763",
+      "pageComposition": null,
+      "structuralPath": "Style=Empile",
+      "expectedSize": {
+        "width": 743,
+        "height": 622
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4392",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4392",
+      "pageComposition": "Pages/Accueil/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/210:326/210:328/2496:7189/2115:4392",
+      "expectedSize": {
+        "width": 1550,
+        "height": 418
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4278",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4278",
+      "pageComposition": "Pages/Portes de garage/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/226:112/226:114/2496:7190/2115:4278",
+      "expectedSize": {
+        "width": 1550,
+        "height": 418
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4438",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4438",
+      "pageComposition": "Pages/Portes de garage résidentielles/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/230:376/230:378/2496:7191/2115:4438",
+      "expectedSize": {
+        "width": 1550,
+        "height": 622
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4297",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4297",
+      "pageComposition": "Pages/Portes de garage industrielles/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/387:720/387:722/2496:7192/2115:4297",
+      "expectedSize": {
+        "width": 1550,
+        "height": 649
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4411",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4411",
+      "pageComposition": "Pages/Portes d’entrée/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/237:969/237:970/237:971/2496:7193/2115:4411",
+      "expectedSize": {
+        "width": 1550,
+        "height": 622
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4324",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4324",
+      "pageComposition": "Pages/Motorisation/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/237:705/237:707/2496:7194/2115:4324",
+      "expectedSize": {
+        "width": 1550,
+        "height": 524.6649169921875
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4364",
+      "targetId": "carte-categorie",
+      "role": "shared-consumer",
+      "nodeId": "2115:4364",
+      "pageComposition": "Pages/Dépannage-SAV/Container · CategoriesPrincipales",
+      "structuralPath": "210:325/249:1510/2496:7195/2115:4364",
+      "expectedSize": {
+        "width": 1550,
+        "height": 649
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [
+    {
+      "consumerId": "odoo-authoring-023",
+      "dependencyId": "ds.carte-categorie",
+      "usage": "odoo",
+      "evidenceRefs": [
+        "specs/023-categories-gouvernees/gates/gate-c-contrats.json",
+        "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.structure.json",
+        "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.structure.json"
+      ],
+      "status": "revalidated",
+      "decisionRef": "specs/029-figma-responsive-categories/decisions/H3-mutation.json"
+    }
+  ],
+  "allowedOperations": [
+    {
+      "operationId": "adapt-carte-categorie-existing-set",
+      "targetId": "carte-categorie",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2495:6770",
+      "structuralPath": "",
+      "preconditions": [
+        {
+          "field": "H1.status",
+          "equals": "approved"
+        },
+        {
+          "field": "H2.status",
+          "equals": "approved"
+        },
+        {
+          "field": "H3.status",
+          "equals": "approved"
+        }
+      ],
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "protectedChildWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2495:6770",
+      "2495:6762",
+      "2495:6763"
+    ],
+    "expectedChangedNodeIds": [
+      "2495:6770",
+      "2495:6762",
+      "2495:6763"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2115:4392",
+      "2115:4278",
+      "2115:4438",
+      "2115:4297",
+      "2115:4411",
+      "2115:4324",
+      "2115:4364"
+    ],
+    "protectedDependencyNodeIds": [
+      "2115:4277"
+    ],
+    "protectedChildNodeIds": [
+      "6:104",
+      "9:206",
+      "230:585",
+      "230:599"
+    ],
+    "protectedChildPaths": [
+      "**/ArrowRight",
+      "**/Bouton",
+      "**/Pdf",
+      "**/Download"
+    ],
+    "allowedCreateRoles": [],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "captureSets": {
+    "before": {
+      "captureSetId": "figma-responsive-carte-categorie-run-001-before-2392091518820622154",
+      "phase": "before",
+      "fileVersionId": "2392091518820622154",
+      "artifacts": [
+        {
+          "artifactId": "carte-categorie:master:structure",
+          "surfaceId": "carte-categorie:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_master.structure.json",
+          "sha256": "64176f7f2a5076e88bd923eb4753a209756f237ee64816f7c5183f53362bf941",
+          "width": null,
+          "height": null,
+          "byteLength": 71554,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:properties",
+          "surfaceId": "carte-categorie:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_master.properties.json",
+          "sha256": "dc0af4d62e1ee6a27499d4cc9216ec73cbe88ea23adc2fc105bc7b6fc03876ed",
+          "width": null,
+          "height": null,
+          "byteLength": 7503,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:facts",
+          "surfaceId": "carte-categorie:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_master.facts.json",
+          "sha256": "45caca888eb26ceda20310228a8e6167951d14bd59bad10a0d0a2d4e919d9cec",
+          "width": null,
+          "height": null,
+          "byteLength": 50590,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:png",
+          "surfaceId": "carte-categorie:master",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_master.png",
+          "sha256": "2b42bf20adabc0aadc82b57fc6bfc6eb905214bbbfa046b20b173f8ca1c3e676",
+          "width": 3743,
+          "height": 4022,
+          "byteLength": 1270813,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:structure",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_superpose.structure.json",
+          "sha256": "adcb7b77bd18849c71533bdc37877b6e063a0f8033fee86782eb79b3f3bda994",
+          "width": null,
+          "height": null,
+          "byteLength": 21611,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:properties",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_superpose.properties.json",
+          "sha256": "24fc265cdceaa377d05d9765c36356a81a93a1839a1e8c6474b4abcb9d77ba7f",
+          "width": null,
+          "height": null,
+          "byteLength": 48,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:facts",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_superpose.facts.json",
+          "sha256": "22e10e0c023be30bd56073ef0fb0f5e706745b3541118c37321cd5ca5888ace9",
+          "width": null,
+          "height": null,
+          "byteLength": 13988,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:png",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_superpose.png",
+          "sha256": "aa0b80509e4e99370d2a94cc25b6dd40e397a4fff347fba39db5cec4af02d9bf",
+          "width": 744,
+          "height": 418,
+          "byteLength": 526064,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:structure",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_empile.structure.json",
+          "sha256": "3384a64b60422dbd16d4712512a7bc7a1693f7b65a73a6dd7baaef08ad166bac",
+          "width": null,
+          "height": null,
+          "byteLength": 40325,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:properties",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_empile.properties.json",
+          "sha256": "5105b0ff747b2f74c7587f69973e441f17462fddba07c197dbdb47dac0cb4c45",
+          "width": null,
+          "height": null,
+          "byteLength": 6857,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:facts",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_empile.facts.json",
+          "sha256": "31916c8292aaa034b9a86281eddbacd105fa6d37b2d52c0ffac1964e691cab18",
+          "width": null,
+          "height": null,
+          "byteLength": 37901,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:png",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_variant_empile.png",
+          "sha256": "7bb901ea3582f8cdd69bdb3f701fd1d0dbcf333112e7440acc3ffb055511af6f",
+          "width": 743,
+          "height": 622,
+          "byteLength": 583841,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:structure",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4392.structure.json",
+          "sha256": "d598bd2f36a9992daec67d712fa463c8592bc5656278169c8fb3d214d65cbba6",
+          "width": null,
+          "height": null,
+          "byteLength": 53564,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:properties",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4392.properties.json",
+          "sha256": "7eb91beba89269742eb226bc644fcb1236722d4e28811d15adc05fafa4166f22",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:facts",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4392.facts.json",
+          "sha256": "aabe3a89f2ef8e30cc0bacfe1641098b91b4129d887176ae409a4299228e0091",
+          "width": null,
+          "height": null,
+          "byteLength": 34376,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:png",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4392.png",
+          "sha256": "8d15405646414efaf362c2830d27ad8773cfc00cf7a6d68d3d7e8bc87bf37571",
+          "width": 1552,
+          "height": 418,
+          "byteLength": 1024924,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:structure",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4278.structure.json",
+          "sha256": "6011f7bcb1fa9eaa0befcf3b79566e47cc99d2a3f9d12f0d78206dae08f4dd31",
+          "width": null,
+          "height": null,
+          "byteLength": 52679,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:properties",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4278.properties.json",
+          "sha256": "17111a81bf21deaccc40cab90f91dfba2176de3e479f3198b3560f10479ea165",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:facts",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4278.facts.json",
+          "sha256": "2e2fc507c3f8344dddb7f6fa593dd7cafe200c22dac7ef3bef45fd3342c12e4f",
+          "width": null,
+          "height": null,
+          "byteLength": 32333,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:png",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4278.png",
+          "sha256": "46eced7e33325bd24509bc548018049d7050354c6179053c88e57cfc16a02d72",
+          "width": 1552,
+          "height": 418,
+          "byteLength": 1007904,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:structure",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4438.structure.json",
+          "sha256": "6b4097eb717955f1f40a09b5ed0221d1115ffb2302afaa13afe1d002308fa25b",
+          "width": null,
+          "height": null,
+          "byteLength": 94151,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:properties",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4438.properties.json",
+          "sha256": "31a5b6e2a8de0fd8f33436b1c9f6b71756f2745d6f78adfc11a893ee586195c5",
+          "width": null,
+          "height": null,
+          "byteLength": 15500,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:facts",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4438.facts.json",
+          "sha256": "c01cc301bb74eb4e7a8bca1e3f12d8098aad14310220fd30d4eea05e05957eb4",
+          "width": null,
+          "height": null,
+          "byteLength": 79088,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:png",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4438.png",
+          "sha256": "4eac464449724317a2cd8490e8a14fa74cfd2cebd73c337094eaaeca3b8de7af",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 1146346,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:structure",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4297.structure.json",
+          "sha256": "10d9802f490103c0fc016097284761eb9f1449fa8a71f1916be4111aab5cd3d4",
+          "width": null,
+          "height": null,
+          "byteLength": 92707,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:properties",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4297.properties.json",
+          "sha256": "311c35081895e05bca48a96a73d704f66d0da68e86057e8ddc6b4c92e6fbc37a",
+          "width": null,
+          "height": null,
+          "byteLength": 15648,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:facts",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4297.facts.json",
+          "sha256": "d2f7c799e97dc9bf8762b61d6665ed36fc4a2c3f924254bf9296e8791315d755",
+          "width": null,
+          "height": null,
+          "byteLength": 76784,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:png",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4297.png",
+          "sha256": "9f92912f93a44bea2d8cfb014d82bd8dcce883920a8158ac6bc31030d720b290",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 949517,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:structure",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4411.structure.json",
+          "sha256": "b1845f62ce9bb08deeab5441d3aca5ad685edd63f49f9aa5a5d8666157506e79",
+          "width": null,
+          "height": null,
+          "byteLength": 94566,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:properties",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4411.properties.json",
+          "sha256": "3d3df42003436668720f8cac0612f4fa669301397d342c25e5e8979de4aa4420",
+          "width": null,
+          "height": null,
+          "byteLength": 15429,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:facts",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4411.facts.json",
+          "sha256": "d0e7b21bc15c2d3f14d5a7cbe189db03778309c11b24d2716eac2a1f3273c5b4",
+          "width": null,
+          "height": null,
+          "byteLength": 79135,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:png",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4411.png",
+          "sha256": "6794672d6fd38d6523b97754002dbe2923afe4e262daae5ff29afb7ae34c917c",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 640071,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:structure",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4324.structure.json",
+          "sha256": "c25ce194fdf6c118e1a92858d526ba9ebafc10b0af7e6a6c4dbc04c61c210eb4",
+          "width": null,
+          "height": null,
+          "byteLength": 139279,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:properties",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4324.properties.json",
+          "sha256": "e9b8e71cd2cec600a47c0e1f8e0c404af4f7e5f49dd0d51de9f33f52f4d95989",
+          "width": null,
+          "height": null,
+          "byteLength": 23045,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:facts",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4324.facts.json",
+          "sha256": "d1077e2d8020e7a76d67c5cdd34b6787670681bbec5f1158a7556edeca819a10",
+          "width": null,
+          "height": null,
+          "byteLength": 112464,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:png",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4324.png",
+          "sha256": "a2b16bda252d59ee236caab8ea029675f0020f8f65e1cc421483fda283d3a432",
+          "width": 1550,
+          "height": 525,
+          "byteLength": 736874,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:structure",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4364.structure.json",
+          "sha256": "119f81b98771ff9b6413a57b6b2f3aa785c26fe58187014c903a32de07e81134",
+          "width": null,
+          "height": null,
+          "byteLength": 106598,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:properties",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4364.properties.json",
+          "sha256": "52330bfb7a5fe30fbbb30114d6a6dcd17f9a09bf18df27f4f2b2f8e250adca0a",
+          "width": null,
+          "height": null,
+          "byteLength": 15608,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:facts",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4364.facts.json",
+          "sha256": "819f023cdbb5551df05b8e3f9c0775f39b18a918a6db20d656e820985f598a1e",
+          "width": null,
+          "height": null,
+          "byteLength": 96096,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:png",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_usage_2115-4364.png",
+          "sha256": "b5da9868cafbfbff3fc3b276b2badacd93c352d96ca0516cbfe996d4cba4ab92",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 1138564,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:presentation-scenarios:before",
+          "surfaceId": "carte-categorie:master",
+          "kind": "report",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/before/presentation-scenarios.json",
+          "sha256": "2955fdcf8bc72c01f59733df7a4db97793a14e01f44850061e10f7427b416832",
+          "width": null,
+          "height": null,
+          "byteLength": 14952,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "031815a6a17cfa62111fa319fc34487ea36b37b9",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "a578caed28b176c68c12383f883357df7167749a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4204;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4205;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "86d495b8740234d36d9148c355e6a89a89dd1a94",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4206;2495:6764",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "715170bb427ebdecc5438dc0b056ebf3c862099e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cae469674a682ce067e565040d966e4911424eb7",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3e24b06ec466d7c99aca62a75b16115cc4a15d3a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4278",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4438",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "1afe08e99eab6ae2879896db276d127e9df50a13bec19d628cb5a0bc7f150d0d"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "ec763fb625e6611a829d6af02490550dd550450aaeb55cf1b11ca91e3a8171f3"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4297",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "7f36dc6ea9ab1028db5258c81edea53761106aad12c470ffb21563ad5994f43d"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "e0912335e2c3485e1905703c69201f5d05c25f1f06e6c87ccc5d19aa6b8a9ba8"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4411",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "d88a33e8bcd6ad92ece5242faef843dc8649731f245f1cbabcdc3c7269aaac0d"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "caf5714b70a98d87f780615dc3494630acee574be032a53e257de2cae66a77a8"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4324",
+          "masterNodeId": "2115:4275",
+          "structuralPath": "",
+          "overrideDigest": "ad5d5dd0e471a4c27d8569bf06f96fb1d42ad3ddcae7d64c47cc68d55680653b"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "f382fa791405846ec16d450ec171b954e17d0976d372aaf79323d0ab29d11aed"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "f448ffd2d116264c413a061bdde4f5b4f5b8b8e9b228d8a4a056912fed84ea05"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "2",
+          "overrideDigest": "4251e34040963da41f9a39eb211c1790261f429c448018327810c010d6a1f23e"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4364",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "acd858422792c328bde33811e10d7f769a49f1a3c68eb20f43886860103fff07"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "434f3ade513cea13c7b438a7392044eb68caf8c5e2b8bf16f43ec970901e88dc"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769",
+          "masterNodeId": "28:114",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "80c14e3f242dfa54d97f884289960117821fb0bd5b0b0633bf488336aa6437b3"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6162",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6165",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "after": {
+      "captureSetId": "figma-responsive-carte-categorie-run-001-after-2392091518820622154",
+      "phase": "after",
+      "fileVersionId": "2392094856553704310",
+      "artifacts": [
+        {
+          "artifactId": "carte-categorie:master:structure",
+          "surfaceId": "carte-categorie:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.structure.json",
+          "sha256": "69b89b90e61bd4eb39caef2108d83825d9eb24a36372973800829ab61264d097",
+          "width": null,
+          "height": null,
+          "byteLength": 71477,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:properties",
+          "surfaceId": "carte-categorie:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.properties.json",
+          "sha256": "dc0af4d62e1ee6a27499d4cc9216ec73cbe88ea23adc2fc105bc7b6fc03876ed",
+          "width": null,
+          "height": null,
+          "byteLength": 7503,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:facts",
+          "surfaceId": "carte-categorie:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.facts.json",
+          "sha256": "b675b22ded6c2465fd20090c8cef090be0adfddcd0302b763368738cfc8a2eaa",
+          "width": null,
+          "height": null,
+          "byteLength": 50579,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:png",
+          "surfaceId": "carte-categorie:master",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.png",
+          "sha256": "476e6b416503dc789386cd0a95b291593b1f7b69ea88c6e922833f873aab3eb5",
+          "width": 744,
+          "height": 1104,
+          "byteLength": 1113091,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:structure",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.structure.json",
+          "sha256": "3dc89b8f20da863bf4a3da8291882f089c3ee19af19c7392a4eb9e152e413b9f",
+          "width": null,
+          "height": null,
+          "byteLength": 21554,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:properties",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.properties.json",
+          "sha256": "24fc265cdceaa377d05d9765c36356a81a93a1839a1e8c6474b4abcb9d77ba7f",
+          "width": null,
+          "height": null,
+          "byteLength": 48,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:facts",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.facts.json",
+          "sha256": "7f1d403b38e886528a55156a69b1c0b5b9996b16fe81ad0138e1a18148a4e5bf",
+          "width": null,
+          "height": null,
+          "byteLength": 13986,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:png",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.png",
+          "sha256": "aa0b80509e4e99370d2a94cc25b6dd40e397a4fff347fba39db5cec4af02d9bf",
+          "width": 744,
+          "height": 418,
+          "byteLength": 526064,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:structure",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.structure.json",
+          "sha256": "cec8dcdc777acd4b2b00c8b51b57427eeeface9b7de01d1aafcadbde706d24ed",
+          "width": null,
+          "height": null,
+          "byteLength": 40315,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:properties",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.properties.json",
+          "sha256": "5105b0ff747b2f74c7587f69973e441f17462fddba07c197dbdb47dac0cb4c45",
+          "width": null,
+          "height": null,
+          "byteLength": 6857,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:facts",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.facts.json",
+          "sha256": "71dcc8ce966647cb2f7f586699d48c079e4ff46f339aeff8ea9ba5570b72d4dc",
+          "width": null,
+          "height": null,
+          "byteLength": 37893,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:png",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.png",
+          "sha256": "7bb901ea3582f8cdd69bdb3f701fd1d0dbcf333112e7440acc3ffb055511af6f",
+          "width": 743,
+          "height": 622,
+          "byteLength": 583841,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:structure",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.structure.json",
+          "sha256": "9a8b02b52041edbd16d62e646cd06c993a9f3988e4926846c219129ce3129746",
+          "width": null,
+          "height": null,
+          "byteLength": 53728,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:properties",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.properties.json",
+          "sha256": "7eb91beba89269742eb226bc644fcb1236722d4e28811d15adc05fafa4166f22",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:facts",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.facts.json",
+          "sha256": "fb4e45c1b5c95a11faba9ee542e691c1da77b1896d5acfb7a5dfd11b6f343711",
+          "width": null,
+          "height": null,
+          "byteLength": 34377,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:png",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.png",
+          "sha256": "a60e864f8030abb208902d7ebf8f1070358a01912fb7915723f5204640e82b7e",
+          "width": 1550,
+          "height": 418,
+          "byteLength": 1023524,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:structure",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.structure.json",
+          "sha256": "e44c92fea432ca1e05e534115f075bdc3cf1fa3bc67269503e35408795303169",
+          "width": null,
+          "height": null,
+          "byteLength": 52843,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:properties",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.properties.json",
+          "sha256": "17111a81bf21deaccc40cab90f91dfba2176de3e479f3198b3560f10479ea165",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:facts",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.facts.json",
+          "sha256": "b3e29507a5ca7ef2211ab81bec2e19224ed616597aadb3d330f55ef8d9c516ba",
+          "width": null,
+          "height": null,
+          "byteLength": 32334,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:png",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.png",
+          "sha256": "3bf0ea4fd0c42cef30095fb9a6e1bc1642216fa682dbeb162fedc7542345e778",
+          "width": 1550,
+          "height": 418,
+          "byteLength": 1005969,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:structure",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4438.structure.json",
+          "sha256": "5a2f76df060f01abbb157eb633776ec64933191ad8d9ae210171a9115aeade12",
+          "width": null,
+          "height": null,
+          "byteLength": 94449,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:properties",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4438.properties.json",
+          "sha256": "31a5b6e2a8de0fd8f33436b1c9f6b71756f2745d6f78adfc11a893ee586195c5",
+          "width": null,
+          "height": null,
+          "byteLength": 15500,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:facts",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4438.facts.json",
+          "sha256": "9ed9ddee25948e1fce591ab9fccf810ee289696a37a3325bfa28dfb50c2c8d3a",
+          "width": null,
+          "height": null,
+          "byteLength": 79425,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:png",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4438.png",
+          "sha256": "4eac464449724317a2cd8490e8a14fa74cfd2cebd73c337094eaaeca3b8de7af",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 1146346,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:structure",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4297.structure.json",
+          "sha256": "c2f9f60b59c6b1d2a3f6d957fd5d190ff30084917e623e60cd74a2df4aebb8be",
+          "width": null,
+          "height": null,
+          "byteLength": 93005,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:properties",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4297.properties.json",
+          "sha256": "311c35081895e05bca48a96a73d704f66d0da68e86057e8ddc6b4c92e6fbc37a",
+          "width": null,
+          "height": null,
+          "byteLength": 15648,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:facts",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4297.facts.json",
+          "sha256": "17fae5d909ed66001965fa95a6c2f146bc503b1d60a3eac7a8471ca12080c4a5",
+          "width": null,
+          "height": null,
+          "byteLength": 77121,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:png",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4297.png",
+          "sha256": "9f92912f93a44bea2d8cfb014d82bd8dcce883920a8158ac6bc31030d720b290",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 949517,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:structure",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4411.structure.json",
+          "sha256": "fb3adec5d7e85019239b2367163207b0a186200e7b9a1e1c81f8110b5f6c9e5d",
+          "width": null,
+          "height": null,
+          "byteLength": 94864,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:properties",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4411.properties.json",
+          "sha256": "3d3df42003436668720f8cac0612f4fa669301397d342c25e5e8979de4aa4420",
+          "width": null,
+          "height": null,
+          "byteLength": 15429,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:facts",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4411.facts.json",
+          "sha256": "caa92fc7dd9b4c241c707bd1cc2aeb1943a1e1007e74f2f44e459ada960d5497",
+          "width": null,
+          "height": null,
+          "byteLength": 79472,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:png",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4411.png",
+          "sha256": "6794672d6fd38d6523b97754002dbe2923afe4e262daae5ff29afb7ae34c917c",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 640071,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:structure",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4324.structure.json",
+          "sha256": "ab663405e1d49efb0ef3ea5ec00809ceb10d722456ec078eb8a04d565f343a40",
+          "width": null,
+          "height": null,
+          "byteLength": 139602,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:properties",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4324.properties.json",
+          "sha256": "e9b8e71cd2cec600a47c0e1f8e0c404af4f7e5f49dd0d51de9f33f52f4d95989",
+          "width": null,
+          "height": null,
+          "byteLength": 23045,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:facts",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4324.facts.json",
+          "sha256": "ddfc07ec3a9d7a59b0538327ed59724a3dbb406988adf64c52e945a1cb034551",
+          "width": null,
+          "height": null,
+          "byteLength": 112803,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:png",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4324.png",
+          "sha256": "a2b16bda252d59ee236caab8ea029675f0020f8f65e1cc421483fda283d3a432",
+          "width": 1550,
+          "height": 525,
+          "byteLength": 736874,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:structure",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4364.structure.json",
+          "sha256": "6560ff69e42477a1cd979ec3e4443b4de72164d20b6f472ba0d7acd8bf508b6f",
+          "width": null,
+          "height": null,
+          "byteLength": 106896,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:properties",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4364.properties.json",
+          "sha256": "52330bfb7a5fe30fbbb30114d6a6dcd17f9a09bf18df27f4f2b2f8e250adca0a",
+          "width": null,
+          "height": null,
+          "byteLength": 15608,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:facts",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4364.facts.json",
+          "sha256": "4384b475e50e7cf314d668ca1802a6aaba50aa2007366824304fda94884405a4",
+          "width": null,
+          "height": null,
+          "byteLength": 96433,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:png",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4364.png",
+          "sha256": "b5da9868cafbfbff3fc3b276b2badacd93c352d96ca0516cbfe996d4cba4ab92",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 1138564,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:presentation-scenarios:after",
+          "surfaceId": "carte-categorie:master",
+          "kind": "report",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/after/presentation-scenarios.json",
+          "sha256": "ec0b3507d08742050c8710186121beca1aa71a814e950f3547f83a68c87b13b0",
+          "width": null,
+          "height": null,
+          "byteLength": 14951,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "031815a6a17cfa62111fa319fc34487ea36b37b9",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "a578caed28b176c68c12383f883357df7167749a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4204;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4205;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "86d495b8740234d36d9148c355e6a89a89dd1a94",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4206;2495:6764",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "715170bb427ebdecc5438dc0b056ebf3c862099e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cae469674a682ce067e565040d966e4911424eb7",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3e24b06ec466d7c99aca62a75b16115cc4a15d3a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4278",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4438",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "1afe08e99eab6ae2879896db276d127e9df50a13bec19d628cb5a0bc7f150d0d"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "ec763fb625e6611a829d6af02490550dd550450aaeb55cf1b11ca91e3a8171f3"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4297",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "7f36dc6ea9ab1028db5258c81edea53761106aad12c470ffb21563ad5994f43d"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "e0912335e2c3485e1905703c69201f5d05c25f1f06e6c87ccc5d19aa6b8a9ba8"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4411",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "d88a33e8bcd6ad92ece5242faef843dc8649731f245f1cbabcdc3c7269aaac0d"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "caf5714b70a98d87f780615dc3494630acee574be032a53e257de2cae66a77a8"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4324",
+          "masterNodeId": "2115:4275",
+          "structuralPath": "",
+          "overrideDigest": "ad5d5dd0e471a4c27d8569bf06f96fb1d42ad3ddcae7d64c47cc68d55680653b"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "f382fa791405846ec16d450ec171b954e17d0976d372aaf79323d0ab29d11aed"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "f448ffd2d116264c413a061bdde4f5b4f5b8b8e9b228d8a4a056912fed84ea05"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "2",
+          "overrideDigest": "4251e34040963da41f9a39eb211c1790261f429c448018327810c010d6a1f23e"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4364",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "acd858422792c328bde33811e10d7f769a49f1a3c68eb20f43886860103fff07"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "434f3ade513cea13c7b438a7392044eb68caf8c5e2b8bf16f43ec970901e88dc"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769",
+          "masterNodeId": "28:114",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "80c14e3f242dfa54d97f884289960117821fb0bd5b0b0633bf488336aa6437b3"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6162",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6165",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "idempotence": {
+      "captureSetId": "figma-responsive-carte-categorie-run-001-idempotence-2392091518820622154",
+      "phase": "idempotence",
+      "fileVersionId": "2392094856553704310",
+      "artifacts": [
+        {
+          "artifactId": "carte-categorie:master:structure",
+          "surfaceId": "carte-categorie:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_master.structure.json",
+          "sha256": "69b89b90e61bd4eb39caef2108d83825d9eb24a36372973800829ab61264d097",
+          "width": null,
+          "height": null,
+          "byteLength": 71477,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:properties",
+          "surfaceId": "carte-categorie:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_master.properties.json",
+          "sha256": "dc0af4d62e1ee6a27499d4cc9216ec73cbe88ea23adc2fc105bc7b6fc03876ed",
+          "width": null,
+          "height": null,
+          "byteLength": 7503,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:facts",
+          "surfaceId": "carte-categorie:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_master.facts.json",
+          "sha256": "b675b22ded6c2465fd20090c8cef090be0adfddcd0302b763368738cfc8a2eaa",
+          "width": null,
+          "height": null,
+          "byteLength": 50579,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:png",
+          "surfaceId": "carte-categorie:master",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_master.png",
+          "sha256": "476e6b416503dc789386cd0a95b291593b1f7b69ea88c6e922833f873aab3eb5",
+          "width": 744,
+          "height": 1104,
+          "byteLength": 1113091,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:structure",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_superpose.structure.json",
+          "sha256": "3dc89b8f20da863bf4a3da8291882f089c3ee19af19c7392a4eb9e152e413b9f",
+          "width": null,
+          "height": null,
+          "byteLength": 21554,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:properties",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_superpose.properties.json",
+          "sha256": "24fc265cdceaa377d05d9765c36356a81a93a1839a1e8c6474b4abcb9d77ba7f",
+          "width": null,
+          "height": null,
+          "byteLength": 48,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:facts",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_superpose.facts.json",
+          "sha256": "7f1d403b38e886528a55156a69b1c0b5b9996b16fe81ad0138e1a18148a4e5bf",
+          "width": null,
+          "height": null,
+          "byteLength": 13986,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:superpose:png",
+          "surfaceId": "carte-categorie:variant:superpose",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_superpose.png",
+          "sha256": "aa0b80509e4e99370d2a94cc25b6dd40e397a4fff347fba39db5cec4af02d9bf",
+          "width": 744,
+          "height": 418,
+          "byteLength": 526064,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:structure",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_empile.structure.json",
+          "sha256": "cec8dcdc777acd4b2b00c8b51b57427eeeface9b7de01d1aafcadbde706d24ed",
+          "width": null,
+          "height": null,
+          "byteLength": 40315,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:properties",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_empile.properties.json",
+          "sha256": "5105b0ff747b2f74c7587f69973e441f17462fddba07c197dbdb47dac0cb4c45",
+          "width": null,
+          "height": null,
+          "byteLength": 6857,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:facts",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_empile.facts.json",
+          "sha256": "71dcc8ce966647cb2f7f586699d48c079e4ff46f339aeff8ea9ba5570b72d4dc",
+          "width": null,
+          "height": null,
+          "byteLength": 37893,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:variant:empile:png",
+          "surfaceId": "carte-categorie:variant:empile",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_variant_empile.png",
+          "sha256": "7bb901ea3582f8cdd69bdb3f701fd1d0dbcf333112e7440acc3ffb055511af6f",
+          "width": 743,
+          "height": 622,
+          "byteLength": 583841,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:structure",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4392.structure.json",
+          "sha256": "9a8b02b52041edbd16d62e646cd06c993a9f3988e4926846c219129ce3129746",
+          "width": null,
+          "height": null,
+          "byteLength": 53728,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:properties",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4392.properties.json",
+          "sha256": "7eb91beba89269742eb226bc644fcb1236722d4e28811d15adc05fafa4166f22",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:facts",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4392.facts.json",
+          "sha256": "fb4e45c1b5c95a11faba9ee542e691c1da77b1896d5acfb7a5dfd11b6f343711",
+          "width": null,
+          "height": null,
+          "byteLength": 34377,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4392:png",
+          "surfaceId": "carte-categorie:usage:2115-4392",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4392.png",
+          "sha256": "a60e864f8030abb208902d7ebf8f1070358a01912fb7915723f5204640e82b7e",
+          "width": 1550,
+          "height": 418,
+          "byteLength": 1023524,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:structure",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4278.structure.json",
+          "sha256": "e44c92fea432ca1e05e534115f075bdc3cf1fa3bc67269503e35408795303169",
+          "width": null,
+          "height": null,
+          "byteLength": 52843,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:properties",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4278.properties.json",
+          "sha256": "17111a81bf21deaccc40cab90f91dfba2176de3e479f3198b3560f10479ea165",
+          "width": null,
+          "height": null,
+          "byteLength": 1569,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:facts",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4278.facts.json",
+          "sha256": "b3e29507a5ca7ef2211ab81bec2e19224ed616597aadb3d330f55ef8d9c516ba",
+          "width": null,
+          "height": null,
+          "byteLength": 32334,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4278:png",
+          "surfaceId": "carte-categorie:usage:2115-4278",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4278.png",
+          "sha256": "3bf0ea4fd0c42cef30095fb9a6e1bc1642216fa682dbeb162fedc7542345e778",
+          "width": 1550,
+          "height": 418,
+          "byteLength": 1005969,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:structure",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4438.structure.json",
+          "sha256": "5a2f76df060f01abbb157eb633776ec64933191ad8d9ae210171a9115aeade12",
+          "width": null,
+          "height": null,
+          "byteLength": 94449,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:properties",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4438.properties.json",
+          "sha256": "31a5b6e2a8de0fd8f33436b1c9f6b71756f2745d6f78adfc11a893ee586195c5",
+          "width": null,
+          "height": null,
+          "byteLength": 15500,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:facts",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4438.facts.json",
+          "sha256": "9ed9ddee25948e1fce591ab9fccf810ee289696a37a3325bfa28dfb50c2c8d3a",
+          "width": null,
+          "height": null,
+          "byteLength": 79425,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4438:png",
+          "surfaceId": "carte-categorie:usage:2115-4438",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4438.png",
+          "sha256": "4eac464449724317a2cd8490e8a14fa74cfd2cebd73c337094eaaeca3b8de7af",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 1146346,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:structure",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4297.structure.json",
+          "sha256": "c2f9f60b59c6b1d2a3f6d957fd5d190ff30084917e623e60cd74a2df4aebb8be",
+          "width": null,
+          "height": null,
+          "byteLength": 93005,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:properties",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4297.properties.json",
+          "sha256": "311c35081895e05bca48a96a73d704f66d0da68e86057e8ddc6b4c92e6fbc37a",
+          "width": null,
+          "height": null,
+          "byteLength": 15648,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:facts",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4297.facts.json",
+          "sha256": "17fae5d909ed66001965fa95a6c2f146bc503b1d60a3eac7a8471ca12080c4a5",
+          "width": null,
+          "height": null,
+          "byteLength": 77121,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4297:png",
+          "surfaceId": "carte-categorie:usage:2115-4297",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4297.png",
+          "sha256": "9f92912f93a44bea2d8cfb014d82bd8dcce883920a8158ac6bc31030d720b290",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 949517,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:structure",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4411.structure.json",
+          "sha256": "fb3adec5d7e85019239b2367163207b0a186200e7b9a1e1c81f8110b5f6c9e5d",
+          "width": null,
+          "height": null,
+          "byteLength": 94864,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:properties",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4411.properties.json",
+          "sha256": "3d3df42003436668720f8cac0612f4fa669301397d342c25e5e8979de4aa4420",
+          "width": null,
+          "height": null,
+          "byteLength": 15429,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:facts",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4411.facts.json",
+          "sha256": "caa92fc7dd9b4c241c707bd1cc2aeb1943a1e1007e74f2f44e459ada960d5497",
+          "width": null,
+          "height": null,
+          "byteLength": 79472,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4411:png",
+          "surfaceId": "carte-categorie:usage:2115-4411",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4411.png",
+          "sha256": "6794672d6fd38d6523b97754002dbe2923afe4e262daae5ff29afb7ae34c917c",
+          "width": 1550,
+          "height": 622,
+          "byteLength": 640071,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:structure",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4324.structure.json",
+          "sha256": "ab663405e1d49efb0ef3ea5ec00809ceb10d722456ec078eb8a04d565f343a40",
+          "width": null,
+          "height": null,
+          "byteLength": 139602,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:properties",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4324.properties.json",
+          "sha256": "e9b8e71cd2cec600a47c0e1f8e0c404af4f7e5f49dd0d51de9f33f52f4d95989",
+          "width": null,
+          "height": null,
+          "byteLength": 23045,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:facts",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4324.facts.json",
+          "sha256": "ddfc07ec3a9d7a59b0538327ed59724a3dbb406988adf64c52e945a1cb034551",
+          "width": null,
+          "height": null,
+          "byteLength": 112803,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4324:png",
+          "surfaceId": "carte-categorie:usage:2115-4324",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4324.png",
+          "sha256": "a2b16bda252d59ee236caab8ea029675f0020f8f65e1cc421483fda283d3a432",
+          "width": 1550,
+          "height": 525,
+          "byteLength": 736874,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:structure",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "structure",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4364.structure.json",
+          "sha256": "6560ff69e42477a1cd979ec3e4443b4de72164d20b6f472ba0d7acd8bf508b6f",
+          "width": null,
+          "height": null,
+          "byteLength": 106896,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:properties",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "properties",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4364.properties.json",
+          "sha256": "52330bfb7a5fe30fbbb30114d6a6dcd17f9a09bf18df27f4f2b2f8e250adca0a",
+          "width": null,
+          "height": null,
+          "byteLength": 15608,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:facts",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "facts",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4364.facts.json",
+          "sha256": "4384b475e50e7cf314d668ca1802a6aaba50aa2007366824304fda94884405a4",
+          "width": null,
+          "height": null,
+          "byteLength": 96433,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:usage:2115-4364:png",
+          "surfaceId": "carte-categorie:usage:2115-4364",
+          "kind": "png",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/carte-categorie_usage_2115-4364.png",
+          "sha256": "b5da9868cafbfbff3fc3b276b2badacd93c352d96ca0516cbfe996d4cba4ab92",
+          "width": 1550,
+          "height": 649,
+          "byteLength": 1138564,
+          "status": "valid"
+        },
+        {
+          "artifactId": "carte-categorie:master:presentation-scenarios:idempotence",
+          "surfaceId": "carte-categorie:master",
+          "kind": "report",
+          "path": "specs/component-repairs/carte-categorie/run-001/captures/idempotence/presentation-scenarios.json",
+          "sha256": "ff12d226c6fab937da1e3fcd5ff036237acfc73e36fbc954f582f3b7181341bc",
+          "width": null,
+          "height": null,
+          "byteLength": 14957,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6762",
+          "structuralPath": "",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "2495:6764",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6779",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4278;2495:6788",
+          "structuralPath": "1",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4438;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "031815a6a17cfa62111fa319fc34487ea36b37b9",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4297;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "41da76bcec07682508765ed9aa9fe3a5bbced8f6",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4411;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "a578caed28b176c68c12383f883357df7167749a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4204;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "3c54b9a6dc4162164e25c6513d82696c73717826",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4205;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "86d495b8740234d36d9148c355e6a89a89dd1a94",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4324;2115:4206;2495:6764",
+          "structuralPath": "2/0",
+          "paintIndex": 0,
+          "imageHash": "715170bb427ebdecc5438dc0b056ebf3c862099e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4177;2495:6764",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "cae469674a682ce067e565040d966e4911424eb7",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4364;2115:4178;2495:6764",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "3e24b06ec466d7c99aca62a75b16115cc4a15d3a",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4278",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "",
+          "overrideDigest": "56bc6ea28efa5f393f3f7cb75c5517021678ffbbd0d366f7025ec3a021acc117"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "0",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6779;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788",
+          "masterNodeId": "2495:6762",
+          "structuralPath": "1",
+          "overrideDigest": "dddf701741016813d941ca64b51f3d50237a62de8aa5c09fffc1374c40a65836"
+        },
+        {
+          "instanceNodeId": "I2115:4278;2495:6788;2495:6761",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4438",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "1afe08e99eab6ae2879896db276d127e9df50a13bec19d628cb5a0bc7f150d0d"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "ec763fb625e6611a829d6af02490550dd550450aaeb55cf1b11ca91e3a8171f3"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4438;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4297",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "7f36dc6ea9ab1028db5258c81edea53761106aad12c470ffb21563ad5994f43d"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "e0912335e2c3485e1905703c69201f5d05c25f1f06e6c87ccc5d19aa6b8a9ba8"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4297;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4411",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "d88a33e8bcd6ad92ece5242faef843dc8649731f245f1cbabcdc3c7269aaac0d"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "caf5714b70a98d87f780615dc3494630acee574be032a53e257de2cae66a77a8"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4411;2115:4178;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4324",
+          "masterNodeId": "2115:4275",
+          "structuralPath": "",
+          "overrideDigest": "ad5d5dd0e471a4c27d8569bf06f96fb1d42ad3ddcae7d64c47cc68d55680653b"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "f382fa791405846ec16d450ec171b954e17d0976d372aaf79323d0ab29d11aed"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4204;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "f448ffd2d116264c413a061bdde4f5b4f5b8b8e9b228d8a4a056912fed84ea05"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4205;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "2",
+          "overrideDigest": "4251e34040963da41f9a39eb211c1790261f429c448018327810c010d6a1f23e"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "2/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "2/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4324;2115:4206;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "2/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4364",
+          "masterNodeId": "2115:4274",
+          "structuralPath": "",
+          "overrideDigest": "3601471b8a5a144eee10dcb40276d8c69abe6826f031db05bf19b3695972fd53"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "0",
+          "overrideDigest": "acd858422792c328bde33811e10d7f769a49f1a3c68eb20f43886860103fff07"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769",
+          "masterNodeId": "9:206",
+          "structuralPath": "0/2/0",
+          "overrideDigest": "2e59bf95665892b061b52ac4d6f915b033ddb63d4eaefd8d700776e2ba581147"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6136",
+          "masterNodeId": "230:585",
+          "structuralPath": "0/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4177;2495:6769;2410:6139",
+          "masterNodeId": "230:599",
+          "structuralPath": "0/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178",
+          "masterNodeId": "2495:6763",
+          "structuralPath": "1",
+          "overrideDigest": "434f3ade513cea13c7b438a7392044eb68caf8c5e2b8bf16f43ec970901e88dc"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769",
+          "masterNodeId": "28:114",
+          "structuralPath": "1/2/0",
+          "overrideDigest": "80c14e3f242dfa54d97f884289960117821fb0bd5b0b0633bf488336aa6437b3"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6162",
+          "masterNodeId": "230:585",
+          "structuralPath": "1/2/0/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4364;2115:4178;2495:6769;2410:6165",
+          "masterNodeId": "230:599",
+          "structuralPath": "1/2/0/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    }
+  },
+  "state": "owner-accepted",
+  "createdAt": "2026-08-26T12:32:44Z",
+  "sourceBaseline": {
+    "gitHead": "5155b47ba6f6cbc88f317db81cf4a12b1d5628a5",
+    "worktreeTree": "e71d614907db91c3eba1b4dcf20322db52cc76b3",
+    "backupRef": "refs/codex/backups/029-carte-categorie-responsive-h3-v8",
+    "capturedAt": "2026-08-26T17:44:39.281Z"
+  }
+}

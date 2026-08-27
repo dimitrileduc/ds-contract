@@ -3,7 +3,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { compareProtectedFacts, compareResponsiveTransitionProtectedFacts, comparableResponsiveMemberFacts, validateResponsiveFacts, type SurfaceFacts } from './facts.js';
 import { canonicalize, isObject, stableJson, type JsonRecord } from './json.js';
-import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, PresentationScenario, RepairCampaign, RepairTarget, RepairTargetId } from './types.js';
+import { canonicalVariantSelection, memberVariantSelection, responsiveTopologyMembers } from './types.js';
+import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, PresentationScenario, RepairCampaign, RepairTarget, RepairTargetId, VariantSelection } from './types.js';
 
 const record = isObject;
 export { canonicalize, stableJson };
@@ -30,9 +31,16 @@ export function validatePresentationScenarioResults(
     const scenarioId = String(result.scenarioId ?? '');
     const scenario = expectedById.get(scenarioId);
     if (!scenario) { issues.push(`presentation-scenario-undeclared:${scenarioId}`); continue; }
-    if (result.selectedPresentation !== scenario.presentationValue) issues.push(`presentation-not-selected:${scenarioId}`);
+    if (scenario.variantSelection !== undefined) {
+      if (canonicalVariantSelection(result.selectedVariantSelection as VariantSelection | undefined) !== canonicalVariantSelection(scenario.variantSelection)) {
+        issues.push(`presentation-not-selected:${scenarioId}`);
+      }
+    } else if (result.selectedPresentation !== scenario.presentationValue) issues.push(`presentation-not-selected:${scenarioId}`);
     if (result.width !== scenario.width || result.height !== scenario.height || result.fixtureId !== scenario.fixtureId) {
       issues.push(`presentation-scenario-drift:${scenarioId}`);
+    }
+    if (scenario.expectedCardsPerRow !== undefined && result.cardsPerRow !== scenario.expectedCardsPerRow) {
+      issues.push(`presentation-scenario-cards-per-row:${scenarioId}`);
     }
     if (!record(result.rootBounds) || Math.abs(Number(result.rootBounds.width) - scenario.width) > 0.01 ||
       !Array.isArray(result.descendantBounds) || result.descendantBounds.length === 0 ||
@@ -58,38 +66,59 @@ export function validateResponsiveClosureEvidence(
   const bindings = Array.isArray(receipt.bindingFacts) ? receipt.bindingFacts : [];
   const typography = Array.isArray(receipt.typographyFacts) ? receipt.typographyFacts : [];
   const members = Array.isArray(receipt.memberFacts) ? receipt.memberFacts.filter(record) : [];
+  const propagated = Array.isArray(receipt.propagatedDeltas) ? receipt.propagatedDeltas.filter(record) : [];
   for (const target of campaign.targets.filter((entry) => entry.responsive)) {
     const responsive = target.responsive!;
     const topology = responsive.componentSetTopology;
     const master = masters.filter((entry) => entry.targetId === target.targetId);
-    if (master.length !== 1 || master[0].nodeId !== target.masterNodeId || master[0].componentKey !== topology.historicalMember.componentKey ||
+    const topologyMembers = responsiveTopologyMembers(topology);
+    const expectedComponentKey = topology.setIdentityPolicy === 'existing' ? topology.setComponentKey : topology.historicalMember.componentKey;
+    if (master.length !== 1 || master[0].nodeId !== target.masterNodeId || master[0].componentKey !== expectedComponentKey ||
       typeof master[0].setNodeId !== 'string' || master[0].setName !== topology.setName || master[0].propertyName !== topology.propertyName ||
       master[0].defaultPresentationValue !== topology.defaultPresentationValue ||
       stableJson([...(master[0].variantNames as unknown[] ?? [])].sort()) !== stableJson([...topology.expectedMemberNames].sort())) {
       issues.push(`responsive-topology-drift:${target.targetId}`);
+    }
+    if (topology.variantProperties !== undefined && (stableJson(master[0]?.variantProperties) !== stableJson(topology.variantProperties) ||
+      canonicalVariantSelection(master[0]?.defaultVariantSelection as VariantSelection | undefined) !== canonicalVariantSelection(topology.defaultVariantSelection))) {
+      issues.push(`responsive-axis-drift:${target.targetId}`);
+    }
+    if (topology.setIdentityPolicy === 'existing') {
+      const identities = Array.isArray(master[0]?.memberIdentities) ? (master[0].memberIdentities as unknown[]).filter(record) : [];
+      if (identities.length !== topologyMembers.length || topologyMembers.some((member) => {
+        const row = identities.find((entry) => entry.nodeId === member.nodeId);
+        return !row || row.componentKey !== member.componentKey || canonicalVariantSelection(row.variantSelection as VariantSelection | undefined) !==
+          canonicalVariantSelection(memberVariantSelection(topology, member));
+      })) issues.push(`responsive-member-identity-drift:${target.targetId}`);
     }
     const targetScenarios = scenarios.filter((entry) => !record(entry) || entry.targetId === undefined || entry.targetId === target.targetId);
     const scenarioGate = validatePresentationScenarioResults(responsive.presentationScenarios, targetScenarios);
     issues.push(...scenarioGate.issues.map((entry) => `${entry}:${target.targetId}`));
     const factGate = validateResponsiveFacts(responsive, bindings, typography);
     issues.push(...factGate.issues.map((entry) => `${entry}:${target.targetId}`));
-    const expectedPresentations = [topology.historicalMember.presentationValue, ...topology.createdMembers.map((entry) => entry.presentationValue)];
+    const expectedPresentations = topologyMembers.map((entry) => entry.presentationValue);
     const targetMembers = members.filter((entry) => entry.targetId === undefined || entry.targetId === target.targetId);
     if (targetMembers.length !== expectedPresentations.length) issues.push(`responsive-member-facts-cardinality:${target.targetId}`);
-    const previewWidths = new Map([
-      [topology.historicalMember.presentationValue, topology.historicalMember.authoringPreviewWidth],
-      ...topology.createdMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const),
-    ]);
+    const previewWidths = new Map(topologyMembers.map((entry) => [entry.presentationValue, entry.authoringPreviewWidth] as const));
     if (targetMembers.some((entry) => !record(entry.authoringPreview) || entry.authoringPreview.layoutSizingHorizontal !== 'FIXED' ||
       Math.abs(Number(entry.authoringPreview.width) - Number(previewWidths.get(String(entry.presentationValue)))) > 0.01)) {
       issues.push(`responsive-authoring-preview-drift:${target.targetId}`);
     }
-    const historical = targetMembers.find((entry) => entry.presentationValue === topology.historicalMember.presentationValue);
-    const baseline = historical ? comparableResponsiveMemberFacts(historical) : null;
-    if (!historical || expectedPresentations.some((presentation) => {
-      const rows = targetMembers.filter((entry) => entry.presentationValue === presentation);
-      return rows.length !== 1 || comparableResponsiveMemberFacts(rows[0]) !== baseline;
-    })) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+    if (topology.setIdentityPolicy !== 'existing') {
+      const historical = targetMembers.find((entry) => entry.presentationValue === topology.historicalMember.presentationValue);
+      const baseline = historical ? comparableResponsiveMemberFacts(historical) : null;
+      if (!historical || expectedPresentations.some((presentation) => {
+        const rows = targetMembers.filter((entry) => entry.presentationValue === presentation);
+        return rows.length !== 1 || comparableResponsiveMemberFacts(rows[0]) !== baseline;
+      })) issues.push(`responsive-member-facts-drift:${target.targetId}`);
+    }
+    const expectedPropagated = responsive.expectedPropagatedDeltas ?? [];
+    const propagatedKey = (entry: Record<string, unknown>): string =>
+      `${String(entry.surfaceId)}\0${String(entry.nodeId)}\0${String(entry.sourceNodeId)}\0${String(entry.fact)}\0${String(entry.attribution)}`;
+    if (stableJson(expectedPropagated.map((entry) => propagatedKey(entry as unknown as Record<string, unknown>)).sort()) !==
+      stableJson(propagated.map(propagatedKey).sort()) || propagated.some((entry) => entry.status !== 'attributed')) {
+      issues.push(`propagated-delta-unattributed:${target.targetId}`);
+    }
   }
   return { ok: issues.length === 0, issues: [...new Set(issues)] };
 }

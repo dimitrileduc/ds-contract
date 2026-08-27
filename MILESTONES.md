@@ -4,6 +4,37 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-08-26 — 029 : CategoriesPrincipales responsive — deux campagnes runner + un correctif de topologie, et la leçon qui devient un principe
+
+La section `CategoriesPrincipales` et sa carte exclusive `Carte/Categorie` sont
+responsive dans Figma, en **deux temps qui racontent toute la journée** :
+
+- **Deux campagnes runner v2 `owner-accepted`** (`specs/component-repairs/{carte-categorie,categories-principales}/run-001/`) —
+  audit frais, adaptation interne (wrap, pleine largeur, retrait du min 744, option A
+  « orpheline garde sa piste » à 834), matrice 6 largeurs × 2 contenus × 2 passages,
+  second apply intégralement no-op, `pageWrites=[]`/`childWrites=[]` sur les 6 reçus.
+  Le runner de 028 a été **étendu générique** (topologie de set existant, sélection
+  multi-axes Style×Colonnes, deltas propagés attribués — ~20 fichiers, 4 fixtures
+  rouges neuves) ; fixture rouge → eval → capacité, dans cet ordre.
+- **Un correctif du soir, `run-002`, hors runner** : le run-001 était conforme à sa
+  spec mais pas à l'intention owner — adaptation **invisible**, zéro variante de
+  breakpoint. Sur GO owner direct, l'axe **`Presentation{Wide,Desktop,Mobile}`** a été
+  posé par gestes bridge (12 membres, matrice complète, 12/12 combinaisons commutent,
+  identités historiques et 7 usages Pages intacts, 2 versions Figma épinglées).
+  Reçu manuel : `run-002/manual-gesture-receipt.json`.
+
+Clôture **figma-ahead** comme 028 : cliché parité rafraîchi en lecture, les axes
+`Presentation` de Categories **et** de HeroVideo acquittés owner dans
+`parity/baseline.json` en attendant leur promotion contrat. Le malentendu (« même
+déroulé » lu comme process, la décision produit prise en recherche R3 sans question
+owner, le fait H2 « no new variant » jamais reformulé en langage designer) est
+consigné cause par cause dans `inventory/ecarts-028.md` — et il a produit le
+**principe constitutionnel XII (Decision Surface Fidelity)**, version 1.3.0. Un bug
+runner réel découvert à la clôture y est nommé aussi : deux campagnes partageant un
+`ownerDecisionRoot` ne peuvent pas se finaliser (E8, à corriger avant la vague 030).
+Sweep : build, 2 typechecks, plugin, roundtrip, core-browser verts ; parité verte
+(7 acquittements nommés) ; `npm run eval` **236/237** — l'unique rouge est la dette golden préexistante nommée par la clôture 028 (25 sorties générées vs golden, `specs/028-figma-responsive-hero-video/proofs/runner-full-gates.md`), non repinnée ici volontairement ; 4 des 5 dettes rouges héritées de 028 sont résorbées par cette clôture (229/234 → 236/237).
+
 ## 2026-08-18 — deux tinyspecs rétroactives : la note d'avis gouvernée et le CTA-lien Odoo
 
 Du travail réel fait pendant la branche 021 sur décision owner, mais **hors de tout

@@ -2,11 +2,14 @@
 import path from 'node:path';
 import { isObject } from './json.js';
 import {
+  canonicalVariantSelection,
   COMPONENT_REPAIR_SCHEMA_VERSION,
+  memberVariantSelection,
   REQUIRED_COMPONENT_PROTECTION_FACTS,
   REPAIR_CAMPAIGN_ID,
   REPAIR_SCHEMA_VERSION,
   REPAIR_TARGET_IDS,
+  responsiveTopologyMembers,
   type CampaignState,
   type CaptureSet,
   type RepairCampaign,
@@ -36,6 +39,9 @@ const knownProtectedFacts = new Set<string>([
   'video-paints', 'geometry', 'responsive-overflow',
   'component-set-topology', 'historical-member-identity', 'component-properties',
   'primitive-bindings', 'temporary-typography', 'shared-child-facts',
+  'set-identity', 'member-ids-keys', 'axis-names-values', 'card-identity-key',
+  'card-variant-cardinality', 'layer-names-roles', 'media-text-content',
+  'usage-instance-links', 'usage-overrides', 'columns-enum-honesty',
 ]);
 const targetIds = new Set<string>(REPAIR_TARGET_IDS);
 const safePath = (value: unknown): value is string =>
@@ -171,6 +177,13 @@ function validateComponentWorkflow(
       issue(issues, 'campaign-shape', '$.workflow.historicalTextDecisions', 'historical text decisions must map pinned text node ids to declared authority references');
     }
   }
+  const artifactRoots = candidate.artifactRoots;
+  if (artifactRoots !== undefined && (!record(artifactRoots) || !safePath(artifactRoots.audit) || !record(artifactRoots.captures) ||
+    !safePath(artifactRoots.captures.before) || !safePath(artifactRoots.captures.after) || !safePath(artifactRoots.captures.idempotence) ||
+    !safePath(artifactRoots.receipts) || !safePath(artifactRoots.verify) || !safePath(artifactRoots.dryRun) || !record(artifactRoots.bridgeScripts) ||
+    !safePath(artifactRoots.bridgeScripts.first) || !safePath(artifactRoots.bridgeScripts.second))) {
+    issue(issues, 'campaign-shape', '$.artifactRoots', 'component artifact roots must be bounded repository paths');
+  }
   const pageNodeIds = new Set(
     (Array.isArray(candidate.affectedSurfaces) ? candidate.affectedSurfaces : [])
       .filter((surface) => record(surface) && ['page-instance', 'page-context'].includes(String(surface.role)) && typeof surface.nodeId === 'string')
@@ -200,13 +213,14 @@ function validateComponentWorkflow(
 
 const nonEmptyString = (value: unknown): value is string => typeof value === 'string' && value.length > 0;
 const responsiveBindingFields = new Set([
-  'itemSpacing', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+  'itemSpacing', 'counterAxisSpacing', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
   'width', 'height', 'minWidth', 'maxWidth', 'minHeight', 'maxHeight',
 ]);
 const responsiveTypographyFields = new Set(['fontSize', 'lineHeight', 'textAlignHorizontal']);
 const responsiveLayoutFields = new Set([
-  'layoutMode', 'layoutSizingHorizontal', 'layoutSizingVertical',
+  'layoutMode', 'layoutWrap', 'layoutSizingHorizontal', 'layoutSizingVertical',
   'primaryAxisAlignItems', 'counterAxisAlignItems', 'clipsContent', 'textAutoResize',
+  'minWidth',
 ]);
 
 /** Validate the additive responsive vocabulary as one closed capability. This
@@ -228,51 +242,86 @@ function validateResponsiveCapability(
   }
 
   const operation = responsiveOperations[0];
-  if (operation.nodeId !== target.masterNodeId || !record(operation.changes) || operation.changes.capability !== 'responsive-component-set') {
-    issue(issues, 'operation-allowlist', '$.allowedOperations', 'responsive-operation-not-allowlisted: the transition must target the pinned historical member and name the generic capability');
-  }
-
   const topology = responsive.componentSetTopology;
   if (!record(topology) || !nonEmptyString(topology.propertyName) || !nonEmptyString(topology.setName) ||
-    !['additive', 'existing'].includes(String(topology.setIdentityPolicy)) ||
-    !nonEmptyString(topology.defaultPresentationValue) ||
+    !['additive', 'existing'].includes(String(topology.setIdentityPolicy)) || !nonEmptyString(topology.defaultPresentationValue) ||
     !record(topology.authoringLayout) || topology.authoringLayout.direction !== 'VERTICAL' ||
     typeof topology.authoringLayout.gap !== 'number' || !Number.isFinite(topology.authoringLayout.gap) || topology.authoringLayout.gap < 0 ||
-    !stringArray(topology.authoringLayout.order) ||
-    !record(topology.historicalMember) || topology.historicalMember.nodeId !== target.masterNodeId ||
-    !nonEmptyString(topology.historicalMember.componentKey) || !nonEmptyString(topology.historicalMember.presentationValue) ||
-    !nonEmptyString(topology.historicalMember.declaredName) || typeof topology.historicalMember.authoringPreviewWidth !== 'number' ||
-    !Number.isFinite(topology.historicalMember.authoringPreviewWidth) || topology.historicalMember.authoringPreviewWidth <= 0 ||
-    !Array.isArray(topology.createdMembers) || topology.createdMembers.length === 0 ||
-    !stringArray(topology.expectedMemberNames) || topology.expectedMemberNames.length !== topology.createdMembers.length + 1) {
-    issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology`, 'responsive topology must declare its set state, authoring layout, pinned historical member and every presentation member');
+    !stringArray(topology.authoringLayout.order) || !record(topology.historicalMember) ||
+    !nonEmptyString(topology.historicalMember.nodeId) || !nonEmptyString(topology.historicalMember.componentKey) ||
+    !nonEmptyString(topology.historicalMember.presentationValue) || !nonEmptyString(topology.historicalMember.declaredName) ||
+    typeof topology.historicalMember.authoringPreviewWidth !== 'number' || !Number.isFinite(topology.historicalMember.authoringPreviewWidth) ||
+    topology.historicalMember.authoringPreviewWidth <= 0 || !Array.isArray(topology.createdMembers) ||
+    (topology.preservedMembers !== undefined && !Array.isArray(topology.preservedMembers)) || !stringArray(topology.expectedMemberNames)) {
+    issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology`, 'responsive topology must declare its set state, authoring layout, pinned baseline and every preserved/created member');
     return;
   }
+  const typedTopology = topology as unknown as import('./types.js').ResponsiveComponentSetTopology;
   const historicalMember = topology.historicalMember as RecordValue;
-  const createdMembers = topology.createdMembers.filter(record);
-  const presentationValues = [String(historicalMember.presentationValue), ...createdMembers.map((member) => String(member.presentationValue))];
-  const memberNames = [String(historicalMember.declaredName), ...createdMembers.map((member) => String(member.declaredName))];
+  const declaredPreservedMembers = Array.isArray(topology.preservedMembers) ? topology.preservedMembers.filter(record) : [];
+  const declaredCreatedMembers = topology.createdMembers.filter(record);
+  // 028 briefly used `createdMembers` as the complete non-historical member
+  // list while correcting an already-existing set. Preserve that manifest
+  // shape, but normalize it to preserved members internally. New campaigns
+  // use the explicit `preservedMembers` field and reserve `createdMembers` for
+  // honest creates only.
+  const legacyExistingTopology = topology.setIdentityPolicy === 'existing' && topology.preservedMembers === undefined &&
+    declaredCreatedMembers.length > 0 && declaredCreatedMembers.every((member) => nodeId.test(String(member.nodeId ?? '')));
+  const preservedMembers = legacyExistingTopology ? declaredCreatedMembers : declaredPreservedMembers;
+  const createdMembers = legacyExistingTopology ? [] : declaredCreatedMembers;
+  const members = responsiveTopologyMembers(typedTopology);
+  const presentationValues = members.map((member) => member.presentationValue);
+  const memberNames = members.map((member) => member.declaredName);
   const existingTopology = topology.setIdentityPolicy === 'existing';
+  const expectedOperationNodeId = existingTopology && !legacyExistingTopology ? String(topology.setNodeId ?? '') : String(historicalMember.nodeId);
+  if (operation.nodeId !== target.masterNodeId || operation.nodeId !== expectedOperationNodeId || !record(operation.changes) ||
+    operation.changes.capability !== 'responsive-component-set' || Object.keys(operation.changes).length !== 1) {
+    issue(issues, 'operation-allowlist', '$.allowedOperations', 'responsive-operation-not-allowlisted: the generic operation must target the pinned set root (existing) or historical member (additive)');
+  }
+  const invalidCommonMember = (member: RecordValue): boolean => !nonEmptyString(member.presentationValue) || !nonEmptyString(member.declaredName) ||
+    typeof member.authoringPreviewWidth !== 'number' || !Number.isFinite(member.authoringPreviewWidth) || member.authoringPreviewWidth <= 0;
+  if (declaredPreservedMembers.length !== (Array.isArray(topology.preservedMembers) ? topology.preservedMembers.length : 0) ||
+    declaredCreatedMembers.length !== topology.createdMembers.length || preservedMembers.some(invalidCommonMember) || createdMembers.some(invalidCommonMember) ||
+    (existingTopology && (!nodeId.test(String(topology.setNodeId ?? '')) || (!legacyExistingTopology && !nonEmptyString(topology.setComponentKey)) ||
+      !nodeId.test(String(historicalMember.nodeId)) || !nonEmptyString(historicalMember.componentKey) ||
+      preservedMembers.some((member) => !nodeId.test(String(member.nodeId ?? '')) || (!legacyExistingTopology && !nonEmptyString(member.componentKey))) ||
+      createdMembers.some((member) => member.nodeId !== undefined || member.componentKey !== undefined || !nonEmptyString(member.sourcePresentationValue)))) ||
+    (!existingTopology && (topology.setNodeId !== undefined || topology.setComponentKey !== undefined || preservedMembers.length !== 0 ||
+      historicalMember.nodeId !== target.masterNodeId || createdMembers.length === 0 ||
+      createdMembers.some((member) => member.nodeId !== undefined || member.componentKey !== undefined || member.sourcePresentationValue !== historicalMember.presentationValue)))) {
+    issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology`, 'existing members require stable ids/keys while only declared created members may omit them');
+  }
   const existingNodeIds = existingTopology
-    ? [String(topology.setNodeId ?? ''), String(historicalMember.nodeId), ...createdMembers.map((member) => String(member.nodeId ?? ''))]
+    ? [String(topology.setNodeId), String(historicalMember.nodeId), ...preservedMembers.map((member) => String(member.nodeId))]
     : [];
-  if (createdMembers.length !== topology.createdMembers.length || createdMembers.some((member) =>
-    !nonEmptyString(member.presentationValue) || !nonEmptyString(member.declaredName) || member.sourcePresentationValue !== historicalMember.presentationValue ||
-    typeof member.authoringPreviewWidth !== 'number' || !Number.isFinite(member.authoringPreviewWidth) || member.authoringPreviewWidth <= 0 ||
-    (existingTopology ? !nodeId.test(String(member.nodeId ?? '')) : member.nodeId !== undefined)) ||
-    new Set(presentationValues).size !== presentationValues.length || new Set(memberNames).size !== memberNames.length ||
-    JSON.stringify([...topology.expectedMemberNames].sort()) !== JSON.stringify([...memberNames].sort()) ||
+  if (topology.expectedMemberNames.length !== members.length || new Set(presentationValues).size !== presentationValues.length ||
+    new Set(memberNames).size !== memberNames.length || JSON.stringify([...topology.expectedMemberNames].sort()) !== JSON.stringify([...memberNames].sort()) ||
     new Set(topology.authoringLayout.order).size !== presentationValues.length ||
     JSON.stringify([...topology.authoringLayout.order].sort()) !== JSON.stringify([...presentationValues].sort()) ||
     !presentationValues.includes(String(topology.defaultPresentationValue)) || topology.authoringLayout.order[0] !== topology.defaultPresentationValue ||
-    (existingTopology && (!nodeId.test(String(topology.setNodeId ?? '')) || new Set(existingNodeIds).size !== existingNodeIds.length)) ||
-    (!existingTopology && topology.setNodeId !== undefined)) {
-    issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology`, 'responsive topology member values/names must be unique, complete and cloned from the historical presentation');
+    (existingTopology && new Set(existingNodeIds).size !== existingNodeIds.length)) {
+    issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology`, 'responsive topology member values/names/order must be unique and complete');
+  }
+  if (topology.variantProperties !== undefined) {
+    const axes = topology.variantProperties;
+    const axisEntries = record(axes) ? Object.entries(axes) : [];
+    const selectionKeys = members.map((member) => canonicalVariantSelection(memberVariantSelection(typedTopology, member)));
+    const validAxes = axisEntries.length > 1 && axisEntries.every(([axis, values]) => nonEmptyString(axis) && stringArray(values) && values.length > 0 && new Set(values).size === values.length);
+    const validSelections = validAxes && members.every((member) => {
+      const selection = memberVariantSelection(typedTopology, member);
+      return Object.keys(selection).length === axisEntries.length && axisEntries.every(([axis, values]) => typeof selection[axis] === 'string' && (values as string[]).includes(selection[axis]));
+    });
+    const defaultSelection = record(topology.defaultVariantSelection) ? topology.defaultVariantSelection as Record<string, string> : undefined;
+    const defaultMember = members.find((member) => member.presentationValue === topology.defaultPresentationValue);
+    if (!validSelections || new Set(selectionKeys).size !== selectionKeys.length || !defaultMember ||
+      canonicalVariantSelection(defaultSelection) !== canonicalVariantSelection(memberVariantSelection(typedTopology, defaultMember))) {
+      issue(issues, 'target-shape', `${targetPath}.responsive.componentSetTopology.variantProperties`, 'presentation-not-selected: every multi-axis member and default must declare one exact allowed axis pair');
+    }
   }
 
   const expectedCreates = responsive.expectedCreates;
   const boundary = candidate.writeBoundary;
-  const expectedCreateCount = existingTopology ? 0 : createdMembers.length + 1;
+  const expectedCreateCount = existingTopology ? createdMembers.length : createdMembers.length + 1;
   if (!Array.isArray(expectedCreates) || expectedCreates.length !== expectedCreateCount || !record(boundary) ||
     !stringArray(boundary.allowedCreateRoles) || !stringArray(boundary.allowedExistingNodeIds) || !stringArray(boundary.readOnlySurfaceNodeIds) ||
     !stringArray(boundary.protectedDependencyNodeIds) || !stringArray(boundary.protectedChildNodeIds) || !stringArray(boundary.protectedChildPaths) ||
@@ -284,10 +333,11 @@ function validateResponsiveCapability(
     const roles = createRows.map((entry) => String(entry.role));
     const declaredNames = createRows.map((entry) => String(entry.declaredName));
     const additiveCreatesInvalid = !existingTopology &&
-      (!declaredNames.includes(String(topology.setName)) || memberNames.filter((name) => name !== historicalMember.declaredName).some((name) => !declaredNames.includes(name)));
+      (!declaredNames.includes(String(topology.setName)) || createdMembers.some((member) => !declaredNames.includes(String(member.declaredName))));
+    const existingCreatesInvalid = existingTopology && createdMembers.some((member) => !declaredNames.includes(String(member.declaredName)));
     if (createRows.length !== expectedCreates.length || createRows.some((entry) => entry.operationId !== operation.operationId || entry.count !== 1 || !nonEmptyString(entry.role) || !nonEmptyString(entry.declaredName)) ||
       new Set(roles).size !== roles.length || JSON.stringify([...roles].sort()) !== JSON.stringify([...boundary.allowedCreateRoles].sort()) ||
-      additiveCreatesInvalid) {
+      additiveCreatesInvalid || existingCreatesInvalid) {
       issue(issues, 'operation-allowlist', `${targetPath}.responsive.expectedCreates`, 'responsive-operation-not-allowlisted: every additive set/member creation needs one unique allowed role');
     }
     const readOnly = new Set([...boundary.readOnlySurfaceNodeIds, ...boundary.protectedDependencyNodeIds]);
@@ -307,23 +357,68 @@ function validateResponsiveCapability(
       expectedChangedNodeIds.some((id) => !allowedExistingNodeIds.includes(id) || readOnly.has(id)))) {
       issue(issues, 'operation-allowlist', '$.writeBoundary.expectedChangedNodeIds', 'responsive-operation-not-allowlisted: an existing component-set repair must distinguish its exact first-run mutations from allowed traversal hosts');
     }
+    const authorizedTargets = responsive.authorizedTargetNodeIds;
+    if (authorizedTargets !== undefined && (!stringArray(authorizedTargets) || authorizedTargets.length === 0 ||
+      new Set(authorizedTargets).size !== authorizedTargets.length || !authorizedTargets.includes(String(operation.nodeId)) ||
+      authorizedTargets.some((id) => !allowedExistingNodeIds.includes(id) || readOnly.has(id) || protectedChildren.has(id)))) {
+      issue(issues, 'operation-allowlist', `${targetPath}.responsive.authorizedTargetNodeIds`, 'responsive-operation-not-allowlisted: target/card writes must be explicitly allowlisted and disjoint from Pages/shared children');
+    }
   }
 
+  const usageSurfaces = responsive.usageSurfaces;
+  if (usageSurfaces !== undefined) {
+    const rows = Array.isArray(usageSurfaces) ? usageSurfaces.filter(record) : [];
+    const declaredSurfaces = Array.isArray(candidate.affectedSurfaces) ? candidate.affectedSurfaces.filter(record) : [];
+    const readOnlyIds = new Set(record(boundary) && stringArray(boundary.readOnlySurfaceNodeIds) ? boundary.readOnlySurfaceNodeIds : []);
+    if (!Array.isArray(usageSurfaces) || rows.length === 0 || rows.length !== usageSurfaces.length ||
+      new Set(rows.map((row) => String(row.surfaceId))).size !== rows.length || new Set(rows.map((row) => String(row.nodeId))).size !== rows.length ||
+      rows.some((row) => !nonEmptyString(row.surfaceId) || !nodeId.test(String(row.nodeId)) || !nonEmptyString(row.positionPath) || row.writePolicy !== 'read-only' ||
+        !readOnlyIds.has(String(row.nodeId)) || !declaredSurfaces.some((surface) => surface.surfaceId === row.surfaceId && surface.nodeId === row.nodeId))) {
+      issue(issues, 'surface-coverage', `${targetPath}.responsive.usageSurfaces`, 'responsive usage surfaces must be unique, position-addressed, captured and read-only');
+    }
+  }
+  const propagatedDeltas = responsive.expectedPropagatedDeltas;
+  if (propagatedDeltas !== undefined) {
+    const rows = Array.isArray(propagatedDeltas) ? propagatedDeltas.filter(record) : [];
+    const usages = new Map((Array.isArray(usageSurfaces) ? usageSurfaces.filter(record) : []).map((row) => [String(row.surfaceId), String(row.nodeId)]));
+    if (!Array.isArray(propagatedDeltas) || rows.length !== propagatedDeltas.length ||
+      new Set(rows.map((row) => `${String(row.surfaceId)}\0${String(row.fact)}`)).size !== rows.length ||
+      rows.some((row) => !nonEmptyString(row.surfaceId) || !nodeId.test(String(row.nodeId)) || !nodeId.test(String(row.sourceNodeId)) ||
+        !nonEmptyString(row.fact) || !nonEmptyString(row.attribution) || usages.get(String(row.surfaceId)) !== row.nodeId)) {
+      issue(issues, 'target-shape', `${targetPath}.responsive.expectedPropagatedDeltas`, 'propagated-delta-unattributed: every declared propagation must address a read-only usage and name its source/fact/attribution');
+    }
+  }
+
+  const memberByValue = new Map(members.map((member) => [member.presentationValue, member]));
   const fixtures = responsive.contentFixtures;
   const fixtureIds = Array.isArray(fixtures) ? fixtures.filter(record).map((fixture) => String(fixture.fixtureId)) : [];
-  if (!Array.isArray(fixtures) || fixtures.length === 0 || fixtures.some((fixture) => !record(fixture) || !nonEmptyString(fixture.fixtureId) || !record(fixture.textValues)) || new Set(fixtureIds).size !== fixtureIds.length) {
+  if (!Array.isArray(fixtures) || fixtures.length === 0 || fixtures.some((fixture) => {
+    if (!record(fixture) || !nonEmptyString(fixture.fixtureId) || !record(fixture.textValues)) return true;
+    if (fixture.textValuesByPresentation === undefined) return false;
+    if (!record(fixture.textValuesByPresentation)) return true;
+    return Object.entries(fixture.textValuesByPresentation).some(([presentation, values]) =>
+      !memberByValue.has(presentation) || !record(values) || Object.values(values).some((value) => typeof value !== 'string'));
+  }) || new Set(fixtureIds).size !== fixtureIds.length) {
     issue(issues, 'target-shape', `${targetPath}.responsive.contentFixtures`, 'responsive content fixtures must be unique, explicit proof-only payloads');
   }
+  const selectionMatchesMember = (row: RecordValue): boolean => {
+    const member = memberByValue.get(String(row.presentationValue));
+    if (!member) return false;
+    if (topology.variantProperties === undefined) return row.variantSelection === undefined;
+    return record(row.variantSelection) && canonicalVariantSelection(row.variantSelection as Record<string, string>) ===
+      canonicalVariantSelection(memberVariantSelection(typedTopology, member));
+  };
   const scenarios = responsive.presentationScenarios;
   if (!Array.isArray(scenarios) || scenarios.length === 0 || scenarios.some((scenario) => !record(scenario) || !nonEmptyString(scenario.scenarioId) ||
-    !presentationValues.includes(String(scenario.presentationValue)) || typeof scenario.width !== 'number' || scenario.width <= 0 ||
-    typeof scenario.height !== 'number' || scenario.height <= 0 || !fixtureIds.includes(String(scenario.fixtureId)) || scenario.expectedOverflow !== false) ||
+    !selectionMatchesMember(scenario) || typeof scenario.width !== 'number' || scenario.width <= 0 ||
+    typeof scenario.height !== 'number' || scenario.height <= 0 || !fixtureIds.includes(String(scenario.fixtureId)) || scenario.expectedOverflow !== false ||
+    (scenario.expectedCardsPerRow !== undefined && (typeof scenario.expectedCardsPerRow !== 'number' || !Number.isInteger(scenario.expectedCardsPerRow) || scenario.expectedCardsPerRow <= 0))) ||
     new Set(scenarios.filter(record).map((scenario) => String(scenario.scenarioId))).size !== scenarios.length) {
     issue(issues, 'target-shape', `${targetPath}.responsive.presentationScenarios`, 'presentation-not-selected: every scenario must explicitly select a declared presentation and fixture');
   }
 
   const bindings = responsive.primitiveBindings;
-  if (!Array.isArray(bindings) || bindings.some((binding) => !record(binding) || !presentationValues.includes(String(binding.presentationValue)) ||
+  if (!Array.isArray(bindings) || bindings.some((binding) => !record(binding) || !selectionMatchesMember(binding) ||
     typeof binding.nodePath !== 'string' || !responsiveBindingFields.has(String(binding.property)) || !nonEmptyString(binding.variableId) ||
     !nonEmptyString(binding.variableName) || typeof binding.resolvedValue !== 'number' || !Number.isFinite(binding.resolvedValue))) {
     issue(issues, 'operation-allowlist', `${targetPath}.responsive.primitiveBindings`, 'responsive-operation-not-allowlisted: primitive bindings require a declared presentation, path, property and variable');
@@ -331,15 +426,17 @@ function validateResponsiveCapability(
 
   const layouts = responsive.presentationLayouts;
   if (!Array.isArray(layouts) || layouts.length === 0 || layouts.some((layout) => !record(layout) ||
-    !presentationValues.includes(String(layout.presentationValue)) || typeof layout.nodePath !== 'string' ||
+    !selectionMatchesMember(layout) || typeof layout.nodePath !== 'string' ||
     !record(layout.properties) || Object.keys(layout.properties).length === 0 || Object.entries(layout.properties).some(([field, value]) =>
       !responsiveLayoutFields.has(field) ||
       (field === 'layoutMode' && !['HORIZONTAL', 'VERTICAL'].includes(String(value))) ||
+      (field === 'layoutWrap' && !['NO_WRAP', 'WRAP'].includes(String(value))) ||
       (['layoutSizingHorizontal', 'layoutSizingVertical'].includes(field) && !['FILL', 'HUG', 'FIXED'].includes(String(value))) ||
       (field === 'primaryAxisAlignItems' && !['MIN', 'CENTER', 'MAX', 'SPACE_BETWEEN'].includes(String(value))) ||
       (field === 'counterAxisAlignItems' && !['MIN', 'CENTER', 'MAX', 'BASELINE'].includes(String(value))) ||
       (field === 'clipsContent' && typeof value !== 'boolean') ||
-      (field === 'textAutoResize' && !['NONE', 'HEIGHT'].includes(String(value)))))) {
+      (field === 'textAutoResize' && !['NONE', 'HEIGHT'].includes(String(value))) ||
+      (field === 'minWidth' && value !== null && (typeof value !== 'number' || !Number.isFinite(value) || value <= 0))))) {
     issue(issues, 'operation-allowlist', `${targetPath}.responsive.presentationLayouts`, 'responsive-operation-not-allowlisted: presentation layouts require declared members, paths and governed Auto Layout fields');
   } else if (presentationValues.some((presentationValue) => {
     const roots = layouts.filter((layout) => record(layout) && layout.presentationValue === presentationValue && layout.nodePath === '');
@@ -352,7 +449,7 @@ function validateResponsiveCapability(
   if (!Array.isArray(typography) || typography.some((override) => {
     if (!record(override) || !Array.isArray(override.allowedFields)) return true;
     const allowedFields = override.allowedFields;
-    return !createdMembers.some((member) => member.presentationValue === override.presentationValue) || !nonEmptyString(override.nodePath) ||
+    return !selectionMatchesMember(override) || !nonEmptyString(override.nodePath) ||
       !nonEmptyString(override.sourceRole) || !nonEmptyString(override.sourceTextStyleId) || allowedFields.length === 0 ||
       allowedFields.some((field) => !responsiveTypographyFields.has(String(field))) || !record(override.before) || !record(override.after) ||
       Object.keys(override.after).some((field) => !allowedFields.includes(field)) || !nonEmptyString(override.family) ||

@@ -53,15 +53,32 @@ export type ProtectedFact =
   | 'component-properties'
   | 'primitive-bindings'
   | 'temporary-typography'
-  | 'shared-child-facts';
+  | 'shared-child-facts'
+  | 'set-identity'
+  | 'member-ids-keys'
+  | 'axis-names-values'
+  | 'card-identity-key'
+  | 'card-variant-cardinality'
+  | 'layer-names-roles'
+  | 'media-text-content'
+  | 'usage-instance-links'
+  | 'usage-overrides'
+  | 'columns-enum-honesty';
+
+export type VariantSelection = Record<string, string>;
 
 export interface ResponsiveComponentMember {
   presentationValue: string;
   declaredName: string;
-  sourcePresentationValue: string;
+  sourcePresentationValue?: string;
+  /** Exact multi-axis member selection. Legacy 028 declarations omit it and
+   * continue to use `presentationValue` against `propertyName`. */
+  variantSelection?: VariantSelection;
   /** Stable only when repairing an already-existing set. Additive transitions
    * deliberately omit it because Figma assigns the id at combine time. */
   nodeId?: string;
+  /** Existing topology members protect both their node id and public key. */
+  componentKey?: string;
   /** Representative authoring width on the component-set canvas. This is not
    * the runtime sizing contract: proof instances still use FILL. */
   authoringPreviewWidth: number;
@@ -72,7 +89,11 @@ export interface ResponsiveComponentSetTopology {
   setName: string;
   setIdentityPolicy: 'additive' | 'existing';
   setNodeId?: string;
+  setComponentKey?: string;
   defaultPresentationValue: string;
+  /** Closed axis vocabulary for an existing multi-axis set. */
+  variantProperties?: Record<string, string[]>;
+  defaultVariantSelection?: VariantSelection;
   authoringLayout: {
     direction: 'VERTICAL';
     gap: number;
@@ -84,9 +105,29 @@ export interface ResponsiveComponentSetTopology {
     componentKey: string;
     declaredName: string;
     authoringPreviewWidth: number;
+    variantSelection?: VariantSelection;
   };
+  /** Existing members other than the historical comparison baseline. They are
+   * never reported as creates and retain node ids + keys. */
+  preservedMembers?: ResponsiveComponentMember[];
   createdMembers: ResponsiveComponentMember[];
   expectedMemberNames: string[];
+}
+
+/** Canonical topology order used by validation, Bridge, facts and receipts. */
+export function responsiveTopologyMembers(topology: ResponsiveComponentSetTopology): ResponsiveComponentMember[] {
+  return [topology.historicalMember, ...(topology.preservedMembers ?? []), ...topology.createdMembers];
+}
+
+export function canonicalVariantSelection(selection: VariantSelection | undefined): string {
+  return JSON.stringify(Object.fromEntries(Object.entries(selection ?? {}).sort(([left], [right]) => left.localeCompare(right))));
+}
+
+export function memberVariantSelection(
+  topology: ResponsiveComponentSetTopology,
+  member: Pick<ResponsiveComponentMember, 'presentationValue' | 'variantSelection'>,
+): VariantSelection {
+  return member.variantSelection ?? { [topology.propertyName]: member.presentationValue };
 }
 
 export interface ExpectedNodeCreate {
@@ -101,22 +142,30 @@ export interface ResponsiveContentFixture {
   fixtureId: string;
   /** Structural TEXT path → proof-only characters. Never applied to a Page. */
   textValues: Record<string, string>;
+  /** Optional presentation-specific paths for existing variants whose internal
+   * structures legitimately differ (for example Superpose vs Empile). */
+  textValuesByPresentation?: Record<string, Record<string, string>>;
 }
 
 export interface PresentationScenario {
   scenarioId: string;
   presentationValue: string;
+  variantSelection?: VariantSelection;
   width: number;
   height: number;
   fixtureId: string;
   expectedOverflow: false;
+  /** Optional grid assertion for section-like components. Card-only targets do
+   * not declare it because their direct children are internal layers. */
+  expectedCardsPerRow?: number;
 }
 
 export interface PrimitiveBindingDeclaration {
   presentationValue: string;
+  variantSelection?: VariantSelection;
   nodePath: string;
   property: 'itemSpacing' | 'paddingTop' | 'paddingRight' | 'paddingBottom' | 'paddingLeft'
-    | 'width' | 'height' | 'minWidth' | 'maxWidth' | 'minHeight' | 'maxHeight';
+    | 'counterAxisSpacing' | 'width' | 'height' | 'minWidth' | 'maxWidth' | 'minHeight' | 'maxHeight';
   variableId: string;
   variableName: string;
   resolvedValue: number;
@@ -124,20 +173,26 @@ export interface PrimitiveBindingDeclaration {
 
 export interface ResponsivePresentationLayout {
   presentationValue: string;
+  variantSelection?: VariantSelection;
   nodePath: string;
   properties: Partial<{
     layoutMode: 'HORIZONTAL' | 'VERTICAL';
+    layoutWrap: 'NO_WRAP' | 'WRAP';
     layoutSizingHorizontal: 'FILL' | 'HUG' | 'FIXED';
     layoutSizingVertical: 'FILL' | 'HUG' | 'FIXED';
     primaryAxisAlignItems: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
     counterAxisAlignItems: 'MIN' | 'CENTER' | 'MAX' | 'BASELINE';
     clipsContent: boolean;
     textAutoResize: 'NONE' | 'HEIGHT';
+    /** Closed, removal-only capability: a responsive member may shed a
+     * historical width floor, but this vocabulary cannot add one. */
+    minWidth: number | null;
   }>;
 }
 
 export interface TemporaryTypographyOverride {
   presentationValue: string;
+  variantSelection?: VariantSelection;
   nodePath: string;
   sourceRole: string;
   sourceTextStyleId: string;
@@ -151,6 +206,21 @@ export interface TemporaryTypographyOverride {
   ownerDecisionRef: string;
 }
 
+export interface ResponsiveUsageSurface {
+  surfaceId: string;
+  nodeId: string;
+  positionPath: string;
+  writePolicy: 'read-only';
+}
+
+export interface ExpectedPropagatedDelta {
+  surfaceId: string;
+  nodeId: string;
+  sourceNodeId: string;
+  fact: string;
+  attribution: string;
+}
+
 export interface ResponsiveComponentCapability {
   componentSetTopology: ResponsiveComponentSetTopology;
   expectedCreates: ExpectedNodeCreate[];
@@ -159,6 +229,12 @@ export interface ResponsiveComponentCapability {
   presentationLayouts: ResponsivePresentationLayout[];
   primitiveBindings: PrimitiveBindingDeclaration[];
   typographyOverrides: TemporaryTypographyOverride[];
+  /** Existing roots/members which the one generic operation may mutate. */
+  authorizedTargetNodeIds?: string[];
+  /** Read-only usage surfaces addressed by identity and position. */
+  usageSurfaces?: ResponsiveUsageSurface[];
+  /** Master propagation expected in captures/receipts; never direct writes. */
+  expectedPropagatedDeltas?: ExpectedPropagatedDelta[];
 }
 
 export interface ResponsiveWriteBoundary {
@@ -194,6 +270,15 @@ export interface ComponentRepairWorkflow {
   sharedDependencies: string[];
   directRepairRefs?: Record<string, string>;
   historicalTextDecisions?: Record<string, string>;
+}
+
+export interface ComponentRepairArtifactRoots {
+  audit: string;
+  captures: { before: string; after: string; idempotence: string };
+  receipts: string;
+  verify: string;
+  dryRun: string;
+  bridgeScripts: { first: string; second: string };
 }
 
 export type ComponentAuditVerdict = 'green' | 'proposal' | 'blocked';
@@ -237,7 +322,9 @@ export interface ComponentAuditReport {
   responsive?: {
     status: 'not-declared' | 'standalone-before-transition' | 'component-set-observed';
     propertyName: string | null;
+    variantProperties?: Record<string, string[]>;
     memberNames: string[];
+    memberIdentities?: Array<{ nodeId: string | null; componentKey: string | null; variantSelection: VariantSelection }>;
     historicalMemberNodeId: string | null;
     historicalMemberKey: string | null;
     expectedDefaultPresentationValue: string | null;
@@ -252,6 +339,8 @@ export interface ComponentAuditReport {
     scenarioCount: number;
     primitiveBindingCount: number;
     typographyOverrideCount: number;
+    usageSurfaceCount?: number;
+    propagatedDeltaCount?: number;
     boundaryViolations: string[];
   };
   findings: Array<{ code: string; severity: 'proposal' | 'blocked'; message: string }>;
@@ -387,6 +476,7 @@ export interface RepairCampaign {
   createdAt: string;
   sourceBaseline?: SourceBaseline;
   workflow?: ComponentRepairWorkflow;
+  artifactRoots?: ComponentRepairArtifactRoots;
   writeBoundary?: ResponsiveWriteBoundary;
 }
 

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "figma-responsive-carte-categorie-run-001-carte-categorie-accepted",
+  "campaignId": "figma-responsive-carte-categorie-run-001",
+  "targetId": "carte-categorie",
+  "referenceId": "carte-categorie-023-historical-context",
+  "appliedOperationIds": [
+    "adapt-carte-categorie-existing-set",
+    "direct-carte-categorie"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "carte-categorie:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.png"
+    },
+    {
+      "surfaceId": "carte-categorie:variant:superpose",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_superpose.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:variant:empile",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_variant_empile.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4392",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4392",
+      "kind": "expected",
+      "description": "png changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4392.png"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4278",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4278",
+      "kind": "expected",
+      "description": "png changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4278.png"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4438",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4438.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4297",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4297.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4411",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4411.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4324",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4324.structure.json"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4364",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_usage_2115-4364.structure.json"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "GO owner explicite en session du 2026-08-26 au soir (« clôture la spec propre stp et valide tout »), donné après inspection du canvas par l'owner et après le geste correctif run-002 (axe Presentation). Le run-001 carte est vert : apply sans création ni écriture Page/enfant, verify 41 artefacts, idempotence no-op. parityPosture (mécanisme nommé, décisions/README H4) : acquittements owner dans parity/baseline.json — entrées figma|ahead|CategoriesPrincipales.Presentation et figma|ahead|HeroVideo.Presentation — statut figma-ahead comme 028, promotion contrat différée.",
+  "evidenceRefs": [
+    "specs/component-repairs/carte-categorie/run-001/captures/before/carte-categorie_master.structure.json",
+    "specs/component-repairs/carte-categorie/run-001/captures/after/carte-categorie_master.structure.json",
+    "specs/component-repairs/carte-categorie/run-001/verify/comparison.json",
+    "specs/029-figma-responsive-categories/decisions/H4-carte-categorie.json",
+    "specs/component-repairs/carte-categorie/run-001/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-26T20:15:00+02:00"
+}

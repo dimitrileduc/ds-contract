@@ -97,3 +97,9 @@ integrations/odoo/qa/.env
 # spec 023 — le MODÈLE d'env (aucun secret) doit être commité : la règle large
 # `.env*` (ligne 17) l'attrapait, d'où son absence des worktrees frais. On le réinclut.
 !integrations/odoo/qa/.env.example
+
+# 029+: capture/scenario PNGs stay out of git — JSON receipts + sha256 manifests
+# + pinned Figma versions are the durable evidence (owner decision 2026-08-27)
+specs/component-repairs/*/run-*/**/*.png
+specs/component-repairs/*/run-*/*.png
+specs/029-figma-responsive-categories/proofs/**/*.png

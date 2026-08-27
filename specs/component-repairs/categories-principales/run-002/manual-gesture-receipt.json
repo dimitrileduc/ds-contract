@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "manual-1.0.0",
+  "gesture": "add-presentation-axis",
+  "executedAt": "2026-08-26T19:45:00+02:00",
+  "executedBy": "claude (session just-euphonium), GO owner verbal « go fix moi ça »",
+  "motivation": "Correctif du malentendu 029 : l'owner voulait des variantes de breakpoint visibles (comme HeroVideo 028), le run-001 n'avait installé qu'une adaptation interne (wrap). Chaîne d'analyse dans la mémoire projet (projet-vague-responsive-030).",
+  "beforeState": {
+    "figmaVersionPinned": "2392109833678654034",
+    "versionLabel": "AVANT ajout axe Presentation sur CategoriesPrincipales (fix 029, additive)",
+    "set": {
+      "id": "2115:4277",
+      "members": 4,
+      "variantProps": {
+        "Style": [
+          "Superpose",
+          "Empile"
+        ],
+        "Colonnes": [
+          "2",
+          "3"
+        ]
+      }
+    }
+  },
+  "operations": [
+    {
+      "op": "rename",
+      "targets": [
+        "2115:4273",
+        "2115:4274",
+        "2115:4275",
+        "2495:7122"
+      ],
+      "change": "prefixe 'Presentation=Desktop, ' ajouté au nom de variante"
+    },
+    {
+      "op": "create-member",
+      "id": "2596:18205",
+      "name": "Presentation=Mobile, Style=Superpose, Colonnes=2",
+      "source": "clone de 2115:4273 redimensionné 390px (le wrap du run-001 produit 1 carte/ligne)",
+      "size": "390x900"
+    },
+    {
+      "op": "create-member",
+      "id": "2596:18208",
+      "name": "Presentation=Mobile, Style=Empile, Colonnes=2",
+      "source": "clone de 2115:4274 redimensionné 390px",
+      "size": "390x1435"
+    },
+    {
+      "op": "resize",
+      "targets": [
+        "2115:4277 (set 2298->4631)",
+        "2115:4158 (section 2584->4751)"
+      ],
+      "change": "ajustement contenant, aucun contenu modifié"
+    },
+    {
+      "op": "housekeeping",
+      "change": "frame de test temporaire 2596:18185 créée puis supprimée après preuve du comportement 390px"
+    }
+  ],
+  "verification": {
+    "variantProps": {
+      "Presentation": [
+        "Desktop",
+        "Mobile"
+      ],
+      "Style": [
+        "Superpose",
+        "Empile"
+      ],
+      "Colonnes": [
+        "2",
+        "3"
+      ]
+    },
+    "memberCount": 6,
+    "defaultVariant": "2115:4273 (inchangé)",
+    "usages7": "tous reboundés sur leur même membre, dimensions identiques (1550px, hauteurs 418/622/649/525 inchangées), variantProperties rapportent Presentation=Desktop",
+    "pageWrites": [],
+    "childWrites": "aucune écriture dans les cartes ni le Button"
+  },
+  "knownLimits": [
+    "Les 2 membres Mobile sont des clones : nouvelles component keys (créations déclarées ici, pas des identités 023)",
+    "Titre carte 'RÉSIDENTIELLES' césure brute à 390px — hérité du comportement wrap run-001, non traité ici",
+    "Statut figma-ahead aggravé : contrat categories-principales et parité ne connaissent pas l'axe Presentation ; promotion contrat = travail séparé",
+    "Geste manuel hors runner component:repair : pas de second-passage no-op automatisé ; le filet est la version épinglée 2392109833678654034",
+    "Les membres Mobile x Colonnes=3 existent mais sont des jumeaux visuels des Colonnes=2 : choisir 3 colonnes en mobile ne change rien, par decision",
+    "Ecart de nommage inter-composants : Compact (HeroVideo) vs Mobile (Categories)"
+  ],
+  "secondGesture": {
+    "gesture": "complete-matrix-wide-desktop-mobile",
+    "executedAt": "2026-08-26T19:55:00+02:00",
+    "figmaVersionPinned": "2392110086515334936",
+    "versionLabel": "AVANT restructuration Wide/Desktop/Mobile complete sur CategoriesPrincipales",
+    "motivation": "Owner signale : le picker Colonnes casse en Mobile (combo Mobile x Colonnes=3 absente) ; demande la matrice propre avec Wide, comme HeroVideo.",
+    "operations": [
+      {
+        "op": "rename",
+        "targets": [
+          "2115:4273",
+          "2115:4274",
+          "2115:4275",
+          "2495:7122"
+        ],
+        "change": "Presentation=Desktop -> Presentation=Wide (membres 1728, l'authoring historique)"
+      },
+      {
+        "op": "create-member",
+        "ids": [
+          "2596:18335",
+          "2596:18338",
+          "2596:18342",
+          "2596:18345"
+        ],
+        "change": "4 membres Presentation=Desktop a 1200px, clones des Wide re-flowes par le wrap"
+      },
+      {
+        "op": "create-member",
+        "ids": [
+          "2596:18349",
+          "2596:18352"
+        ],
+        "change": "2 membres Mobile x Colonnes=3, jumeaux visuels des Colonnes=2 (encodage honnete de 'pas d'effet colonnes en mobile')"
+      },
+      {
+        "op": "resize",
+        "change": "set 4631->7297, section 4751->7417"
+      }
+    ],
+    "verification": {
+      "memberCount": 12,
+      "variantProps": {
+        "Presentation": [
+          "Wide",
+          "Mobile",
+          "Desktop"
+        ],
+        "Style": [
+          "Superpose",
+          "Empile"
+        ],
+        "Colonnes": [
+          "2",
+          "3"
+        ]
+      },
+      "switchMatrix": "12/12 combinaisons setProperties sans erreur (teste sur instance temporaire supprimee)",
+      "defaultVariant": "Presentation=Wide, Style=Superpose, Colonnes=2 (2115:4273, identite historique conservee)",
+      "usages7": "lies aux memes membres (desormais Wide), dimensions identiques 1550px / 418-649"
+    },
+    "heroVideo": "AUCUN geste : le set HeroVideo 2580:7392 possede deja Presentation=Wide (2151:5552, key historique 36011e51...). Ecart de nommage note : HeroVideo dit 'Compact' la ou Categories dit 'Mobile' - rename non fait (les preuves 028 nomment Compact), a trancher owner."
+  }
+}

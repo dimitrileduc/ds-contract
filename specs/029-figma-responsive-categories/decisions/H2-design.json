@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "gateId": "H2",
+  "decisionId": "H2-design-v1",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T13:58:07.659Z",
+  "baselineRef": "specs/029-figma-responsive-categories/decisions/H1-audit.json",
+  "historicalRefs": [
+    "specs/021-categories-principales-repair/",
+    "specs/023-categories-gouvernees/"
+  ],
+  "evidenceRefs": [
+    "specs/029-figma-responsive-categories/inventory/H2-work-frames.md",
+    "specs/029-figma-responsive-categories/inventory/H2-fixtures.md",
+    "specs/029-figma-responsive-categories/inventory/H2-grid-cases.md",
+    "specs/029-figma-responsive-categories/inventory/H2-bindings.json",
+    "specs/029-figma-responsive-categories/inventory/H2-typography.json",
+    "specs/029-figma-responsive-categories/proofs/H2-option-manifest.json",
+    "specs/029-figma-responsive-categories/proofs/H2-finalize-approved-option-a.bridge.json",
+    "specs/029-figma-responsive-categories/proofs/H2-read-only-verify.bridge.json"
+  ],
+  "acceptedFacts": [
+    "Option 1 / A is selected: at 834 px in the intermediate three-column composition, the orphan card preserves one track width.",
+    "The card extent is internal adaptation only; no new responsive card state or variant is added.",
+    "Mobile renders one card per line with no exposed column control.",
+    "Desktop and wide retain the Colonnes enum 2|3.",
+    "Six of seven current Page usages are two columns and are identical across the rejected and accepted orphan options.",
+    "The only current three-column usage is Empile and is the decision witness shown at 834 px, 1:1.",
+    "All proposed bindings resolve to existing primitives and no responsive typography override is required.",
+    "The owner surface contains no scaled breakpoint thumbnail; exhaustive coverage stays in a hidden technical archive."
+  ],
+  "behaviors": {
+    "mobile": {
+      "widths": [
+        320,
+        390
+      ],
+      "cardsPerLine": 1,
+      "exposedColumnsControl": false
+    },
+    "desktop": {
+      "widths": [
+        834,
+        1200
+      ],
+      "configuredColumns": [
+        2,
+        3
+      ],
+      "intermediateThreeColumnLayout": "2+1 with orphan preserving one track width"
+    },
+    "wide": {
+      "widths": [
+        1440,
+        1728
+      ],
+      "configuredColumns": [
+        2,
+        3
+      ]
+    }
+  },
+  "witnesses": {
+    "widths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "configuredColumns": [
+      2,
+      3
+    ],
+    "matrixFrameCount": 24,
+    "technicalFrameCount": 28,
+    "approvedDecisionWitness": {
+      "nodeId": "2584:14257",
+      "viewportWidth": 834,
+      "actualWidth": 834,
+      "scale": 1
+    }
+  },
+  "fixtures": {
+    "content": [
+      "normal",
+      "long"
+    ],
+    "edgeCases": [
+      "card-count-differs-from-columns",
+      "no-image",
+      "atypical-square-media",
+      "mobile-superposed-text-readability"
+    ]
+  },
+  "orphanRowDecision": {
+    "status": "approved",
+    "selectedOption": "A",
+    "value": "preserve-track",
+    "label": "La dernière carte garde sa largeur",
+    "selectedBy": "owner"
+  },
+  "cardExtentDecision": {
+    "status": "approved",
+    "value": "internal-adaptation-only",
+    "selectedBy": "owner",
+    "evidence": {
+      "normalizedRows": 90,
+      "allEqualHeight": true,
+      "allTextInsideCards": true
+    },
+    "explicitStatesNeeded": []
+  },
+  "addedStatesJustification": [],
+  "desktopPreservation": {
+    "status": "approved",
+    "statement": "Existing desktop Style×Colonnes combinations and typography are preserved; only the approved responsive composition is prepared for later source application."
+  },
+  "primitiveBindings": {
+    "ref": "specs/029-figma-responsive-categories/inventory/H2-bindings.json",
+    "count": 869,
+    "missingPrimitiveIds": []
+  },
+  "typographyOverrides": [],
+  "pendingResponsiveTextStyle": [],
+  "columnsSettingStatement": "Colonnes remains enum 2|3 and is labelled desktop-only; Mobile renders one card per line with no exposed column control.",
+  "childDecisions": [
+    "Shared children outside CarteCategorie remain unchanged and read-only.",
+    "Superpose requires media; an author without media selects Empile. No silent media fallback is introduced."
+  ],
+  "workFrameRefs": [
+    {
+      "optionId": "A",
+      "status": "approved-visible",
+      "nodeId": "2584:14257",
+      "captureRef": "specs/029-figma-responsive-categories/proofs/H2-owner-approved/option-a-834-real-size.png",
+      "viewportWidth": 834,
+      "scale": 1
+    },
+    {
+      "optionId": "B",
+      "status": "rejected-archived",
+      "nodeId": "2584:11767",
+      "archiveNodeId": "2584:12499"
+    }
+  ],
+  "tradeoffs": [
+    "The accepted orphan row preserves regular card proportions and leaves intentional empty space to the right.",
+    "Figma witnesses describe explicit compositions; they do not claim automatic breakpoints."
+  ],
+  "rejectedOptions": [
+    {
+      "optionId": "B",
+      "value": "stretch-orphan",
+      "disposition": "hidden technical archive",
+      "sourceScenarioId": "orphan-stretch"
+    },
+    {
+      "optionId": "scaled-breakpoint-galleries",
+      "reason": "They obscure true viewport geometry and duplicate identical outputs.",
+      "disposition": "removed"
+    }
+  ],
+  "deferredTopics": [
+    "Any governed-source application, which requires runner/mechanism proof and H3."
+  ],
+  "authorizes": [
+    "Prepare generic runner capability, mechanism spike and the exact H3 mutation plan from this approved design."
+  ],
+  "forbids": [
+    "Master or variant mutation before H3.",
+    "Page write.",
+    "Shared-child or protected-dependency mutation.",
+    "Claim that work frames are already applied to governed source."
+  ],
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "supersedes": null,
+  "conversationEvidence": "Owner wrote 'ok je vois . option 1' to select Option 1 / A. When the remaining internal-only card extent decision was presented, the owner replied 'go'. The owner then rejected scaled breakpoint galleries and required only the true difference at real size; the final 834 px 1:1 witness was produced and verified before this approval was recorded."
+}

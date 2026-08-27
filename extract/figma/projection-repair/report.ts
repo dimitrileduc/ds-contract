@@ -3,17 +3,19 @@ import { canonicalize, sha256Of, stableJson } from './json.js';
 import type { LiveApplyReceipt } from './apply-receipt.js';
 import { type IdempotenceComparison } from './verify.js';
 import { validateRepairReceipt } from './campaign.js';
-import type { DiffFinding, RepairCampaign, RepairReceipt, RepairTargetId } from './types.js';
+import type { DiffFinding, RepairCampaign, RepairReceipt, RepairTargetId, VariantSelection } from './types.js';
 
 export interface ResponsiveCapabilityReport {
   schemaVersion: '1.0.0';
   campaignId: string;
   status: 'pass' | 'fail' | 'not-applicable';
-  topology: Array<{ targetId: string; setNodeId: string | null; historicalMemberNodeId: string; historicalMemberKey: string; memberNames: string[] }>;
+  topology: Array<{ targetId: string; setNodeId: string | null; setKey: string | null; historicalMemberNodeId: string; historicalMemberKey: string; memberNames: string[]; memberIdentities: unknown[]; variantProperties: Record<string, string[]> | null }>;
   createdNodes: LiveApplyReceipt['operations'][number]['createdNodes'];
   selectedPresentations: Array<{ scenarioId: string; selectedPresentation: string }>;
+  selectedVariants: Array<{ scenarioId: string; selectedVariantSelection: VariantSelection }>;
   primitiveBindings: LiveApplyReceipt['bindingFacts'];
   typographyOverrides: LiveApplyReceipt['typographyFacts'];
+  propagatedDeltas: LiveApplyReceipt['propagatedDeltas'];
   boundaryViolations: string[];
 }
 
@@ -21,7 +23,7 @@ export function buildResponsiveCapabilityReport(campaign: RepairCampaign, receip
   const responsiveTargets = campaign.targets.filter((target) => target.responsive);
   if (responsiveTargets.length === 0) return {
     schemaVersion: '1.0.0', campaignId: campaign.campaignId, status: 'not-applicable', topology: [], createdNodes: [],
-    selectedPresentations: [], primitiveBindings: [], typographyOverrides: [], boundaryViolations: [],
+    selectedPresentations: [], selectedVariants: [], primitiveBindings: [], typographyOverrides: [], propagatedDeltas: [], boundaryViolations: [],
   };
   const boundaryViolations = [
     ...receipt.pageWrites.map((nodeId) => `page-write-forbidden:${nodeId}`),
@@ -32,21 +34,27 @@ export function buildResponsiveCapabilityReport(campaign: RepairCampaign, receip
     return {
       targetId: target.targetId,
       setNodeId: check?.setNodeId ?? null,
+      setKey: check?.setKey ?? null,
       historicalMemberNodeId: check?.nodeId ?? target.masterNodeId,
       historicalMemberKey: check?.componentKey ?? '',
       memberNames: check?.variantNames ?? [],
+      memberIdentities: check?.memberIdentities ?? [],
+      variantProperties: check?.variantProperties ?? null,
     };
   });
   const status = boundaryViolations.length === 0 && topology.every((entry) => entry.setNodeId && entry.historicalMemberKey) &&
     receipt.bindingFacts.every((entry) => entry.status === 'attached') && receipt.typographyFacts.every((entry) => entry.status === 'allowlisted') &&
-    receipt.scenarioChecks.every((entry) => entry.overflow === false && entry.clippedBy.length === 0 && entry.contentAccessible)
+    receipt.scenarioChecks.every((entry) => entry.overflow === false && entry.clippedBy.length === 0 && entry.contentAccessible) &&
+    receipt.propagatedDeltas.every((entry) => entry.status === 'attributed')
     ? 'pass' : 'fail';
   return {
     schemaVersion: '1.0.0', campaignId: campaign.campaignId, status, topology,
     createdNodes: receipt.operations.flatMap((operation) => operation.createdNodes),
     selectedPresentations: receipt.scenarioChecks.map((scenario) => ({ scenarioId: scenario.scenarioId, selectedPresentation: scenario.selectedPresentation })),
+    selectedVariants: receipt.scenarioChecks.map((scenario) => ({ scenarioId: scenario.scenarioId, selectedVariantSelection: scenario.selectedVariantSelection ?? {} })),
     primitiveBindings: receipt.bindingFacts,
     typographyOverrides: receipt.typographyFacts,
+    propagatedDeltas: receipt.propagatedDeltas,
     boundaryViolations,
   };
 }

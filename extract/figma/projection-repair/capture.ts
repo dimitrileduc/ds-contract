@@ -9,7 +9,8 @@ import { figmaRestGet } from '../rest/fetch.js';
 import { figmaToken } from '../../fidelity-matrix/scripts/env.js';
 import { collectSurfaceFacts } from './facts.js';
 import { isObject as object, sha256Of as sha256, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
-import type { AffectedSurface, CapturePhase, CaptureSet, EvidenceArtifact, ImageFingerprint, InstanceLink, RepairCampaign } from './types.js';
+import { responsiveTopologyMembers } from './types.js';
+import type { AffectedSurface, CapturePhase, CaptureSet, EvidenceArtifact, ImageFingerprint, InstanceLink, RepairCampaign, VariantSelection } from './types.js';
 
 const safeName = (value: string): string => value.replace(/[^a-zA-Z0-9._-]+/g, '_');
 /** Evidence files stay indented — they are read by humans during a repair. */
@@ -46,10 +47,12 @@ export interface PresentationCaptureRequest {
   targetId: string;
   scenarioId: string;
   presentationValue: string;
+  variantSelection?: VariantSelection;
   width: number;
   height: number;
   fixtureId: string;
   mutationSurface: 'transient-proof-instance';
+  readOnlyUsageSurfaceIds: string[];
   pageWrites: [];
 }
 
@@ -61,10 +64,12 @@ export function buildPresentationCaptureRequests(campaign: RepairCampaign): Pres
     targetId: target.targetId,
     scenarioId: scenario.scenarioId,
     presentationValue: scenario.presentationValue,
+    ...(scenario.variantSelection ? { variantSelection: scenario.variantSelection } : {}),
     width: scenario.width,
     height: scenario.height,
     fixtureId: scenario.fixtureId,
     mutationSurface: 'transient-proof-instance' as const,
+    readOnlyUsageSurfaceIds: (target.responsive?.usageSurfaces ?? []).map((surface) => surface.surfaceId),
     pageWrites: [] as [],
   })));
 }
@@ -96,7 +101,28 @@ export async function inspectFigmaCampaign(
   if (!versionId || !/^\d+$/.test(versionId)) throw new Error('Figma versions response does not expose a current numeric version id');
   if (options.enforceVersionPin !== false && versionId !== campaign.filePin.versionId) throw new Error(`file pin drift: expected ${campaign.filePin.versionId}, observed ${versionId}`);
   const nodes = new Map<string, Json>();
-  walk(file.document, (node) => { if (typeof node.id === 'string') nodes.set(node.id, node); });
+  const indexNode = (node: unknown, ancestorIds: string[] = []): void => {
+    if (!object(node)) return;
+    if (typeof node.id === 'string') {
+      nodes.set(node.id, node);
+      // Used only by preflight exclusivity. Non-enumerable metadata never
+      // enters captured structure JSON or protected-fact digests.
+      Object.defineProperty(node, '__ancestorIds', { value: ancestorIds, enumerable: false, configurable: true });
+    }
+    const nextAncestors = typeof node.id === 'string' ? [...ancestorIds, node.id] : ancestorIds;
+    if (Array.isArray(node.children)) node.children.forEach((child) => indexNode(child, nextAncestors));
+  };
+  indexNode(file.document);
+  // The REST document tree omits public component keys. They live in the
+  // sibling `components` / `componentSets` registries, so join them by node id
+  // before enforcing identity-preserving existing-set topology.
+  for (const registryName of ['components', 'componentSets'] as const) {
+    const registry = object(file[registryName]) ? file[registryName] : {};
+    for (const [id, metadata] of Object.entries(registry)) {
+      const node = nodes.get(id);
+      if (node && object(metadata) && typeof metadata.key === 'string') node.componentKey = metadata.key;
+    }
+  }
   for (const target of campaign.targets) if (!nodes.has(target.masterNodeId)) throw new Error(`preflight: target ${target.targetId} node ${target.masterNodeId} is absent from the pinned file`);
   if (campaign.schemaVersion === '2.0.0' && options.enforceTopology !== false) assertComponentTopology(campaign, nodes);
   return { versionId, nodes, file };
@@ -128,15 +154,21 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
     if (!master) throw new Error(`preflight: master ${target.masterNodeId} is absent`);
     if (target.responsive?.componentSetTopology.setIdentityPolicy === 'existing') {
       const topology = target.responsive.componentSetTopology;
+      const legacyExistingTopology = topology.preservedMembers === undefined && topology.createdMembers.length > 0 &&
+        topology.createdMembers.every((member) => typeof member.nodeId === 'string');
       const set = topology.setNodeId ? nodes.get(topology.setNodeId) : null;
       const members = set?.type === 'COMPONENT_SET' && Array.isArray(set.children)
         ? set.children.filter((child) => object(child) && child.type === 'COMPONENT') as Json[]
         : [];
       const actualNames = members.map((member) => String(member.name ?? '')).sort();
       const expectedNames = [...topology.expectedMemberNames].sort();
-      const expectedIds = new Set([topology.historicalMember.nodeId, ...topology.createdMembers.map((member) => member.nodeId)]);
+      const expectedMembers = responsiveTopologyMembers(topology).filter((member) => member.nodeId);
+      const expectedIds = new Set(expectedMembers.map((member) => member.nodeId));
       if (!set || set.name !== topology.setName || stable(actualNames) !== stable(expectedNames) ||
-        members.some((member) => !expectedIds.has(String(member.id))) || !members.some((member) => member.id === master.id)) {
+        members.some((member) => !expectedIds.has(String(member.id))) || expectedMembers.some((expected) => {
+          const member = members.find((entry) => entry.id === expected.nodeId);
+          return !member || (expected.componentKey !== undefined && String(member.key ?? member.componentKey ?? '') !== expected.componentKey);
+        }) || (legacyExistingTopology ? !members.some((member) => member.id === master.id) : master.id !== set.id)) {
         throw new Error(`preflight: existing responsive component-set topology drift for ${target.targetId}`);
       }
     } else {
@@ -162,7 +194,16 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
     const declaredInstanceIds = campaign.affectedSurfaces
       .filter((surface) => surface.targetId === target.targetId && ['page-instance', 'preview-instance', 'hidden-instance'].includes(surface.role) && surface.nodeId)
       .map((surface) => surface.nodeId!).sort();
-    if (stable(actualInstanceIds) !== stable(declaredInstanceIds)) {
+    const indirectRoots = new Set([
+      ...(target.responsive?.usageSurfaces ?? []).map((surface) => surface.nodeId),
+      ...(campaign.writeBoundary?.protectedDependencyNodeIds ?? []),
+    ]);
+    const indirectConsumersAreExclusivelyContained = declaredInstanceIds.length === 0 && indirectRoots.size > 0 && actualInstanceIds.every((instanceId) => {
+      const instance = nodes.get(instanceId);
+      const ancestors = Array.isArray(instance?.__ancestorIds) ? instance.__ancestorIds.filter((id): id is string => typeof id === 'string') : [];
+      return ancestors.some((ancestorId) => indirectRoots.has(ancestorId));
+    });
+    if (stable(actualInstanceIds) !== stable(declaredInstanceIds) && !indirectConsumersAreExclusivelyContained) {
       throw new Error(`preflight: consumer cardinality drift for ${target.targetId}: expected ${declaredInstanceIds.join(',') || '(none)'}, observed ${actualInstanceIds.join(',') || '(none)'}`);
     }
   }

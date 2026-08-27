@@ -1,0 +1,140 @@
+{
+  "campaignId": "figma-responsive-carte-categorie-run-001",
+  "filePin": "2392091518820622154",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "adapt-carte-categorie-existing-set",
+      "targetId": "carte-categorie",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2495:6770",
+      "structuralPath": "",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "H1.status",
+          "equals": "approved"
+        },
+        {
+          "field": "H2.status",
+          "equals": "approved"
+        },
+        {
+          "field": "H3.status",
+          "equals": "approved"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "protectedChildWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [],
+  "expectedChangedNodeIds": [
+    "2495:6770",
+    "2495:6762",
+    "2495:6763"
+  ],
+  "expectedPropagatedDeltas": [
+    {
+      "surfaceId": "carte-categorie:usage:2115-4392",
+      "nodeId": "2115:4392",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4278",
+      "nodeId": "2115:4278",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4438",
+      "nodeId": "2115:4438",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4297",
+      "nodeId": "2115:4297",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4411",
+      "nodeId": "2115:4411",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4324",
+      "nodeId": "2115:4324",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    },
+    {
+      "surfaceId": "carte-categorie:usage:2115-4364",
+      "nodeId": "2115:4364",
+      "sourceNodeId": "2495:6770",
+      "fact": "responsive-card-internal-layout",
+      "attribution": "card-master-to-nested-instances"
+    }
+  ],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2495:6770",
+      "2495:6762",
+      "2495:6763"
+    ],
+    "expectedChangedNodeIds": [
+      "2495:6770",
+      "2495:6762",
+      "2495:6763"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2115:4392",
+      "2115:4278",
+      "2115:4438",
+      "2115:4297",
+      "2115:4411",
+      "2115:4324",
+      "2115:4364"
+    ],
+    "protectedDependencyNodeIds": [
+      "2115:4277"
+    ],
+    "protectedChildNodeIds": [
+      "6:104",
+      "9:206",
+      "230:585",
+      "230:599"
+    ],
+    "protectedChildPaths": [
+      "**/ArrowRight",
+      "**/Bouton",
+      "**/Pdf",
+      "**/Download"
+    ],
+    "allowedCreateRoles": [],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}
