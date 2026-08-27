@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "status": "approved",
+  "decidedAt": "2026-08-26T13:58:07.659Z",
+  "decisionSurface": {
+    "workAreaNodeId": "2584:8638",
+    "approvedBoardNodeId": "2584:14252",
+    "approvedWitnessNodeId": "2584:14257",
+    "optionId": "option-a-preserve-track",
+    "label": "Option 1 retenue",
+    "viewportWidth": 834,
+    "actualFrameWidth": 834,
+    "reviewScale": 1,
+    "captureRef": "specs/029-figma-responsive-categories/proofs/H2-owner-approved/option-a-834-real-size.png",
+    "visibleScaledBreakpointThumbnails": 0
+  },
+  "usageDistribution": {
+    "columns2": 6,
+    "columns3": 1,
+    "columns3Empile": 1
+  },
+  "rejectedOption": {
+    "optionId": "option-b-stretch-orphan",
+    "visible": false,
+    "preservedInTechnicalArchive": true,
+    "sourceScenarioId": "orphan-stretch",
+    "sourceFrameNodeId": "2584:11767"
+  },
+  "technicalArchive": {
+    "nodeId": "2584:12499",
+    "name": "029 · ARCHIVE TECHNIQUE H2 · 28 TESTS · MASQUÉE",
+    "visible": false,
+    "frameCount": 28,
+    "recoverable": true,
+    "unchanged": true
+  },
+  "technicalCaptures": [
+    {
+      "scenarioId": "matrix-390-c3-normal",
+      "frameId": "2584:9347",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/matrix-390-c3-normal.png",
+      "byteLength": 1287589
+    },
+    {
+      "scenarioId": "matrix-834-c3-long",
+      "frameId": "2584:9995",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/matrix-834-c3-long.png",
+      "byteLength": 1467706
+    },
+    {
+      "scenarioId": "matrix-1200-c3-long",
+      "frameId": "2584:10489",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/matrix-1200-c3-long.png",
+      "byteLength": 1614277
+    },
+    {
+      "scenarioId": "matrix-1728-c2-normal",
+      "frameId": "2584:11127",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/matrix-1728-c2-normal.png",
+      "byteLength": 1530389
+    },
+    {
+      "scenarioId": "orphan-preserve",
+      "frameId": "2584:11619",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/orphan-preserve.png",
+      "byteLength": 1147924
+    },
+    {
+      "scenarioId": "orphan-stretch",
+      "frameId": "2584:11767",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/orphan-stretch.png",
+      "byteLength": 1886566
+    },
+    {
+      "scenarioId": "odd-count-preserve",
+      "frameId": "2584:11915",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/odd-count-preserve.png",
+      "byteLength": 1147861
+    },
+    {
+      "scenarioId": "media-edges",
+      "frameId": "2584:12063",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-options/media-edges.png",
+      "byteLength": 659342
+    }
+  ],
+  "checks": {
+    "matrixComplete": true,
+    "allRowsEqualHeight": true,
+    "allCardsInsideRows": true,
+    "allTextInsideFrames": true,
+    "allTextInsideCards": true,
+    "textHasNoClippingAncestor": true,
+    "requiredCardRolesPresent": true,
+    "ownerSurfaceHasOneApprovedBoard": true,
+    "ownerSurfaceHasNoLegacyOptionBoards": true,
+    "approvedOptionIsA": true,
+    "approvedSurfaceHasOneWitness": true,
+    "approvedWitnessIs834AtOneToOne": true,
+    "approvedWitnessMatchesRealUsage": true,
+    "rejectedOptionIsNotVisible": true,
+    "visibleScaledBreakpointThumbnailCountIsZero": true,
+    "technicalArchiveIsHidden": true,
+    "technicalArchiveHasAllProposalFrames": true
+  },
+  "protectedExistingFactsUnchanged": true,
+  "masterWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "evidenceRefs": [
+    "specs/029-figma-responsive-categories/proofs/H2-work-frames.bridge.json",
+    "specs/029-figma-responsive-categories/proofs/H2-normalize-content-rows.bridge.json",
+    "specs/029-figma-responsive-categories/proofs/H2-finalize-approved-option-a.bridge.json",
+    "specs/029-figma-responsive-categories/proofs/H2-read-only-verify.bridge.json"
+  ]
+}

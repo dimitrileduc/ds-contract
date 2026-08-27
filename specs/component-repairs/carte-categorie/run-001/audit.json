@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-carte-categorie-run-001",
+  "targetId": "carte-categorie",
+  "inspectedAt": "2026-08-26T12:42:51.876Z",
+  "fileVersionId": "2391982289745917433",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "not-applicable",
+    "masterNodeId": "2495:6770",
+    "parentNodeId": "2495:6753",
+    "parentName": "023 · CarteCategorie",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": null,
+    "referenceWidth": 3743,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2495:6759",
+      "structuralPath": "0/1/0/0/0",
+      "name": "Item1Titre",
+      "characters": "Portes de garage résidentielles",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 2 majuscules but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "2495:6760",
+      "structuralPath": "0/1/0/0/1",
+      "name": "Item1Texte",
+      "characters": "Sectionnelles, basculantes ou enroulables. Alliez esthétique, confort et isolation pour votre habitat.",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Lead but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "2495:6766",
+      "structuralPath": "1/1/0",
+      "name": "TitreCategorie",
+      "characters": "Pour portes de garage",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2495:6767",
+      "structuralPath": "1/1/1",
+      "name": "TexteCategorie",
+      "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2495:6769;2410:6138",
+      "structuralPath": "1/2/0/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ArrowRight",
+      "ds.button"
+    ],
+    "observed": [
+      "ArrowRight",
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "not-declared",
+    "propertyName": null,
+    "memberNames": [],
+    "historicalMemberNodeId": null,
+    "historicalMemberKey": null,
+    "expectedDefaultPresentationValue": null,
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [],
+    "scenarioCount": 0,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Item1Titre (2495:6759): raw typography exactly matches Titre 2 majuscules but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Item1Texte (2495:6760): raw typography exactly matches Lead but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "TitreCategorie (2495:6766): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "repair Text Style classification for Item1Titre (2495:6759)",
+    "repair Text Style classification for Item1Texte (2495:6760)",
+    "repair Text Style classification for TitreCategorie (2495:6766)"
+  ],
+  "feature029Evidence": {
+    "sourceRef": "specs/029-figma-responsive-categories/proofs/H1-bridge-read-only.json",
+    "inspectedAt": "2026-08-26T12:46:42.174Z",
+    "identity": {
+      "id": "2495:6770",
+      "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
+      "name": "CarteCategorie",
+      "type": "COMPONENT_SET",
+      "bounds": {
+        "x": 4260,
+        "y": 6860,
+        "width": 3743,
+        "height": 4022
+      },
+      "variantProperties": null,
+      "componentPropertyDefinitions": {
+        "Titre#2495:11": {
+          "type": "TEXT",
+          "defaultValue": "Pour portes de garage"
+        },
+        "Texte#2495:12": {
+          "type": "TEXT",
+          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+        },
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose",
+            "Empile"
+          ]
+        }
+      },
+      "members": [
+        {
+          "id": "2495:6762",
+          "key": "715ab63ed657ce8217be6b55bbcc5f3101912fbd",
+          "name": "Style=Superpose",
+          "type": "COMPONENT",
+          "bounds": {
+            "x": 4260,
+            "y": 6860,
+            "width": 744,
+            "height": 418
+          },
+          "variantProperties": {
+            "Style": "Superpose"
+          },
+          "componentPropertyDefinitions": null
+        },
+        {
+          "id": "2495:6763",
+          "key": "a65093a506e9250af2afecbe142e1a368fea1256",
+          "name": "Style=Empile",
+          "type": "COMPONENT",
+          "bounds": {
+            "x": 7260,
+            "y": 10260,
+            "width": 743,
+            "height": 622
+          },
+          "variantProperties": {
+            "Style": "Empile"
+          },
+          "componentPropertyDefinitions": null
+        }
+      ]
+    },
+    "treeSummary": {
+      "nodeCount": 24,
+      "textFactCount": 5,
+      "imagePaintCount": 2,
+      "gradientPaintCount": 1,
+      "boundVariableFactCount": 15,
+      "componentPropertyFactCount": 1
+    },
+    "detailedTreeRef": "specs/029-figma-responsive-categories/proofs/H1-bridge-read-only.json#/trees/cardSet",
+    "dependencyRef": "specs/029-figma-responsive-categories/proofs/H1-bridge-read-only.json#/dependencies",
+    "primitiveInventoryRef": "specs/029-figma-responsive-categories/inventory/H1-primitives.json",
+    "surfaceManifestRef": "specs/029-figma-responsive-categories/proofs/H1-surface-manifest.json",
+    "exclusivityRef": "specs/029-figma-responsive-categories/inventory/H1-card-exclusivity.json",
+    "exclusivity": {
+      "totalInstances": 25,
+      "sourceComposerInstanceCount": 10,
+      "pagePropagatedInstanceCount": 15,
+      "otherComposerInstanceCount": 0,
+      "exclusive": true,
+      "mutableScope": "in-scope",
+      "legacyCandidate": {
+        "id": "2063:1611",
+        "key": "9fdaa971c9512d85eac458fcfef47525e5787b78",
+        "name": "Carte/Categorie",
+        "type": "COMPONENT",
+        "instanceCount": 0,
+        "instances": [],
+        "disposition": "historical-orphan-read-only; not the governed card set targeted by 029"
+      }
+    },
+    "axes": {
+      "Titre#2495:11": {
+        "type": "TEXT",
+        "defaultValue": "Pour portes de garage"
+      },
+      "Texte#2495:12": {
+        "type": "TEXT",
+        "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+      },
+      "Style": {
+        "type": "VARIANT",
+        "defaultValue": "Superpose",
+        "variantOptions": [
+          "Superpose",
+          "Empile"
+        ]
+      }
+    },
+    "protectedDependencies": [
+      {
+        "componentId": "230:585",
+        "componentKey": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
+        "componentName": "Pdf",
+        "componentSetId": null,
+        "componentSetName": null,
+        "policy": "protected-read-only"
+      },
+      {
+        "componentId": "230:599",
+        "componentKey": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697",
+        "componentName": "Download",
+        "componentSetId": null,
+        "componentSetName": null,
+        "policy": "protected-read-only"
+      },
+      {
+        "componentId": "6:104",
+        "componentKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+        "componentName": "ArrowRight",
+        "componentSetId": null,
+        "componentSetName": null,
+        "policy": "protected-read-only"
+      },
+      {
+        "componentId": "9:206",
+        "componentKey": "9c44b433a509b02657137ddaa9f939a634607cb9",
+        "componentName": "Style=Link",
+        "componentSetId": "6:122",
+        "componentSetName": "Bouton",
+        "policy": "protected-read-only"
+      }
+    ],
+    "figmaWrites": [],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

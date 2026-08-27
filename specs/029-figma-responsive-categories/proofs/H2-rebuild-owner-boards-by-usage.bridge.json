@@ -1,0 +1,887 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "run": "029-h2-rebuild-owner-boards-by-usage",
+  "executedAt": "2026-08-26T13:37:39.573Z",
+  "ownerFeedback": [
+    "Each option must show every breakpoint, including Option B.",
+    "The owner surface must reflect that six current Page usages are 2 columns and only one is 3 columns."
+  ],
+  "usageFacts": [
+    {
+      "id": "2115:4392",
+      "style": "Superpose",
+      "columns": 2,
+      "mainComponentId": "2115:4273",
+      "parentId": "2496:7189"
+    },
+    {
+      "id": "2115:4278",
+      "style": "Superpose",
+      "columns": 2,
+      "mainComponentId": "2115:4273",
+      "parentId": "2496:7190"
+    },
+    {
+      "id": "2115:4438",
+      "style": "Empile",
+      "columns": 2,
+      "mainComponentId": "2115:4274",
+      "parentId": "2496:7191"
+    },
+    {
+      "id": "2115:4297",
+      "style": "Empile",
+      "columns": 2,
+      "mainComponentId": "2115:4274",
+      "parentId": "2496:7192"
+    },
+    {
+      "id": "2115:4411",
+      "style": "Empile",
+      "columns": 2,
+      "mainComponentId": "2115:4274",
+      "parentId": "2496:7193"
+    },
+    {
+      "id": "2115:4324",
+      "style": "Empile",
+      "columns": 3,
+      "mainComponentId": "2115:4275",
+      "parentId": "2496:7194"
+    },
+    {
+      "id": "2115:4364",
+      "style": "Empile",
+      "columns": 2,
+      "mainComponentId": "2115:4274",
+      "parentId": "2496:7195"
+    }
+  ],
+  "usageDistribution": {
+    "columns2": 6,
+    "columns3": 1,
+    "columns2Superpose": 2,
+    "columns2Empile": 4,
+    "columns3Superpose": 0,
+    "columns3Empile": 1
+  },
+  "workArea": {
+    "nodeId": "2584:8638",
+    "name": "029 · Categories responsive · 2 OPTIONS · USAGES RÉELS",
+    "pageId": "2052:1146",
+    "pageName": "DS · Organisms",
+    "visibleOptionCount": 2
+  },
+  "options": [
+    {
+      "optionId": "option-a-preserve-track",
+      "boardId": "2584:12163",
+      "boardName": "OPTION A · DERNIÈRE CARTE À LARGEUR DE PISTE · RECOMMANDÉE",
+      "x": 160,
+      "y": 160,
+      "width": 3040,
+      "height": 3341.201171875,
+      "visibleBreakpointCount": 12,
+      "lanes": [
+        {
+          "nodeId": "2584:12648",
+          "name": "PARCOURS PRINCIPAL · 2 COLONNES · 6 USAGES SUR 7",
+          "y": 210,
+          "width": 2912,
+          "height": 1726.77197265625,
+          "columns": 2,
+          "currentUsageCount": 6,
+          "previews": [
+            {
+              "viewportWidth": 320,
+              "presentation": "Mobile",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-320-c2-normal",
+              "sourceFrameId": "2584:8639",
+              "reviewFrameId": "2584:12651",
+              "sourceBounds": {
+                "width": 320,
+                "height": 2072.0537109375
+              },
+              "reviewBounds": {
+                "width": 134.39999389648438,
+                "height": 869.1826171875
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 390,
+              "presentation": "Mobile",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-390-c2-normal",
+              "sourceFrameId": "2584:9143",
+              "reviewFrameId": "2584:12692",
+              "sourceBounds": {
+                "width": 390,
+                "height": 2030.815673828125
+              },
+              "reviewBounds": {
+                "width": 163.8000030517578,
+                "height": 852.2625732421875
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 834,
+              "presentation": "Desktop",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-834-c2-normal",
+              "sourceFrameId": "2584:9647",
+              "reviewFrameId": "2584:12733",
+              "sourceBounds": {
+                "width": 834,
+                "height": 1096.59619140625
+              },
+              "reviewBounds": {
+                "width": 350.2799987792969,
+                "height": 459.8904113769531
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1200,
+              "presentation": "Desktop",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1200-c2-normal",
+              "sourceFrameId": "2584:10143",
+              "reviewFrameId": "2584:12772",
+              "sourceBounds": {
+                "width": 1200,
+                "height": 1132.549072265625
+              },
+              "reviewBounds": {
+                "width": 504,
+                "height": 474.9906311035156
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1440,
+              "presentation": "Wide",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1440-c2-normal",
+              "sourceFrameId": "2584:10635",
+              "reviewFrameId": "2584:12811",
+              "sourceBounds": {
+                "width": 1440,
+                "height": 1191.057861328125
+              },
+              "reviewBounds": {
+                "width": 604.7999877929688,
+                "height": 499.5643005371094
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1728,
+              "presentation": "Wide",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1728-c2-normal",
+              "sourceFrameId": "2584:11127",
+              "reviewFrameId": "2584:12850",
+              "sourceBounds": {
+                "width": 1728,
+                "height": 1272.0699462890625
+              },
+              "reviewBounds": {
+                "width": 725.760009765625,
+                "height": 533.58935546875
+              },
+              "reviewScale": 0.42
+            }
+          ]
+        },
+        {
+          "nodeId": "2584:12889",
+          "name": "CAS EXCEPTIONNEL · 3 COLONNES · 1 USAGE SUR 7 · EMPILÉ UNIQUEMENT",
+          "y": 2000.77197265625,
+          "width": 2912,
+          "height": 1276.4293212890625,
+          "columns": 3,
+          "currentUsageCount": 1,
+          "previews": [
+            {
+              "viewportWidth": 320,
+              "presentation": "Mobile",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-320-c3-normal",
+              "sourceFrameId": "2584:8843",
+              "reviewFrameId": "2584:12892",
+              "sourceBounds": {
+                "width": 320,
+                "height": 3023.080810546875
+              },
+              "reviewBounds": {
+                "width": 134.39999389648438,
+                "height": 641.6939086914062
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 390,
+              "presentation": "Mobile",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-390-c3-normal",
+              "sourceFrameId": "2584:9347",
+              "reviewFrameId": "2584:12950",
+              "sourceBounds": {
+                "width": 390,
+                "height": 2971.223388671875
+              },
+              "reviewBounds": {
+                "width": 163.8000030517578,
+                "height": 683.3138427734375
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 834,
+              "presentation": "Desktop",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "orphan-preserve",
+              "sourceFrameId": "2584:11619",
+              "reviewFrameId": "2584:13008",
+              "sourceBounds": {
+                "width": 834,
+                "height": 2043.1925048828125
+              },
+              "reviewBounds": {
+                "width": 350.2799987792969,
+                "height": 475.8208312988281
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1200,
+              "presentation": "Desktop",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1200-c3-normal",
+              "sourceFrameId": "2584:10343",
+              "reviewFrameId": "2584:13064",
+              "sourceBounds": {
+                "width": 1200,
+                "height": 1084.0318603515625
+              },
+              "reviewBounds": {
+                "width": 504,
+                "height": 255.25338745117188
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1440,
+              "presentation": "Wide",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1440-c3-normal",
+              "sourceFrameId": "2584:10835",
+              "reviewFrameId": "2584:13118",
+              "sourceBounds": {
+                "width": 1440,
+                "height": 1117.036865234375
+              },
+              "reviewBounds": {
+                "width": 604.7999877929688,
+                "height": 269.1154479980469
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1728,
+              "presentation": "Wide",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1728-c3-normal",
+              "sourceFrameId": "2584:11327",
+              "reviewFrameId": "2584:13172",
+              "sourceBounds": {
+                "width": 1728,
+                "height": 1104.044921875
+              },
+              "reviewBounds": {
+                "width": 725.760009765625,
+                "height": 263.6588439941406
+              },
+              "reviewScale": 0.42
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "optionId": "option-b-stretch-orphan",
+      "boardId": "2584:12331",
+      "boardName": "OPTION B · DERNIÈRE CARTE ÉTIRÉE À 834 PX",
+      "x": 160,
+      "y": 3741.201171875,
+      "width": 3040,
+      "height": 3341.201171875,
+      "visibleBreakpointCount": 12,
+      "lanes": [
+        {
+          "nodeId": "2584:13230",
+          "name": "PARCOURS PRINCIPAL · 2 COLONNES · 6 USAGES SUR 7",
+          "y": 210,
+          "width": 2912,
+          "height": 1726.77197265625,
+          "columns": 2,
+          "currentUsageCount": 6,
+          "previews": [
+            {
+              "viewportWidth": 320,
+              "presentation": "Mobile",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-320-c2-normal",
+              "sourceFrameId": "2584:8639",
+              "reviewFrameId": "2584:13233",
+              "sourceBounds": {
+                "width": 320,
+                "height": 2072.0537109375
+              },
+              "reviewBounds": {
+                "width": 134.39999389648438,
+                "height": 869.1826171875
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 390,
+              "presentation": "Mobile",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-390-c2-normal",
+              "sourceFrameId": "2584:9143",
+              "reviewFrameId": "2584:13274",
+              "sourceBounds": {
+                "width": 390,
+                "height": 2030.815673828125
+              },
+              "reviewBounds": {
+                "width": 163.8000030517578,
+                "height": 852.2625732421875
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 834,
+              "presentation": "Desktop",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-834-c2-normal",
+              "sourceFrameId": "2584:9647",
+              "reviewFrameId": "2584:13315",
+              "sourceBounds": {
+                "width": 834,
+                "height": 1096.59619140625
+              },
+              "reviewBounds": {
+                "width": 350.2799987792969,
+                "height": 459.8904113769531
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1200,
+              "presentation": "Desktop",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1200-c2-normal",
+              "sourceFrameId": "2584:10143",
+              "reviewFrameId": "2584:13354",
+              "sourceBounds": {
+                "width": 1200,
+                "height": 1132.549072265625
+              },
+              "reviewBounds": {
+                "width": 504,
+                "height": 474.9906311035156
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1440,
+              "presentation": "Wide",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1440-c2-normal",
+              "sourceFrameId": "2584:10635",
+              "reviewFrameId": "2584:13393",
+              "sourceBounds": {
+                "width": 1440,
+                "height": 1191.057861328125
+              },
+              "reviewBounds": {
+                "width": 604.7999877929688,
+                "height": 499.5643005371094
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1728,
+              "presentation": "Wide",
+              "configuredColumns": 2,
+              "currentUsageCount": 6,
+              "currentStyles": [
+                "Superpose",
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1728-c2-normal",
+              "sourceFrameId": "2584:11127",
+              "reviewFrameId": "2584:13432",
+              "sourceBounds": {
+                "width": 1728,
+                "height": 1272.0699462890625
+              },
+              "reviewBounds": {
+                "width": 725.760009765625,
+                "height": 533.58935546875
+              },
+              "reviewScale": 0.42
+            }
+          ]
+        },
+        {
+          "nodeId": "2584:13471",
+          "name": "CAS EXCEPTIONNEL · 3 COLONNES · 1 USAGE SUR 7 · EMPILÉ UNIQUEMENT",
+          "y": 2000.77197265625,
+          "width": 2912,
+          "height": 1276.4293212890625,
+          "columns": 3,
+          "currentUsageCount": 1,
+          "previews": [
+            {
+              "viewportWidth": 320,
+              "presentation": "Mobile",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-320-c3-normal",
+              "sourceFrameId": "2584:8843",
+              "reviewFrameId": "2584:13474",
+              "sourceBounds": {
+                "width": 320,
+                "height": 3023.080810546875
+              },
+              "reviewBounds": {
+                "width": 134.39999389648438,
+                "height": 641.6939086914062
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 390,
+              "presentation": "Mobile",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-390-c3-normal",
+              "sourceFrameId": "2584:9347",
+              "reviewFrameId": "2584:13532",
+              "sourceBounds": {
+                "width": 390,
+                "height": 2971.223388671875
+              },
+              "reviewBounds": {
+                "width": 163.8000030517578,
+                "height": 683.3138427734375
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 834,
+              "presentation": "Desktop",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "orphan-stretch",
+              "sourceFrameId": "2584:11767",
+              "reviewFrameId": "2584:13590",
+              "sourceBounds": {
+                "width": 834,
+                "height": 2219.79150390625
+              },
+              "reviewBounds": {
+                "width": 350.2799987792969,
+                "height": 549.9923706054688
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1200,
+              "presentation": "Desktop",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1200-c3-normal",
+              "sourceFrameId": "2584:10343",
+              "reviewFrameId": "2584:13646",
+              "sourceBounds": {
+                "width": 1200,
+                "height": 1084.0318603515625
+              },
+              "reviewBounds": {
+                "width": 504,
+                "height": 255.25338745117188
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1440,
+              "presentation": "Wide",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1440-c3-normal",
+              "sourceFrameId": "2584:10835",
+              "reviewFrameId": "2584:13700",
+              "sourceBounds": {
+                "width": 1440,
+                "height": 1117.036865234375
+              },
+              "reviewBounds": {
+                "width": 604.7999877929688,
+                "height": 269.1154479980469
+              },
+              "reviewScale": 0.42
+            },
+            {
+              "viewportWidth": 1728,
+              "presentation": "Wide",
+              "configuredColumns": 3,
+              "currentUsageCount": 1,
+              "currentStyles": [
+                "Empile"
+              ],
+              "sourceScenarioId": "matrix-1728-c3-normal",
+              "sourceFrameId": "2584:11327",
+              "reviewFrameId": "2584:13754",
+              "sourceBounds": {
+                "width": 1728,
+                "height": 1104.044921875
+              },
+              "reviewBounds": {
+                "width": 725.760009765625,
+                "height": 263.6588439941406
+              },
+              "reviewScale": 0.42
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "technicalArchive": {
+    "nodeId": "2584:12499",
+    "name": "029 · ARCHIVE TECHNIQUE H2 · 28 TESTS · MASQUÉE",
+    "visible": false,
+    "frameCount": 28,
+    "recoverable": true,
+    "unchanged": true
+  },
+  "exportManifest": [
+    {
+      "optionId": "option-a-preserve-track",
+      "boardId": "2584:12163",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-a-preserve-track.png",
+      "byteLength": 671632,
+      "sourceBounds": {
+        "width": 3040,
+        "height": 3341.201171875
+      },
+      "exportScale": 0.45
+    },
+    {
+      "optionId": "option-b-stretch-orphan",
+      "boardId": "2584:12331",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-b-stretch-orphan.png",
+      "byteLength": 694347,
+      "sourceBounds": {
+        "width": 3040,
+        "height": 3341.201171875
+      },
+      "exportScale": 0.45
+    }
+  ],
+  "inspection": {
+    "protectedExistingFactsUnchanged": true,
+    "technicalArchiveSourcesUnchanged": true,
+    "optionCount": 2,
+    "allOptionsShowEveryWidthTwice": true,
+    "allPrimaryLanesUseTwoColumns": true,
+    "allExceptionalLanesUseThreeColumnsEmpileOnly": true,
+    "masterWrites": [],
+    "pageWrites": [],
+    "childWrites": [],
+    "sharedDependencyWrites": []
+  },
+  "figmaWrites": {
+    "changedWorkFrameNodeIds": [
+      "2584:8638",
+      "2584:12163",
+      "2584:12331"
+    ],
+    "createdReviewNodeIds": [
+      "2584:12644",
+      "2584:12645",
+      "2584:12646",
+      "2584:12647",
+      "2584:12648",
+      "2584:12649",
+      "2584:12650",
+      "2584:12691",
+      "2584:12651",
+      "2584:12732",
+      "2584:12692",
+      "2584:12771",
+      "2584:12733",
+      "2584:12810",
+      "2584:12772",
+      "2584:12849",
+      "2584:12811",
+      "2584:12888",
+      "2584:12850",
+      "2584:12889",
+      "2584:12890",
+      "2584:12891",
+      "2584:12949",
+      "2584:12892",
+      "2584:13007",
+      "2584:12950",
+      "2584:13063",
+      "2584:13008",
+      "2584:13117",
+      "2584:13064",
+      "2584:13171",
+      "2584:13118",
+      "2584:13225",
+      "2584:13172",
+      "2584:13226",
+      "2584:13227",
+      "2584:13228",
+      "2584:13229",
+      "2584:13230",
+      "2584:13231",
+      "2584:13232",
+      "2584:13273",
+      "2584:13233",
+      "2584:13314",
+      "2584:13274",
+      "2584:13353",
+      "2584:13315",
+      "2584:13392",
+      "2584:13354",
+      "2584:13431",
+      "2584:13393",
+      "2584:13470",
+      "2584:13432",
+      "2584:13471",
+      "2584:13472",
+      "2584:13473",
+      "2584:13531",
+      "2584:13474",
+      "2584:13589",
+      "2584:13532",
+      "2584:13645",
+      "2584:13590",
+      "2584:13699",
+      "2584:13646",
+      "2584:13753",
+      "2584:13700",
+      "2584:13807",
+      "2584:13754"
+    ],
+    "removedPriorReviewDirectChildIds": [
+      "2584:12164",
+      "2584:12165",
+      "2584:12166",
+      "2584:12223",
+      "2584:12278",
+      "2584:12332",
+      "2584:12333",
+      "2584:12391"
+    ],
+    "changedExistingNodeIds": []
+  },
+  "pageWrites": [],
+  "childWrites": [],
+  "scriptResults": [
+    {
+      "operationId": "rebuild-h2-owner-boards-by-current-usage",
+      "status": "applied",
+      "createdNodeIds": [
+        "2584:12644",
+        "2584:12645",
+        "2584:12646",
+        "2584:12647",
+        "2584:12648",
+        "2584:12649",
+        "2584:12650",
+        "2584:12691",
+        "2584:12651",
+        "2584:12732",
+        "2584:12692",
+        "2584:12771",
+        "2584:12733",
+        "2584:12810",
+        "2584:12772",
+        "2584:12849",
+        "2584:12811",
+        "2584:12888",
+        "2584:12850",
+        "2584:12889",
+        "2584:12890",
+        "2584:12891",
+        "2584:12949",
+        "2584:12892",
+        "2584:13007",
+        "2584:12950",
+        "2584:13063",
+        "2584:13008",
+        "2584:13117",
+        "2584:13064",
+        "2584:13171",
+        "2584:13118",
+        "2584:13225",
+        "2584:13172",
+        "2584:13226",
+        "2584:13227",
+        "2584:13228",
+        "2584:13229",
+        "2584:13230",
+        "2584:13231",
+        "2584:13232",
+        "2584:13273",
+        "2584:13233",
+        "2584:13314",
+        "2584:13274",
+        "2584:13353",
+        "2584:13315",
+        "2584:13392",
+        "2584:13354",
+        "2584:13431",
+        "2584:13393",
+        "2584:13470",
+        "2584:13432",
+        "2584:13471",
+        "2584:13472",
+        "2584:13473",
+        "2584:13531",
+        "2584:13474",
+        "2584:13589",
+        "2584:13532",
+        "2584:13645",
+        "2584:13590",
+        "2584:13699",
+        "2584:13646",
+        "2584:13753",
+        "2584:13700",
+        "2584:13807",
+        "2584:13754"
+      ],
+      "changedNodeIds": [
+        "2584:8638",
+        "2584:12163",
+        "2584:12331"
+      ],
+      "removedNodeIds": [
+        "2584:12164",
+        "2584:12165",
+        "2584:12166",
+        "2584:12223",
+        "2584:12278",
+        "2584:12332",
+        "2584:12333",
+        "2584:12391"
+      ]
+    }
+  ]
+}

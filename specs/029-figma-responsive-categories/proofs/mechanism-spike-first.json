@@ -1,0 +1,39 @@
+{
+  "result": "pass",
+  "executedAt": "2026-08-26T16:03:10Z",
+  "environment": "deterministic in-memory Figma topology fixture; no authoritative canvas access",
+  "command": "npx tsx evals/fixtures/figma-responsive-existing-set-mechanism-spike-check.ts",
+  "inputTopology": {
+    "sectionSetMembers": 4,
+    "cardVariants": 2,
+    "usageLinks": 7
+  },
+  "expectedCreatedNodeRoles": [],
+  "createdNodeIds": [],
+  "changedNodeIds": [
+    "9:10",
+    "1:1",
+    "9:11",
+    "9:12",
+    "9:13"
+  ],
+  "pageWrites": [],
+  "childWrites": [],
+  "propagatedDeltaCount": 7,
+  "scenarioCoverage": 24,
+  "bindingCoverage": 1,
+  "typographyExceptionCoverage": 1,
+  "protectedFactDifferenceCount": 0,
+  "identityChecks": {
+    "sectionSetPreserved": true,
+    "fourMemberNodeIdsAndKeysPreserved": true,
+    "twoCardVariantNodeIdsAndKeysPreserved": true,
+    "sevenUsageLinksPreserved": true
+  },
+  "boundaryChecks": {
+    "unexpectedCreatedNodeRefused": true,
+    "pageWriteRefused": true,
+    "sharedChildWriteRefused": true,
+    "unattributedPropagationRefused": true
+  }
+}

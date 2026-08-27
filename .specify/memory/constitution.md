@@ -1,4 +1,30 @@
 <!--
+SYNC IMPACT REPORT — 1.3.0 (2026-08-26, MINOR)
+==============================================
+Version change: 1.2.0 → 1.3.0
+
+Bump rationale:
+  MINOR — one new principle added (XII. Decision Surface Fidelity). It makes
+  true-size comparison, delta-only owner review, real-usage weighting and the
+  separation of decision surfaces from exhaustive technical coverage mandatory.
+  No existing principle was renamed, removed or redefined.
+
+Modified principles: none.
+
+Added sections:
+  - Core Principles: XII. Decision Surface Fidelity — Show the Real Difference
+    at True Size; Keep Coverage Separate (owner rule 2026-08-26, Categories
+    responsive H2 lesson)
+
+Removed sections: none.
+
+Dependent template impact:
+  - The Spec Kit constitution workflow modifies only this constitution. Future
+    spec and plan runs read this principle at runtime and MUST encode its review
+    requirements when a human compares responsive or visual alternatives.
+
+Follow-up TODOs: none.
+
 SYNC IMPACT REPORT — 1.2.0 (2026-07-26, MINOR)
 ==============================================
 Version change: 1.1.0 → 1.2.0
@@ -297,6 +323,29 @@ same node corrupt each other's work in ways that are hard to detect and hard to 
 Disjoint partitioning plus a single orchestrator-owned verification cycle preserves the
 safety guarantee while unlocking the speed benefit (owner rule, 2026-07-25).
 
+### XII. Decision Surface Fidelity — Show the Real Difference at True Size; Keep Coverage Separate
+
+A human decision surface MUST show only the alternatives that produce a visible
+difference. The differing viewport or breakpoint MUST be presented side by side at
+its real target dimensions (1:1) and at the same zoom. A rescaled thumbnail MUST NOT
+serve as authoritative breakpoint evidence, and a scaled frame MUST NOT be labelled
+only with its nominal viewport width in a way that hides its actual displayed size.
+
+Breakpoints whose output is identical across options MUST be named as identical and
+linked to technical evidence; they MUST NOT be duplicated across owner options. An
+exhaustive responsive matrix belongs in a separate technical evidence area, retains
+its true source dimensions, and MUST be organized by current usage prevalence. The
+decision surface MUST state the real usage distribution and MUST NOT visually center
+an exceptional configuration over the dominant one. If a capture export is scaled
+for navigation, the source decision nodes MUST remain 1:1 and the export scale MUST
+be explicit; the export is not the authoritative sizing proof.
+
+**Rationale:** miniaturized breakpoint galleries erase the geometry the owner is
+being asked to judge, while duplicated identical screens bury the actual choice.
+True-size delta comparison makes the decision legible; separate exhaustive evidence
+still proves coverage without turning the review board into a test dump (owner rule,
+Categories responsive H2 lesson, 2026-08-26).
+
 ## Quality Gates
 
 "Green" is defined executably, not by opinion. Every change MUST leave all of the following
@@ -368,4 +417,4 @@ conflicts with it, the constitution wins and the conflicting artifact MUST be co
   guides and MUST stay consistent with this constitution; on conflict, this document is
   authoritative and they are updated to match.
 
-**Version**: 1.2.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-26
+**Version**: 1.3.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-08-26

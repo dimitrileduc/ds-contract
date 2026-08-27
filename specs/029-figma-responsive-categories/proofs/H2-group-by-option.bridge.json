@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "run": "029-h2-group-by-option",
+  "executedAt": "2026-08-26T13:20:36.612Z",
+  "ownerRequest": "Group by option instead of screen and remove the exhaustive matrix from the decision surface.",
+  "workArea": {
+    "nodeId": "2584:8638",
+    "name": "029 · Categories responsive · CHOIX H2 · 2 OPTIONS",
+    "pageId": "2052:1146",
+    "pageName": "DS · Organisms",
+    "visibleOptionCount": 2,
+    "directVisibleChildren": [
+      {
+        "id": "2584:12163",
+        "name": "OPTION A · La dernière carte garde sa largeur · RECOMMANDÉE",
+        "type": "FRAME"
+      },
+      {
+        "id": "2584:12331",
+        "name": "OPTION B · La dernière carte prend toute la largeur",
+        "type": "FRAME"
+      }
+    ]
+  },
+  "options": [
+    {
+      "optionId": "option-a-preserve-track",
+      "boardId": "2584:12163",
+      "boardName": "OPTION A · La dernière carte garde sa largeur · RECOMMANDÉE",
+      "x": 160,
+      "y": 160,
+      "width": 2680,
+      "height": 3195.223388671875,
+      "screens": [
+        {
+          "role": "Mobile · 390 px",
+          "sourceScenarioId": "matrix-390-c3-normal",
+          "sourceFrameId": "2584:9347",
+          "reviewFrameId": "2584:12166",
+          "width": 390,
+          "height": 2971.223388671875
+        },
+        {
+          "role": "Intermédiaire · 834 px",
+          "sourceScenarioId": "orphan-preserve",
+          "sourceFrameId": "2584:11619",
+          "reviewFrameId": "2584:12223",
+          "width": 834,
+          "height": 2043.1925048828125
+        },
+        {
+          "role": "Desktop · 1200 px · contenu long",
+          "sourceScenarioId": "matrix-1200-c3-long",
+          "sourceFrameId": "2584:10489",
+          "reviewFrameId": "2584:12278",
+          "width": 1200,
+          "height": 1602.0318603515625
+        }
+      ]
+    },
+    {
+      "optionId": "option-b-stretch-orphan",
+      "boardId": "2584:12331",
+      "boardName": "OPTION B · La dernière carte prend toute la largeur",
+      "x": 160,
+      "y": 3595.223388671875,
+      "width": 2680,
+      "height": 3195.223388671875,
+      "screens": [
+        {
+          "role": "Mobile · 390 px",
+          "sourceScenarioId": "matrix-390-c3-normal",
+          "sourceFrameId": "2584:9347",
+          "reviewFrameId": "2584:12334",
+          "width": 390,
+          "height": 2971.223388671875
+        },
+        {
+          "role": "Intermédiaire · 834 px",
+          "sourceScenarioId": "orphan-stretch",
+          "sourceFrameId": "2584:11767",
+          "reviewFrameId": "2584:12391",
+          "width": 834,
+          "height": 2219.79150390625
+        },
+        {
+          "role": "Desktop · 1200 px · contenu long",
+          "sourceScenarioId": "matrix-1200-c3-long",
+          "sourceFrameId": "2584:10489",
+          "reviewFrameId": "2584:12446",
+          "width": 1200,
+          "height": 1602.0318603515625
+        }
+      ]
+    }
+  ],
+  "technicalArchive": {
+    "nodeId": "2584:12499",
+    "name": "029 · ARCHIVE TECHNIQUE H2 · 28 TESTS · MASQUÉE",
+    "visible": false,
+    "frameCount": 28,
+    "recoverable": true
+  },
+  "exportManifest": [
+    {
+      "optionId": "option-a-preserve-track",
+      "boardId": "2584:12163",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-a-preserve-track.png",
+      "byteLength": 1317645,
+      "sourceBounds": {
+        "width": 2680,
+        "height": 3195.223388671875
+      },
+      "exportScale": 0.5
+    },
+    {
+      "optionId": "option-b-stretch-orphan",
+      "boardId": "2584:12331",
+      "path": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-b-stretch-orphan.png",
+      "byteLength": 1532471,
+      "sourceBounds": {
+        "width": 2680,
+        "height": 3195.223388671875
+      },
+      "exportScale": 0.5
+    }
+  ],
+  "inspection": {
+    "protectedExistingFactsUnchanged": true,
+    "scenarioChecks": [
+      {
+        "scenarioId": "option-a-preserve-track",
+        "selectedPresentation": "grouped-owner-option",
+        "captureRef": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-a-preserve-track.png"
+      },
+      {
+        "scenarioId": "option-b-stretch-orphan",
+        "selectedPresentation": "grouped-owner-option",
+        "captureRef": "specs/029-figma-responsive-categories/proofs/H2-owner-options/option-b-stretch-orphan.png"
+      }
+    ],
+    "bindingFacts": [],
+    "typographyFacts": [],
+    "memberFacts": [],
+    "childWrites": [],
+    "masterWrites": [],
+    "pageWrites": [],
+    "sharedDependencyWrites": []
+  },
+  "figmaWrites": {
+    "createdNodeIds": [
+      "2584:12163",
+      "2584:12164",
+      "2584:12165",
+      "2584:12166",
+      "2584:12223",
+      "2584:12278",
+      "2584:12331",
+      "2584:12332",
+      "2584:12333",
+      "2584:12334",
+      "2584:12391",
+      "2584:12446",
+      "2584:12499"
+    ],
+    "changedWorkFrameNodeIds": [
+      "2584:8639",
+      "2584:8741",
+      "2584:8843",
+      "2584:8993",
+      "2584:9143",
+      "2584:9245",
+      "2584:9347",
+      "2584:9497",
+      "2584:9647",
+      "2584:9747",
+      "2584:9847",
+      "2584:9995",
+      "2584:10143",
+      "2584:10243",
+      "2584:10343",
+      "2584:10489",
+      "2584:10635",
+      "2584:10735",
+      "2584:10835",
+      "2584:10981",
+      "2584:11127",
+      "2584:11227",
+      "2584:11327",
+      "2584:11473",
+      "2584:11619",
+      "2584:11767",
+      "2584:11915",
+      "2584:12063",
+      "2584:8638"
+    ],
+    "changedExistingNodeIds": []
+  },
+  "pageWrites": [],
+  "childWrites": [],
+  "scriptResults": [
+    {
+      "operationId": "group-h2-owner-review-by-option",
+      "status": "applied",
+      "createdNodeIds": [
+        "2584:12163",
+        "2584:12164",
+        "2584:12165",
+        "2584:12166",
+        "2584:12223",
+        "2584:12278",
+        "2584:12331",
+        "2584:12332",
+        "2584:12333",
+        "2584:12334",
+        "2584:12391",
+        "2584:12446",
+        "2584:12499"
+      ],
+      "changedNodeIds": [
+        "2584:8639",
+        "2584:8741",
+        "2584:8843",
+        "2584:8993",
+        "2584:9143",
+        "2584:9245",
+        "2584:9347",
+        "2584:9497",
+        "2584:9647",
+        "2584:9747",
+        "2584:9847",
+        "2584:9995",
+        "2584:10143",
+        "2584:10243",
+        "2584:10343",
+        "2584:10489",
+        "2584:10635",
+        "2584:10735",
+        "2584:10835",
+        "2584:10981",
+        "2584:11127",
+        "2584:11227",
+        "2584:11327",
+        "2584:11473",
+        "2584:11619",
+        "2584:11767",
+        "2584:11915",
+        "2584:12063",
+        "2584:8638"
+      ]
+    }
+  ]
+}

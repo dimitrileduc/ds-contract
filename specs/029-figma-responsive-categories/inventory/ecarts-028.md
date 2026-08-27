@@ -1,0 +1,15 @@
+# Registre des écarts au gabarit 028 (T055 / FR-033)
+
+Chaque écart est daté du moment où il est apparu. Matière première de la future
+skill `component-to-responsive`.
+
+| # | Écart | Apparu le | Cause |
+|---|---|---|---|
+| E1 | Topologie de départ : 028 partait d'un COMPONENT seul et a créé le set ; 029 partait d'un set EXISTANT à 2 axes (Style×Colonnes, 4 variantes). | 2026-08-26 13:13 (research R3) | Nature de la source — écart structurel attendu, consigné dès la recherche. |
+| E2 | **Livrable initial divergent de l'intention owner** : R3 a choisi « adaptation interne d'abord, états explicites seulement si échec visible » et le run-001 n'a créé AUCUN membre — l'owner attendait des variantes de breakpoint visibles comme HeroVideo. | 13:13 (décision R3) ; constaté par l'owner ~19:00 | La demande disait « même **déroulé** que HeroVideo » (process), entendue littéralement ; la décision produit a été prise en recherche sans question owner ; la clarification posée portait sur les colonnes, pas sur l'axe Presentation ; H2 l'a scellée dans un fait accepté abstrait (« no new variant is added ») jamais reformulé en langage designer. |
+| E3 | **Geste correctif run-002 hors runner** : l'axe Presentation (Wide/Desktop/Mobile, 12 membres, matrice complète) a été posé par gestes bridge manuels (2 versions Figma épinglées, reçu manuel), là où 028 faisait toute écriture au runner. | 19:40–20:00 | Correctif du soir sur GO owner direct ; la capacité « créations déclarées dans un set existant » du runner (construite par 029 !) n'a pas été exercée en live. Reçu : `specs/component-repairs/categories-principales/run-002/manual-gesture-receipt.json`. |
+| E4 | Sélection multi-axes : les contrôles responsive de 029 sélectionnent une PAIRE Style×Colonnes par scénario ; 028 sélectionnait une seule valeur Presentation. | 13:14 (plan) | Set à axes orthogonaux — a exigé l'extension générique du runner (fixtures multiaxis). |
+| E5 | Membres jumeaux : Mobile×Colonnes=3 existe mais est le jumeau visuel de Colonnes=2 (encodage « pas d'effet colonnes en mobile ») ; 028 n'a pas d'axe secondaire, donc pas d'équivalent. | 19:55 (run-002, 2e geste) | Sans matrice complète, le picker Figma casse (constaté par l'owner : `setProperties` « Unable to find a variant » sur Mobile+3). |
+| E6 | Nommage inter-composants : 028 dit `Compact`, 029 dit `Mobile` pour le même étage. | 19:58 | Non unifié volontairement — les preuves 028 nomment Compact partout ; rename = décision owner différée. |
+| E7 | Usages de contrôle : 7 instances Pages (029) contre 1 instance Home + Header (028). | 12:46 (H1) | Réalité du composant. |
+| E8 | **Bug runner découvert à la clôture** : deux campagnes partageant le même `ownerDecisionRoot` ne peuvent pas se finaliser — `selectFinalOwnerDecisions` refuse le fichier H4 de l'autre cible comme « undeclared campaign target ». Contourné par déplacement temporaire des fichiers pendant chaque `--finalize`. | 20:15 | Le sélecteur traite « fichier d'une autre cible » comme erreur au lieu de l'ignorer ; à corriger avant la vague 030 (features multi-campagnes). |

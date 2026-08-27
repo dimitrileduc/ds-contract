@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "gateId": "H1",
+  "decisionId": "H1-audit-v1",
+  "status": "approved",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T12:53:58Z",
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "versionId": "2391982289745917433",
+    "capturedAt": "2026-08-26T12:32:44Z"
+  },
+  "evidenceRefs": [
+    "specs/component-repairs/categories-principales/run-001/audit.json",
+    "specs/component-repairs/carte-categorie/run-001/audit.json",
+    "specs/029-figma-responsive-categories/inventory/H1-baseline-delta.md",
+    "specs/029-figma-responsive-categories/inventory/H1-card-exclusivity.json",
+    "specs/029-figma-responsive-categories/inventory/H1-usages.json",
+    "specs/029-figma-responsive-categories/inventory/H1-primitives.json",
+    "specs/029-figma-responsive-categories/proofs/H1-surface-manifest.json",
+    "specs/029-figma-responsive-categories/proofs/H1-bridge-read-only.json",
+    "specs/023-categories-gouvernees/audits/releve-extraction.md",
+    "specs/023-categories-gouvernees/proofs/gate-b.md"
+  ],
+  "factsPresented": [
+    "The fresh section target is CategoriesPrincipales set 2115:4277, key 94f64a369a5db615d68935bb353614eaaadbffc2, with four preserved Style by Colonnes members 2115:4273, 2115:4274, 2115:4275 and 2495:7122 and their recorded keys.",
+    "The fresh card target is CarteCategorie set 2495:6770, key 0d1a03d07abf7225fb560b3d4163dd3575132c62, with preserved members 2495:6762 and 2495:6763 and their recorded keys.",
+    "Whole-file position census found 25 current card instances: 10 under the four section members, 15 propagated under the seven Page usages, and zero under another composer; card exclusivity is satisfied.",
+    "Historical standalone Carte/Categorie 2063:1611 still exists but has zero instances; it is not the governed 029 target and remains read-only.",
+    "All seven Page usages were found by position: 2115:4392, 2115:4278, 2115:4438, 2115:4297, 2115:4411, 2115:4324 and 2115:4364, preserving their host, main component, configuration, card count, size and overrides.",
+    "Fresh trees record texts, media, variables, component properties, overrides and protected shared children; 171 compatible existing numeric primitives are candidates only and none is approved or created by H1.",
+    "The container/presentation finding and existing unlinked or undocumented Text Style findings are named pre-existing debts and are not automatically fixed.",
+    "All 13 requested read-only surfaces are non-empty and have positive dimensions.",
+    "The fresh inspection made no Figma, Page or child write."
+  ],
+  "historicalContradictions": [
+    {
+      "status": "return-to-H1",
+      "fact": "029 plan, research and data-model cite historical 2063:1611, while the fresh and post-023 governed source is set 2495:6770 and 2063:1611 has zero instances.",
+      "proposedDisposition": "Accept 2495:6770 as the only card target for 029 and leave 2063:1611 read-only and out of scope."
+    },
+    {
+      "status": "return-to-H1",
+      "fact": "021 evidence records the pre-cleanup card composition; 023 post-Gate-B evidence records the current set topology.",
+      "proposedDisposition": "Use 021 as history and the fresh inspection plus 023 post-Gate-B evidence as the current baseline."
+    }
+  ],
+  "preExistingDefects": [
+    "Section presentation/container condition reported by the organism-container audit finding.",
+    "Missing Text Style links for typography matching Titre 2 majuscules and Lead.",
+    "TitreCategorie raw typography without a documented rich-range or historical-custom decision."
+  ],
+  "acceptedFacts": [
+    "The governed 029 card target is set 2495:6770; historical standalone 2063:1611 has zero instances and remains read-only and out of scope.",
+    "Card exclusivity is satisfied: all 25 current card instances belong to section source composition or its seven propagated Page usages.",
+    "The seven current Page usages, protected shared children and pre-existing container and typography debts remain read-only during H2.",
+    "H1 authorizes only separate responsive work frames outside governed masters and outside Pages."
+  ],
+  "rejectedOptions": [],
+  "deferredTopics": [
+    "Exact responsive topology and values for H2.",
+    "Mandatory orphanRowDecision for the intermediate three-column 2+1 case.",
+    "Mandatory cardExtentDecision after internal-adaptation-first proof.",
+    "Responsive typography choices and candidate primitive selection.",
+    "Any governed-source application, which requires H2 and H3."
+  ],
+  "proposedAuthorization": "Create only separate H2 work frames outside the governed masters and outside Pages; keep both masters, all seven Page usages and every protected shared child read-only.",
+  "authorizes": [
+    "Create and edit only separate H2 work frames outside the governed masters and outside Pages."
+  ],
+  "forbids": [
+    "Master or variant mutation.",
+    "Page write.",
+    "Shared-child or protected-dependency mutation.",
+    "Snapshot-source, preflight application sequence, dry-run application plan or live application."
+  ],
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "supersedes": null,
+  "conversationEvidence": "Owner replied 'go' after the plain-language H1 prompt clarified that approval authorizes only separate responsive test frames and does not authorize edits to official components or Pages."
+}

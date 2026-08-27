@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "status": "pass",
+  "cardCampaign": {
+    "surfaceCount": 10,
+    "beforeArtifacts": 41,
+    "afterArtifacts": 41,
+    "expectedDiffCount": 13,
+    "unexpectedDiffCount": 0,
+    "imageFingerprints": "19/19",
+    "instanceLinks": "67/67",
+    "pendingConsumers": 0
+  },
+  "sectionCampaign": {
+    "surfaceCount": 19,
+    "beforeArtifacts": 77,
+    "afterArtifacts": 77,
+    "expectedDiffCount": 20,
+    "unexpectedDiffCount": 0,
+    "imageFingerprints": "50/50",
+    "instanceLinks": "178/178",
+    "pendingConsumers": 0
+  },
+  "preserved": [
+    "component-set and member identities/keys",
+    "Style and Colonnes axes",
+    "image and gradient paints",
+    "texts, text ranges and Text Styles",
+    "component properties",
+    "Page node identities",
+    "instance links and media"
+  ],
+  "authorizedChanges": [
+    "responsive geometry and overflow",
+    "declared primitive bindings",
+    "direct section-owned card instance FILL/minWidth layout overrides",
+    "attributed master propagation to seven usages"
+  ],
+  "pageWrites": [],
+  "sharedChildWrites": [],
+  "odoo023": {
+    "status": "unchanged-and-revalidated",
+    "evidenceRef": "specs/023-categories-gouvernees/gates/gate-c-contrats.json"
+  },
+  "cardComparisonRef": "specs/component-repairs/carte-categorie/run-001/verify/comparison.json",
+  "sectionComparisonRef": "specs/component-repairs/categories-principales/run-001/verify/comparison.json"
+}

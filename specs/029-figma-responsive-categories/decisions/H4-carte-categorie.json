@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "featureId": "029-figma-responsive-categories",
+  "gateId": "H4",
+  "targetId": "carte-categorie",
+  "decision": "accepted",
+  "decisionMaker": "owner",
+  "decidedAt": "2026-08-26T20:15:00+02:00",
+  "rationale": "GO owner explicite en session du 2026-08-26 au soir (« clôture la spec propre stp et valide tout »), donné après inspection du canvas par l'owner et après le geste correctif run-002 (axe Presentation). Le run-001 carte est vert : apply sans création ni écriture Page/enfant, verify 41 artefacts, idempotence no-op. parityPosture (mécanisme nommé, décisions/README H4) : acquittements owner dans parity/baseline.json — entrées figma|ahead|CategoriesPrincipales.Presentation et figma|ahead|HeroVideo.Presentation — statut figma-ahead comme 028, promotion contrat différée.",
+  "evidenceRefs": [
+    "specs/component-repairs/carte-categorie/run-001/verify/comparison.json",
+    "specs/component-repairs/carte-categorie/run-001/idempotence-receipt.json",
+    "specs/component-repairs/carte-categorie/run-001/verdict.md",
+    "specs/component-repairs/categories-principales/run-002/manual-gesture-receipt.json",
+    "parity/baseline.json"
+  ]
+}

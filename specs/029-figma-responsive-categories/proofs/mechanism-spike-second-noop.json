@@ -1,0 +1,19 @@
+{
+  "result": "pass",
+  "executedAt": "2026-08-26T16:03:10Z",
+  "environment": "deterministic in-memory replay of the exact first-pass plan; no authoritative canvas access",
+  "command": "npx tsx evals/fixtures/figma-responsive-existing-set-mechanism-spike-check.ts",
+  "replayedPlan": "adapt-existing-set",
+  "operations": [
+    {
+      "operationId": "adapt-existing-set",
+      "status": "no-op"
+    }
+  ],
+  "createdNodeIds": [],
+  "changedNodeIds": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "protectedFactDifferenceCount": 0,
+  "strictNoop": true
+}
