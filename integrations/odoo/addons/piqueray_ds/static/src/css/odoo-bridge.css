@@ -209,7 +209,9 @@
  * cartes sont désormais dérivés des contrats ; aucune géométrie ne vit ici. */
 .s_pqr_reassurances.reassurances {
   width: 100%;
-  max-width: var(--pqr-size-reassurances-root);
+  /* 2026-09-02, vague 031 : la largeur maximale 1550 est retirée. Le set 031
+     dessine la section pleine largeur (1728) avec ses propres marges 24/48/56/89 ;
+     un plafond à 1550 réduisait les cartes de 284 à 249 au-delà de 1550. */
 }
 /* Le wrapper CTA est un hook d'adressage (data-pqr-part), pas une part du
  * contrat : display:contents le retire du layout (même motif que presentation-cta). */

@@ -1,5 +1,5 @@
 <!--
-  Carte — static HTML+CSS emitted from contract ds.carte v2.1.0 by core/emit-html.ts.
+  Carte — static HTML+CSS emitted from contract ds.carte v3.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,21 +9,21 @@
 <section class="showcase showcase--carte">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="carte carte--disposition-reassurance carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download" data-part="root">
+    <div class="carte carte--disposition-reassurance carte--alignement-centre carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download" data-part="root">
       <img class="carte__reassuranceImage" src="" alt="" data-part="reassuranceImage"></img>
       <div class="carte__text" data-part="text">
-        <span class="carte__TitreReassurance" data-part="TitreReassurance">Pour portes de garage</span>
-        <span class="carte__TexteReassurance" data-part="TexteReassurance"><strong>SupraMatic &amp; ProMatic.</strong><span> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.</span></span>
+        <span class="carte__TitreReassurance" data-part="TitreReassurance">Sécurité et conformité</span>
+        <span class="carte__TexteReassurance" data-part="TexteReassurance"><span>Respectent les normes des bâtiments publics et les réglementations pompiers.</span></span>
       </div>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">disposition=categorie</p>
-    <div class="carte carte--disposition-categorie carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download" data-part="root">
+    <div class="carte carte--disposition-categorie carte--alignement-centre carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download" data-part="root">
       <img class="carte__categorieImage" src="" alt="" data-part="categorieImage"></img>
       <div class="carte__text" data-part="text">
-        <span class="carte__TitreCategorie" data-part="TitreCategorie">Pour portes de garage</span>
-        <span class="carte__TexteCategorie" data-part="TexteCategorie"><strong>SupraMatic &amp; ProMatic.</strong><span> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.</span></span>
+        <span class="carte__TitreCategorie" data-part="TitreCategorie">Sécurité et conformité</span>
+        <span class="carte__TexteCategorie" data-part="TexteCategorie"><span>Respectent les normes des bâtiments publics et les réglementations pompiers.</span></span>
       </div>
       <div class="carte__Bouton" data-part="Bouton">
         <button class="button button--variant-link button--iconLeftGlyph-pdf button--iconRightGlyph-download" data-part="action" type="button" data-icon-left="true" data-icon-right="true">
@@ -40,12 +40,22 @@
     </div>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">ctaIconRightGlyph=arrow-right</p>
-    <div class="carte carte--disposition-reassurance carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-arrow-right" data-part="root">
+    <p class="showcase__label">alignement=gauche</p>
+    <div class="carte carte--disposition-reassurance carte--alignement-gauche carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download" data-part="root">
       <img class="carte__reassuranceImage" src="" alt="" data-part="reassuranceImage"></img>
       <div class="carte__text" data-part="text">
-        <span class="carte__TitreReassurance" data-part="TitreReassurance">Pour portes de garage</span>
-        <span class="carte__TexteReassurance" data-part="TexteReassurance"><strong>SupraMatic &amp; ProMatic.</strong><span> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.</span></span>
+        <span class="carte__TitreReassurance" data-part="TitreReassurance">Sécurité et conformité</span>
+        <span class="carte__TexteReassurance" data-part="TexteReassurance"><span>Respectent les normes des bâtiments publics et les réglementations pompiers.</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">ctaIconRightGlyph=arrow-right</p>
+    <div class="carte carte--disposition-reassurance carte--alignement-centre carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-arrow-right" data-part="root">
+      <img class="carte__reassuranceImage" src="" alt="" data-part="reassuranceImage"></img>
+      <div class="carte__text" data-part="text">
+        <span class="carte__TitreReassurance" data-part="TitreReassurance">Sécurité et conformité</span>
+        <span class="carte__TexteReassurance" data-part="TexteReassurance"><span>Respectent les normes des bâtiments publics et les réglementations pompiers.</span></span>
       </div>
     </div>
   </div>

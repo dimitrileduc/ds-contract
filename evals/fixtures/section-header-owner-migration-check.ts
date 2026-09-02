@@ -18,8 +18,14 @@ for (const [file, label] of [
   }
   const contract = read(file);
   const prop = (contract.props ?? []).find((candidate: any) => candidate.name === 'titre');
-  if (prop?.type !== 'rich-text' || prop?.bindings?.figma?.kind !== 'TEXT' || prop?.bindings?.figma?.property !== 'Titre') {
-    failures.push(`${label} must keep title content as one rich-text Figma TEXT property`);
+  // Vague 031 (2026-09-02) : le titre reste UNE prop rich-text, mais sa liaison
+  // Figma dépend de ce que le set dessine. Les sets 031 dessinent le titre SUR LE
+  // NŒUD, sans propriété TEXT : la liaison est alors NONE, écart nommé au contrat.
+  // Les sets qui exposent encore « Titre » doivent, eux, garder la liaison TEXT.
+  const liaison = prop?.bindings?.figma?.kind;
+  const liaisonValide = liaison === 'NONE' || (liaison === 'TEXT' && prop?.bindings?.figma?.property === 'Titre');
+  if (prop?.type !== 'rich-text' || !liaisonValide) {
+    failures.push(`${label} must keep title content as one rich-text prop, bound to the set's TEXT property or NONE when the set draws it on the node`);
   }
   const serialised = JSON.stringify(contract.anatomy?.root);
   if (!serialised.includes('"align":"start"') || !serialised.includes('"width":"fill"')) {

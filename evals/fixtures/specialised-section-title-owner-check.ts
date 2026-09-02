@@ -21,9 +21,13 @@ const title = (contract: any) => {
   return found;
 };
 const failures: string[] = [];
+// Vague 031 (2026-09-02) : un titre porté par la section peut désormais monter un
+// STYLE DE TEXTE RESPONSIVE au lieu d'une taille figée — Presentation monte H2
+// (24/30 → 40/50 selon l'écran). La porte vérifie donc la propriété du titre et sa
+// couleur, puis soit la taille figée d'origine, soit le jeton responsive attendu.
 const expectations = [
   ['hero.contract.json', 'Hero', '{color.blanc}', '{font.size.54}', '68px'],
-  ['presentation.contract.json', 'Presentation', '{color.noir-bleute}', '{font.size.32}', '40px'],
+  ['presentation.contract.json', 'Presentation', '{color.noir-bleute}', '{typography.h2.size}', '{typography.h2.line-height}'],
   ['texte-seo.contract.json', 'TexteSEO', '{color.noir-bleute}', '{font.size.24}', '30px'],
 ] as const;
 for (const [file, label, color, size, lineHeight] of expectations) {
@@ -33,7 +37,8 @@ for (const [file, label, color, size, lineHeight] of expectations) {
   if (titles.length !== 1) failures.push(`${label} must own exactly one direct titre part, got ${titles.length}`);
   else {
     const own = titles[0];
-    if (own.tokens?.color !== color || own.tokens?.['font-size'] !== size || own.literals?.['line-height'] !== lineHeight) {
+    const interligne = own.literals?.['line-height'] ?? own.tokens?.['line-height'];
+    if (own.tokens?.color !== color || own.tokens?.['font-size'] !== size || interligne !== lineHeight) {
       failures.push(`${label} direct title must be ${color} ${size}/${lineHeight}`);
     }
   }

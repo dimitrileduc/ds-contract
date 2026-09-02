@@ -1,25 +1,41 @@
 {
   "id": "ds.devis",
   "name": "Devis",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "description": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo.",
   "figma": {
     "representation": "component",
-    "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f"
+    "componentSetKey": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1"
   },
   "props": [
     {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile",
+      "description": "Axe de présentation du set 031. Le défaut est la première variante dessinée (Mobile) — la parité l'exige."
+    },
+    {
       "name": "titre",
       "type": "string",
-      "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+      "default": [
+        {
+          "text": "Prenez rendez-vous pour un devis gratuit,\nnous nous déplaçons chez vous"
+        }
+      ],
+      "description": "Titre du bandeau, texte riche. Le set 031 n'expose AUCUNE propriété TEXT (l'ancien master 2096:2524 exposait Titre) : la liaison figma est NONE — régression de source, nommée. Riche parce que le titre porte un SAUT DE LIGNE après « gratuit, » (règle owner 2026-09-02 : un saut de ligne est du texte riche, et un saut vaut pour tous les modes). Sur le canvas il n'est explicite que sur la variante Desktop (séparateur U+2028, relevé sur 2694:21563) ; Mobile et Tablette coupent naturellement ailleurs — écart de source à corriger dans Figma, comme la planche Tablette du hero l'a été. Le saut vit dans le contenu des pages ; la part déclare white-space pre-line."
     },
     {
       "name": "backgroundUrl",
       "type": "string",
       "default": "",
-      "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
+      "description": "URL fournie par le code pour le plan photo. Le set 031 range ces pixels dans une PEINTURE IMAGE du cadre Background (imageHash 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa, scaleMode FILL, sans imageTransform, identique dans les quatre variantes), jamais dans une propriété de composant : liaison NONE et défaut vide intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
     },
     {
       "name": "backgroundAlt",
@@ -31,7 +47,7 @@
       "name": "fond",
       "type": "boolean",
       "default": true,
-      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste."
+      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux plans sont des CADRES ABSOLUS du master (contraintes STRETCH/STRETCH), pas une propriété : liaison NONE, défaut true (l'état du master). À false, les deux plans disparaissent et seul le background-color du root subsiste."
     }
   ],
   "children": {

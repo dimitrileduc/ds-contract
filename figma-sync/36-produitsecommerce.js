@@ -44,6 +44,7 @@ const COMPONENTS = [
               "characters": "Découvrez nos produits disponibles en ligne",
               "fontSize": 32,
               "fontStyle": "Regular",
+              "textStyle": "Titre 3",
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",

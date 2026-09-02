@@ -59,7 +59,7 @@ export const FAQ = forwardRef<HTMLDivElement, FAQProps>(function FAQ(
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }} data-ligne3={ligne3 || undefined}  {...rest}>
-      <SectionHeader titre={[{"text":"Questions fréquentes"}]} accroche="FAQ" accroche2 disposition="standard" />
+      <SectionHeader titre={[{"text":"Questions fréquentes"}]} accroche="FAQ" afficherAccroche />
 <div style={{ ...S.accordion }}>
 <AccordionRow taille="grand" contenu="Réponse" titre="Nos portes répondent-elles aux normes des bâtiments publics ?" />
 <AccordionRow taille="grand" contenu="Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit." titre="Quels types de bardages peuvent être intégrés sur les portes ?" />

@@ -359,18 +359,9 @@
         </BuilderSelect>
       </span>
     </BuilderRow>
-    <!-- Enum FERMÉ {2,3} — le PREMIER réglage de variante offert au rédacteur.
-         Patron BuilderSelect/BuilderSelectItem (repris de la note ds.review-card) ;
-         valeur par actionParam. Aucune autre valeur n'est offerte ; au-delà du
-         compte, la grille fait passer les cartes à la ligne (Q-C1). -->
-    <BuilderRow label.translate="Colonnes">
-      <span data-pqr-control="categories-colonnes">
-        <BuilderSelect>
-          <BuilderSelectItem action="'pqrSetColonnes'" actionParam="'2'" preview="false">2 colonnes</BuilderSelectItem>
-          <BuilderSelectItem action="'pqrSetColonnes'" actionParam="'3'" preview="false">3 colonnes</BuilderSelectItem>
-        </BuilderSelect>
-      </span>
-    </BuilderRow>
+    <!-- 2026-09-02, vague 031 : le réglage « Colonnes » est RETIRÉ. Le set 031
+         (2693:20242) ne déclare que l axe Presentation ; le colonnage est décidé
+         par l ecran (colonne sous 992, deux cartes en ligne au-dessus). -->
     <BuilderRow label.translate="Cartes">
       <span data-pqr-control="categories-collection"><BuilderButton action="'pqrAddCarteCategorie'" preview="false">Ajouter une catégorie</BuilderButton></span>
     </BuilderRow>

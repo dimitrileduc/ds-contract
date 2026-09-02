@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v1.1.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,11 +16,15 @@ const ICONS: Record<string, string> = {
 };
 
 export interface CarteCategorieProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
+  /**  — 2026-09-02 : le set 031 (2692:19667) ne dessine QUE `superpose` ; `empile` est conservé au contrat sur décision owner (d'autres pages l'utiliseront), sans correction de la source. L'axe VARIANT du set ne déclare donc qu'une valeur : écart de parité acquitté, pas une dérive. */
   style?: 'superpose' | 'empile';
+  /** Affiche le filet décoratif du coin haut-droit. Le set 031 le DESSINE sur la carte mais les deux instances de la section le masquent (visible=false, surcharge d’instance brute, 2026-09-02) : la visibilité devient une option gouvernée que le parent passe, plutôt qu’un calque caché — §VIII. Le set n’expose aucune propriété BOOLEAN : liaison NONE, écart nommé, à corriger à la source. */
+  afficherDecor?: boolean;
   /** Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à icônes pdf/download ; `bouton` = ds.button outlineNoir encadré à flèche. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé. */
   ctaType?: 'lien' | 'bouton';
+  /**  Défaut relevé sur le set 031 le 2026-09-02. */
   titre?: string;
-  /** Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique). */
+  /** Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique). Défaut relevé sur le set 031 le 2026-09-02. */
   texte?: string;
   /** La ROUTE de l'image, jamais ses octets (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md l.91 ; reprise verbatim de ds.carte.imageUrl). Défaut vide et il le reste ; le canevas dessine le lavis technique #D9D9D9, la photo maquette est hors contrat et préservée à la régénération par la passe de sauvetage. */
   imageUrl?: string;
@@ -29,7 +33,10 @@ export interface CarteCategorieProps extends Omit<HTMLAttributes<HTMLDivElement>
   ctaLabel?: string;
 }
 
-/** Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.
+/** Piqueray CarteCategorie, responsive. 2.0.0 (2026-09-02, vague 031) : le style superposé est ré-extrait du set 2692:19667 (page « 031 · Planches de validation »), qui remplace le master 2495:6770. Ce qui change : le voile occupe toute la carte au lieu du seul bas, son padding horizontal suit le token responsive spacing.card-categorie.pad-h (24 / 32), le titre monte le style responsive « Titre carte » (typography.h3.*, 20/25 SemiBold → 32/40 Medium) et la description « Description carte » (typography.card-desc.*, 16/24 → 18/27), le plan photo passe en absolu parce que la hauteur de la carte appartient à la section (quatre hauteurs par mode), et la largeur minimale dessinée 320 est mintée. Deux propriétés TEXT (Titre, Texte) ont été posées sur le set le 2026-09-02 : titre et texte sont de nouveau liés. Le style empilé est conservé tel quel (décision owner) bien que le set 031 ne le dessine plus.
+
+Historique avant 2.0.0 :
+Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.
 
 Gouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).
 
@@ -39,8 +46,9 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(
     {
       style = 'superpose',
       ctaType = 'lien',
-      titre = 'Pour portes de garage',
-      texte = 'SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.',
+      afficherDecor = true,
+      titre = 'Portes de garage',
+      texte = 'Une porte de garage pour chaque goût et chaque style de maison.',
       imageUrl = '',
       imageAlt = '',
       ctaLabel = 'Contactez-nous',
@@ -54,7 +62,7 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(
       .filter(Boolean)
       .join(' ');
     return (
-      <div ref={ref} className={classes} {...rest}>
+      <div ref={ref} className={classes} data-afficher-decor={afficherDecor || undefined} {...rest}>
         {style === 'superpose' ? (
           <img
             className={styles.photoSuperpose}
@@ -63,14 +71,14 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(
           ></img>
         ) : null}
         {style === 'superpose' ? (
-          <span
-            className={styles.decor}
-            aria-hidden="true"
-            dangerouslySetInnerHTML={{ __html: ICONS['carte-categorie-decor'] }}
-          />
-        ) : null}
-        {style === 'superpose' ? (
           <div className={styles.contenuSuperpose}>
+            {afficherDecor ? (
+              <span
+                className={styles.decor}
+                aria-hidden="true"
+                dangerouslySetInnerHTML={{ __html: ICONS['carte-categorie-decor'] }}
+              />
+            ) : null}
             <div className={styles.inner}>
               <div className={styles.blocTexte}>
                 <span className={styles.TitreSuperpose}>{titre}</span>

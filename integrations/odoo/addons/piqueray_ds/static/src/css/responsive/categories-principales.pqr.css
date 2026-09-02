@@ -1,0 +1,67 @@
+/*
+ * responsive/categories-principales.pqr.css — ZONE MANUELLE (vague 031, 2026-09-02).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.categories-principales 2.0.0
+ * (layoutByProp / tokensByProp sur l'axe `presentation`), réécrites en @media sur
+ * les breakpoints des jetons :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.categories-principales`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *
+ * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.categories-principales--presentation-<mode>` — même source, même vocabulaire.
+ *
+ * Faits CODE-ONLY, nommés dans la description de la part `CarteCategorie`
+ * (une part instance ne porte ni base de flex, ni canal par mode) :
+ *   · en Desktop et Wide les deux cartes se partagent la ligne à parts ÉGALES
+ *     (canvas 512/512 et 743/743) — `flex: 1 1 0` ;
+ *   · les deux hauteurs de carte que la section impose (418 en Mobile, 288 en
+ *     Tablette) ; en Desktop et Wide la hauteur découle du rapport 16/9 porté par
+ *     la carte elle-même (512/1,7775 = 288 · 743/1,7775 = 418), rien à écrire.
+ *
+ * Vérification de la grille, au pixel : 390−48 = 342 · 834−96 = 738 ·
+ * 1200−112−64 = 1024 (512 chacune) · 1728−178−64 = 1486 (743 chacune).
+ */
+
+/* ---- ds.categories-principales 2.0.0 ------------------------------------- */
+
+/* Base = Mobile : colonne, écart 16, marges 24 ; cartes 342 × 418. */
+.s_pqr_categories_principales.categories-principales > [data-pqr-carte-list] > .carte-categorie,
+.s_pqr_categories_principales.categories-principales > .carte-categorie {
+  height: var(--pqr-size-categories-principales-carte-h-mobile);
+}
+
+/* Tablette ≥ 768 : colonne toujours, écart 64, marges 48 ; cartes 738 × 288. */
+@media (min-width: 768px) {
+  .s_pqr_categories_principales.categories-principales {
+    padding-inline: var(--pqr-space-48);
+    gap: var(--pqr-space-64);
+  }
+  .s_pqr_categories_principales.categories-principales > [data-pqr-carte-list] > .carte-categorie,
+  .s_pqr_categories_principales.categories-principales > .carte-categorie {
+    height: var(--pqr-size-categories-principales-carte-h-tablette);
+  }
+}
+
+/* Desktop ≥ 992 : ligne, écart 64, marges 56 ; deux cartes égales, hauteur = 16/9. */
+@media (min-width: 992px) {
+  .s_pqr_categories_principales.categories-principales {
+    flex-direction: row;
+    padding-inline: var(--pqr-space-56);
+    gap: var(--pqr-space-64);
+  }
+  .s_pqr_categories_principales.categories-principales > [data-pqr-carte-list] > .carte-categorie,
+  .s_pqr_categories_principales.categories-principales > .carte-categorie {
+    flex: 1 1 0;
+    height: auto;
+  }
+}
+
+/* Wide ≥ 1400 : marges 89. */
+@media (min-width: 1400px) {
+  .s_pqr_categories_principales.categories-principales {
+    padding-inline: var(--pqr-space-89);
+  }
+}

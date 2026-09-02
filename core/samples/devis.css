@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
+/* Button — from ds.button v2.1.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -13,7 +13,7 @@
   background-color: transparent;
   cursor: pointer;
   font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-16);
+  font-size: var(--typography-libelle-bouton-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-22);
   color: var(--color-blanc);
@@ -114,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* Devis — from ds.devis v1.2.0 (core/emit-html.ts) */
+/* Devis — from ds.devis v2.0.0 (core/emit-html.ts) */
 
 .devis, .devis *, .devis *::before, .devis *::after {
   box-sizing: border-box;
@@ -124,57 +124,102 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   min-width: 0;
   border: 0;
-  background-color: var(--color-noir-pur);
   font-family: var(--font-family-montserrat);
-  padding-top: var(--space-96);
-  padding-bottom: var(--space-96);
+  background-color: var(--color-noir-pur);
+  padding-inline: var(--space-0);
+  padding-block: var(--space-0);
+  gap: var(--space-0);
+  height: var(--size-devis-root-h-mobile);
   position: relative;
+}
+
+.devis--presentation-tablette {
+  height: var(--size-devis-root-h-tablette);
+}
+
+.devis--presentation-desktop {
+  height: var(--size-devis-root-h-desktop);
+}
+
+.devis--presentation-wide {
+  height: var(--size-devis-root-h-wide);
 }
 
 .devis__Background {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   object-fit: cover;
+  z-index: 0;
   width: 100%;
   height: 100%;
 }
 
-.devis[data-fond] .devis__Background {
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-}
-
 .devis__Voile {
-  background-color: #0000004D;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 4.1667%, rgba(0,0,0,0.1) 8.3333%, rgba(0,0,0,0.126) 12.5%, rgba(0,0,0,0.189) 16.6667%, rgba(0,0,0,0.278) 20.8333%, rgba(0,0,0,0.381) 25%, rgba(0,0,0,0.489) 29.1667%, rgba(0,0,0,0.589) 33.3333%, rgba(0,0,0,0.672) 37.5%, rgba(0,0,0,0.725) 41.6667%, rgba(0,0,0,0.74) 45.8333%, rgba(0,0,0,0.74) 50%, rgba(0,0,0,0.74) 54.1667%, rgba(0,0,0,0.74) 58.3333%, rgba(0,0,0,0.74) 62.5%, rgba(0,0,0,0.74) 66.6667%, rgba(0,0,0,0.74) 70.8333%, rgba(0,0,0,0.724) 75%, rgba(0,0,0,0.659) 79.1667%, rgba(0,0,0,0.561) 83.3333%, rgba(0,0,0,0.45) 87.5%, rgba(0,0,0,0.347) 91.6667%, rgba(0,0,0,0.27) 95.8333%, rgba(0,0,0,0.24) 100%);
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.devis[data-fond] .devis__Voile {
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+.devis--presentation-desktop .devis__Voile {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.0743) 0%, rgba(0,0,0,0.0743) 4.1667%, rgba(0,0,0,0.0743) 8.3333%, rgba(0,0,0,0.0936) 12.5%, rgba(0,0,0,0.1405) 16.6667%, rgba(0,0,0,0.2066) 20.8333%, rgba(0,0,0,0.2832) 25%, rgba(0,0,0,0.3634) 29.1667%, rgba(0,0,0,0.4378) 33.3333%, rgba(0,0,0,0.4995) 37.5%, rgba(0,0,0,0.5389) 41.6667%, rgba(0,0,0,0.55) 45.8333%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 54.1667%, rgba(0,0,0,0.55) 58.3333%, rgba(0,0,0,0.55) 62.5%, rgba(0,0,0,0.55) 66.6667%, rgba(0,0,0,0.55) 70.8333%, rgba(0,0,0,0.5381) 75%, rgba(0,0,0,0.4898) 79.1667%, rgba(0,0,0,0.417) 83.3333%, rgba(0,0,0,0.3345) 87.5%, rgba(0,0,0,0.2579) 91.6667%, rgba(0,0,0,0.2007) 95.8333%, rgba(0,0,0,0.1784) 100%);
+}
+
+.devis--presentation-wide .devis__Voile {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 6%, rgba(0,0,0,0.0865) 8%, rgba(0,0,0,0.1306) 10%, rgba(0,0,0,0.1944) 12%, rgba(0,0,0,0.2702) 14%, rgba(0,0,0,0.3498) 16%, rgba(0,0,0,0.4256) 18%, rgba(0,0,0,0.4894) 20%, rgba(0,0,0,0.5335) 22%, rgba(0,0,0,0.55) 24%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 76%, rgba(0,0,0,0.5341) 79%, rgba(0,0,0,0.4922) 82%, rgba(0,0,0,0.4329) 85%, rgba(0,0,0,0.365) 88%, rgba(0,0,0,0.2971) 91%, rgba(0,0,0,0.2378) 94%, rgba(0,0,0,0.1959) 97%, rgba(0,0,0,0.18) 100%);
 }
 
 .devis__Container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
   position: relative;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.devis--presentation-tablette .devis__Container {
+  padding-inline: var(--space-48);
+}
+
+.devis--presentation-desktop .devis__Container {
+  padding-inline: var(--space-0);
+}
+
+.devis--presentation-wide .devis__Container {
+  padding-inline: var(--space-0);
 }
 
 .devis__Titre {
+  width: 100%;
+  min-width: 0;
   color: var(--color-blanc);
-  font-size: var(--font-size-40);
-  font-weight: var(--font-weight-regular);
-  width: var(--size-devis-titre);
-  line-height: 50px;
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
   text-align: center;
+  white-space: pre-line;
+}
+
+.devis__Titre > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 /* showcase chrome */

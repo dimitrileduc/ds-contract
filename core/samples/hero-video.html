@@ -1,5 +1,5 @@
 <!--
-  HeroVideo — static HTML+CSS emitted from contract ds.hero-video v1.0.0 by core/emit-html.ts.
+  HeroVideo — static HTML+CSS emitted from contract ds.hero-video v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,15 +9,73 @@
 <section class="showcase showcase--hero-video">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <section class="hero-video" data-part="root">
+    <section class="hero-video hero-video--presentation-mobile" data-part="root">
       <video class="hero-video__Background" src="" poster="" aria-label="" data-part="Background"></video>
       <div class="hero-video__VoileBas" data-part="VoileBas"></div>
       <div class="hero-video__VoileNavigation" data-part="VoileNavigation"></div>
       <div class="hero-video__Text" data-part="Text">
-        <span class="hero-video__Accroche" data-part="Accroche">Le numéro 1 des portes HÖRMANN en Province de Liège !</span>
+        <span class="hero-video__Accroche" data-part="Accroche"><span>Le numéro 1 des portes HÖRMANN
+en Province de Liège !</span></span>
       </div>
-      <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
-        <span class="button__label" data-part="label">Contactez-nous</span>
+      <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+        <span class="button__label" data-part="label">En savoir plus</span>
+        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
+      </button>
+    </section>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=tablette</p>
+    <section class="hero-video hero-video--presentation-tablette" data-part="root">
+      <video class="hero-video__Background" src="" poster="" aria-label="" data-part="Background"></video>
+      <div class="hero-video__VoileBas" data-part="VoileBas"></div>
+      <div class="hero-video__VoileNavigation" data-part="VoileNavigation"></div>
+      <div class="hero-video__Text" data-part="Text">
+        <span class="hero-video__Accroche" data-part="Accroche"><span>Le numéro 1 des portes HÖRMANN
+en Province de Liège !</span></span>
+      </div>
+      <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+        <span class="button__label" data-part="label">En savoir plus</span>
+        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
+      </button>
+    </section>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=desktop</p>
+    <section class="hero-video hero-video--presentation-desktop" data-part="root">
+      <video class="hero-video__Background" src="" poster="" aria-label="" data-part="Background"></video>
+      <div class="hero-video__VoileBas" data-part="VoileBas"></div>
+      <div class="hero-video__VoileNavigation" data-part="VoileNavigation"></div>
+      <div class="hero-video__Text" data-part="Text">
+        <span class="hero-video__Accroche" data-part="Accroche"><span>Le numéro 1 des portes HÖRMANN
+en Province de Liège !</span></span>
+      </div>
+      <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+        <span class="button__label" data-part="label">En savoir plus</span>
+        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
+      </button>
+    </section>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=wide</p>
+    <section class="hero-video hero-video--presentation-wide" data-part="root">
+      <video class="hero-video__Background" src="" poster="" aria-label="" data-part="Background"></video>
+      <div class="hero-video__VoileBas" data-part="VoileBas"></div>
+      <div class="hero-video__VoileNavigation" data-part="VoileNavigation"></div>
+      <div class="hero-video__Text" data-part="Text">
+        <span class="hero-video__Accroche" data-part="Accroche"><span>Le numéro 1 des portes HÖRMANN
+en Province de Liège !</span></span>
+      </div>
+      <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+        <span class="button__label" data-part="label">En savoir plus</span>
+        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
       </button>
     </section>
   </div>

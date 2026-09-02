@@ -1,0 +1,99 @@
+/*
+ * responsive/reassurances.pqr.css — ZONE MANUELLE (vague 031, 2026-09-02).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.reassurances 2.0.0
+ * (layoutByProp / tokensByProp sur l'axe `presentation`), réécrites en @media sur
+ * les breakpoints des jetons :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.reassurances`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * La typographie n'est pas ici : tokens.pqr.css porte ses blocs @media, et la
+ * carte porte ses propres jetons par écran (photo 192/240/364, écart 16/24…).
+ *
+ * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
+ *
+ * Faits CODE-ONLY, nommés dans la description de la part `Carte`
+ * (une part instance ne porte aucun canal par mode) :
+ *   · l'alignement du texte des cartes — À GAUCHE sous le seuil bureau, au CENTRE
+ *     au-dessus (le canvas dessine Alignement=Gauche en Mobile et Tablette,
+ *     Alignement=Centré en Desktop et Wide) ;
+ *   · l'égalisation des hauteurs de carte dans la grille (le canvas les tire à la
+ *     hauteur de la ligne : FILL vertical sur Desktop et Wide).
+ *
+ * Vérification de la grille, au pixel : 341×3 + 32×2 = 1087 pour 1088 disponibles
+ * en Desktop · 284×5 + 32×4 = 1548 pour 1550 en Wide.
+ */
+
+/* ---- ds.reassurances 2.0.0 ----------------------------------------------- */
+
+/* Base = Mobile : une carte par ligne, marges 24, texte des cartes à gauche,
+ * bouton PLEINE LARGEUR à marge intérieure 24 (canvas : 342 puis 738). */
+.s_pqr_reassurances.reassurances > .button {
+  width: 100%;
+  justify-content: center;
+  padding-inline: var(--pqr-space-24);
+}
+.s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TitreReassurance,
+.s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TexteReassurance {
+  text-align: left;
+}
+
+/* Tablette ≥ 768 : une carte par ligne toujours, écart 32, marges 48. */
+@media (min-width: 768px) {
+  .s_pqr_reassurances.reassurances {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : grille de 3 colonnes, écart de section 48, marges 56,
+ * texte des cartes centré, hauteurs égalisées par la ligne de grille. */
+@media (min-width: 992px) {
+  .s_pqr_reassurances.reassurances {
+    padding-inline: var(--pqr-space-56);
+    gap: var(--pqr-space-48);
+  }
+  .s_pqr_reassurances.reassurances .reassurances__items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  /* En-tête : écart 16 et contenu centré au-delà du seuil bureau (canvas : le
+   * cadre passe de MIN à CENTER et son écart de 8 à 16). */
+  .s_pqr_reassurances.reassurances .reassurances__SectionHeader {
+    align-items: center;
+    gap: var(--pqr-space-16);
+  }
+  .s_pqr_reassurances.reassurances .reassurances__Accroche,
+  .s_pqr_reassurances.reassurances .reassurances__Titre {
+    text-align: center;
+  }
+  .s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TitreReassurance,
+  .s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TexteReassurance {
+    text-align: center;
+  }
+  /* Le bouton cesse de s occuper toute la largeur : il se contente de son contenu
+   * (canvas 249 puis 268) et la racine le centre. Marge intérieure 32. */
+  .s_pqr_reassurances.reassurances {
+    align-items: center;
+  }
+  .s_pqr_reassurances.reassurances > .reassurances__SectionHeader,
+  .s_pqr_reassurances.reassurances > .reassurances__items {
+    align-self: stretch;
+  }
+  .s_pqr_reassurances.reassurances > .button {
+    width: auto;
+    padding-inline: var(--pqr-space-32);
+  }
+  .s_pqr_reassurances.reassurances .reassurances__items > .carte {
+    height: 100%;
+  }
+}
+
+/* Wide ≥ 1400 : grille de 5 colonnes, marges 89. */
+@media (min-width: 1400px) {
+  .s_pqr_reassurances.reassurances {
+    padding-inline: var(--pqr-space-89);
+  }
+  .s_pqr_reassurances.reassurances .reassurances__items {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

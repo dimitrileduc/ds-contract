@@ -2,21 +2,53 @@
   "$schema": "./contract.schema.json",
   "id": "ds.devis",
   "name": "Devis",
-  "version": "1.2.0",
-  "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "2.0.0",
+  "description": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo.",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
     {
-      "name": "titre",
-      "type": "text",
-      "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "description": "Axe de présentation du set 031. Le défaut est la première variante dessinée (Mobile) — la parité l'exige.",
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Titre"
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Prenez rendez-vous pour un devis gratuit,\nnous nous déplaçons chez vous"
+        }
+      ],
+      "description": "Titre du bandeau, texte riche. Le set 031 n'expose AUCUNE propriété TEXT (l'ancien master 2096:2524 exposait Titre) : la liaison figma est NONE — régression de source, nommée. Riche parce que le titre porte un SAUT DE LIGNE après « gratuit, » (règle owner 2026-09-02 : un saut de ligne est du texte riche, et un saut vaut pour tous les modes). Sur le canvas il n'est explicite que sur la variante Desktop (séparateur U+2028, relevé sur 2694:21563) ; Mobile et Tablette coupent naturellement ailleurs — écart de source à corriger dans Figma, comme la planche Tablette du hero l'a été. Le saut vit dans le contenu des pages ; la part déclare white-space pre-line.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
         },
         "code": {
           "prop": "titre"
@@ -27,7 +59,7 @@
       "name": "backgroundUrl",
       "type": "text",
       "default": "",
-      "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl.",
+      "description": "URL fournie par le code pour le plan photo. Le set 031 range ces pixels dans une PEINTURE IMAGE du cadre Background (imageHash 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa, scaleMode FILL, sans imageTransform, identique dans les quatre variantes), jamais dans une propriété de composant : liaison NONE et défaut vide intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl.",
       "bindings": {
         "figma": {
           "kind": "NONE"
@@ -55,7 +87,7 @@
       "name": "fond",
       "type": "boolean",
       "default": true,
-      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste.",
+      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux plans sont des CADRES ABSOLUS du master (contraintes STRETCH/STRETCH), pas une propriété : liaison NONE, défaut true (l'état du master). À false, les deux plans disparaissent et seul le background-color du root subsiste.",
       "bindings": {
         "figma": {
           "kind": "NONE"
@@ -69,17 +101,43 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "Aplat pleine largeur, et bloc conteneur positionné (`position: relative`) des deux plans de fond. Le master 2096:2524 empile DEUX peintures sur son root : fills[0] = peinture IMAGE (scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa) et fills[1] = voile SOLID #000000 à 0,3019607961177826 d'opacité. Aucun canal de contrat ne porte une peinture IMAGE (`tokens.background-image` n'accepte qu'un dégradé CSS, parsé par parseCssGradient dans core/emit-figma-script.ts) ni une opacité de peinture (`opacity` n'est ni dans LITERAL_CHANNELS ni dans DECLARED_CHANNELS) : les deux peintures sont donc portées comme DEUX PLANS D'ANATOMIE superposés — `Background` (porteur `img` + `src`/`alt` code-only + `object-fit: cover`, orthographe CSS du scaleMode FILL ; convention sav/carte/product-card/realisation) puis `Voile` (littéral `#0000004D` : la couleur ET l'opacité en un seul canal, 0x4D = 77/255 = 0,3019607961177826 exactement — la valeur Figma, pas un arrondi). Le root garde `background-color: {color.noir-pur}` comme plan de BASE sous les deux autres : c'est ce qui s'affiche quand `backgroundUrl` est vide (le défaut) ou quand `fond` est false. LIMITE NOMMÉE, non contournée : le retour vers le canvas (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md) — une part `img` dont l'URL est code-only ne se re-pousse pas en peinture IMAGE, et l'opacité du voile s'y re-pousse comme couleur alpha, pas comme opacité de peinture.",
+      "description": "Bandeau pleine largeur et bloc conteneur positionné des deux plans de fond. Sur le set 031 la racine ne porte AUCUNE peinture : la photo et le voile sont deux cadres absolus (Background puis Voile), contraints STRETCH/STRETCH, peints sous le Container. L'empilement ne repose sur aucun z-index : entre éléments positionnés de même contexte, l'ordre du DOM EST l'ordre de peinture. DÉVIATION NOMMÉE : le background-color noir-pur est un plan de BASE code-only, hérité du contrat 1.2.0 (l'ancien master l'avait sur sa racine) ; il n'existe pas sur le set 031, où il serait de toute façon invisible sous la photo. Il ne se voit que si backgroundUrl est vide ou fond à false. Les quatre largeurs dessinées (390/834/1200/1728) sont des TÉMOINS de planche, pas des tokens : la racine est fluide et sa référence est 1728. Les quatre hauteurs, elles, sont portées.",
       "layout": {
         "display": "flex",
         "direction": "column",
+        "justify": "center",
         "align": "center",
         "width": "fill",
         "referenceWidth": 1728
       },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "background-color": "{color.noir-pur}",
+        "padding-inline": "{space.0}",
+        "padding-block": "{space.0}",
+        "gap": "{space.0}",
+        "height": "{size.devis.root-h-mobile}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "height": "{size.devis.root-h-tablette}"
+          },
+          "desktop": {
+            "height": "{size.devis.root-h-desktop}"
+          },
+          "wide": {
+            "height": "{size.devis.root-h-wide}"
+          }
+        }
+      },
+      "declared": {
+        "position": "relative"
+      },
       "parts": {
         "Background": {
-          "description": "Plan photo — fills[0] du root (peinture IMAGE, scaleMode FILL). Porté par un `img` dont `src`/`alt` viennent du code : Figma range ces pixels dans une peinture du master, pas dans une propriété de composant. `object-fit: cover` est l'orthographe CSS du scaleMode FILL observé. Les quatre insets à 0 (le plan couvre exactement la boîte de padding du root, padding compris) n'ont de porteur QUE dans `stylesWhen` — d'où la condition sur `fond`.",
+          "description": "Plan photo — cadre absolu Background du set 031, peinture IMAGE en scaleMode FILL. Porté par un img dont src et alt viennent du code : Figma range ces pixels dans une peinture, pas dans une propriété de composant. object-fit cover est l'orthographe CSS du scaleMode FILL observé ; les quatre insets à 0 sont l'orthographe des contraintes STRETCH/STRETCH.",
           "element": "img",
           "attrs": {
             "src": "{backgroundUrl}",
@@ -87,39 +145,41 @@
           },
           "declared": {
             "position": "absolute",
-            "object-fit": "cover"
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "object-fit": "cover",
+            "z-index": "0"
           },
-          "stylesWhen": [
-            {
-              "prop": "fond",
-              "styles": {
-                "top": "0px",
-                "right": "0px",
-                "bottom": "0px",
-                "left": "0px"
-              }
-            }
-          ],
           "visibleWhen": {
             "prop": "fond"
           }
         },
         "Voile": {
-          "description": "Plan voile — fills[1] du root (SOLID #000000, opacité 0,3019607961177826), peint PAR-DESSUS le plan photo et SOUS le contenu. `#0000004D` porte la couleur et l'opacité en un seul canal (0x4D = 77 = round(0,3019607961177826 × 255), la valeur Figma exacte). L'empilement ne repose sur aucun z-index : entre éléments positionnés de même contexte, l'ordre du DOM EST l'ordre de peinture — `Background`, puis `Voile`, puis `Container` (lui aussi `position: relative`, donc positionné et peint au-dessus des deux plans).",
+          "description": "Plan voile — cadre absolu Voile du set 031, peinture GRADIENT_LINEAR de haut en bas, peinte PAR-DESSUS la photo et SOUS le Container. Trois valeurs pour quatre variantes : Mobile et Tablette sont strictement identiques (plateau d'opacité 0,74), Desktop reprend la même forme en 0,55, Wide dessine un plateau plus long en 0,55. Stops relevés sur le canvas le 2026-09-02, portés tels quels ; inscrits au registre des littéraux nommés — un token de dégradé à usage unique fabriquerait un faux vocabulaire.",
           "declared": {
-            "position": "absolute"
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "1",
+            "pointer-events": "none"
           },
           "literals": {
-            "background-color": "#0000004D"
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 4.1667%, rgba(0,0,0,0.1) 8.3333%, rgba(0,0,0,0.126) 12.5%, rgba(0,0,0,0.189) 16.6667%, rgba(0,0,0,0.278) 20.8333%, rgba(0,0,0,0.381) 25%, rgba(0,0,0,0.489) 29.1667%, rgba(0,0,0,0.589) 33.3333%, rgba(0,0,0,0.672) 37.5%, rgba(0,0,0,0.725) 41.6667%, rgba(0,0,0,0.74) 45.8333%, rgba(0,0,0,0.74) 50%, rgba(0,0,0,0.74) 54.1667%, rgba(0,0,0,0.74) 58.3333%, rgba(0,0,0,0.74) 62.5%, rgba(0,0,0,0.74) 66.6667%, rgba(0,0,0,0.74) 70.8333%, rgba(0,0,0,0.724) 75%, rgba(0,0,0,0.659) 79.1667%, rgba(0,0,0,0.561) 83.3333%, rgba(0,0,0,0.45) 87.5%, rgba(0,0,0,0.347) 91.6667%, rgba(0,0,0,0.27) 95.8333%, rgba(0,0,0,0.24) 100%)"
           },
-          "stylesWhen": [
+          "literalsByProp": [
             {
-              "prop": "fond",
-              "styles": {
-                "top": "0px",
-                "right": "0px",
-                "bottom": "0px",
-                "left": "0px"
+              "prop": "presentation",
+              "map": {
+                "desktop": {
+                  "background-image": "linear-gradient(to bottom, rgba(0,0,0,0.0743) 0%, rgba(0,0,0,0.0743) 4.1667%, rgba(0,0,0,0.0743) 8.3333%, rgba(0,0,0,0.0936) 12.5%, rgba(0,0,0,0.1405) 16.6667%, rgba(0,0,0,0.2066) 20.8333%, rgba(0,0,0,0.2832) 25%, rgba(0,0,0,0.3634) 29.1667%, rgba(0,0,0,0.4378) 33.3333%, rgba(0,0,0,0.4995) 37.5%, rgba(0,0,0,0.5389) 41.6667%, rgba(0,0,0,0.55) 45.8333%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 54.1667%, rgba(0,0,0,0.55) 58.3333%, rgba(0,0,0,0.55) 62.5%, rgba(0,0,0,0.55) 66.6667%, rgba(0,0,0,0.55) 70.8333%, rgba(0,0,0,0.5381) 75%, rgba(0,0,0,0.4898) 79.1667%, rgba(0,0,0,0.417) 83.3333%, rgba(0,0,0,0.3345) 87.5%, rgba(0,0,0,0.2579) 91.6667%, rgba(0,0,0,0.2007) 95.8333%, rgba(0,0,0,0.1784) 100%)"
+                },
+                "wide": {
+                  "background-image": "linear-gradient(to bottom, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 6%, rgba(0,0,0,0.0865) 8%, rgba(0,0,0,0.1306) 10%, rgba(0,0,0,0.1944) 12%, rgba(0,0,0,0.2702) 14%, rgba(0,0,0,0.3498) 16%, rgba(0,0,0,0.4256) 18%, rgba(0,0,0,0.4894) 20%, rgba(0,0,0,0.5335) 22%, rgba(0,0,0,0.55) 24%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 76%, rgba(0,0,0,0.5341) 79%, rgba(0,0,0,0.4922) 82%, rgba(0,0,0,0.4329) 85%, rgba(0,0,0,0.365) 88%, rgba(0,0,0,0.2971) 91%, rgba(0,0,0,0.2378) 94%, rgba(0,0,0,0.1959) 97%, rgba(0,0,0,0.18) 100%)"
+                }
               }
             }
           ],
@@ -128,64 +188,83 @@
           }
         },
         "Container": {
+          "description": "Colonne centrée du contenu, au-dessus des deux plans. Le master la dessine en remplissage de la racine avec une largeur bornée à 900 en Desktop et Wide (valeur liée à la variable size/devis/titre sur le canvas le 2026-09-02) ; en Mobile et Tablette elle remplit et la gouttière vient du padding (24 puis 48). La borne est portée une seule fois dans le canal declared max-width, qui est justement le canal des contraintes fluides tenues par le code : elle est sans effet sous 900 de large, donc exacte pour les quatre variantes.",
           "layout": {
             "direction": "column",
-            "align": "center"
+            "align": "center",
+            "width": "fill"
           },
           "declared": {
-            "position": "relative"
+            "position": "relative",
+            "max-width": "900px",
+            "z-index": "2"
           },
           "tokens": {
-            "gap": "{space.32}"
+            "gap": "{space.32}",
+            "padding-inline": "{space.24}",
+            "padding-block": "{space.0}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "padding-inline": "{space.48}"
+              },
+              "desktop": {
+                "padding-inline": "{space.0}"
+              },
+              "wide": {
+                "padding-inline": "{space.0}"
+              }
+            }
           },
           "parts": {
             "Titre": {
+              "description": "Titre du bandeau. Le master l'enveloppe dans un cadre Titre horizontal centré, sans padding ni fond, dont le seul effet est de centrer : DÉVIATION NOMMÉE, ce cadre est aplati ici en text-align center sur le texte lui-même, ce qui garde le DOM Odoo et les verdicts d'édition en place. La typographie roule sur le style responsive H2 (24/30, 24/30, 32/40, 40/50 relevés sur les quatre variantes : la recette du style correspond exactement).",
+              "layout": {
+                "width": "fill"
+              },
               "content": {
-                "prop": "titre"
+                "prop": "titre",
+                "marks": {
+                  "strong": "{font.weight.bold}"
+                }
               },
               "tokens": {
                 "color": "{color.blanc}",
-                "font-size": "{font.size.40}",
-                "font-weight": "{font.weight.regular}",
-                "width": "{size.devis.titre}"
-              },
-              "literals": {
-                "line-height": "50px"
+                "font-family": "{typography.h2.family}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{typography.h2.weight}",
+                "line-height": "{typography.h2.line-height}"
               },
               "declared": {
-                "text-align": "center"
+                "text-align": "center",
+                "white-space": "pre-line"
               }
             },
             "Bouton": {
+              "description": "CTA du bandeau — instance de ds.button reliée par clé de set. Le master le dessine en remplissage de la colonne en Mobile et Tablette, et en hug en Desktop et Wide : une part instance ne peut porter ni layoutByProp ni stylesWhen, ce placement est donc FAIT CODE-ONLY dans devis.pqr.css, nommé ici. La flèche droite est blanche depuis le correctif de source du 2026-09-02 sur le master Bouton (elle était liée à color/noir-bleute, donc invisible).",
               "component": {
                 "id": "ds.button",
                 "props": {
                   "children": "Prendre rendez-vous",
                   "variant": "outlineBlanc",
-                  "iconRight": true
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
                 }
               }
             }
           }
         }
-      },
-      "tokens": {
-        "background-color": "{color.noir-pur}",
-        "font-family": "{font.family.montserrat}",
-        "padding-top": "{space.96}",
-        "padding-bottom": "{space.96}"
-      },
-      "declared": {
-        "position": "relative"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f",
-      "nodeId": "2096:2524",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1",
+      "nodeId": "2694:21604",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/Devis",

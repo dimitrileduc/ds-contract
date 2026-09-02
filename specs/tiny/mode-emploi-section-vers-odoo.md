@@ -209,3 +209,48 @@ séance de lecture des triptyques avec l'owner.
   la hauteur d'une ligne. Vérifier les caractères du texte par variante (LF / U+2028) avant de chercher un padding.
 - **Lire chaque triptyque avec l'owner, chiffres à l'appui** : positions sondées (`probe-sav.mts`) avant de
   conclure « rendu texte ». Trois fois ce soir la cause réelle était ailleurs (fuite du fond, graisse, source).
+- **Une molécule n'a PAS d'axe présentation** : ce qui change par écran passe par des tokens qui varient par écran
+  (`spacing.card-categorie.pad-h`, `typography.h3.*`, `typography.card-desc.*`). Sa BOÎTE appartient à la section :
+  ne pas porter sa hauteur, garder un rapport par défaut que la section écrase.
+- **Un calque masqué dans l'usage** (visible=false sur les instances, jamais sur le master) devient une **option
+  gouvernée** du contrat que le parent passe — jamais un calque caché (§VIII). Le schéma n'admet qu'UNE condition de
+  présence par part : si la part en a déjà une, la descendre sous un parent qui porte l'autre.
+- **Deux sets peuvent porter le même nom** (l'ancien du DS, le nouveau de 031). Vérifier lequel la section instancie
+  AVANT d'écrire les ancres : `getMainComponentAsync` sur une instance de la section le dit en une ligne.
+- **Un style de texte lié à ses variables mais sans marqueur de token** n'est pas reconnu par l'extraction. La liaison
+  se fait alors à la main vers le token existant (jamais une valeur), et le marqueur manquant part en correction source.
+- **Avant de modéliser une molécule, vérifier qu'elle est INSTANCIÉE dans sa section** (`getMainComponentAsync`
+  sur un enfant). Des cadres libres = le maître ne propage rien. La réparation se fait par instanciation, avec
+  capture avant/après par vue et preuve à 0,00 % ; penser à reporter ce qui vivait sur les cadres et pas sur le
+  maître (largeur minimale, sizing, ancres). Les propriétés de grille ne sont pas modifiables par script.
+- **Une différence de contenu n'est pas un défaut de rendu** : la planche 031 et la home peuvent porter deux
+  copies différentes. Le dire, et laisser l'owner trancher, plutôt que d'aligner l'un sur l'autre.
+- **Un en-tête de section composé (ds.section-header) fige sa typographie** : si le set 031 le dessine à plat,
+  le modéliser DANS la section (sur-titre sur typography.overline.*, titre sur H2). Sinon le titre reste à 40 px
+  sur les quatre écrans — mesuré : 258 px de haut au lieu de 88 en mobile.
+- **Une rangée qui passe à la ligne a DEUX écarts** : colonne (itemSpacing) et rangée (counterAxisSpacing).
+  Avec une carte par ligne seul celui de rangée compte. L'extraction ne propose pas le second : le lire au dump.
+- **Chercher les plafonds hérités dans `odoo-bridge.css`** avant de mesurer une section : une `max-width`
+  d'adaptation d'hôte peut rétrécir silencieusement les cartes au-delà d'une certaine largeur.
+
+## Deux observations de relecture (2026-09-02, fin de vague) — À TRANCHER, rien fait
+
+Quatre relectures croisées du CSS écrit à la main pendant la vague. **Aucune correction appliquée** :
+ces feuilles sont dérivées du contrat et du relevé Figma, et mesurées au pixel ; les raboter pour la
+forme risquerait une régression sans gain. Deux constats méritent quand même une décision de spec.
+
+1. **Les feuilles manuelles recopient ce que le dépôt sait déjà générer.** `components.pqr.css` émet des
+   règles `.<bloc>--presentation-<mode>` qu'aucun QWeb ne pose jamais : Odoo n'a pas de moyen d'appliquer
+   une classe selon la fenêtre. Le bundle transporte donc les deux copies, la générée inerte et la
+   manuelle vive (~9 Ko), dégradés de voile compris. La bonne réponse n'est pas de raboter les feuilles :
+   c'est de **transformer ces classes en `@media` à la construction des assets**, là où
+   `scripts/odoo/build-assets.ts` post-traite déjà le CSS. Les cinq feuilles deviendraient dérivées.
+2. **Les cinq feuilles manuelles échappent au rapport de dérivation.** `build-derivation-report.ts` compte
+   les zones manuelles par marqueurs `ODOO-NNN-… BEGIN/END` dans une liste de fichiers où
+   `responsive.pqr.css` et `responsive/` n'entrent pas. Une vingtaine de kilo-octets écrits à la main sont
+   invisibles à l'instrument censé les compter, et absents de `adaptation-registry.json`.
+
+Autres points relevés, mineurs, laissés en l'état pour la même raison : la gouttière 24/48/56/89 réécrite
+dans cinq feuilles, le CTA pleine largeur écrit cinq fois en trois orthographes, quelques déclarations
+sans effet, et des textes de panneau Odoo devenus faux (« grille de 4 colonnes », « 2 ou 3 colonnes »).
+Ces deux derniers sont visibles par le rédacteur : à corriger dans la prochaine spec.

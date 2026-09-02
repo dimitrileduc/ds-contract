@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.0.1)
+ * Source of truth: contracts/button.contract.json (ds.button v2.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -100,7 +100,7 @@ The label (children) is bound to the « Libelle » TEXT property, added to the m
 
 The two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.
 
-Extracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. */
+Extracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. 2.1.0 (2026-09-02, Odoo hero pilot): the label font-size rides the style token typography.libelle-bouton.size, itself aliased to the Responsive typography.button.size (16 · 16 · 16 · 18) — exactly how the canvas style « Libellé bouton » binds its size. Before, a fixed font.size.16 made the Wide CTA 17 px narrower than the planche. */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     variant = 'default',

@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.1.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -14,12 +14,13 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  width: 100%;
+  min-width: 0;
   border: 0;
   background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
-  width: var(--size-carte-root);
-  gap: var(--space-24);
-  padding-bottom: var(--space-24);
+  gap: var(--spacing-carte-reassurance-gap);
+  padding-bottom: var(--spacing-carte-reassurance-pad-bas);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   text-rendering: geometricprecision;
 }
@@ -37,7 +38,7 @@
 }
 
 .reassuranceImage {
-  height: var(--size-carte-reassurance-image);
+  height: var(--spacing-carte-reassurance-photo-h);
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -75,10 +76,15 @@
 
 .TitreReassurance {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: 30px;
+  font-family: var(--typography-h4-family);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
   text-align: center;
+}
+
+.alignement-gauche .TitreReassurance {
+  text-align: left;
 }
 
 .TitreCategorie {
@@ -92,9 +98,10 @@
 
 .TexteReassurance {
   color: var(--color-noir);
-  font-size: var(--font-size-14);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-body-size);
   font-weight: var(--font-weight-regular);
-  line-height: 24px;
+  line-height: var(--typography-body-line-height);
   text-align: center;
 }
 
@@ -102,6 +109,10 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
+}
+
+.alignement-gauche .TexteReassurance {
+  text-align: left;
 }
 
 .TexteCategorie {

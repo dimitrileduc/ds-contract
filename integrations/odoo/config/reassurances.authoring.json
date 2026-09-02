@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.reassurances",
-    "version": "1.3.0"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,13 +35,29 @@
   ],
   "controls": [
     {
+      "decisionId": "reassurances-ctl-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "reassurances-ctl-reassurances-disposition",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -57,7 +73,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -73,7 +89,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -96,7 +112,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -119,7 +135,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -142,7 +158,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -165,7 +181,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -188,7 +204,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -211,7 +227,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -234,7 +250,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -257,7 +273,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -280,7 +296,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -303,7 +319,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -326,7 +342,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -349,7 +365,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -372,7 +388,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -395,7 +411,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -418,7 +434,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -441,7 +457,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -464,7 +480,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -487,7 +503,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -510,7 +526,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -533,7 +549,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -556,7 +572,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -579,7 +595,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -602,7 +618,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -619,115 +635,19 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "reassurances-ctl-reassurances-sectio-eader-section-header-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-title\"]",
-      "label": "titre"
-    },
-    {
-      "decisionId": "reassurances-ctl-reassurances-sectio-eader-section-header-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_reassurances [data-pqr-part=\"section-header-eyebrow\"]",
-      "label": "accroche"
-    },
-    {
-      "decisionId": "reassurances-ctl-reassurances-sectio-eader-section-header-affiche-ccroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "afficherAccroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "reassurances-ctl-reassurances-sectio-eader-section-header-alignement",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "alignement"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
       "decisionId": "reassurances-ctl-reassurances-carte-carte-disposition",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -739,19 +659,43 @@
       "mechanism": "none"
     },
     {
+      "decisionId": "reassurances-ctl-carte-alignement",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "3.0.0"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "alignement"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "reassurances-ctl-reassurances-carte-carte-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -769,13 +713,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -793,13 +737,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -817,13 +761,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -843,13 +787,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -867,13 +811,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -891,13 +835,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -915,13 +859,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -946,13 +890,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -977,13 +921,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1008,13 +952,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1039,13 +983,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1070,13 +1014,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1093,6 +1037,42 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "accroche"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-eyebrow\"]",
+      "label": "Sur-titre"
+    },
+    {
+      "decisionId": "reassurances-ctl-section-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-title\"]",
+      "label": "Titre"
     }
   ],
   "parts": [
@@ -1103,7 +1083,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1123,7 +1103,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1144,7 +1124,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1165,7 +1145,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1186,7 +1166,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1208,7 +1188,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1224,34 +1204,13 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "reassurances-part-reassurances-root-sectio-eader",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "SectionHeader"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_reassurances [data-pqr-part=\"root-sectio-eader\"]",
-      "allowedMarks": []
-    },
-    {
       "decisionId": "reassurances-part-reassurances-root-items",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1272,7 +1231,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -1294,7 +1253,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1321,7 +1280,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1337,7 +1296,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
@@ -1349,7 +1308,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1365,7 +1324,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
@@ -1377,7 +1336,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1393,7 +1352,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
@@ -1405,7 +1364,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1433,7 +1392,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1460,7 +1419,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1476,7 +1435,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
@@ -1488,7 +1447,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1504,7 +1463,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
@@ -1516,7 +1475,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1532,7 +1491,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
@@ -1544,7 +1503,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1572,7 +1531,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1599,7 +1558,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1615,7 +1574,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
@@ -1627,7 +1586,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1643,7 +1602,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
@@ -1655,7 +1614,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1671,7 +1630,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
@@ -1683,7 +1642,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1711,7 +1670,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1738,7 +1697,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1754,7 +1713,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
@@ -1766,7 +1725,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1782,7 +1741,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
@@ -1794,7 +1753,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1810,7 +1769,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
@@ -1822,7 +1781,7 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -1844,104 +1803,19 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "reassurances-part-reassurances-sectio-eader-section-header-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_reassurances [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "reassurances-part-reassurances-sectio-eader-section-header-root-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Accroche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_reassurances [data-pqr-part=\"root-accroche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "reassurances-part-reassurances-sectio-eader-section-header-root-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.reassurances",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Titre"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-title\"]",
-      "allowedMarks": [
-        "strong"
-      ]
-    },
-    {
       "decisionId": "reassurances-part-reassurances-carte-carte-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1963,13 +1837,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -1992,13 +1866,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2022,13 +1896,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2039,7 +1913,7 @@
           "categorieImage"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-categori-mage\"]",
       "allowedMarks": []
@@ -2051,13 +1925,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2068,7 +1942,7 @@
           "reassuranceImage"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-reassuranc-mage\"]",
       "allowedMarks": []
@@ -2080,13 +1954,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2109,13 +1983,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2139,13 +2013,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2169,13 +2043,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2199,13 +2073,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2229,13 +2103,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2264,13 +2138,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2288,7 +2162,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-eft\"]",
       "allowedMarks": []
@@ -2300,13 +2174,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2324,7 +2198,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-nl-con\"]",
       "allowedMarks": []
@@ -2336,13 +2210,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2360,7 +2234,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-ico-ight\"]",
       "allowedMarks": []
@@ -2372,13 +2246,13 @@
           {
             "contract": {
               "id": "ds.reassurances",
-              "version": "1.3.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte",
-              "version": "2.1.0"
+              "version": "3.0.0"
             },
             "viaPart": "Carte",
             "repeat": true
@@ -2399,6 +2273,71 @@
       "verdict": "not-editable",
       "contentKind": "plain-text",
       "selector": ".s_pqr_reassurances [data-pqr-part=\"root-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-section-header",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "SectionHeader"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-section-header\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "SectionHeader",
+          "Accroche"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-eyebrow\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "SectionHeader",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-title\"]",
       "allowedMarks": []
     }
   ]

@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "a45ba2ea",
+    "gitCommit": "8b869bed",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -38,6 +38,7 @@
   ],
   "tokenGroups": [
     "border-width",
+    "breakpoint",
     "color",
     "font",
     "nav",
@@ -45,6 +46,7 @@
     "radius",
     "size",
     "space",
+    "spacing",
     "typography"
   ],
   "components": [
@@ -77,7 +79,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -101,11 +103,12 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
         "style",
+        "afficherDecor",
         "ctaType",
         "titre",
         "texte",
@@ -113,16 +116,17 @@
         "imageAlt",
         "ctaLabel"
       ],
-      "summary": "Piqueray CarteCategorie."
+      "summary": "Piqueray CarteCategorie, responsive."
     },
     {
       "id": "ds.carte",
       "name": "Carte",
-      "version": "2.0.1",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
         "disposition",
+        "alignement",
         "titre",
         "imageUrl",
         "imageAlt",
@@ -131,20 +135,19 @@
         "ctaIconLeftGlyph",
         "ctaIconRightGlyph"
       ],
-      "summary": "Piqueray Carte."
+      "summary": "Piqueray Carte, responsive."
     },
     {
       "id": "ds.categories-principales",
       "name": "CategoriesPrincipales",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
-        "style",
-        "colonnes",
+        "presentation",
         "cartes"
       ],
-      "summary": "Piqueray section « Catégories principales »."
+      "summary": "Piqueray section « Catégories principales », responsive."
     },
     {
       "id": "ds.checkbox",
@@ -199,16 +202,17 @@
     {
       "id": "ds.devis",
       "name": "Devis",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "titre",
         "backgroundUrl",
         "backgroundAlt",
         "fond"
       ],
-      "summary": "Piqueray Devis."
+      "summary": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés."
     },
     {
       "id": "ds.member-picture",
@@ -397,7 +401,23 @@
         "montrerControles",
         "avis"
       ],
-      "summary": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006)."
+      "summary": "Le bloc « Avis Google » historique."
+    },
+    {
+      "id": "ds.google-reviews-section",
+      "name": "GoogleReviewsSection",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "propNames": [
+        "titre",
+        "accroche",
+        "qualificatif",
+        "noteGlobale",
+        "volume",
+        "montrerControles"
+      ],
+      "summary": "Composition publique Avis Google."
     },
     {
       "id": "ds.nav-item",
@@ -427,16 +447,17 @@
     {
       "id": "ds.hero-video",
       "name": "HeroVideo",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "backgroundUrl",
         "videoUrl",
         "backgroundAlt",
         "accroche"
       ],
-      "summary": "Piqueray HeroVideo."
+      "summary": "Piqueray HeroVideo, responsive."
     },
     {
       "id": "ds.hero",
@@ -456,15 +477,16 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "3.0.0",
+      "version": "4.0.1",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "texte",
         "bouton",
         "titre"
       ],
-      "summary": "Piqueray Presentation."
+      "summary": "Piqueray Presentation responsive, adopted from the 031 component set."
     },
     {
       "id": "ds.product-card",
@@ -508,22 +530,26 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "disposition",
+        "accroche",
+        "titre",
         "items"
       ],
-      "summary": "Piqueray Reassurances."
+      "summary": "Piqueray section « Réassurances », responsive."
     },
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.4.1",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "titre",
         "texte",
         "backgroundUrl",
@@ -531,7 +557,7 @@
         "imageUrl",
         "imageAlt"
       ],
-      "summary": "Piqueray SAV."
+      "summary": "Piqueray SAV, responsive."
     },
     {
       "id": "ds.tab",

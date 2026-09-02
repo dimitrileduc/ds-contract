@@ -1,204 +1,3 @@
-/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
-
-.button, .button *, .button *::before, .button *::after {
-  box-sizing: border-box;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
-  background-color: transparent;
-  cursor: pointer;
-  font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--font-line-height-22);
-  color: var(--color-blanc);
-  gap: var(--space-10);
-  padding-block: var(--space-16);
-  padding-inline: var(--space-32);
-  --dsc-border-width: var(--border-width-0);
-  text-transform: uppercase;
-  white-space: nowrap;
-  position: relative;
-}
-
-.button::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: max(100%, 44px);
-  height: max(100%, 44px);
-  transform: translate(-50%, -50%);
-}
-
-.button--variant-default {
-  background-color: var(--color-noir-bleute);
-}
-
-.button--variant-orange {
-  background-color: var(--color-orange);
-}
-
-.button--variant-blanc {
-  background-color: var(--color-blanc);
-  color: var(--color-noir-bleute);
-}
-
-.button--variant-outlineBlanc {
-  --dsc-border-width: var(--border-width-2);
-  --dsc-border-color: var(--color-blanc);
-}
-
-.button--variant-link {
-  color: var(--color-noir-bleute);
-  border-radius: var(--radius-32);
-  padding-block: var(--space-4);
-  padding-inline: var(--space-0);
-}
-
-.button--variant-outlineNoir {
-  --dsc-border-width: var(--border-width-2);
-  --dsc-border-color: var(--color-noir-bleute);
-  color: var(--color-noir-bleute);
-}
-
-.button--variant-iconOnly {
-  width: var(--size-button-icon-only);
-  height: var(--size-button-icon-only);
-  gap: var(--space-0);
-  padding-inline: var(--space-16);
-  --dsc-border-width: var(--border-width-2);
-  --dsc-border-color: var(--color-noir-bleute);
-  color: var(--color-noir-bleute);
-}
-
-.button__iconLeft svg {
-  display: block;
-  width: 20px;
-  height: 20px;
-}
-
-.button__iconLeft {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.button__iconOnlyIcon svg {
-  display: block;
-  width: 20px;
-  height: 20px;
-}
-
-.button__iconOnlyIcon {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.button--variant-iconOnly .button__label {
-  display: none;
-}
-
-.button__iconRight svg {
-  display: block;
-  width: 20px;
-  height: 20px;
-}
-
-.button__iconRight {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-/* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */
-
-.section-header, .section-header *, .section-header *::before, .section-header *::after {
-  box-sizing: border-box;
-}
-
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-  border: 0;
-  font-family: var(--font-family-montserrat);
-  gap: var(--space-8);
-  align-self: stretch;
-}
-
-.section-header--disposition-avecCta {
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.section-header--alignement-gauche {
-  align-items: start;
-}
-
-.section-header__Accroche {
-  width: 100%;
-  min-width: 0;
-  color: var(--color-noir-bleute);
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: 3px;
-  line-height: 25px;
-  text-transform: uppercase;
-}
-
-.section-header__Titre {
-  width: 100%;
-  min-width: 0;
-  color: var(--color-noir-bleute);
-  font-size: var(--font-size-40);
-  font-weight: var(--font-weight-regular);
-  line-height: 50px;
-}
-
-.section-header__Titre > strong {
-  font-weight: var(--font-weight-bold);
-}
-
-.section-header--disposition-avecCta .section-header__Titre {
-  line-height: 40px;
-}
-
-.section-header--emphase-hero .section-header__Titre {
-  line-height: 68px;
-  font-weight: 300;
-}
-
-.section-header--emphase-moyen .section-header__Titre {
-  line-height: 40px;
-}
-
-.section-header--emphase-compact .section-header__Titre {
-  line-height: 30px;
-}
-
-.section-header--disposition-avecCta .section-header__Titre {
-  font-size: var(--font-size-32);
-}
-
-.section-header--emphase-hero .section-header__Titre {
-  color: var(--color-blanc);
-  font-size: var(--font-size-54);
-}
-
-.section-header--emphase-moyen .section-header__Titre {
-  font-size: var(--font-size-32);
-}
-
-.section-header--emphase-compact .section-header__Titre {
-  font-size: var(--font-size-24);
-}
-
 /* AccordionRow — from ds.accordion-row v1.2.0 (core/emit-html.ts) */
 
 .accordion-row, .accordion-row *, .accordion-row *::before, .accordion-row *::after {
@@ -375,7 +174,7 @@
   top: 0px;
 }
 
-/* TexteSEO — from ds.texte-seo v2.1.0 (core/emit-html.ts) */
+/* TexteSEO — from ds.texte-seo v3.0.0 (core/emit-html.ts) */
 
 .texte-seo, .texte-seo *, .texte-seo *::before, .texte-seo *::after {
   box-sizing: border-box;
@@ -392,8 +191,17 @@
   align-self: stretch;
 }
 
-.texte-seo__h2 {
-  display: flex;
+.texte-seo__Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
+}
+
+.texte-seo__Titre > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .texte-seo__p {

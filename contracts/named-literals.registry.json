@@ -42,10 +42,10 @@
       "contractId": "ds.carte-categorie",
       "pointer": "/anatomy/root/parts/contenuSuperpose/literals/background-image",
       "channel": "background-image",
-      "value": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%)",
-      "reason": "Voile dégradé GRADIENT_LINEAR du wrapper de contenu du style superposé (transparent en haut → 75% noir en bas) qui rend le titre et le texte blancs lisibles par-dessus la photo — relevé verbatim du master CarteCategorie (2495:6770). Même doctrine que les voiles de `ds.hero` : un token gradient à usage unique fabriquerait un faux vocabulaire ; l'entrée suit le littéral.",
-      "decidedOn": "2026-08-20",
-      "receiptId": "carte-categorie-scrim-named-literal"
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 36%, rgba(0,0,0,0.016) 38.3%, rgba(0,0,0,0.059) 40.7%, rgba(0,0,0,0.125) 43%, rgba(0,0,0,0.207) 45.3%, rgba(0,0,0,0.301) 47.7%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.499) 52.3%, rgba(0,0,0,0.593) 54.7%, rgba(0,0,0,0.675) 57%, rgba(0,0,0,0.741) 59.3%, rgba(0,0,0,0.784) 61.7%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.81) 85%, rgba(0,0,0,0.82) 100%)",
+      "reason": "Voile dégradé GRADIENT_LINEAR du cadre `wrapper` du style superposé, relevé verbatim sur le set 031 (2692:19667) le 2026-09-02 : seize arrêts, transparent jusqu'à 36 % de la hauteur puis montée jusqu'à 0,82 de noir en bas — il couvre toute la carte, plus seulement son bas. Même doctrine que les voiles de ds.hero et ds.hero-video : un token gradient à usage unique fabriquerait un faux vocabulaire.",
+      "decidedOn": "2026-09-02",
+      "receiptId": "carte-categorie-031-voile"
     },
     {
       "contractId": "ds.hero-video",
@@ -82,6 +82,33 @@
       "reason": "Voile haut du HeroVideo (lisibilité de la navigation superposée), valeur lue sur le set 031 le 2026-09-02 — départ 75 % → 0,65 en Mobile/Tablette, 70 % → 0,58 en Desktop/Wide. Nommé par mode, jamais tokenisé.",
       "decidedOn": "2026-09-02",
       "receiptId": "hero-video-031-veils"
+    },
+    {
+      "contractId": "ds.devis",
+      "pointer": "/anatomy/root/parts/Voile/literals/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 4.1667%, rgba(0,0,0,0.1) 8.3333%, rgba(0,0,0,0.126) 12.5%, rgba(0,0,0,0.189) 16.6667%, rgba(0,0,0,0.278) 20.8333%, rgba(0,0,0,0.381) 25%, rgba(0,0,0,0.489) 29.1667%, rgba(0,0,0,0.589) 33.3333%, rgba(0,0,0,0.672) 37.5%, rgba(0,0,0,0.725) 41.6667%, rgba(0,0,0,0.74) 45.8333%, rgba(0,0,0,0.74) 50%, rgba(0,0,0,0.74) 54.1667%, rgba(0,0,0,0.74) 58.3333%, rgba(0,0,0,0.74) 62.5%, rgba(0,0,0,0.74) 66.6667%, rgba(0,0,0,0.74) 70.8333%, rgba(0,0,0,0.724) 75%, rgba(0,0,0,0.659) 79.1667%, rgba(0,0,0,0.561) 83.3333%, rgba(0,0,0,0.45) 87.5%, rgba(0,0,0,0.347) 91.6667%, rgba(0,0,0,0.27) 95.8333%, rgba(0,0,0,0.24) 100%)",
+      "reason": "Voile GRADIENT_LINEAR du cadre Voile, stops lus sur le set 031 (2694:21604) le 2026-09-02. Trois valeurs pour quatre variantes : Mobile et Tablette sont strictement identiques (plateau d'opacité 0,74), Desktop reprend la même forme de 25 stops en 0,55, Wide dessine 21 stops avec un plateau plus long en 0,55. Un token de dégradé à usage unique fabriquerait un faux vocabulaire : la valeur est nommée ici, par mode. Valeur de base = la variante Mobile, partagée telle quelle par Tablette.",
+      "decidedOn": "2026-09-02",
+      "receiptId": "devis-031-veils"
+    },
+    {
+      "contractId": "ds.devis",
+      "pointer": "/anatomy/root/parts/Voile/literalsByProp/0/map/desktop/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0.0743) 0%, rgba(0,0,0,0.0743) 4.1667%, rgba(0,0,0,0.0743) 8.3333%, rgba(0,0,0,0.0936) 12.5%, rgba(0,0,0,0.1405) 16.6667%, rgba(0,0,0,0.2066) 20.8333%, rgba(0,0,0,0.2832) 25%, rgba(0,0,0,0.3634) 29.1667%, rgba(0,0,0,0.4378) 33.3333%, rgba(0,0,0,0.4995) 37.5%, rgba(0,0,0,0.5389) 41.6667%, rgba(0,0,0,0.55) 45.8333%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 54.1667%, rgba(0,0,0,0.55) 58.3333%, rgba(0,0,0,0.55) 62.5%, rgba(0,0,0,0.55) 66.6667%, rgba(0,0,0,0.55) 70.8333%, rgba(0,0,0,0.5381) 75%, rgba(0,0,0,0.4898) 79.1667%, rgba(0,0,0,0.417) 83.3333%, rgba(0,0,0,0.3345) 87.5%, rgba(0,0,0,0.2579) 91.6667%, rgba(0,0,0,0.2007) 95.8333%, rgba(0,0,0,0.1784) 100%)",
+      "reason": "Voile GRADIENT_LINEAR du cadre Voile, stops lus sur le set 031 (2694:21604) le 2026-09-02. Trois valeurs pour quatre variantes : Mobile et Tablette sont strictement identiques (plateau d'opacité 0,74), Desktop reprend la même forme de 25 stops en 0,55, Wide dessine 21 stops avec un plateau plus long en 0,55. Un token de dégradé à usage unique fabriquerait un faux vocabulaire : la valeur est nommée ici, par mode. Surcharge Desktop.",
+      "decidedOn": "2026-09-02",
+      "receiptId": "devis-031-veils"
+    },
+    {
+      "contractId": "ds.devis",
+      "pointer": "/anatomy/root/parts/Voile/literalsByProp/0/map/wide/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 6%, rgba(0,0,0,0.0865) 8%, rgba(0,0,0,0.1306) 10%, rgba(0,0,0,0.1944) 12%, rgba(0,0,0,0.2702) 14%, rgba(0,0,0,0.3498) 16%, rgba(0,0,0,0.4256) 18%, rgba(0,0,0,0.4894) 20%, rgba(0,0,0,0.5335) 22%, rgba(0,0,0,0.55) 24%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 76%, rgba(0,0,0,0.5341) 79%, rgba(0,0,0,0.4922) 82%, rgba(0,0,0,0.4329) 85%, rgba(0,0,0,0.365) 88%, rgba(0,0,0,0.2971) 91%, rgba(0,0,0,0.2378) 94%, rgba(0,0,0,0.1959) 97%, rgba(0,0,0,0.18) 100%)",
+      "reason": "Voile GRADIENT_LINEAR du cadre Voile, stops lus sur le set 031 (2694:21604) le 2026-09-02. Trois valeurs pour quatre variantes : Mobile et Tablette sont strictement identiques (plateau d'opacité 0,74), Desktop reprend la même forme de 25 stops en 0,55, Wide dessine 21 stops avec un plateau plus long en 0,55. Un token de dégradé à usage unique fabriquerait un faux vocabulaire : la valeur est nommée ici, par mode. Surcharge Wide.",
+      "decidedOn": "2026-09-02",
+      "receiptId": "devis-031-veils"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "a45ba2ea",
+    "gitCommit": "8b869bed",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -116,7 +116,48 @@
       "--typography-paragraphe-gras-family",
       "--typography-paragraphe-gras-size",
       "--typography-paragraphe-gras-weight",
-      "--typography-paragraphe-gras-line-height"
+      "--typography-paragraphe-gras-line-height",
+      "--typography-h1-family",
+      "--typography-h1-size",
+      "--typography-h1-weight",
+      "--typography-h1-line-height",
+      "--typography-h2-family",
+      "--typography-h2-size",
+      "--typography-h2-weight",
+      "--typography-h2-line-height",
+      "--typography-h3-family",
+      "--typography-h3-size",
+      "--typography-h3-weight",
+      "--typography-h3-line-height",
+      "--typography-h4-family",
+      "--typography-h4-size",
+      "--typography-h4-weight",
+      "--typography-h4-line-height",
+      "--typography-body-size",
+      "--typography-body-line-height",
+      "--typography-body-weight",
+      "--typography-card-desc-size",
+      "--typography-card-desc-line-height",
+      "--typography-overline-size",
+      "--typography-overline-weight",
+      "--typography-overline-line-height",
+      "--typography-button-size",
+      "--typography-review-auteur-size",
+      "--typography-review-auteur-line-height",
+      "--typography-review-date-size",
+      "--typography-review-date-line-height",
+      "--typography-review-date-weight",
+      "--typography-review-temoignage-size",
+      "--typography-review-temoignage-line-height",
+      "--typography-review-lien-size",
+      "--typography-review-lien-line-height",
+      "--typography-review-initiale-size",
+      "--typography-review-initiale-line-height",
+      "--spacing-card-categorie-pad-h",
+      "--spacing-carte-reassurance-gap",
+      "--spacing-carte-reassurance-pad-bas",
+      "--spacing-carte-reassurance-photo-h",
+      "--spacing-review-gap"
     ],
     "allCssVariables": [
       "--color-bleu",
@@ -152,6 +193,7 @@
       "--font-weight-semibold",
       "--font-weight-bold",
       "--font-line-height-16",
+      "--font-line-height-18",
       "--font-line-height-20",
       "--font-line-height-22",
       "--font-line-height-24",
@@ -180,11 +222,14 @@
       "--space-32",
       "--space-47",
       "--space-48",
+      "--space-56",
       "--space-64",
       "--space-89",
       "--space-96",
       "--space-128",
+      "--space-288",
       "--space-392",
+      "--space-418",
       "--space-597",
       "--size-button-icon-only",
       "--size-accordion-row-titre-ouvert",
@@ -212,6 +257,10 @@
       "--size-coordonnees-wrapper",
       "--size-devis-titre",
       "--size-devis-root",
+      "--size-devis-root-h-mobile",
+      "--size-devis-root-h-tablette",
+      "--size-devis-root-h-desktop",
+      "--size-devis-root-h-wide",
       "--size-faq-root",
       "--size-footer-root",
       "--size-footer-background",
@@ -224,6 +273,7 @@
       "--size-google-reviews-pastille-gauche",
       "--size-google-reviews-pastille-droite",
       "--size-hero-video-root",
+      "--size-hero-video-root-compact",
       "--size-hero-sous-titre",
       "--size-hero-root",
       "--size-member-card-root",
@@ -267,6 +317,12 @@
       "--size-sav-img-group-background-h",
       "--size-sav-img-w",
       "--size-sav-img-h",
+      "--size-sav-row-h-desktop",
+      "--size-sav-wrapper-h-desktop",
+      "--size-sav-img-group-h-desktop",
+      "--size-sav-img-group-h-compact",
+      "--size-sav-img-h-compact",
+      "--size-sav-cta-w-desktop",
       "--size-textarea-root",
       "--size-logo-width",
       "--size-logo-height",
@@ -276,11 +332,20 @@
       "--size-equipe-gap-colonnes",
       "--size-equipe-gap-rangees",
       "--size-section-header-root",
+      "--size-carte-reassurance-photo-h-192",
+      "--size-carte-reassurance-photo-h-240",
+      "--size-carte-reassurance-photo-h-364",
+      "--size-carte-categorie-min-w",
+      "--size-categories-principales-carte-h-mobile",
+      "--size-categories-principales-carte-h-tablette",
       "--radius-32",
       "--radius-500",
       "--border-width-0",
       "--border-width-1",
       "--border-width-2",
+      "--breakpoint-tablette",
+      "--breakpoint-desktop",
+      "--breakpoint-wide",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -352,7 +417,48 @@
       "--typography-paragraphe-gras-family",
       "--typography-paragraphe-gras-size",
       "--typography-paragraphe-gras-weight",
-      "--typography-paragraphe-gras-line-height"
+      "--typography-paragraphe-gras-line-height",
+      "--typography-h1-family",
+      "--typography-h1-size",
+      "--typography-h1-weight",
+      "--typography-h1-line-height",
+      "--typography-h2-family",
+      "--typography-h2-size",
+      "--typography-h2-weight",
+      "--typography-h2-line-height",
+      "--typography-h3-family",
+      "--typography-h3-size",
+      "--typography-h3-weight",
+      "--typography-h3-line-height",
+      "--typography-h4-family",
+      "--typography-h4-size",
+      "--typography-h4-weight",
+      "--typography-h4-line-height",
+      "--typography-body-size",
+      "--typography-body-line-height",
+      "--typography-body-weight",
+      "--typography-card-desc-size",
+      "--typography-card-desc-line-height",
+      "--typography-overline-size",
+      "--typography-overline-weight",
+      "--typography-overline-line-height",
+      "--typography-button-size",
+      "--typography-review-auteur-size",
+      "--typography-review-auteur-line-height",
+      "--typography-review-date-size",
+      "--typography-review-date-line-height",
+      "--typography-review-date-weight",
+      "--typography-review-temoignage-size",
+      "--typography-review-temoignage-line-height",
+      "--typography-review-lien-size",
+      "--typography-review-lien-line-height",
+      "--typography-review-initiale-size",
+      "--typography-review-initiale-line-height",
+      "--spacing-card-categorie-pad-h",
+      "--spacing-carte-reassurance-gap",
+      "--spacing-carte-reassurance-pad-bas",
+      "--spacing-carte-reassurance-photo-h",
+      "--spacing-review-gap"
     ]
   },
   "components": [
@@ -441,10 +547,10 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
+      "description": "Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. 2.1.0 (2026-09-02, Odoo hero pilot): the label font-size rides the style token typography.libelle-bouton.size, itself aliased to the Responsive typography.button.size (16 · 16 · 16 · 18) — exactly how the canvas style « Libellé bouton » binds its size. Before, a fixed font.size.16 made the Wide CTA 17 px narrower than the planche.",
       "figma": {
         "representation": "component",
         "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6"
@@ -555,13 +661,13 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
+      "description": "Piqueray CarteCategorie, responsive. 2.0.0 (2026-09-02, vague 031) : le style superposé est ré-extrait du set 2692:19667 (page « 031 · Planches de validation »), qui remplace le master 2495:6770. Ce qui change : le voile occupe toute la carte au lieu du seul bas, son padding horizontal suit le token responsive spacing.card-categorie.pad-h (24 / 32), le titre monte le style responsive « Titre carte » (typography.h3.*, 20/25 SemiBold → 32/40 Medium) et la description « Description carte » (typography.card-desc.*, 16/24 → 18/27), le plan photo passe en absolu parce que la hauteur de la carte appartient à la section (quatre hauteurs par mode), et la largeur minimale dessinée 320 est mintée. Deux propriétés TEXT (Titre, Texte) ont été posées sur le set le 2026-09-02 : titre et texte sont de nouveau liés. Le style empilé est conservé tel quel (décision owner) bien que le set 031 ne le dessine plus.\n\nHistorique avant 2.0.0 :\nPiqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62"
+        "componentSetKey": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c"
       },
       "props": [
         {
@@ -570,7 +676,14 @@
             "superpose",
             "empile"
           ],
-          "default": "superpose"
+          "default": "superpose",
+          "description": " — 2026-09-02 : le set 031 (2692:19667) ne dessine QUE `superpose` ; `empile` est conservé au contrat sur décision owner (d'autres pages l'utiliseront), sans correction de la source. L'axe VARIANT du set ne déclare donc qu'une valeur : écart de parité acquitté, pas une dérive."
+        },
+        {
+          "name": "afficherDecor",
+          "type": "boolean",
+          "default": true,
+          "description": "Affiche le filet décoratif du coin haut-droit. Le set 031 le DESSINE sur la carte mais les deux instances de la section le masquent (visible=false, surcharge d’instance brute, 2026-09-02) : la visibilité devient une option gouvernée que le parent passe, plutôt qu’un calque caché — §VIII. Le set n’expose aucune propriété BOOLEAN : liaison NONE, écart nommé, à corriger à la source."
         },
         {
           "name": "ctaType",
@@ -584,13 +697,14 @@
         {
           "name": "titre",
           "type": "string",
-          "default": "Pour portes de garage"
+          "default": "Portes de garage",
+          "description": " Défaut relevé sur le set 031 le 2026-09-02."
         },
         {
           "name": "texte",
           "type": "string",
-          "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-          "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique)."
+          "default": "Une porte de garage pour chaque goût et chaque style de maison.",
+          "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique). Défaut relevé sur le set 031 le 2026-09-02."
         },
         {
           "name": "imageUrl",
@@ -618,13 +732,13 @@
     {
       "id": "ds.carte",
       "name": "Carte",
-      "version": "2.0.1",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
+      "description": "Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.\n\nHistorique avant 3.0.0 :\nPiqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24"
+        "componentSetKey": "88a244c4cd1ea23508c0a63a0e6596483e734f01"
       },
       "props": [
         {
@@ -633,12 +747,23 @@
             "reassurance",
             "categorie"
           ],
-          "default": "reassurance"
+          "default": "reassurance",
+          "description": " — 2026-09-02 : le set 031 ne dessine QUE la réassurance ; la disposition « categorie » est une forme d'archive conservée (décision owner, cf. Empile de ds.carte-categorie), plus utilisée par aucune page. Écart de parité acquitté."
+        },
+        {
+          "name": "alignement",
+          "type": [
+            "centre",
+            "gauche"
+          ],
+          "default": "centre",
+          "description": "Alignement du texte de la carte, miroir de l'axe Alignement du set 031 (2700:25961). Centré est la première variante du set, donc le défaut. La section Réassurances aligne à gauche sous le seuil bureau et centre au-dessus : une part instance n'a pas de canal par mode, cette bascule est un fait code-only de la projection Odoo, nommé dans le CSS de la section."
         },
         {
           "name": "titre",
           "type": "string",
-          "default": "Pour portes de garage"
+          "default": "Sécurité et conformité",
+          "description": " Défaut relevé sur le set 031 le 2026-09-02."
         },
         {
           "name": "imageUrl",
@@ -656,14 +781,10 @@
           "type": "string",
           "default": [
             {
-              "text": "SupraMatic & ProMatic.",
-              "strong": true
-            },
-            {
-              "text": " Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+              "text": "Respectent les normes des bâtiments publics et les réglementations pompiers."
             }
           ],
-          "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token."
+          "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. Défaut relevé sur le set 031 le 2026-09-02."
         },
         {
           "name": "ctaLabel",
@@ -697,32 +818,25 @@
     {
       "id": "ds.categories-principales",
       "name": "CategoriesPrincipales",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray section « Catégories principales ». Extracted from the cleaned Figma COMPONENT_SET on DS · Organisms (2115:4277), reviewed at Gate A — not authored. A repeated collection of ds.carte-categorie in a governed grid, with a closed `colonnes` {2,3} enum. Le colonnage est un CHOIX DE DESIGN porté par la section (extension de schéma E1 `layoutByProp.columns`), jamais dérivé du nombre de cartes ; au-delà du compte, les cartes passent à la ligne sur la même grille (wrap natif). Le `style` est transmis à chaque carte répétée (composition), donc verdict Odoo `fixed-by-composition` — pas un choix rédacteur.\n\nNettoyage de source (Gate A/B, 2026-08-20) : l'axe menteur « Disposition » à 4 valeurs (qui mélangeait style de carte, nombre de colonnes et un contenu déguisé « Rdv ») est remplacé par deux axes orthogonaux Style × Colonnes. « Rdv » redevient une instance renseignée, plus jamais une variante.\n\nLimite nommée : la prop `ctaType` de la carte n'est PAS transportée par item (les champs d'un `arrayOf` sont plats par le schéma) — toutes les cartes d'une section rendent le CTA par défaut de la molécule (lien). L'usage à CTA mixte (carte Maintenance à bouton encadré « Prendre rendez-vous ») est porté hors de cette composition (couche Odoo/usage) — nommé, pas contourné en silence.",
+      "description": "Piqueray section « Catégories principales », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2693:20242 (page « 031 · Planches de validation »), quatre variantes sur le SEUL axe Presentation. Les deux réglages `style` et `colonnes` du contrat 1.0.0 SONT RETIRÉS (rupture majeure, décision owner 2026-09-02) : le set 031 ne les déclare plus, ses huit cartes sont toutes superposées, et le colonnage est décidé par l'écran — colonne en Mobile et Tablette, deux cartes en ligne en Desktop et Wide. La grille tombe juste au pixel : 390−48=342, 834−96=738, 1200−112−64=1024 (512 chacune), 1728−178−64=1486 (743 chacune). Deux hauteurs de carte sont mintées depuis le relevé (418 en Mobile, 288 en Tablette) ; Desktop et Wide découlent du rapport 16/9 de la carte.\n\nHistorique avant 2.0.0 :\nPiqueray section « Catégories principales ». Extracted from the cleaned Figma COMPONENT_SET on DS · Organisms (2115:4277), reviewed at Gate A — not authored. A repeated collection of ds.carte-categorie in a governed grid, with a closed `colonnes` {2,3} enum. Le colonnage est un CHOIX DE DESIGN porté par la section (extension de schéma E1 `layoutByProp.columns`), jamais dérivé du nombre de cartes ; au-delà du compte, les cartes passent à la ligne sur la même grille (wrap natif). Le `style` est transmis à chaque carte répétée (composition), donc verdict Odoo `fixed-by-composition` — pas un choix rédacteur.\n\nNettoyage de source (Gate A/B, 2026-08-20) : l'axe menteur « Disposition » à 4 valeurs (qui mélangeait style de carte, nombre de colonnes et un contenu déguisé « Rdv ») est remplacé par deux axes orthogonaux Style × Colonnes. « Rdv » redevient une instance renseignée, plus jamais une variante.\n\nLimite nommée : la prop `ctaType` de la carte n'est PAS transportée par item (les champs d'un `arrayOf` sont plats par le schéma) — toutes les cartes d'une section rendent le CTA par défaut de la molécule (lien). L'usage à CTA mixte (carte Maintenance à bouton encadré « Prendre rendez-vous ») est porté hors de cette composition (couche Odoo/usage) — nommé, pas contourné en silence.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "94f64a369a5db615d68935bb353614eaaadbffc2"
+        "componentSetKey": "6495b5175604b69af5a2b670bdbc1e49a60e68d3"
       },
       "props": [
         {
-          "name": "style",
+          "name": "presentation",
           "type": [
-            "superpose",
-            "empile"
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
           ],
-          "default": "superpose",
-          "description": "Style des cartes, transmis à chaque carte répétée (component.props {style}). Verdict Odoo attendu : fixed-by-composition (pas un choix rédacteur cette itération)."
-        },
-        {
-          "name": "colonnes",
-          "type": [
-            "2",
-            "3"
-          ],
-          "default": "2",
-          "description": "Nombre de colonnes de la grille — enum FERMÉ {2,3}, aucune autre valeur offrable. Porté par la section (extension E1 layoutByProp.columns sur la part grid) ; au-delà du compte de cartes, wrap natif sur la même grille."
+          "default": "mobile",
+          "description": "Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur."
         },
         {
           "name": "cartes",
@@ -732,7 +846,7 @@
               "texte": "text"
             }
           },
-          "description": "Collection de cartes-catégories. Champs `titre` et `texte` (plats — un arrayOf ne porte que text/number/boolean par le schéma). Le `sample` est relevé de la source (contenus réels des usages), jamais inventé. LIMITE : pas de champ `ctaType` par carte (voir description du contrat)."
+          "description": "Collection de cartes-catégories. Champs `titre` et `texte` (plats — un arrayOf ne porte que text/number/boolean par le schéma). Le `sample` est relevé de la source (contenus réels des usages), jamais inventé. LIMITE : pas de champ `ctaType` par carte (voir description du contrat). Le set 031 en dessine deux, en style superposé, dans les quatre présentations."
         }
       ],
       "children": {
@@ -884,25 +998,41 @@
     {
       "id": "ds.devis",
       "name": "Devis",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f"
+        "componentSetKey": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1"
       },
       "props": [
         {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Axe de présentation du set 031. Le défaut est la première variante dessinée (Mobile) — la parité l'exige."
+        },
+        {
           "name": "titre",
           "type": "string",
-          "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+          "default": [
+            {
+              "text": "Prenez rendez-vous pour un devis gratuit,\nnous nous déplaçons chez vous"
+            }
+          ],
+          "description": "Titre du bandeau, texte riche. Le set 031 n'expose AUCUNE propriété TEXT (l'ancien master 2096:2524 exposait Titre) : la liaison figma est NONE — régression de source, nommée. Riche parce que le titre porte un SAUT DE LIGNE après « gratuit, » (règle owner 2026-09-02 : un saut de ligne est du texte riche, et un saut vaut pour tous les modes). Sur le canvas il n'est explicite que sur la variante Desktop (séparateur U+2028, relevé sur 2694:21563) ; Mobile et Tablette coupent naturellement ailleurs — écart de source à corriger dans Figma, comme la planche Tablette du hero l'a été. Le saut vit dans le contenu des pages ; la part déclare white-space pre-line."
         },
         {
           "name": "backgroundUrl",
           "type": "string",
           "default": "",
-          "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
+          "description": "URL fournie par le code pour le plan photo. Le set 031 range ces pixels dans une PEINTURE IMAGE du cadre Background (imageHash 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa, scaleMode FILL, sans imageTransform, identique dans les quatre variantes), jamais dans une propriété de composant : liaison NONE et défaut vide intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
         },
         {
           "name": "backgroundAlt",
@@ -914,7 +1044,7 @@
           "name": "fond",
           "type": "boolean",
           "default": true,
-          "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste."
+          "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux plans sont des CADRES ABSOLUS du master (contraintes STRETCH/STRETCH), pas une propriété : liaison NONE, défaut true (l'état du master). À false, les deux plans disparaissent et seul le background-color du root subsiste."
         }
       ],
       "children": {
@@ -1418,7 +1548,7 @@
       "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.\n\nPromotion 2.0.0 (2026-08-18). MAJEUR par ricochet de ds.review-card 2.0.0 : la collection `avis` perd trois champs (`tronque`, `initialeVisible`, `photo`) et en gagne deux (`avatar`, `note`). Le mapping d'un `repeat` se fait PAR NOM, donc la forme d'un enregistrement d'avis suit celle des props de l'enfant, sans exception.",
+      "description": "Le bloc « Avis Google » historique. Le nouveau parent public `ds.google-reviews-section` le compose avec `ds.section-header`, sans modifier sa surface Odoo authorée existante. La grille garde cinq colonnes égales et les flèches restent des overlays absolus.",
       "figma": {
         "representation": "component",
         "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
@@ -1475,6 +1605,58 @@
             }
           },
           "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010)."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.google-reviews-section",
+      "name": "GoogleReviewsSection",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Composition publique Avis Google. Elle réunit le titre de section et le widget ds.google-reviews, auparavant deux frères ad hoc dans les Pages Figma et dans le seed Odoo. Le root est Fill/Hug, sans largeur fixe ni padding local : le Container consommateur possède l'espacement externe.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "a4d8c699641576c3f44fa7042382979ef9445cdb"
+      },
+      "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": [
+            {
+              "text": "Plus de 1500 portes installées par année et autant de clients satisfaits"
+            }
+          ]
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Nos avis Google vérifiés"
+        },
+        {
+          "name": "qualificatif",
+          "type": "string",
+          "default": "Excellent"
+        },
+        {
+          "name": "noteGlobale",
+          "type": "string",
+          "default": "4.8"
+        },
+        {
+          "name": "volume",
+          "type": "string",
+          "default": "93 avis"
+        },
+        {
+          "name": "montrerControles",
+          "type": "boolean",
+          "default": true
         }
       ],
       "children": {
@@ -1552,15 +1734,26 @@
     {
       "id": "ds.hero-video",
       "name": "HeroVideo",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray HeroVideo. Extracted from the historical in-place component 2151:5552 on Accueil, reviewed and adopted — not authored. The root is fluid at a 1728 px canvas reference and keeps the historical 720 px height. Code supports a video URL and poster; Figma deliberately projects the poster as a static IMAGE placeholder because native VideoPaint cannot be reconstructed deterministically. The two governed scrims belong to HeroVideo itself. The single 44/48 title remains direct because no existing SectionHeader emphasis is pixel-equivalent.",
+      "description": "Piqueray HeroVideo, responsive. 2.0.0 (2026-09-02, Odoo hero pilot): re-extracted from the spec-031 set 2689:15832 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner. Everything the canvas draws is proposed by `npm run extract:figma` and adopted as-is: layout per mode (column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings / gap / height per mode as tokensByProp on the presentation axis, the title riding the responsive text style H1 (typography.h1.* — size and line-height vary by viewport mode through tokens/modes/viewport.*). Added by hand, each named: the host element (section — not drawn), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the dump does not carry layoutPositioning), and the CTA's right icon fixed to TRUE (the canvas shows it on Desktop/Wide only; the schema has no per-mode channel for a nested instance's prop — `propsByProp` was abandoned on 2026-08-20 — so the Odoo projection hides the glyph under the desktop breakpoint, an acknowledged deviation). The drawn widths 390/668/1200/1728 are witnesses, not tokens: the root fills its parent. Code supports a video URL and poster; Figma projects the poster as a static IMAGE placeholder. The two governed scrims belong to HeroVideo itself. Breakpoints are not in this contract: they are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490"
+        "componentSetKey": "366023701e65d2e3091332db4de0dfe4de0d33d4"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Viewport presentation, mirroring the canvas axis Presentation. Default = mobile, the first variant of the 031 set (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer."
+        },
         {
           "name": "backgroundUrl",
           "type": "string",
@@ -1582,8 +1775,12 @@
         {
           "name": "accroche",
           "type": "string",
-          "default": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
-          "description": "Historical HeroVideo title, including the non-breaking spaces around HÖRMANN. Bound as one native Figma TEXT property so future instance copy remains governed."
+          "default": [
+            {
+              "text": "Le numéro 1 des portes HÖRMANN\nen Province de Liège !"
+            }
+          ],
+          "description": "HeroVideo title. RICH text (owner rule 2026-09-02: a text drawn with a line break is rich, whether or not the set exposes a TEXT property — the 031 set draws its title on the node, no property; binding NONE). The 031 set breaks after « HÖRMANN »: explicitly on Desktop/Wide (U+2028), naturally on Mobile/Tablette. The break is a governed segment fact; WHERE the editor breaks stays content. No bold. Includes the non-breaking spaces around HÖRMANN."
         }
       ],
       "children": {
@@ -1668,15 +1865,26 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "3.0.0",
+      "version": "4.0.1",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
+      "description": "Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8"
+        "componentSetKey": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Viewport presentation mirrored from the 031 Figma axis. Mobile is the first set variant and the mobile-first CSS base; consumers do not select it at runtime."
+        },
         {
           "name": "texte",
           "type": "string",
@@ -1686,49 +1894,51 @@
               "strong": true
             },
             {
-              "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
-            },
-            {
-              "text": "proximité et d'excellence technique",
-              "strong": true
-            },
-            {
-              "text": ". Dépositaire officiel "
+              "text": " PIQUERAY est dépositaire officiel de la marque "
             },
             {
               "text": "Hörmann",
               "strong": true
             },
             {
-              "text": ", nous allions la force d'un leader mondial à "
+              "text": ", fabricant connu pour ses produits de qualité et ses innovations.\n\nComposée d’une équipe d’une vingtaine de personnes de la "
             },
             {
-              "text": "la souplesse d'une PME locale",
+              "text": "région verviétoise",
               "strong": true
             },
             {
-              "text": "."
+              "text": " et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.\n\nQue vous soyez particulier ou une entreprise, "
+            },
+            {
+              "text": "Piqueray vous accompagne de A à Z",
+              "strong": true
+            },
+            {
+              "text": " dans votre projet."
             }
-          ]
+          ],
+          "description": "Rich body copy. The 031 source contains paragraph breaks, therefore this content accepts strong and line-break in Odoo. Figma exposes no component property for this drawn text."
         },
         {
           "name": "bouton",
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "CTA presence retained for code consumers. The 031 canvas does not expose it as a component property, so its Figma binding is NONE and Odoo fixes it by composition."
         },
         {
           "name": "titre",
           "type": "string",
           "default": [
             {
-              "text": "Piqueray, ",
-              "strong": true
+              "text": "Piqueray, votre distributeur de portes Hörmann "
             },
             {
-              "text": "une histoire de famille "
+              "text": "en Province de Liège",
+              "strong": true
             }
           ],
-          "description": "Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy."
+          "description": "Presentation-owned rich title. Its responsive H2 typography carries 24/30, 24/30, 32/40 and 40/50 across the 031 variants; Figma exposes no component property for the drawn text."
         }
       ],
       "children": {
@@ -1855,15 +2065,26 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
+      "description": "Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.\n\nL'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.\n\nHistorique avant 2.0.0 :\nPiqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
       "figma": {
         "representation": "component",
-        "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8"
+        "componentSetKey": "279d958b1cc73da32d9ecf33b8dcfa6478716160"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur."
+        },
         {
           "name": "disposition",
           "type": [
@@ -1871,7 +2092,20 @@
             "quatrecartesdeuxcta",
             "5Cartes"
           ],
-          "default": "4Cartes"
+          "default": "5Cartes",
+          "description": " — 2026-09-02 : le set 031 ne dessine QUE la forme à cinq cartes avec un seul bouton ; le défaut passe donc de « 4Cartes » à « 5Cartes ». Les deux autres formes sont conservées en archive (décision owner, comme Empile de ds.carte-categorie), sans axe correspondant sur le canvas : écart de parité acquitté."
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Plus de 50 ans d’expérience",
+          "description": "Sur-titre de la section. Le set 031 le dessine sur le nœud, sans propriété TEXT : liaison NONE, écart nommé."
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Pourquoi choisir nos portes de garage industrielles ?",
+          "description": "Titre de la section. Même remarque : dessiné sur le nœud, liaison NONE."
         },
         {
           "name": "items",
@@ -1893,20 +2127,31 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.4.1",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+      "description": "Piqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"
+        "componentSetKey": "55d2731a22907512ac83a63499f969e0bd2bab36"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Viewport presentation, mirroring the canvas axis Presentation of the 031 set. Default = mobile, the first variant (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer."
+        },
         {
           "name": "titre",
           "type": "string",
           "default": "Dépannage / SAV",
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: \"{titre}\"`) so the parent property reaches the rendered surface instead of the child's literal."
+          "description": "Section title « Dépannage / SAV ». Drawn on the node in every 031 variant — the set exposes NO text property (1.4.1 bound the master's TEXT « Titre »): binding NONE, named source gap (journal: à corriger à la source). No line break, no bold: plain text."
         },
         {
           "name": "texte",
@@ -1937,7 +2182,7 @@
               "text": " est là pour vous aider !"
             }
           ],
-          "description": "Le paragraphe long de la colonne (TEXT Figma 2108:3103) en prop rich-text gouvernée — 016/T042, lot B013-4 : c'était le SEUL texte non lié du master (diagnostic vif 2026-08-05), et le lot L-B013-4 (T041) expose la propriété TEXT native « Texte » qu'elle lie. Les trois plages 700 observées voyagent en segments ; la projection Figma aplatit vers la valeur native de la propriété (concaténation, saut de ligne dur compris)."
+          "description": "The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap."
         },
         {
           "name": "backgroundUrl",

@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carte-categorie",
   "name": "CarteCategorie",
-  "version": "1.1.0",
-  "description": "Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
+  "version": "2.0.0",
+  "description": "Piqueray CarteCategorie, responsive. 2.0.0 (2026-09-02, vague 031) : le style superposé est ré-extrait du set 2692:19667 (page « 031 · Planches de validation »), qui remplace le master 2495:6770. Ce qui change : le voile occupe toute la carte au lieu du seul bas, son padding horizontal suit le token responsive spacing.card-categorie.pad-h (24 / 32), le titre monte le style responsive « Titre carte » (typography.h3.*, 20/25 SemiBold → 32/40 Medium) et la description « Description carte » (typography.card-desc.*, 16/24 → 18/27), le plan photo passe en absolu parce que la hauteur de la carte appartient à la section (quatre hauteurs par mode), et la largeur minimale dessinée 320 est mintée. Deux propriétés TEXT (Titre, Texte) ont été posées sur le set le 2026-09-02 : titre et texte sont de nouveau liés. Le style empilé est conservé tel quel (décision owner) bien que le set 031 ne le dessine plus.\n\nHistorique avant 2.0.0 :\nPiqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -30,6 +30,21 @@
         "code": {
           "prop": "style"
         }
+      },
+      "description": " — 2026-09-02 : le set 031 (2692:19667) ne dessine QUE `superpose` ; `empile` est conservé au contrat sur décision owner (d'autres pages l'utiliseront), sans correction de la source. L'axe VARIANT du set ne déclare donc qu'une valeur : écart de parité acquitté, pas une dérive."
+    },
+    {
+      "name": "afficherDecor",
+      "description": "Affiche le filet décoratif du coin haut-droit. Le set 031 le DESSINE sur la carte mais les deux instances de la section le masquent (visible=false, surcharge d’instance brute, 2026-09-02) : la visibilité devient une option gouvernée que le parent passe, plutôt qu’un calque caché — §VIII. Le set n’expose aucune propriété BOOLEAN : liaison NONE, écart nommé, à corriger à la source.",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "afficherDecor"
+        }
       }
     },
     {
@@ -54,7 +69,7 @@
     {
       "name": "titre",
       "type": "text",
-      "default": "Pour portes de garage",
+      "default": "Portes de garage",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -63,13 +78,14 @@
         "code": {
           "prop": "titre"
         }
-      }
+      },
+      "description": " Défaut relevé sur le set 031 le 2026-09-02."
     },
     {
       "name": "texte",
-      "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique).",
+      "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique). Défaut relevé sur le set 031 le 2026-09-02.",
       "type": "text",
-      "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "default": "Une porte de garage pour chaque goût et chaque style de maison.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -127,13 +143,17 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "column"
+        "direction": "column",
+        "width": "fill",
+        "aspectRatio": 1.777511961722488,
+        "referenceWidth": 743
       },
       "declared": {
         "position": "relative"
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "min-width": "{size.carte-categorie.min-w}"
       },
       "tokensByProp": {
         "prop": "style",
@@ -154,14 +174,19 @@
       },
       "parts": {
         "photoSuperpose": {
-          "description": "Plan photo du style superposé. Le master range ces pixels dans le paint IMAGE du root ; le contrat les porte comme part `img` à route code-only (A5). EN FLUX (et non plus en absolu) : c'est lui qui donne sa hauteur à la carte, proportionnellement à sa largeur — master 744×418, variantes de section 832×468 et 533×300, trois rapports concordants (1.780/1.778/1.777). Le voile `contenuSuperpose` passe en absolu par-dessus, ce qui rend l'ordre z inchangé.",
+          "description": "Plan photo du style superposé. Le set 031 range ces pixels dans le paint IMAGE de la RACINE (scaleMode FILL) ; le contrat les porte comme part `img` à route code-only (route A5, aucun canal background-image pour une photo). EN ABSOLU couvrant la carte depuis le 2026-09-02 : la hauteur de la carte appartient désormais à la section (quatre hauteurs par mode), plus au plan photo — un plan en flux imposerait le rapport 16/9 aux quatre modes.",
           "element": "img",
           "attrs": {
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
           "declared": {
+            "position": "absolute",
             "object-fit": "cover",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
             "z-index": "0"
           },
           "visibleWhen": {
@@ -169,54 +194,53 @@
             "equals": "superpose"
           },
           "layout": {
-            "width": "fill",
-            "aspectRatio": 1.7799043062200957
-          }
-        },
-        "decor": {
-          "description": "Filet décoratif du coin haut-droit (vecteur monochrome extrait de la source, stroke currentColor). Décision owner 2026-08-20 : porté au contrat (fidèle à la source nettoyée).",
-          "vectorAsset": {
-            "asset": "carte-categorie-decor",
-            "width": 100,
-            "height": 131
-          },
-          "tokens": {
-            "color": "{color.blanc}",
-            "top": "{space.32}",
-            "right": "{space.32}"
-          },
-          "declared": {
-            "position": "absolute",
-            "z-index": "1"
-          },
-          "visibleWhen": {
-            "prop": "style",
-            "equals": "superpose"
+            "width": "fill"
           }
         },
         "contenuSuperpose": {
-          "description": "Voile dégradé + contenu du style superposé, par-dessus la photo (z-index 2). EN ABSOLU calé sur les trois bords bas depuis 2026-08-22 : la hauteur de la carte appartient au plan photo, pas au texte — sans quoi la carte s'écrasait à la hauteur de son contenu (mesuré 743×149 au lieu de 744×418).",
+          "description": "Voile dégradé + contenu du style superposé, par-dessus la photo (z-index 2). Sur le set 031 le voile est le cadre `wrapper` : il occupe TOUTE la carte (et non plus seulement le bas), colonne alignée en bas, padding horizontal spacing.card-categorie.pad-h (24 en mobile, 32 au-dessus) et vertical space.32. Ses seize arrêts sont relevés verbatim sur 2692:19667 : transparent jusqu'à 36 %, puis montée jusqu'à 0,82 en bas.",
           "layout": {
-            "direction": "column"
+            "direction": "column",
+            "justify": "end",
+            "align": "stretch"
           },
           "literals": {
-            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%)"
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 36%, rgba(0,0,0,0.016) 38.3%, rgba(0,0,0,0.059) 40.7%, rgba(0,0,0,0.125) 43%, rgba(0,0,0,0.207) 45.3%, rgba(0,0,0,0.301) 47.7%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.499) 52.3%, rgba(0,0,0,0.593) 54.7%, rgba(0,0,0,0.675) 57%, rgba(0,0,0,0.741) 59.3%, rgba(0,0,0,0.784) 61.7%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.81) 85%, rgba(0,0,0,0.82) 100%)"
           },
           "tokens": {
             "gap": "{space.8}",
-            "padding-top": "{space.32}",
-            "padding-right": "{space.32}",
-            "padding-bottom": "{space.32}",
-            "padding-left": "{space.32}"
+            "padding-inline": "{spacing.card-categorie.pad-h}",
+            "padding-block": "{space.32}"
           },
           "declared": {
             "position": "absolute",
+            "top": "0",
             "left": "0",
             "right": "0",
             "bottom": "0",
             "z-index": "2"
           },
           "parts": {
+            "decor": {
+              "description": "Filet décoratif du coin haut-droit (vecteur monochrome extrait de la source, stroke currentColor). Décision owner 2026-08-20 : porté au contrat (fidèle à la source nettoyée). Porté SOUS le voile (part `contenuSuperpose`) depuis le 2026-09-02 : le schéma refuse deux conditions de présence sur une même part, et le voile porte déjà celle du style. Le voile couvre toute la carte, donc la boîte du filet est inchangée (haut 32, droite 32).",
+              "vectorAsset": {
+                "asset": "carte-categorie-decor",
+                "width": 100,
+                "height": 131
+              },
+              "tokens": {
+                "color": "{color.blanc}",
+                "top": "{space.32}",
+                "right": "{space.32}"
+              },
+              "declared": {
+                "position": "absolute",
+                "z-index": "1"
+              },
+              "visibleWhen": {
+                "prop": "afficherDecor"
+              }
+            },
             "inner": {
               "layout": {
                 "direction": "row",
@@ -241,15 +265,15 @@
                       },
                       "tokens": {
                         "color": "{color.blanc}",
-                        "font-size": "{font.size.40}",
-                        "font-weight": "{font.weight.regular}"
-                      },
-                      "literals": {
-                        "line-height": "50px"
+                        "font-family": "{typography.h3.family}",
+                        "font-size": "{typography.h3.size}",
+                        "font-weight": "{typography.h3.weight}",
+                        "line-height": "{typography.h3.line-height}"
                       },
                       "declared": {
                         "text-transform": "uppercase"
-                      }
+                      },
+                      "description": "Titre de la carte. Monte le style de texte responsive « Titre carte » : 20/25 SemiBold en mobile, 24/30 Medium en tablette et desktop, 32/40 Medium en wide — typography.h3.* (tokens/modes/viewport.*). Capitales."
                     },
                     "TexteSuperpose": {
                       "content": {
@@ -257,12 +281,12 @@
                       },
                       "tokens": {
                         "color": "{color.blanc}",
-                        "font-size": "{font.size.18}",
-                        "font-weight": "{font.weight.regular}"
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{typography.card-desc.size}",
+                        "font-weight": "{font.weight.regular}",
+                        "line-height": "{typography.card-desc.line-height}"
                       },
-                      "literals": {
-                        "line-height": "27px"
-                      }
+                      "description": "Description de la carte. Monte le style « Description carte » : 16/24 en mobile, 18/27 au-dessus — typography.card-desc.* (tokens/modes/viewport.*), graisse Regular fixe. Le style Figma porte déjà ces variables mais PAS son marqueur de token : l'extraction ne peut pas le proposer, la liaison est faite ici à la main vers le token existant (à corriger à la source)."
                     }
                   }
                 },
@@ -398,15 +422,16 @@
             "equals": "empile"
           }
         }
-      }
+      },
+      "description": "Racine de la carte. Le set 031 la dessine 743×418 avec la PHOTO en paint IMAGE sur la racine elle-même (portée ici par la part `photoSuperpose`, route code-only A5) et une largeur minimale de 320. Sa HAUTEUR n'est pas portée : les instances de la section 031 la fixent par mode (418 Mobile, 288 Tablette, 288 Desktop, 418 Wide) — le rapport 16/9 dessiné sur le master est gardé comme rapport par défaut, que la section écrase. La minHeight 180,0269 du canvas est le partenaire calculé 16/9 de la largeur minimale : artefact, non porté."
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
-      "nodeId": "2495:6770",
-      "dumpedAt": "2026-08-20"
+      "componentSetKey": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c",
+      "nodeId": "2692:19667",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/CarteCategorie",

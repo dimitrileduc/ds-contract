@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.4.1)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,21 +14,27 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+          "Piqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
       },
     },
   },
   render: (args) => <SAV key={JSON.stringify(args)} {...args} />,
   argTypes: {
+    presentation: {
+      control: 'select',
+      options: ['mobile', 'tablette', 'desktop', 'wide'],
+      description:
+        "Viewport presentation, mirroring the canvas axis Presentation of the 031 set. Default = mobile, the first variant (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer.",
+    },
     titre: {
       control: 'text',
       description:
-        'Extracted from Figma "Titre" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: "{titre}"`) so the parent property reaches the rendered surface instead of the child\'s literal.',
+        "Section title « Dépannage / SAV ». Drawn on the node in every 031 variant — the set exposes NO text property (1.4.1 bound the master's TEXT « Titre »): binding NONE, named source gap (journal: à corriger à la source). No line break, no bold: plain text.",
     },
     texte: {
       control: false,
       description:
-        "Le paragraphe long de la colonne (TEXT Figma 2108:3103) en prop rich-text gouvernée — 016/T042, lot B013-4 : c'était le SEUL texte non lié du master (diagnostic vif 2026-08-05), et le lot L-B013-4 (T041) expose la propriété TEXT native « Texte » qu'elle lie. Les trois plages 700 observées voyagent en segments ; la projection Figma aplatit vers la valeur native de la propriété (concaténation, saut de ligne dur compris).",
+        "The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap.",
     },
     backgroundUrl: {
       control: 'text',
@@ -52,6 +58,7 @@ const meta = {
     },
   },
   args: {
+    presentation: 'mobile',
     titre: 'Dépannage / SAV',
     texte: [
       { text: 'Vous rencontrez un problème avec ' },
@@ -75,3 +82,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
+
+export const Mobile: Story = {
+  args: { presentation: 'mobile' },
+};
+
+export const Tablette: Story = {
+  args: { presentation: 'tablette' },
+};
+
+export const Desktop: Story = {
+  args: { presentation: 'desktop' },
+};
+
+export const Wide: Story = {
+  args: { presentation: 'wide' },
+};
+/** Every legal combination the contract defines. */
+export const Matrix: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'grid',
+        gap: 16,
+        gridTemplateColumns: 'repeat(1, max-content)',
+        alignItems: 'center',
+        justifyItems: 'start',
+      }}
+    >
+      <SAV presentation="mobile" />
+      <SAV presentation="tablette" />
+      <SAV presentation="desktop" />
+      <SAV presentation="wide" />
+    </div>
+  ),
+};

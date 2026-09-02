@@ -1,0 +1,21 @@
+{
+  "url": "/devis-test",
+  "name": "Devis test",
+  "key": "devis_test",
+  "header_overlay": false,
+  "_note": "Page de MESURE de la vague 031 (2026-09-02) : le bloc Devis SEUL, même contenu que la home, pleine largeur (s_pqr_bleed — le bandeau est full-bleed sur la home). Sert à comparer le bloc Odoo aux 4 planches 031 du set 2694:21604.",
+  "sections": [
+    {
+      "component": "s_pqr_devis",
+      "add_class": [
+        "s_pqr_bleed"
+      ],
+      "images": {
+        "devis-background": "devis"
+      },
+      "set_html": {
+        "devis-title": "Prenez rendez-vous pour un devis gratuit,<br/>nous nous déplaçons chez vous"
+      }
+    }
+  ]
+}

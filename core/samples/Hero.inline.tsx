@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.6.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -12,7 +12,6 @@
  */
 import { forwardRef } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
-import { SectionHeader } from './SectionHeader';
 import { Button } from './Button';
 
 const S: Record<string, CSSProperties> = {
@@ -83,6 +82,14 @@ const S: Record<string, CSSProperties> = {
     "width": "100%",
     "gap": "16px"
   },
+  "Titre": {
+    "width": "100%",
+    "minWidth": 0,
+    "color": "#FFFFFF",
+    "fontSize": "54px",
+    "fontWeight": "300",
+    "lineHeight": "68px"
+  },
   "sousTitre": {
     "width": "100%",
     "minWidth": 0,
@@ -101,6 +108,8 @@ export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
   backgroundUrl?: string;
   /** Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state. */
   backgroundAlt?: string;
+  /** Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero. */
+  titre?: Array<{ text: string; strong?: boolean }>;
   /** The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
   sousTitre?: Array<{ text: string; strong?: boolean }>;
   /** Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
@@ -109,7 +118,7 @@ export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
 
 /** Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug. */
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
-  { sousTitre2 = true, backgroundUrl = '', backgroundAlt = '', sousTitre = [{"text":"La "},{"text":"performance","strong":true},{"text":" sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "},{"text":"la solution idéale","strong":true},{"text":"."}], style, children, ...rest },
+  { sousTitre2 = true, backgroundUrl = '', backgroundAlt = '', titre = [{"text":"Portes de garage","strong":true},{"text":" industrielles"}], sousTitre = [{"text":"La "},{"text":"performance","strong":true},{"text":" sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "},{"text":"la solution idéale","strong":true},{"text":"."}], style, children, ...rest },
   ref,
 ) {
   return (
@@ -123,7 +132,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
 <div style={{ ...S.blocTexte }}>
 <div style={{ ...S.Titres }}>
 <div style={{ ...S.colGauche }}>
-<SectionHeader titre={[{"text":"Portes de garage","strong":true},{"text":" industrielles"}]} accroche="Plus de 50 ans d’expérience" accroche2={false} disposition="standard" emphase="hero" alignement="gauche" />
+<span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
 {sousTitre2 ? (<span style={{ ...S.sousTitre }}>{sousTitre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
 </div>
 <Button variant="outlineBlanc" iconRight>Demander un devis gratuit</Button>

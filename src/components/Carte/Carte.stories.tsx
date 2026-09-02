@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.1.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,14 +14,25 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
+          "Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.\n\nHistorique avant 3.0.0 :\nPiqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
       },
     },
   },
   render: (args) => <Carte key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    disposition: { control: 'select', options: ['reassurance', 'categorie'] },
-    titre: { control: 'text' },
+    disposition: {
+      control: 'select',
+      options: ['reassurance', 'categorie'],
+      description:
+        " — 2026-09-02 : le set 031 ne dessine QUE la réassurance ; la disposition « categorie » est une forme d'archive conservée (décision owner, cf. Empile de ds.carte-categorie), plus utilisée par aucune page. Écart de parité acquitté.",
+    },
+    alignement: {
+      control: 'select',
+      options: ['centre', 'gauche'],
+      description:
+        "Alignement du texte de la carte, miroir de l'axe Alignement du set 031 (2700:25961). Centré est la première variante du set, donc le défaut. La section Réassurances aligne à gauche sous le seuil bureau et centre au-dessus : une part instance n'a pas de canal par mode, cette bascule est un fait code-only de la projection Odoo, nommé dans le CSS de la section.",
+    },
+    titre: { control: 'text', description: ' Défaut relevé sur le set 031 le 2026-09-02.' },
     imageUrl: {
       control: 'text',
       description:
@@ -31,7 +42,7 @@ const meta = {
     texte: {
       control: false,
       description:
-        'The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token.',
+        'The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. Défaut relevé sur le set 031 le 2026-09-02.',
     },
     ctaLabel: {
       control: 'text',
@@ -53,12 +64,12 @@ const meta = {
   },
   args: {
     disposition: 'reassurance',
-    titre: 'Pour portes de garage',
+    alignement: 'centre',
+    titre: 'Sécurité et conformité',
     imageUrl: '',
     imageAlt: '',
     texte: [
-      { text: 'SupraMatic & ProMatic.', strong: true },
-      { text: ' Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.' },
+      { text: 'Respectent les normes des bâtiments publics et les réglementations pompiers.' },
     ],
     ctaLabel: 'Contactez-nous',
     ctaIconLeftGlyph: 'pdf',
@@ -78,7 +89,7 @@ export const Reassurance: Story = {
 export const Categorie: Story = {
   args: { disposition: 'categorie' },
 };
-/** Every legal combination the contract defines (disposition × ctaIconLeftGlyph × ctaIconRightGlyph). */
+/** Every legal combination the contract defines (disposition × alignement × ctaIconLeftGlyph × ctaIconRightGlyph). */
 export const Matrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
@@ -86,15 +97,59 @@ export const Matrix: Story = {
       style={{
         display: 'grid',
         gap: 16,
-        gridTemplateColumns: 'repeat(2, max-content)',
+        gridTemplateColumns: 'repeat(4, max-content)',
         alignItems: 'center',
         justifyItems: 'start',
       }}
     >
-      <Carte disposition="reassurance" ctaIconLeftGlyph="pdf" ctaIconRightGlyph="arrow-right" />
-      <Carte disposition="reassurance" ctaIconLeftGlyph="pdf" ctaIconRightGlyph="download" />
-      <Carte disposition="categorie" ctaIconLeftGlyph="pdf" ctaIconRightGlyph="arrow-right" />
-      <Carte disposition="categorie" ctaIconLeftGlyph="pdf" ctaIconRightGlyph="download" />
+      <Carte
+        disposition="reassurance"
+        alignement="centre"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="arrow-right"
+      />
+      <Carte
+        disposition="reassurance"
+        alignement="centre"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="download"
+      />
+      <Carte
+        disposition="reassurance"
+        alignement="gauche"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="arrow-right"
+      />
+      <Carte
+        disposition="reassurance"
+        alignement="gauche"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="download"
+      />
+      <Carte
+        disposition="categorie"
+        alignement="centre"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="arrow-right"
+      />
+      <Carte
+        disposition="categorie"
+        alignement="centre"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="download"
+      />
+      <Carte
+        disposition="categorie"
+        alignement="gauche"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="arrow-right"
+      />
+      <Carte
+        disposition="categorie"
+        alignement="gauche"
+        ctaIconLeftGlyph="pdf"
+        ctaIconRightGlyph="download"
+      />
     </div>
   ),
 };

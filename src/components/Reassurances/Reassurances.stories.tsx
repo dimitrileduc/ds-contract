@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.3.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,13 +14,33 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
+          "Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.\n\nL'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.\n\nHistorique avant 2.0.0 :\nPiqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
       },
     },
   },
   render: (args) => <Reassurances key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    disposition: { control: 'select', options: ['4Cartes', 'quatrecartesdeuxcta', '5Cartes'] },
+    presentation: {
+      control: 'select',
+      options: ['mobile', 'tablette', 'desktop', 'wide'],
+      description:
+        "Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur.",
+    },
+    disposition: {
+      control: 'select',
+      options: ['4Cartes', 'quatrecartesdeuxcta', '5Cartes'],
+      description:
+        ' — 2026-09-02 : le set 031 ne dessine QUE la forme à cinq cartes avec un seul bouton ; le défaut passe donc de « 4Cartes » à « 5Cartes ». Les deux autres formes sont conservées en archive (décision owner, comme Empile de ds.carte-categorie), sans axe correspondant sur le canvas : écart de parité acquitté.',
+    },
+    accroche: {
+      control: 'text',
+      description:
+        'Sur-titre de la section. Le set 031 le dessine sur le nœud, sans propriété TEXT : liaison NONE, écart nommé.',
+    },
+    titre: {
+      control: 'text',
+      description: 'Titre de la section. Même remarque : dessiné sur le nœud, liaison NONE.',
+    },
     items: {
       control: false,
       description:
@@ -28,7 +48,10 @@ const meta = {
     },
   },
   args: {
-    disposition: '4Cartes',
+    presentation: 'mobile',
+    disposition: '5Cartes',
+    accroche: 'Plus de 50 ans d’expérience',
+    titre: 'Pourquoi choisir nos portes de garage industrielles ?',
     items: [
       {
         texte: 'Respectent les normes des bâtiments publics et les réglementations pompiers.',
@@ -62,18 +85,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-export const Disposition4Cartes: Story = {
-  args: { disposition: '4Cartes' },
+export const Mobile: Story = {
+  args: { presentation: 'mobile' },
 };
 
-export const Quatrecartesdeuxcta: Story = {
-  args: { disposition: 'quatrecartesdeuxcta' },
+export const Tablette: Story = {
+  args: { presentation: 'tablette' },
 };
 
-export const Disposition5Cartes: Story = {
-  args: { disposition: '5Cartes' },
+export const Desktop: Story = {
+  args: { presentation: 'desktop' },
 };
-/** Every legal combination the contract defines. */
+
+export const Wide: Story = {
+  args: { presentation: 'wide' },
+};
+/** Every legal combination the contract defines (presentation × disposition). */
 export const Matrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
@@ -81,14 +108,23 @@ export const Matrix: Story = {
       style={{
         display: 'grid',
         gap: 16,
-        gridTemplateColumns: 'repeat(1, max-content)',
+        gridTemplateColumns: 'repeat(3, max-content)',
         alignItems: 'center',
         justifyItems: 'start',
       }}
     >
-      <Reassurances disposition="4Cartes" />
-      <Reassurances disposition="quatrecartesdeuxcta" />
-      <Reassurances disposition="5Cartes" />
+      <Reassurances presentation="mobile" disposition="4Cartes" />
+      <Reassurances presentation="mobile" disposition="quatrecartesdeuxcta" />
+      <Reassurances presentation="mobile" disposition="5Cartes" />
+      <Reassurances presentation="tablette" disposition="4Cartes" />
+      <Reassurances presentation="tablette" disposition="quatrecartesdeuxcta" />
+      <Reassurances presentation="tablette" disposition="5Cartes" />
+      <Reassurances presentation="desktop" disposition="4Cartes" />
+      <Reassurances presentation="desktop" disposition="quatrecartesdeuxcta" />
+      <Reassurances presentation="desktop" disposition="5Cartes" />
+      <Reassurances presentation="wide" disposition="4Cartes" />
+      <Reassurances presentation="wide" disposition="quatrecartesdeuxcta" />
+      <Reassurances presentation="wide" disposition="5Cartes" />
     </div>
   ),
 };

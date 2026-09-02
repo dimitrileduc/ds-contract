@@ -7,6 +7,9 @@
  * (--primary, --body-bg, --base-100…900, --header-font-size, …).
  * Carries the vocabulary IN FULL — not only what the three replicated
  * components consume — so a fourth component needs no pipeline change.
+ *
+ * Viewport dimension (spec 031): the @media blocks below carry the same
+ * responsive overrides as src/styles/tokens.css, prefixed the same way.
  */
 
 :root {
@@ -43,6 +46,7 @@
   --pqr-font-weight-semibold: 600;
   --pqr-font-weight-bold: 700;
   --pqr-font-line-height-16: 16px;
+  --pqr-font-line-height-18: 18px;
   --pqr-font-line-height-20: 20px;
   --pqr-font-line-height-22: 22px;
   --pqr-font-line-height-24: 24px;
@@ -71,11 +75,14 @@
   --pqr-space-32: 32px;
   --pqr-space-47: 47px;
   --pqr-space-48: 48px;
+  --pqr-space-56: 56px;
   --pqr-space-64: 64px;
   --pqr-space-89: 89px;
   --pqr-space-96: 96px;
   --pqr-space-128: 128px;
+  --pqr-space-288: 288px;
   --pqr-space-392: 392px;
+  --pqr-space-418: 418px;
   --pqr-space-597: 597px;
   --pqr-size-button-icon-only: 52px;
   --pqr-size-accordion-row-titre-ouvert: 32px;
@@ -103,6 +110,10 @@
   --pqr-size-coordonnees-wrapper: 576px;
   --pqr-size-devis-titre: 900px;
   --pqr-size-devis-root: 1728px;
+  --pqr-size-devis-root-h-mobile: 496px;
+  --pqr-size-devis-root-h-tablette: 466px;
+  --pqr-size-devis-root-h-desktop: 358px;
+  --pqr-size-devis-root-h-wide: 506px;
   --pqr-size-faq-root: 1728px;
   --pqr-size-footer-root: 1728px;
   --pqr-size-footer-background: 459px;
@@ -115,6 +126,7 @@
   --pqr-size-google-reviews-pastille-gauche: 30px;
   --pqr-size-google-reviews-pastille-droite: 30px;
   --pqr-size-hero-video-root: 720px;
+  --pqr-size-hero-video-root-compact: 746px;
   --pqr-size-hero-sous-titre: 1164px;
   --pqr-size-hero-root: 640px;
   --pqr-size-member-card-root: 364px;
@@ -158,6 +170,12 @@
   --pqr-size-sav-img-group-background-h: 561px;
   --pqr-size-sav-img-w: 563px;
   --pqr-size-sav-img-h: 504px;
+  --pqr-size-sav-row-h-desktop: 505px;
+  --pqr-size-sav-wrapper-h-desktop: 505px;
+  --pqr-size-sav-img-group-h-desktop: 505px;
+  --pqr-size-sav-img-group-h-compact: 320px;
+  --pqr-size-sav-img-h-compact: 320px;
+  --pqr-size-sav-cta-w-desktop: 279px;
   --pqr-size-textarea-root: 128px;
   --pqr-size-logo-width: 180px;
   --pqr-size-logo-height: 34px;
@@ -167,11 +185,20 @@
   --pqr-size-equipe-gap-colonnes: 32px;
   --pqr-size-equipe-gap-rangees: 32px;
   --pqr-size-section-header-root: 1550px;
+  --pqr-size-carte-reassurance-photo-h-192: 192px;
+  --pqr-size-carte-reassurance-photo-h-240: 240px;
+  --pqr-size-carte-reassurance-photo-h-364: 364px;
+  --pqr-size-carte-categorie-min-w: 320px;
+  --pqr-size-categories-principales-carte-h-mobile: 418px;
+  --pqr-size-categories-principales-carte-h-tablette: 288px;
   --pqr-radius-32: 32px;
   --pqr-radius-500: 500px;
   --pqr-border-width-0: 0px;
   --pqr-border-width-1: 1px;
   --pqr-border-width-2: 2px;
+  --pqr-breakpoint-tablette: 768px;
+  --pqr-breakpoint-desktop: 992px;
+  --pqr-breakpoint-wide: 1400px;
   --pqr-typography-titre-1-family: var(--pqr-font-family-montserrat);
   --pqr-typography-titre-1-size: var(--pqr-font-size-48);
   --pqr-typography-titre-1-weight: var(--pqr-font-weight-medium);
@@ -244,4 +271,168 @@
   --pqr-typography-paragraphe-gras-size: var(--pqr-font-size-14);
   --pqr-typography-paragraphe-gras-weight: var(--pqr-font-weight-bold);
   --pqr-typography-paragraphe-gras-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-h1-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-h1-size: var(--pqr-font-size-32);
+  --pqr-typography-h1-weight: var(--pqr-font-weight-semibold);
+  --pqr-typography-h1-line-height: var(--pqr-font-line-height-40);
+  --pqr-typography-h2-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-h2-size: var(--pqr-font-size-24);
+  --pqr-typography-h2-weight: var(--pqr-font-weight-semibold);
+  --pqr-typography-h2-line-height: var(--pqr-font-line-height-30);
+  --pqr-typography-h3-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-h3-size: var(--pqr-font-size-20);
+  --pqr-typography-h3-weight: var(--pqr-font-weight-semibold);
+  --pqr-typography-h3-line-height: var(--pqr-font-line-height-25);
+  --pqr-typography-h4-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-h4-size: var(--pqr-font-size-20);
+  --pqr-typography-h4-weight: var(--pqr-font-weight-medium);
+  --pqr-typography-h4-line-height: var(--pqr-font-line-height-25);
+  --pqr-typography-body-size: var(--pqr-font-size-16);
+  --pqr-typography-body-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-body-weight: var(--pqr-font-weight-regular);
+  --pqr-typography-card-desc-size: var(--pqr-font-size-16);
+  --pqr-typography-card-desc-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-overline-size: var(--pqr-font-size-14);
+  --pqr-typography-overline-weight: var(--pqr-font-weight-regular);
+  --pqr-typography-overline-line-height: var(--pqr-font-line-height-20);
+  --pqr-typography-button-size: var(--pqr-font-size-16);
+  --pqr-typography-review-auteur-size: var(--pqr-font-size-16);
+  --pqr-typography-review-auteur-line-height: var(--pqr-font-line-height-20);
+  --pqr-typography-review-date-size: var(--pqr-font-size-14);
+  --pqr-typography-review-date-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-review-date-weight: var(--pqr-font-weight-regular);
+  --pqr-typography-review-temoignage-size: var(--pqr-font-size-16);
+  --pqr-typography-review-temoignage-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-review-lien-size: var(--pqr-font-size-14);
+  --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-review-initiale-size: var(--pqr-font-size-14);
+  --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-24);
+  --pqr-spacing-card-categorie-pad-h: var(--pqr-space-24);
+  --pqr-spacing-carte-reassurance-gap: var(--pqr-space-16);
+  --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-16);
+  --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-192);
+  --pqr-spacing-review-gap: var(--pqr-space-16);
+}
+
+/* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
+@media (min-width: 768px) {
+  :root {
+    --pqr-typography-h1-size: var(--pqr-font-size-32);
+    --pqr-typography-h1-line-height: var(--pqr-font-line-height-40);
+    --pqr-typography-h2-size: var(--pqr-font-size-24);
+    --pqr-typography-h2-line-height: var(--pqr-font-line-height-30);
+    --pqr-typography-h3-size: var(--pqr-font-size-24);
+    --pqr-typography-h3-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-h3-line-height: var(--pqr-font-line-height-30);
+    --pqr-typography-h4-size: var(--pqr-font-size-20);
+    --pqr-typography-h4-line-height: var(--pqr-font-line-height-25);
+    --pqr-typography-body-size: var(--pqr-font-size-16);
+    --pqr-typography-body-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-body-weight: var(--pqr-font-weight-regular);
+    --pqr-typography-card-desc-size: var(--pqr-font-size-18);
+    --pqr-typography-card-desc-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-overline-size: var(--pqr-font-size-14);
+    --pqr-typography-overline-weight: var(--pqr-font-weight-regular);
+    --pqr-typography-overline-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-button-size: var(--pqr-font-size-16);
+    --pqr-typography-review-auteur-size: var(--pqr-font-size-16);
+    --pqr-typography-review-auteur-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-review-date-size: var(--pqr-font-size-14);
+    --pqr-typography-review-date-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-date-weight: var(--pqr-font-weight-regular);
+    --pqr-typography-review-temoignage-size: var(--pqr-font-size-16);
+    --pqr-typography-review-temoignage-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-lien-size: var(--pqr-font-size-14);
+    --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-initiale-size: var(--pqr-font-size-14);
+    --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
+    --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
+    --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-240);
+    --pqr-spacing-review-gap: var(--pqr-space-16);
+  }
+}
+
+/* viewport mode "desktop" — from {breakpoint.desktop} = 992px */
+@media (min-width: 992px) {
+  :root {
+    --pqr-typography-h1-size: var(--pqr-font-size-40);
+    --pqr-typography-h1-line-height: var(--pqr-font-line-height-50);
+    --pqr-typography-h2-size: var(--pqr-font-size-32);
+    --pqr-typography-h2-line-height: var(--pqr-font-line-height-40);
+    --pqr-typography-h3-size: var(--pqr-font-size-24);
+    --pqr-typography-h3-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-h3-line-height: var(--pqr-font-line-height-30);
+    --pqr-typography-h4-size: var(--pqr-font-size-24);
+    --pqr-typography-h4-line-height: var(--pqr-font-line-height-30);
+    --pqr-typography-body-size: var(--pqr-font-size-18);
+    --pqr-typography-body-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-body-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-card-desc-size: var(--pqr-font-size-18);
+    --pqr-typography-card-desc-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-overline-size: var(--pqr-font-size-16);
+    --pqr-typography-overline-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-overline-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-button-size: var(--pqr-font-size-16);
+    --pqr-typography-review-auteur-size: var(--pqr-font-size-16);
+    --pqr-typography-review-auteur-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-review-date-size: var(--pqr-font-size-14);
+    --pqr-typography-review-date-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-date-weight: var(--pqr-font-weight-regular);
+    --pqr-typography-review-temoignage-size: var(--pqr-font-size-14);
+    --pqr-typography-review-temoignage-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-review-lien-size: var(--pqr-font-size-14);
+    --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-initiale-size: var(--pqr-font-size-18);
+    --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-18);
+    --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
+    --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
+    --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-364);
+    --pqr-spacing-review-gap: var(--pqr-space-14);
+  }
+}
+
+/* viewport mode "wide" — from {breakpoint.wide} = 1400px */
+@media (min-width: 1400px) {
+  :root {
+    --pqr-typography-h1-size: var(--pqr-font-size-54);
+    --pqr-typography-h1-line-height: var(--pqr-font-line-height-68);
+    --pqr-typography-h2-size: var(--pqr-font-size-40);
+    --pqr-typography-h2-line-height: var(--pqr-font-line-height-50);
+    --pqr-typography-h3-size: var(--pqr-font-size-32);
+    --pqr-typography-h3-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-h3-line-height: var(--pqr-font-line-height-40);
+    --pqr-typography-h4-size: var(--pqr-font-size-24);
+    --pqr-typography-h4-line-height: var(--pqr-font-line-height-30);
+    --pqr-typography-body-size: var(--pqr-font-size-18);
+    --pqr-typography-body-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-body-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-card-desc-size: var(--pqr-font-size-18);
+    --pqr-typography-card-desc-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-overline-size: var(--pqr-font-size-20);
+    --pqr-typography-overline-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-overline-line-height: var(--pqr-font-line-height-25);
+    --pqr-typography-button-size: var(--pqr-font-size-18);
+    --pqr-typography-review-auteur-size: var(--pqr-font-size-18);
+    --pqr-typography-review-auteur-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-review-date-size: var(--pqr-font-size-18);
+    --pqr-typography-review-date-line-height: var(--pqr-font-line-height-27);
+    --pqr-typography-review-date-weight: var(--pqr-font-weight-medium);
+    --pqr-typography-review-temoignage-size: var(--pqr-font-size-16);
+    --pqr-typography-review-temoignage-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-lien-size: var(--pqr-font-size-16);
+    --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-initiale-size: var(--pqr-font-size-18);
+    --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-18);
+    --pqr-typography-libelle-bouton-size: var(--pqr-font-size-18);
+    --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
+    --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
+    --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-364);
+    --pqr-spacing-review-gap: var(--pqr-space-14);
+  }
 }

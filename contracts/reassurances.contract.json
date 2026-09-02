@@ -2,13 +2,41 @@
   "$schema": "./contract.schema.json",
   "id": "ds.reassurances",
   "name": "Reassurances",
-  "version": "1.3.0",
-  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
+  "version": "2.0.0",
+  "description": "Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.\n\nL'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.\n\nHistorique avant 2.0.0 :\nPiqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "description": "Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
     {
       "name": "disposition",
       "type": {
@@ -18,7 +46,7 @@
           "5Cartes"
         ]
       },
-      "default": "4Cartes",
+      "default": "5Cartes",
       "bindings": {
         "figma": {
           "kind": "VARIANT",
@@ -31,6 +59,35 @@
         },
         "code": {
           "prop": "disposition"
+        }
+      },
+      "description": " — 2026-09-02 : le set 031 ne dessine QUE la forme à cinq cartes avec un seul bouton ; le défaut passe donc de « 4Cartes » à « 5Cartes ». Les deux autres formes sont conservées en archive (décision owner, comme Empile de ds.carte-categorie), sans axe correspondant sur le canvas : écart de parité acquitté."
+    },
+    {
+      "name": "accroche",
+      "description": "Sur-titre de la section. Le set 031 le dessine sur le nœud, sans propriété TEXT : liaison NONE, écart nommé.",
+      "type": "text",
+      "default": "Plus de 50 ans d’expérience",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "description": "Titre de la section. Même remarque : dessiné sur le nœud, liaison NONE.",
+      "type": "text",
+      "default": "Pourquoi choisir nos portes de garage industrielles ?",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "titre"
         }
       }
     },
@@ -57,40 +114,159 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « Disposition=4 cartes » 2114:3619, référence 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, aucun padding. Le Container de contexte possède la largeur ; le master remplit cette largeur disponible. Les 731px de hauteur de référence se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
+      "description": "Racine de la section. Le set 031 la dessine en colonne, marges latérales 24 / 48 / 56 / 89 par écran, et emboîte tout son contenu dans un cadre interne dont l'écart passe de 32 à 48 au-delà du seuil bureau. Les largeurs dessinées 390 / 834 / 1200 / 1728 sont des témoins : la section remplit son parent. Au-delà du seuil bureau le contenu est CENTRÉ : l’en-tête et la collection restent pleine largeur, le bouton se contente de son contenu (249 puis 268) au lieu de s’étirer.",
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center",
-        "width": "fill"
+        "justify": "start",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.0}",
+        "gap": "{space.32}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "gap": "{space.48}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "gap": "{space.48}"
+          }
+        }
       },
       "parts": {
         "SectionHeader": {
-          "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
-          "component": {
-            "id": "ds.section-header",
-            "props": {
-              "titre": [
+          "description": "En-tête de section. Le set 031 le dessine À PLAT (cadre local, plus une instance du set SectionHeader) : il est donc modélisé ici, comme sur SAV. Écart 8 sous le seuil bureau, 16 au-dessus ; aligné à gauche en Mobile et Tablette, centré en Desktop et Wide.",
+          "layout": {
+            "direction": "column",
+            "justify": "start",
+            "align": "start",
+            "width": "fill"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "align": "center"
+              },
+              "wide": {
+                "align": "center"
+              }
+            }
+          },
+          "tokens": {
+            "gap": "{space.8}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.16}"
+              },
+              "wide": {
+                "gap": "{space.16}"
+              }
+            }
+          },
+          "parts": {
+            "Accroche": {
+              "description": "Sur-titre. Monte la recette responsive du sur-titre : 14/20 Regular en Mobile et Tablette, 16/20 Medium en Desktop, 20/25 Medium en Wide — typography.overline.* (tokens/modes/viewport.*). Capitales (le canvas porte textCase UPPER sur le nœud).",
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "accroche"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.overline.size}",
+                "font-weight": "{typography.overline.weight}",
+                "line-height": "{typography.overline.line-height}"
+              },
+              "declared": {
+                "text-align": "left",
+                "text-transform": "uppercase"
+              },
+              "stylesWhen": [
                 {
-                  "text": "Pourquoi choisir nos portes de garage industrielles ?"
+                  "prop": "presentation",
+                  "equals": "desktop",
+                  "styles": {
+                    "text-align": "center"
+                  }
+                },
+                {
+                  "prop": "presentation",
+                  "equals": "wide",
+                  "styles": {
+                    "text-align": "center"
+                  }
                 }
-              ],
-              "accroche": "Plus de 50 ans d’expérience",
-              "afficherAccroche": true
+              ]
+            },
+            "Titre": {
+              "description": "Titre. Monte le style de texte responsive H2 : 24/30 en Mobile et Tablette, 32/40 en Desktop, 40/50 en Wide — typography.h2.* (tokens/modes/viewport.*).",
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{typography.h2.family}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{typography.h2.weight}",
+                "line-height": "{typography.h2.line-height}"
+              },
+              "declared": {
+                "text-align": "left"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "presentation",
+                  "equals": "desktop",
+                  "styles": {
+                    "text-align": "center"
+                  }
+                },
+                {
+                  "prop": "presentation",
+                  "equals": "wide",
+                  "styles": {
+                    "text-align": "center"
+                  }
+                }
+              ]
             }
           }
         },
         "items": {
-          "description": "FRAME « items », largeur FILL dans le root, gap 32. La disposition est une grille native : 4 pistes égales pour les deux variantes à quatre cartes et 5 pistes égales pour « 5 cartes ». Les instances ds.carte de disposition reassurance remplissent leur piste ; leur largeur visible est donc dérivée de la largeur disponible, jamais fixée à 364px ou 285px.",
+          "description": "Collection des cartes. Le canvas change de mécanique par écran : une carte par ligne en Mobile (rangée qui passe à la ligne, chaque carte ayant une largeur minimale de 280) et en Tablette (colonne), puis une grille de 3 colonnes en Desktop (341 par carte) et de 5 en Wide (284). Écart 32 partout : en Mobile le canvas met 16 en écart de COLONNE et 32 en écart de RANGÉE (rangée qui passe à la ligne) ; une seule carte par ligne, seul l’écart de rangée s’applique — le 16 est inopérant, non porté. La grille tombe juste : 341×3 + 32×2 = 1087 pour 1088 ; 284×5 + 32×4 = 1548 pour 1550.",
           "layout": {
             "display": "grid",
-            "columns": 4,
+            "columns": 1,
             "width": "fill"
           },
           "layoutByProp": {
-            "prop": "disposition",
+            "prop": "presentation",
             "map": {
-              "5Cartes": {
+              "desktop": {
+                "columns": 3
+              },
+              "wide": {
                 "columns": 5
               }
             }
@@ -103,11 +279,12 @@
           },
           "parts": {
             "Carte": {
-              "description": "Les instances de ds.carte portent disposition=reassurance. Leur root a une largeur FILL par cette disposition : la piste de la grille, non un parent CSS ni une largeur fixe, décide donc de la largeur effective dans les variantes à 4 et 5 cartes.",
+              "description": "Carte de réassurance répétée sur `items`. Chaque carte est une INSTANCE du set 031 CarteReassurance depuis le 2026-09-02 (elles étaient des cadres libres avant, sans lien au composant). Le canvas aligne leur texte À GAUCHE en Mobile et Tablette, au CENTRE en Desktop et Wide : une part instance n'a pas de canal par mode, cette bascule est un fait code-only de la projection Odoo, nommé dans son CSS par écran. La hauteur des cartes est égalisée par la grille en Desktop et Wide, également code-only.",
               "component": {
                 "id": "ds.carte",
                 "props": {
-                  "disposition": "reassurance"
+                  "disposition": "reassurance",
+                  "alignement": "centre"
                 }
               },
               "repeat": {
@@ -139,7 +316,7 @@
           }
         },
         "BoutonCinqCartes": {
-          "description": "INSTANCE 2114:3692 de ds.button dans la variante « 5 cartes », 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight).",
+          "description": "INSTANCE 2114:3692 de ds.button dans la variante « 5 cartes », 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight). 2026-09-02 : le set 031 le dessine PLEINE LARGEUR en Mobile et Tablette (342 / 738, marge intérieure 24) et AJUSTÉ AU CONTENU en Desktop et Wide (249 / 268, marge intérieure 32). Une part instance ne porte aucun canal par mode : les deux faits sont code-only, nommés dans le CSS par écran de la section.",
           "component": {
             "id": "ds.button",
             "text": "Contactez-nous",
@@ -220,18 +397,25 @@
           }
         }
       },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "gap": "{space.48}"
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "align": "center"
+          },
+          "wide": {
+            "align": "center"
+          }
+        }
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8",
-      "nodeId": "2114:3721",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
+      "nodeId": "2700:26297",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/Reassurances",

@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carte",
   "name": "Carte",
-  "version": "2.1.0",
-  "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
+  "version": "3.0.0",
+  "description": "Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.\n\nHistorique avant 3.0.0 :\nPiqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -30,12 +30,37 @@
         "code": {
           "prop": "disposition"
         }
+      },
+      "description": " — 2026-09-02 : le set 031 ne dessine QUE la réassurance ; la disposition « categorie » est une forme d'archive conservée (décision owner, cf. Empile de ds.carte-categorie), plus utilisée par aucune page. Écart de parité acquitté."
+    },
+    {
+      "name": "alignement",
+      "description": "Alignement du texte de la carte, miroir de l'axe Alignement du set 031 (2700:25961). Centré est la première variante du set, donc le défaut. La section Réassurances aligne à gauche sous le seuil bureau et centre au-dessus : une part instance n'a pas de canal par mode, cette bascule est un fait code-only de la projection Odoo, nommé dans le CSS de la section.",
+      "type": {
+        "enum": [
+          "centre",
+          "gauche"
+        ]
+      },
+      "default": "centre",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Alignement",
+          "values": {
+            "centre": "Centré",
+            "gauche": "Gauche"
+          }
+        },
+        "code": {
+          "prop": "alignement"
+        }
       }
     },
     {
       "name": "titre",
       "type": "text",
-      "default": "Pour portes de garage",
+      "default": "Sécurité et conformité",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -44,7 +69,8 @@
         "code": {
           "prop": "titre"
         }
-      }
+      },
+      "description": " Défaut relevé sur le set 031 le 2026-09-02."
     },
     {
       "name": "imageUrl",
@@ -75,15 +101,11 @@
     },
     {
       "name": "texte",
-      "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token.",
+      "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. Défaut relevé sur le set 031 le 2026-09-02.",
       "type": "rich-text",
       "default": [
         {
-          "text": "SupraMatic & ProMatic.",
-          "strong": true
-        },
-        {
-          "text": " Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+          "text": "Respectent les normes des bâtiments publics et les réglementations pompiers."
         }
       ],
       "bindings": {
@@ -154,7 +176,8 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "stretch"
+        "align": "stretch",
+        "width": "fill"
       },
       "geometryJustification": {
         "cause": "typographic-subpixel-rounding",
@@ -178,14 +201,14 @@
       },
       "parts": {
         "reassuranceImage": {
-          "description": "Source layer `img` in Reassurance: horizontal FILL with a fixed 364px height.",
+          "description": "Plan photo de la réassurance. Hauteur par écran depuis le set 031 : spacing.carte-reassurance.photo-h (192 en mobile, 240 en tablette, 364 au-delà), liée sur le maître.",
           "element": "img",
           "attrs": {
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
           "tokens": {
-            "height": "{size.carte.reassurance-image}"
+            "height": "{spacing.carte-reassurance.photo-h}"
           },
           "declared": {
             "object-fit": "cover",
@@ -230,11 +253,10 @@
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.24}",
-              "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "30px"
+                "font-family": "{typography.h4.family}",
+                "font-size": "{typography.h4.size}",
+                "font-weight": "{typography.h4.weight}",
+                "line-height": "{typography.h4.line-height}"
               },
               "declared": {
                 "text-align": "center"
@@ -242,7 +264,17 @@
               "visibleWhen": {
                 "prop": "disposition",
                 "equals": "reassurance"
-              }
+              },
+              "description": "Titre de la carte. Monte le style de texte responsive H4 du set 031 : 20/25 en mobile et tablette, 24/30 au-delà — typography.h4.* (tokens/modes/viewport.*).",
+              "stylesWhen": [
+                {
+                  "prop": "alignement",
+                  "equals": "gauche",
+                  "styles": {
+                    "text-align": "left"
+                  }
+                }
+              ]
             },
             "TitreCategorie": {
               "content": {
@@ -278,11 +310,10 @@
               },
               "tokens": {
                 "color": "{color.noir}",
-                "font-size": "{font.size.14}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "24px"
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.body.size}",
+                "font-weight": "{font.weight.regular}",
+                "line-height": "{typography.body.line-height}"
               },
               "declared": {
                 "text-align": "center"
@@ -290,7 +321,17 @@
               "visibleWhen": {
                 "prop": "disposition",
                 "equals": "reassurance"
-              }
+              },
+              "description": "Texte de la carte. Monte la recette responsive du corps : 16/24 en mobile et tablette, 18/27 au-delà — typography.body.* (tokens/modes/viewport.*), graisse Regular.",
+              "stylesWhen": [
+                {
+                  "prop": "alignement",
+                  "equals": "gauche",
+                  "styles": {
+                    "text-align": "left"
+                  }
+                }
+              ]
             },
             "TexteCategorie": {
               "content": {
@@ -370,9 +411,8 @@
       "tokens": {
         "background-color": "{color.blanc}",
         "font-family": "{font.family.montserrat}",
-        "width": "{size.carte.root}",
-        "gap": "{space.24}",
-        "padding-bottom": "{space.24}"
+        "gap": "{spacing.carte-reassurance.gap}",
+        "padding-bottom": "{spacing.carte-reassurance.pad-bas}"
       },
       "declared": {
         "box-shadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
@@ -405,15 +445,16 @@
             "width": "fill"
           }
         }
-      }
+      },
+      "description": "Carte. 2026-09-02 : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961). Écart et gap suivent désormais les jetons par écran (spacing.carte-reassurance.gap 16/24/24/24, pad-bas 16/24/24/24) ; la largeur dessinée 341,33 est un témoin, la carte remplit sa piste. Ombre portée inchangée."
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-      "nodeId": "2063:1622",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
+      "nodeId": "2700:25961",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/Carte",

@@ -218,8 +218,22 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // décline plus ses variantes Hero/Moyen/Compact ni le CTA. Ces comptes attestent
 // donc l'API v3 locale, sans prétendre que le master Figma a déjà reçu la
 // mutation soumise au GO owner.
-if (linked.length !== 54 || custom.length !== 16 || rich.length !== 11) {
-  fail(`global gate expected 54 linked / 16 historical custom / 11 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-09-02 (vague 031, six composants portés) : 54 -> 73 linked, 16 -> 42 custom,
+// 11 -> 10 rich. Trois mouvements, tous mesurés :
+//  · +19 liés — les titres des sets 031 montent des styles DÉCLARÉS (H1 du hero,
+//    H2 de SAV / Presentation / Reassurances, H4 des cartes de réassurance, Titre
+//    carte des cartes catégorie), un nœud par variante ;
+//  · +26 propres — les textes qui montent un groupe de jetons RESPONSIVE sans style
+//    Figma déclaré : typography.overline (sur-titre de Reassurances, 12 nœuds),
+//    typography.body (paragraphe de SAV, 4), typography.card-desc (description de
+//    carte catégorie), plus les titres et textes de Presentation (8). Ces groupes
+//    n'ont pas d'extension figmaTextStyle : la synchronisation pose leurs valeurs à
+//    plat au lieu de lier un style. État nommé, à trancher — déclarer ces trois
+//    groupes comme styles ferait retomber le compte ;
+//  · -1 riche — le titre de Reassurances redevient du texte simple : le set 031 ne
+//    dessine ni gras ni saut de ligne (règle owner du 2026-09-02).
+if (linked.length !== 73 || custom.length !== 42 || rich.length !== 10) {
+  fail(`global gate expected 73 linked / 42 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -228,9 +242,12 @@ const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => 
 }, {});
 // Ordre = ordre de rencontre des nœuds custom (readdir des contrats) : "carte-categorie"
 // trie AVANT "carte" ('-' 0x2D < '.' 0x2E), donc ds.carte-categorie précède ds.carte.
-const expectedCustomOwners = { 'ds.carte-categorie': 1, 'ds.carte': 1, 'ds.google-reviews': 5, 'ds.review-card': 9 };
+// 2026-09-02 (vague 031) : la liste suit les compteurs ci-dessus. Les nouveaux
+// venus montent tous un groupe de jetons RESPONSIVE sans style Figma déclaré
+// (overline, body, card-desc) — état nommé, pas une régression silencieuse.
+const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 5, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 9, 'ds.sav': 4 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 54 linked / 16 historical custom / 11 rich; second token apply preserves ids`);
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 73 linked / 42 historical custom / 10 rich; second token apply preserves ids`);

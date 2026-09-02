@@ -302,3 +302,12 @@ Ports : les récepteurs locaux doivent éviter 9223–9226, squattés par les se
   silencieuse jusqu'au rafraîchissement du cliché : rafraîchir le cliché **avant** chaque section.
 - Deux styles peuvent partager une recette (Titre carte mobile = Titre 5) : le token décide, pas la
   recette.
+
+## Suite de la vague, même journée (2026-09-02, soir)
+
+Le pilote a servi de patron à cinq composants de plus, chacun avec son journal dans `specs/tiny/vague-031/` :
+**SAV** 2.0.0, **CarteCategorie** 2.0.0 + **CategoriesPrincipales** 2.0.0, **ds.carte** 3.0.0 (réassurance) +
+**Reassurances** 2.0.0. Un second agent a porté **Presentation** 4.0.1 et **Devis** 2.0.0 en parallèle.
+
+Le mode d'emploi (`specs/tiny/mode-emploi-section-vers-odoo.md`) a reçu treize leçons nouvelles ce soir-là ;
+elles sont toutes datées et adossées à une mesure.

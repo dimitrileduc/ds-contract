@@ -148,7 +148,7 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
 
 </img>
 <div style={{ ...S.wrapper }}>
-<SectionHeader titre={titre} accroche={accroche} disposition="standard" alignement="gauche" />
+<SectionHeader titre={titre} accroche={accroche} alignement="gauche" />
 <div style={{ ...S.Adresse }}>
 <span style={{ ...S.AdresseEtiquette }}>Adresse</span>
 <span style={{ ...S.AdresseValeur }}>{"Rue Alfred Drèze 7,\n4860 Pepinster"}</span>

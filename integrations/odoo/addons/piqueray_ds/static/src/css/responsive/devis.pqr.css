@@ -1,0 +1,89 @@
+/*
+ * responsive/devis.pqr.css — ZONE MANUELLE (vague 031, section Devis, 2026-09-02).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.devis 2.0.0 (tokensByProp et
+ * literalsByProp sur l'axe `presentation`), réécrites en @media sur les breakpoints
+ * des tokens :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.devis`)
+ *   Tablette = @media (min-width: 768px)
+ *   Desktop  = @media (min-width: 992px)
+ *   Wide     = @media (min-width: 1400px)
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.devis--presentation-<mode>` — même source, même vocabulaire, rien d'autre.
+ * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
+ * (typography/h2 = 24 / 24 / 32 / 40, line-height 30 / 30 / 40 / 50).
+ *
+ * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
+ *
+ * Faits CODE-ONLY, nommés dans les descriptions des parts du contrat :
+ *   · le CTA est FILL en Mobile/Tablette et HUG en Desktop/Wide — une part instance
+ *     ne porte aucun canal par mode : étiré ici sous 992 ;
+ * Le saut de ligne du titre n'est PAS ici : règle owner du 2026-09-02, « un saut de
+ * ligne est du contenu, et un saut vaut pour tous les modes » — il vit dans le
+ * contenu des pages (<br/>), comme le hero. Sur le canvas il n'est explicite que sur
+ * la variante Desktop : écart de SOURCE, listé au journal, pas contourné en CSS.
+ * Contrainte Odoo : le cœur force `section { height: auto !important }` sous 768 px ;
+ * les quatre hauteurs fixes du contrat sont donc portées en min-height.
+ */
+
+/* ---- ds.devis 2.0.0 ------------------------------------------------------ */
+
+/* Base = Mobile. components.pqr.css porte déjà la colonne centrée, le fond, le
+ * voile, le gap 32, le padding-inline 24 et la borne 900. Ici : la hauteur 496
+ * passe de height à min-height (contrainte Odoo ci-dessus). */
+.s_pqr_devis.devis {
+  height: auto;
+  min-height: var(--pqr-size-devis-root-h-mobile);
+}
+
+/* Mobile + Tablette : le CTA remplit la colonne (canvas : Bouton FILL 342 / 738).
+ * Le cadre de la part est un enfant HUG de la colonne (align-items: center) : sans
+ * l'étirer, le width 100 % du bouton vaut 100 % de son contenu — mesuré 303 au lieu
+ * de 342/738 le 2026-09-02. Les deux sont donc étirés. */
+@media (max-width: 991.98px) {
+  .s_pqr_devis.devis .devis__Bouton {
+    width: 100%;
+  }
+  .s_pqr_devis.devis .devis__Bouton > .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Tablette ≥ 768 : hauteur 466, padding-inline 48. Le voile est celui de Mobile
+ * (les deux variantes portent des stops strictement identiques). */
+@media (min-width: 768px) {
+  .s_pqr_devis.devis {
+    min-height: var(--pqr-size-devis-root-h-tablette);
+  }
+  .s_pqr_devis.devis .devis__Container {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : hauteur 358, colonne sans padding (la borne 900 suffit),
+ * voile en plateau 0,55 sur 25 stops. */
+@media (min-width: 992px) {
+  .s_pqr_devis.devis {
+    min-height: var(--pqr-size-devis-root-h-desktop);
+  }
+  .s_pqr_devis.devis .devis__Container {
+    padding-inline: var(--pqr-space-0);
+  }
+  .s_pqr_devis.devis .devis__Voile {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.0743) 0%, rgba(0,0,0,0.0743) 4.1667%, rgba(0,0,0,0.0743) 8.3333%, rgba(0,0,0,0.0936) 12.5%, rgba(0,0,0,0.1405) 16.6667%, rgba(0,0,0,0.2066) 20.8333%, rgba(0,0,0,0.2832) 25%, rgba(0,0,0,0.3634) 29.1667%, rgba(0,0,0,0.4378) 33.3333%, rgba(0,0,0,0.4995) 37.5%, rgba(0,0,0,0.5389) 41.6667%, rgba(0,0,0,0.55) 45.8333%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 54.1667%, rgba(0,0,0,0.55) 58.3333%, rgba(0,0,0,0.55) 62.5%, rgba(0,0,0,0.55) 66.6667%, rgba(0,0,0,0.55) 70.8333%, rgba(0,0,0,0.5381) 75%, rgba(0,0,0,0.4898) 79.1667%, rgba(0,0,0,0.417) 83.3333%, rgba(0,0,0,0.3345) 87.5%, rgba(0,0,0,0.2579) 91.6667%, rgba(0,0,0,0.2007) 95.8333%, rgba(0,0,0,0.1784) 100%);
+  }
+  .s_pqr_devis.devis .devis__Bouton > .button {
+    width: auto;
+  }
+}
+
+/* Wide ≥ 1400 : hauteur 506, voile en plateau 0,55 sur 21 stops (plateau plus long). */
+@media (min-width: 1400px) {
+  .s_pqr_devis.devis {
+    min-height: var(--pqr-size-devis-root-h-wide);
+  }
+  .s_pqr_devis.devis .devis__Voile {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 6%, rgba(0,0,0,0.0865) 8%, rgba(0,0,0,0.1306) 10%, rgba(0,0,0,0.1944) 12%, rgba(0,0,0,0.2702) 14%, rgba(0,0,0,0.3498) 16%, rgba(0,0,0,0.4256) 18%, rgba(0,0,0,0.4894) 20%, rgba(0,0,0,0.5335) 22%, rgba(0,0,0,0.55) 24%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.55) 76%, rgba(0,0,0,0.5341) 79%, rgba(0,0,0,0.4922) 82%, rgba(0,0,0,0.4329) 85%, rgba(0,0,0,0.365) 88%, rgba(0,0,0,0.2971) 91%, rgba(0,0,0,0.2378) 94%, rgba(0,0,0,0.1959) 97%, rgba(0,0,0,0.18) 100%);
+  }
+}

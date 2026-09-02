@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.3.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -13,24 +13,118 @@
 .root {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
+  gap: var(--space-32);
+}
+
+.presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop {
+  padding-inline: var(--space-56);
   gap: var(--space-48);
+}
+
+.presentation-wide {
+  padding-inline: var(--space-89);
+  gap: var(--space-48);
+}
+
+.presentation-desktop {
+  align-items: center;
+}
+
+.presentation-wide {
+  align-items: center;
+}
+
+.SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.presentation-desktop .SectionHeader {
+  gap: var(--space-16);
+}
+
+.presentation-wide .SectionHeader {
+  gap: var(--space-16);
+}
+
+.presentation-desktop .SectionHeader {
+  align-items: center;
+}
+
+.presentation-wide .SectionHeader {
+  align-items: center;
+}
+
+.Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.presentation-desktop .Accroche {
+  text-align: center;
+}
+
+.presentation-wide .Accroche {
+  text-align: center;
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: left;
+}
+
+.presentation-desktop .Titre {
+  text-align: center;
+}
+
+.presentation-wide .Titre {
+  text-align: center;
 }
 
 .items {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   width: 100%;
   min-width: 0;
   gap: var(--space-32);
   align-self: stretch;
 }
 
-.disposition-5Cartes .items {
+.presentation-desktop .items {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.presentation-wide .items {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 

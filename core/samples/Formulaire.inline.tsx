@@ -109,7 +109,7 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.column }}>
-<SectionHeader titre={titre} accroche={accroche} disposition="standard" />
+<SectionHeader titre={titre} accroche={accroche} />
 <div style={{ ...S.features }}>
 <Avantage texte="Devis gratuits effectués sur place, nous nous déplaçons chez vous" titre="Conseils personnalisés" />
 <Avantage texte="Marque Hormann renommée, qualité allemande" titre="Produits de qualité" />

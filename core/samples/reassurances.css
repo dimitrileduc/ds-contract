@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
+/* Button — from ds.button v2.1.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -13,7 +13,7 @@
   background-color: transparent;
   cursor: pointer;
   font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-16);
+  font-size: var(--typography-libelle-bouton-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-22);
   color: var(--color-blanc);
@@ -114,92 +114,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */
-
-.section-header, .section-header *, .section-header *::before, .section-header *::after {
-  box-sizing: border-box;
-}
-
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-  border: 0;
-  font-family: var(--font-family-montserrat);
-  gap: var(--space-8);
-  align-self: stretch;
-}
-
-.section-header--disposition-avecCta {
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.section-header--alignement-gauche {
-  align-items: start;
-}
-
-.section-header__Accroche {
-  width: 100%;
-  min-width: 0;
-  color: var(--color-noir-bleute);
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: 3px;
-  line-height: 25px;
-  text-transform: uppercase;
-}
-
-.section-header__Titre {
-  width: 100%;
-  min-width: 0;
-  color: var(--color-noir-bleute);
-  font-size: var(--font-size-40);
-  font-weight: var(--font-weight-regular);
-  line-height: 50px;
-}
-
-.section-header__Titre > strong {
-  font-weight: var(--font-weight-bold);
-}
-
-.section-header--disposition-avecCta .section-header__Titre {
-  line-height: 40px;
-}
-
-.section-header--emphase-hero .section-header__Titre {
-  line-height: 68px;
-  font-weight: 300;
-}
-
-.section-header--emphase-moyen .section-header__Titre {
-  line-height: 40px;
-}
-
-.section-header--emphase-compact .section-header__Titre {
-  line-height: 30px;
-}
-
-.section-header--disposition-avecCta .section-header__Titre {
-  font-size: var(--font-size-32);
-}
-
-.section-header--emphase-hero .section-header__Titre {
-  color: var(--color-blanc);
-  font-size: var(--font-size-54);
-}
-
-.section-header--emphase-moyen .section-header__Titre {
-  font-size: var(--font-size-32);
-}
-
-.section-header--emphase-compact .section-header__Titre {
-  font-size: var(--font-size-24);
-}
-
-/* Carte — from ds.carte v2.1.0 (core/emit-html.ts) */
+/* Carte — from ds.carte v3.0.0 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;
@@ -209,12 +124,13 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  width: 100%;
+  min-width: 0;
   border: 0;
   background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
-  width: var(--size-carte-root);
-  gap: var(--space-24);
-  padding-bottom: var(--space-24);
+  gap: var(--spacing-carte-reassurance-gap);
+  padding-bottom: var(--spacing-carte-reassurance-pad-bas);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   text-rendering: geometricprecision;
 }
@@ -232,7 +148,7 @@
 }
 
 .carte__reassuranceImage {
-  height: var(--size-carte-reassurance-image);
+  height: var(--spacing-carte-reassurance-photo-h);
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -264,10 +180,15 @@
 
 .carte__TitreReassurance {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: 30px;
+  font-family: var(--typography-h4-family);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
   text-align: center;
+}
+
+.carte--alignement-gauche .carte__TitreReassurance {
+  text-align: left;
 }
 
 .carte__TitreCategorie {
@@ -281,9 +202,10 @@
 
 .carte__TexteReassurance {
   color: var(--color-noir);
-  font-size: var(--font-size-14);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-body-size);
   font-weight: var(--font-weight-regular);
-  line-height: 24px;
+  line-height: var(--typography-body-line-height);
   text-align: center;
 }
 
@@ -291,6 +213,10 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
+}
+
+.carte--alignement-gauche .carte__TexteReassurance {
+  text-align: left;
 }
 
 .carte__TexteCategorie {
@@ -311,7 +237,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v1.3.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.0.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -320,23 +246,118 @@
 .reassurances {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-reassurances-root);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
+  gap: var(--space-32);
+}
+
+.reassurances--presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.reassurances--presentation-desktop {
+  padding-inline: var(--space-56);
   gap: var(--space-48);
+}
+
+.reassurances--presentation-wide {
+  padding-inline: var(--space-89);
+  gap: var(--space-48);
+}
+
+.reassurances--presentation-desktop {
+  align-items: center;
+}
+
+.reassurances--presentation-wide {
+  align-items: center;
+}
+
+.reassurances__SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.reassurances--presentation-desktop .reassurances__SectionHeader {
+  gap: var(--space-16);
+}
+
+.reassurances--presentation-wide .reassurances__SectionHeader {
+  gap: var(--space-16);
+}
+
+.reassurances--presentation-desktop .reassurances__SectionHeader {
+  align-items: center;
+}
+
+.reassurances--presentation-wide .reassurances__SectionHeader {
+  align-items: center;
+}
+
+.reassurances__Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.reassurances--presentation-desktop .reassurances__Accroche {
+  text-align: center;
+}
+
+.reassurances--presentation-wide .reassurances__Accroche {
+  text-align: center;
+}
+
+.reassurances__Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: left;
+}
+
+.reassurances--presentation-desktop .reassurances__Titre {
+  text-align: center;
+}
+
+.reassurances--presentation-wide .reassurances__Titre {
+  text-align: center;
 }
 
 .reassurances__items {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   width: 100%;
   min-width: 0;
   gap: var(--space-32);
   align-self: stretch;
 }
 
-.reassurances--disposition-5Cartes .reassurances__items {
+.reassurances--presentation-desktop .reassurances__items {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.reassurances--presentation-wide .reassurances__items {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 

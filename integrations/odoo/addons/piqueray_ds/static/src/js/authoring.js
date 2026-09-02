@@ -728,7 +728,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
             OpenFigmaAction,
             SetCtaHrefAction,
             SetLinkHrefAction,
-            SetColonnesAction,
+            // SetColonnesAction retirée le 2026-09-02 (vague 031) : plus de réglage Colonnes.
             SetFooterCtaHrefAction,
             AddCarteAction,
             RemoveCarteAction,

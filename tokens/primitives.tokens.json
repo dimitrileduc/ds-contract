@@ -395,6 +395,26 @@
         "$type": "dimension",
         "$description": "Authored from the Figma dump of ds.devis's master 2096:2524 (absoluteBoundingBox width 1728 at version 016/U1a-variables/avant) — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: the contract root carried NO width, HUG shrank the master to its 900px title and every page rendered the CTA as a 900px centered band (the agent's 'grey placeholder').",
         "$value": "1728px"
+      },
+      "root-h-mobile": {
+        "$type": "dimension",
+        "$description": "Minté from-dump le 2026-09-02 : le set Devis de la spec 031 (2694:21604) dessine sa variante Mobile à 496px de haut (hauteur FIXE sur la racine de variante, relevé v1.8). Hauteur par présentation ; le code la porte en min-height (Odoo force height:auto sur les sections sous 768px).",
+        "$value": "496px"
+      },
+      "root-h-tablette": {
+        "$type": "dimension",
+        "$description": "Minté from-dump le 2026-09-02 : le set Devis de la spec 031 (2694:21604) dessine sa variante Tablette à 466px de haut (hauteur FIXE sur la racine de variante, relevé v1.8). Hauteur par présentation ; le code la porte en min-height (Odoo force height:auto sur les sections sous 768px).",
+        "$value": "466px"
+      },
+      "root-h-desktop": {
+        "$type": "dimension",
+        "$description": "Minté from-dump le 2026-09-02 : le set Devis de la spec 031 (2694:21604) dessine sa variante Desktop à 358px de haut (hauteur FIXE sur la racine de variante, relevé v1.8). Hauteur par présentation ; le code la porte en min-height (Odoo force height:auto sur les sections sous 768px).",
+        "$value": "358px"
+      },
+      "root-h-wide": {
+        "$type": "dimension",
+        "$description": "Minté from-dump le 2026-09-02 : le set Devis de la spec 031 (2694:21604) dessine sa variante Wide à 506px de haut (hauteur FIXE sur la racine de variante, relevé v1.8). Hauteur par présentation ; le code la porte en min-height (Odoo force height:auto sur les sections sous 768px).",
+        "$value": "506px"
       }
     },
     "faq": {
@@ -811,6 +831,25 @@
           "$description": "Minted from-dump 2026-09-02 (spec 031, CarteReassurance): photo height on Desktop/Wide — spacing.carte-reassurance.photo-h desktop override.",
           "$value": "364px"
         }
+      }
+    },
+    "carte-categorie": {
+      "min-w": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: minWidth drawn on the CarteCategorie set of spec 031 (2692:19667). Its companion minHeight (180.0269px, Figma's 16:9 computed partner) is a computed artifact and is NOT carried — named in the contract.",
+        "$value": "320px"
+      }
+    },
+    "categories-principales": {
+      "carte-h-mobile": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: the CategoriesPrincipales set of spec 031 (2693:20242) draws its Mobile cards 342×418 — a ratio the card's own 16/9 does not give. Section-owned height, carried code-only in the Odoo projection (an instance part has no per-mode channel).",
+        "$value": "418px"
+      },
+      "carte-h-tablette": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: CategoriesPrincipales 031 (2693:20242) draws its Tablette cards 738×288. Desktop (512×288) and Wide (743×418) are exactly the card's own 16/9 and need no height.",
+        "$value": "288px"
       }
     }
   },

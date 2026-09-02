@@ -1,0 +1,28 @@
+{
+  "url": "/categories-test",
+  "name": "Categories test",
+  "key": "categories_test",
+  "header_overlay": false,
+  "_note": "Page de MESURE de la vague 031 (2026-09-02) : la section catégories seule, même contenu que la home. Sert à mesurer la carte (ds.carte-categorie 2.0.0) puis la section.",
+  "sections": [
+    {
+      "component": "s_pqr_categories_principales",
+      "variant": "superpose",
+      "cards": [
+        {
+          "titre": "Portes de garage",
+          "texte": "Une porte de garage pour chaque goût et chaque style de maison.",
+          "image": "cat_garage"
+        },
+        {
+          "titre": "Portes d’entrée",
+          "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
+          "image": "cat_entree"
+        }
+      ],
+      "add_class": [
+        "s_pqr_bleed"
+      ]
+    }
+  ]
+}

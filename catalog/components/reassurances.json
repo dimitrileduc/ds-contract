@@ -1,15 +1,26 @@
 {
   "id": "ds.reassurances",
   "name": "Reassurances",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
+  "description": "Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.\n\nL'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.\n\nHistorique avant 2.0.0 :\nPiqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
   "figma": {
     "representation": "component",
-    "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8"
+    "componentSetKey": "279d958b1cc73da32d9ecf33b8dcfa6478716160"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile",
+      "description": "Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur."
+    },
     {
       "name": "disposition",
       "type": [
@@ -17,7 +28,20 @@
         "quatrecartesdeuxcta",
         "5Cartes"
       ],
-      "default": "4Cartes"
+      "default": "5Cartes",
+      "description": " — 2026-09-02 : le set 031 ne dessine QUE la forme à cinq cartes avec un seul bouton ; le défaut passe donc de « 4Cartes » à « 5Cartes ». Les deux autres formes sont conservées en archive (décision owner, comme Empile de ds.carte-categorie), sans axe correspondant sur le canvas : écart de parité acquitté."
+    },
+    {
+      "name": "accroche",
+      "type": "string",
+      "default": "Plus de 50 ans d’expérience",
+      "description": "Sur-titre de la section. Le set 031 le dessine sur le nœud, sans propriété TEXT : liaison NONE, écart nommé."
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Pourquoi choisir nos portes de garage industrielles ?",
+      "description": "Titre de la section. Même remarque : dessiné sur le nœud, liaison NONE."
     },
     {
       "name": "items",

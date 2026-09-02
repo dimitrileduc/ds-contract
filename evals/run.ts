@@ -3833,10 +3833,10 @@ const cases: Case[] = [
     },
   },
   {
-    // Réparation Reassurances 2026-08-23 : le choix à cinq colonnes est une
-    // variante, jamais une nouvelle règle globale. Cette porte protège donc
-    // simultanément les deux masters Figma à quatre cartes, la composition
-    // Accueil à cinq cartes et l'absence de sélecteur libre dans Odoo.
+    // Vague 031 (2026-09-02) : le nombre de colonnes cesse d'être une variante de
+    // contenu pour devenir une fonction de l'écran — 1 sous le seuil bureau, 3 en
+    // Desktop, 5 en Wide, exactement ce que dessine le set 2700:26297. La porte
+    // vérifie que la largeur reste celle du conteneur et que la carte remplit sa piste.
     id: 'reassurances-grid-variant-isolation',
     claim: 'C1-determinism',
     run: () => {
@@ -3844,24 +3844,24 @@ const cases: Case[] = [
       const carte = ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts/carte.contract.json'), 'utf8')));
       const items = reassurances.anatomy.root.parts?.items;
       if (reassurances.anatomy.root.layout?.width !== 'fill' || reassurances.anatomy.root.tokens?.width !== undefined ||
-          !items || items.layout?.display !== 'grid' || items.layout.columns !== 4 || items.layout.width !== 'fill') {
-        throw new Error('Reassurances: le Container doit posséder la largeur ; le root et sa grille doivent la remplir à 4 colonnes');
+          !items || items.layout?.display !== 'grid' || items.layout.columns !== 1 || items.layout.width !== 'fill') {
+        throw new Error('Reassurances: le Container doit posséder la largeur ; le root et sa grille doivent la remplir, à UNE colonne en base mobile');
       }
       const tracks = items.layoutByProp;
-      if (Array.isArray(tracks) || !tracks || tracks.prop !== 'disposition' ||
-          JSON.stringify(tracks.map) !== JSON.stringify({ '5Cartes': { columns: 5 } })) {
-        throw new Error('Reassurances: seule la variante 5Cartes peut passer à 5 colonnes');
+      if (Array.isArray(tracks) || !tracks || tracks.prop !== 'presentation' ||
+          JSON.stringify(tracks.map) !== JSON.stringify({ desktop: { columns: 3 }, wide: { columns: 5 } })) {
+        throw new Error('Reassurances: le nombre de colonnes est une fonction de l ECRAN (1/1/3/5), jamais du contenu');
       }
       const carteRoot = carte.anatomy.root;
-      const carteWidth = Array.isArray(carteRoot.layoutByProp) ? undefined : carteRoot.layoutByProp;
-      if (!carteWidth || carteWidth.map.reassurance?.width !== 'fill' || carteWidth.map.categorie?.width === 'fill') {
-        throw new Error('Carte: seule la disposition reassurance doit remplir la piste');
+      if (carteRoot.layout?.width !== 'fill') {
+        throw new Error('Carte: la carte remplit sa piste ; sa largeur appartient à la grille de la section');
       }
 
       const css = readFileSync(path.join(ROOT, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
-      if (!/\.items\s*\{[\s\S]*?grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);[\s\S]*?width: 100%;/.test(css) ||
-          !/\.disposition-5Cartes \.items\s*\{\s*grid-template-columns: repeat\(5, minmax\(0, 1fr\)\);/.test(css)) {
-        throw new Error('React: les pistes 4/5 ou le Fill généré sont divergents');
+      if (!/\.items\s*\{[\s\S]*?grid-template-columns: repeat\(1, minmax\(0, 1fr\)\);[\s\S]*?width: 100%;/.test(css) ||
+          !/\.presentation-desktop \.items\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/.test(css) ||
+          !/\.presentation-wide \.items\s*\{\s*grid-template-columns: repeat\(5, minmax\(0, 1fr\)\);/.test(css)) {
+        throw new Error('React: les pistes 1/3/5 par écran ou le Fill généré sont divergents');
       }
       // The component script index follows dependency order. It changes when
       // another governed component is introduced, so locate Reassurances by
@@ -3869,11 +3869,17 @@ const cases: Case[] = [
       const figmaFile = readdirSync(path.join(ROOT, 'figma-sync')).find((name) => /^\d+-reassurances\.js$/.test(name));
       if (!figmaFile) throw new Error('Figma: script Reassurances généré absent');
       const figma = parseSyncComponent(readFileSync(path.join(ROOT, 'figma-sync', figmaFile), 'utf8'));
-      for (const [variant, columns] of [['Disposition=4 cartes', 4], ['Disposition=QuatreCartesDeuxCta', 4], ['Disposition=5 cartes', 5]] as const) {
-        const spec = figma.variants.find((item: { name: string }) => item.name === variant)?.spec;
-        const itemsSpec = spec?.children?.find((child: { name: string }) => child.name === 'items');
-        if (spec?.fillWidth !== true || itemsSpec?.fillWidth !== true || itemsSpec?.layout?.mode !== 'GRID' || itemsSpec?.layout?.columns !== columns) {
-          throw new Error(`Figma: ${variant} doit garder son root et sa grille en Fill à ${columns} colonnes`);
+      // Vague 031 : le nombre de colonnes suit l'ÉCRAN. Chaque variante porte donc
+      // deux axes (Presentation × Disposition) et sa grille vaut 1 / 1 / 3 / 5.
+      for (const [presentation, columns] of [['Mobile', 1], ['Tablette', 1], ['Desktop', 3], ['Wide', 5]] as const) {
+        const variantes = figma.variants.filter((item: { name: string }) => item.name.startsWith(`Presentation=${presentation},`));
+        if (variantes.length === 0) throw new Error(`Figma: aucune variante Presentation=${presentation}`);
+        for (const variante of variantes) {
+          const spec = variante.spec;
+          const itemsSpec = spec?.children?.find((child: { name: string }) => child.name === 'items');
+          if (spec?.fillWidth !== true || itemsSpec?.fillWidth !== true || itemsSpec?.layout?.mode !== 'GRID' || itemsSpec?.layout?.columns !== columns) {
+            throw new Error(`Figma: ${variante.name} doit garder son root et sa grille en Fill à ${columns} colonnes`);
+          }
         }
       }
 
@@ -6471,14 +6477,21 @@ const cases: Case[] = [
       // remonter face au reçu historique — sinon il masquerait une régression
       // réelle — mais ce n'est pas l'un des trois sabotages que cette fixture
       // injecte (Footer seul). On le nomme et l'écarte du compte de l'attaque.
-      const supersededReassurancesWidth = clobbered.filter((f: { contractId: string; pointer: string }) =>
-        f.contractId === 'ds.reassurances' && f.pointer === '/anatomy/root/literals/width',
+      // Vague 031 (2026-09-02) : l'écart de section de Réassurances rejoint la largeur
+      // dans les faits SUPERSÉDÉS. Le set 2700:26297 le dessine à 32 sous le seuil
+      // bureau et 48 au-dessus ; le contrat 2.0.0 le porte donc par écran, et le reçu
+      // historique de 015 (48 en dur) reste légitimement remonté. Ces deux points
+      // doivent rester DÉTECTABLES — sinon le détecteur masquerait une vraie
+      // régression — mais ils ne font pas partie des trois sabotages injectés ici.
+      const supersedesReassurances = ['/anatomy/root/literals/width', '/anatomy/root/literals/gap'];
+      const supersededReassurances = clobbered.filter((f: { contractId: string; pointer: string }) =>
+        f.contractId === 'ds.reassurances' && supersedesReassurances.includes(f.pointer),
       );
-      if (supersededReassurancesWidth.length !== 1) {
-        throw new Error(`la largeur historique Réassurances doit rester détectable une fois : ${JSON.stringify(clobbered)}`);
+      if (supersededReassurances.length !== supersedesReassurances.length) {
+        throw new Error(`les faits historiques supersédés de Réassurances doivent rester détectables : ${JSON.stringify(clobbered)}`);
       }
       const injectedClobbers = clobbered.filter((f: { contractId: string; pointer: string }) =>
-        !(f.contractId === 'ds.reassurances' && f.pointer === '/anatomy/root/literals/width'),
+        !(f.contractId === 'ds.reassurances' && supersedesReassurances.includes(f.pointer)),
       );
       if (injectedClobbers.length !== 3) {
         throw new Error(`expected exactly 3 injected clobbers (1 reverted + 2 dropped), got ${injectedClobbers.length}: ${JSON.stringify(clobbered)}`);

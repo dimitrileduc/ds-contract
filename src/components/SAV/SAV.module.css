@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.4.1)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -12,98 +12,85 @@
 
 .root {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: var(--space-10);
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  width: 100%;
-  min-width: 0;
-  height: var(--size-sav-section-h);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
+  gap: var(--space-0);
   position: relative;
 }
 
+.presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop {
+  padding-inline: var(--space-56);
+  padding-block: var(--space-89);
+}
+
+.presentation-wide {
+  padding-inline: var(--space-89);
+  height: var(--size-sav-section-h);
+}
+
+.presentation-wide {
+  justify-content: flex-end;
+}
+
 .background {
-  display: flex;
-  width: 100%;
-  min-width: 0;
-  height: var(--size-sav-background-h);
-  object-fit: cover;
   position: absolute;
+  object-fit: cover;
   top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
 }
 
 .row {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-width: 0;
-  height: var(--size-sav-row-h);
-  padding-left: var(--size-sav-content-padding);
-  padding-right: var(--size-sav-content-padding);
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  flex: 1 1 auto;
-  min-width: 0;
-  width: 100%;
-  height: var(--size-sav-wrapper-h);
-  padding-top: var(--space-48);
-  padding-left: var(--space-48);
-  padding-right: var(--space-47);
-  position: relative;
-}
-
-.WrapperBackground {
-  display: flex;
-  width: 100%;
-  min-width: 0;
-  background-color: var(--color-blanc);
-  height: var(--size-sav-wrapper-background-h);
-  position: absolute;
-  align-self: flex-end;
-}
-
-.inner {
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
   min-width: 0;
-  gap: var(--space-32);
+  padding-inline: var(--space-0);
   position: relative;
+  z-index: 1;
 }
 
-.vousRencontrezUnProblmeA {
-  width: 100%;
-  min-width: 0;
-  color: var(--color-noir);
-  font-size: var(--font-size-18);
-  line-height: var(--font-line-height-27);
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-4);
-  white-space: pre-line;
+.presentation-desktop .row {
+  padding-inline: var(--space-89);
 }
 
-.vousRencontrezUnProblmeA > strong {
-  font-weight: var(--font-weight-bold);
+.presentation-desktop .row {
+  height: var(--size-sav-row-h-desktop);
+}
+
+.presentation-wide .row {
+  padding-inline: var(--size-sav-content-padding);
+}
+
+.presentation-wide .row {
+  height: var(--size-sav-row-h);
+}
+
+.presentation-desktop .row {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.presentation-wide .row {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .imgGroup {
@@ -114,28 +101,172 @@
   flex: 1 1 auto;
   min-width: 0;
   width: 100%;
-  height: var(--size-sav-img-group-h);
-  padding-left: var(--space-3);
-  padding-right: var(--size-sav-image-right-inset);
+  padding-left: var(--space-24);
+  padding-right: var(--space-24);
+  height: var(--size-sav-img-group-h-compact);
   position: relative;
 }
 
+.presentation-desktop .imgGroup {
+  padding-left: var(--space-0);
+}
+
+.presentation-desktop .imgGroup {
+  padding-right: var(--space-0);
+}
+
+.presentation-desktop .imgGroup {
+  height: var(--size-sav-img-group-h-desktop);
+}
+
+.presentation-wide .imgGroup {
+  padding-left: var(--space-3);
+}
+
+.presentation-wide .imgGroup {
+  padding-right: var(--size-sav-image-right-inset);
+}
+
+.presentation-wide .imgGroup {
+  height: var(--size-sav-img-group-h);
+}
+
 .ImgGroupBackground {
-  display: flex;
-  width: 100%;
-  min-width: 0;
   background-color: var(--color-bleu-clair);
-  height: var(--size-sav-img-group-background-h);
   position: absolute;
-  align-self: flex-start;
+  top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
 }
 
 .img {
   display: flex;
-  width: 100%;
+  flex: 1 1 auto;
   min-width: 0;
-  height: var(--size-sav-img-h);
+  width: 100%;
+  height: var(--size-sav-img-h-compact);
   position: relative;
   object-fit: contain;
+}
+
+.presentation-desktop .img {
+  height: var(--size-sav-img-h);
+}
+
+.presentation-wide .img {
+  height: var(--size-sav-img-h);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  padding-top: var(--space-48);
+  padding-right: var(--space-24);
+  padding-bottom: var(--space-24);
+  padding-left: var(--space-24);
+  position: relative;
+}
+
+.presentation-desktop .wrapper {
+  padding-right: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  padding-bottom: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  padding-left: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  height: var(--size-sav-wrapper-h-desktop);
+}
+
+.presentation-wide .wrapper {
+  padding-right: var(--space-47);
+}
+
+.presentation-wide .wrapper {
+  padding-bottom: var(--space-0);
+}
+
+.presentation-wide .wrapper {
+  padding-left: var(--space-48);
+}
+
+.presentation-wide .wrapper {
+  height: var(--size-sav-wrapper-h);
+}
+
+.WrapperBackground {
+  background-color: var(--color-blanc);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  gap: var(--space-32);
+  position: relative;
+}
+
+.presentation-desktop .inner {
+  align-items: flex-start;
+}
+
+.presentation-wide .inner {
+  align-items: flex-start;
+}
+
+.SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: left;
+}
+
+.vousRencontrezUnProblmeA {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  white-space: pre-line;
+}
+
+.vousRencontrezUnProblmeA > strong {
+  font-weight: var(--font-weight-bold);
 }

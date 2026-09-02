@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.1.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -19,17 +19,18 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "stretch",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "backgroundColor": "#FFFFFF",
     "fontFamily": "Montserrat, sans-serif",
-    "width": "363.5px",
-    "gap": "24px",
-    "paddingBottom": "24px",
+    "gap": "16px",
+    "paddingBottom": "16px",
     "boxShadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
     "textRendering": "geometricprecision"
   },
   "reassuranceImage": {
-    "height": "364px",
+    "height": "192px",
     "objectFit": "cover",
     "objectPosition": "50% 50%"
   },
@@ -52,9 +53,10 @@ const S: Record<string, CSSProperties> = {
   },
   "TitreReassurance": {
     "color": "#26282C",
-    "fontSize": "24px",
-    "fontWeight": 400,
-    "lineHeight": "30px",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "20px",
+    "fontWeight": 500,
+    "lineHeight": "25px",
     "textAlign": "center"
   },
   "TitreCategorie": {
@@ -67,7 +69,8 @@ const S: Record<string, CSSProperties> = {
   },
   "TexteReassurance": {
     "color": "#37373B",
-    "fontSize": "14px",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "16px",
     "fontWeight": 400,
     "lineHeight": "24px",
     "textAlign": "center"
@@ -109,12 +112,16 @@ const V: Record<string, CSSProperties> = {
 };
 
 export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
+  /**  — 2026-09-02 : le set 031 ne dessine QUE la réassurance ; la disposition « categorie » est une forme d'archive conservée (décision owner, cf. Empile de ds.carte-categorie), plus utilisée par aucune page. Écart de parité acquitté. */
   disposition?: 'reassurance' | 'categorie';
+  /** Alignement du texte de la carte, miroir de l'axe Alignement du set 031 (2700:25961). Centré est la première variante du set, donc le défaut. La section Réassurances aligne à gauche sous le seuil bureau et centre au-dessus : une part instance n'a pas de canal par mode, cette bascule est un fait code-only de la projection Odoo, nommé dans le CSS de la section. */
+  alignement?: 'centre' | 'gauche';
+  /**  Défaut relevé sur le set 031 le 2026-09-02. */
   titre?: string;
   /** La ROUTE de l'image, jamais ses octets. Figma n'expose aucune propriete de composant pour ces pixels (trou A5, matrice ligne 91, colonne Bindable : image content not bindable) : le contrat porte donc la route, la photo arrive a l'execution. Defaut vide, et il le reste — un defaut non vide substituerait une image et la ferait entrer au contrat par la porte de derriere. Sur le canevas, ce cadre dessine le lavis technique #D9D9D9 ; la photo qu'un designer y voit est une maquette, hors contrat, preservee a la regeneration par une passe de sauvetage explicite (docs/handoff/08-status-what-doesnt-work.md, §6). */
   imageUrl?: string;
   imageAlt?: string;
-  /** The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. */
+  /** The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. Défaut relevé sur le set 031 le 2026-09-02. */
   texte?: Array<{ text: string; strong?: boolean }>;
   /** Nested Categorie Link Button label. The source Carte component does not expose it as a top-level Figma property, so immutable occurrence values come from the nested Button TEXT property retained by the campaign census. */
   ctaLabel?: string;
@@ -124,11 +131,14 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
   ctaIconRightGlyph?: 'arrow-right' | 'download';
 }
 
-/** Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
+/** Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.
+
+Historique avant 3.0.0 :
+Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
 
 Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. */
 export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
-  { disposition = 'reassurance', ctaIconLeftGlyph = 'pdf', ctaIconRightGlyph = 'download', titre = 'Pour portes de garage', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"SupraMatic & ProMatic.","strong":true},{"text":" Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."}], style, children, ...rest },
+  { disposition = 'reassurance', alignement = 'centre', ctaIconLeftGlyph = 'pdf', ctaIconRightGlyph = 'download', titre = 'Sécurité et conformité', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"Respectent les normes des bâtiments publics et les réglementations pompiers."}], style, children, ...rest },
   ref,
 ) {
   return (
@@ -140,9 +150,9 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
 
 </img>) : null}
 <div style={{ ...S.text, ...(V[`disposition-${disposition}:text`] ?? {}) }}>
-{disposition === 'reassurance' ? (<span style={{ ...S.TitreReassurance }}>{titre}</span>) : null}
+{disposition === 'reassurance' ? (<span style={{ ...S.TitreReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{titre}</span>) : null}
 {disposition === 'categorie' ? (<span style={{ ...S.TitreCategorie }}>{titre}</span>) : null}
-{disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
+{disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
 {disposition === 'categorie' ? (<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
 </div>
 {disposition === 'categorie' ? (<div style={{ ...S.Bouton }}>

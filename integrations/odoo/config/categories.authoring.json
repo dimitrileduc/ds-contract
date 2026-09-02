@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.categories-principales",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,40 +35,20 @@
   ],
   "controls": [
     {
-      "decisionId": "cat-ctl-sec-style",
+      "decisionId": "categories-ctl-presentation",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
-        "prop": "style"
+        "prop": "presentation"
       },
-      "verdict": "controlled",
-      "mechanism": "enum",
-      "targetSelector": ".s_pqr_categories_principales",
-      "label": "style"
-    },
-    {
-      "decisionId": "cat-ctl-sec-colonnes",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.categories-principales",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "prop": "colonnes"
-      },
-      "verdict": "controlled",
-      "mechanism": "enum",
-      "targetSelector": ".s_pqr_categories_principales",
-      "label": "colonnes"
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
     },
     {
       "decisionId": "cat-ctl-sec-cartes",
@@ -77,7 +57,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -95,13 +75,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -113,19 +93,43 @@
       "mechanism": "none"
     },
     {
+      "decisionId": "categories-ctl-carte-afficher-decor",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "2.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "afficherDecor"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "cat-ctl-carte-ctatype",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -143,13 +147,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -169,13 +173,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -195,13 +199,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -221,13 +225,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -247,13 +251,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -273,13 +277,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -304,13 +308,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -337,13 +341,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -368,13 +372,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -399,13 +403,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -430,13 +434,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -461,13 +465,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -492,13 +496,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -525,13 +529,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -556,13 +560,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -587,13 +591,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -618,13 +622,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -651,7 +655,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -671,7 +675,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -692,13 +696,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -720,13 +724,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -737,7 +741,7 @@
           "photoSuperpose"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
       "allowedMarks": []
@@ -749,13 +753,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -763,10 +767,11 @@
         ],
         "partPath": [
           "root",
+          "contenuSuperpose",
           "decor"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-decor\"]",
       "allowedMarks": []
@@ -778,13 +783,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -807,13 +812,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -837,13 +842,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -868,13 +873,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -900,13 +905,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -932,13 +937,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -951,7 +956,7 @@
           "Fleche"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-fleche\"]",
       "allowedMarks": []
@@ -963,13 +968,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -980,7 +985,7 @@
           "categorieImage"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
       "allowedMarks": []
@@ -992,13 +997,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1021,13 +1026,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1051,13 +1056,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1081,13 +1086,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1110,13 +1115,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1140,13 +1145,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1170,13 +1175,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1205,13 +1210,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1229,7 +1234,7 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-left\"]",
       "allowedMarks": []
@@ -1241,13 +1246,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1265,7 +1270,7 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-only\"]",
       "allowedMarks": []
@@ -1277,13 +1282,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1301,7 +1306,7 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
       "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-right\"]",
       "allowedMarks": []
@@ -1313,13 +1318,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1349,13 +1354,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1384,13 +1389,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1420,13 +1425,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1456,13 +1461,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true
@@ -1492,13 +1497,13 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.carte-categorie",
-              "version": "1.1.0"
+              "version": "2.0.0"
             },
             "viaPart": "CarteCategorie",
             "repeat": true

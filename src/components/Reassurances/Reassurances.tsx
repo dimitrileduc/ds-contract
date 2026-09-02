@@ -1,41 +1,66 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.3.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
 import type { HTMLAttributes } from 'react';
-import { SectionHeader } from '../SectionHeader';
 import { Carte } from '../Carte';
 import { Button } from '../Button';
 import styles from './Reassurances.module.css';
 
-export interface ReassurancesProps extends HTMLAttributes<HTMLDivElement> {
+export interface ReassurancesProps extends HTMLAttributes<HTMLElement> {
+  /** Présentation par écran, miroir de l'axe Presentation du set 031. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur. */
+  presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
+  /**  — 2026-09-02 : le set 031 ne dessine QUE la forme à cinq cartes avec un seul bouton ; le défaut passe donc de « 4Cartes » à « 5Cartes ». Les deux autres formes sont conservées en archive (décision owner, comme Empile de ds.carte-categorie), sans axe correspondant sur le canvas : écart de parité acquitté. */
   disposition?: '4Cartes' | 'quatrecartesdeuxcta' | '5Cartes';
+  /** Sur-titre de la section. Le set 031 le dessine sur le nœud, sans propriété TEXT : liaison NONE, écart nommé. */
+  accroche?: string;
+  /** Titre de la section. Même remarque : dessiné sur le nœud, liaison NONE. */
+  titre?: string;
   /** Les cartes de réassurance, fournies par le consommateur. imageUrl alimente ds.carte.imageUrl : le master pose une peinture IMAGE distincte par carte (imageRef ab6a82d4b83b657d48c90b5e253f82459fd505bf, 8d05df2058fe88fa4b14e4472c9746f03fd100a2, d00de3d48206b57be5125a2d01e8595d3eca56de, 7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb, relevées sur I2114:3614;2063:1607 … I2114:3617;2063:1607) et Figma n'expose aucune propriété de composant pour ces pixels. Le contrat porte donc la ROUTE, jamais les octets — même convention que ds.hero.backgroundUrl et ds.sav.imageUrl, et le sample laisse imageUrl vide parce qu'un imageRef Figma n'est pas une URL. */
   items?: Array<{ texte: string; titre: string; imageUrl: string }>;
 }
 
-/** Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). */
-export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(function Reassurances(
-  { disposition = '4Cartes', items, className, children, ...rest },
+/** Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.
+
+L'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.
+
+Historique avant 2.0.0 :
+Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). */
+export const Reassurances = forwardRef<HTMLElement, ReassurancesProps>(function Reassurances(
+  {
+    presentation = 'mobile',
+    disposition = '5Cartes',
+    accroche = 'Plus de 50 ans d’expérience',
+    titre = 'Pourquoi choisir nos portes de garage industrielles ?',
+    items,
+    className,
+    children,
+    ...rest
+  },
   ref,
 ) {
-  const classes = [styles.root, styles[`disposition-${disposition}`], className]
+  const classes = [
+    styles.root,
+    styles[`presentation-${presentation}`],
+    styles[`disposition-${disposition}`],
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
   return (
-    <div ref={ref} className={classes} {...rest}>
-      <SectionHeader
-        titre={[{ text: 'Pourquoi choisir nos portes de garage industrielles ?' }]}
-        accroche="Plus de 50 ans d’expérience"
-        afficherAccroche
-      />
+    <section ref={ref} className={classes} {...rest}>
+      <div className={styles.SectionHeader}>
+        <span className={styles.Accroche}>{accroche}</span>
+        <span className={styles.Titre}>{titre}</span>
+      </div>
       <div className={styles.items}>
         {items?.map((item, index) => (
           <Carte
             key={index}
             disposition="reassurance"
+            alignement="centre"
             texte={[{ text: item.texte }]}
             titre={item.titre}
             imageUrl={item.imageUrl}
@@ -72,6 +97,6 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
           Contactez-nous
         </Button>
       ) : null}
-    </div>
+    </section>
   );
 });
