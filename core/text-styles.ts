@@ -24,12 +24,22 @@ export interface DerivedTextStyle {
   textCase: TextStyleCase;
   /** Project styles must already carry their historical identity marker. */
   requiresExistingMarker: boolean;
+  /** Viewport dimension (spec 031): the style's size/line-height ride
+   *  mode-varying tokens (tokens/modes/viewport.*). Its derived recipe is the
+   *  MOBILE one, which may coincide with a fixed style's recipe (« Titre
+   *  carte » at 20/25 SemiBold IS « Titre 5 »). A responsive style is
+   *  therefore ridden only by a text part bound to its own size token —
+   *  never matched by recipe alone. */
+  responsive: boolean;
 }
 
 interface TextStyleExtension {
   name: string;
   textCase?: TextStyleCase;
   letterSpacingUnit?: 'PIXELS' | 'PERCENT';
+  /** Declared in tokens/semantic.tokens.json on styles whose size varies by
+   *  viewport mode — see DerivedTextStyle.responsive. */
+  responsive?: boolean;
 }
 
 export interface DeriveTextStylesInput {
@@ -81,6 +91,7 @@ export function deriveTextStyles(input: DeriveTextStylesInput): DerivedTextStyle
       letterSpacing: { unit: 'PIXELS', value: 0 },
       textCase: 'ORIGINAL',
       requiresExistingMarker: false,
+      responsive: false,
     });
   }
 
@@ -118,6 +129,7 @@ export function deriveTextStyles(input: DeriveTextStylesInput): DerivedTextStyle
         },
         textCase: ext.textCase ?? 'ORIGINAL',
         requiresExistingMarker: true,
+        responsive: ext.responsive === true,
       });
     }
   }

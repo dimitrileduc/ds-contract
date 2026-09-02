@@ -387,12 +387,12 @@
 
 /* ODOO-PAGE-DEBUG BEGIN
  *
- * Bordures de repérage DX (couche composition, NON gouvernée). ACTIF.
+ * Bordures de repérage DX (couche composition, NON gouvernée). ÉTEINT le 2026-09-02 pour la mesure du pilote hero (elles polluent les captures).
  * `outline` et non `border` — se dessine par-dessus, zéro impact sur la grille.
  * Pour éteindre : commenter les deux règles ci-dessous puis rebuild des assets.
  */
-.o_pqr_page     { outline: 2px solid #e6007a; }   /* container */
-.o_pqr_page > * { outline: 1px solid #00a3ff; }   /* sections  */
+/* .o_pqr_page     { outline: 2px solid #e6007a; }   container */
+/* .o_pqr_page > * { outline: 1px solid #00a3ff; }   sections */
 /* ODOO-PAGE-DEBUG END */
 /* Parent public composé (spec drift 2026-08-23). Le widget historique garde
    son contrat 1552px pour les snippets sauvegardés ; dans ce nouveau parent,

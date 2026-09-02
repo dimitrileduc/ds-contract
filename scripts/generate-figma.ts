@@ -75,6 +75,14 @@ const engine = createFigmaEngine({
       ? read('tokens/modes/semantic.dark.tokens.json')
       : {},
     brands: Object.fromEntries(brandNames.map((n) => [n, read(`tokens/modes/brand.${n}.tokens.json`)])),
+    // Viewport dimension (spec 031): the override files tell the tokens script
+    // which semantic tokens live in the canvas collection « Responsive » (and
+    // must NOT be recreated under Semantic). Absent files ⇒ no dimension.
+    viewport: Object.fromEntries(
+      ['tablette', 'desktop', 'wide']
+        .filter((m) => existsSync(path.join(ROOT, 'tokens', 'modes', `viewport.${m}.tokens.json`)))
+        .map((m) => [m, read(`tokens/modes/viewport.${m}.tokens.json`)]),
+    ),
   },
   icons: iconAssets,
   iconComponents,

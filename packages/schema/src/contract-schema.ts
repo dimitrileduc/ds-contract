@@ -139,9 +139,14 @@ export const PropSchema = z
     },
   )
   .refine(
-    (p) => p.type !== 'rich-text' || p.bindings.figma.kind === 'TEXT',
+    // 2026-09-02 (owner rule, Odoo hero pilot): a rich-text prop binds to one
+    // native Figma TEXT property WHEN the set exposes one, and to NONE when the
+    // text lives on the node (the 031 sets draw their titles without a
+    // property). What makes a text rich is its content — a line break, a bold
+    // range — never whether the canvas exposes a property for it.
+    (p) => p.type !== 'rich-text' || p.bindings.figma.kind === 'TEXT' || p.bindings.figma.kind === 'NONE',
     {
-      message: 'rich-text maps to one native Figma TEXT property',
+      message: 'rich-text maps to one native Figma TEXT property, or to NONE when the text lives on the node',
       path: ['bindings', 'figma', 'kind'],
     },
   );
@@ -330,7 +335,26 @@ export const LITERAL_CHANNELS = new Set([
  *  per-size widths). Array-ordered exactly like tokensByProp entries. */
 export const LiteralsByPropSchema = z.strictObject({
   prop: z.string(),
-  map: z.record(z.string(), z.record(z.string(), LiteralValueSchema)),
+  // 2026-09-02 (Odoo hero pilot): the SAME per-channel grammar as `literals` —
+  // `background-image` validates against GRADIENT_LITERAL_RE (a veil that
+  // varies by presentation, spec 031), every other channel keeps
+  // LITERAL_VALUE_RE untouched.
+  map: z.record(
+    z.string(),
+    z.record(z.string(), z.string()).superRefine((value, ctx) => {
+      for (const [channel, literal] of Object.entries(value)) {
+        if (channel === 'background-image') {
+          if (!GRADIENT_LITERAL_RE.test(literal)) {
+            ctx.addIssue({ code: 'custom', message: 'Literal background-image must be a linear-gradient(...) value', path: [channel] });
+          }
+          continue;
+        }
+        if (!LITERAL_VALUE_RE.test(literal)) {
+          ctx.addIssue({ code: 'custom', message: 'Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor', path: [channel] });
+        }
+      }
+    }),
+  ),
 });
 
 /** v15 (S4 channel lifts — round 1 of the north-star push): a DECLARED FACT

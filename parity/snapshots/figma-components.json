@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1787771836005,
+  "extractedAt": 1788359280679,
   "sets": [
     {
       "name": "Input",
@@ -1017,7 +1017,7 @@
       "nodeId": "2495:6770",
       "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
       "description": "",
-      "variantCount": 2,
+      "variantCount": 3,
       "properties": {
         "Titre#2495:11": {
           "type": "TEXT",
@@ -1036,7 +1036,8 @@
           "defaultValue": "Superpose",
           "variantOptions": [
             "Superpose",
-            "Empile"
+            "Empile",
+            "Style3"
           ],
           "preferredValues": null
         }
@@ -1625,6 +1626,275 @@
       "nestedInstances": [
         "ArrowLeft",
         "ArrowRight"
+      ]
+    },
+    {
+      "name": "HeroVideo",
+      "nodeId": "2689:15832",
+      "key": "366023701e65d2e3091332db4de0dfe4de0d33d4",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Desktop",
+            "Wide",
+            "Tablette"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "CarteCategorie",
+      "nodeId": "2692:19667",
+      "key": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "CategoriesPrincipales",
+      "nodeId": "2693:20242",
+      "key": "6495b5175604b69af5a2b670bdbc1e49a60e68d3",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "CarteCategorie",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Presentation",
+      "nodeId": "2693:20805",
+      "key": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "SAV",
+      "nodeId": "2693:20992",
+      "key": "55d2731a22907512ac83a63499f969e0bd2bab36",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "ProduitsECommerce",
+      "nodeId": "2694:21337",
+      "key": "70f037b37186389a20d2025654428119ef584b35",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "ProductCard"
+      ]
+    },
+    {
+      "name": "ProductCard",
+      "nodeId": "2693:21081",
+      "key": "9d5b5ffa2711233858c0a684cd7e9a24b573db97",
+      "description": "ProductCard — generated from contract ds.product-card v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2068:34": {
+          "type": "TEXT",
+          "defaultValue": "Télécommande Hörmann HSE4-868BS",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Prix#2068:35": {
+          "type": "TEXT",
+          "defaultValue": "74,99€",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Devis",
+      "nodeId": "2694:21604",
+      "key": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "CarteReassurance",
+      "nodeId": "2700:25961",
+      "key": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Alignement": {
+          "type": "VARIANT",
+          "defaultValue": "Centré",
+          "variantOptions": [
+            "Centré",
+            "Gauche"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Reassurances",
+      "nodeId": "2700:26297",
+      "key": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ReviewCard",
+      "nodeId": "2700:26539",
+      "key": "cd8095ef0d8c2f529d7b4ecda6eaf14ffcb39c30",
+      "description": "ReviewCard — generated from contract ds.review-card v1.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+      "variantCount": 1,
+      "properties": {},
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "AvisGoogle",
+      "nodeId": "2700:28391",
+      "key": "92ddbd842f0f0a22f284322298a9a6865c397055",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "ReviewCard"
       ]
     }
   ]

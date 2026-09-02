@@ -10,7 +10,11 @@ tokens/
 ├── semantic.tokens.json             # mode-INDEPENDENT aliases (spacing insets, radii, type)
 └── modes/
     ├── semantic.light.tokens.json   # mode-VARYING color semantics (aliases into primitives)
-    └── semantic.dark.tokens.json
+    ├── semantic.dark.tokens.json
+    ├── brand.<name>.tokens.json     # brand dimension (see below)
+    ├── viewport.tablette.tokens.json  # viewport dimension (spec 031): overrides ≥ {breakpoint.tablette}
+    ├── viewport.desktop.tokens.json   #   … ≥ {breakpoint.desktop}
+    └── viewport.wide.tokens.json      #   … ≥ {breakpoint.wide}  — mobile = the :root default in semantic
 ```
 
 Components only ever bind to **semantic** tokens (`color.action.primary.background`), never to primitives (`color.blue.600`). Primitives are the palette; semantics are the decisions.
@@ -35,7 +39,8 @@ Migration to 2025.10 object forms is mechanical (a value-shape transform) and sh
 | light | primitives + `brand.default` + semantic + `semantic.light` | `src/styles/tokens.css` → everything under `:root` |
 | dark | `semantic.dark` only | `src/styles/tokens.dark.css` → **only mode-varying tokens** under `[data-theme="dark"]` |
 | brands | every `brand.<name>` except `default` | `src/styles/tokens.brands.css` → one `[data-brand="<name>"]` block each |
-| **odoo** (spec 018) | the same compiled map as `:root` | `specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css` → `:root`, **every name prefixed `--pqr-`** |
+| **viewport** (spec 031) | `viewport.tablette` / `.desktop` / `.wide` — overrides only; the mobile value is the `:root` default in `semantic` | appended to **the same** `src/styles/tokens.css` → one `@media (min-width: {breakpoint.<mode>}) { :root { … } }` block per mode, ascending |
+| **odoo** (spec 018) | the same compiled map as `:root` **+ the same viewport blocks** | `specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css` → `:root` + `@media` blocks, **every name prefixed `--pqr-`** |
 
 The emitter enforces two integrity rules at build time: every alias must resolve to a real token, and the light/dark mode files must define **identical token sets** (a token present in one mode but not the other is drift inside the source of truth itself). Alias chains are preserved as `var()` references, so the generated CSS reads like the token architecture:
 
@@ -69,7 +74,29 @@ So the pipeline gains a fourth target rather than the module gaining hand-typed 
 - **Prefixed in full.** Every declaration *and* every alias reference reads `--pqr-…`. One bare name is a refusal.
 - **The whole vocabulary**, not only what those three components consume — so a fourth component needs no pipeline change.
 
-There are **no mode blocks**: Piqueray is mono-brand and mono-mode, and emitting empty `[data-theme]` / `[data-brand]` blocks would manufacture a capability that does not exist.
+There are **no theme or brand blocks**: Piqueray is mono-brand and mono-theme, and emitting empty `[data-theme]` / `[data-brand]` blocks would manufacture a capability that does not exist. Since 2026-09-02 the sheet **does** carry the viewport dimension's `@media` blocks (next section), prefixed like everything else — because that capability exists and Odoo is exactly where it is consumed.
+
+## The viewport dimension (spec 031 → Odoo hero pilot, 2026-09-02)
+
+A third mode axis, orthogonal to theme and brand: **theme picks the step, brand picks the ramp, viewport picks the size.** It mirrors, one for one, the Figma collection **« Responsive »** that spec 031 created on the canvas (modes Mobile / Tablette / Desktop / Wide) and the text styles bound to it (H1, H2, H4, « Titre carte »).
+
+- **Mobile is the default.** Its values live in `semantic.tokens.json` like any other decision (`typography.h1.size = {font.size.32}`, `spacing.card-categorie.pad-h = {space.24}`), so they land in `:root` and every reader of the token inventory — generators, extractors, parity, the Hub — sees the responsive tokens **without knowing modes exist**. Same trick as `semantic.light` for the theme axis.
+- **The three other modes are override files**, `tokens/modes/viewport.<mode>.tokens.json`, read only by the token build. They must define **identical token sets** and every override must have a `:root` default — both refused by name.
+- **The thresholds are tokens**: `breakpoint.tablette = 768px`, `breakpoint.desktop = 992px`, `breakpoint.wide = 1400px` (primitives) — the Odoo 19 / Bootstrap 5.3 grid steps md/lg/xxl (992 and 1400 decided in spec 027 R6; 768 added for the Tablette planche validated by 031). The build **inlines** them into the `@media` conditions and never emits them as custom properties: CSS cannot read a `var()` inside a media query. A language limit, named.
+- **Output shape** (mobile-first, ascending, appended to the same sheet so import sites never change):
+
+```css
+:root { --typography-h1-size: var(--font-size-32); … }
+@media (min-width: 768px)  { :root { --typography-h1-size: var(--font-size-32); … } }
+@media (min-width: 992px)  { :root { --typography-h1-size: var(--font-size-40); … } }
+@media (min-width: 1400px) { :root { --typography-h1-size: var(--font-size-54); … } }
+```
+
+- A component that binds `{typography.h1.size}` is therefore responsive **by construction**, on every surface that consumes the sheet — the generated CSS Modules, the HTML reference, and the Odoo addon (whose `tokens.pqr.css` is derived from this file). Structure that changes with the viewport (a column becoming a row, a CTA moving) is NOT a token: it rides the contract's `layoutByProp` / `tokensByProp` on the `presentation` axis.
+
+**Parity.** `npm run parity` reads the viewport files: every viewport-varying token is checked against the canvas collection **« Responsive »** (four modes, resolved literals — the canvas stores `32` and `"SemiBold"`, tokens/ stores `{font.size.32}` and `{font.weight.semibold}`), the `breakpoint.*` primitives are excluded by name (never variables), and both reroutings are printed on every run. All 33 canvas variables of the collection are carried, one for one (the last twelve — `spacing/carte-reassurance/photo-h` and `typography/review/*` — needed `font.line-height.18` and the `size.carte-reassurance.photo-h.{192,240,364}` scale, minted from the snapshot). The three primitives 031 minted on the canvas (`space/56`, `space/288`, `space/418`) are adopted the same way.
+
+**What this does NOT cover yet, by name.** (1) The design-tool projection: `figma-sync/01-tokens.js` does not create the Responsive collection or its modes — the canvas already has it (hand-built in 031), the sync does not own it yet; the four responsive text styles (H1, H2, H4, « Titre carte ») exist on the canvas **without** the `ds_contracts/textStyleToken` marker, so the tokens step refuses them by name until the reviewed marker-only migration stamps them (a canvas write). (2) The seven `typography.h{1,2,3,4}.{family,weight}` semantic tokens and the four minted primitives have no canvas variable yet — `behind` until the token sync runs. (3) `extract/figma/dump.plugin.js` does not yet capture variable bindings on text (node or style level), so the extractor still cannot recognise H1 from a dump — the next repair of the pilot.
 
 `evals/run.ts` case `odoo-tokens-output` (C1) refuses seven invariants by name — additivity, byte-identical determinism, total prefixing, a **bijection** with `:root` (never a hardcoded count, which would rot as the vocabulary grows), the generated-file header, and the refusal of an unresolvable alias. The seventh is adversarial and the reason the case is worth its weight: mutating a value in `tokens/*.tokens.json` **must** move this output. A file copied once would sail through all the others and die there.
 

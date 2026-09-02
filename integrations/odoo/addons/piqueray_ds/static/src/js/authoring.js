@@ -172,14 +172,16 @@ export const HERO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_hero ${part}`);
 export const HERO_RICH_TEXT =
     '.s_pqr_hero [data-pqr-part="hero-title"], .s_pqr_hero [data-pqr-part="hero-subtitle"]';
-// HeroVideo (spec 025) : titre à poids UNIQUE Regular (Step 0) et libellé de CTA
-// — deux parts en TEXTE SIMPLE (`allowedMarks: []`). Aucune surface rich-text
-// n'est ouverte : le master ne porte aucun poids mixte, un mark sans fait source
-// serait une affordance non fidèle (research D6). D'où l'absence de HERO_VIDEO_RICH_TEXT.
+// HeroVideo (spec 025) : titre à poids UNIQUE et libellé de CTA. Pilote hero
+// responsive (2026-09-02, règle owner) : un titre dessiné AVEC un saut de ligne
+// est du texte riche — le set 031 coupe après « HÖRMANN ». La zone titre est
+// donc riche avec UNE marque, `line-break` (Shift+Entrée), pas de gras : le
+// master ne porte aucun poids mixte (research D6 reste vrai pour le gras).
 export const HERO_VIDEO_EDITABLE_PARTS = [
     '[data-pqr-part="hero-video-title"]',
     '[data-pqr-part="button-label"]',
 ].map((part) => `.s_pqr_hero_video ${part}`);
+export const HERO_VIDEO_RICH_TEXT = '.s_pqr_hero_video [data-pqr-part="hero-video-title"]';
 export const EQUIPE_EDITABLE_PARTS = [
     '[data-pqr-member-card] [data-pqr-part="member-name"]',
     '[data-pqr-member-card] [data-pqr-part="member-role"]',
@@ -201,8 +203,8 @@ export const SAV_EDITABLE_PARTS = [
     '[data-pqr-part="sav-text"]',
     '[data-pqr-part="sav-cta"] [data-pqr-part="button-label"]',
 ].map((part) => `.s_pqr_sav ${part}`);
-export const SAV_RICH_TEXT =
-    '.s_pqr_sav [data-pqr-part="sav-title"], .s_pqr_sav [data-pqr-part="sav-text"]';
+// ds.sav 2.0.0 (2026-09-02) : le titre est du texte simple (zone data-pqr-marks=""), seul le paragraphe est riche.
+export const SAV_RICH_TEXT = '.s_pqr_sav [data-pqr-part="sav-text"]';
 export const TEXTE_SEO_EDITABLE_PARTS = [
     '[data-pqr-part="texte-seo-title"]',
     '[data-pqr-part="texte-seo-text"]',
@@ -281,7 +283,7 @@ export const PRODUITS_ECOMMERCE_RICH_TEXT =
     '.s_pqr_produits_ecommerce [data-pqr-part="produits-ecommerce-title"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}, ${HERO_VIDEO_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -787,7 +789,18 @@ export class PiquerayAuthoringPlugin extends Plugin {
             // Coordonnées alignées sur l'allowlist (valeurs + bloc contact). Le
             // popover natif de lien reste disponible séparément sur le bloc contact.
             if (tousDans(PIQUERAY_PLAIN_TEXT) || tousDans(COORDONNEES_NO_FORMAT)) return DISABLED_NAMESPACE;
-            if (tousDans(PIQUERAY_RICH_TEXT)) return PIQUERAY_STRONG_NAMESPACE;
+            if (tousDans(PIQUERAY_RICH_TEXT)) {
+                // Le bouton Gras ne s'offre qu'aux zones dont la liste de marques
+                // (`data-pqr-marks`, la même que lit rich_text_guard) contient
+                // `strong`. Une zone riche « saut de ligne seul » (titre du hero,
+                // 2026-09-02) n'a pas de barre : Shift+Entrée suffit.
+                const strongPartout = targetedNodes.every((node) => {
+                    const zone = closestElement(node, "[data-pqr-marks]");
+                    const marques = (zone?.getAttribute("data-pqr-marks") || "").split(",").map((m) => m.trim());
+                    return marques.includes("strong");
+                });
+                return strongPartout ? PIQUERAY_STRONG_NAMESPACE : DISABLED_NAMESPACE;
+            }
             return undefined;
         },
         // La namespace dédiée ne contient que le bouton gras. Les commandes

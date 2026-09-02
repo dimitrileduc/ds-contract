@@ -1,0 +1,24 @@
+{
+  "url": "/hero-test",
+  "name": "Hero test",
+  "key": "hero_test",
+  "header_overlay": true,
+  "_note": "Page de MESURE du pilote hero responsive (2026-09-02) : le hero seul, même contenu que la home. Sert à comparer le bloc Odoo aux 4 planches 031 sans qu'une autre section n'entre dans la capture.",
+  "sections": [
+    {
+      "component": "s_pqr_hero_video",
+      "add_class": [
+        "s_pqr_bleed"
+      ],
+      "set_html": {
+        "hero-video-title": "Le numéro 1 des portes HÖRMANN<br/>en Province de Liège !"
+      },
+      "set_button": {
+        "button-root": "En savoir plus"
+      },
+      "images": {
+        "hero-video-poster": "hero_video_facade"
+      }
+    }
+  ]
+}

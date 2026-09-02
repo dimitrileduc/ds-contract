@@ -68,7 +68,6 @@
       }
     },
     "size": {
-      "$type": "dimension",
       "14": {
         "$value": "14px"
       },
@@ -98,7 +97,8 @@
       },
       "54": {
         "$value": "54px"
-      }
+      },
+      "$type": "dimension"
     },
     "weight": {
       "$type": "fontWeight",
@@ -116,10 +116,13 @@
       }
     },
     "line-height": {
-      "$type": "dimension",
-      "$description": "Authored from the Button canvas geometry (dump v1.5: text lineHeight 22px). NOT a Figma variable — Piqueray binds no line-height variable; minted from-dump so anatomy can reference a token instead of a literal (the schema forbids literals in anatomy tokens).",
       "16": {
         "$value": "16px"
+      },
+      "18": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02 (spec 031): line-height of the review initial (typography.review.initiale-line-height, desktop/wide).",
+        "$value": "18px"
       },
       "20": {
         "$value": "20px"
@@ -156,18 +159,18 @@
       },
       "68": {
         "$value": "68px"
-      }
+      },
+      "$type": "dimension",
+      "$description": "Authored from the Button canvas geometry (dump v1.5: text lineHeight 22px). NOT a Figma variable — Piqueray binds no line-height variable; minted from-dump so anatomy can reference a token instead of a literal (the schema forbids literals in anatomy tokens)."
     },
     "letter-spacing": {
-      "$type": "dimension",
       "15": {
         "$value": "15px"
-      }
+      },
+      "$type": "dimension"
     }
   },
   "space": {
-    "$type": "dimension",
-    "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals.",
     "0": {
       "$value": "0px"
     },
@@ -213,6 +216,11 @@
     "48": {
       "$value": "48px"
     },
+    "56": {
+      "$type": "dimension",
+      "$description": "Adopted from the canvas 2026-09-02: Primitives variable space/56 minted during spec 031 (Desktop padding-inline of the 031 sections).",
+      "$value": "56px"
+    },
     "64": {
       "$value": "64px"
     },
@@ -225,12 +233,24 @@
     "128": {
       "$value": "128px"
     },
+    "288": {
+      "$type": "dimension",
+      "$description": "Adopted from the canvas 2026-09-02: Primitives variable space/288 minted during spec 031 (CarteCategorie).",
+      "$value": "288px"
+    },
     "392": {
       "$value": "392px"
     },
+    "418": {
+      "$type": "dimension",
+      "$description": "Adopted from the canvas 2026-09-02: Primitives variable space/418 minted during spec 031 (CarteCategorie).",
+      "$value": "418px"
+    },
     "597": {
       "$value": "597px"
-    }
+    },
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals."
   },
   "size": {
     "button": {
@@ -445,6 +465,11 @@
         "$type": "dimension",
         "$description": "Observed on the historical HeroVideo master 2151:5552 (1728×720). Component-specific authoring height, paired with a fluid presentation width.",
         "$value": "720px"
+      },
+      "root-compact": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: the HeroVideo set of spec 031 (2689:15832) draws its Mobile and Tablette variants 746px tall (Desktop/Wide keep size.hero-video.root = 720). Per-presentation height, bound on the variant frames; the code side carries it as a min-height (Odoo forces height:auto on sections under 768px).",
+        "$value": "746px"
       }
     },
     "hero": {
@@ -680,6 +705,36 @@
         "$type": "dimension",
         "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "504px"
+      },
+      "row-h-desktop": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: the SAV set of spec 031 (2693:20992) draws its Desktop row 505px tall (Mobile/Tablette hug, Wide keeps size.sav.row-h = 561). Bound on the Desktop variant; the code side carries it as a min-height.",
+        "$value": "505px"
+      },
+      "wrapper-h-desktop": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: SAV 031 (2693:20992) Desktop text card (wrapper) 505px tall — full row height (Wide keeps size.sav.wrapper-h = 561).",
+        "$value": "505px"
+      },
+      "img-group-h-desktop": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: SAV 031 (2693:20992) Desktop image column (imgGroup) 505px tall — full row height (Wide keeps size.sav.img-group-h = 561).",
+        "$value": "505px"
+      },
+      "img-group-h-compact": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: SAV 031 (2693:20992) Mobile and Tablette image column (imgGroup) 320px tall, stacked above the text card.",
+        "$value": "320px"
+      },
+      "img-h-compact": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: SAV 031 (2693:20992) Mobile and Tablette technician photo plane (img) 320px tall (Desktop/Wide keep size.sav.img-h = 504).",
+        "$value": "320px"
+      },
+      "cta-w-desktop": {
+        "$type": "dimension",
+        "$description": "Minted from-dump 2026-09-02: SAV 031 (2693:20992) Desktop CTA « Demander de l’aide » is drawn FIXED 279px wide (Mobile/Tablette FILL, Wide HUG 272). An instance part carries no per-mode channel: the Odoo projection applies it code-only under the desktop breakpoint.",
+        "$value": "279px"
       }
     },
     "textarea": {
@@ -738,21 +793,38 @@
         "$description": "Authored from the Figma dump of ds.section-header's master (2090:2385-era, every origin usage renders at 1550: FAQ/TexteSEO relevés 016) at version 016/U1a-variables/avant — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: the rebuilt master HUGged, its auto-width titles overflowed every constrained column instead of wrapping (Presentation 628: one line vs two at origin).",
         "$value": "1550px"
       }
+    },
+    "carte-reassurance": {
+      "photo-h": {
+        "192": {
+          "$type": "dimension",
+          "$description": "Minted from-dump 2026-09-02 (spec 031, CarteReassurance): photo height on Mobile/Tablette — spacing.carte-reassurance.photo-h base.",
+          "$value": "192px"
+        },
+        "240": {
+          "$type": "dimension",
+          "$description": "Minted from-dump 2026-09-02 (spec 031, CarteReassurance): photo height on Tablette — spacing.carte-reassurance.photo-h tablette override.",
+          "$value": "240px"
+        },
+        "364": {
+          "$type": "dimension",
+          "$description": "Minted from-dump 2026-09-02 (spec 031, CarteReassurance): photo height on Desktop/Wide — spacing.carte-reassurance.photo-h desktop override.",
+          "$value": "364px"
+        }
+      }
     }
   },
   "radius": {
-    "$type": "dimension",
-    "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump.",
     "32": {
       "$value": "32px"
     },
     "500": {
       "$value": "500px"
-    }
+    },
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump."
   },
   "border-width": {
-    "$type": "dimension",
-    "$description": "Authored from the Button canvas geometry (dump v1.5: outline strokeWeight 2; non-outline variants have no stroke = 0). NOT Figma variables; minted from-dump. The 0 is the base border so border-style resolves solid and the outline variants' 2px border renders.",
     "0": {
       "$value": "0px"
     },
@@ -761,6 +833,24 @@
     },
     "2": {
       "$value": "2px"
+    },
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: outline strokeWeight 2; non-outline variants have no stroke = 0). NOT Figma variables; minted from-dump. The 0 is the base border so border-style resolves solid and the outline variants' 2px border renders."
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Viewport breakpoints of the delivered CSS (decision owner 2026-09-02: the Odoo/Bootstrap steps, not the Figma witness widths). Consumed by scripts/build-tokens.mjs as @media (min-width) for tokens/modes/viewport.<mode>.tokens.json. Never Figma variables (parity excludes breakpoint/*).",
+    "tablette": {
+      "$value": "768px",
+      "$description": "Tablette mode starts here (Figma witness 834)."
+    },
+    "desktop": {
+      "$value": "992px",
+      "$description": "Desktop mode starts here (Figma witness 1200)."
+    },
+    "wide": {
+      "$value": "1400px",
+      "$description": "Wide mode starts here (Figma witness 1728)."
     }
   }
 }

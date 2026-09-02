@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-hero-video-authoring",
-  "authoringVersion": "1.2.0",
+  "authoringVersion": "1.3.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.hero-video",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,13 +35,29 @@
   ],
   "controls": [
     {
+      "decisionId": "hero-video-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero-video",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "hero-video-background-url",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -59,7 +75,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -75,7 +91,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -93,14 +109,14 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "accroche"
       },
       "verdict": "controlled",
-      "mechanism": "plain-text",
+      "mechanism": "rich-text",
       "targetSelector": ".s_pqr_hero_video [data-pqr-part=\"hero-video-title\"]",
       "label": "Titre"
     },
@@ -111,13 +127,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -134,13 +150,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -159,13 +175,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -182,13 +198,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -205,13 +221,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -228,13 +244,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -253,7 +269,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -273,7 +289,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -294,7 +310,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -315,7 +331,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -336,7 +352,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -357,7 +373,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -368,9 +384,11 @@
         ]
       },
       "verdict": "directly-editable",
-      "contentKind": "plain-text",
+      "contentKind": "rich-text",
       "selector": ".s_pqr_hero_video [data-pqr-part=\"hero-video-title\"]",
-      "allowedMarks": []
+      "allowedMarks": [
+        "line-break"
+      ]
     },
     {
       "decisionId": "hero-video-part-bouton",
@@ -379,7 +397,7 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
@@ -400,13 +418,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -427,13 +445,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -455,13 +473,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -483,13 +501,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -511,13 +529,13 @@
           {
             "contract": {
               "id": "ds.hero-video",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }

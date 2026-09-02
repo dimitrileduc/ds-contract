@@ -2,22 +2,49 @@
   "$schema": "./contract.schema.json",
   "id": "ds.sav",
   "name": "SAV",
-  "version": "1.4.1",
-  "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+  "version": "2.0.0",
+  "description": "Piqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV, responsive. 2.0.0 (2026-09-02, Odoo wave 031): re-extracted from the spec-031 set 2693:20992 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide. Everything the canvas draws is proposed by `npm run extract:figma` and adopted: layout per mode (image column stacked above the text card on Mobile/Tablette, side by side on Desktop/Wide), paddings and heights per mode as tokensByProp on the presentation axis (five size.sav.* leaves minted from-dump), the title riding the responsive text style H2 and the paragraph the responsive body recipe. Named deviations, each carried in the part descriptions: (1) the Wide variant still carries the pre-031 `section` wrapper — modeled flat like the three others; (2) the set exposes no TEXT property — titre/texte bind NONE; (3) SectionHeader is a detached frame on the canvas, its collapsed eyebrow is not carried; (4) the CTA has no icon on the 031 set; (5) the Desktop/Wide column split (503/407, 651/637) is not equal on the canvas and has no hand-free spelling — the code side splits equally; (6) the background plane's horizontal inset by mode and the CTA's full width under 992 are code-only facts of the Odoo projection. Breakpoints are the token dimension breakpoint.* (768 / 992 / 1400).\n\nHistory before 2.0.0:\nPiqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.4.1 : le plan bleu de la colonne image (`ImgGroupBackground`) est épinglé par `left: 0`. Il n'était pas positionné (le `align-self: flex-start` est inerte sur un abspos) et retombait après le padding-left de la colonne (token space.3, 3 px), laissant un liseré d'~3px à gauche où le fond derrière transparaissait — visible entre carte texte et carte image, absent de Figma (rect à (0,0)). Correctif de modélisation côté contrat, aucune mutation de source. Mesuré au rendu.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
     {
+      "name": "presentation",
+      "description": "Viewport presentation, mirroring the canvas axis Presentation of the 031 set. Default = mobile, the first variant (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
       "name": "titre",
       "type": "text",
       "default": "Dépannage / SAV",
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: \"{titre}\"`) so the parent property reaches the rendered surface instead of the child's literal.",
+      "description": "Section title « Dépannage / SAV ». Drawn on the node in every 031 variant — the set exposes NO text property (1.4.1 bound the master's TEXT « Titre »): binding NONE, named source gap (journal: à corriger à la source). No line break, no bold: plain text.",
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Titre"
+          "kind": "NONE"
         },
         "code": {
           "prop": "titre"
@@ -27,7 +54,7 @@
     {
       "name": "texte",
       "type": "rich-text",
-      "description": "Le paragraphe long de la colonne (TEXT Figma 2108:3103) en prop rich-text gouvernée — 016/T042, lot B013-4 : c'était le SEUL texte non lié du master (diagnostic vif 2026-08-05), et le lot L-B013-4 (T041) expose la propriété TEXT native « Texte » qu'elle lie. Les trois plages 700 observées voyagent en segments ; la projection Figma aplatit vers la valeur native de la propriété (concaténation, saut de ligne dur compris).",
+      "description": "The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap.",
       "default": [
         {
           "text": "Vous rencontrez un problème avec "
@@ -56,8 +83,7 @@
       ],
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Texte"
+          "kind": "NONE"
         },
         "code": {
           "prop": "texte"
@@ -124,214 +150,326 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Section root, FILL width (the drawn widths 390/834/1200/1728 are witnesses, not tokens). Column in every 031 variant; padding-inline 24/48/56/89 and padding-block 0/0/89/0 by presentation. WIDE DEVIATION, named: the Wide variant of the 031 set still carries the pre-031 `section` wrapper (1550×677, row pushed to the bottom) that the three other variants dropped — modeled FLAT like them, the wrapper's two facts lifted onto the root (height size.sav.section-h, justify end). Source gap recorded in the journal.",
       "layout": {
         "display": "flex",
-        "direction": "row",
-        "align": "center",
+        "direction": "column",
+        "justify": "start",
+        "align": "stretch",
         "width": "fill",
-        "referenceWidth": 1550
+        "referenceWidth": 1728
+      },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "wide": {
+            "justify": "end"
+          }
+        }
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.0}",
+        "gap": "{space.0}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "padding-block": "{space.89}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "height": "{size.sav.section-h}"
+          }
+        }
+      },
+      "declared": {
+        "position": "relative"
       },
       "parts": {
-        "section": {
-          "description": "Porteur SAV réparé (FRAME Figma 2169:6222, 1550×677 à la référence). Auto-layout vertical Fill : le fond absolu couvre la section en (0,0) et la rangée Fill de 561 px s'aligne en bas à y=116.",
-          "layout": {
-            "display": "flex",
-            "direction": "column",
-            "justify": "end",
-            "align": "start",
-            "width": "fill"
-          },
-          "tokens": {
-            "height": "{size.sav.section-h}"
+        "background": {
+          "description": "Out-of-flow background photo plane (IMAGE paint on the canvas; the imageRef is content, supplied by code). Drawn ABSOLUTE — the dump carries no layoutPositioning — covering the root's content box: on Desktop the full root (1200×683), on Mobile/Tablette/Wide the root minus its horizontal padding (342×788, 738×644, 1550×677). Carried as inset 0 (the Desktop truth); the horizontal inset by mode is a code-only fact of the Odoo projection, named there.",
+          "element": "img",
+          "attrs": {
+            "src": "{backgroundUrl}",
+            "alt": "{backgroundAlt}"
           },
           "declared": {
-            "position": "relative"
+            "position": "absolute",
+            "object-fit": "cover",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "0"
+          }
+        },
+        "row": {
+          "description": "Content row. Mobile/Tablette (the default): a column, image column ABOVE the text card — the anatomy order (imgGroup, wrapper) is the canvas order of the default variant. Desktop/Wide draw the text card LEFT of the image column: row-reverse (the schema admits reversed directions as variant overrides only; the canvas reverses the compiled child order). Desktop: row, padding-inline 89, 505 tall. Wide: row, padding-inline 131 (size.sav.content-padding), 561 tall.",
+          "layout": {
+            "direction": "column",
+            "justify": "start",
+            "align": "stretch",
+            "width": "fill"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "direction": "row-reverse",
+                "justify": "end"
+              },
+              "wide": {
+                "direction": "row-reverse",
+                "justify": "end"
+              }
+            }
+          },
+          "tokens": {
+            "padding-inline": "{space.0}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "padding-inline": "{space.89}",
+                "height": "{size.sav.row-h-desktop}"
+              },
+              "wide": {
+                "padding-inline": "{size.sav.content-padding}",
+                "height": "{size.sav.row-h}"
+              }
+            }
+          },
+          "declared": {
+            "position": "relative",
+            "z-index": "1"
           },
           "parts": {
-            "background": {
-              "description": "Plan image pleine largeur de la section (RECTANGLE Figma 2108:3094, 1550×677 en (0,0) à la référence owner du 2026-08-11). Son `fills[0]` est un paint IMAGE, `scaleMode` FILL, `imageRef` 3e173874828861c294938a12deea5a5a7a1799dd — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : l'`imageRef` est consigné ici et fourni au code par `backgroundUrl`. Le plan est absolu derrière la rangée et couvre toute la section.",
-              "element": "img",
-              "attrs": {
-                "src": "{backgroundUrl}",
-                "alt": "{backgroundAlt}"
-              },
-              "tokens": {
-                "height": "{size.sav.background-h}"
-              },
+            "imgGroup": {
+              "description": "Blue image column, photo bottom-aligned. Mobile/Tablette: 320 tall, padding-inline 24. Desktop: 505 tall, no padding. Wide: 561 tall, padding-left 3 / padding-right 78 (the pre-031 master's values).",
               "layout": {
-                "width": "fill"
-              },
-              "declared": {
-                "object-fit": "cover",
-                "position": "absolute",
-                "top": "0",
-                "right": "0",
-                "left": "0"
-              }
-            },
-            "row": {
-              "description": "Rangée de contenu (FRAME Figma 2169:6200, HORIZONTAL Fill, 1550×561 à la référence). Les paddings horizontaux de 131 px produisent 1288 px utiles ; la rangée reste en flux et s'aligne en bas de la section à y=116.",
-              "layout": {
-                "direction": "row",
-                "width": "fill"
-              },
-              "tokens": {
-                "height": "{size.sav.row-h}",
-                "padding-left": "{size.sav.content-padding}",
-                "padding-right": "{size.sav.content-padding}"
-              },
-              "parts": {
-                "wrapper": {
-                  "description": "Colonne de texte (FRAME Figma 2169:6188, 641×561, `layoutMode` NONE). Ses deux enfants observés se superposent : `WrapperBackground` couvre la frame entière en (0,0) et `inner` est posé en (48,48). L'encart de 48 px est porté en `padding`, ce qui place `inner` exactement. `{size.sav.wrapper-w}`/`{size.sav.wrapper-h}` portent désormais la boîte TOTALE (641×561, padding-inclus) : la feuille générée déclare `box-sizing: border-box` (T013) donc `width`/`height` retombent directement sur la boîte observée. Corrigé le 2026-08-04 (Phase 6, named-repair) : la valeur portée jusque-là (546×513) était le calcul CONTENU, correct seulement sous l'ancien défaut content-box.",
-                  "layout": {
-                    "display": "flex",
-                    "direction": "row",
-                    "justify": "center",
-                    "align": "start",
-                    "grow": true,
-                    "width": "fill"
-                  },
-                  "tokens": {
-                    "height": "{size.sav.wrapper-h}",
-                    "padding-top": "{space.48}",
-                    "padding-left": "{space.48}",
-                    "padding-right": "{space.47}"
-                  },
-                  "declared": {
-                    "position": "relative"
-                  },
-                  "parts": {
-                    "WrapperBackground": {
-                      "description": "Plan blanc de la colonne (RECTANGLE Figma 2108:3100, 641×561 en (0,0) de `wrapper`). Hors flux pour passer derrière `inner` ; `align-self: flex-end` annule exactement le `padding-top` de 48 px du parent (48 + (513 − 561) = 0). Limite nommée, résidu mesuré : sur l'axe principal la position statique tombe à x = 0,5 px et non 0 (48 + (546 − 641)/2), soit un liseré d'un demi-pixel au bord gauche — le vocabulaire de contrat n'a aucun canal `top`/`left` hors `stylesWhen`, et `stylesWhen` exige une prop booléenne ou enum que ce master n'expose pas.",
-                      "tokens": {
-                        "background-color": "{color.blanc}",
-                        "height": "{size.sav.wrapper-background-h}"
-                      },
-                      "layout": {
-                        "width": "fill"
-                      },
-                      "declared": {
-                        "position": "absolute",
-                        "align-self": "flex-end"
-                      }
-                    },
-                    "inner": {
-                      "description": "Pile de contenu (FRAME Figma 2108:3101, VERTICAL, 546×365, `itemSpacing` 32). `counterAxisAlignItems` est ABSENT sur le master, c'est-à-dire MIN : l'alignement transversal est `start`, pas `stretch` — le `Bouton` observé HUG à 279 px de large, il ne remplit pas la colonne. `position: relative` la remet dans le plan de peinture de `WrapperBackground`, où l'ordre du DOM la fait peindre AU-DESSUS : sans ça le plan blanc, seul positionné, recouvrait titre et texte.",
-                      "layout": {
-                        "direction": "column",
-                        "align": "start",
-                        "width": "fill"
-                      },
-                      "tokens": {
-                        "gap": "{space.32}"
-                      },
-                      "declared": {
-                        "position": "relative"
-                      },
-                      "parts": {
-                    "SectionHeader": {
-                      "layout": {
-                        "width": "fill"
-                      },
-                          "component": {
-                            "id": "ds.section-header",
-                            "props": {
-                              "titre": [
-                                {
-                                  "text": "Dépannage / SAV"
-                                }
-                              ],
-                              "accroche": "Plus de 50 ans d’expérience",
-                              "afficherAccroche": false,
-                              "alignement": "gauche"
-                            }
-                          }
-                        },
-                        "vousRencontrezUnProblmeA": {
-                          "description": "Paragraphe de la colonne (TEXT Figma 2108:3103, boîte observée 546×197). LES DEUX LIMITES NOMMÉES ICI SONT LEVÉES par le passage en prop (016/T042, lot B013-4 — content.prop → texte, rich-text lié à la propriété TEXT native « Texte » que le lot L-B013-4/T041 expose sur le master) : (1) le saut de ligne dur ne traverse plus un nœud de texte JSX statique (le chemin qui réduisait l'espace blanc) — il voyage dans la valeur de la prop, dont le default JSON le porte échappé, et le `white-space: pre-line` déclaré le dessine ; le constat de rendu appartient au build de T042 (Claims Rule : la phrase de capacité suit la preuve, jamais l'inverse). (2) les plages en gras (« votre installation », « votre porte de garage », « votre distributeur Hörmann en province de Liège ») sont gouvernées par content.marks.strong — la PROP que l'ancienne limite exigeait est exactement la voie prise. La `height` reste épinglée sur la boîte OBSERVÉE de 197 px, pour que `Bouton` garde son y=311 mesuré dans `inner` : sa justification d'origine (césure divergente d'une ligne sous l'état cuit en dur) tombe avec les limites, mais son retrait est un geste de géométrie qui exige un re-relevé — hors mandat T042, la valeur observée reste.",
-                          "content": {
-                            "prop": "texte",
-                            "marks": {
-                              "strong": "{font.weight.bold}"
-                            }
-                          },
-                      "tokens": {
-                        "color": "{color.noir}",
-                        "font-size": "{font.size.18}",
-                        "line-height": "{font.line-height.27}",
-                        "padding-top": "{space.4}",
-                        "padding-bottom": "{space.4}"
-                      },
-                      "layout": {
-                        "width": "fill"
-                      },
-                          "declared": {
-                            "white-space": "pre-line"
-                          }
-                        },
-                        "Bouton": {
-                          "component": {
-                            "id": "ds.button",
-                            "props": {
-                              "children": "Demander de l’aide",
-                              "iconRight": true
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "imgGroup": {
-                  "description": "Colonne image Fill (FRAME Figma 2169:5846, 637×561 à la référence owner du 2026-08-11). `ImgGroupBackground` couvre toute la colonne en (0,0) ; `img` reste posé en (3,57), haut de 504 px, avec un inset droit de 78 px.",
-              "layout": {
-                "display": "flex",
                 "direction": "row",
                 "justify": "start",
                 "align": "end",
-                "grow": true,
-                "width": "fill"
+                "width": "fill",
+                "grow": true
               },
               "tokens": {
-                "height": "{size.sav.img-group-h}",
-                "padding-left": "{space.3}",
-                "padding-right": "{size.sav.image-right-inset}"
+                "padding-left": "{space.24}",
+                "padding-right": "{space.24}",
+                "height": "{size.sav.img-group-h-compact}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "desktop": {
+                    "padding-left": "{space.0}",
+                    "padding-right": "{space.0}",
+                    "height": "{size.sav.img-group-h-desktop}"
+                  },
+                  "wide": {
+                    "padding-left": "{space.3}",
+                    "padding-right": "{size.sav.image-right-inset}",
+                    "height": "{size.sav.img-group-h}"
+                  }
+                }
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "parts": {
+                "ImgGroupBackground": {
+                  "description": "Light-blue plane covering the whole image column in every variant.",
+                  "tokens": {
+                    "background-color": "{color.bleu-clair}"
+                  },
+                  "declared": {
+                    "position": "absolute",
+                    "top": "0",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0"
+                  }
+                },
+                "img": {
+                  "description": "Technician photo plane (IMAGE paint on the canvas, imageRef supplied by code). 320 tall on Mobile/Tablette, 504 on Desktop/Wide (size.sav.img-h, bound on the canvas). Image paint scaleMode read on the set (2026-09-02): FIT on Mobile/Tablette/Wide (= object-fit contain, carried), CROP with a custom transform on Desktop — no CSS spelling of a Figma crop transform: the Odoo projection keeps contain (measured closer than cover: 11.6 % vs 14.7 % at 1200), a named deviation. The background plane carries an image transform in every variant too (custom framing of the house photo): not carried, named.",
+                  "element": "img",
+                  "attrs": {
+                    "src": "{imageUrl}",
+                    "alt": "{imageAlt}"
+                  },
+                  "layout": {
+                    "width": "fill",
+                    "grow": true
+                  },
+                  "tokens": {
+                    "height": "{size.sav.img-h-compact}"
+                  },
+                  "tokensByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "desktop": {
+                        "height": "{size.sav.img-h}"
+                      },
+                      "wide": {
+                        "height": "{size.sav.img-h}"
+                      }
+                    }
+                  },
+                  "declared": {
+                    "position": "relative",
+                    "object-fit": "contain"
+                  }
+                }
+              }
+            },
+            "wrapper": {
+              "description": "White text card. Paddings by presentation: 48/24/24/24 on Mobile/Tablette, 48 all round on Desktop, 48/47/0/48 on Wide (the pre-031 master's values, space.47 included). Height: hug on Mobile/Tablette, 505 on Desktop, 561 on Wide. Shares the Desktop/Wide row with imgGroup (both FILL on the canvas: 503/407 at 1200, 651/637 at 1728 — the canvas split is not equal and not expressible without a hand-typed basis; the code side splits the free space equally, a named deviation measured on the 1200 planche).",
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "start",
+                "width": "fill",
+                "grow": true
+              },
+              "tokens": {
+                "padding-top": "{space.48}",
+                "padding-right": "{space.24}",
+                "padding-bottom": "{space.24}",
+                "padding-left": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "desktop": {
+                    "padding-right": "{space.48}",
+                    "padding-bottom": "{space.48}",
+                    "padding-left": "{space.48}",
+                    "height": "{size.sav.wrapper-h-desktop}"
+                  },
+                  "wide": {
+                    "padding-right": "{space.47}",
+                    "padding-bottom": "{space.0}",
+                    "padding-left": "{space.48}",
+                    "height": "{size.sav.wrapper-h}"
+                  }
+                }
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "parts": {
+                "WrapperBackground": {
+                  "description": "White plane behind the text card, covering the whole card in every variant (342×468, 738×324, 503×505, 651×561 = the wrapper's box).",
+                  "tokens": {
+                    "background-color": "{color.blanc}"
+                  },
+                  "declared": {
+                    "position": "absolute",
+                    "top": "0",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0"
+                  }
+                },
+                "inner": {
+                  "description": "Text stack, gap 32. Children FILL on Mobile/Tablette (the CTA spans the card), the CTA hugs on Desktop/Wide (279×54, 272×54).",
+                  "layout": {
+                    "direction": "column",
+                    "justify": "start",
+                    "align": "stretch",
+                    "width": "fill",
+                    "grow": true
+                  },
+                  "layoutByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "desktop": {
+                        "align": "start"
+                      },
+                      "wide": {
+                        "align": "start"
+                      }
+                    }
+                  },
+                  "tokens": {
+                    "gap": "{space.32}"
                   },
                   "declared": {
                     "position": "relative"
                   },
                   "parts": {
-                "ImgGroupBackground": {
-                      "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 637×561 en (0,0) à la référence owner du 2026-08-11). Absolu et Fill derrière la photo, il couvre désormais toute la hauteur de `imgGroup`. `left: 0` l'épingle au bord gauche de la colonne (même idiome d'inset que la part `background` de la section, `top/right/left: 0`) : sans lui, le plan absolu retombait à sa position de flux — après le padding-left de la colonne (token space.3) sous `justify-content: flex-start` — et laissait un liseré d'~3px à gauche où le fond derrière transparaissait (mesuré au rendu le 2026-08-23, blanc 132→778 · rouge 779→781 · bleu 782→1421 ; fermé par `left:0` : blanc 132→778 · bleu 779→1418). L'ancien `align-self: flex-start` est inerte sur un abspos, conservé sans effet.",
-                  "tokens": {
-                    "background-color": "{color.bleu-clair}",
-                    "height": "{size.sav.img-group-background-h}"
-                  },
-                  "layout": {
-                    "width": "fill"
-                  },
-                      "declared": {
-                        "position": "absolute",
-                        "align-self": "flex-start",
-                        "left": "0"
+                    "SectionHeader": {
+                      "description": "Drawn as a plain FRAME in every 031 variant (not an instance of the SectionHeader set — 1.4.1 composed ds.section-header; source gap named in the journal). Its eyebrow « Plus de 50 ans d'expérience » is drawn collapsed to a 1px-wide box in every variant (hidden by squeeze, 1.4.1: afficherAccroche=false): NOT carried.",
+                      "layout": {
+                        "direction": "column",
+                        "justify": "start",
+                        "align": "center",
+                        "width": "fill"
+                      },
+                      "tokens": {
+                        "gap": "{space.8}"
+                      },
+                      "parts": {
+                        "Titre": {
+                          "description": "Rides the responsive text style H2: size 24/24/32/40 and line-height 30/30/40/50 by viewport mode come from typography.h2.* (tokens/modes/viewport.*), weight SemiBold.",
+                          "layout": {
+                            "width": "fill"
+                          },
+                          "content": {
+                            "prop": "titre"
+                          },
+                          "tokens": {
+                            "color": "{color.noir-bleute}",
+                            "font-family": "{typography.h2.family}",
+                            "font-size": "{typography.h2.size}",
+                            "font-weight": "{typography.h2.weight}",
+                            "line-height": "{typography.h2.line-height}"
+                          },
+                          "declared": {
+                            "text-align": "left"
+                          }
+                        }
                       }
                     },
-                    "img": {
-                      "description": "Plan photo dans img-group (RECTANGLE Figma 2108:3098, 563×504 en (3,57) de `img-group`). Son `fills[0]` est un paint IMAGE, `scaleMode` FIT, `imageRef` 429c615cb090b3aa0800188acda4bc59cc6445b0 — même LIMITE NOMMÉE A5 que le fond de section : l'`imageRef` est consigné, jamais lié. `object-fit: contain` est l'orthographe CSS du `scaleMode` FIT observé. `position: relative` le remet dans le plan de peinture de `ImgGroupBackground`, où l'ordre du DOM le fait peindre AU-DESSUS.",
-                      "element": "img",
-                      "attrs": {
-                        "src": "{imageUrl}",
-                        "alt": "{imageAlt}"
+                    "vousRencontrezUnProblmeA": {
+                      "description": "The long paragraph. Rides the responsive body recipe: 16/24 on Mobile/Tablette, 18/27 on Desktop/Wide = typography.body.size / line-height (tokens/modes/viewport.*); base weight read per range on the canvas (2026-09-02): Regular on Mobile/Tablette, Medium on Desktop/Wide = typography.body.weight (viewport-varying); bold ranges via marks.strong; `white-space: pre-line` renders the rich prop's line break. Vertical padding 4.",
+                      "layout": {
+                        "width": "fill"
                       },
-                  "tokens": {
-                    "height": "{size.sav.img-h}"
-                  },
-                  "layout": {
-                    "width": "fill"
-                  },
+                      "content": {
+                        "prop": "texte",
+                        "marks": {
+                          "strong": "{font.weight.bold}"
+                        }
+                      },
+                      "tokens": {
+                        "color": "{color.noir}",
+                        "font-size": "{typography.body.size}",
+                        "font-weight": "{typography.body.weight}",
+                        "line-height": "{typography.body.line-height}",
+                        "padding-top": "{space.4}",
+                        "padding-bottom": "{space.4}"
+                      },
                       "declared": {
-                        "position": "relative",
-                        "object-fit": "contain"
+                        "white-space": "pre-line"
+                      }
+                    },
+                    "Bouton": {
+                      "description": "CTA « Demander de l'aide », ds.button default. The 031 set draws it WITHOUT icons in every variant (Icone droite = false; 1.4.1 carried iconRight true from the pre-031 master). FILL width on Mobile/Tablette, drawn FIXED 279px wide on Desktop (size.sav.cta-w-desktop, minted from-dump), hug on Wide (272) — an instance part carries no per-mode channel: the Odoo projection stretches it under the desktop breakpoint and pins the 279 on Desktop, two named code-only facts.",
+                      "component": {
+                        "id": "ds.button",
+                        "props": {
+                          "children": "Demander de l'aide",
+                          "iconRight": false
+                        }
                       }
                     }
                   }
@@ -340,19 +478,15 @@
             }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "gap": "{space.10}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2",
-      "nodeId": "2108:3105",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "55d2731a22907512ac83a63499f969e0bd2bab36",
+      "nodeId": "2693:20992",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/SAV",

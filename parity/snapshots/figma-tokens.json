@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1787512230131,
+  "extractedAt": 1788353692568,
   "collections": [
     {
       "name": "Primitives",
@@ -1826,6 +1826,97 @@
           "values": {
             "Value": 78
           }
+        },
+        {
+          "name": "space/56",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT",
+            "GAP"
+          ],
+          "codeSyntax": "var(--space-56)",
+          "values": {
+            "Value": 56
+          }
+        },
+        {
+          "name": "space/288",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT",
+            "GAP"
+          ],
+          "codeSyntax": "var(--space-288)",
+          "values": {
+            "Value": 288
+          }
+        },
+        {
+          "name": "space/418",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT",
+            "GAP"
+          ],
+          "codeSyntax": "var(--space-418)",
+          "values": {
+            "Value": 418
+          }
+        },
+        {
+          "name": "font/line-height/18",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--font-line-height-18)",
+          "values": {
+            "Value": 18
+          }
+        },
+        {
+          "name": "size/carte-reassurance/photo-h/192",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-carte-reassurance-photo-h-192)",
+          "values": {
+            "Value": 192
+          }
+        },
+        {
+          "name": "size/carte-reassurance/photo-h/240",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-carte-reassurance-photo-h-240)",
+          "values": {
+            "Value": 240
+          }
+        },
+        {
+          "name": "size/carte-reassurance/photo-h/364",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-carte-reassurance-photo-h-364)",
+          "values": {
+            "Value": 364
+          }
+        },
+        {
+          "name": "size/hero-video/root-compact",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-hero-video-root-compact)",
+          "values": {
+            "Value": 746
+          }
         }
       ]
     },
@@ -2625,6 +2716,556 @@
           "codeSyntax": "var(--typography-note-de-champ-weight)",
           "values": {
             "Light": "{font/weight/regular}"
+          }
+        },
+        {
+          "name": "typography/h1/family",
+          "type": "STRING",
+          "scopes": [
+            "FONT_FAMILY"
+          ],
+          "codeSyntax": "var(--typography-h1-family)",
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/h1/weight",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-h1-weight)",
+          "values": {
+            "Light": "{font/weight/semibold}"
+          }
+        },
+        {
+          "name": "typography/h2/family",
+          "type": "STRING",
+          "scopes": [
+            "FONT_FAMILY"
+          ],
+          "codeSyntax": "var(--typography-h2-family)",
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/h2/weight",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-h2-weight)",
+          "values": {
+            "Light": "{font/weight/semibold}"
+          }
+        },
+        {
+          "name": "typography/h3/family",
+          "type": "STRING",
+          "scopes": [
+            "FONT_FAMILY"
+          ],
+          "codeSyntax": "var(--typography-h3-family)",
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/h4/family",
+          "type": "STRING",
+          "scopes": [
+            "FONT_FAMILY"
+          ],
+          "codeSyntax": "var(--typography-h4-family)",
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/h4/weight",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-h4-weight)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Responsive",
+      "modes": [
+        "Mobile",
+        "Tablette",
+        "Desktop",
+        "Wide"
+      ],
+      "variables": [
+        {
+          "name": "typography/h1/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 32,
+            "Tablette": 32,
+            "Desktop": 40,
+            "Wide": 54
+          }
+        },
+        {
+          "name": "typography/h1/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 40,
+            "Tablette": 40,
+            "Desktop": 50,
+            "Wide": 68
+          }
+        },
+        {
+          "name": "typography/button/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 16,
+            "Desktop": 16,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/h3/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 20,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 32
+          }
+        },
+        {
+          "name": "typography/h3/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 25,
+            "Tablette": 30,
+            "Desktop": 30,
+            "Wide": 40
+          }
+        },
+        {
+          "name": "typography/h3/weight",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": "SemiBold",
+            "Tablette": "Medium",
+            "Desktop": "Medium",
+            "Wide": "Medium"
+          }
+        },
+        {
+          "name": "spacing/card-categorie/pad-h",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 32,
+            "Desktop": 32,
+            "Wide": 32
+          }
+        },
+        {
+          "name": "typography/h2/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 32,
+            "Wide": 40
+          }
+        },
+        {
+          "name": "typography/h2/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 30,
+            "Tablette": 30,
+            "Desktop": 40,
+            "Wide": 50
+          }
+        },
+        {
+          "name": "typography/body/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 16,
+            "Desktop": 18,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/body/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 27,
+            "Wide": 27
+          }
+        },
+        {
+          "name": "typography/card-desc/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 18,
+            "Desktop": 18,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/card-desc/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 27,
+            "Desktop": 27,
+            "Wide": 27
+          }
+        },
+        {
+          "name": "typography/h4/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 20,
+            "Tablette": 20,
+            "Desktop": 24,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "typography/h4/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 25,
+            "Tablette": 25,
+            "Desktop": 30,
+            "Wide": 30
+          }
+        },
+        {
+          "name": "typography/overline/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 14,
+            "Tablette": 14,
+            "Desktop": 16,
+            "Wide": 20
+          }
+        },
+        {
+          "name": "typography/overline/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 20,
+            "Tablette": 20,
+            "Desktop": 20,
+            "Wide": 25
+          }
+        },
+        {
+          "name": "typography/overline/weight",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": "Regular",
+            "Tablette": "Regular",
+            "Desktop": "Medium",
+            "Wide": "Medium"
+          }
+        },
+        {
+          "name": "spacing/carte-reassurance/photo-h",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 192,
+            "Tablette": 240,
+            "Desktop": 364,
+            "Wide": 364
+          }
+        },
+        {
+          "name": "spacing/carte-reassurance/gap",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "spacing/carte-reassurance/pad-bas",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "typography/review/auteur-size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 16,
+            "Desktop": 16,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/review/auteur-line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 20,
+            "Tablette": 20,
+            "Desktop": 20,
+            "Wide": 27
+          }
+        },
+        {
+          "name": "typography/review/date-size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 14,
+            "Tablette": 14,
+            "Desktop": 14,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/review/date-line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 27
+          }
+        },
+        {
+          "name": "typography/review/temoignage-size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 16,
+            "Desktop": 14,
+            "Wide": 16
+          }
+        },
+        {
+          "name": "typography/review/temoignage-line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 20,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "typography/review/lien-size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 14,
+            "Tablette": 14,
+            "Desktop": 14,
+            "Wide": 16
+          }
+        },
+        {
+          "name": "typography/review/lien-line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "typography/review/initiale-size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 14,
+            "Tablette": 14,
+            "Desktop": 18,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/review/initiale-line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 24,
+            "Desktop": 18,
+            "Wide": 18
+          }
+        },
+        {
+          "name": "typography/review/date-weight",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": "Regular",
+            "Tablette": "Regular",
+            "Desktop": "Regular",
+            "Wide": "Medium"
+          }
+        },
+        {
+          "name": "spacing/review/gap",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 16,
+            "Tablette": 16,
+            "Desktop": 14,
+            "Wide": 14
           }
         }
       ]

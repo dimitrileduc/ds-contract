@@ -26,6 +26,7 @@ import { isDumpSet, type DumpEffect, type DumpNode, type DumpPaint, type DumpPre
 import type { TokenCorpus } from './token-corpus.js';
 import { capturedTokensFromDump } from './captured-tokens.js';
 import { mintTokens, type MintAxis, type MintObservation, type MintedEntry } from './mint-tokens.js';
+import { HAS_LINE_SEPARATOR } from './emit-react.js';
 
 // ---------------------------------------------------------------------------
 // Shared spellings
@@ -1911,6 +1912,29 @@ function invertTextTokens(m: Merged, ctx: Ctx, where: string, byProp: ByPropColl
   const textOcc = m.occ.filter((o) => o.node.text !== undefined);
   const distinctSizes = [...new Set(textOcc.map((o) => o.node.text!.fontSize))];
   const distinctWeights = [...new Set(textOcc.map((o) => o.node.text!.fontStyle ?? 'Medium'))];
+  // VIEWPORT DIMENSION (spec 031): a text riding ONE named style whose derived
+  // identity is RESPONSIVE (tokens/semantic `figmaTextStyle.responsive`) varies
+  // across the viewport axis BY DESIGN — on the canvas the style's size and
+  // line-height are bound to mode-varying variables (H1 = 32/32/40/54). That is
+  // not the uniformity failure below: the identity IS the style, and the
+  // per-mode values are the tokens' job (tokens/modes/viewport.*), so the
+  // proposal binds the style's tokens instead of minting one literal per
+  // variant. What this does NOT do, named: verify each variant's rendered
+  // value against its mode — the corpus carries the mobile recipe only.
+  const riddenStyles = [...new Set(textOcc.map((o) => o.node.text!.style).filter((s): s is string => typeof s === 'string'))];
+  const riddenStyle = riddenStyles.length === 1 && textOcc.every((o) => o.node.text!.style === riddenStyles[0])
+    ? ctx.corpus.textStyleByName.get(riddenStyles[0])
+    : undefined;
+  if (riddenStyle?.responsive) {
+    tokens['font-size'] = `{${riddenStyle.tokenPath}}`;
+    const base = riddenStyle.tokenPath.replace(/\.size$/, '');
+    if (riddenStyle.weightPath && riddenStyle.fontStyle !== 'Medium') tokens['font-weight'] = `{${riddenStyle.weightPath}}`;
+    if (ctx.corpus.has(`${base}.line-height`)) tokens['line-height'] = `{${base}.line-height}`;
+    ctx.notes.push(
+      `${where}: rides responsive text style "${riddenStyle.name}" (fontSize ${distinctSizes.join('/')} across variants) — font-size/line-height${tokens['font-weight'] ? '/font-weight' : ''} bound to its viewport-varying tokens (${base}.*); per-mode values live in tokens/modes/viewport.* and are not verified per variant here (review)`,
+    );
+    return tokens;
+  }
   if (distinctSizes.length > 1 || distinctWeights.length > 1) {
     ctx.notes.push(
       `${where}: typography varies across variants (fontSize ${distinctSizes.join('/')}, weight ${distinctWeights.join('/')}) — no single text-style identity adopted (the first variant's value would be wrong for the others); font-size ${ctx.mint ? 'minted per variant where axis-correlated' : 'not proposed without minting'}${distinctWeights.length > 1 ? '; font-weight minted per variant through the weight-name table where every name maps (unknown names stay NAMED)' : ''} (review)`,
@@ -4610,6 +4634,26 @@ export function proposeFromDump(
     }
   }
   for (const t of ctx.textProps) {
+    // Owner rule (2026-09-02, Odoo hero pilot): a text drawn WITH a line
+    // separator is RICH — the break is a governed segment fact, and a plain
+    // `text` prop cannot carry one. Figma spells the separator three ways
+    // (\n, \r, U+2028); the segment keeps the source bytes, emission
+    // normalizes (core/emit-react normalizeLineSeparators).
+    if (HAS_LINE_SEPARATOR.test(t.default)) {
+      props.push({
+        name: t.name,
+        type: 'rich-text',
+        default: [{ text: t.default }],
+        bindings: {
+          figma: { kind: 'TEXT', property: t.property },
+          code: { prop: t.name },
+        },
+      });
+      ctx.notes.push(
+        `prop \`${t.name}\`: the drawn text carries a line separator — proposed as rich-text (one segment) so the break is governed; declare \`white-space: pre-line\` on the part that renders it (review)`,
+      );
+      continue;
+    }
     props.push({
       name: t.name,
       type: 'text',

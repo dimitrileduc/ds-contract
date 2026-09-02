@@ -1,0 +1,19 @@
+{
+  "url": "/sav-test",
+  "name": "SAV test",
+  "key": "sav_test",
+  "header_overlay": false,
+  "_note": "Page de MESURE de la vague 031 (2026-09-02) : le bloc SAV seul, même contenu que la home, pleine largeur (le set 031 porte son propre padding 24/48/56/89). Sert à comparer le bloc Odoo aux 4 planches 031.",
+  "sections": [
+    {
+      "component": "s_pqr_sav",
+      "images": {
+        "sav-background": "sav_bg",
+        "sav-photo": "sav_tech"
+      },
+      "add_class": [
+        "s_pqr_bleed"
+      ]
+    }
+  ]
+}

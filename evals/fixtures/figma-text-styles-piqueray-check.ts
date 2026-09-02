@@ -1,5 +1,6 @@
 /**
- * Piqueray typography must compile its 18 semantic recipes to the existing
+ * Piqueray typography must compile its semantic recipes (18 historical + the 4
+ * responsive styles of spec 031, marker-migrated on the canvas on 2026-09-02) to the existing
  * Figma Text Styles. Plain Hero/HeroVideo text rides an exact named style;
  * governed rich text keeps native character ranges and no whole-node style.
  */
@@ -68,7 +69,7 @@ const comparableStyle = (style: Record<string, any>) => ({
 const actualCatalogue = styles.map(comparableStyle).sort((a, b) => a.name.localeCompare(b.name));
 const expectedCatalogue = expectedStyles.map(comparableStyle).sort((a, b) => a.name.localeCompare(b.name));
 if (JSON.stringify(actualCatalogue) !== JSON.stringify(expectedCatalogue)) {
-  fail(`18-style catalogue differs from the independent historical fixture:\nactual=${JSON.stringify(actualCatalogue)}\nexpected=${JSON.stringify(expectedCatalogue)}`);
+  fail(`${expectedStyles.length}-style catalogue differs from the independent historical fixture:\nactual=${JSON.stringify(actualCatalogue)}\nexpected=${JSON.stringify(expectedCatalogue)}`);
 }
 if (styles.some((style) => style.requiresExistingMarker !== true)) {
   fail('every Piqueray style must require its pre-existing historical identity marker');
@@ -92,17 +93,24 @@ const nodes = (id: string): NodeSpec[] => {
 const named = (id: string, name: string) => nodes(id).filter((node) => node.name === name);
 
 const heroVideoTitle = named('ds.hero-video', 'Accroche');
-if (heroVideoTitle.length !== 1 || heroVideoTitle[0].textStyle !== 'Titre Hero vidéo') {
-  fail(`HeroVideo.Accroche must ride Titre Hero vidéo, got ${JSON.stringify(heroVideoTitle)}`);
+// 2026-09-02 (Odoo hero pilot): ds.hero-video 2.0.0 rides the RESPONSIVE style H1
+// (typography.h1.*, spec 031), no longer the fixed « Titre Hero vidéo » 44/48.
+// Four presentation variants since 2.0.0 ⇒ four Accroche nodes, every one on H1.
+if (heroVideoTitle.length !== 4 || heroVideoTitle.some((node: any) => node.textStyle !== 'H1')) {
+  fail(`HeroVideo.Accroche must ride H1, got ${JSON.stringify(heroVideoTitle)}`);
 }
 
 const sectionAccroches = named('ds.section-header', 'Accroche');
 if (sectionAccroches.length === 0 || sectionAccroches.some((node) => node.textStyle !== 'Accroche')) {
   fail('every plain SectionHeader.Accroche must ride Accroche');
 }
+// 2026-09-02 (owner rule, Odoo hero pilot): a rich prop WITHOUT a strong segment
+// in its default (break-only rich text) keeps its named style; only bold
+// ranges drop the whole-node style. SectionHeader.titre defaults to one plain
+// segment ⇒ it rides its style again.
 const sectionTitles = named('ds.section-header', 'Titre');
-if (sectionTitles.length === 0 || sectionTitles.some((node) => node.textStyle !== undefined)) {
-  fail('SectionHeader.Titre is rich-text and must not receive a whole-node Text Style');
+if (sectionTitles.length === 0 || sectionTitles.some((node) => node.textStyle === undefined)) {
+  fail(`SectionHeader.Titre is break-only rich text and must ride a named Text Style, got ${JSON.stringify(sectionTitles.map((n: any) => n.textStyle))}`);
 }
 const heroSubtitles = named('ds.hero', 'sousTitre');
 if (heroSubtitles.length !== 1 || heroSubtitles[0].textStyle !== undefined || !heroSubtitles[0].richTextRanges?.length) {
@@ -122,7 +130,7 @@ const executeTokens = (figma: any) =>
   Function('figma', `return (async () => {\n${tokensScript}\n})()`)(figma);
 
 // Once a reviewed marker-only migration has attached identities, 01-tokens
-// preserves all 18 objects and its second run performs no creation.
+// preserves every seeded object and its second run performs no creation.
 const brownfield = createFigmaMock();
 seedHistoricalStyles(brownfield.figma);
 const idsBefore = (await brownfield.figma.getLocalTextStylesAsync()).map((style: any) => style.id);
@@ -132,7 +140,7 @@ if (firstApply.textStyles.created !== 0) {
 }
 const secondApply = await executeTokens(brownfield.figma);
 const after = await brownfield.figma.getLocalTextStylesAsync();
-if (secondApply.textStyles.created !== 0 || after.length !== 18) {
+if (secondApply.textStyles.created !== 0 || after.length !== expectedStyles.length) {
   fail(`second token apply must be a true style no-op, got ${JSON.stringify(secondApply.textStyles)} / ${after.length}`);
 }
 if (JSON.stringify(after.map((style: any) => style.id)) !== JSON.stringify(idsBefore)) {
@@ -191,6 +199,8 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // Style gouverné), relevés par l'audit du run
 // specs/component-repairs/review-card/run-001/audit.json. Ce compte les
 // dénombre, il ne les absout pas.
+// 2026-09-02 (pilote Odoo hero) : 51 -> 54 linked. ds.hero-video 2.0.0 a quatre
+// variantes Presentation : son titre (sur H1) est compté une fois par variante.
 // 2026-08-20 (spec 023) : 62 -> 65 linked, 15 -> 16 custom. Les deux contrats
 // gouvernés carte-categorie + categories-principales ajoutent quatre textes.
 // TROIS rident un Text Style gouverné (Titre 2 majuscules 40/Regular/UPPER pour
@@ -208,8 +218,8 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // décline plus ses variantes Hero/Moyen/Compact ni le CTA. Ces comptes attestent
 // donc l'API v3 locale, sans prétendre que le master Figma a déjà reçu la
 // mutation soumise au GO owner.
-if (linked.length !== 51 || custom.length !== 16 || rich.length !== 11) {
-  fail(`global gate expected 51 linked / 16 historical custom / 11 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+if (linked.length !== 54 || custom.length !== 16 || rich.length !== 11) {
+  fail(`global gate expected 54 linked / 16 historical custom / 11 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -223,4 +233,4 @@ if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 51 linked / 16 historical custom / 11 rich; second token apply preserves ids');
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 54 linked / 16 historical custom / 11 rich; second token apply preserves ids`);

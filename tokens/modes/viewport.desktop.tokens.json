@@ -1,0 +1,168 @@
+{
+  "$description": "Viewport mode DESKTOP — overrides applied from {breakpoint.desktop} (992px) upward. Mirrors the Figma collection « Responsive », mode Desktop (spec 031). Same token set as viewport.tablette and viewport.wide.",
+  "typography": {
+    "h1": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.40}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.50}"
+      }
+    },
+    "h2": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.32}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.40}"
+      }
+    },
+    "h3": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.24}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.medium}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.30}"
+      }
+    },
+    "h4": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.24}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.30}"
+      }
+    },
+    "body": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.18}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.27}"
+      },
+      "weight": {
+        "$value": "{font.weight.medium}"
+      }
+    },
+    "card-desc": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.18}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.27}"
+      }
+    },
+    "overline": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.medium}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.20}"
+      }
+    },
+    "button": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      }
+    },
+    "review": {
+      "auteur-size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "auteur-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.20}"
+      },
+      "date-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "date-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "date-weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.regular}"
+      },
+      "temoignage-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "temoignage-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.20}"
+      },
+      "lien-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "lien-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "initiale-size": {
+        "$type": "dimension",
+        "$value": "{font.size.18}"
+      },
+      "initiale-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.18}"
+      }
+    },
+    "libelle-bouton": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      }
+    }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "card-categorie": {
+      "pad-h": {
+        "$value": "{space.32}"
+      }
+    },
+    "carte-reassurance": {
+      "gap": {
+        "$value": "{space.24}"
+      },
+      "pad-bas": {
+        "$value": "{space.24}"
+      },
+      "photo-h": {
+        "$value": "{size.carte-reassurance.photo-h.364}"
+      }
+    },
+    "review": {
+      "gap": {
+        "$value": "{space.14}"
+      }
+    }
+  }
+}

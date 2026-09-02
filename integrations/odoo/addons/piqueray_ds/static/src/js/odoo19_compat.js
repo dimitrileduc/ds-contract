@@ -125,11 +125,15 @@ export function excludeNativeOptionsForRoots(rootSelectors) {
 /** Ferme la voie canvas des bitmaps Piqueray. Le média reste remplaçable par
  * nos actions gouvernées, mais les conteneurs natifs ReplaceMedia, ImageTool
  * (crop/filter/shape/format/transform) et alignement/style ne doivent jamais
- * s'appliquer à une image située sous une racine Piqueray. */
+ * s'appliquer à une image située sous une racine Piqueray — SAUF une image
+ * explicitement marquée data-pqr-native-image (photos de SAV, 2026-09-02). */
 export function excludeNativeImageOptionsForRoots(rootSelectors) {
     for (const Option of ODOO19_NATIVE_IMAGE_OPTIONS) {
         for (const rootSelector of rootSelectors) {
-            const exclusion = `${rootSelector} img`;
+            // 2026-09-02 (vague 031, décision owner) : une image portant data-pqr-native-image
+            // garde les outils natifs (ImageTool : crop / position / filtre) — le cadrage des
+            // photos est un fait de contenu que le contrat ne porte pas (transformation d'image Figma).
+            const exclusion = `${rootSelector} img:not([data-pqr-native-image])`;
             const actuel = Option.exclude || "";
             const exclusions = actuel.split(",").map((value) => value.trim()).filter(Boolean);
             if (!exclusions.includes(exclusion)) {

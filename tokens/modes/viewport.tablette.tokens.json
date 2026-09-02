@@ -1,0 +1,168 @@
+{
+  "$description": "Viewport mode TABLETTE — overrides applied from {breakpoint.tablette} (768px) upward. Mirrors the Figma collection « Responsive », mode Tablette (spec 031). Same token set as viewport.desktop and viewport.wide; the mobile values are the :root defaults in semantic.tokens.json.",
+  "typography": {
+    "h1": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.32}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.40}"
+      }
+    },
+    "h2": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.24}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.30}"
+      }
+    },
+    "h3": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.24}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.medium}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.30}"
+      }
+    },
+    "h4": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.20}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.25}"
+      }
+    },
+    "body": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "weight": {
+        "$value": "{font.weight.regular}"
+      }
+    },
+    "card-desc": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.18}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.27}"
+      }
+    },
+    "overline": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.regular}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.20}"
+      }
+    },
+    "button": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      }
+    },
+    "review": {
+      "auteur-size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "auteur-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.20}"
+      },
+      "date-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "date-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "date-weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.regular}"
+      },
+      "temoignage-size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "temoignage-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "lien-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "lien-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      },
+      "initiale-size": {
+        "$type": "dimension",
+        "$value": "{font.size.14}"
+      },
+      "initiale-line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      }
+    },
+    "libelle-bouton": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      }
+    }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "card-categorie": {
+      "pad-h": {
+        "$value": "{space.32}"
+      }
+    },
+    "carte-reassurance": {
+      "gap": {
+        "$value": "{space.24}"
+      },
+      "pad-bas": {
+        "$value": "{space.24}"
+      },
+      "photo-h": {
+        "$value": "{size.carte-reassurance.photo-h.240}"
+      }
+    },
+    "review": {
+      "gap": {
+        "$value": "{space.16}"
+      }
+    }
+  }
+}

@@ -805,9 +805,41 @@ function checkTokens(
   }
 }
 
+// ---------------------------------------------------------------------------
+// Viewport dimension (spec 031, 2026-09-02) — tokens/modes/viewport.<mode>.
+// Two consequences for this axis, both recorded and printed, never silent:
+//   · `breakpoint.*` primitives are consumed by the token build (inlined into
+//     `@media` conditions) and are NEVER Figma variables by design — a CSS
+//     media query cannot read a var(). Expecting them on the canvas would
+//     manufacture a permanent `behind`. Excluded by name.
+//   · a token that varies by viewport lives in the canvas collection
+//     « Responsive » (modes Mobile/Tablette/Desktop/Wide), not in `Semantic`:
+//     the mobile value is its :root default in semantic.tokens.json, the
+//     other modes come from the override files. Checked there, with the
+//     resolved literal — the canvas stores raw numbers/strings in that
+//     collection, tokens/ stores aliases into primitives.
+// ---------------------------------------------------------------------------
+const exclusions: string[] = [];
+const VIEWPORT_MODES: Array<[mode: string, file: string]> = [
+  ['Tablette', 'tokens/modes/viewport.tablette.tokens.json'],
+  ['Desktop', 'tokens/modes/viewport.desktop.tokens.json'],
+  ['Wide', 'tokens/modes/viewport.wide.tokens.json'],
+];
+const viewportModes = VIEWPORT_MODES.filter(([, f]) => existsSync(path.join(ROOT, f))).map(([mode, f]) => ({ mode, tokens: readTokens(f) }));
+const viewportPaths = new Set<string>(viewportModes.length > 0 ? viewportModes[0].tokens.keys() : []);
+// readTokens() flattens to SLASH paths (the canvas spelling) — so does every
+// filter below; aliases inside token VALUES keep their dot spelling.
+const breakpointPaths = [...primitives.keys()].filter((p) => p.startsWith('breakpoint/'));
+if (breakpointPaths.length > 0) {
+  exclusions.push(`Primitives: ${breakpointPaths.length} breakpoint.* token(s) not expected on the canvas — consumed by the token build as @media conditions, never variables (${breakpointPaths.join(', ')})`);
+}
+if (viewportPaths.size > 0) {
+  exclusions.push(`Semantic: ${viewportPaths.size} viewport-varying token(s) checked against collection "Responsive" instead (tokens/modes/viewport.*)`);
+}
+
 checkTokens(
   'Primitives',
-  [...primitives].map(([p, v]) => ({ path: p, perMode: { Value: v } })),
+  [...primitives].filter(([p]) => !p.startsWith('breakpoint/')).map(([p, v]) => ({ path: p, perMode: { Value: v } })),
 );
 // Brand collection: one mode per tokens/modes/brand.*.tokens.json file.
 const brandFiles = readdirSync(path.join(ROOT, 'tokens', 'modes'))
@@ -828,9 +860,41 @@ if (brandModeMaps.length > 0) {
   );
 }
 checkTokens('Semantic', [
-  ...[...semantic].map(([p, v]) => ({ path: p, perMode: { Light: v, Dark: v } })),
+  ...[...semantic].filter(([p]) => !viewportPaths.has(p)).map(([p, v]) => ({ path: p, perMode: { Light: v, Dark: v } })),
   ...[...light].map(([p, v]) => ({ path: p, perMode: { Light: v, Dark: dark.get(p) } })),
 ]);
+
+// Responsive collection: the canvas stores RESOLVED values (32, "SemiBold"),
+// tokens/ stores aliases into primitives ({font.size.32}, {font.weight.semibold}).
+// Compare literals: one alias hop into primitives, and font weights by their
+// Figma style name (600 ⟷ "SemiBold") — the same table the generator uses.
+if (viewportModes.length > 0) {
+  // The canvas spells STRING weight variables the way the 031 collection
+  // does — "SemiBold", no space (a Figma fontName.style is "Semi Bold";
+  // the variable is not). Compared verbatim: memeValeur is case-sensitive.
+  const WEIGHT_NAME: Record<string, string> = { '400': 'Regular', '500': 'Medium', '600': 'SemiBold', '700': 'Bold' };
+  const literal = (v: unknown): unknown => {
+    const alias = typeof v === 'string' ? v.match(/^\{([^}]+)\}$/) : null;
+    if (!alias) return v;
+    const key = alias[1].split('.').join('/'); // alias VALUES are dot paths; the maps are slash-keyed
+    return primitives.has(key) ? primitives.get(key) : semantic.has(key) ? semantic.get(key) : v;
+  };
+  const asFigma = (v: unknown, isWeight: boolean): unknown => {
+    const lit = literal(v);
+    if (isWeight) return WEIGHT_NAME[String(lit)] ?? String(lit).replace(/\s+/g, '').toLowerCase();
+    return lit;
+  };
+  checkTokens(
+    'Responsive',
+    [...viewportPaths].map((p) => {
+      // `typography/h3/weight` and `typography/review/date-weight` are both weights.
+      const isWeight = /(^|[/-])weight$/.test(p);
+      const perMode: Record<string, unknown> = { Mobile: asFigma(semantic.get(p), isWeight) };
+      for (const { mode, tokens } of viewportModes) perMode[mode] = asFigma(tokens.get(p), isWeight);
+      return { path: p, perMode };
+    }),
+  );
+}
 
 // ---------------------------------------------------------------------------
 // 4 · icon registry ⟷ code assets ⟷ canvas masters (002-governed-icons-button)
@@ -1015,6 +1079,11 @@ writeFileSync(
 if (namingBridges.length > 0) {
   console.log('⚠ Figma naming bridged (the file does not use this repo\'s collection/mode names):');
   for (const b of namingBridges) console.log(`    · ${b}`);
+  console.log('');
+}
+if (exclusions.length > 0) {
+  console.log('ℹ Token expectations rerouted or excluded by design (viewport dimension, spec 031):');
+  for (const e of exclusions) console.log(`    · ${e}`);
   console.log('');
 }
 

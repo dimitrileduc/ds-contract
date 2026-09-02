@@ -135,8 +135,72 @@ for (const [name, tokens] of brands) {
 
 const base = new Map([...primitives, ...brandDefault, ...semantic, ...light]);
 
+// ---------------------------------------------------------------------------
+// Viewport dimension (spec 031 → Odoo hero pilot, 2026-09-02) — a THIRD mode
+// axis, orthogonal to theme and brand: the Figma collection « Responsive »
+// (modes Mobile / Tablette / Desktop / Wide) mirrored in tokens/.
+//
+// Shape: MOBILE is the default and lives in semantic.tokens.json like any
+// other decision (mobile-first: it lands in :root, so every reader of the
+// inventory sees the responsive tokens without knowing about modes — exactly
+// how `light` works for the theme axis). The three other modes are OVERRIDE
+// files, tokens/modes/viewport.<mode>.tokens.json, read only here (CSS) and
+// by whoever projects the collection. Each override compiles to ONE
+// `@media (min-width: <breakpoint>)` block appended to the same sheet, so
+// import sites never change.
+//
+// The thresholds are tokens (`breakpoint.<mode>`, primitives) consumed HERE
+// and inlined into the media condition: CSS cannot read a var() inside
+// `@media`, so they are never emitted as custom properties — that is a
+// language limit, named, not an omission.
+//
+// Integrity, refused by name: a mode file is required for every mode; the
+// three files must define IDENTICAL token sets (a token varying in one mode
+// but absent from another is drift inside the source of truth); every
+// override must have a :root default (an override without a default would
+// only exist above its breakpoint — unreachable on mobile, silently).
+// ---------------------------------------------------------------------------
+const VIEWPORT_MODES = ['tablette', 'desktop', 'wide'];
+const viewport = new Map(
+  VIEWPORT_MODES.map((mode) => {
+    const file = `tokens/modes/viewport.${mode}.tokens.json`;
+    if (!existsSync(file)) throw new Error(`${file} is required (viewport mode "${mode}")`);
+    const bp = primitives.get(`breakpoint.${mode}`);
+    if (typeof bp !== 'string' || !/^\d+px$/.test(bp)) {
+      throw new Error(`Token "breakpoint.${mode}" must exist in primitives as a px dimension (got ${JSON.stringify(bp)})`);
+    }
+    return [mode, { tokens: flatten(read(file)), minWidth: bp }];
+  }),
+);
+const viewportFirst = viewport.get(VIEWPORT_MODES[0]).tokens;
+for (const [mode, { tokens }] of viewport) {
+  for (const path of viewportFirst.keys()) {
+    if (!tokens.has(path)) throw new Error(`Token "${path}" exists in viewport mode "${VIEWPORT_MODES[0]}" but not "${mode}"`);
+  }
+  for (const path of tokens.keys()) {
+    if (!viewportFirst.has(path)) throw new Error(`Token "${path}" exists in viewport mode "${mode}" but not "${VIEWPORT_MODES[0]}"`);
+    if (!base.has(path)) throw new Error(`Viewport token "${path}" (mode "${mode}") has no :root default — add the mobile value to semantic.tokens.json`);
+  }
+}
+
+/** One `@media (min-width)` block per viewport mode, in ascending order so the
+ *  cascade resolves the widest matching mode. Same names, same var() chains,
+ *  same optional prefix as the sheet it is appended to. */
+function emitViewportBlocks(resolvable, prefix = '') {
+  const blocks = [];
+  for (const [mode, { tokens, minWidth }] of viewport) {
+    const lines = [`/* viewport mode "${mode}" — from {breakpoint.${mode}} = ${minWidth} */`, `@media (min-width: ${minWidth}) {`, '  :root {'];
+    for (const [path, value] of tokens) {
+      lines.push(`    ${cssName(path, prefix)}: ${cssValue(path, value, resolvable, prefix)};`);
+    }
+    lines.push('  }', '}', '');
+    blocks.push(lines.join('\n'));
+  }
+  return blocks.join('\n');
+}
+
 mkdirSync('src/styles', { recursive: true });
-writeFileSync('src/styles/tokens.css', emit(':root', base, base));
+writeFileSync('src/styles/tokens.css', emit(':root', base, base) + '\n' + emitViewportBlocks(base));
 writeFileSync(
   'src/styles/tokens.dark.css',
   emit('[data-theme="dark"]', dark, new Map([...base, ...dark])),
@@ -178,11 +242,15 @@ writeFileSync(
     '(--primary, --body-bg, --base-100…900, --header-font-size, …).',
     'Carries the vocabulary IN FULL — not only what the three replicated',
     'components consume — so a fourth component needs no pipeline change.',
-  ]),
+    '',
+    'Viewport dimension (spec 031): the @media blocks below carry the same',
+    'responsive overrides as src/styles/tokens.css, prefixed the same way.',
+  ]) + '\n' + emitViewportBlocks(base, 'pqr-'),
 );
 
 console.log(
   `✔ Tokens built: ${base.size} custom properties (:root), ${dark.size} dark-mode overrides, ` +
     `${brands.size} brand mode(s): ${[...brands.keys()].join(', ')}; ` +
+    `${viewportFirst.size} viewport overrides × ${viewport.size} mode(s): ${[...viewport].map(([m, v]) => `${m}≥${v.minWidth}`).join(', ')}; ` +
     `+ ${base.size} prefixed (--pqr-) for the spec-018 Odoo module`,
 );

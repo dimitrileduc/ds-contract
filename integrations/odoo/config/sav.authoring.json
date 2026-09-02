@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.sav",
-    "version": "1.4.1"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,29 +35,47 @@
   ],
   "controls": [
     {
-      "decisionId": "sav-ctl-sav-titre",
+      "decisionId": "sav-ctl-presentation",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "sav-ctl-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sav",
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "titre"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_sav [data-pqr-part=\"sav-title\"]",
+      "label": "Titre"
     },
     {
-      "decisionId": "sav-ctl-sav-texte",
+      "decisionId": "sav-ctl-texte",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -65,17 +83,17 @@
       },
       "verdict": "controlled",
       "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_sav [data-pqr-part=\"section-header-eyebrow\"]",
-      "label": "texte"
+      "targetSelector": ".s_pqr_sav [data-pqr-part=\"sav-text\"]",
+      "label": "Texte"
     },
     {
-      "decisionId": "sav-ctl-sav-backgroun-rl",
+      "decisionId": "sav-ctl-background-url",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -85,13 +103,13 @@
       "mechanism": "plain-text"
     },
     {
-      "decisionId": "sav-ctl-sav-backgroun-lt",
+      "decisionId": "sav-ctl-background-alt",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -101,13 +119,13 @@
       "mechanism": "plain-text"
     },
     {
-      "decisionId": "sav-ctl-sav-imag-rl",
+      "decisionId": "sav-ctl-image-url",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -117,13 +135,13 @@
       "mechanism": "plain-text"
     },
     {
-      "decisionId": "sav-ctl-sav-imag-lt",
+      "decisionId": "sav-ctl-image-alt",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -133,19 +151,19 @@
       "mechanism": "plain-text"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-variant",
+      "decisionId": "sav-ctl-bouton-variant",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -156,19 +174,19 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-children",
+      "decisionId": "sav-ctl-bouton-children",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -179,19 +197,19 @@
       "mechanism": "plain-text"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-ico-eft",
+      "decisionId": "sav-ctl-bouton-icon-left",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -202,19 +220,19 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-ico-ight",
+      "decisionId": "sav-ctl-bouton-icon-right",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -225,19 +243,19 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-ico-ef-lyph",
+      "decisionId": "sav-ctl-bouton-icon-left-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -248,19 +266,19 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "sav-ctl-sav-bouton-button-ico-igh-lyph",
+      "decisionId": "sav-ctl-bouton-icon-right-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -269,113 +287,17 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
-    },
-    {
-      "decisionId": "sav-ctl-sav-sectio-eader-section-header-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_sav [data-pqr-part=\"sav-title\"]",
-      "label": "titre"
-    },
-    {
-      "decisionId": "sav-ctl-sav-sectio-eader-section-header-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_sav [data-pqr-part=\"section-header-eyebrow\"]",
-      "label": "accroche"
-    },
-    {
-      "decisionId": "sav-ctl-sav-sectio-eader-section-header-affiche-ccroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "afficherAccroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "sav-ctl-sav-sectio-eader-section-header-alignement",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "alignement"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
     }
   ],
   "parts": [
     {
-      "decisionId": "sav-part-sav-root",
+      "decisionId": "sav-part-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
@@ -385,111 +307,86 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root\"]",
+      "selector": ".s_pqr_sav",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section",
+      "decisionId": "sav-part-background",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-root-section-background",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "section",
           "background"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-background\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-background\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row",
+      "decisionId": "sav-part-row",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-row\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-im-roup",
+      "decisionId": "sav-part-img-group",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "imgGroup"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-im-roup\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-img-group\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-im-roup-im-rou-ackground",
+      "decisionId": "sav-part-img-group-background",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "imgGroup",
           "ImgGroupBackground"
@@ -497,70 +394,67 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-im-roup-im-rou-ackground\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-img-group-background\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-im-roup-img",
+      "decisionId": "sav-part-img",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "imgGroup",
           "img"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-im-roup-img\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-photo\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-wrapper",
+      "decisionId": "sav-part-wrapper",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "wrapper"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-wrapper\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-wrapper-wrappe-ackground",
+      "decisionId": "sav-part-wrapper-background",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "wrapper",
           "WrapperBackground"
@@ -568,23 +462,22 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper-wrappe-ackground\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-wrapper-background\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-wrapper-inner",
+      "decisionId": "sav-part-inner",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
           "row",
           "wrapper",
           "inner"
@@ -592,23 +485,98 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper-inner\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-inner\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-wrapper-inner-bouton",
+      "decisionId": "sav-part-section-header",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "section",
+          "row",
+          "wrapper",
+          "inner",
+          "SectionHeader"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-section-header\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sav-part-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sav",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "row",
+          "wrapper",
+          "inner",
+          "SectionHeader",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sav-part-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sav",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "row",
+          "wrapper",
+          "inner",
+          "vousRencontrezUnProblmeA"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_sav [data-pqr-part=\"sav-text\"]",
+      "allowedMarks": [
+        "strong",
+        "line-break"
+      ]
+    },
+    {
+      "decisionId": "sav-part-bouton",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sav",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
           "row",
           "wrapper",
           "inner",
@@ -617,73 +585,23 @@
       },
       "verdict": "not-editable",
       "contentKind": "component",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper-inner-bouton\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-root-section-row-wrapper-inner-sectio-eader",
+      "decisionId": "sav-button-part-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "section",
-          "row",
-          "wrapper",
-          "inner",
-          "SectionHeader"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper-inner-sectio-eader\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-root-section-row-wrapper-inner-vou-encontre--roblm-",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "section",
-          "row",
-          "wrapper",
-          "inner",
-          "vousRencontrezUnProblmeA"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-section-row-wrapper-inner-vou-encontre--roblm-\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-bouton-button-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -694,23 +612,23 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-bouton-button-root-ico-eft",
+      "decisionId": "sav-button-part-left",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -722,23 +640,23 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-ico-eft\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-icon-left\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-bouton-button-root-ico-nl-con",
+      "decisionId": "sav-button-part-only",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -750,23 +668,51 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-ico-nl-con\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-icon-only\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "sav-part-sav-bouton-button-root-ico-ight",
+      "decisionId": "sav-button-part-label",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.sav",
-              "version": "1.4.1"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sav-button-part-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sav",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -778,121 +724,8 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-ico-ight\"]",
+      "selector": ".s_pqr_sav [data-pqr-part=\"button-icon-right\"]",
       "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-bouton-button-root-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.0.1"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-sectio-eader-section-header-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-sectio-eader-section-header-root-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Accroche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_sav [data-pqr-part=\"root-accroche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "sav-part-sav-sectio-eader-section-header-root-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.sav",
-              "version": "1.4.1"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Titre"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_sav [data-pqr-part=\"sav-title\"]",
-      "allowedMarks": [
-        "strong"
-      ]
     }
   ]
 }

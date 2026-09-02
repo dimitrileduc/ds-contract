@@ -1,0 +1,150 @@
+/*
+ * responsive/sav.pqr.css — ZONE MANUELLE (vague 031, section SAV, 2026-09-02).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.sav 2.0.0 (layoutByProp /
+ * tokensByProp sur l'axe `presentation`), réécrites en @media sur les breakpoints
+ * des tokens :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.sav`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
+ * (typography/h2 = 24/24/32/40, typography/body = 16/16/18/18).
+ *
+ * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.sav--presentation-<mode>` — même source, même vocabulaire.
+ *
+ * Faits CODE-ONLY, nommés dans le contrat (descriptions des parts) :
+ *   · le plan de fond (`background`) est dessiné DANS le padding horizontal en
+ *     Mobile/Tablette/Wide (342/738/1550 de large) et pleine largeur en Desktop —
+ *     `declared` n'a pas de canal par mode : insets recopiés ici ;
+ *   · le CTA est FILL en Mobile/Tablette et HUG en Desktop/Wide — une part instance
+ *     ne porte aucun canal par mode : étiré ici sous 992 ;
+ *   · le partage Desktop/Wide de la rangée entre carte texte et colonne image
+ *     (canvas 503/407 et 651/637, deux FILL) n'a pas d'orthographe sans chiffre
+ *     tapé : partage ÉGAL de l'espace libre (flex-basis 0), déviation nommée.
+ * Contrainte Odoo : le cœur force `section { height: auto !important }` sous 768 px
+ * et les hauteurs fixes du contrat sont portées en min-height sur les cadres de
+ * texte (root, row, wrapper) — en height sur la colonne image et la photo.
+ */
+
+/* ---- ds.sav 2.0.0 -------------------------------------------------------- */
+
+/* Base = Mobile. Plan de fond dans le padding 24 (canvas : background 342 sur 390).
+ * components.pqr.css émet width/height 100 % sur ce plan absolu (un <img> absolu
+ * ne s'étire pas par ses insets) : avec left/right 24 il débordait de 24 px à
+ * droite (mesuré 2026-09-02) — la largeur est donc 100 % moins les deux insets. Sur Mobile/Tablette la rangée couvre ce plan à 100 %
+ * (canvas : row = background = 342×788), la photo n'y est jamais visible. */
+.s_pqr_sav.sav > .sav__background {
+  width: calc(100% - 2 * var(--pqr-space-24));
+  left: var(--pqr-space-24);
+  right: var(--pqr-space-24);
+}
+
+/* Mobile + Tablette : le CTA remplit la carte (canvas : Bouton FILL 294 / 690). */
+@media (max-width: 991.98px) {
+  .s_pqr_sav.sav .sav__Bouton > .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Tablette ≥ 768 : padding-inline 48 ; le plan de fond suit (canvas : 738 sur 834). */
+@media (min-width: 768px) {
+  .s_pqr_sav.sav {
+    padding-inline: var(--pqr-space-48);
+  }
+  .s_pqr_sav.sav > .sav__background {
+    width: calc(100% - 2 * var(--pqr-space-48));
+    left: var(--pqr-space-48);
+    right: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : padding 56 / 89, rangée en ligne (texte à gauche = row-reverse),
+ * padding-inline de rangée 89, hauteur 505 ; carte 48 tout autour ; colonne image
+ * sans padding ; photo 504. Fond pleine largeur (canvas : 1200 sur 1200). */
+@media (min-width: 992px) {
+  .s_pqr_sav.sav {
+    padding-inline: var(--pqr-space-56);
+    padding-block: var(--pqr-space-89);
+  }
+  .s_pqr_sav.sav > .sav__background {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  .s_pqr_sav.sav .sav__row {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    padding-inline: var(--pqr-space-89);
+    min-height: var(--pqr-size-sav-row-h-desktop);
+  }
+  /* Partage égal de la rangée — déviation nommée (canvas 503/407). */
+  .s_pqr_sav.sav .sav__wrapper,
+  .s_pqr_sav.sav .sav__imgGroup {
+    flex: 1 1 0;
+  }
+  .s_pqr_sav.sav .sav__wrapper {
+    padding-right: var(--pqr-space-48);
+    padding-bottom: var(--pqr-space-48);
+    padding-left: var(--pqr-space-48);
+    min-height: var(--pqr-size-sav-wrapper-h-desktop);
+  }
+  .s_pqr_sav.sav .sav__inner {
+    align-items: flex-start;
+  }
+  .s_pqr_sav.sav .sav__imgGroup {
+    padding-left: var(--pqr-space-0);
+    padding-right: var(--pqr-space-0);
+    height: var(--pqr-size-sav-img-group-h-desktop);
+  }
+  .s_pqr_sav.sav .sav__img {
+    height: var(--pqr-size-sav-img-h);
+  }
+}
+
+/* Wide ≥ 1400 : padding-inline 89, hauteur de section 677 avec la rangée en bas ;
+ * rangée padding-inline 131 (size.sav.content-padding), 561 de haut ; carte
+ * 48 / 47 / 0 / 48, 561 ; colonne image 3 / 78, 561. Fond dans le padding
+ * (canvas : 1550 sur 1728). */
+@media (min-width: 1400px) {
+  .s_pqr_sav.sav {
+    padding-inline: var(--pqr-space-89);
+    padding-block: var(--pqr-space-0);
+    min-height: var(--pqr-size-sav-section-h);
+    justify-content: flex-end;
+  }
+  .s_pqr_sav.sav > .sav__background {
+    width: calc(100% - 2 * var(--pqr-space-89));
+    left: var(--pqr-space-89);
+    right: var(--pqr-space-89);
+  }
+  .s_pqr_sav.sav .sav__row {
+    padding-inline: var(--pqr-size-sav-content-padding);
+    min-height: var(--pqr-size-sav-row-h);
+  }
+  .s_pqr_sav.sav .sav__wrapper {
+    padding-right: var(--pqr-space-47);
+    padding-bottom: var(--pqr-space-0);
+    padding-left: var(--pqr-space-48);
+    min-height: var(--pqr-size-sav-wrapper-h);
+  }
+  .s_pqr_sav.sav .sav__imgGroup {
+    padding-left: var(--pqr-space-3);
+    padding-right: var(--pqr-size-sav-image-right-inset);
+    height: var(--pqr-size-sav-img-group-h);
+  }
+}
+
+/* Desktop SEUL (992–1399.98) : le CTA est dessiné FIXED 279 (size.sav.cta-w-desktop,
+ * minté from-dump) — une part instance n'a pas de canal par mode. (La photo porte un
+ * recadrage CROP à transformation propre sur ce mode : sans orthographe CSS, le
+ * contain du contrat est gardé — mesuré plus proche que cover — déviation nommée.) */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .s_pqr_sav.sav .sav__Bouton > .button {
+    width: var(--pqr-size-sav-cta-w-desktop);
+    justify-content: center;
+  }
+}

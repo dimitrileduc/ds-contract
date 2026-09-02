@@ -78,6 +78,11 @@ export interface TokenTreeInput {
   dark: Record<string, unknown>;
   /** brand name → tree. Must include "default" when brands participate. */
   brands: Record<string, Record<string, unknown>>;
+  /** Viewport dimension (spec 031): mode name → override tree
+   *  (tokens/modes/viewport.<mode>.tokens.json). Optional; the mobile values
+   *  are the semantic defaults. Consumers use it to know which semantic paths
+   *  vary by viewport — the Figma tokens script keeps them OUT of Semantic. */
+  viewport?: Record<string, Record<string, unknown>>;
 }
 
 /** Resolve a dot-path to its literal through the given layered maps

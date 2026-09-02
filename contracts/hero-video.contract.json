@@ -2,15 +2,43 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero-video",
   "name": "HeroVideo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray HeroVideo. Extracted from the historical in-place component 2151:5552 on Accueil, reviewed and adopted — not authored. The root is fluid at a 1728 px canvas reference and keeps the historical 720 px height. Code supports a video URL and poster; Figma deliberately projects the poster as a static IMAGE placeholder because native VideoPaint cannot be reconstructed deterministically. The two governed scrims belong to HeroVideo itself. The single 44/48 title remains direct because no existing SectionHeader emphasis is pixel-equivalent.",
+  "description": "Piqueray HeroVideo, responsive. 2.0.0 (2026-09-02, Odoo hero pilot): re-extracted from the spec-031 set 2689:15832 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner. Everything the canvas draws is proposed by `npm run extract:figma` and adopted as-is: layout per mode (column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings / gap / height per mode as tokensByProp on the presentation axis, the title riding the responsive text style H1 (typography.h1.* — size and line-height vary by viewport mode through tokens/modes/viewport.*). Added by hand, each named: the host element (section — not drawn), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the dump does not carry layoutPositioning), and the CTA's right icon fixed to TRUE (the canvas shows it on Desktop/Wide only; the schema has no per-mode channel for a nested instance's prop — `propsByProp` was abandoned on 2026-08-20 — so the Odoo projection hides the glyph under the desktop breakpoint, an acknowledged deviation). The drawn widths 390/668/1200/1728 are witnesses, not tokens: the root fills its parent. Code supports a video URL and poster; Figma projects the poster as a static IMAGE placeholder. The two governed scrims belong to HeroVideo itself. Breakpoints are not in this contract: they are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build.",
   "semantics": {
     "element": "section",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "description": "Viewport presentation, mirroring the canvas axis Presentation. Default = mobile, the first variant of the 031 set (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
     {
       "name": "backgroundUrl",
       "description": "Code-side poster source. On canvas, this poster is the deterministic static placeholder for the video.",
@@ -55,13 +83,16 @@
     },
     {
       "name": "accroche",
-      "description": "Historical HeroVideo title, including the non-breaking spaces around HÖRMANN. Bound as one native Figma TEXT property so future instance copy remains governed.",
-      "type": "text",
-      "default": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "description": "HeroVideo title. RICH text (owner rule 2026-09-02: a text drawn with a line break is rich, whether or not the set exposes a TEXT property — the 031 set draws its title on the node, no property; binding NONE). The 031 set breaks after « HÖRMANN »: explicitly on Desktop/Wide (U+2028), naturally on Mobile/Tablette. The break is a governed segment fact; WHERE the editor breaks stays content. No bold. Includes the non-breaking spaces around HÖRMANN.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Le numéro 1 des portes HÖRMANN\nen Province de Liège !"
+        }
+      ],
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Accroche"
+          "kind": "NONE"
         },
         "code": {
           "prop": "accroche"
@@ -74,11 +105,26 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row",
-        "justify": "start",
-        "align": "end",
+        "direction": "column",
+        "justify": "center",
+        "align": "center",
         "width": "fill",
         "referenceWidth": 1728
+      },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "direction": "row",
+            "justify": "start",
+            "align": "end"
+          },
+          "wide": {
+            "direction": "row",
+            "justify": "start",
+            "align": "end"
+          }
+        }
       },
       "parts": {
         "Background": {
@@ -100,9 +146,9 @@
           }
         },
         "VoileBas": {
-          "description": "Historical bottom scrim supporting the title and CTA.",
+          "description": "Bottom scrim. Gradient stops read on the 031 set (2026-09-02): the veil is far stronger on Mobile/Tablette (0 → 0.8 over the full height) than on Desktop (from 50 %, to 0.6) and Wide (from 44 %, to 0.6) — literalsByProp on the presentation axis.",
           "literals": {
-            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 100%)"
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 8%, rgba(0,0,0,0.09) 15%, rgba(0,0,0,0.2) 23%, rgba(0,0,0,0.36) 31%, rgba(0,0,0,0.52) 39%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.65) 61%, rgba(0,0,0,0.68) 70%, rgba(0,0,0,0.72) 78%, rgba(0,0,0,0.78) 90%, rgba(0,0,0,0.8) 100%)"
           },
           "declared": {
             "position": "absolute",
@@ -112,12 +158,25 @@
             "left": "0",
             "z-index": "1",
             "pointer-events": "none"
-          }
+          },
+          "literalsByProp": [
+            {
+              "prop": "presentation",
+              "map": {
+                "desktop": {
+                  "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.015) 52.8%, rgba(0,0,0,0.057) 55.6%, rgba(0,0,0,0.119) 58.4%, rgba(0,0,0,0.194) 61.2%, rgba(0,0,0,0.275) 64%, rgba(0,0,0,0.356) 66.8%, rgba(0,0,0,0.431) 69.6%, rgba(0,0,0,0.493) 72.4%, rgba(0,0,0,0.535) 75.2%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.575) 90%, rgba(0,0,0,0.6) 100%)"
+                },
+                "wide": {
+                  "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 44%, rgba(0,0,0,0.011) 46.3%, rgba(0,0,0,0.041) 48.7%, rgba(0,0,0,0.086) 51%, rgba(0,0,0,0.143) 53.3%, rgba(0,0,0,0.207) 55.7%, rgba(0,0,0,0.275) 58%, rgba(0,0,0,0.343) 60.3%, rgba(0,0,0,0.407) 62.7%, rgba(0,0,0,0.464) 65%, rgba(0,0,0,0.509) 67.3%, rgba(0,0,0,0.539) 69.7%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.575) 86%, rgba(0,0,0,0.6) 100%)"
+                }
+              }
+            }
+          ]
         },
         "VoileNavigation": {
-          "description": "Historical top veil, owned by HeroVideo so an overlaid navigation remains readable on the Page usage.",
+          "description": "Top veil (navigation readability). Stops read on the 031 set (2026-09-02): from 75 % to 0.65 on Mobile/Tablette, from 70 % to 0.58 on Desktop/Wide — literalsByProp on the presentation axis.",
           "literals": {
-            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)"
+            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.02) 78%, rgba(0,0,0,0.07) 82%, rgba(0,0,0,0.17) 86%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0.41) 93%, rgba(0,0,0,0.51) 96%, rgba(0,0,0,0.59) 98%, rgba(0,0,0,0.65) 100%)"
           },
           "declared": {
             "position": "absolute",
@@ -127,14 +186,39 @@
             "left": "0",
             "z-index": "1",
             "pointer-events": "none"
-          }
+          },
+          "literalsByProp": [
+            {
+              "prop": "presentation",
+              "map": {
+                "desktop": {
+                  "background-image": "linear-gradient(to top, rgba(0,0,0,0) 70%, rgba(0,0,0,0.022) 72.3%, rgba(0,0,0,0.078) 74.5%, rgba(0,0,0,0.158) 76.7%, rgba(0,0,0,0.25) 79%, rgba(0,0,0,0.342) 81.3%, rgba(0,0,0,0.422) 83.5%, rgba(0,0,0,0.479) 85.8%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.54) 94%, rgba(0,0,0,0.58) 100%)"
+                },
+                "wide": {
+                  "background-image": "linear-gradient(to top, rgba(0,0,0,0) 70%, rgba(0,0,0,0.022) 72.3%, rgba(0,0,0,0.078) 74.5%, rgba(0,0,0,0.158) 76.7%, rgba(0,0,0,0.25) 79%, rgba(0,0,0,0.342) 81.3%, rgba(0,0,0,0.422) 83.5%, rgba(0,0,0,0.479) 85.8%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.54) 94%, rgba(0,0,0,0.58) 100%)"
+                }
+              }
+            }
+          ]
         },
         "Text": {
+          "description": "Title column. FILL width; grows to fill the row on Desktop/Wide (canvas: FILL width, Bouton HUG). On Mobile/Tablette the canvas draws it HUG-height, centered by the root — but `grow` has no per-mode channel (layoutByProp carries direction/justify/align only), so in a column the code surface stretches it vertically: THIRD named code-only fact, the Odoo projection resets flex to 0 0 auto under the desktop breakpoint.",
           "layout": {
             "direction": "column",
-            "align": "stretch",
-            "grow": true,
-            "width": "fill"
+            "align": "center",
+            "width": "fill",
+            "grow": true
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "align": "stretch"
+              },
+              "wide": {
+                "align": "stretch"
+              }
+            }
           },
           "declared": {
             "position": "relative",
@@ -142,42 +226,87 @@
           },
           "parts": {
             "Accroche": {
+              "description": "Rides the responsive text style H1: size 32/32/40/54 and line-height 40/40/50/68 by viewport mode come from typography.h1.* (tokens/modes/viewport.*), weight SemiBold. `white-space: pre-line` renders the rich prop's line break.",
               "layout": {
                 "width": "fill"
               },
               "content": {
-                "prop": "accroche"
+                "prop": "accroche",
+                "marks": {
+                  "strong": {
+                    "font-weight": "{font.weight.bold}"
+                  }
+                }
               },
               "tokens": {
                 "color": "{color.blanc}",
-                "font-family": "{font.family.montserrat}",
-                "font-size": "{font.size.44}",
-                "font-weight": "{font.weight.regular}",
-                "line-height": "{font.line-height.48}"
-              }
+                "font-family": "{typography.h1.family}",
+                "font-size": "{typography.h1.size}",
+                "font-weight": "{typography.h1.weight}",
+                "line-height": "{typography.h1.line-height}"
+              },
+              "declared": {
+                "text-align": "center",
+                "white-space": "pre-line"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "presentation",
+                  "equals": "desktop",
+                  "styles": {
+                    "text-align": "left"
+                  }
+                },
+                {
+                  "prop": "presentation",
+                  "equals": "wide",
+                  "styles": {
+                    "text-align": "left"
+                  }
+                }
+              ]
             }
           }
         },
         "Bouton": {
+          "description": "CTA. TWO named deviations from the canvas, both because the schema has no channel for them on a nested instance (stylesWhen and layoutByProp are refused on component parts — the child contract owns its styling): (1) on Mobile/Tablette the canvas pins the CTA ABSOLUTE to the bottom edge, full width inside the horizontal padding (bottom 64, inset 24 / 48) — here it stays in the flow under the title (gap 32); the Odoo projection applies the pin under the desktop breakpoint as a code-only fact. (2) iconRight is TRUE on Desktop/Wide only on the canvas; fixed TRUE here, the Odoo projection hides the glyph under the desktop breakpoint. Both are acknowledged in the pilot journal (specs/tiny/pilote-odoo-hero-video.md) and are the two schema gaps the Odoo wave must decide on.",
           "component": {
             "id": "ds.button",
-            "text": "Contactez-nous",
+            "text": "En savoir plus",
             "props": {
               "variant": "outlineBlanc",
               "iconLeft": false,
-              "iconRight": false,
+              "iconRight": true,
               "iconRightGlyph": "arrow-right"
             }
           }
         }
       },
       "tokens": {
-        "height": "{size.hero-video.root}",
-        "gap": "{space.10}",
-        "padding-top": "{space.48}",
-        "padding-right": "{space.89}",
-        "padding-bottom": "{space.48}",
-        "padding-left": "{space.89}"
+        "height": "{size.hero-video.root-compact}",
+        "gap": "{space.32}",
+        "padding-block": "{space.64}",
+        "padding-inline": "{space.24}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "padding-block": "{space.48}",
+            "gap": "{space.10}",
+            "height": "{size.hero-video.root}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "padding-block": "{space.48}",
+            "gap": "{space.10}",
+            "height": "{size.hero-video.root}"
+          }
+        }
       },
       "literals": {
         "background-color": "transparent"
@@ -190,9 +319,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
-      "nodeId": "2151:5552",
-      "dumpedAt": "2026-08-11"
+      "componentSetKey": "366023701e65d2e3091332db4de0dfe4de0d33d4",
+      "nodeId": "2689:15832",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/HeroVideo",

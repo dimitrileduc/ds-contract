@@ -484,6 +484,18 @@ export function createFigmaEngine(input: FigmaEngineInput) {
   const semantic = flatten(input.tokens.semantic);
   const light = flatten(input.tokens.light);
   const dark = flatten(input.tokens.dark);
+  // Viewport dimension (spec 031): the paths that vary by viewport mode live
+  // in the canvas collection « Responsive » (four modes, hand-built in 031 —
+  // this engine does not own it yet). They are NOT recreated under Semantic,
+  // and the `breakpoint.*` primitives are never variables (consumed by the CSS
+  // build as @media conditions). Field receipt, 2026-09-02: the first live
+  // sync without this exclusion created 36 duplicates — removed the same day.
+  // The inventory used for contract validation stays COMPLETE: only the
+  // tokens script's payload is filtered.
+  const viewportPaths = new Set<string>();
+  for (const tree of Object.values(input.tokens.viewport ?? {})) {
+    for (const p of flatten(tree).keys()) viewportPaths.add(p);
+  }
 
   // Brand dimension (mirrors scripts/build-tokens.mjs discovery): one Figma
   // collection "Brand" whose modes are the brand names — the enterprise
@@ -567,7 +579,8 @@ const derivedTextStyles = deriveNamedTextStyles({
 // ---------------------------------------------------------------------------
 
 function buildTokensScript(fileKey: string | null): string {
-  const prim = [...primitives].map(([p, entry]) => ({
+  // `breakpoint.*` never becomes a variable — see viewportPaths above.
+  const prim = [...primitives].filter(([p]) => !p.startsWith('breakpoint.')).map(([p, entry]) => ({
     name: figmaName(p),
     type: figmaType(entry),
     value: figmaValue(entry),
@@ -600,6 +613,7 @@ function buildTokensScript(fileKey: string | null): string {
   const hasDark = dark.size > 0;
   const sem: Array<Record<string, unknown>> = [];
   for (const [p, entry] of semantic) {
+    if (viewportPaths.has(p)) continue; // lives in « Responsive », not Semantic
     const target = aliasTarget(entry.value);
     if (!target) throw new Error(`Semantic token "${p}" must be an alias`);
     sem.push({
@@ -823,13 +837,25 @@ for (const t of TEXT_STYLES) {
     s.setSharedPluginData('ds_contracts', 'textStyleToken', t.tokenPath);
     styleByToken[t.tokenPath] = s;
   }
+  // A field BOUND to a variable is never overwritten with a literal: the
+  // responsive styles (spec 031 — H1, H2, H4, « Titre carte ») carry their
+  // size, line-height and, for one of them, weight through the canvas
+  // collection « Responsive »; assigning the recipe's literal would silently
+  // unbind them and freeze the style at its mobile value. The preflight above
+  // already proved the resolved definition equals the recipe.
+  const bound = s.boundVariables || {};
   s.name = t.name;
-  s.fontName = font;
-  s.fontSize = t.fontSize;
-  s.lineHeight = t.lineHeight === undefined ? { unit: 'AUTO' } : { unit: 'PIXELS', value: t.lineHeight };
-  s.letterSpacing = t.letterSpacing;
+  if (!bound.fontFamily && !bound.fontStyle && !bound.fontWeight) s.fontName = font;
+  if (!bound.fontSize) s.fontSize = t.fontSize;
+  if (!bound.lineHeight) s.lineHeight = t.lineHeight === undefined ? { unit: 'AUTO' } : { unit: 'PIXELS', value: t.lineHeight };
+  if (!bound.letterSpacing) s.letterSpacing = t.letterSpacing;
   s.textCase = t.textCase;
-  s.description = 'ds_contracts: derived from tokens/' + t.tokenPath;
+  // A responsive style keeps its authored description (it documents the
+  // per-mode values); the derived marker line is appended once, never repeated.
+  const derivedLine = 'ds_contracts: derived from tokens/' + t.tokenPath;
+  s.description = t.responsive
+    ? (s.description && s.description.indexOf(derivedLine) < 0 ? s.description + '\\n' + derivedLine : (s.description || derivedLine))
+    : derivedLine;
 }
 
 return {
@@ -1740,10 +1766,23 @@ function withPartStateOverrides(parts: Record<string, Part>, stateName: string):
  *  only: contracts legitimately consume primitive font tokens, while named
  *  styles are semantic composites. Matching by the size-token path therefore
  *  loses every Piqueray style; matching the complete recipe does not guess. */
+/** Owner rule (2026-09-02, Odoo hero pilot): a text is RICH as soon as it
+ *  carries a line break — but a rich prop WITHOUT any strong segment (break
+ *  only) still rides its named text style (the HeroVideo title keeps H1).
+ *  Only a prop with bold ranges keeps native character ranges and no
+ *  whole-node style (the 031 « rich-ranges » exception). */
+function richKeepsStyle(prop: Prop | undefined): boolean {
+  return !!prop && isRichText(prop) && !(Array.isArray(prop.default) && prop.default.some((seg: any) => seg && seg.strong));
+}
+
 function matchTextStyle(ctx: TextCtx): string | undefined {
   const compactStyle = (value: string) => value.replace(/\s+/g, '').toLowerCase();
   const close = (a: number, b: number) => Math.abs(a - b) < 0.001;
   const matches = derivedTextStyles.filter((style) =>
+    // A RESPONSIVE style (viewport dimension, spec 031) is ridden only by a
+    // part bound to its own size token: its derived recipe is the mobile one
+    // and may coincide with a fixed style's — recipe alone must not pick it.
+    (!style.responsive || style.tokenPath === ctx.fontSizePath) &&
     style.fontFamily.toLowerCase() === (ctx.fontFamily ?? 'Inter').toLowerCase() &&
     ctx.fontSize !== undefined && close(style.fontSize, ctx.fontSize) &&
     compactStyle(style.fontStyle) === compactStyle(ctx.fontStyle ?? 'Medium') &&
@@ -1754,7 +1793,19 @@ function matchTextStyle(ctx: TextCtx): string | undefined {
     style.textCase === (ctx.textCase ?? 'ORIGINAL')
   );
   if (matches.length > 1) {
-    throw new Error(`Ambiguous Figma Text Style recipe: ${matches.map((style) => style.name).join(', ')}`);
+    // Two named styles may legitimately share one rendered recipe — since the
+    // viewport dimension (spec 031) « Titre carte » at its mobile size is
+    // exactly « Titre 5 » (20/25 SemiBold). The recipe cannot decide; the
+    // part's own binding can: a text part bound to `{typography.h3.size}`
+    // rides the style DERIVED from that token, never a look-alike. Only a
+    // part that binds no size token (or a primitive) stays ambiguous, and
+    // that is still refused by name rather than guessed.
+    const byPath = ctx.fontSizePath ? matches.filter((style) => style.tokenPath === ctx.fontSizePath) : [];
+    if (byPath.length === 1) return byPath[0].name;
+    throw new Error(
+      `Ambiguous Figma Text Style recipe: ${matches.map((style) => style.name).join(', ')}` +
+        (ctx.fontSizePath ? ` (font-size token {${ctx.fontSizePath}} derives none of them)` : ' (the part binds no font-size token to decide)'),
+    );
   }
   return matches[0]?.name;
 }
@@ -2655,7 +2706,7 @@ function partToSpecInner(
     spec.fontStyle = textCtx.fontStyle ?? 'Medium';
     // A whole-node style would flatten the governed per-range strong marks.
     // Rich text is the sole intentional exception to named-style linkage.
-    if (!isRichText(prop)) spec.textStyle = matchTextStyle(textCtx);
+    if (!isRichText(prop) || richKeepsStyle(prop)) spec.textStyle = matchTextStyle(textCtx);
     spec.textFill = textCtx.textFill;
     if (textCtx.lineHeight !== undefined) spec.lineHeight = textCtx.lineHeight;
     Object.assign(spec, textExtras(textCtx));
@@ -2960,7 +3011,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
           characters: label,
           fontSize: ctx.fontSize ?? 16,
           fontStyle: ctx.fontStyle ?? 'Medium',
-          textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
+          textStyle: isRichText(textProp) && !richKeepsStyle(textProp) ? undefined : matchTextStyle(ctx),
           textFill: ctx.textFill,
           ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
           ...textExtras(ctx),
@@ -3056,7 +3107,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
               characters: label,
               fontSize: ctx.fontSize ?? 16,
               fontStyle: ctx.fontStyle ?? 'Medium',
-              textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
+              textStyle: isRichText(textProp) && !richKeepsStyle(textProp) ? undefined : matchTextStyle(ctx),
               textFill: ctx.textFill,
               ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
               ...textExtras(ctx),
