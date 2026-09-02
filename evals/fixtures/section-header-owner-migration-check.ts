@@ -5,11 +5,15 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const read = (name: string) => JSON.parse(readFileSync(path.join(ROOT, 'contracts', name), 'utf8')) as any;
 const failures: string[] = [];
-for (const [file, label] of [
-  ['hero.contract.json', 'Hero'],
-  ['presentation.contract.json', 'Presentation'],
-  ['texte-seo.contract.json', 'TexteSEO'],
-  ['produits-ecommerce.contract.json', 'ProduitsECommerce'],
+// Vague 031 (2026-09-02) : la liaison Figma attendue est NOMMÉE contrat par contrat.
+// « NONE » n'est légitime que là où le set 031 dessine le titre SUR LE NŒUD, sans
+// propriété TEXT (Presentation). Partout ailleurs la liaison TEXT « Titre » reste
+// exigée : une liaison perdue doit continuer à faire rougir cette porte.
+for (const [file, label, liaisonAttendue] of [
+  ['hero.contract.json', 'Hero', 'TEXT'],
+  ['presentation.contract.json', 'Presentation', 'NONE'],
+  ['texte-seo.contract.json', 'TexteSEO', 'TEXT'],
+  ['produits-ecommerce.contract.json', 'ProduitsECommerce', 'TEXT'],
 ] as const) {
   const filename = path.join(ROOT, 'contracts', file);
   if (!existsSync(filename)) {
@@ -18,14 +22,12 @@ for (const [file, label] of [
   }
   const contract = read(file);
   const prop = (contract.props ?? []).find((candidate: any) => candidate.name === 'titre');
-  // Vague 031 (2026-09-02) : le titre reste UNE prop rich-text, mais sa liaison
-  // Figma dépend de ce que le set dessine. Les sets 031 dessinent le titre SUR LE
-  // NŒUD, sans propriété TEXT : la liaison est alors NONE, écart nommé au contrat.
-  // Les sets qui exposent encore « Titre » doivent, eux, garder la liaison TEXT.
   const liaison = prop?.bindings?.figma?.kind;
-  const liaisonValide = liaison === 'NONE' || (liaison === 'TEXT' && prop?.bindings?.figma?.property === 'Titre');
+  const liaisonValide = liaisonAttendue === 'NONE'
+    ? liaison === 'NONE'
+    : liaison === 'TEXT' && prop?.bindings?.figma?.property === 'Titre';
   if (prop?.type !== 'rich-text' || !liaisonValide) {
-    failures.push(`${label} must keep title content as one rich-text prop, bound to the set's TEXT property or NONE when the set draws it on the node`);
+    failures.push(`${label} must keep title content as one rich-text prop bound ${liaisonAttendue === 'NONE' ? 'NONE (the set draws the title on the node)' : "to the set's TEXT property « Titre »"}, got ${liaison ?? 'nothing'}`);
   }
   const serialised = JSON.stringify(contract.anatomy?.root);
   if (!serialised.includes('"align":"start"') || !serialised.includes('"width":"fill"')) {

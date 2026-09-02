@@ -254,3 +254,46 @@ Autres points relevés, mineurs, laissés en l'état pour la même raison : la g
 dans cinq feuilles, le CTA pleine largeur écrit cinq fois en trois orthographes, quelques déclarations
 sans effet, et des textes de panneau Odoo devenus faux (« grille de 4 colonnes », « 2 ou 3 colonnes »).
 Ces deux derniers sont visibles par le rédacteur : à corriger dans la prochaine spec.
+
+**Ajouts à cette liste, même relecture, mêmes réserves (rien fait) :**
+
+3. **Deux dégradés recopiés à la main sans filet.** `responsive/devis.pqr.css` porte deux dégradés de 25 et
+   21 arrêts, identiques à ceux que le contrat émet et que `contracts/named-literals.registry.json` protège
+   côté contrat. La copie Odoo, elle, n'est comparée à rien : une correction du voile au contrat laisserait
+   Odoo sur l'ancienne valeur, en silence. Un contrôle de trois lignes suffirait.
+4. **Le panneau d'édition contredit la gouvernance.** `categories.authoring.json` déclare le style de carte
+   `fixed-by-composition` / `mechanism: none`, mais `authoring.xml` offre toujours le sélecteur « Type de
+   carte ». Et `SetColonnesAction` reste définie dans `authoring.js` après le retrait du réglage Colonnes,
+   pilotant une classe que le générateur n'émet plus. **C'est le seul point visible par le rédacteur.**
+   Cause de fond : `check-authoring.ts` vérifie la couverture des verdicts mais ne lit jamais `authoring.xml`
+   — aucune porte ne confronte le verdict déclaré à ce que le panneau propose réellement.
+5. **Le compte du canal manquant : dix.** Dix faits « code-only » de cette vague ont une seule cause — une
+   part instance ne porte aucun canal par mode. Cinq sont la même phrase (le CTA pleine largeur sous 992).
+   Deux relèvent d'un canal de props par mode, envisagé puis abandonné le 2026-08-20 au motif qu'il ne
+   servait qu'une variante morte : six composants le réclament maintenant. Un manque inscrit dans une
+   recette cesse d'être un manque et devient une politique — celle-ci a été adoptée sans que le compte
+   soit sur la table.
+
+## Ce que les évaluations couvrent de cette vague — et ce qu'elles ne couvrent PAS (mesuré le 2026-09-02)
+
+**Couvert.** `src/styles/tokens.css` est figé octet par octet dans `evals/golden.json` : les blocs par écran
+ne peuvent pas bouger en silence. `reassurances-grid-variant-isolation` vérifie la grille par écran sur
+TROIS surfaces (contrat, CSS React généré, script Figma). Les titres de section, leur typographie et leurs
+liaisons Figma ont chacun leur porte, resserrée en fin de vague.
+
+**Non couvert, et c'est le trou principal :**
+
+- **Les cinq feuilles écrites à la main ne sont dans AUCUNE porte.** Mesuré : zéro occurrence de
+  `css/responsive` dans `evals/run.ts`, aucune entrée `responsive` dans `evals/golden.json`, rien côté
+  `parity/`. ~450 lignes qui décident du rendu Odoo aux quatre largeurs, et rien ne les regarde : les
+  effacer laisserait toutes les portes vertes. À rapprocher du point 2 ci-dessus (rapport de dérivation) :
+  ces feuilles échappent aux DEUX instruments.
+- **La dimension par écran des jetons n'a pas de porte à elle.** Zéro occurrence de `viewport`,
+  `breakpoint` ou `@media` dans `evals/run.ts` — le mécanisme ajouté le 2026-09-02 dans `build-tokens.mjs`
+  (lecture de `tokens/modes/viewport.*`, validation, émission des blocs) n'est protégé qu'indirectement,
+  par le figement de la feuille produite. Une règle de validation retirée passerait tant que la sortie ne
+  change pas.
+- `components.pqr.css`, la feuille servie à Odoo, n'est pas figée non plus (seule celle du dépôt l'est).
+
+**Priorité proposée** : figer les cinq feuilles manuelles au golden et poser une porte qui vérifie que
+chaque seuil qu'elles écrivent correspond à un jeton `breakpoint.*`. Deux gestes courts, aucun effet visuel.
