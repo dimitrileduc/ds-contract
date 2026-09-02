@@ -4,7 +4,7 @@
 
 **Created**: 2026-08-27
 
-**Status**: Draft
+**Status**: En cours — voir l'avenant du 2026-09-02 ci-dessous
 
 **Input**: Décisions owner du 2026-08-27, en conversation, sur la base de la rétro 029 (`specs/029-figma-responsive-categories/RETRO-PROCESS.md`) et de l'outillage livré par 030.
 
@@ -12,6 +12,42 @@
 axe `Presentation` **visible dans le sélecteur de variantes Figma**, avec les valeurs
 **Wide / Desktop / Mobile**, matrice complète, défaut = le membre historique ; toute
 section bloquée est reportée par nom, avec son relais vers le chantier suivant.
+
+---
+
+## AVENANT — 2026-09-02 (décisions owner ; le texte d'origine reste tel quel, daté)
+
+Le corps de cette spec décrit le plan du 2026-08-27. La réalité l'a débordé sur
+trois points, tous décidés par l'owner en conversation ; ce qui suit fait foi.
+
+1. **La méthode a pivoté.** Le chemin « campagnes par manifeste » (outillage 030)
+   est mort le premier jour : le générateur a **refusé les 13 cibles** (mesuré,
+   `proofs/blocage-generateur-manifeste.md`). La vague s'est faite **à la main sur
+   la page « 031 · Planches de validation »** : candidat construit par section →
+   validation owner à l'écran → substitution par instances dans les 4 vues
+   (Mobile 390 / Tablette 834 / Desktop 1200 / Wide 1728). Le processus complet,
+   ses règles et ses ~50 leçons datées vivent dans
+   **`proofs/mode-emploi-section-responsive.md`** — c'est le document d'autorité
+   de la vague, pas les FR/SC du corps ci-dessous.
+2. **L'axe a QUATRE valeurs, pas trois** : `Mobile / Tablette / Desktop / Wide`
+   (la planche tablette existait déjà — découverte du 2026-08-28). Les valeurs
+   par étage roulent sur la collection de variables **Responsive** (4 modes) et
+   les styles de texte H1/H2/H4/… « 031 provisoire », créés par cette vague.
+3. **Le périmètre est resserré à la HOME.** Livré et substitué dans les 4 vues :
+   HeroVideo, CarteCategorie, CategoriesPrincipales, Presentation, SAV,
+   ProduitsECommerce, Devis, CarteReassurance, Reassurances, ReviewCard,
+   AvisGoogle — soit 8 sections + 3 molécules. Les sections hors-home
+   (**faq, equipe, formulaire, coordonnees, texte-seo**) sont **reportées par
+   nom vers une spec ultérieure** (mécanisme prévu par la clarification du
+   2026-08-27 : clôture autorisée avec statut reporté). `header`/`footer`
+   restent hors périmètre comme écrit.
+
+Restent ouverts, hors de cette spec : le **pivot final** vers `tokens/` + le
+vrai DS (variables Responsive et styles encore « 031 provisoire », masters DS
+non remplacés, contrats non mis à jour — l'extraction canevas→contrat est
+prouvée prête à ~80 %, reçu dans `proofs/test-a-blanc-extraction/`), et la
+**projection Odoo responsive** (décision owner 2026-09-02 : CSS à la main
+depuis les contrats proposés, sans émetteur — chantier séparé).
 
 ---
 
