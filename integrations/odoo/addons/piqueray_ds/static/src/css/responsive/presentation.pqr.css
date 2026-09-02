@@ -1,0 +1,49 @@
+/* ds.presentation 4.0.0 — projection Odoo du set 031.
+ * Base mobile-first, puis Tablette / Desktop / Wide aux breakpoints gouvernés.
+ * Le CTA mobile/tablette est full-width et reprend son format Link compact dès
+ * Desktop : fait code-only nommé dans contracts/presentation.contract.json,
+ * car le schéma ne porte pas de style par mode sur une part component. */
+
+/* Base = Mobile. components.pqr.css porte déjà la colonne, les tokens de
+ * typographie, le gap 32 et le padding horizontal 24. */
+.s_pqr_presentation.presentation [data-pqr-part="presentation-cta"] > .button {
+  width: 100%;
+  padding-block: var(--pqr-space-16);
+  justify-content: center;
+}
+
+/* Tablette ≥ 768 : padding horizontal 48. */
+@media (min-width: 768px) {
+  .s_pqr_presentation.presentation {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : deux colonnes, padding 56, wrapper à 24 et CTA Link compact. */
+@media (min-width: 992px) {
+  .s_pqr_presentation.presentation {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-inline: var(--pqr-space-56);
+  }
+
+  .s_pqr_presentation.presentation > .presentation__wrapper {
+    gap: var(--pqr-space-24);
+  }
+
+  .s_pqr_presentation.presentation [data-pqr-part="presentation-cta"] > .button {
+    width: auto;
+    padding-block: var(--pqr-space-4);
+  }
+}
+
+/* Wide ≥ 1400 : référence Figma 1287px, sans padding local et gap 32. */
+@media (min-width: 1400px) {
+  .s_pqr_presentation.presentation {
+    padding-inline: var(--pqr-space-0);
+  }
+
+  .s_pqr_presentation.presentation > .presentation__wrapper {
+    gap: var(--pqr-space-32);
+  }
+}

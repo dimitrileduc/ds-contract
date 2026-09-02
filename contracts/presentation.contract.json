@@ -2,13 +2,42 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "3.0.0",
-  "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
+  "version": "4.0.1",
+  "status": "draft",
+  "description": "Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only.",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "description": "Viewport presentation mirrored from the 031 Figma axis. Mobile is the first set variant and the mobile-first CSS base; consumers do not select it at runtime.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
     {
       "name": "texte",
       "type": "rich-text",
@@ -18,34 +47,34 @@
           "strong": true
         },
         {
-          "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
-        },
-        {
-          "text": "proximité et d'excellence technique",
-          "strong": true
-        },
-        {
-          "text": ". Dépositaire officiel "
+          "text": " PIQUERAY est dépositaire officiel de la marque "
         },
         {
           "text": "Hörmann",
           "strong": true
         },
         {
-          "text": ", nous allions la force d'un leader mondial à "
+          "text": ", fabricant connu pour ses produits de qualité et ses innovations.\n\nComposée d’une équipe d’une vingtaine de personnes de la "
         },
         {
-          "text": "la souplesse d'une PME locale",
+          "text": "région verviétoise",
           "strong": true
         },
         {
-          "text": "."
+          "text": " et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.\n\nQue vous soyez particulier ou une entreprise, "
+        },
+        {
+          "text": "Piqueray vous accompagne de A à Z",
+          "strong": true
+        },
+        {
+          "text": " dans votre projet."
         }
       ],
+      "description": "Rich body copy. The 031 source contains paragraph breaks, therefore this content accepts strong and line-break in Odoo. Figma exposes no component property for this drawn text.",
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Texte"
+          "kind": "NONE"
         },
         "code": {
           "prop": "texte"
@@ -56,10 +85,10 @@
       "name": "bouton",
       "type": "boolean",
       "default": true,
+      "description": "CTA presence retained for code consumers. The 031 canvas does not expose it as a component property, so its Figma binding is NONE and Odoo fixes it by composition.",
       "bindings": {
         "figma": {
-          "kind": "BOOLEAN",
-          "property": "Bouton"
+          "kind": "NONE"
         },
         "code": {
           "prop": "bouton"
@@ -71,18 +100,17 @@
       "type": "rich-text",
       "default": [
         {
-          "text": "Piqueray, ",
-          "strong": true
+          "text": "Piqueray, votre distributeur de portes Hörmann "
         },
         {
-          "text": "une histoire de famille "
+          "text": "en Province de Liège",
+          "strong": true
         }
       ],
-      "description": "Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy.",
+      "description": "Presentation-owned rich title. Its responsive H2 typography carries 24/30, 24/30, 32/40 and 40/50 across the 031 variants; Figma exposes no component property for the drawn text.",
       "bindings": {
         "figma": {
-          "kind": "TEXT",
-          "property": "Titre"
+          "kind": "NONE"
         },
         "code": {
           "prop": "titre"
@@ -95,15 +123,28 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row",
-        "align": "start",
+        "direction": "column",
         "justify": "center",
+        "align": "stretch",
         "width": "fill",
         "referenceWidth": 1287
       },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "direction": "row",
+            "align": "start"
+          },
+          "wide": {
+            "direction": "row",
+            "align": "start"
+          }
+        }
+      },
       "parts": {
         "colGauche": {
-          "description": "Colonne gauche fluide de la composition à deux colonnes. Elle partage l'espace disponible avec wrapper ; le Container consommateur possède les paddings externes.",
+          "description": "Title column. It fills the stack on Mobile/Tablette and shares the available row equally with wrapper on Desktop/Wide.",
           "layout": {
             "direction": "column",
             "grow": true,
@@ -123,11 +164,10 @@
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.32}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "40px"
+                "font-family": "{typography.h2.family}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{typography.h2.weight}",
+                "line-height": "{typography.h2.line-height}"
               }
             }
           }
@@ -140,7 +180,15 @@
             "width": "fill"
           },
           "tokens": {
-            "gap": "{space.16}"
+            "gap": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.24}"
+              }
+            }
           },
           "parts": {
             "Texte": {
@@ -152,17 +200,23 @@
               },
               "tokens": {
                 "color": "{color.noir}",
-                "font-size": "{font.size.14}"
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.body.size}",
+                "font-weight": "{typography.body.weight}",
+                "line-height": "{typography.body.line-height}"
               },
-              "literals": {
-                "line-height": "24px"
+              "declared": {
+                "white-space": "pre-line"
               }
             },
             "Bouton": {
+              "description": "The 031 CTA is full-width with 16px block padding on Mobile/Tablette and returns to its intrinsic Link size with 4px block padding on Desktop/Wide. A nested component cannot carry mode-specific styles in the schema, so the Odoo responsive projection applies this named code-only fact.",
               "component": {
                 "id": "ds.button",
+                "text": "En savoir plus",
                 "props": {
                   "variant": "link",
+                  "iconLeft": false,
                   "iconRight": true
                 }
               },
@@ -175,16 +229,32 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.32}"
+        "gap": "{space.32}",
+        "padding-block": "{space.0}",
+        "padding-inline": "{space.24}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}"
+          },
+          "wide": {
+            "padding-inline": "{space.0}"
+          }
+        }
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
-      "nodeId": "2103:2824",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
+      "nodeId": "2693:20805",
+      "dumpedAt": "2026-09-02"
     },
     "code": {
       "importPath": "src/components/Presentation",

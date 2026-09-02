@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-presentation-authoring",
-  "authoringVersion": "3.0.0",
+  "authoringVersion": "4.0.1",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.presentation",
-    "version": "3.0.0"
+    "version": "4.0.1"
   },
   "rootActions": [
     {
@@ -35,13 +35,29 @@
   ],
   "controls": [
     {
+      "decisionId": "presentation-ctl-presentation-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.presentation",
+              "version": "4.0.1"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "presentation-ctl-presentation-texte",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -59,7 +75,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -75,7 +91,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -93,13 +109,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -116,13 +132,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -139,13 +155,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -162,13 +178,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -185,13 +201,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -208,13 +224,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -233,7 +249,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -253,7 +269,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -264,7 +280,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-co-auche\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"left-column\"]",
       "allowedMarks": []
     },
     {
@@ -274,7 +290,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -298,7 +314,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -309,7 +325,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-wrapper\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"content-wrapper\"]",
       "allowedMarks": []
     },
     {
@@ -319,7 +335,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -331,7 +347,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "component",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-wrapper-bouton\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"]",
       "allowedMarks": []
     },
     {
@@ -341,7 +357,7 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           }
         ],
@@ -351,10 +367,13 @@
           "Texte"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "directly-editable",
       "contentKind": "rich-text",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-wrapper-texte\"]",
-      "allowedMarks": []
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-text\"]",
+      "allowedMarks": [
+        "strong",
+        "line-break"
+      ]
     },
     {
       "decisionId": "presentation-part-presentation-bouton-button-root",
@@ -363,13 +382,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -380,7 +399,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"] [data-pqr-part=\"button-root\"]",
       "allowedMarks": []
     },
     {
@@ -390,13 +409,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -408,7 +427,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-ico-eft\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"] [data-pqr-part=\"button-icon-left\"]",
       "allowedMarks": []
     },
     {
@@ -418,13 +437,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -436,7 +455,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-ico-nl-con\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"] [data-pqr-part=\"button-icon-only\"]",
       "allowedMarks": []
     },
     {
@@ -446,13 +465,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -464,7 +483,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-ico-ight\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"] [data-pqr-part=\"button-icon-right\"]",
       "allowedMarks": []
     },
     {
@@ -474,13 +493,13 @@
           {
             "contract": {
               "id": "ds.presentation",
-              "version": "3.0.0"
+              "version": "4.0.1"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.0.1"
+              "version": "2.1.0"
             },
             "viaPart": "Bouton"
           }
@@ -492,7 +511,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_presentation [data-pqr-part=\"root-label\"]",
+      "selector": ".s_pqr_presentation [data-pqr-part=\"presentation-cta\"] [data-pqr-part=\"button-label\"]",
       "allowedMarks": []
     }
   ]

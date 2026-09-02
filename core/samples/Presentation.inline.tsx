@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.6.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v4.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -12,20 +12,21 @@
  */
 import { forwardRef } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
-import { SectionHeader } from './SectionHeader';
 import { Button } from './Button';
 
 const S: Record<string, CSSProperties> = {
   "root": {
     "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
+    "flexDirection": "column",
+    "alignItems": "stretch",
     "justifyContent": "center",
     "width": "100%",
     "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "gap": "32px"
+    "gap": "32px",
+    "paddingBlock": "0px",
+    "paddingInline": "24px"
   },
   "colGauche": {
     "display": "flex",
@@ -34,6 +35,15 @@ const S: Record<string, CSSProperties> = {
     "minWidth": 0,
     "width": "100%"
   },
+  "Titre": {
+    "width": "100%",
+    "minWidth": 0,
+    "color": "#26282C",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "24px",
+    "fontWeight": 600,
+    "lineHeight": "30px"
+  },
   "wrapper": {
     "display": "flex",
     "flexDirection": "column",
@@ -41,39 +51,71 @@ const S: Record<string, CSSProperties> = {
     "flex": "1 1 auto",
     "minWidth": 0,
     "width": "100%",
-    "gap": "16px"
+    "gap": "32px"
   },
   "Texte": {
     "color": "#37373B",
-    "fontSize": "14px",
-    "lineHeight": "24px"
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "16px",
+    "fontWeight": 400,
+    "lineHeight": "24px",
+    "whiteSpace": "pre-line"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "presentation-tablette:root": {
+    "paddingInline": "48px"
+  },
+  "presentation-desktop:root": {
+    "paddingInline": "56px",
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "flex-start",
+    "justifyContent": "center",
+    "width": "100%",
+    "minWidth": "0"
+  },
+  "presentation-desktop:wrapper": {
+    "gap": "24px"
+  },
+  "presentation-wide:root": {
+    "paddingInline": "0px",
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "flex-start",
+    "justifyContent": "center",
+    "width": "100%",
+    "minWidth": "0"
+  }
+};
 
-export interface PresentationProps extends HTMLAttributes<HTMLDivElement> {
+export interface PresentationProps extends HTMLAttributes<HTMLElement> {
+  /** Viewport presentation mirrored from the 031 Figma axis. Mobile is the first set variant and the mobile-first CSS base; consumers do not select it at runtime. */
+  presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
+  /** Rich body copy. The 031 source contains paragraph breaks, therefore this content accepts strong and line-break in Odoo. Figma exposes no component property for this drawn text. */
   texte?: Array<{ text: string; strong?: boolean }>;
+  /** CTA presence retained for code consumers. The 031 canvas does not expose it as a component property, so its Figma binding is NONE and Odoo fixes it by composition. */
   bouton?: boolean;
-  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
-  titre?: string;
+  /** Presentation-owned rich title. Its responsive H2 typography carries 24/30, 24/30, 32/40 and 40/50 across the 031 variants; Figma exposes no component property for the drawn text. */
+  titre?: Array<{ text: string; strong?: boolean }>;
 }
 
-/** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing. */
-export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(function Presentation(
-  { bouton = true, titre = 'Piqueray, une histoire de famille ', texte = [{"text":"Depuis plus de 50 ans,","strong":true},{"text":" la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "},{"text":"proximité et d'excellence technique","strong":true},{"text":". Dépositaire officiel "},{"text":"Hörmann","strong":true},{"text":", nous allions la force d'un leader mondial à "},{"text":"la souplesse d'une PME locale","strong":true},{"text":"."}], style, children, ...rest },
+/** Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only. */
+export const Presentation = forwardRef<HTMLElement, PresentationProps>(function Presentation(
+  { presentation = 'mobile', bouton = true, texte = [{"text":"Depuis plus de 50 ans,","strong":true},{"text":" PIQUERAY est dépositaire officiel de la marque "},{"text":"Hörmann","strong":true},{"text":", fabricant connu pour ses produits de qualité et ses innovations.\n\nComposée d’une équipe d’une vingtaine de personnes de la "},{"text":"région verviétoise","strong":true},{"text":" et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.\n\nQue vous soyez particulier ou une entreprise, "},{"text":"Piqueray vous accompagne de A à Z","strong":true},{"text":" dans votre projet."}], titre = [{"text":"Piqueray, votre distributeur de portes Hörmann "},{"text":"en Province de Liège","strong":true}], style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined}  {...rest}>
+    <section ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }} data-bouton={bouton || undefined}  {...rest}>
       <div style={{ ...S.colGauche }}>
-<SectionHeader titre={[{"text":"Piqueray, ","strong":true},{"text":"une histoire de famille "}]} accroche="Plus de 50 ans d’expérience" disposition="standard" accroche2={false} emphase="moyen" alignement="gauche" />
+<span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
 </div>
-<div style={{ ...S.wrapper }}>
+<div style={{ ...S.wrapper, ...(V[`presentation-${presentation}:wrapper`] ?? {}) }}>
 <span style={{ ...S.Texte }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
-{bouton ? (<Button variant="link" iconRight>Contactez-nous</Button>) : null}
+{bouton ? (<Button variant="link" iconLeft={false} iconRight>En savoir plus</Button>) : null}
 </div>
-    </div>
+    </section>
   );
 });

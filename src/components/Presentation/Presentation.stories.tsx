@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v3.0.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v4.0.1)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,35 +14,55 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.',
+          'Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only.',
       },
     },
   },
   render: (args) => <Presentation key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    texte: { control: false },
-    bouton: { control: 'boolean' },
+    presentation: {
+      control: 'select',
+      options: ['mobile', 'tablette', 'desktop', 'wide'],
+      description:
+        'Viewport presentation mirrored from the 031 Figma axis. Mobile is the first set variant and the mobile-first CSS base; consumers do not select it at runtime.',
+    },
+    texte: {
+      control: false,
+      description:
+        'Rich body copy. The 031 source contains paragraph breaks, therefore this content accepts strong and line-break in Odoo. Figma exposes no component property for this drawn text.',
+    },
+    bouton: {
+      control: 'boolean',
+      description:
+        'CTA presence retained for code consumers. The 031 canvas does not expose it as a component property, so its Figma binding is NONE and Odoo fixes it by composition.',
+    },
     titre: {
       control: false,
       description:
-        'Presentation-owned rich title. The prior medium SectionHeader variant is replaced by direct 32/40 anatomy.',
+        'Presentation-owned rich title. Its responsive H2 typography carries 24/30, 24/30, 32/40 and 40/50 across the 031 variants; Figma exposes no component property for the drawn text.',
     },
   },
   args: {
+    presentation: 'mobile',
     texte: [
       { text: 'Depuis plus de 50 ans,', strong: true },
-      {
-        text: " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de ",
-      },
-      { text: "proximité et d'excellence technique", strong: true },
-      { text: '. Dépositaire officiel ' },
+      { text: ' PIQUERAY est dépositaire officiel de la marque ' },
       { text: 'Hörmann', strong: true },
-      { text: ", nous allions la force d'un leader mondial à " },
-      { text: "la souplesse d'une PME locale", strong: true },
-      { text: '.' },
+      {
+        text: ', fabricant connu pour ses produits de qualité et ses innovations.\n\nComposée d’une équipe d’une vingtaine de personnes de la ',
+      },
+      { text: 'région verviétoise', strong: true },
+      {
+        text: ' et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.\n\nQue vous soyez particulier ou une entreprise, ',
+      },
+      { text: 'Piqueray vous accompagne de A à Z', strong: true },
+      { text: ' dans votre projet.' },
     ],
     bouton: true,
-    titre: [{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }],
+    titre: [
+      { text: 'Piqueray, votre distributeur de portes Hörmann ' },
+      { text: 'en Province de Liège', strong: true },
+    ],
   },
 } satisfies Meta<typeof Presentation>;
 
@@ -50,3 +70,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
+
+export const Mobile: Story = {
+  args: { presentation: 'mobile' },
+};
+
+export const Tablette: Story = {
+  args: { presentation: 'tablette' },
+};
+
+export const Desktop: Story = {
+  args: { presentation: 'desktop' },
+};
+
+export const Wide: Story = {
+  args: { presentation: 'wide' },
+};
+/** Every legal combination the contract defines. */
+export const Matrix: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'grid',
+        gap: 16,
+        gridTemplateColumns: 'repeat(1, max-content)',
+        alignItems: 'center',
+        justifyItems: 'start',
+      }}
+    >
+      <Presentation presentation="mobile" />
+      <Presentation presentation="tablette" />
+      <Presentation presentation="desktop" />
+      <Presentation presentation="wide" />
+    </div>
+  ),
+};
