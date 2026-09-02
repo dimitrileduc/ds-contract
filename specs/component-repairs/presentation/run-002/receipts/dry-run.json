@@ -1,0 +1,88 @@
+{
+  "campaignId": "figma-responsive-presentation-run-002",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-presentation-responsive-presentations",
+      "targetId": "presentation",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2103:2824",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2103:2824"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-presentation-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-presentation-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-presentation-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2103:2824",
+      "2463:4779"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2104:2958",
+      "258:1887",
+      "2105:2990",
+      "226:112",
+      "2106:3000",
+      "210:326"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:122",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

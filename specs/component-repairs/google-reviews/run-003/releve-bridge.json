@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-google-reviews-section-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d’ancêtres), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T11:39:53Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "google-reviews-section",
+  "campaignId": "figma-responsive-google-reviews-section-run-003",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identite": {
+    "id": "2545:5685",
+    "key": "a4d8c699641576c3f44fa7042382979ef9445cdb",
+    "name": "Section Avis Google",
+    "type": "COMPONENT",
+    "bounds": {
+      "width": 1552,
+      "height": 423
+    },
+    "axes": "aucun — composant seul, d’où la branche additive",
+    "parent": "2545:5684",
+    "racine": {
+      "layoutMode": "VERTICAL",
+      "enfantsDePremierNiveau": 2
+    }
+  },
+  "derivationMobile": {
+    "empile": false,
+    "raison": "racine déjà VERTICALE (SectionHeader + AvisGoogle)",
+    "$comment": "FR-003 : dérivé de la structure OBSERVÉE de cette section, jamais d’une règle de vague appliquée uniformément."
+  },
+  "dependancesProtegees": [
+    "2090:2397",
+    "2178:7381",
+    "2480:5365",
+    "2480:5253"
+  ],
+  "usages": [],
+  "usagesTotal": 0,
+  "avertissementUsages": "ZÉRO instance de ce master de section dans tout le fichier. Les avis Google sont pourtant présents sur 8 maquettes, via la MOLÉCULE `Avis Google` (2178:7381) enveloppée dans un GROUP — jamais via cette section gouvernée. Voir registre E-031-012. Poser l’axe ici ne changera rien sur les Pages."
+}

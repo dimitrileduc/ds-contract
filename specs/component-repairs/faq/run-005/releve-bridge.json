@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-faq-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d’ancêtres), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T11:39:53Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "faq",
+  "campaignId": "figma-responsive-faq-run-005",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identite": {
+    "id": "2104:2914",
+    "key": "0df659be188a72700e42e2afbf30e95bb38db5f1",
+    "name": "FAQ",
+    "type": "COMPONENT",
+    "bounds": {
+      "width": 1728,
+      "height": 425
+    },
+    "axes": "aucun — composant seul, d’où la branche additive",
+    "parent": "2455:4733",
+    "racine": {
+      "layoutMode": "VERTICAL",
+      "enfantsDePremierNiveau": 3
+    }
+  },
+  "derivationMobile": {
+    "empile": false,
+    "raison": "racine déjà VERTICALE (en-tête + accordéon + bouton)",
+    "$comment": "FR-003 : dérivé de la structure OBSERVÉE de cette section, jamais d’une règle de vague appliquée uniformément."
+  },
+  "dependancesProtegees": [
+    "2090:2397",
+    "2059:1417",
+    "6:122",
+    "6:99",
+    "6:104"
+  ],
+  "usages": [
+    {
+      "instanceNodeId": "2106:3035",
+      "pageName": "Pages",
+      "mainComponentId": "2104:2914",
+      "bounds": {
+        "width": 1728,
+        "height": 409
+      },
+      "position": [
+        {
+          "id": "2106:3035"
+        },
+        {
+          "id": "237:969"
+        }
+      ],
+      "hostFrame": {
+        "id": "237:969",
+        "bounds": {
+          "width": 1728,
+          "height": 6534.5
+        }
+      }
+    },
+    {
+      "instanceNodeId": "2106:3010",
+      "pageName": "Pages",
+      "mainComponentId": "2104:2914",
+      "bounds": {
+        "width": 1728,
+        "height": 473
+      },
+      "position": [
+        {
+          "id": "2106:3010"
+        },
+        {
+          "id": "387:720"
+        }
+      ],
+      "hostFrame": {
+        "id": "387:720",
+        "bounds": {
+          "width": 1728,
+          "height": 6770.5
+        }
+      }
+    },
+    {
+      "instanceNodeId": "2106:3060",
+      "pageName": "Pages",
+      "mainComponentId": "2104:2914",
+      "bounds": {
+        "width": 1728,
+        "height": 409
+      },
+      "position": [
+        {
+          "id": "2106:3060"
+        },
+        {
+          "id": "230:376"
+        }
+      ],
+      "hostFrame": {
+        "id": "230:376",
+        "bounds": {
+          "width": 1728,
+          "height": 6576
+        }
+      }
+    }
+  ],
+  "usagesTotal": 3
+}

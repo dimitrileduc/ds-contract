@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-hero-run-001",
+  "targetId": "hero",
+  "inspectedAt": "2026-08-27T11:12:44.951Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2111:3382",
+    "parentNodeId": "2416:6979",
+    "parentName": "Container · Demo 1728",
+    "parentType": "FRAME",
+    "parentLayoutMode": "VERTICAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2545:6002",
+      "structuralPath": "2/0/0/0/0",
+      "name": "Titre",
+      "characters": "Portes de garage industrielles",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2434:5800",
+      "structuralPath": "2/0/0/1",
+      "name": "sousTitre",
+      "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2434:5801;2410:6133",
+      "structuralPath": "2/0/1/1",
+      "name": "label",
+      "characters": "Demander un devis gratuit",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button"
+    ],
+    "observed": [
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2111:3382",
+    "historicalMemberKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1728,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 9,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (2545:6002): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "repair Text Style classification for Titre (2545:6002)"
+  ]
+}

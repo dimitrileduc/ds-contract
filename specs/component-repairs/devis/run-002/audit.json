@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-devis-run-002",
+  "targetId": "devis",
+  "inspectedAt": "2026-08-27T11:10:52.649Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2096:2524",
+    "parentNodeId": "2463:4778",
+    "parentName": "Container · Devis",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2351:38179",
+      "structuralPath": "2/0/0",
+      "name": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+      "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "I2351:38197;2410:6133",
+      "structuralPath": "2/1/1",
+      "name": "label",
+      "characters": "Prendre rendez-vous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button"
+    ],
+    "observed": [
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2096:2524",
+    "historicalMemberKey": "0caac7487988d0da129211e64a40545163149a6f",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1728,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 8,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous (2351:38179): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "repair Text Style classification for Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous (2351:38179)"
+  ]
+}

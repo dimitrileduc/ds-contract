@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-presentation-run-002",
+  "targetId": "presentation",
+  "inspectedAt": "2026-08-27T11:09:02.336Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2103:2824",
+    "parentNodeId": "2463:4779",
+    "parentName": "Container · Presentation",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1287,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2545:6005",
+      "structuralPath": "0/0/0",
+      "name": "Titre",
+      "characters": "Piqueray, une histoire de famille ",
+      "classification": "named-exact",
+      "textStyleId": "5:43",
+      "textStyleName": "Titre 3",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2351:37037",
+      "structuralPath": "1/0",
+      "name": "Texte",
+      "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2351:37050;2410:6138",
+      "structuralPath": "1/1/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button"
+    ],
+    "observed": [
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2103:2824",
+    "historicalMemberKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1287,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 3,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

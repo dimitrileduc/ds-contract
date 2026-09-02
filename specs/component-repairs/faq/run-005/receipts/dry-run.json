@@ -1,0 +1,90 @@
+{
+  "campaignId": "figma-responsive-faq-run-005",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-faq-responsive-presentations",
+      "targetId": "faq",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2104:2914",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2104:2914"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-faq-responsive-presentations",
+      "count": 1,
+      "declaredName": "FAQ"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-faq-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-faq-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2104:2914",
+      "2455:4733"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2106:3035",
+      "237:969",
+      "2106:3010",
+      "387:720",
+      "2106:3060",
+      "230:376"
+    ],
+    "protectedDependencyNodeIds": [
+      "2090:2397",
+      "2059:1417",
+      "6:122",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

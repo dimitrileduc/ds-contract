@@ -1,0 +1,89 @@
+{
+  "campaignId": "figma-responsive-formulaire-run-001",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-formulaire-responsive-presentations",
+      "targetId": "formulaire",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2096:2564",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2096:2564"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-formulaire-responsive-presentations",
+      "count": 1,
+      "declaredName": "Formulaire"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-formulaire-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-formulaire-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2096:2564",
+      "2096:2565"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2096:2714",
+      "274:2464"
+    ],
+    "protectedDependencyNodeIds": [
+      "2090:2397",
+      "2088:2350",
+      "6:122",
+      "6:99",
+      "6:104",
+      "2056:1278",
+      "2053:1245",
+      "2053:1247"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

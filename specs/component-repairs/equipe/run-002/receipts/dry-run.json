@@ -1,0 +1,83 @@
+{
+  "campaignId": "figma-responsive-equipe-run-002",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-equipe-responsive-presentations",
+      "targetId": "equipe",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2115:3947",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2115:3947"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-equipe-responsive-presentations",
+      "count": 1,
+      "declaredName": "Equipe"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-equipe-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-equipe-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2115:3947",
+      "2453:4732"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2115:4044",
+      "258:1887"
+    ],
+    "protectedDependencyNodeIds": [
+      "2074:2072",
+      "274:2389"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

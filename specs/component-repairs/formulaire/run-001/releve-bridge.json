@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-formulaire-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d’ancêtres), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T11:39:53Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "formulaire",
+  "campaignId": "figma-responsive-formulaire-run-001",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identite": {
+    "id": "2096:2564",
+    "key": "b588bcccec2ae782382324bcda5fc257b91defd5",
+    "name": "Formulaire",
+    "type": "COMPONENT",
+    "bounds": {
+      "width": 1550,
+      "height": 723
+    },
+    "axes": "aucun — composant seul, d’où la branche additive",
+    "parent": "2096:2565",
+    "racine": {
+      "layoutMode": "HORIZONTAL",
+      "enfantsDePremierNiveau": 2
+    }
+  },
+  "derivationMobile": {
+    "empile": true,
+    "raison": "racine HORIZONTALE à 2 colonnes réelles (column + form) — en mobile le formulaire passe sous le texte",
+    "$comment": "FR-003 : dérivé de la structure OBSERVÉE de cette section, jamais d’une règle de vague appliquée uniformément."
+  },
+  "dependancesProtegees": [
+    "2090:2397",
+    "2088:2350",
+    "6:122",
+    "6:99",
+    "6:104",
+    "2056:1278",
+    "2053:1245",
+    "2053:1247"
+  ],
+  "usages": [
+    {
+      "instanceNodeId": "2096:2714",
+      "pageName": "Pages",
+      "mainComponentId": "2096:2564",
+      "bounds": {
+        "width": 1550,
+        "height": 723
+      },
+      "position": [
+        {
+          "id": "2096:2714"
+        },
+        {
+          "id": "274:2464"
+        }
+      ],
+      "hostFrame": {
+        "id": "274:2464",
+        "bounds": {
+          "width": 1728,
+          "height": 3901
+        }
+      }
+    }
+  ],
+  "usagesTotal": 1
+}

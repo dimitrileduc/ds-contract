@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-produits-ecommerce-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d’ancêtres), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T11:39:53Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "produits-ecommerce",
+  "campaignId": "figma-responsive-produits-ecommerce-run-001",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identite": {
+    "id": "2116:4475",
+    "key": "a616f938df22515ef5778930a99802ea925de85f",
+    "name": "ProduitsECommerce",
+    "type": "COMPONENT",
+    "bounds": {
+      "width": 1596,
+      "height": 414
+    },
+    "axes": "aucun — composant seul, d’où la branche additive",
+    "parent": "2116:4465",
+    "racine": {
+      "layoutMode": "VERTICAL",
+      "enfantsDePremierNiveau": 2
+    }
+  },
+  "derivationMobile": {
+    "empile": false,
+    "raison": "racine déjà VERTICALE (en-tête + carrousel)",
+    "$comment": "FR-003 : dérivé de la structure OBSERVÉE de cette section, jamais d’une règle de vague appliquée uniformément."
+  },
+  "dependancesProtegees": [
+    "6:122",
+    "6:99",
+    "6:104",
+    "2068:1972",
+    "2077:2191",
+    "27:83",
+    "27:86"
+  ],
+  "usages": [
+    {
+      "instanceNodeId": "2116:4531",
+      "pageName": "Pages",
+      "mainComponentId": "2116:4475",
+      "bounds": {
+        "width": 1596,
+        "height": 414
+      },
+      "position": [
+        {
+          "id": "2116:4531"
+        },
+        {
+          "id": "237:705"
+        }
+      ],
+      "hostFrame": {
+        "id": "237:705",
+        "bounds": {
+          "width": 1728,
+          "height": 3334.67
+        }
+      }
+    },
+    {
+      "instanceNodeId": "2116:4595",
+      "pageName": "Pages",
+      "mainComponentId": "2116:4475",
+      "bounds": {
+        "width": 1596,
+        "height": 414
+      },
+      "position": [
+        {
+          "id": "2116:4595"
+        },
+        {
+          "id": "210:326"
+        }
+      ],
+      "hostFrame": {
+        "id": "210:326",
+        "bounds": {
+          "width": 1728,
+          "height": 5462
+        }
+      }
+    }
+  ],
+  "usagesTotal": 2
+}

@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-texte-seo-run-002",
+  "targetId": "texte-seo",
+  "inspectedAt": "2026-08-27T11:12:28.207Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2108:3123",
+    "parentNodeId": "2455:4734",
+    "parentName": "Container · TexteSEO",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2545:6008",
+      "structuralPath": "0/0/0",
+      "name": "Titre",
+      "characters": "Visitez notre showroom à Pepinster ou contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "5:44",
+      "textStyleName": "Titre 4",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2351:37788",
+      "structuralPath": "1/0",
+      "name": "Paragraphe",
+      "characters": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "2351:37822",
+      "structuralPath": "2/0",
+      "name": "SousTitre",
+      "characters": "Infos pratiques",
+      "classification": "named-exact",
+      "textStyleId": "5:45",
+      "textStyleName": "Titre 5",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37856;2347:34260",
+      "structuralPath": "3/0/1/0",
+      "name": "Question",
+      "characters": "Accès et parking",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37867;2347:34266",
+      "structuralPath": "3/1/0/0/0",
+      "name": "Question",
+      "characters": "Faut-il prendre rendez-vous ?",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37867;2347:34270",
+      "structuralPath": "3/1/2",
+      "name": "Contenu",
+      "characters": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+      "classification": "rich-ranges",
+      "textStyleId": "5:47",
+      "textStyleName": "Paragraphe",
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2351:37880;2347:34260",
+      "structuralPath": "3/2/1/0",
+      "name": "Question",
+      "characters": "Zones de déplacement pour devis",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.accordion-row"
+    ],
+    "observed": [
+      "ds.accordion-row"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2108:3123",
+    "historicalMemberKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1728,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 8,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

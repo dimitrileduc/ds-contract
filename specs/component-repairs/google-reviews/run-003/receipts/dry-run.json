@@ -1,0 +1,82 @@
+{
+  "campaignId": "figma-responsive-google-reviews-section-run-003",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-google-reviews-section-responsive-presentations",
+      "targetId": "google-reviews-section",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2545:5685",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2545:5685"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-google-reviews-section-responsive-presentations",
+      "count": 1,
+      "declaredName": "Section Avis Google"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-google-reviews-section-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-google-reviews-section-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2545:5685",
+      "2545:5684"
+    ],
+    "readOnlySurfaceNodeIds": [],
+    "protectedDependencyNodeIds": [
+      "2090:2397",
+      "2178:7381",
+      "2480:5365",
+      "2480:5253"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

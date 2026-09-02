@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-coordonnees-run-001",
+  "targetId": "coordonnees",
+  "inspectedAt": "2026-08-27T11:11:28.805Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "fail",
+    "masterNodeId": "2104:2904",
+    "parentNodeId": "2104:2905",
+    "parentName": "Coordonnées",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "HUG",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": [
+      "master is not directly presented by a local FRAME Container",
+      "local Container is not auto-layout",
+      "local presentation parent is not named Container",
+      "organism master is not width FILL inside its local Container"
+    ]
+  },
+  "texts": [
+    {
+      "nodeId": "I2410:5829;2351:36776",
+      "structuralPath": "1/0/0",
+      "name": "Accroche",
+      "characters": "Contact",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2410:5829;2351:36777",
+      "structuralPath": "1/0/1",
+      "name": "Titre",
+      "characters": "Nos coordonnées",
+      "classification": "named-exact",
+      "textStyleId": "5:42",
+      "textStyleName": "Titre 2",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2410:5835",
+      "structuralPath": "1/1/0",
+      "name": "AdresseEtiquette",
+      "characters": "Adresse",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5836",
+      "structuralPath": "1/1/1",
+      "name": "AdresseValeur",
+      "characters": "Rue Alfred Drèze 7, 4860 Pepinster",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5838",
+      "structuralPath": "1/2/0",
+      "name": "HorairesEtiquette",
+      "characters": "Horaires",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5839",
+      "structuralPath": "1/2/1",
+      "name": "HorairesValeur",
+      "characters": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5841",
+      "structuralPath": "1/3/0",
+      "name": "ContactEtiquette",
+      "characters": "Contact",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5842",
+      "structuralPath": "1/3/1",
+      "name": "tl32087463266EmailInfopi",
+      "characters": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2410:5844",
+      "structuralPath": "1/4/0",
+      "name": "SuivezNousEtiquette",
+      "characters": "Suivez-nous",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2104:2904",
+    "historicalMemberKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1728,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 1,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [
+    {
+      "code": "organism-container",
+      "severity": "proposal",
+      "message": "master is not directly presented by a local FRAME Container; local Container is not auto-layout; local presentation parent is not named Container; organism master is not width FILL inside its local Container"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "AdresseEtiquette (2410:5835): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "AdresseValeur (2410:5836): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "HorairesEtiquette (2410:5838): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "HorairesValeur (2410:5839): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "ContactEtiquette (2410:5841): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "tl32087463266EmailInfopi (2410:5842): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "SuivezNousEtiquette (2410:5844): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "present the existing master in one local auto-layout Container and set its horizontal sizing to FILL",
+    "repair Text Style classification for AdresseEtiquette (2410:5835)",
+    "repair Text Style classification for AdresseValeur (2410:5836)",
+    "repair Text Style classification for HorairesEtiquette (2410:5838)",
+    "repair Text Style classification for HorairesValeur (2410:5839)",
+    "repair Text Style classification for ContactEtiquette (2410:5841)",
+    "repair Text Style classification for tl32087463266EmailInfopi (2410:5842)",
+    "repair Text Style classification for SuivezNousEtiquette (2410:5844)"
+  ]
+}

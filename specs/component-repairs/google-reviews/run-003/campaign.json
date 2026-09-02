@@ -1,0 +1,588 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "figma-responsive-google-reviews-section-run-003",
+  "featureId": "031-vague-responsive-sections",
+  "runId": "run-003",
+  "freshCampaign": {
+    "status": "fresh",
+    "supersedesRun": null,
+    "historicalContextRuns": [],
+    "copiedExecutionEvidence": [],
+    "reusePolicy": "historical-context-only; never copy audit, capture, receipt or verify artifacts"
+  },
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "organism",
+    "evidenceRoot": "specs/component-repairs/google-reviews/run-003",
+    "ownerDecisionRoot": "specs/031-vague-responsive-sections/decisions",
+    "comparisonPath": "specs/component-repairs/google-reviews/run-003/verify/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/google-reviews/run-003/receipts/apply-first.json",
+      "second": "specs/component-repairs/google-reviews/run-003/receipts/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ds.google-reviews",
+      "ds.section-header"
+    ],
+    "sharedDependencies": []
+  },
+  "artifactRoots": {
+    "audit": "specs/component-repairs/google-reviews/run-003/audit.json",
+    "captures": {
+      "before": "specs/component-repairs/google-reviews/run-003/captures/before",
+      "after": "specs/component-repairs/google-reviews/run-003/captures/after",
+      "idempotence": "specs/component-repairs/google-reviews/run-003/captures/idempotence"
+    },
+    "receipts": "specs/component-repairs/google-reviews/run-003/receipts",
+    "verify": "specs/component-repairs/google-reviews/run-003/verify",
+    "dryRun": "specs/component-repairs/google-reviews/run-003/receipts/dry-run.json",
+    "bridgeScripts": {
+      "first": "specs/component-repairs/google-reviews/run-003/bridge-first.js",
+      "second": "specs/component-repairs/google-reviews/run-003/bridge-second.js"
+    }
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2392267626424800780",
+    "fileName": "Piqueray (Copy)",
+    "capturedAt": "2026-08-27T11:39:53Z",
+    "pinStatus": "relevé read-only du 2026-08-27, version nommée 031-avant-vague"
+  },
+  "authorityRefs": [
+    "specs/component-repairs/google-reviews/run-003/releve-bridge.json"
+  ],
+  "targets": [
+    {
+      "targetId": "google-reviews-section",
+      "kind": "direct-canvas",
+      "masterNodeId": "2545:5685",
+      "reference": {
+        "referenceId": "google-reviews-section-031-reference",
+        "sourceKind": "historical-version",
+        "figmaVersionId": "2392267626424800780",
+        "subjectNodeId": "2545:5685",
+        "visualFacts": [
+          "composant seul « Section Avis Google » sans axe de variante",
+          "racine VERTICAL à 2 enfant(s)",
+          "0 usage(s) adressé(s) par position"
+        ],
+        "decisionRef": "specs/031-vague-responsive-sections/decisions/031-google-reviews-section.json"
+      },
+      "affectedSurfaceIds": [
+        "google-reviews-section:master"
+      ],
+      "projectionDefectIds": [],
+      "allowedFields": [
+        "componentSetTopology",
+        "presentationProperty",
+        "layoutMode",
+        "layoutSizingHorizontal",
+        "layoutSizingVertical",
+        "counterAxisAlignItems",
+        "fontSize",
+        "lineHeight",
+        "textAlignHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity",
+        "responsive-overflow",
+        "component-set-topology",
+        "historical-member-identity",
+        "component-properties",
+        "primitive-bindings",
+        "temporary-typography",
+        "shared-child-facts"
+      ],
+      "allowedFactChanges": [
+        "variant-cardinality",
+        "variant-names",
+        "geometry"
+      ],
+      "expectedMasterName": "Section Avis Google",
+      "expectedVariantNames": [],
+      "responsiveWidths": [
+        320,
+        390,
+        834,
+        1200,
+        1440,
+        1728
+      ],
+      "responsive": {
+        "componentSetTopology": {
+          "propertyName": "Presentation",
+          "setName": "Section Avis Google",
+          "setIdentityPolicy": "additive",
+          "defaultPresentationValue": "Wide",
+          "authoringLayout": {
+            "direction": "VERTICAL",
+            "gap": 0,
+            "order": [
+              "Wide",
+              "Desktop",
+              "Mobile"
+            ]
+          },
+          "historicalMember": {
+            "presentationValue": "Wide",
+            "declaredName": "Presentation=Wide",
+            "authoringPreviewWidth": 1552,
+            "nodeId": "2545:5685",
+            "componentKey": "a4d8c699641576c3f44fa7042382979ef9445cdb"
+          },
+          "createdMembers": [
+            {
+              "presentationValue": "Desktop",
+              "declaredName": "Presentation=Desktop",
+              "authoringPreviewWidth": 1200,
+              "sourcePresentationValue": "Wide"
+            },
+            {
+              "presentationValue": "Mobile",
+              "declaredName": "Presentation=Mobile",
+              "authoringPreviewWidth": 390,
+              "sourcePresentationValue": "Wide"
+            }
+          ],
+          "expectedMemberNames": [
+            "Presentation=Wide",
+            "Presentation=Desktop",
+            "Presentation=Mobile"
+          ]
+        },
+        "expectedCreates": [
+          {
+            "role": "component-set",
+            "operationId": "install-google-reviews-section-responsive-presentations",
+            "count": 1,
+            "declaredName": "Section Avis Google"
+          },
+          {
+            "role": "presentation-desktop",
+            "operationId": "install-google-reviews-section-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Desktop",
+            "presentationValue": "Desktop"
+          },
+          {
+            "role": "presentation-mobile",
+            "operationId": "install-google-reviews-section-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Mobile",
+            "presentationValue": "Mobile"
+          }
+        ],
+        "contentFixtures": [
+          {
+            "fixtureId": "normal",
+            "textValues": {}
+          }
+        ],
+        "presentationScenarios": [
+          {
+            "scenarioId": "320-wide-normal",
+            "presentationValue": "Wide",
+            "width": 320,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-wide-normal",
+            "presentationValue": "Wide",
+            "width": 390,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-wide-normal",
+            "presentationValue": "Wide",
+            "width": 834,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-wide-normal",
+            "presentationValue": "Wide",
+            "width": 1200,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-wide-normal",
+            "presentationValue": "Wide",
+            "width": 1440,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-wide-normal",
+            "presentationValue": "Wide",
+            "width": 1728,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 320,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 390,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 834,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 1200,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 1440,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-desktop-normal",
+            "presentationValue": "Desktop",
+            "width": 1728,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 320,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 390,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 834,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 1200,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 1440,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-mobile-normal",
+            "presentationValue": "Mobile",
+            "width": 1728,
+            "height": 423,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          }
+        ],
+        "presentationLayouts": [
+          {
+            "presentationValue": "Wide",
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Desktop",
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Mobile",
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          }
+        ],
+        "primitiveBindings": [],
+        "typographyOverrides": [],
+        "authorizedTargetNodeIds": [
+          "2545:5685"
+        ]
+      }
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "google-reviews-section:master",
+      "targetId": "google-reviews-section",
+      "role": "master",
+      "nodeId": "2545:5685",
+      "pageComposition": null,
+      "structuralPath": "Section Avis Google",
+      "expectedSize": {
+        "width": 1552,
+        "height": 423
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2545:5685",
+      "2545:5684"
+    ],
+    "readOnlySurfaceNodeIds": [],
+    "protectedDependencyNodeIds": [
+      "2090:2397",
+      "2178:7381",
+      "2480:5365",
+      "2480:5253"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "allowedOperations": [
+    {
+      "operationId": "install-google-reviews-section-responsive-presentations",
+      "targetId": "google-reviews-section",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2545:5685",
+      "structuralPath": "0",
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2545:5685"
+        }
+      ],
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "figma-responsive-google-reviews-section-run-003-before-2392267626424800780",
+      "phase": "before",
+      "fileVersionId": "2392267626424800780",
+      "artifacts": [
+        {
+          "artifactId": "google-reviews-section:master:structure",
+          "surfaceId": "google-reviews-section:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/google-reviews/run-003/captures/before/google-reviews-section_master.structure.json",
+          "sha256": "12ff94615771f6daaf9a144e522b41075546a951d0a46d34f3b9eb564950a6ce",
+          "width": null,
+          "height": null,
+          "byteLength": 549339,
+          "status": "valid"
+        },
+        {
+          "artifactId": "google-reviews-section:master:properties",
+          "surfaceId": "google-reviews-section:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/google-reviews/run-003/captures/before/google-reviews-section_master.properties.json",
+          "sha256": "14a256993348298e04a266597df4cf2bd7b19dc40066d39f90990b54bca9d84f",
+          "width": null,
+          "height": null,
+          "byteLength": 13542,
+          "status": "valid"
+        },
+        {
+          "artifactId": "google-reviews-section:master:facts",
+          "surfaceId": "google-reviews-section:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/google-reviews/run-003/captures/before/google-reviews-section_master.facts.json",
+          "sha256": "918c8acadd69fc8aac32715f2380be0018e5272e2b0a85f9542380d1933ac16e",
+          "width": null,
+          "height": null,
+          "byteLength": 190758,
+          "status": "valid"
+        },
+        {
+          "artifactId": "google-reviews-section:master:png",
+          "surfaceId": "google-reviews-section:master",
+          "kind": "png",
+          "path": "specs/component-repairs/google-reviews/run-003/captures/before/google-reviews-section_master.png",
+          "sha256": "1b4d545a1e5c22956ed7f8048bece5c090582024af1ec7c5f862532cd709b258",
+          "width": 1560,
+          "height": 423,
+          "byteLength": 64548,
+          "status": "valid"
+        },
+        {
+          "artifactId": "google-reviews-section:master:presentation-scenarios:before",
+          "surfaceId": "google-reviews-section:master",
+          "kind": "report",
+          "path": "specs/component-repairs/google-reviews/run-003/captures/before/presentation-scenarios.json",
+          "sha256": "cfe59c44620ae1691be4e16193c562b9ae2ae6ccdfcb682bed7253629f94cdfb",
+          "width": null,
+          "height": null,
+          "byteLength": 5802,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2545:6270",
+          "masterNodeId": "2090:2385",
+          "structuralPath": "0",
+          "overrideDigest": "a488db2267768ab5ff0880515fad7f1d560f6f747dee3d9122e8ca46185eefcc"
+        },
+        {
+          "instanceNodeId": "2545:6273",
+          "masterNodeId": "2178:7381",
+          "structuralPath": "1",
+          "overrideDigest": "d4d56c0ae2b9f58ae4ea47b7ea59b83a4dde13c4513d8e4d7a89263c68394e32"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38520",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "1/1/1/0",
+          "overrideDigest": "43a133d11f0069561ffcef931227d7c08a649fa2608827def30d35f0a0bae11a"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38520;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/1/1/0/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38551",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "1/1/1/1",
+          "overrideDigest": "7fac6cfecd1c88bd57bf07728c94150a11c685290bd6b115a1a4b72b7ff2eeec"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38551;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/1/1/1/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38582",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "1/1/1/2",
+          "overrideDigest": "d66c86f38f495c8a6ed060b6688e86b57b4cf5ec63b1760d8f7589a4feb2fff6"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38582;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/1/1/2/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38613",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "1/1/1/3",
+          "overrideDigest": "4f4fe16ace790a6b82f87c00084502948a2a17c01c91e71360739856c28aef0e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38613;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/1/1/3/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38644",
+          "masterNodeId": "2178:7349",
+          "structuralPath": "1/1/1/4",
+          "overrideDigest": "e756a5c3f2cc449a529429c84f9c2276c220c929f1e300a480f64b0b814aff7c"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2351:38644;2480:4726",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/1/1/4/1/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        },
+        {
+          "instanceNodeId": "I2545:6273;2480:5264",
+          "masterNodeId": "2480:4724",
+          "structuralPath": "1/0/0/2/0",
+          "overrideDigest": "7f8585de41073400a629e9ce19931d25af7ad01b6577631aef019f5ababc841e"
+        }
+      ],
+      "complete": true
+    }
+  },
+  "state": "ready-to-apply",
+  "createdAt": "2026-08-27T11:39:53Z",
+  "sourceBaseline": {
+    "gitHead": "2d3a7fb7f0d7ee83e8a12aea6861df213162944c",
+    "worktreeTree": "6b0061c8ee946818dcc6c3472ae8a6e4ba8d5d61",
+    "backupRef": "refs/codex/backups/031-google-reviews-section",
+    "capturedAt": "2026-08-27T11:13:43.459Z"
+  },
+  "captureMode": "light"
+}

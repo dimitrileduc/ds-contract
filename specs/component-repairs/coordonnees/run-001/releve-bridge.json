@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-coordonnees-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d’ancêtres), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T11:39:53Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "coordonnees",
+  "campaignId": "figma-responsive-coordonnees-run-001",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identite": {
+    "id": "2104:2904",
+    "key": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
+    "name": "Coordonnees",
+    "type": "COMPONENT",
+    "bounds": {
+      "width": 1728,
+      "height": 597
+    },
+    "axes": "aucun — composant seul, d’où la branche additive",
+    "parent": "2104:2905",
+    "racine": {
+      "layoutMode": "HORIZONTAL",
+      "enfantsDePremierNiveau": 2
+    }
+  },
+  "derivationMobile": {
+    "empile": true,
+    "raison": "racine HORIZONTALE à 2 colonnes réelles (googleMap 1152 + wrapper 576) — en mobile la carte passe au-dessus du bloc",
+    "$comment": "FR-003 : dérivé de la structure OBSERVÉE de cette section, jamais d’une règle de vague appliquée uniformément."
+  },
+  "dependancesProtegees": [
+    "2090:2397"
+  ],
+  "usages": [
+    {
+      "instanceNodeId": "2192:9815",
+      "pageName": "Pages",
+      "mainComponentId": "2104:2904",
+      "bounds": {
+        "width": 1728,
+        "height": 597
+      },
+      "position": [
+        {
+          "id": "2192:9815"
+        },
+        {
+          "id": "274:2464"
+        }
+      ],
+      "hostFrame": {
+        "id": "274:2464",
+        "bounds": {
+          "width": 1728,
+          "height": 3901
+        }
+      }
+    }
+  ],
+  "usagesTotal": 1
+}

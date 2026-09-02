@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "run": "031-reassurances-releve-read-only",
+  "$comment": "Relevé READ-ONLY du pont figma-console, 2026-08-27. Aucune écriture. Usages scannés PAR POSITION (chaîne d'ancêtres avec index), jamais par nom — constitution §VIII. Version de fichier épinglée : 031-avant-vague.",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "inspectedAt": "2026-08-27T10:34:16.170Z",
+  "fileVersionId": "2392267626424800780",
+  "fileVersionName": "031-avant-vague",
+  "targetId": "reassurances",
+  "campaignId": "reassurances-031",
+  "figmaWrites": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "identities": {
+    "sectionSet": {
+      "id": "2114:3721",
+      "key": "a303bd661e06746baa62828633b5c6132714a8c8",
+      "name": "Reassurances",
+      "type": "COMPONENT_SET",
+      "bounds": { "x": 40, "y": 60, "width": 1630, "height": 2353 },
+      "variantProperties": null,
+      "componentPropertyDefinitions": {
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "4 cartes",
+          "variantOptions": ["4 cartes", "QuatreCartesDeuxCta", "5 cartes"]
+        }
+      },
+      "members": [
+        { "id": "2114:3619", "key": "f973bf46e4f169fb69646aa4d0dbbfc27a42e1c0", "name": "Disposition=4 cartes",            "type": "COMPONENT", "bounds": { "x": 40, "y": 40,   "width": 1550, "height": 731 }, "variantProperties": { "Disposition": "4 cartes" },            "componentPropertyDefinitions": null },
+        { "id": "2114:3653", "key": "b129711f6b2c3aff38f1d2c495e8472b17592f40", "name": "Disposition=QuatreCartesDeuxCta", "type": "COMPONENT", "bounds": { "x": 40, "y": 811,  "width": 1550, "height": 731 }, "variantProperties": { "Disposition": "QuatreCartesDeuxCta" }, "componentPropertyDefinitions": null },
+        { "id": "2114:3693", "key": "93ae486d94bd581b1281b2446e26e0f909dd21c7", "name": "Disposition=5 cartes",            "type": "COMPONENT", "bounds": { "x": 40, "y": 1582, "width": 1550, "height": 731 }, "variantProperties": { "Disposition": "5 cartes" },            "componentPropertyDefinitions": null }
+      ]
+    }
+  },
+  "parent": {
+    "id": "2114:3722",
+    "name": "Réassurances",
+    "type": "SECTION",
+    "page": "DS · Organisms",
+    "pageId": "2052:1146",
+    "$comment": "Parent relevé à T008. En branche `existing`, combineAsVariants n'est PAS appelé : le parent n'est pas muté. Il est nommé ici pour la partition §XI (zone Z01), pas comme cible d'écriture."
+  },
+  "usages": [
+    { "instanceNodeId": "2115:3830", "pageName": "Pages", "mainComponentId": "2114:3619", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3830", "name": "Reassurances", "type": "INSTANCE", "index": 4 }, { "id": "258:1887", "name": "À Propos", "type": "FRAME", "index": 1 } ], "hostFrame": { "id": "258:1887", "name": "À Propos", "type": "FRAME", "bounds": { "width": 1728, "height": 6152 } } },
+    { "instanceNodeId": "2115:3754", "pageName": "Pages", "mainComponentId": "2114:3653", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3754", "name": "Reassurances", "type": "INSTANCE", "index": 2 }, { "id": "237:969", "name": "Portes d’entrée", "type": "FRAME", "index": 3 } ], "hostFrame": { "id": "237:969", "name": "Portes d’entrée", "type": "FRAME", "bounds": { "width": 1728, "height": 6534.5 } } },
+    { "instanceNodeId": "2115:3723", "pageName": "Pages", "mainComponentId": "2114:3619", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3723", "name": "Reassurances", "type": "INSTANCE", "index": 2 }, { "id": "387:720", "name": "Portes de garage industrielles", "type": "FRAME", "index": 5 } ], "hostFrame": { "id": "387:720", "name": "Portes de garage industrielles", "type": "FRAME", "bounds": { "width": 1728, "height": 6770.5 } } },
+    { "instanceNodeId": "2115:3861", "pageName": "Pages", "mainComponentId": "2114:3619", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3861", "name": "Reassurances", "type": "INSTANCE", "index": 2 }, { "id": "230:376", "name": "Portes de garage résidentielles", "type": "FRAME", "index": 6 } ], "hostFrame": { "id": "230:376", "name": "Portes de garage résidentielles", "type": "FRAME", "bounds": { "width": 1728, "height": 6576 } } },
+    { "instanceNodeId": "2115:3794", "pageName": "Pages", "mainComponentId": "2114:3693", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3794", "name": "Reassurances", "type": "INSTANCE", "index": 3 }, { "id": "226:112", "name": "Portes de garage", "type": "FRAME", "index": 7 } ], "hostFrame": { "id": "226:112", "name": "Portes de garage", "type": "FRAME", "bounds": { "width": 1728, "height": 4372 } } },
+    { "instanceNodeId": "2115:3892", "pageName": "Pages", "mainComponentId": "2114:3693", "bounds": { "width": 1550, "height": 731 }, "position": [ { "id": "2115:3892", "name": "Reassurances", "type": "INSTANCE", "index": 5 }, { "id": "210:326", "name": "Accueil", "type": "FRAME", "index": 8 } ], "hostFrame": { "id": "210:326", "name": "Accueil", "type": "FRAME", "bounds": { "width": 1728, "height": 5462 } } }
+  ],
+  "usagesPonderes": {
+    "$comment": "Configuration dominante d'abord, exception marquée (entrée de T034).",
+    "Disposition=4 cartes": 3,
+    "Disposition=5 cartes": 2,
+    "Disposition=QuatreCartesDeuxCta": 1,
+    "dominante": "Disposition=4 cartes",
+    "total": 6
+  }
+}

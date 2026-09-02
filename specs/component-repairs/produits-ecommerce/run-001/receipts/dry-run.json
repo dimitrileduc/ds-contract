@@ -1,0 +1,90 @@
+{
+  "campaignId": "figma-responsive-produits-ecommerce-run-001",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-produits-ecommerce-responsive-presentations",
+      "targetId": "produits-ecommerce",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2116:4475",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2116:4475"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-produits-ecommerce-responsive-presentations",
+      "count": 1,
+      "declaredName": "ProduitsECommerce"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-produits-ecommerce-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-produits-ecommerce-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2116:4475",
+      "2116:4465"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2116:4531",
+      "237:705",
+      "2116:4595",
+      "210:326"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:122",
+      "6:99",
+      "6:104",
+      "2068:1972",
+      "2077:2191",
+      "27:83",
+      "27:86"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

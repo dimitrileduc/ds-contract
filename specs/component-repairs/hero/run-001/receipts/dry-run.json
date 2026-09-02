@@ -1,0 +1,100 @@
+{
+  "campaignId": "figma-responsive-hero-run-001",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-hero-responsive-presentations",
+      "targetId": "hero",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2111:3382",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2111:3382"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-hero-responsive-presentations",
+      "count": 1,
+      "declaredName": "Hero"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-hero-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-hero-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2111:3382",
+      "2416:6979"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2111:3416",
+      "274:2464",
+      "2111:3430",
+      "258:1887",
+      "2111:3444",
+      "249:1512",
+      "2111:3458",
+      "237:971",
+      "2111:3472",
+      "237:707",
+      "2111:3388",
+      "387:722",
+      "2111:3486",
+      "230:378",
+      "2111:3402",
+      "226:114",
+      "2538:5208",
+      "2538:5207"
+    ],
+    "protectedDependencyNodeIds": [
+      "6:122",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "campaignId": "figma-responsive-sav-run-002",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-sav-responsive-presentations",
+      "targetId": "sav",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2108:3105",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3105"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-sav-responsive-presentations",
+      "count": 1,
+      "declaredName": "SAV"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-sav-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-sav-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2108:3105",
+      "2455:4735"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2108:3135",
+      "210:326"
+    ],
+    "protectedDependencyNodeIds": [
+      "2090:2397",
+      "6:122",
+      "6:99",
+      "6:104"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

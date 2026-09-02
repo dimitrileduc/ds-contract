@@ -1,0 +1,82 @@
+{
+  "campaignId": "figma-responsive-coordonnees-run-001",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-coordonnees-responsive-presentations",
+      "targetId": "coordonnees",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2104:2904",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2104:2904"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-coordonnees-responsive-presentations",
+      "count": 1,
+      "declaredName": "Coordonnees"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-coordonnees-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-coordonnees-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2104:2904",
+      "2104:2905"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2192:9815",
+      "274:2464"
+    ],
+    "protectedDependencyNodeIds": [
+      "2090:2397"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

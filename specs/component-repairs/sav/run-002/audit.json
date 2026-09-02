@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-sav-run-002",
+  "targetId": "sav",
+  "inspectedAt": "2026-08-27T11:12:08.230Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2108:3105",
+    "parentNodeId": "2455:4735",
+    "parentName": "Container · SAV",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1550,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "I2410:6943;2351:36776",
+      "structuralPath": "0/1/0/1/0/0",
+      "name": "Accroche",
+      "characters": "Plus de 50 ans d’expérience",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2410:6943;2351:36777",
+      "structuralPath": "0/1/0/1/0/1",
+      "name": "Titre",
+      "characters": "Dépannage / SAV",
+      "classification": "named-exact",
+      "textStyleId": "5:42",
+      "textStyleName": "Titre 2",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2410:6948",
+      "structuralPath": "0/1/0/1/1/0",
+      "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+      "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2410:6950;2410:6101",
+      "structuralPath": "0/1/0/1/2/1",
+      "name": "label",
+      "characters": "Demander de l’aide",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2108:3105",
+    "historicalMemberKey": "bf5e147a9b56206eba9c73045d533c9868b445b2",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1550,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 1,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

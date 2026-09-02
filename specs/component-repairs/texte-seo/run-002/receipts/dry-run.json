@@ -1,0 +1,96 @@
+{
+  "campaignId": "figma-responsive-texte-seo-run-002",
+  "filePin": "2392267626424800780",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "install-texte-seo-responsive-presentations",
+      "targetId": "texte-seo",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2108:3123",
+      "structuralPath": "0",
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ],
+  "expectedCreates": [
+    {
+      "role": "component-set",
+      "operationId": "install-texte-seo-responsive-presentations",
+      "count": 1,
+      "declaredName": "TexteSEO"
+    },
+    {
+      "role": "presentation-desktop",
+      "operationId": "install-texte-seo-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Desktop",
+      "presentationValue": "Desktop"
+    },
+    {
+      "role": "presentation-mobile",
+      "operationId": "install-texte-seo-responsive-presentations",
+      "count": 1,
+      "declaredName": "Presentation=Mobile",
+      "presentationValue": "Mobile"
+    }
+  ],
+  "expectedChangedNodeIds": [],
+  "expectedPropagatedDeltas": [],
+  "pageWrites": [],
+  "childWrites": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2108:3123",
+      "2455:4734"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2108:3153",
+      "274:2464",
+      "2108:3331",
+      "258:1887",
+      "2108:3265",
+      "249:1510",
+      "2108:3309",
+      "237:969",
+      "2108:3221",
+      "237:705",
+      "2108:3243",
+      "387:720",
+      "2108:3287",
+      "230:376",
+      "2108:3175",
+      "226:112"
+    ],
+    "protectedDependencyNodeIds": [
+      "2059:1417"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "component-set",
+      "presentation-desktop",
+      "presentation-mobile"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  }
+}

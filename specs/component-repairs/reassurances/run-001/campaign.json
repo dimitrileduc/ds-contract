@@ -1,0 +1,1451 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "figma-responsive-reassurances-run-001",
+  "featureId": "031-vague-responsive-sections",
+  "runId": "run-001",
+  "freshCampaign": {
+    "status": "fresh",
+    "supersedesRun": null,
+    "historicalContextRuns": [],
+    "copiedExecutionEvidence": [],
+    "reusePolicy": "historical-context-only; never copy audit, capture, receipt or verify artifacts"
+  },
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "organism",
+    "evidenceRoot": "specs/component-repairs/reassurances/run-001",
+    "ownerDecisionRoot": "specs/031-vague-responsive-sections/decisions",
+    "comparisonPath": "specs/component-repairs/reassurances/run-001/verify/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/reassurances/run-001/receipts/apply-first.json",
+      "second": "specs/component-repairs/reassurances/run-001/receipts/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [],
+    "sharedDependencies": []
+  },
+  "artifactRoots": {
+    "audit": "specs/component-repairs/reassurances/run-001/audit.json",
+    "captures": {
+      "before": "specs/component-repairs/reassurances/run-001/captures/before",
+      "after": "specs/component-repairs/reassurances/run-001/captures/after",
+      "idempotence": "specs/component-repairs/reassurances/run-001/captures/idempotence"
+    },
+    "receipts": "specs/component-repairs/reassurances/run-001/receipts",
+    "verify": "specs/component-repairs/reassurances/run-001/verify",
+    "dryRun": "specs/component-repairs/reassurances/run-001/receipts/dry-run.json",
+    "bridgeScripts": {
+      "first": "specs/component-repairs/reassurances/run-001/bridge-first.js",
+      "second": "specs/component-repairs/reassurances/run-001/bridge-second.js"
+    }
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2392267626424800780",
+    "fileName": "Piqueray (Copy)",
+    "capturedAt": "2026-08-27T10:34:16Z",
+    "pinStatus": "read-only relevé du 2026-08-27, version nommée 031-avant-vague"
+  },
+  "authorityRefs": [
+    "specs/component-repairs/reassurances/run-001/releve-bridge.json"
+  ],
+  "targets": [
+    {
+      "targetId": "reassurances",
+      "kind": "direct-canvas",
+      "masterNodeId": "2114:3721",
+      "variantNodeIds": [
+        "2114:3619",
+        "2114:3653",
+        "2114:3693"
+      ],
+      "reference": {
+        "referenceId": "reassurances-031-reference",
+        "sourceKind": "historical-version",
+        "figmaVersionId": "2392267626424800780",
+        "subjectNodeId": "2114:3721",
+        "visualFacts": [
+          "set existant « Reassurances » à 3 membres",
+          "axe relevé : Disposition(4 cartes|QuatreCartesDeuxCta|5 cartes)",
+          "6 usages adressés par position"
+        ],
+        "decisionRef": "specs/031-vague-responsive-sections/decisions/031-reassurances.json"
+      },
+      "affectedSurfaceIds": [
+        "reassurances:master",
+        "reassurances:variant:2114-3619",
+        "reassurances:variant:2114-3653",
+        "reassurances:variant:2114-3693",
+        "reassurances:usage:2115-3830",
+        "reassurances:context:258-1887",
+        "reassurances:usage:2115-3754",
+        "reassurances:context:237-969",
+        "reassurances:usage:2115-3723",
+        "reassurances:context:387-720",
+        "reassurances:usage:2115-3861",
+        "reassurances:context:230-376",
+        "reassurances:usage:2115-3794",
+        "reassurances:context:226-112",
+        "reassurances:usage:2115-3892",
+        "reassurances:context:210-326"
+      ],
+      "projectionDefectIds": [],
+      "allowedFields": [
+        "componentSetTopology",
+        "presentationProperty",
+        "layoutMode",
+        "layoutWrap",
+        "layoutSizingHorizontal",
+        "layoutSizingVertical",
+        "itemSpacing",
+        "padding",
+        "primaryAxisAlignItems",
+        "counterAxisAlignItems",
+        "fontSize",
+        "lineHeight",
+        "textAlignHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "variant-cardinality",
+        "variant-names",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "page-node-identity",
+        "historical-member-identity",
+        "component-properties",
+        "temporary-typography"
+      ],
+      "allowedFactChanges": [
+        "geometry",
+        "responsive-overflow",
+        "instance-overrides",
+        "primitive-bindings",
+        "shared-child-facts"
+      ],
+      "expectedMasterName": "Reassurances",
+      "expectedVariantNames": [
+        "Disposition=4 cartes",
+        "Disposition=QuatreCartesDeuxCta",
+        "Disposition=5 cartes"
+      ],
+      "responsiveWidths": [
+        320,
+        390,
+        834,
+        1200,
+        1440,
+        1728
+      ],
+      "responsive": {
+        "componentSetTopology": {
+          "propertyName": "Presentation",
+          "setName": "Reassurances",
+          "setIdentityPolicy": "existing",
+          "setNodeId": "2114:3721",
+          "setComponentKey": "a303bd661e06746baa62828633b5c6132714a8c8",
+          "defaultPresentationValue": "Wide-4 cartes",
+          "defaultVariantSelection": {
+            "Presentation": "Wide",
+            "Disposition": "4 cartes"
+          },
+          "variantProperties": {
+            "Presentation": [
+              "Wide",
+              "Desktop",
+              "Mobile"
+            ],
+            "Disposition": [
+              "4 cartes",
+              "QuatreCartesDeuxCta",
+              "5 cartes"
+            ]
+          },
+          "authoringLayout": {
+            "direction": "VERTICAL",
+            "gap": 0,
+            "order": [
+              "Wide-4 cartes",
+              "Wide-QuatreCartesDeuxCta",
+              "Wide-5 cartes",
+              "Desktop-4 cartes",
+              "Desktop-QuatreCartesDeuxCta",
+              "Desktop-5 cartes",
+              "Mobile-4 cartes",
+              "Mobile-QuatreCartesDeuxCta",
+              "Mobile-5 cartes"
+            ]
+          },
+          "historicalMember": {
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "nodeId": "2114:3619",
+            "componentKey": "f973bf46e4f169fb69646aa4d0dbbfc27a42e1c0",
+            "declaredName": "Presentation=Wide, Disposition=4 cartes",
+            "authoringPreviewWidth": 1550
+          },
+          "preservedMembers": [
+            {
+              "presentationValue": "Wide-QuatreCartesDeuxCta",
+              "variantSelection": {
+                "Presentation": "Wide",
+                "Disposition": "QuatreCartesDeuxCta"
+              },
+              "nodeId": "2114:3653",
+              "componentKey": "b129711f6b2c3aff38f1d2c495e8472b17592f40",
+              "declaredName": "Presentation=Wide, Disposition=QuatreCartesDeuxCta",
+              "authoringPreviewWidth": 1550
+            },
+            {
+              "presentationValue": "Wide-5 cartes",
+              "variantSelection": {
+                "Presentation": "Wide",
+                "Disposition": "5 cartes"
+              },
+              "nodeId": "2114:3693",
+              "componentKey": "93ae486d94bd581b1281b2446e26e0f909dd21c7",
+              "declaredName": "Presentation=Wide, Disposition=5 cartes",
+              "authoringPreviewWidth": 1550
+            }
+          ],
+          "createdMembers": [
+            {
+              "presentationValue": "Desktop-4 cartes",
+              "variantSelection": {
+                "Presentation": "Desktop",
+                "Disposition": "4 cartes"
+              },
+              "declaredName": "Presentation=Desktop, Disposition=4 cartes",
+              "authoringPreviewWidth": 1200,
+              "sourcePresentationValue": "Wide-4 cartes"
+            },
+            {
+              "presentationValue": "Desktop-QuatreCartesDeuxCta",
+              "variantSelection": {
+                "Presentation": "Desktop",
+                "Disposition": "QuatreCartesDeuxCta"
+              },
+              "declaredName": "Presentation=Desktop, Disposition=QuatreCartesDeuxCta",
+              "authoringPreviewWidth": 1200,
+              "sourcePresentationValue": "Wide-QuatreCartesDeuxCta"
+            },
+            {
+              "presentationValue": "Desktop-5 cartes",
+              "variantSelection": {
+                "Presentation": "Desktop",
+                "Disposition": "5 cartes"
+              },
+              "declaredName": "Presentation=Desktop, Disposition=5 cartes",
+              "authoringPreviewWidth": 1200,
+              "sourcePresentationValue": "Wide-5 cartes"
+            },
+            {
+              "presentationValue": "Mobile-4 cartes",
+              "variantSelection": {
+                "Presentation": "Mobile",
+                "Disposition": "4 cartes"
+              },
+              "declaredName": "Presentation=Mobile, Disposition=4 cartes",
+              "authoringPreviewWidth": 390,
+              "sourcePresentationValue": "Wide-4 cartes"
+            },
+            {
+              "presentationValue": "Mobile-QuatreCartesDeuxCta",
+              "variantSelection": {
+                "Presentation": "Mobile",
+                "Disposition": "QuatreCartesDeuxCta"
+              },
+              "declaredName": "Presentation=Mobile, Disposition=QuatreCartesDeuxCta",
+              "authoringPreviewWidth": 390,
+              "sourcePresentationValue": "Wide-QuatreCartesDeuxCta"
+            },
+            {
+              "presentationValue": "Mobile-5 cartes",
+              "variantSelection": {
+                "Presentation": "Mobile",
+                "Disposition": "5 cartes"
+              },
+              "declaredName": "Presentation=Mobile, Disposition=5 cartes",
+              "authoringPreviewWidth": 390,
+              "sourcePresentationValue": "Wide-5 cartes"
+            }
+          ],
+          "expectedMemberNames": [
+            "Presentation=Wide, Disposition=4 cartes",
+            "Presentation=Wide, Disposition=QuatreCartesDeuxCta",
+            "Presentation=Wide, Disposition=5 cartes",
+            "Presentation=Desktop, Disposition=4 cartes",
+            "Presentation=Desktop, Disposition=QuatreCartesDeuxCta",
+            "Presentation=Desktop, Disposition=5 cartes",
+            "Presentation=Mobile, Disposition=4 cartes",
+            "Presentation=Mobile, Disposition=QuatreCartesDeuxCta",
+            "Presentation=Mobile, Disposition=5 cartes"
+          ]
+        },
+        "expectedCreates": [
+          {
+            "role": "presentation-desktop-4-cartes",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Desktop, Disposition=4 cartes",
+            "presentationValue": "Desktop-4 cartes"
+          },
+          {
+            "role": "presentation-desktop-quatrecartesdeuxcta",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Desktop, Disposition=QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta"
+          },
+          {
+            "role": "presentation-desktop-5-cartes",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Desktop, Disposition=5 cartes",
+            "presentationValue": "Desktop-5 cartes"
+          },
+          {
+            "role": "presentation-mobile-4-cartes",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Mobile, Disposition=4 cartes",
+            "presentationValue": "Mobile-4 cartes"
+          },
+          {
+            "role": "presentation-mobile-quatrecartesdeuxcta",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Mobile, Disposition=QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta"
+          },
+          {
+            "role": "presentation-mobile-5-cartes",
+            "operationId": "install-reassurances-responsive-presentations",
+            "count": 1,
+            "declaredName": "Presentation=Mobile, Disposition=5 cartes",
+            "presentationValue": "Mobile-5 cartes"
+          }
+        ],
+        "contentFixtures": [
+          {
+            "fixtureId": "normal",
+            "textValues": {}
+          }
+        ],
+        "presentationScenarios": [
+          {
+            "scenarioId": "320-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Wide-4 cartes",
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Wide-QuatreCartesDeuxCta",
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Wide-5 cartes",
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Desktop-4 cartes",
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Desktop-QuatreCartesDeuxCta",
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Desktop-5 cartes",
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Mobile-4 cartes",
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Mobile-QuatreCartesDeuxCta",
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "320-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 320,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "390-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 390,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "834-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 834,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1200-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 1200,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1440-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 1440,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          },
+          {
+            "scenarioId": "1728-Mobile-5 cartes",
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "width": 1728,
+            "height": 731,
+            "fixtureId": "normal",
+            "expectedOverflow": false
+          }
+        ],
+        "presentationLayouts": [
+          {
+            "presentationValue": "Wide-4 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "4 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Wide-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Wide-5 cartes",
+            "variantSelection": {
+              "Presentation": "Wide",
+              "Disposition": "5 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Desktop-4 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "4 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Desktop-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Desktop-5 cartes",
+            "variantSelection": {
+              "Presentation": "Desktop",
+              "Disposition": "5 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Mobile-4 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "4 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Mobile-QuatreCartesDeuxCta",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "QuatreCartesDeuxCta"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          },
+          {
+            "presentationValue": "Mobile-5 cartes",
+            "variantSelection": {
+              "Presentation": "Mobile",
+              "Disposition": "5 cartes"
+            },
+            "nodePath": "",
+            "properties": {
+              "layoutSizingHorizontal": "FIXED"
+            }
+          }
+        ],
+        "primitiveBindings": [],
+        "typographyOverrides": [],
+        "authorizedTargetNodeIds": [
+          "2114:3721",
+          "2114:3619",
+          "2114:3653",
+          "2114:3693"
+        ],
+        "usageSurfaces": [
+          {
+            "surfaceId": "reassurances:usage:2115-3830",
+            "nodeId": "2115:3830",
+            "positionPath": "258:1887/2115:3830",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "reassurances:usage:2115-3754",
+            "nodeId": "2115:3754",
+            "positionPath": "237:969/2115:3754",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "reassurances:usage:2115-3723",
+            "nodeId": "2115:3723",
+            "positionPath": "387:720/2115:3723",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "reassurances:usage:2115-3861",
+            "nodeId": "2115:3861",
+            "positionPath": "230:376/2115:3861",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "reassurances:usage:2115-3794",
+            "nodeId": "2115:3794",
+            "positionPath": "226:112/2115:3794",
+            "writePolicy": "read-only"
+          },
+          {
+            "surfaceId": "reassurances:usage:2115-3892",
+            "nodeId": "2115:3892",
+            "positionPath": "210:326/2115:3892",
+            "writePolicy": "read-only"
+          }
+        ]
+      }
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "reassurances:master",
+      "targetId": "reassurances",
+      "role": "master",
+      "nodeId": "2114:3721",
+      "pageComposition": null,
+      "structuralPath": "Reassurances",
+      "expectedSize": {
+        "width": 1630,
+        "height": 2353
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:variant:2114-3619",
+      "targetId": "reassurances",
+      "role": "variant",
+      "nodeId": "2114:3619",
+      "pageComposition": null,
+      "structuralPath": "Disposition=4 cartes",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:variant:2114-3653",
+      "targetId": "reassurances",
+      "role": "variant",
+      "nodeId": "2114:3653",
+      "pageComposition": null,
+      "structuralPath": "Disposition=QuatreCartesDeuxCta",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:variant:2114-3693",
+      "targetId": "reassurances",
+      "role": "variant",
+      "nodeId": "2114:3693",
+      "pageComposition": null,
+      "structuralPath": "Disposition=5 cartes",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3830",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3830",
+      "pageComposition": "Pages",
+      "structuralPath": "258:1887/2115:3830",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:258-1887",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "258:1887",
+      "pageComposition": "Pages",
+      "structuralPath": "258:1887/2115:3830",
+      "contextForSurfaceId": "reassurances:usage:2115-3830",
+      "expectedSize": {
+        "width": 1728,
+        "height": 6152
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3754",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3754",
+      "pageComposition": "Pages",
+      "structuralPath": "237:969/2115:3754",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:237-969",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "237:969",
+      "pageComposition": "Pages",
+      "structuralPath": "237:969/2115:3754",
+      "contextForSurfaceId": "reassurances:usage:2115-3754",
+      "expectedSize": {
+        "width": 1728,
+        "height": 6534.5
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3723",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3723",
+      "pageComposition": "Pages",
+      "structuralPath": "387:720/2115:3723",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:387-720",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "387:720",
+      "pageComposition": "Pages",
+      "structuralPath": "387:720/2115:3723",
+      "contextForSurfaceId": "reassurances:usage:2115-3723",
+      "expectedSize": {
+        "width": 1728,
+        "height": 6770.5
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3861",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3861",
+      "pageComposition": "Pages",
+      "structuralPath": "230:376/2115:3861",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:230-376",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "230:376",
+      "pageComposition": "Pages",
+      "structuralPath": "230:376/2115:3861",
+      "contextForSurfaceId": "reassurances:usage:2115-3861",
+      "expectedSize": {
+        "width": 1728,
+        "height": 6576
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3794",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3794",
+      "pageComposition": "Pages",
+      "structuralPath": "226:112/2115:3794",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:226-112",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "226:112",
+      "pageComposition": "Pages",
+      "structuralPath": "226:112/2115:3794",
+      "contextForSurfaceId": "reassurances:usage:2115-3794",
+      "expectedSize": {
+        "width": 1728,
+        "height": 4372
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:usage:2115-3892",
+      "targetId": "reassurances",
+      "role": "page-instance",
+      "nodeId": "2115:3892",
+      "pageComposition": "Pages",
+      "structuralPath": "210:326/2115:3892",
+      "expectedSize": {
+        "width": 1550,
+        "height": 731
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "reassurances:context:210-326",
+      "targetId": "reassurances",
+      "role": "page-context",
+      "nodeId": "210:326",
+      "pageComposition": "Pages",
+      "structuralPath": "210:326/2115:3892",
+      "contextForSurfaceId": "reassurances:usage:2115-3892",
+      "expectedSize": {
+        "width": 1728,
+        "height": 5462
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [],
+  "writeBoundary": {
+    "allowedExistingNodeIds": [
+      "2114:3721",
+      "2114:3619",
+      "2114:3653",
+      "2114:3693"
+    ],
+    "expectedChangedNodeIds": [
+      "2114:3721"
+    ],
+    "readOnlySurfaceNodeIds": [
+      "2115:3830",
+      "2115:3754",
+      "2115:3723",
+      "2115:3861",
+      "2115:3794",
+      "2115:3892",
+      "258:1887",
+      "237:969",
+      "387:720",
+      "230:376",
+      "226:112",
+      "210:326"
+    ],
+    "protectedDependencyNodeIds": [
+      "2063:1622",
+      "6:122"
+    ],
+    "protectedChildNodeIds": [],
+    "protectedChildPaths": [],
+    "allowedCreateRoles": [
+      "presentation-desktop-4-cartes",
+      "presentation-desktop-quatrecartesdeuxcta",
+      "presentation-desktop-5-cartes",
+      "presentation-mobile-4-cartes",
+      "presentation-mobile-quatrecartesdeuxcta",
+      "presentation-mobile-5-cartes"
+    ],
+    "pageWrites": [],
+    "childWrites": []
+  },
+  "allowedOperations": [
+    {
+      "operationId": "install-reassurances-responsive-presentations",
+      "targetId": "reassurances",
+      "mechanism": "responsive-component-set",
+      "nodeId": "2114:3721",
+      "structuralPath": "",
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2114:3721"
+        },
+        {
+          "field": "setComponentKey",
+          "equals": "a303bd661e06746baa62828633b5c6132714a8c8"
+        }
+      ],
+      "changes": {
+        "capability": "responsive-component-set"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "pageWrites",
+          "equals": []
+        },
+        {
+          "field": "childWrites",
+          "equals": []
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "figma-responsive-reassurances-run-001-before-2392267626424800780",
+      "phase": "before",
+      "fileVersionId": "2392267626424800780",
+      "artifacts": [],
+      "imageFingerprints": [],
+      "instanceLinks": [],
+      "complete": false
+    }
+  },
+  "state": "draft",
+  "createdAt": "2026-08-27T10:34:16.170Z",
+  "sourceBaseline": {
+    "gitHead": "2d3a7fb7f0d7ee83e8a12aea6861df213162944c",
+    "worktreeTree": "bdfcca28f55351f5eb706686714c1b4cefea539c",
+    "backupRef": "refs/codex/backups/031-reassurances",
+    "capturedAt": "2026-08-27T11:13:05.232Z"
+  }
+}

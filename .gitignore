@@ -103,3 +103,10 @@ integrations/odoo/qa/.env
 specs/component-repairs/*/run-*/**/*.png
 specs/component-repairs/*/run-*/*.png
 specs/029-figma-responsive-categories/proofs/**/*.png
+
+# component-repairs (2026-09-02, décision owner « option 2 ») : les rapports et
+# décisions des runs sont committés ; les relevés bruts de capture (PNG de
+# contexte + structure.json massifs, reproductibles depuis le canevas) ne le
+# sont plus.
+specs/component-repairs/*/*/captures/
+specs/component-repairs/*/captures/

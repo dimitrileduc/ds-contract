@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "figma-responsive-produits-ecommerce-run-001",
+  "targetId": "produits-ecommerce",
+  "inspectedAt": "2026-08-27T11:13:29.952Z",
+  "fileVersionId": "2392267626424800780",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "fail",
+    "masterNodeId": "2116:4475",
+    "parentNodeId": "2116:4465",
+    "parentName": "Produits e-commerce",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "FIXED",
+    "referenceWidth": 1596,
+    "responsiveWidths": [
+      320,
+      390,
+      834,
+      1200,
+      1440,
+      1728
+    ],
+    "issues": [
+      "master is not directly presented by a local FRAME Container",
+      "local Container is not auto-layout",
+      "local presentation parent is not named Container",
+      "organism master is not width FILL inside its local Container"
+    ]
+  },
+  "texts": [
+    {
+      "nodeId": "2545:6011",
+      "structuralPath": "0/0",
+      "name": "Titre",
+      "characters": "Découvrez nos produits disponibles en ligne",
+      "classification": "named-exact",
+      "textStyleId": "5:43",
+      "textStyleName": "Titre 3",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2545:6012;2410:6164",
+      "structuralPath": "0/1/1",
+      "name": "label",
+      "characters": "Voir les produits",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2116:4470;2351:35673",
+      "structuralPath": "1/0/0/1",
+      "name": "Titre",
+      "characters": "Télécommande Hörmann HSE4-868BS",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4470;2351:35686",
+      "structuralPath": "1/0/0/2",
+      "name": "Prix",
+      "characters": "74,99€",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4471;2351:35673",
+      "structuralPath": "1/0/1/1",
+      "name": "Titre",
+      "characters": "Clavier à code Hörmann FCT3-1BS",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4471;2351:35686",
+      "structuralPath": "1/0/1/2",
+      "name": "Prix",
+      "characters": "139,99€",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4472;2351:35673",
+      "structuralPath": "1/0/2/1",
+      "name": "Titre",
+      "characters": "Bouton poussoir Hörmann FIT2-1-868-BS",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4472;2351:35686",
+      "structuralPath": "1/0/2/2",
+      "name": "Prix",
+      "characters": "89,99€",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4473;2351:35673",
+      "structuralPath": "1/0/3/1",
+      "name": "Titre",
+      "characters": "Passerelle BiSecure Hörmann",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2116:4473;2351:35686",
+      "structuralPath": "1/0/3/2",
+      "name": "Prix",
+      "characters": "74,99€",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 6 but the Text Style link is missing"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button",
+      "ds.carousel-controls",
+      "ds.product-card"
+    ],
+    "observed": [
+      "ds.button",
+      "ds.carousel-controls",
+      "ds.product-card"
+    ],
+    "undeclared": []
+  },
+  "responsive": {
+    "status": "standalone-before-transition",
+    "propertyName": "Presentation",
+    "memberNames": [],
+    "memberIdentities": [
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Wide"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Desktop"
+        }
+      },
+      {
+        "nodeId": null,
+        "componentKey": null,
+        "variantSelection": {
+          "Presentation": "Mobile"
+        }
+      }
+    ],
+    "historicalMemberNodeId": "2116:4475",
+    "historicalMemberKey": "a616f938df22515ef5778930a99802ea925de85f",
+    "expectedDefaultPresentationValue": "Wide",
+    "observedDefaultPresentationValue": null,
+    "authoringPreviews": [
+      {
+        "presentationValue": "Wide",
+        "nodeId": null,
+        "expectedWidth": 1596,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Desktop",
+        "nodeId": null,
+        "expectedWidth": 1200,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      },
+      {
+        "presentationValue": "Mobile",
+        "nodeId": null,
+        "expectedWidth": 390,
+        "observedWidth": null,
+        "layoutSizingHorizontal": null
+      }
+    ],
+    "scenarioCount": 18,
+    "primitiveBindingCount": 0,
+    "typographyOverrideCount": 0,
+    "usageSurfaceCount": 2,
+    "propagatedDeltaCount": 0,
+    "boundaryViolations": []
+  },
+  "findings": [
+    {
+      "code": "organism-container",
+      "severity": "proposal",
+      "message": "master is not directly presented by a local FRAME Container; local Container is not auto-layout; local presentation parent is not named Container; organism master is not width FILL inside its local Container"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2116:4470;2351:35673): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Prix (I2116:4470;2351:35686): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2116:4471;2351:35673): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Prix (I2116:4471;2351:35686): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2116:4472;2351:35673): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Prix (I2116:4472;2351:35686): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2116:4473;2351:35673): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Prix (I2116:4473;2351:35686): raw typography exactly matches Titre 6 but the Text Style link is missing"
+    }
+  ],
+  "proposedChanges": [
+    "present the existing master in one local auto-layout Container and set its horizontal sizing to FILL",
+    "repair Text Style classification for Titre (I2116:4470;2351:35673)",
+    "repair Text Style classification for Prix (I2116:4470;2351:35686)",
+    "repair Text Style classification for Titre (I2116:4471;2351:35673)",
+    "repair Text Style classification for Prix (I2116:4471;2351:35686)",
+    "repair Text Style classification for Titre (I2116:4472;2351:35673)",
+    "repair Text Style classification for Prix (I2116:4472;2351:35686)",
+    "repair Text Style classification for Titre (I2116:4473;2351:35673)",
+    "repair Text Style classification for Prix (I2116:4473;2351:35686)"
+  ]
+}
