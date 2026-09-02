@@ -1,0 +1,117 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.hero-video",
+  "name": "HeroVideo",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "center",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "direction": "row",
+            "justify": "start",
+            "align": "end"
+          },
+          "wide": {
+            "direction": "row",
+            "justify": "start",
+            "align": "end"
+          }
+        }
+      },
+      "parts": {
+        "Background": {},
+        "VoileBas": {},
+        "VoileNavigation": {},
+        "Text": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Accroche": {
+              "text": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+              "tokens": {
+                "color": "{color.blanc}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{imported.hero-video.text-accroche.font-size.{presentation}}",
+                "font-weight": "{imported.hero-video.text-accroche.font-weight}",
+                "letter-spacing": "{imported.hero-video.text-accroche.letter-spacing}",
+                "line-height": "{imported.hero-video.text-accroche.line-height.{presentation}}"
+              }
+            }
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button",
+            "text": "En savoir plus",
+            "props": {
+              "iconRightGlyph": "arrow-right",
+              "iconRight": false,
+              "iconLeftGlyph": "arrow-left",
+              "iconLeft": false,
+              "variant": "outlineBlanc"
+            }
+          }
+        }
+      },
+      "tokens": {
+        "width": "{imported.hero-video.root.width.{presentation}}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "366023701e65d2e3091332db4de0dfe4de0d33d4",
+      "nodeId": "2689:15832"
+    },
+    "code": {
+      "importPath": "src/components/HeroVideo",
+      "export": "HeroVideo"
+    }
+  }
+}

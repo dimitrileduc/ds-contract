@@ -1,0 +1,42 @@
+{
+  "$comment": "G0 / T008 — partition §XI calculée sur les PARENTS relevés (R5), pas sur les masters. Relevé read-only du 2026-08-27 via figma_execute sur Piqueray (Copy) / d9FYAUcqdcNtsuaMgLefvJ.",
+  "releveA": "2026-08-27T10:23:38Z",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "methode": "getNodeByIdAsync sur les 13 ids R1, puis lecture de node.parent et de la chaîne d'ancêtres jusqu'à la PAGE.",
+  "verdictR5": "parents-distincts",
+  "verdictR5Detail": "Les 13 parents relevés portent 13 identifiants DISTINCTS. Le pire cas de R5 (parent unique ⇒ sérialisation des créations de set) NE S'APPLIQUE PAS. La partition par master est donc légale : aucune sérialisation de bridge-first/bridge-second n'est requise, et deux writers ne peuvent pas toucher le même nœud en respectant cette table.",
+  "zones": [
+    { "zone": "Z01", "campagne": "reassurances",           "master": "2114:3721", "masterNom": "Reassurances",         "masterType": "COMPONENT_SET", "parent": "2114:3722", "parentNom": "Réassurances",                     "parentType": "SECTION", "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "existing",  "writer": "W1", "role": "pilote-1" },
+    { "zone": "Z02", "campagne": "presentation",           "master": "2103:2824", "masterNom": "Presentation",         "masterType": "COMPONENT",     "parent": "2463:4779", "parentNom": "Container · Presentation",         "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W2", "role": "pilote-2" },
+    { "zone": "Z03", "campagne": "devis",                  "master": "2096:2524", "masterNom": "Devis",                "masterType": "COMPONENT",     "parent": "2463:4778", "parentNom": "Container · Devis",                "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W1", "role": "lot" },
+    { "zone": "Z04", "campagne": "formulaire",             "master": "2096:2564", "masterNom": "Formulaire",           "masterType": "COMPONENT",     "parent": "2096:2565", "parentNom": "Formulaire",                       "parentType": "SECTION", "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W1", "role": "lot" },
+    { "zone": "Z05", "campagne": "coordonnees",            "master": "2104:2904", "masterNom": "Coordonnees",          "masterType": "COMPONENT",     "parent": "2104:2905", "parentNom": "Coordonnées",                      "parentType": "SECTION", "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W1", "role": "lot" },
+    { "zone": "Z06", "campagne": "faq",                    "master": "2104:2914", "masterNom": "FAQ",                  "masterType": "COMPONENT",     "parent": "2455:4733", "parentNom": "Container · FAQ",                  "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W1", "role": "lot" },
+    { "zone": "Z07", "campagne": "sav",                    "master": "2108:3105", "masterNom": "SAV",                  "masterType": "COMPONENT",     "parent": "2455:4735", "parentNom": "Container · SAV",                  "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W2", "role": "lot" },
+    { "zone": "Z08", "campagne": "texte-seo",              "master": "2108:3123", "masterNom": "TexteSEO",             "masterType": "COMPONENT",     "parent": "2455:4734", "parentNom": "Container · TexteSEO",             "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W2", "role": "lot" },
+    { "zone": "Z09", "campagne": "hero",                   "master": "2111:3382", "masterNom": "Hero",                 "masterType": "COMPONENT",     "parent": "2416:6979", "parentNom": "Container · Demo 1728",            "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W2", "role": "lot" },
+    { "zone": "Z10", "campagne": "equipe",                 "master": "2115:3947", "masterNom": "Equipe",               "masterType": "COMPONENT",     "parent": "2453:4732", "parentNom": "Container · Equipe",               "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W3", "role": "lot" },
+    { "zone": "Z11", "campagne": "produits-ecommerce",     "master": "2116:4475", "masterNom": "ProduitsECommerce",    "masterType": "COMPONENT",     "parent": "2116:4465", "parentNom": "Produits e-commerce",              "parentType": "SECTION", "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "additive",  "writer": "W3", "role": "lot" },
+    { "zone": "Z12", "campagne": "google-reviews-section", "master": "2545:5685", "masterNom": "Section Avis Google",  "masterType": "COMPONENT",     "parent": "2545:5684", "parentNom": "Container · Section Avis Google",  "parentType": "FRAME",   "page": "DS · Molécules",  "pageId": "2052:1145", "classe": "additive",  "writer": "W3", "role": "lot", "note": "Seule cible hors page DS · Organisms — le master de section vit sur DS · Molécules. Observation de source relevée au registre (E-031-004), non corrigée par cette vague." },
+    { "zone": "Z13", "campagne": "hero-video",             "master": "2580:7392", "masterNom": "HeroVideo",            "masterType": "COMPONENT_SET", "parent": "2448:4731", "parentNom": "Container · HeroVideo",            "parentType": "FRAME",   "page": "DS · Organisms",  "pageId": "2052:1146", "classe": "renommage", "writer": "W3", "role": "blocage-nomme-R3" }
+  ],
+  "zonePlanches": {
+    "$comment": "Zone consommée par T042 (matérialisation des 13 planches). Disjointe par construction des 13 zones ci-dessus : c'est une PAGE nouvelle, donc aucun nœud de campagne ne s'y trouve.",
+    "type": "page-nouvelle",
+    "nom": "031 · Planches de validation",
+    "id": null,
+    "idAssigneA": "T042 (phase 4) — à inscrire ici après création",
+    "controlePostExecution": "Vérifier que les ids créés par les 13 board.bridge.js n'intersectent aucun des 13 `parent` ni aucun des 13 `master` ci-dessus."
+  },
+  "writers": {
+    "$comment": "Attribution proposée à G0 ; l'affectation des PORTS est faite à T046 (phase 5). Le nombre de writers réellement sains est mesuré dans prerequis-g0.md et vaut 1 à ce jour — le repli séquentiel est donc annoncé (T012).",
+    "W1": ["reassurances", "devis", "formulaire", "coordonnees", "faq"],
+    "W2": ["presentation", "sav", "texte-seo", "hero"],
+    "W3": ["equipe", "produits-ecommerce", "google-reviews-section", "hero-video"]
+  },
+  "invariants": [
+    "Les 13 `parent` sont deux à deux distincts (vérifié sur le relevé) — aucun conflit §XI possible entre deux zones de cette table.",
+    "Les deux pilotes (reassurances Z01, presentation Z02) sont sur des parents distincts ET des writers distincts : le critère de substitution de T014 n'est pas déclenché, `presentation` reste la 1ʳᵉ additive pilote.",
+    "Aucune écriture de Page : les `page` listées sont un contexte de relevé, pas une cible d'écriture."
+  ]
+}
