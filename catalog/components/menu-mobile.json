@@ -1,0 +1,41 @@
+{
+  "id": "ds.menu-mobile",
+  "name": "MenuMobile",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "a2eb854dd98fd60de2fb958324fd6e22c552f007"
+  },
+  "props": [
+    {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette"
+      ],
+      "default": "mobile",
+      "description": "Deux étages seulement : le menu n'existe pas en Desktop ni en Wide (la nav est dans la barre). Côté Odoo la valeur n'est jamais posée : responsive/menu-mobile.pqr.css réécrit les règles par mode en @media."
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "libelle": "text",
+          "href": "text",
+          "chevron": "boolean",
+          "sousEntree1": "text",
+          "sousEntree2": "text",
+          "deuxSousEntrees": "boolean"
+        }
+      },
+      "description": "Les entrées du menu — code-only par construction (arrayOf ⇔ figma NONE). Même donnée que ds.header.items, côté Odoo la boucle sur website.menu. Limite nommée : une liste dans une liste ne se porte pas (au plus deux sous-entrées par entrée dans le dessin ; la liste réelle vient du menu du client)."
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

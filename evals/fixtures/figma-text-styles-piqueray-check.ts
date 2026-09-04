@@ -243,8 +243,14 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // Les trois textes restants de la carte (initialeTexte, temoignage, lireLaSuite) restent
 // au compte « propre » pour la raison déjà nommée le 2026-09-02 : leur groupe de jetons
 // responsive n'a pas d'extension figmaTextStyle.
-if (linked.length !== 77 || custom.length !== 38 || rich.length !== 10) {
-  fail(`global gate expected 77 linked / 38 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-09-04 (menu mobile 031, ds.menu-entree + ds.menu-mobile) : 77 → 87 liés, 38 → 53 propres.
+// Les DEUX nouveaux styles (Entrée menu, Sous-entrée menu) lient les entrées et sous-entrées du
+// menu au compte « lié » ; le numéro de téléphone (deux variantes) monte typography.libelle-nav
+// et reste au compte « propre » (+2, ds.menu-mobile). Les 13 autres propres supplémentaires
+// mesurés ce jour appartiennent au chantier Avis Google / ReviewCard en cours dans le même
+// worktree (ds.google-reviews 5 → 20, ds.review-card) — pas au menu ; leur clôture re-mesurera.
+if (linked.length !== 87 || custom.length !== 53 || rich.length !== 10) {
+  fail(`global gate expected 87 linked / 53 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -261,9 +267,9 @@ const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => 
 // compte « lié ». Les cinq restants — initialeTexte, plus temoignage et lireLaSuite sur les
 // deux variantes — gardent leur statut pour la raison déjà écrite : leur groupe responsive
 // n'a pas d'extension figmaTextStyle.
-const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 5, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 5, 'ds.sav': 4 };
+const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 20, 'ds.menu-mobile': 2, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 3, 'ds.sav': 4 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 77 linked / 38 historical custom / 10 rich; second token apply preserves ids`);
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 87 linked / 53 historical custom / 10 rich; second token apply preserves ids`);

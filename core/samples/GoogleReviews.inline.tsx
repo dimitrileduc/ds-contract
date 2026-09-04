@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v2.0.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -15,244 +15,308 @@
  */
 import { forwardRef } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
+import { Notation } from './Notation';
+import { Button } from './Button';
 import { ReviewCard } from './ReviewCard';
-
-const ICONS: Record<string, string> = {
-  "google-wordmark": "<svg width=\"74\" height=\"24\" viewBox=\"0 0 74 24\" overflow=\"visible\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<text x=\"0\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#4285F4\">G</text>\n<text x=\"18\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#EA4335\">o</text>\n<text x=\"32\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#FBBC05\">o</text>\n<text x=\"46\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#4285F4\">g</text>\n<text x=\"60\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#34A853\">l</text>\n<text x=\"66\" y=\"18\" font-family=\"Montserrat, sans-serif\" font-size=\"22\" font-weight=\"500\" fill=\"#EA4335\">e</text>\n</svg>",
-  "star": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z\" fill=\"#F98A0B\"/>\n</svg>",
-  "chevron-left": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z\" fill=\"currentColor\"/>\n</svg>",
-  "chevron-right": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M11.293 7.29302C11.6835 6.90249 12.3165 6.90249 12.707 7.29302L20.707 15.293C21.0975 15.6835 21.0975 16.3166 20.707 16.7071L12.707 24.7071C12.3165 25.0976 11.6835 25.0976 11.293 24.7071C10.9024 24.3166 10.9024 23.6835 11.293 23.293L18.5859 16L11.293 8.70708C10.9024 8.31655 10.9024 7.68354 11.293 7.29302Z\" fill=\"currentColor\"/>\n</svg>",
-};
 
 const S: Record<string, CSSProperties> = {
   "root": {
     "display": "flex",
     "flexDirection": "column",
+    "alignItems": "stretch",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
-    "position": "relative",
-    "backgroundColor": "#FFFFFF",
+    "paddingInline": "24px",
+    "paddingBlock": "0px",
+    "gap": "32px"
+  },
+  "SectionHeader": {
+    "display": "flex",
+    "flexDirection": "column",
+    "alignItems": "flex-start",
+    "gap": "8px"
+  },
+  "Accroche": {
+    "color": "#26282C",
     "fontFamily": "Montserrat, sans-serif",
-    "width": "1552px",
-    "minHeight": "328px",
+    "fontSize": "14px",
+    "fontWeight": 400,
+    "lineHeight": "20px",
+    "textAlign": "left"
+  },
+  "Titre": {
+    "color": "#26282C",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "24px",
+    "fontWeight": 600,
+    "letterSpacing": "0px",
+    "lineHeight": "30px",
+    "textAlign": "left"
+  },
+  "avisGoogle": {
+    "display": "flex",
+    "flexDirection": "column",
+    "alignItems": "stretch",
+    "backgroundColor": "#FFFFFF",
     "gap": "12px",
-    "paddingTop": "4px",
-    "paddingBottom": "8px",
-    "paddingLeft": "11px",
-    "paddingRight": "11px"
+    "minHeight": "328px"
   },
   "resume": {
     "display": "flex",
-    "flexDirection": "row",
+    "flexDirection": "column",
     "alignItems": "center",
-    "justifyContent": "space-between",
     "borderStyle": "solid",
     "backgroundColor": "#FFFFFF",
     "borderColor": "#F4F6FA",
-    "paddingTop": "12px",
-    "paddingBottom": "12px",
-    "paddingLeft": "16px",
-    "paddingRight": "16px",
+    "paddingInline": "16px",
+    "paddingBlock": "24px",
     "borderRadius": "8px",
-    "borderWidth": "1px"
+    "borderWidth": "1px",
+    "gap": "8px"
   },
   "infos": {
     "display": "flex",
-    "flexDirection": "row",
+    "flexDirection": "column",
     "alignItems": "center",
-    "gap": "10px"
+    "gap": "8px"
   },
   "marque": {
-    "display": "inline-flex",
-    "flexShrink": 0
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "logoGoogle": {
+    "display": "flex"
+  },
+  "Vector": {
+    "backgroundColor": "#ea4335"
+  },
+  "vector2": {
+    "backgroundColor": "#fbbc05"
+  },
+  "vector3": {
+    "backgroundColor": "#4285f4"
+  },
+  "vector4": {
+    "backgroundColor": "#34a853"
+  },
+  "vector5": {
+    "backgroundColor": "#ea4335"
+  },
+  "vector6": {
+    "backgroundColor": "#4285f4"
   },
   "qualificatifTexte": {
+    "color": "#000000",
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "14px",
     "fontWeight": 600,
-    "color": "#000000"
+    "letterSpacing": "0px",
+    "lineHeight": "20px"
   },
   "notation": {
     "display": "flex",
-    "flexDirection": "row",
+    "flexDirection": "column",
     "alignItems": "center",
-    "gap": "2px"
-  },
-  "etoile1": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "etoile2": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "etoile3": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "etoile4": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "etoile5": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "noteGlobaleTexte": {
-    "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "fontWeight": 600,
-    "color": "#000000"
-  },
-  "separateur": {
-    "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "color": "#8A8A8A"
-  },
-  "volume": {
-    "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "color": "#8A8A8A"
-  },
-  "ecrireAvis": {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "borderStyle": "solid",
-    "borderColor": "#37373B",
-    "paddingTop": "8px",
-    "paddingBottom": "8px",
-    "paddingLeft": "22px",
-    "paddingRight": "22px",
-    "borderWidth": "1px",
-    "borderRadius": "0px"
-  },
-  "libelle": {
-    "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "fontWeight": 600,
-    "color": "#000000"
-  },
-  "cartes": {
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "center",
-    "justifyContent": "space-between",
-    "position": "relative"
-  },
-  "flecheGauche": {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "position": "absolute"
-  },
-  "pastilleGauche": {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "borderStyle": "solid",
-    "backgroundColor": "#FFFFFF",
-    "borderColor": "#F4F6FA",
-    "width": "30px",
-    "height": "30px",
-    "minWidth": "30px",
-    "borderRadius": "15px",
-    "borderWidth": "1px"
-  },
-  "iconeGauche": {
-    "display": "inline-flex",
-    "flexShrink": 0
-  },
-  "groupeCartes": {
-    "display": "grid",
-    "gridTemplateColumns": "repeat(5, minmax(0, 1fr))",
-    "width": "100%",
-    "minWidth": 0,
     "gap": "8px"
   },
-  "flecheDroite": {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "position": "absolute"
+  "noteGlobaleTexte": {
+    "color": "#000000",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "32px",
+    "fontWeight": 600,
+    "letterSpacing": "0px",
+    "lineHeight": "40px"
   },
-  "pastilleDroite": {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "borderStyle": "solid",
-    "backgroundColor": "#FFFFFF",
-    "borderColor": "#F4F6FA",
-    "width": "30px",
-    "height": "30px",
-    "minWidth": "30px",
-    "borderRadius": "15px",
-    "borderWidth": "1px"
+  "separateur": {
+    "color": "#000000",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "14px",
+    "fontWeight": 500,
+    "letterSpacing": "0px",
+    "lineHeight": "20px"
   },
-  "iconeDroite": {
-    "display": "inline-flex",
-    "flexShrink": 0
+  "volume": {
+    "color": "#000000",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "14px",
+    "fontWeight": 500,
+    "letterSpacing": "0px",
+    "lineHeight": "20px"
+  },
+  "groupeCartes": {
+    "display": "flex",
+    "flexDirection": "row",
+    "gap": "16px"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "presentation-tablette:root": {
+    "paddingInline": "48px"
+  },
+  "presentation-tablette:resume": {
+    "paddingInline": "24px",
+    "paddingBlock": "16px",
+    "gap": "16px",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "justifyContent": "space-between"
+  },
+  "presentation-tablette:infos": {
+    "gap": "12px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-tablette:notation": {
+    "gap": "12px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-tablette:groupeCartes": {
+    "flexDirection": "column"
+  },
+  "presentation-desktop:root": {
+    "paddingInline": "56px",
+    "gap": "15px"
+  },
+  "presentation-desktop:SectionHeader": {
+    "gap": "16px",
+    "flexDirection": "column",
+    "alignItems": "center"
+  },
+  "presentation-desktop:avisGoogle": {
+    "paddingInline": "11px",
+    "paddingTop": "4px",
+    "paddingBottom": "8px"
+  },
+  "presentation-desktop:resume": {
+    "paddingBlock": "12px",
+    "gap": "0px",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "justifyContent": "space-between"
+  },
+  "presentation-desktop:infos": {
+    "gap": "10px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-desktop:notation": {
+    "gap": "2px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-desktop:groupeCartes": {
+    "gap": "8px"
+  },
+  "presentation-wide:root": {
+    "paddingInline": "89px",
+    "gap": "40px"
+  },
+  "presentation-wide:SectionHeader": {
+    "gap": "16px",
+    "flexDirection": "column",
+    "alignItems": "center"
+  },
+  "presentation-wide:avisGoogle": {
+    "paddingTop": "4px",
+    "paddingBottom": "8px"
+  },
+  "presentation-wide:resume": {
+    "paddingBlock": "12px",
+    "gap": "0px",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "justifyContent": "space-between"
+  },
+  "presentation-wide:infos": {
+    "gap": "10px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-wide:notation": {
+    "gap": "2px",
+    "flexDirection": "row",
+    "alignItems": "center"
+  },
+  "presentation-wide:groupeCartes": {
+    "gap": "8px"
+  }
+};
 
 export interface GoogleReviewsProps extends HTMLAttributes<HTMLElement> {
-  /** Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive). */
-  noteGlobale?: string;
+  presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
+  accroche?: string;
+  titre?: string;
   /** Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel. */
   qualificatif?: string;
+  /** Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive). */
+  noteGlobale?: string;
   volume?: string;
-  /** Flèches de carrousel — mesurées présentes aux deux bords de l'aplat (T012). */
-  montrerControles?: boolean;
-  /** La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010). */
-  avis?: Array<{ auteur: string; initiale: string; date: string; texte: string; avatar: 'Initiale' | 'Photo'; note: '1' | '2' | '3' | '4' | '5'; photoUrl: string; photoAlt: string }>;
+  /** La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010). Chaque avis porte son propre `lienAvis` : l'adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite » de sa carte. */
+  avis?: Array<{ auteur: string; initiale: string; date: string; texte: string; avatar: 'Initiale' | 'Photo'; note: '1' | '2' | '3' | '4' | '5'; photoUrl: string; photoAlt: string; lienAvis: string }>;
+  /** Nombre d'étoiles pleines du bloc résumé. Pilote la variante du composant gouverné ds.notation. Le composant ne connaît que des notes ENTIÈRES : une note affichée « 4.8 » se dessine avec cinq étoiles pleines, ce que fait la maquette. Réglable depuis le panneau Odoo, pas en édition directe (décision owner 2026-09-03). */
+  note?: '1' | '2' | '3' | '4' | '5';
+  /** Adresse du bouton « Voir tous les avis » — la fiche Google de l'établissement. Réglable depuis le panneau Odoo. Vide, le bouton ne navigue pas. */
+  lienAvis?: string;
 }
 
-/** Le bloc « Avis Google » historique. Le nouveau parent public `ds.google-reviews-section` le compose avec `ds.section-header`, sans modifier sa surface Odoo authorée existante. La grille garde cinq colonnes égales et les flèches restent des overlays absolus. */
+/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. */
 export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(function GoogleReviews(
-  { montrerControles = true, noteGlobale = '4.8', qualificatif = 'Excellent', volume = '93 avis', avis, style, children, ...rest },
+  { presentation = 'mobile', note = '5', accroche = 'Nos avis Google vérifiés', titre = 'Plus de 1500 portes installées par année et autant de clients satisfaits', qualificatif = 'Excellent', noteGlobale = '4.8', volume = '93 avis', lienAvis = '', avis, style, children, ...rest },
   ref,
 ) {
   return (
-    <section ref={ref} style={{ ...S.root, ...style }} data-montrer-controles={montrerControles || undefined}  {...rest}>
-      <div style={{ ...S.resume }}>
-<div style={{ ...S.infos }}>
-<span style={{ ...S.marque }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["google-wordmark"] }} />
+    <section ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
+      <div style={{ ...S.SectionHeader, ...(V[`presentation-${presentation}:SectionHeader`] ?? {}) }}>
+<span style={{ ...S.Accroche }}>{accroche}</span>
+<span style={{ ...S.Titre }}>{titre}</span>
+</div>
+<div style={{ ...S.avisGoogle, ...(V[`presentation-${presentation}:avisGoogle`] ?? {}) }}>
+<div style={{ ...S.resume, ...(V[`presentation-${presentation}:resume`] ?? {}) }}>
+<div style={{ ...S.infos, ...(V[`presentation-${presentation}:infos`] ?? {}) }}>
+<div style={{ ...S.marque }}>
+<div style={{ ...S.logoGoogle }}>
+<div style={{ ...S.Vector }}>
+
+</div>
+<div style={{ ...S.vector2 }}>
+
+</div>
+<div style={{ ...S.vector3 }}>
+
+</div>
+<div style={{ ...S.vector4 }}>
+
+</div>
+<div style={{ ...S.vector5 }}>
+
+</div>
+<div style={{ ...S.vector6 }}>
+
+</div>
+</div>
+</div>
 <span style={{ ...S.qualificatifTexte }}>{qualificatif}</span>
-<div style={{ ...S.notation }}>
-<span style={{ ...S.etoile1 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["star"] }} />
-<span style={{ ...S.etoile2 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["star"] }} />
-<span style={{ ...S.etoile3 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["star"] }} />
-<span style={{ ...S.etoile4 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["star"] }} />
-<span style={{ ...S.etoile5 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["star"] }} />
+<div style={{ ...S.notation, ...(V[`presentation-${presentation}:notation`] ?? {}) }}>
+<Notation note={note} />
 <span style={{ ...S.noteGlobaleTexte }}>{noteGlobale}</span>
 </div>
 <span style={{ ...S.separateur }}>|</span>
 <span style={{ ...S.volume }}>{volume}</span>
 </div>
-<div style={{ ...S.ecrireAvis }}>
-<span style={{ ...S.libelle }}>Écrire un avis</span>
+<Button variant="outlineNoir">Voir tous les avis</Button>
 </div>
+<div style={{ ...S.groupeCartes, ...(V[`presentation-${presentation}:groupeCartes`] ?? {}) }}>
+<ReviewCard verifie={false} photoAlt="" texte="super très pro et service après vente présent" photoUrl="" date="il y a 2 mois" initiale="P" auteur="pho syster" />
+<ReviewCard verifie={false} photoAlt="" texte="Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…" photoUrl="" date="il y a 3 mois" initiale="P" auteur="Petit Nicole" />
+<ReviewCard verifie={false} photoAlt="" texte="Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui est à fait le suivi…" photoUrl="" date="il y a 4 mois" initiale="A" auteur="Aun Bukhari" />
+<ReviewCard verifie={false} photoAlt="" texte="Dépannage ultra rapide et professionnel" photoUrl="" date="il y a 5 mois" initiale="T" auteur="Thierry Picard" />
+<ReviewCard verifie={false} photoAlt="" texte="Je ne mais pas 5 étoiles mais 10 les 2 placeurs de mes 2 portes de garage il…" photoUrl="" date="il y a 6 mois" initiale="m" auteur="miguel martinez" />
 </div>
-<div style={{ ...S.cartes }}>
-{montrerControles ? (<div style={{ ...S.flecheGauche, ...(montrerControles ? {"position":"absolute","left":"-15px","top":"50%","transform":"translateY(-50%)"} : {}) }}>
-<div style={{ ...S.pastilleGauche }}>
-<span style={{ ...S.iconeGauche }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-left"] }} />
-</div>
-</div>) : null}
-<div style={{ ...S.groupeCartes }}>
-<ReviewCard auteur="Prénom N." initiale="P" date="il y a 2 mois" texte="Un témoignage neutre, exemple générique de contenu." avatar="Initiale" note="5" photoUrl="" photoAlt="" />
-<ReviewCard auteur="Prénom N." initiale="P" date="il y a 3 mois" texte="Un témoignage neutre, exemple générique de contenu." avatar="Initiale" note="5" photoUrl="" photoAlt="" />
-<ReviewCard auteur="Prénom N." initiale="P" date="il y a 4 mois" texte="Un témoignage neutre, exemple générique de contenu." avatar="Initiale" note="5" photoUrl="" photoAlt="" />
-<ReviewCard auteur="Prénom N." initiale="P" date="il y a 5 mois" texte="Un témoignage neutre, exemple générique de contenu." avatar="Initiale" note="5" photoUrl="" photoAlt="" />
-<ReviewCard auteur="Prénom N." initiale="P" date="il y a 6 mois" texte="Un témoignage neutre, exemple générique de contenu." avatar="Initiale" note="5" photoUrl="" photoAlt="" />
-</div>
-{montrerControles ? (<div style={{ ...S.flecheDroite, ...(montrerControles ? {"position":"absolute","right":"-15px","top":"50%","transform":"translateY(-50%)"} : {}) }}>
-<div style={{ ...S.pastilleDroite }}>
-<span style={{ ...S.iconeDroite }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-right"] }} />
-</div>
-</div>) : null}
 </div>
     </section>
   );

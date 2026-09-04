@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v3.0.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -13,6 +13,7 @@
 import { forwardRef } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
 import { Notation } from './Notation';
+import { Button } from './Button';
 
 const ICONS: Record<string, string> = {
   "google": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z\" fill=\"#4285F4\"/>\n<path d=\"M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z\" fill=\"#34A853\"/>\n<path d=\"M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z\" fill=\"#FBBC05\"/>\n<path d=\"M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z\" fill=\"#EA4335\"/>\n</svg>",
@@ -123,13 +124,6 @@ const S: Record<string, CSSProperties> = {
     "lineHeight": "24px",
     "fontWeight": 400,
     "color": "#000000"
-  },
-  "lireLaSuite": {
-    "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "lineHeight": "24px",
-    "fontWeight": 500,
-    "color": "#000000"
   }
 };
 
@@ -150,6 +144,8 @@ export interface ReviewCardProps extends HTMLAttributes<HTMLElement> {
   photoAlt?: string;
   /** Pastille noire de vérification, à droite des étoiles. Relevé du 2026-09-03 sur le set 031 : le calque `verification` est MASQUÉ sur le maître (2700:26539) ET sur les cinq instances des quatre vues. Il n'est donc jamais dessiné aujourd'hui — la présence devient une option gouvernée par défaut à faux plutôt qu'un calque caché (§VIII : jamais un calque masqué en dur). */
   verifie?: boolean;
+  /** Adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite ». PAR AVIS : elle entre par la collection de la section, jamais par un réglage global. Vide, le bouton ne navigue pas. */
+  lienAvis?: string;
 }
 
 /** Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).
@@ -160,7 +156,7 @@ Promotion 2.0.0 (2026-08-18, demande owner). MAJEUR : trois props retirées. (1)
 
 TEXTES — sans Text Style, comme 172 des 332 textes du fichier (compté le 2026-08-18). Les cinq textes de la carte (initialeTexte, auteur, date, temoignage, lireLaSuite) ne portent aucun Text Style. Ce n'est PAS une singularité de ce composant : sur les 332 nœuds texte des masters, 160 portent un style, 0 lient une variable de typographie, 172 n'ont ni l'un ni l'autre. Les variables `font/size/*`, `font/weight/*` et `typography/*` existent mais alimentent les Text Styles ; sur un nœud texte, seule la couleur est liée — aucun nœud du fichier ne lie sa taille ou sa graisse. Aucun des 18 styles ne correspond exactement à ces cinq recettes : initialeTexte est SemiBold 18/18 quand le seul style à 18 (« Lead ») est Regular 18/27 ; auteur est SemiBold 16/19,2 quand « Titre 6 » est SemiBold 16/20 ; date, temoignage et lireLaSuite sont Medium 14 quand les trois styles à 14 sont Regular ou Bold. Ces valeurs (19,2 = 16×1,2 ; 16,8 = 14×1,2 ; 19,6 = 14×1,4) sont des interlignes de navigateur héritées du widget tiers dont la carte a été extraite en 006, pas des valeurs dessinées. Les rapprocher d'un style voisin changerait le rendu d'un contenu client adopté, et le workflow interdit le rapprochement « au plus proche ». La réparation utile n'est donc pas locale à ce composant : c'est une passe de typographie sur les 172, à décider par l'owner. */
 export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function ReviewCard(
-  { avatar = 'Initiale', note = '5', verifie = false, auteur, initiale = 'P', date = 'il y a 2 mois', texte, photoUrl = '', photoAlt = '', style, children, ...rest },
+  { avatar = 'Initiale', note = '5', verifie = false, auteur, initiale = 'P', date = 'il y a 2 mois', texte, photoUrl = '', photoAlt = '', lienAvis = '', style, children, ...rest },
   ref,
 ) {
   return (
@@ -187,7 +183,7 @@ export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function Revi
 </div>) : null}
 </div>
 <p style={{ ...S.temoignage }}>{texte}</p>
-<span style={{ ...S.lireLaSuite }}>Lire la suite</span>
+<Button variant="link">Lire la suite</Button>
     </article>
   );
 });

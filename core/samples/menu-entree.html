@@ -1,0 +1,47 @@
+<!--
+  MenuEntree — static HTML+CSS emitted from contract ds.menu-entree v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--menu-entree">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="menu-entree menu-entree--etat-ferme" data-part="root" data-chevron="true" data-deux-sous-entrees="true">
+      <div class="menu-entree__tete" data-part="tete">
+        <span class="menu-entree__libelle" data-part="libelle">Portes de garage</span>
+        <div class="menu-entree__chevronBox" data-part="chevronBox">
+          <span class="menu-entree__chevronBas" aria-hidden="true" data-part="chevronBas"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z" fill="currentColor"/>
+</svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">etat=ouvert</p>
+    <div class="menu-entree menu-entree--etat-ouvert" data-part="root" data-chevron="true" data-deux-sous-entrees="true">
+      <div class="menu-entree__tete" data-part="tete">
+        <span class="menu-entree__libelle" data-part="libelle">Portes de garage</span>
+        <div class="menu-entree__chevronBox" data-part="chevronBox">
+          <span class="menu-entree__chevronHaut" aria-hidden="true" data-part="chevronHaut"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z" fill="currentColor"/>
+</svg></span>
+        </div>
+      </div>
+      <div class="menu-entree__sousEntrees" data-part="sousEntrees">
+        <div class="menu-entree__rail" data-part="rail"></div>
+        <div class="menu-entree__liste" data-part="liste">
+          <div class="menu-entree__SousEntree1" data-part="SousEntree1">
+            <span class="menu-entree__texte" data-part="texte">Portes résidentielles</span>
+          </div>
+          <div class="menu-entree__SousEntree2" data-part="SousEntree2">
+            <span class="menu-entree__texte2" data-part="texte2">Portes industrielles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

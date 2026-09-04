@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788507839667,
+  "extractedAt": 1788513694062,
   "sets": [
     {
       "name": "Input",
@@ -2035,6 +2035,113 @@
       "forwardedProperties": {},
       "nestedInstances": [
         "PiquerayLogo"
+      ]
+    },
+    {
+      "name": "Footer",
+      "nodeId": "2735:12509",
+      "key": "cf79e2e8f660aec1cd30185d29b6134b11a86f63",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "PiquerayLogo",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "FooterColumn",
+        "Facebook",
+        "Instagram",
+        "Copyright"
+      ]
+    },
+    {
+      "name": "MenuEntree",
+      "nodeId": "2738:13482",
+      "key": "def00fcac5d711a43275c6a937f03e246b555cc4",
+      "description": "Entrée du menu mobile 031 (molécule). Axe Etat = Fermé | Ouvert (chevron tourné en orange, sous-entrées visibles le long d’un rail orange). Typographie par typography/menu/*, padding vertical par spacing/menu/entree-pad-v (Responsive). Construit le 2026-09-04 depuis le brainstorm Claude Design (piste A mobile, piste B tablette).",
+      "variantCount": 2,
+      "properties": {
+        "Libellé#2738:54": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Chevron#2738:57": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Sous-entrée 1#2738:60": {
+          "type": "TEXT",
+          "defaultValue": "Portes résidentielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Sous-entrée 2#2738:63": {
+          "type": "TEXT",
+          "defaultValue": "Portes industrielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Deux sous-entrées#2738:66": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Fermé",
+          "variantOptions": [
+            "Fermé",
+            "Ouvert"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "MenuMobile",
+      "nodeId": "2738:13621",
+      "key": "a2eb854dd98fd60de2fb958324fd6e22c552f007",
+      "description": "Menu mobile 031 (menu ouvert). Presentation=Mobile : plein écran typographique 390×844 (piste A) ; Presentation=Tablette : écran 834×1194 = voile noir-bleuté 72 % + tiroir 420 ancré à droite (piste B). Composé d’instances DS : PiquerayLogo, MenuEntree ×4, Bouton (Blanc / Outline blanc), icônes Utilisateur et Panier du header. Décision owner 2026-09-04. L’ouverture est une interaction (prototype), pas une propriété du header.",
+      "variantCount": 2,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "PiquerayLogo",
+        "MenuEntree",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
       ]
     }
   ],
@@ -4085,6 +4192,61 @@
           "values": {
             "Value": 1
           }
+        },
+        {
+          "name": "color/blanc-14",
+          "type": "COLOR",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "#FFFFFF24"
+          }
+        },
+        {
+          "name": "color/noir-bleute-72",
+          "type": "COLOR",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "#26282CB8"
+          }
+        },
+        {
+          "name": "size/menu-mobile/tiroir",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 420
+          }
+        },
+        {
+          "name": "size/menu-entree/hauteur/mobile",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 68
+          }
+        },
+        {
+          "name": "size/menu-entree/hauteur/tablette",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 52
+          }
         }
       ]
     },
@@ -4962,6 +5124,50 @@
           "values": {
             "Light": "{font/weight/medium}"
           }
+        },
+        {
+          "name": "typography/menu-entree/family",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/menu-entree/weight",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/menu-sous-entree/family",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{font/family/montserrat}"
+          }
+        },
+        {
+          "name": "typography/menu-sous-entree/weight",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{font/weight/regular}"
+          }
         }
       ]
     },
@@ -5490,6 +5696,90 @@
             "Tablette": 20,
             "Desktop": 20,
             "Wide": 22
+          }
+        },
+        {
+          "name": "typography/menu-entree/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 24,
+            "Tablette": 16,
+            "Desktop": 16,
+            "Wide": 16
+          }
+        },
+        {
+          "name": "typography/menu-entree/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 30,
+            "Tablette": 16,
+            "Desktop": 16,
+            "Wide": 16
+          }
+        },
+        {
+          "name": "typography/menu-sous-entree/size",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 18,
+            "Tablette": 16,
+            "Desktop": 16,
+            "Wide": 16
+          }
+        },
+        {
+          "name": "typography/menu-sous-entree/line-height",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 27,
+            "Tablette": 24,
+            "Desktop": 24,
+            "Wide": 24
+          }
+        },
+        {
+          "name": "spacing/menu/entree-pad-v",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 12,
+            "Tablette": 4,
+            "Desktop": 4,
+            "Wide": 4
+          }
+        },
+        {
+          "name": "spacing/menu/entree-hauteur",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 68,
+            "Tablette": 52,
+            "Desktop": 52,
+            "Wide": 52
           }
         }
       ]

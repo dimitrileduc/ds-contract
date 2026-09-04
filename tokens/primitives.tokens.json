@@ -45,6 +45,14 @@
     },
     "noir-pur": {
       "$value": "#000000"
+    },
+    "blanc-14": {
+      "$value": "#FFFFFF24",
+      "$description": "Blanc à 14 % : filet entre les entrées du menu mobile. Précédent : beige-clair-80, orange-12/42. Minté from-dump 2026-09-04 (set MenuEntree 2738:13482) ; variable Figma color/blanc-14."
+    },
+    "noir-bleute-72": {
+      "$value": "#26282CB8",
+      "$description": "Noir-bleuté à 72 % : voile du menu mobile en Tablette. Minté from-dump 2026-09-04 (set MenuMobile 2738:13621) ; variable Figma color/noir-bleute-72."
     }
   },
   "nav": {
@@ -896,6 +904,27 @@
         "$type": "dimension",
         "$value": "2px",
         "$description": "Épaisseur d un trait du burger du header. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+      }
+    },
+    "menu-mobile": {
+      "tiroir": {
+        "$type": "dimension",
+        "$value": "420px",
+        "$description": "Largeur du tiroir du menu mobile en Tablette (ancré à droite). Minté from-dump 2026-09-04 (set MenuMobile, variante Tablette)."
+      }
+    },
+    "menu-entree": {
+      "hauteur": {
+        "mobile": {
+          "$type": "dimension",
+          "$value": "68px",
+          "$description": "Hauteur de tête d’une entrée du menu en Mobile (boîte tactile 44 + 2×12). Minté from-dump 2026-09-04."
+        },
+        "tablette": {
+          "$type": "dimension",
+          "$value": "52px",
+          "$description": "Hauteur de tête d’une entrée du menu en Tablette (44 + 2×4). Minté from-dump 2026-09-04."
+        }
       }
     }
   },

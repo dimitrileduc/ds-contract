@@ -1,0 +1,389 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.menu-mobile",
+  "name": "MenuMobile",
+  "version": "1.0.0",
+  "description": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      },
+      "description": "Deux étages seulement : le menu n'existe pas en Desktop ni en Wide (la nav est dans la barre). Côté Odoo la valeur n'est jamais posée : responsive/menu-mobile.pqr.css réécrit les règles par mode en @media."
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "libelle": "text",
+          "href": "text",
+          "chevron": "boolean",
+          "sousEntree1": "text",
+          "sousEntree2": "text",
+          "deuxSousEntrees": "boolean"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      },
+      "description": "Les entrées du menu — code-only par construction (arrayOf ⇔ figma NONE). Même donnée que ds.header.items, côté Odoo la boucle sur website.menu. Limite nommée : une liste dans une liste ne se porte pas (au plus deux sous-entrées par entrée dans le dessin ; la liste réelle vient du menu du client)."
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "description": "L’écran. Mobile : colonne étirée, le tiroir remplit tout ; Tablette : rangée alignée à droite, le tiroir de 420 s’ancre au bord et le voile couvre le reste.",
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 834
+      },
+      "declared": {
+        "position": "relative"
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}"
+      },
+      "parts": {
+        "voile": {
+          "description": "Plan absolu sur toute la page, Tablette seule (Mobile : le tiroir couvre tout). Côté Odoo c'est le backdrop natif de l'offcanvas, peint de la même couleur.",
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0"
+          },
+          "tokens": {
+            "background-color": "{color.noir-bleute-72}"
+          },
+          "visibleWhen": {
+            "prop": "presentation",
+            "equals": "tablette"
+          }
+        },
+        "tiroir": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch"
+          },
+          "tokens": {
+            "background-color": "{color.noir-bleute}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "width": "{size.menu-mobile.tiroir}"
+              }
+            }
+          },
+          "parts": {
+            "barre": {
+              "description": "Même hauteur que la barre du header (16 + 44 + 16). Logo en Mobile seulement ; en Tablette le tiroir ne porte que les actions, alignées à droite.",
+              "layout": {
+                "direction": "row",
+                "justify": "space-between",
+                "align": "center"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "justify": "end"
+                  }
+                }
+              },
+              "tokens": {
+                "padding-inline": "{space.24}",
+                "padding-block": "{space.16}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-inline": "{space.48}"
+                  }
+                }
+              },
+              "parts": {
+                "PiquerayLogo": {
+                  "component": {
+                    "id": "ds.piqueray-logo",
+                    "props": {
+                      "couleur": "blanc"
+                    }
+                  },
+                  "visibleWhen": {
+                    "prop": "presentation",
+                    "equals": "mobile"
+                  }
+                },
+                "actions": {
+                  "description": "Compte et panier (liens à venir, mêmes icônes 24 que le header desktop) puis la croix qui ferme, sur une boîte tactile 44.",
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "gap": "{space.16}",
+                    "color": "{color.blanc}"
+                  },
+                  "parts": {
+                    "User": {
+                      "icon": {
+                        "asset": "user",
+                        "size": 24
+                      }
+                    },
+                    "Cart": {
+                      "icon": {
+                        "asset": "cart",
+                        "size": 24
+                      }
+                    },
+                    "fermer": {
+                      "layout": {
+                        "direction": "row",
+                        "justify": "center",
+                        "align": "center"
+                      },
+                      "tokens": {
+                        "width": "{size.cible-tactile.min}",
+                        "height": "{size.cible-tactile.min}"
+                      },
+                      "parts": {
+                        "croix": {
+                          "description": "Boîte 24 du glyphe (size.header.icone), positionnée pour recevoir le tracé absolu.",
+                          "declared": {
+                            "position": "relative"
+                          },
+                          "tokens": {
+                            "width": "{size.header.icone}",
+                            "height": "{size.header.icone}"
+                          },
+                          "parts": {
+                            "glyphe": {
+                              "vectorAsset": {
+                                "asset": "menu-mobile-croix",
+                                "width": 15.414000511169434,
+                                "height": 15.414000511169434,
+                                "position": {
+                                  "x": 4.293000221252441,
+                                  "y": 4.293000221252441
+                                }
+                              },
+                              "tokens": {
+                                "color": "{color.blanc}"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "nav": {
+              "description": "Les entrées, répétition de ds.menu-entree. Prend toute la hauteur restante (grow) pour ancrer le pied en bas.",
+              "layout": {
+                "direction": "column",
+                "align": "stretch",
+                "grow": true
+              },
+              "tokens": {
+                "padding-inline": "{space.24}",
+                "padding-top": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-top": "{space.8}"
+                  }
+                }
+              },
+              "parts": {
+                "MenuEntree": {
+                  "component": {
+                    "id": "ds.menu-entree",
+                    "props": {
+                      "etat": "ferme"
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "libelle": "Portes de garage",
+                        "href": "/portes-de-garage",
+                        "chevron": true,
+                        "sousEntree1": "Portes résidentielles",
+                        "sousEntree2": "Portes industrielles",
+                        "deuxSousEntrees": true
+                      },
+                      {
+                        "libelle": "Portes d’entrée",
+                        "href": "/portes-entree",
+                        "chevron": true,
+                        "sousEntree1": "Motorisation",
+                        "sousEntree2": "",
+                        "deuxSousEntrees": false
+                      },
+                      {
+                        "libelle": "Dépannage/SAV",
+                        "href": "/depannage-sav",
+                        "chevron": false,
+                        "sousEntree1": "",
+                        "sousEntree2": "",
+                        "deuxSousEntrees": false
+                      },
+                      {
+                        "libelle": "À propos",
+                        "href": "/a-propos",
+                        "chevron": false,
+                        "sousEntree1": "",
+                        "sousEntree2": "",
+                        "deuxSousEntrees": false
+                      }
+                    ]
+                  },
+                  "description": "Sur le canevas la première entrée est dessinée OUVERTE (sous-entrées visibles) ; le sample code naît fermé — déviation nommée, l'état ouvert est une interaction."
+                }
+              }
+            },
+            "pied": {
+              "description": "Zone du pouce : le numéro (icône orange) puis le bouton Contactez-nous pleine largeur — blanc en Mobile, contour blanc en Tablette (deux parts, une part instance ne porte aucun canal par mode).",
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "tokens": {
+                "padding-inline": "{space.24}",
+                "padding-top": "{space.24}",
+                "padding-bottom": "{space.32}",
+                "gap": "{space.24}"
+              },
+              "parts": {
+                "telephone": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "gap": "{space.12}"
+                  },
+                  "parts": {
+                    "icone": {
+                      "icon": {
+                        "asset": "phone",
+                        "size": 24
+                      },
+                      "tokens": {
+                        "color": "{color.orange}"
+                      }
+                    },
+                    "numero": {
+                      "text": "+32 (0)87 46 32 66",
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-family": "{typography.libelle-nav.family}",
+                        "font-size": "{typography.libelle-nav.size}",
+                        "font-weight": "{typography.libelle-nav.weight}",
+                        "line-height": "{typography.libelle-nav.line-height}"
+                      }
+                    }
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button",
+                    "props": {
+                      "variant": "blanc",
+                      "iconLeft": false,
+                      "iconRight": true,
+                      "iconRightGlyph": "arrow-right"
+                    },
+                    "text": "Contactez-nous"
+                  },
+                  "visibleWhen": {
+                    "prop": "presentation",
+                    "equals": "mobile"
+                  }
+                },
+                "BoutonTablette": {
+                  "component": {
+                    "id": "ds.button",
+                    "props": {
+                      "variant": "outlineBlanc",
+                      "iconLeft": false,
+                      "iconRight": true,
+                      "iconRightGlyph": "arrow-right"
+                    },
+                    "text": "Contactez-nous"
+                  },
+                  "visibleWhen": {
+                    "prop": "presentation",
+                    "equals": "tablette"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "direction": "row",
+            "justify": "end"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a2eb854dd98fd60de2fb958324fd6e22c552f007",
+      "nodeId": "2738:13621",
+      "dumpedAt": "2026-09-04"
+    },
+    "code": {
+      "importPath": "src/components/MenuMobile",
+      "export": "MenuMobile"
+    }
+  },
+  "category": "section"
+}

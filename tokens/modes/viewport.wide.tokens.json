@@ -151,6 +151,26 @@
         "$type": "dimension",
         "$value": "{font.size.18}"
       }
+    },
+    "menu-entree": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.16}"
+      }
+    },
+    "menu-sous-entree": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.16}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.24}"
+      }
     }
   },
   "spacing": {
@@ -174,6 +194,14 @@
     "review": {
       "gap": {
         "$value": "{space.14}"
+      }
+    },
+    "menu": {
+      "entree-pad-v": {
+        "$value": "{space.4}"
+      },
+      "entree-hauteur": {
+        "$value": "{size.menu-entree.hauteur.tablette}"
       }
     }
   }

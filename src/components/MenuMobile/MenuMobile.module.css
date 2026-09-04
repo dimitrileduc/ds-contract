@@ -1,0 +1,172 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/menu-mobile.contract.json (ds.menu-mobile v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  position: relative;
+  font-family: var(--font-family-montserrat);
+}
+
+.presentation-tablette {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.voile {
+  background-color: var(--color-noir-bleute-72);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.tiroir {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--color-noir-bleute);
+}
+
+.presentation-tablette .tiroir {
+  width: var(--size-menu-mobile-tiroir);
+}
+
+.barre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-24);
+  padding-block: var(--space-16);
+}
+
+.presentation-tablette .barre {
+  padding-inline: var(--space-48);
+}
+
+.presentation-tablette .barre {
+  justify-content: flex-end;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-16);
+  color: var(--color-blanc);
+}
+
+.User svg {
+  width: 24px;
+  height: 24px;
+}
+
+.User {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.Cart svg {
+  width: 24px;
+  height: 24px;
+}
+
+.Cart {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.fermer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-cible-tactile-min);
+  height: var(--size-cible-tactile-min);
+}
+
+.croix {
+  display: flex;
+  width: var(--size-header-icone);
+  height: var(--size-header-icone);
+  position: relative;
+}
+
+.glyphe svg {
+  width: 15.414000511169434px;
+  height: 15.414000511169434px;
+}
+
+.glyphe {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 4.293000221252441px;
+  top: 4.293000221252441px;
+  color: var(--color-blanc);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-inline: var(--space-24);
+  padding-top: var(--space-24);
+}
+
+.presentation-tablette .nav {
+  padding-top: var(--space-8);
+}
+
+.pied {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-inline: var(--space-24);
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-32);
+  gap: var(--space-24);
+}
+
+.telephone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.icone svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icone {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+.numero {
+  color: var(--color-blanc);
+  font-family: var(--typography-libelle-nav-family);
+  font-size: var(--typography-libelle-nav-size);
+  font-weight: var(--typography-libelle-nav-weight);
+  line-height: var(--typography-libelle-nav-line-height);
+}

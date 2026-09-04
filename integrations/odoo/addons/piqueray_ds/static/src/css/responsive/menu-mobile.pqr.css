@@ -1,0 +1,223 @@
+/*
+ * responsive/menu-mobile.pqr.css — ZONE MANUELLE (menu mobile 031, 2026-09-04).
+ *
+ * Projection Odoo de ds.menu-mobile 1.0.0 + ds.menu-entree 1.0.0 : les règles PAR MODE
+ * du contrat (tokensByProp / layoutByProp / visibleWhen sur `presentation`) réécrites en
+ * @media, même forme que responsive/header.pqr.css :
+ *   Mobile   = base (components.pqr.css, mobile-first)
+ *   Tablette = @media (min-width: 768px) and (max-width: 991.98px)
+ *   ≥ 992    = le menu n'existe pas (la nav est dans la barre)
+ *
+ * Mécanisme d'ouverture : l'offcanvas Bootstrap du noyau Odoo 19 (celui de son header
+ * mobile natif, que notre shell avait retiré). Il porte tout seul : ouverture au burger
+ * (`data-bs-toggle`), Échap, piégeage du focus, retour du focus au burger, backdrop.
+ * Ici on lui donne la BOÎTE et la MOTION du contrat — rien d'autre.
+ *
+ * Le backdrop n'a pas de classe à nous (Bootstrap le crée lui-même) : nos règles
+ * sont donc portées par `body:has(#pqr_menu_mobile.show)`, jamais par
+ * `.offcanvas-backdrop` nu — le noyau Odoo utilise l'offcanvas ailleurs
+ * (website_templates.xml, html_builder) et un sélecteur nu les repeindrait tous.
+ *
+ * Faits CODE-ONLY nommés dans le contrat (description) :
+ *   · hauteur = la fenêtre (le set dessine 844 / 1194, témoins) ;
+ *   · motion Mobile : fondu 280 ms ease-out à l'ouverture avec montée des entrées
+ *     décalées de 40 ms, fondu 180 ms ease-in à la fermeture ;
+ *   · motion Tablette : glissement depuis la droite 300 ms ease-out + fondu du voile,
+ *     200 ms ease-in à la fermeture ; opacité et transform seulement (jamais width/height).
+ *   · l'état ouvert d'une entrée (classe menu-entree--etat-ouvert) est basculé par
+ *     menu_mobile_interaction.js, sur le modèle de la FAQ ; les deux chevrons et la liste
+ *     des sous-entrées sont dans le DOM, le plan inactif porte `hidden`.
+ */
+
+/* ---- ds.menu-mobile 1.0.0 ------------------------------------------------- */
+
+/* Plans inactifs (chevron haut/bas, sous-entrées) : les classes générées posent des
+ * `display` plus spécifiques que la règle UA, comme pour la FAQ. */
+.menu-mobile [hidden] {
+  display: none !important;
+}
+
+/* La boîte : l'offcanvas prend l'écran. Base = Mobile, plein écran, sans translation.
+ * Posé DANS le header (position absolute, z 1000) : on fixe explicitement position,
+ * insets et z-index — le CSS du header d'Odoo remet l'offcanvas en `relative`
+ * (sondé le 2026-09-04 : position relative, left 0, tiroir Tablette à gauche). */
+.menu-mobile.offcanvas.offcanvas-end {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  z-index: 1045;
+}
+body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+}
+.menu-mobile.offcanvas {
+  --bs-offcanvas-width: 100vw;
+  --bs-offcanvas-bg: transparent;
+  --bs-offcanvas-padding-x: 0;
+  --bs-offcanvas-padding-y: 0;
+  --bs-offcanvas-border-width: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  border: 0;
+  background: transparent;
+  /* Mobile : fondu, pas de rideau. Bootstrap anime `transform` : on le neutralise. */
+  transform: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 180ms ease-in, visibility 0s linear 180ms;
+}
+.menu-mobile.offcanvas.showing,
+.menu-mobile.offcanvas.show {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 280ms ease-out, visibility 0s linear 0s;
+}
+.menu-mobile.offcanvas.hiding {
+  transform: none;
+  opacity: 0;
+  transition: opacity 180ms ease-in;
+}
+/* Le tiroir remplit l'écran en Mobile (contrat : root colonne étirée). */
+.menu-mobile > .menu-mobile__tiroir {
+  min-height: 100%;
+}
+/* Backdrop = le voile du contrat (color.noir-bleute-72). En Mobile le tiroir couvre tout :
+ * on le laisse quand même, il ferme au tap hors panneau comme en Tablette. */
+body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
+  background-color: var(--pqr-color-noir-bleute-72);
+  opacity: 1;
+}
+body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
+  transition: opacity 180ms ease-in;
+}
+body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
+  transition: opacity 280ms ease-out;
+}
+
+/* Montée des entrées, décalées de 40 ms : un seul moment orchestré à l'ouverture. */
+@keyframes pqr-menu-entree-monte {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
+  animation: pqr-menu-entree-monte 280ms ease-out both;
+}
+.menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(2) { animation-delay: 40ms; }
+.menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(3) { animation-delay: 80ms; }
+.menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(4) { animation-delay: 120ms; }
+.menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(n+5) { animation-delay: 160ms; }
+
+/* Le burger et la croix sont des <button> natifs : habillage navigateur retiré, la
+ * boîte 44 et les glyphes viennent du contrat. Les liens du menu ne se soulignent pas. */
+.menu-mobile .menu-mobile__fermer {
+  padding: 0;
+}
+.menu-mobile .menu-mobile__fermer,
+.menu-mobile .menu-entree__tete {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+}
+.menu-mobile a {
+  text-decoration: none;
+}
+/* Contactez-nous : blanc en Mobile, contour blanc en Tablette (visibleWhen du contrat). */
+.menu-mobile__BoutonTablette {
+  display: none;
+}
+.menu-mobile__Bouton .button,
+.menu-mobile__BoutonTablette .button {
+  width: 100%;
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .menu-mobile__Bouton {
+    display: none;
+  }
+  .menu-mobile__BoutonTablette {
+    display: block;
+  }
+}
+
+/* La croix est un vectorAsset absolu (contrat) : son hôte doit être positionné — la
+ * feuille générée ne le pose pas sur `fermer`. Même fait que le lien-logo du header. */
+.menu-mobile .menu-mobile__fermer {
+  position: relative;
+}
+
+/* Tablette 768–991 : tiroir 420 ancré à droite, glissement (transform de Bootstrap).
+ * Les règles `.menu-mobile--presentation-tablette` de components.pqr.css sont recopiées
+ * ici (Odoo ne pose jamais la classe de présentation). */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .menu-mobile.offcanvas.offcanvas-end {
+    --bs-offcanvas-width: var(--pqr-size-menu-mobile-tiroir);
+    width: var(--pqr-size-menu-mobile-tiroir);
+    left: auto;
+    right: 0;
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform 200ms ease-in, visibility 0s linear 200ms;
+  }
+  .menu-mobile > .menu-mobile__tiroir {
+    width: var(--pqr-size-menu-mobile-tiroir);
+  }
+  .menu-mobile .menu-mobile__barre {
+    padding-inline: var(--pqr-space-48);
+    justify-content: flex-end;
+  }
+  /* Logo : Mobile seulement (visibleWhen mobile). */
+  .menu-mobile [data-pqr-part="menu-mobile-logo-link"] {
+    display: none;
+  }
+  .menu-mobile .menu-mobile__nav {
+    padding-top: var(--pqr-space-8);
+  }
+  .menu-mobile.offcanvas.showing,
+  .menu-mobile.offcanvas.show {
+    transform: none;
+    transition: transform 300ms ease-out, visibility 0s linear 0s;
+  }
+  .menu-mobile.offcanvas.hiding {
+    transform: translateX(100%);
+    opacity: 1;
+    transition: transform 200ms ease-in;
+  }
+  /* Pas de montée décalée en Tablette : le glissement est le mouvement. */
+  .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
+    animation: none;
+  }
+  /* Le voile Tablette du contrat = le backdrop natif ; la part `voile` reste inerte. */
+  .menu-mobile > .menu-mobile__voile {
+    display: none;
+  }
+}
+
+/* ≥ 992 : le menu n'existe pas. */
+@media (min-width: 992px) {
+  .menu-mobile.offcanvas,
+  .menu-mobile.offcanvas.show {
+    display: none;
+  }
+}
+
+/* Mouvement réduit : pas d'animation, apparition immédiate. */
+@media (prefers-reduced-motion: reduce) {
+  .menu-mobile.offcanvas,
+  .menu-mobile.offcanvas.show,
+  .menu-mobile.offcanvas.hiding,
+  body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
+    transition: none;
+  }
+  .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
+    animation: none;
+  }
+}

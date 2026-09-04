@@ -694,6 +694,62 @@
         "$value": "{font.line-height.20}",
         "$description": "Minté from-dump le 2026-09-03 depuis le set AvisGoogle 031 (2700:28391) ; variable Figma créée le même jour."
       }
+    },
+    "menu-entree": {
+      "$description": "Entrée du menu mobile (spec 031, variable typography/menu/entree-*) — mobile 24/30 Medium capitales, 16/16 dès Tablette (le tiroir reprend la barre). Figma : style « Entrée menu ». Menu mobile 031 (2026-09-04), variable Figma créée le même jour dans la collection Responsive — 031 provisoire.",
+      "$extensions": {
+        "ds_contracts": {
+          "figmaTextStyle": {
+            "name": "Entrée menu",
+            "textCase": "UPPER",
+            "responsive": true
+          }
+        }
+      },
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.montserrat}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.24}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.medium}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.30}"
+      }
+    },
+    "menu-sous-entree": {
+      "$description": "Sous-entrée du menu mobile (spec 031, variable typography/menu/sous-entree-*) — mobile 18/27 Regular, 16/24 dès Tablette. Figma : style « Sous-entrée menu ». Menu mobile 031 (2026-09-04), variable Figma créée le même jour dans la collection Responsive — 031 provisoire.",
+      "$extensions": {
+        "ds_contracts": {
+          "figmaTextStyle": {
+            "name": "Sous-entrée menu",
+            "textCase": "ORIGINAL",
+            "responsive": true
+          }
+        }
+      },
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.montserrat}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.18}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.regular}"
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{font.line-height.27}"
+      }
     }
   },
   "spacing": {
@@ -718,6 +774,16 @@
     "review": {
       "gap": {
         "$value": "{space.16}"
+      }
+    },
+    "menu": {
+      "entree-pad-v": {
+        "$value": "{space.12}",
+        "$description": "Padding vertical de la tête d’une entrée du menu mobile (12 Mobile · 4 dès Tablette). Menu mobile 031 (2026-09-04), variable Figma créée le même jour dans la collection Responsive — 031 provisoire."
+      },
+      "entree-hauteur": {
+        "$value": "{size.menu-entree.hauteur.mobile}",
+        "$description": "Hauteur minimale de la tête d’une entrée du menu mobile, avec ou sans chevron (68 Mobile · 52 dès Tablette). Menu mobile 031 (2026-09-04), variable Figma créée le même jour dans la collection Responsive — 031 provisoire."
       }
     }
   }

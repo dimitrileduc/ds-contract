@@ -19,6 +19,8 @@
   --color-orange-42: #F494006B;
   --color-gris-clair: #E0E0E0;
   --color-noir-pur: #000000;
+  --color-blanc-14: #FFFFFF24;
+  --color-noir-bleute-72: #26282CB8;
   --nav-state: Transparent;
   --opacity-base: 100;
   --font-family-montserrat: Montserrat, sans-serif;
@@ -55,6 +57,7 @@
   --space-2: 2px;
   --space-3: 3px;
   --space-4: 4px;
+  --space-5: 5px;
   --space-8: 8px;
   --space-10: 10px;
   --space-11: 11px;
@@ -64,6 +67,7 @@
   --space-16: 16px;
   --space-22: 22px;
   --space-24: 24px;
+  --space-26: 26px;
   --space-32: 32px;
   --space-40: 40px;
   --space-47: 47px;
@@ -175,6 +179,7 @@
   --size-logo-height: 34px;
   --size-formulaire-root: 1550px;
   --size-header-root: 1728px;
+  --size-header-icone: 24px;
   --size-equipe-root: 1728px;
   --size-equipe-gap-colonnes: 32px;
   --size-equipe-gap-rangees: 32px;
@@ -185,6 +190,13 @@
   --size-carte-categorie-min-w: 320px;
   --size-categories-principales-carte-h-mobile: 418px;
   --size-categories-principales-carte-h-tablette: 288px;
+  --size-cible-tactile-min: 44px;
+  --size-burger-trait-largeur: 24px;
+  --size-burger-trait-epaisseur: 2px;
+  --size-menu-mobile-tiroir: 420px;
+  --size-menu-entree-hauteur-mobile: 68px;
+  --size-menu-entree-hauteur-tablette: 52px;
+  --radius-1: 1px;
   --radius-8: 8px;
   --radius-20: 20px;
   --radius-32: 32px;
@@ -307,11 +319,21 @@
   --typography-review-libelle-size: var(--font-size-16);
   --typography-review-note-line-height: var(--font-line-height-40);
   --typography-review-libelle-line-height: var(--font-line-height-20);
+  --typography-menu-entree-family: var(--font-family-montserrat);
+  --typography-menu-entree-size: var(--font-size-24);
+  --typography-menu-entree-weight: var(--font-weight-medium);
+  --typography-menu-entree-line-height: var(--font-line-height-30);
+  --typography-menu-sous-entree-family: var(--font-family-montserrat);
+  --typography-menu-sous-entree-size: var(--font-size-18);
+  --typography-menu-sous-entree-weight: var(--font-weight-regular);
+  --typography-menu-sous-entree-line-height: var(--font-line-height-27);
   --spacing-card-categorie-pad-h: var(--space-24);
   --spacing-carte-reassurance-gap: var(--space-16);
   --spacing-carte-reassurance-pad-bas: var(--space-16);
   --spacing-carte-reassurance-photo-h: var(--size-carte-reassurance-photo-h-192);
   --spacing-review-gap: var(--space-16);
+  --spacing-menu-entree-pad-v: var(--space-12);
+  --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -351,11 +373,17 @@
     --typography-review-note-line-height: var(--font-line-height-40);
     --typography-review-libelle-line-height: var(--font-line-height-20);
     --typography-libelle-bouton-size: var(--font-size-16);
+    --typography-menu-entree-size: var(--font-size-16);
+    --typography-menu-entree-line-height: var(--font-line-height-16);
+    --typography-menu-sous-entree-size: var(--font-size-16);
+    --typography-menu-sous-entree-line-height: var(--font-line-height-24);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);
     --spacing-carte-reassurance-pad-bas: var(--space-24);
     --spacing-carte-reassurance-photo-h: var(--size-carte-reassurance-photo-h-240);
     --spacing-review-gap: var(--space-16);
+    --spacing-menu-entree-pad-v: var(--space-4);
+    --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
   }
 }
 
@@ -396,11 +424,17 @@
     --typography-review-note-line-height: var(--font-line-height-20);
     --typography-review-libelle-line-height: var(--font-line-height-20);
     --typography-libelle-bouton-size: var(--font-size-16);
+    --typography-menu-entree-size: var(--font-size-16);
+    --typography-menu-entree-line-height: var(--font-line-height-16);
+    --typography-menu-sous-entree-size: var(--font-size-16);
+    --typography-menu-sous-entree-line-height: var(--font-line-height-24);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);
     --spacing-carte-reassurance-pad-bas: var(--space-24);
     --spacing-carte-reassurance-photo-h: var(--size-carte-reassurance-photo-h-364);
     --spacing-review-gap: var(--space-14);
+    --spacing-menu-entree-pad-v: var(--space-4);
+    --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
   }
 }
 
@@ -441,10 +475,16 @@
     --typography-review-note-line-height: var(--font-line-height-20);
     --typography-review-libelle-line-height: var(--font-line-height-22);
     --typography-libelle-bouton-size: var(--font-size-18);
+    --typography-menu-entree-size: var(--font-size-16);
+    --typography-menu-entree-line-height: var(--font-line-height-16);
+    --typography-menu-sous-entree-size: var(--font-size-16);
+    --typography-menu-sous-entree-line-height: var(--font-line-height-24);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);
     --spacing-carte-reassurance-pad-bas: var(--space-24);
     --spacing-carte-reassurance-photo-h: var(--size-carte-reassurance-photo-h-364);
     --spacing-review-gap: var(--space-14);
+    --spacing-menu-entree-pad-v: var(--space-4);
+    --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
   }
 }

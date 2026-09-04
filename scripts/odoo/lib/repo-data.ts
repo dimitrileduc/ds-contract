@@ -72,6 +72,7 @@ export const ROOT_SELECTOR: Record<string, string> = {
   // les sections, un cran plus haut que le marqueur de snippet qu'il n'a pas.
   'ds.header': '.header',
   'ds.footer': '.footer',
+  'ds.menu-mobile': '.menu-mobile',
 };
 
 /** Les classes des racines POSABLES, sans le point — l'alternative d'une regex
@@ -98,7 +99,7 @@ export const ROOT_CLASSES = ROOT_CONTRACT_IDS.map((id) => ROOT_SELECTOR[id].slic
  *     au lock par son sha256 par-entrée, pas par le digest — voir `check-inputs`.
  * Leur CSS de fermeture est néanmoins émise (le gabarit consomme les classes).
  */
-export const SHELL_CONTRACT_IDS = ['ds.header', 'ds.footer'] as const;
+export const SHELL_CONTRACT_IDS = ['ds.header', 'ds.footer', 'ds.menu-mobile'] as const;
 
 /** Toutes les racines de l'intégration — posables ∪ shell, triées. La CSS et le
  *  lock couvrent cette union ; seule la staleness du HTML sauvegardé (digest,

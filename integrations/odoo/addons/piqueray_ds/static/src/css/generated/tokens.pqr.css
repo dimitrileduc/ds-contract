@@ -27,6 +27,8 @@
   --pqr-color-orange-42: #F494006B;
   --pqr-color-gris-clair: #E0E0E0;
   --pqr-color-noir-pur: #000000;
+  --pqr-color-blanc-14: #FFFFFF24;
+  --pqr-color-noir-bleute-72: #26282CB8;
   --pqr-nav-state: Transparent;
   --pqr-opacity-base: 100;
   --pqr-font-family-montserrat: Montserrat, sans-serif;
@@ -63,6 +65,7 @@
   --pqr-space-2: 2px;
   --pqr-space-3: 3px;
   --pqr-space-4: 4px;
+  --pqr-space-5: 5px;
   --pqr-space-8: 8px;
   --pqr-space-10: 10px;
   --pqr-space-11: 11px;
@@ -72,6 +75,7 @@
   --pqr-space-16: 16px;
   --pqr-space-22: 22px;
   --pqr-space-24: 24px;
+  --pqr-space-26: 26px;
   --pqr-space-32: 32px;
   --pqr-space-40: 40px;
   --pqr-space-47: 47px;
@@ -183,6 +187,7 @@
   --pqr-size-logo-height: 34px;
   --pqr-size-formulaire-root: 1550px;
   --pqr-size-header-root: 1728px;
+  --pqr-size-header-icone: 24px;
   --pqr-size-equipe-root: 1728px;
   --pqr-size-equipe-gap-colonnes: 32px;
   --pqr-size-equipe-gap-rangees: 32px;
@@ -193,6 +198,13 @@
   --pqr-size-carte-categorie-min-w: 320px;
   --pqr-size-categories-principales-carte-h-mobile: 418px;
   --pqr-size-categories-principales-carte-h-tablette: 288px;
+  --pqr-size-cible-tactile-min: 44px;
+  --pqr-size-burger-trait-largeur: 24px;
+  --pqr-size-burger-trait-epaisseur: 2px;
+  --pqr-size-menu-mobile-tiroir: 420px;
+  --pqr-size-menu-entree-hauteur-mobile: 68px;
+  --pqr-size-menu-entree-hauteur-tablette: 52px;
+  --pqr-radius-1: 1px;
   --pqr-radius-8: 8px;
   --pqr-radius-20: 20px;
   --pqr-radius-32: 32px;
@@ -315,11 +327,21 @@
   --pqr-typography-review-libelle-size: var(--pqr-font-size-16);
   --pqr-typography-review-note-line-height: var(--pqr-font-line-height-40);
   --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
+  --pqr-typography-menu-entree-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-menu-entree-size: var(--pqr-font-size-24);
+  --pqr-typography-menu-entree-weight: var(--pqr-font-weight-medium);
+  --pqr-typography-menu-entree-line-height: var(--pqr-font-line-height-30);
+  --pqr-typography-menu-sous-entree-family: var(--pqr-font-family-montserrat);
+  --pqr-typography-menu-sous-entree-size: var(--pqr-font-size-18);
+  --pqr-typography-menu-sous-entree-weight: var(--pqr-font-weight-regular);
+  --pqr-typography-menu-sous-entree-line-height: var(--pqr-font-line-height-27);
   --pqr-spacing-card-categorie-pad-h: var(--pqr-space-24);
   --pqr-spacing-carte-reassurance-gap: var(--pqr-space-16);
   --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-16);
   --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-192);
   --pqr-spacing-review-gap: var(--pqr-space-16);
+  --pqr-spacing-menu-entree-pad-v: var(--pqr-space-12);
+  --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -359,11 +381,17 @@
     --pqr-typography-review-note-line-height: var(--pqr-font-line-height-40);
     --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-entree-line-height: var(--pqr-font-line-height-16);
+    --pqr-typography-menu-sous-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-sous-entree-line-height: var(--pqr-font-line-height-24);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-240);
     --pqr-spacing-review-gap: var(--pqr-space-16);
+    --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
+    --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
   }
 }
 
@@ -404,11 +432,17 @@
     --pqr-typography-review-note-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-entree-line-height: var(--pqr-font-line-height-16);
+    --pqr-typography-menu-sous-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-sous-entree-line-height: var(--pqr-font-line-height-24);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-364);
     --pqr-spacing-review-gap: var(--pqr-space-14);
+    --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
+    --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
   }
 }
 
@@ -449,10 +483,16 @@
     --pqr-typography-review-note-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-22);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-18);
+    --pqr-typography-menu-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-entree-line-height: var(--pqr-font-line-height-16);
+    --pqr-typography-menu-sous-entree-size: var(--pqr-font-size-16);
+    --pqr-typography-menu-sous-entree-line-height: var(--pqr-font-line-height-24);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-24);
     --pqr-spacing-carte-reassurance-photo-h: var(--pqr-size-carte-reassurance-photo-h-364);
     --pqr-spacing-review-gap: var(--pqr-space-14);
+    --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
+    --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
   }
 }

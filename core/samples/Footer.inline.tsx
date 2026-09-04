@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.2.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -29,48 +29,47 @@ const S: Record<string, CSSProperties> = {
   "root": {
     "display": "flex",
     "flexDirection": "column",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "width": "1728px",
-    "paddingTop": "128px",
-    "paddingRight": "89px",
-    "paddingBottom": "32px",
-    "paddingLeft": "89px",
+    "paddingInline": "24px",
+    "paddingTop": "64px",
+    "paddingBottom": "64px",
     "gap": "0px",
     "position": "relative"
   },
   "Background": {
-    "height": "459px",
     "backgroundColor": "#26282C",
     "position": "absolute",
     "top": "0",
-    "left": "0",
-    "right": "0"
+    "right": "0",
+    "bottom": "0",
+    "left": "0"
   },
   "Row": {
     "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
-    "justifyContent": "space-between",
-    "flex": "1 1 auto",
-    "minWidth": 0,
+    "flexDirection": "column",
+    "alignItems": "stretch",
+    "gap": "32px",
     "position": "relative"
   },
   "col1": {
     "display": "flex",
     "flexDirection": "column",
-    "gap": "32px"
+    "gap": "24px"
   },
   "col5": {
     "display": "flex",
     "flexDirection": "column",
+    "alignItems": "stretch",
     "gap": "16px"
   },
   "TitreReseaux": {
     "color": "#F98A0B",
-    "fontWeight": 400,
-    "fontSize": "24px",
-    "lineHeight": "30px"
+    "fontSize": "20px",
+    "lineHeight": "25px",
+    "fontWeight": 500
   },
   "rseauxSociaux": {
     "display": "flex",
@@ -89,62 +88,147 @@ const S: Record<string, CSSProperties> = {
     "color": "#FFFFFF"
   },
   "Spacer": {
-    "height": "121px"
+    "height": "32px"
   },
   "Separator": {
     "borderStyle": "solid",
-    "borderColor": "#FFFFFF",
+    "borderColor": "#E0E0E0",
     "height": "0px",
     "borderTopWidth": "1px"
   },
   "spacer2": {
-    "height": "27px"
+    "height": "32px"
+  },
+  "LigneBas": {
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "justifyContent": "space-between"
+  },
+  "rseauxSociauxBas": {
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "justifyContent": "flex-end",
+    "gap": "16px"
+  },
+  "FacebookBas": {
+    "display": "inline-flex",
+    "flexShrink": 0,
+    "color": "#FFFFFF"
+  },
+  "InstagramBas": {
+    "display": "inline-flex",
+    "flexShrink": 0,
+    "color": "#FFFFFF"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "presentation-tablette:root": {
+    "paddingInline": "48px"
+  },
+  "presentation-desktop:root": {
+    "paddingInline": "56px",
+    "paddingTop": "128px",
+    "paddingBottom": "32px"
+  },
+  "presentation-desktop:Row": {
+    "gap": "64px",
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "flex-start"
+  },
+  "presentation-desktop:col1": {
+    "gap": "32px"
+  },
+  "presentation-desktop:Spacer": {
+    "height": "121px"
+  },
+  "presentation-desktop:Separator": {
+    "borderColor": "#FFFFFF"
+  },
+  "presentation-desktop:spacer2": {
+    "height": "27px"
+  },
+  "presentation-wide:root": {
+    "paddingInline": "89px",
+    "paddingTop": "128px",
+    "paddingBottom": "32px"
+  },
+  "presentation-wide:Row": {
+    "gap": "64px",
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "flex-start"
+  },
+  "presentation-wide:col1": {
+    "gap": "32px"
+  },
+  "presentation-wide:Spacer": {
+    "height": "121px"
+  },
+  "presentation-wide:Separator": {
+    "borderColor": "#FFFFFF"
+  },
+  "presentation-wide:spacer2": {
+    "height": "27px"
+  }
+};
 
-export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
+export interface FooterProps extends HTMLAttributes<HTMLElement> {
+  presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   items?: Array<{ texte: string; titre: string }>;
 }
 
-/** Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé. */
-export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
-  { items, style, children, ...rest },
+/** Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md. */
+export const Footer = forwardRef<HTMLElement, FooterProps>(function Footer(
+  { presentation = 'mobile', items, style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
+    <footer ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
       <div style={{ ...S.Background }}>
 
 </div>
-<div style={{ ...S.Row }}>
-<div style={{ ...S.col1 }}>
+<div style={{ ...S.Row, ...(V[`presentation-${presentation}:Row`] ?? {}) }}>
+<div style={{ ...S.col1, ...(V[`presentation-${presentation}:col1`] ?? {}) }}>
 <PiquerayLogo couleur="blanc" />
-<Button variant="outlineBlanc" iconRight={false}>Contactez-nous</Button>
+<Button variant="outlineBlanc" iconLeft={false} iconRight={false}>Contactez-nous</Button>
 </div>
-<FooterColumn texte="Rue Alfred Drèze 7,  4860 Pepinster" titre="Adresse" />
-<FooterColumn texte="Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00" titre="Horaires" />
-<FooterColumn texte="Tél : +32 (0)87 46 32 66  Email: info@piqueray.be" titre="Contact" />
-<div style={{ ...S.col5 }}>
+<FooterColumn texte="Rue Alfred Drèze 7,
+4860 Pepinster" titre="Adresse" />
+<FooterColumn texte="Du lundi au vendredi
+de 8h00 à 12h00 et
+de 13h30 à 17h00" titre="Horaires" />
+<FooterColumn texte="Tél : +32 (0)87 46 32 66
+Email: info@piqueray.be" titre="Contact" />
+{presentation !== 'desktop' ? (<div style={{ ...S.col5 }}>
 <span style={{ ...S.TitreReseaux }}>Suivez-nous</span>
 <div style={{ ...S.rseauxSociaux }}>
 <span style={{ ...S.Facebook }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["facebook"] }} />
 <span style={{ ...S.Instagram }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["instagram"] }} />
 </div>
+</div>) : null}
 </div>
-</div>
-<div style={{ ...S.Spacer }}>
+<div style={{ ...S.Spacer, ...(V[`presentation-${presentation}:Spacer`] ?? {}) }}>
 
 </div>
-<div style={{ ...S.Separator }}>
+<div style={{ ...S.Separator, ...(V[`presentation-${presentation}:Separator`] ?? {}) }}>
 
 </div>
-<div style={{ ...S.spacer2 }}>
+<div style={{ ...S.spacer2, ...(V[`presentation-${presentation}:spacer2`] ?? {}) }}>
 
 </div>
+{presentation === 'desktop' ? (<div style={{ ...S.LigneBas }}>
 <Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />
-    </div>
+<div style={{ ...S.rseauxSociauxBas }}>
+<span style={{ ...S.FacebookBas }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["facebook"] }} />
+<span style={{ ...S.InstagramBas }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["instagram"] }} />
+</div>
+</div>) : null}
+{presentation !== 'desktop' ? (<Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />) : null}
+    </footer>
   );
 });

@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "8b869bed",
+    "gitCommit": "41711295",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -337,13 +337,14 @@
     {
       "id": "ds.footer",
       "name": "Footer",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "items"
       ],
-      "summary": "Piqueray Footer."
+      "summary": "Piqueray Footer, responsive."
     },
     {
       "id": "ds.formulaire",
@@ -373,7 +374,7 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "2.0.0",
+      "version": "4.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -384,40 +385,29 @@
         "avatar",
         "note",
         "photoUrl",
-        "photoAlt"
+        "photoAlt",
+        "verifie",
+        "lienAvis"
       ],
       "summary": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006)."
     },
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
-      "category": "section",
       "propNames": [
-        "noteGlobale",
-        "qualificatif",
-        "volume",
-        "montrerControles",
-        "avis"
-      ],
-      "summary": "Le bloc « Avis Google » historique."
-    },
-    {
-      "id": "ds.google-reviews-section",
-      "name": "GoogleReviewsSection",
-      "version": "1.0.0",
-      "status": "draft",
-      "category": "section",
-      "propNames": [
-        "titre",
+        "presentation",
         "accroche",
+        "titre",
         "qualificatif",
         "noteGlobale",
         "volume",
-        "montrerControles"
+        "avis",
+        "note",
+        "lienAvis"
       ],
-      "summary": "Composition publique Avis Google."
+      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
     },
     {
       "id": "ds.nav-item",
@@ -436,13 +426,14 @@
     {
       "id": "ds.header",
       "name": "Header",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "items"
       ],
-      "summary": "Piqueray Header."
+      "summary": "Piqueray Header, responsive (vague 031)."
     },
     {
       "id": "ds.hero-video",
@@ -473,6 +464,35 @@
         "sousTitre2"
       ],
       "summary": "Piqueray Hero."
+    },
+    {
+      "id": "ds.menu-entree",
+      "name": "MenuEntree",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "propNames": [
+        "etat",
+        "libelle",
+        "href",
+        "chevron",
+        "sousEntree1",
+        "sousEntree2",
+        "deuxSousEntrees"
+      ],
+      "summary": "Une entrée du menu mobile ouvert (vague 031, décision owner 2026-09-04) : libellé en capitales, chevron sur une boîte tactile 44, et en état ouvert les sous-entrées le long d'un rail orange."
+    },
+    {
+      "id": "ds.menu-mobile",
+      "name": "MenuMobile",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "propNames": [
+        "presentation",
+        "items"
+      ],
+      "summary": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette)."
     },
     {
       "id": "ds.presentation",

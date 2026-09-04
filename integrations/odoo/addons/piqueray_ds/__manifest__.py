@@ -80,6 +80,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/review-card.pqr.css",
             "piqueray_ds/static/src/css/responsive/google-reviews.pqr.css",
             "piqueray_ds/static/src/css/responsive/header.pqr.css",
+            "piqueray_ds/static/src/css/responsive/menu-mobile.pqr.css",
             "piqueray_ds/static/src/css/responsive/footer.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",
@@ -88,6 +89,9 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/js/faq_interaction.js",
             # Dépliage public du Texte SEO : réutilise la bascule partagée.
             "piqueray_ds/static/src/js/texte_seo_interaction.js",
+            # Menu mobile (ds.menu-mobile, 2026-09-04) : bascule des entrées déroulantes ;
+            # l'ouverture du menu est l'offcanvas du noyau.
+            "piqueray_ds/static/src/js/menu_mobile_interaction.js",
         ],
         # Chargé uniquement dans l'éditeur de site.
         "website.website_builder_assets": [

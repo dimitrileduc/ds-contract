@@ -22,6 +22,8 @@ export * from './HeroVideo';
 export * from './Input';
 export * from './MemberCard';
 export * from './MemberPicture';
+export * from './MenuEntree';
+export * from './MenuMobile';
 export * from './NavItem';
 export * from './Notation';
 export * from './PiquerayLogo';

@@ -3,10 +3,10 @@
   "snapshotId": "odoo-019-foundation",
   "generatorVersion": "1.0.0",
   "coverage": {
-    "expectedProps": 245,
-    "decidedProps": 245,
-    "expectedParts": 409,
-    "decidedParts": 409,
+    "expectedProps": 270,
+    "decidedProps": 270,
+    "expectedParts": 465,
+    "decidedParts": 465,
     "missingDecisionIds": [],
     "extraDecisionIds": [],
     "invalidAddresses": []
@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "518974a3568fb6c0ce70247f19f6162fb919528dda785953d674f67a64e409b7",
-      "actualSha256": "518974a3568fb6c0ce70247f19f6162fb919528dda785953d674f67a64e409b7",
-      "bytes": 69751
+      "expectedSha256": "82b87ba58992231eb9fa6d2bbcaf64544ff25accb512a068728570576cdb0c96",
+      "actualSha256": "82b87ba58992231eb9fa6d2bbcaf64544ff25accb512a068728570576cdb0c96",
+      "bytes": 79817
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -29,9 +29,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css",
       "status": "clean",
-      "expectedSha256": "ee8a49c75b54c272aeeec6a9661dcbc0dc4f9fba9bfc382a9265f71b31e3dc73",
-      "actualSha256": "ee8a49c75b54c272aeeec6a9661dcbc0dc4f9fba9bfc382a9265f71b31e3dc73",
-      "bytes": 23671
+      "expectedSha256": "ef7d68b48a04cf4da0264379b4b3b79826d7d9deaa289666e9ce3d50db27704d",
+      "actualSha256": "ef7d68b48a04cf4da0264379b4b3b79826d7d9deaa289666e9ce3d50db27704d",
+      "bytes": 26136
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2",
@@ -70,17 +70,17 @@
     }
   ],
   "manualDelta": {
-    "files": 17,
-    "blocks": 82,
-    "lines": 4197,
-    "bytes": 256031,
+    "files": 18,
+    "blocks": 84,
+    "lines": 4380,
+    "bytes": 278704,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
         "files": 4,
         "blocks": 20,
         "lines": 1293,
-        "bytes": 72756
+        "bytes": 72730
       },
       {
         "key": "odoo-internal-api",
@@ -93,8 +93,8 @@
         "key": "odoo-layout-bridge",
         "files": 1,
         "blocks": 11,
-        "lines": 309,
-        "bytes": 14198
+        "lines": 317,
+        "bytes": 14726
       },
       {
         "key": "odoo-media-dialog",
@@ -127,16 +127,16 @@
       {
         "key": "odoo-qweb-composition",
         "files": 4,
-        "blocks": 28,
-        "lines": 910,
-        "bytes": 95748
+        "blocks": 29,
+        "lines": 1044,
+        "bytes": 116329
       },
       {
         "key": "odoo-repeat-dom",
-        "files": 4,
-        "blocks": 9,
-        "lines": 745,
-        "bytes": 30120
+        "files": 5,
+        "blocks": 10,
+        "lines": 786,
+        "bytes": 31710
       },
       {
         "key": "odoo-version-policy",
@@ -152,7 +152,7 @@
         "files": 4,
         "blocks": 20,
         "lines": 1293,
-        "bytes": 72756
+        "bytes": 72730
       },
       {
         "key": "compatibility",
@@ -172,8 +172,8 @@
         "key": "odoo-bridge",
         "files": 1,
         "blocks": 11,
-        "lines": 309,
-        "bytes": 14198
+        "lines": 317,
+        "bytes": 14726
       },
       {
         "key": "page-composition",
@@ -185,16 +185,16 @@
       {
         "key": "qweb",
         "files": 4,
-        "blocks": 29,
-        "lines": 959,
-        "bytes": 99039
+        "blocks": 30,
+        "lines": 1093,
+        "bytes": 119620
       },
       {
         "key": "repeat-action",
-        "files": 4,
-        "blocks": 9,
-        "lines": 745,
-        "bytes": 30120
+        "files": 5,
+        "blocks": 10,
+        "lines": 786,
+        "bytes": 31710
       },
       {
         "key": "save-version",
@@ -220,5 +220,5 @@
     ],
     "registryEntries": []
   },
-  "canonicalDigest": "f754d395eecfcda567d0b1a4d74b11204272dade57551398206d46373224e7c1"
+  "canonicalDigest": "c41993961de25615b41d9c73c0de5e245e93c043d5342339711515d3a4efd81a"
 }

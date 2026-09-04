@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "8b869bed",
+    "gitCommit": "41711295",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -153,11 +153,25 @@
       "--typography-review-lien-line-height",
       "--typography-review-initiale-size",
       "--typography-review-initiale-line-height",
+      "--typography-review-note-size",
+      "--typography-review-libelle-size",
+      "--typography-review-note-line-height",
+      "--typography-review-libelle-line-height",
+      "--typography-menu-entree-family",
+      "--typography-menu-entree-size",
+      "--typography-menu-entree-weight",
+      "--typography-menu-entree-line-height",
+      "--typography-menu-sous-entree-family",
+      "--typography-menu-sous-entree-size",
+      "--typography-menu-sous-entree-weight",
+      "--typography-menu-sous-entree-line-height",
       "--spacing-card-categorie-pad-h",
       "--spacing-carte-reassurance-gap",
       "--spacing-carte-reassurance-pad-bas",
       "--spacing-carte-reassurance-photo-h",
-      "--spacing-review-gap"
+      "--spacing-review-gap",
+      "--spacing-menu-entree-pad-v",
+      "--spacing-menu-entree-hauteur"
     ],
     "allCssVariables": [
       "--color-bleu",
@@ -175,6 +189,8 @@
       "--color-orange-42",
       "--color-gris-clair",
       "--color-noir-pur",
+      "--color-blanc-14",
+      "--color-noir-bleute-72",
       "--nav-state",
       "--opacity-base",
       "--font-family-montserrat",
@@ -211,15 +227,19 @@
       "--space-2",
       "--space-3",
       "--space-4",
+      "--space-5",
       "--space-8",
       "--space-10",
       "--space-11",
       "--space-12",
       "--space-14",
+      "--space-15",
       "--space-16",
       "--space-22",
       "--space-24",
+      "--space-26",
       "--space-32",
+      "--space-40",
       "--space-47",
       "--space-48",
       "--space-56",
@@ -297,6 +317,7 @@
       "--size-review-card-avatar-initiale",
       "--size-review-card-avatar-photo",
       "--size-review-card-verification",
+      "--size-review-card-min-w",
       "--size-sav-content-padding",
       "--size-sav-image-right-inset",
       "--size-sav-section-w",
@@ -328,6 +349,7 @@
       "--size-logo-height",
       "--size-formulaire-root",
       "--size-header-root",
+      "--size-header-icone",
       "--size-equipe-root",
       "--size-equipe-gap-colonnes",
       "--size-equipe-gap-rangees",
@@ -338,6 +360,15 @@
       "--size-carte-categorie-min-w",
       "--size-categories-principales-carte-h-mobile",
       "--size-categories-principales-carte-h-tablette",
+      "--size-cible-tactile-min",
+      "--size-burger-trait-largeur",
+      "--size-burger-trait-epaisseur",
+      "--size-menu-mobile-tiroir",
+      "--size-menu-entree-hauteur-mobile",
+      "--size-menu-entree-hauteur-tablette",
+      "--radius-1",
+      "--radius-8",
+      "--radius-20",
       "--radius-32",
       "--radius-500",
       "--border-width-0",
@@ -454,11 +485,25 @@
       "--typography-review-lien-line-height",
       "--typography-review-initiale-size",
       "--typography-review-initiale-line-height",
+      "--typography-review-note-size",
+      "--typography-review-libelle-size",
+      "--typography-review-note-line-height",
+      "--typography-review-libelle-line-height",
+      "--typography-menu-entree-family",
+      "--typography-menu-entree-size",
+      "--typography-menu-entree-weight",
+      "--typography-menu-entree-line-height",
+      "--typography-menu-sous-entree-family",
+      "--typography-menu-sous-entree-size",
+      "--typography-menu-sous-entree-weight",
+      "--typography-menu-sous-entree-line-height",
       "--spacing-card-categorie-pad-h",
       "--spacing-carte-reassurance-gap",
       "--spacing-carte-reassurance-pad-bas",
       "--spacing-carte-reassurance-photo-h",
-      "--spacing-review-gap"
+      "--spacing-review-gap",
+      "--spacing-menu-entree-pad-v",
+      "--spacing-menu-entree-hauteur"
     ]
   },
   "components": [
@@ -1368,15 +1413,25 @@
     {
       "id": "ds.footer",
       "name": "Footer",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
+      "description": "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b"
+        "componentSetKey": "cf79e2e8f660aec1cd30185d29b6134b11a86f63"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile"
+        },
         {
           "name": "items",
           "type": {
@@ -1473,13 +1528,13 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "2.0.0",
+      "version": "4.0.0",
       "status": "draft",
       "category": "molecule",
       "description": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.\n\nPromotion 2.0.0 (2026-08-18, demande owner). MAJEUR : trois props retirées. (1) `tronque` disparaît — « Lire la suite » était caché sur les instances alors que le master l'affichait toujours ; l'owner le veut visible partout, la prop n'avait donc plus d'objet. (2) `initialeVisible` et `photo` étaient DEUX booléens indépendants, ce que la limite (1) ci-dessus nommait déjà comme une convention fragile : ils autorisaient les deux états absurdes (aucun avatar, ou les deux à la fois) et exposaient au rédacteur Odoo deux bascules là où la règle métier est « photo s'il y a une photo, sinon initiale ». Ils sont remplacés par UNE variante `avatar`, exclusive par construction. Le master Figma est devenu un set de deux variantes le même jour ; la variante `Avatar=Initiale` conserve l'id et la clé historiques, donc les 45 instances survivent (vérifié : 45/45, textes intacts). (3) `note` apparaît — la note d'un avis était le seul fait important non éditable. Elle est portée par le composant imbriqué `ds.notation` (cinq bandes exclusives ; voir son contrat pour les trois mécanismes moins coûteux testés et refusés par le moteur). Son binding Figma est `NONE` À DESSEIN : le porter en VARIANT sur la carte forcerait un produit Avatar × Note = dix variantes du master. La contrepartie est nommée — le canevas montre toujours la note par défaut, et les cinq états se lisent sur l'atome `Notation`, pas sur la carte. (Au passage : la limite (1) d'origine affirmait qu'« une prop scalaire ne peut pas être figma.kind NONE » ; re-testé sur le schéma le 2026-08-18, c'est faux — seul l'inverse est imposé, les props `arrayOf` DOIVENT être NONE.) La prop `verifie` disparaît elle aussi (même geste, même raison que `tronque`) : le badge est inconditionnel.\n\nTEXTES — sans Text Style, comme 172 des 332 textes du fichier (compté le 2026-08-18). Les cinq textes de la carte (initialeTexte, auteur, date, temoignage, lireLaSuite) ne portent aucun Text Style. Ce n'est PAS une singularité de ce composant : sur les 332 nœuds texte des masters, 160 portent un style, 0 lient une variable de typographie, 172 n'ont ni l'un ni l'autre. Les variables `font/size/*`, `font/weight/*` et `typography/*` existent mais alimentent les Text Styles ; sur un nœud texte, seule la couleur est liée — aucun nœud du fichier ne lie sa taille ou sa graisse. Aucun des 18 styles ne correspond exactement à ces cinq recettes : initialeTexte est SemiBold 18/18 quand le seul style à 18 (« Lead ») est Regular 18/27 ; auteur est SemiBold 16/19,2 quand « Titre 6 » est SemiBold 16/20 ; date, temoignage et lireLaSuite sont Medium 14 quand les trois styles à 14 sont Regular ou Bold. Ces valeurs (19,2 = 16×1,2 ; 16,8 = 14×1,2 ; 19,6 = 14×1,4) sont des interlignes de navigateur héritées du widget tiers dont la carte a été extraite en 006, pas des valeurs dessinées. Les rapprocher d'un style voisin changerait le rendu d'un contenu client adopté, et le workflow interdit le rapprochement « au plus proche ». La réparation utile n'est donc pas locale à ce composant : c'est une passe de typographie sur les 172, à décider par l'owner.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "864876fc02245c65ef4216bc4355e4128f79d181"
+        "componentSetKey": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c"
       },
       "props": [
         {
@@ -1535,6 +1590,18 @@
           "name": "photoAlt",
           "type": "string",
           "default": ""
+        },
+        {
+          "name": "verifie",
+          "type": "boolean",
+          "default": false,
+          "description": "Pastille noire de vérification, à droite des étoiles. Relevé du 2026-09-03 sur le set 031 : le calque `verification` est MASQUÉ sur le maître (2700:26539) ET sur les cinq instances des quatre vues. Il n'est donc jamais dessiné aujourd'hui — la présence devient une option gouvernée par défaut à faux plutôt qu'un calque caché (§VIII : jamais un calque masqué en dur)."
+        },
+        {
+          "name": "lienAvis",
+          "type": "string",
+          "default": "",
+          "description": "Adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite ». PAR AVIS : elle entre par la collection de la section, jamais par un réglage global. Vide, le bouton ne navigue pas."
         }
       ],
       "children": {
@@ -1545,20 +1612,33 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
-      "category": "section",
-      "description": "Le bloc « Avis Google » historique. Le nouveau parent public `ds.google-reviews-section` le compose avec `ds.section-header`, sans modifier sa surface Odoo authorée existante. La grille garde cinq colonnes égales et les flèches restent des overlays absolus.",
+      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
+        "componentSetKey": "92ddbd842f0f0a22f284322298a9a6865c397055"
       },
       "props": [
         {
-          "name": "noteGlobale",
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile"
+        },
+        {
+          "name": "accroche",
           "type": "string",
-          "default": "4.8",
-          "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
+          "default": "Nos avis Google vérifiés"
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Plus de 1500 portes installées par année et autant de clients satisfaits"
         },
         {
           "name": "qualificatif",
@@ -1567,15 +1647,15 @@
           "description": "Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel."
         },
         {
+          "name": "noteGlobale",
+          "type": "string",
+          "default": "4.8",
+          "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
+        },
+        {
           "name": "volume",
           "type": "string",
           "default": "93 avis"
-        },
-        {
-          "name": "montrerControles",
-          "type": "boolean",
-          "default": true,
-          "description": "Flèches de carrousel — mesurées présentes aux deux bords de l'aplat (T012)."
         },
         {
           "name": "avis",
@@ -1601,62 +1681,29 @@
                 ]
               },
               "photoUrl": "text",
-              "photoAlt": "text"
+              "photoAlt": "text",
+              "lienAvis": "text"
             }
           },
-          "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010)."
-        }
-      ],
-      "children": {
-        "kind": "none"
-      },
-      "slots": []
-    },
-    {
-      "id": "ds.google-reviews-section",
-      "name": "GoogleReviewsSection",
-      "version": "1.0.0",
-      "status": "draft",
-      "category": "section",
-      "description": "Composition publique Avis Google. Elle réunit le titre de section et le widget ds.google-reviews, auparavant deux frères ad hoc dans les Pages Figma et dans le seed Odoo. Le root est Fill/Hug, sans largeur fixe ni padding local : le Container consommateur possède l'espacement externe.",
-      "figma": {
-        "representation": "component",
-        "componentSetKey": "a4d8c699641576c3f44fa7042382979ef9445cdb"
-      },
-      "props": [
-        {
-          "name": "titre",
-          "type": "string",
-          "default": [
-            {
-              "text": "Plus de 1500 portes installées par année et autant de clients satisfaits"
-            }
-          ]
+          "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010). Chaque avis porte son propre `lienAvis` : l'adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite » de sa carte."
         },
         {
-          "name": "accroche",
-          "type": "string",
-          "default": "Nos avis Google vérifiés"
+          "name": "note",
+          "type": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "default": "5",
+          "description": "Nombre d'étoiles pleines du bloc résumé. Pilote la variante du composant gouverné ds.notation. Le composant ne connaît que des notes ENTIÈRES : une note affichée « 4.8 » se dessine avec cinq étoiles pleines, ce que fait la maquette. Réglable depuis le panneau Odoo, pas en édition directe (décision owner 2026-09-03)."
         },
         {
-          "name": "qualificatif",
+          "name": "lienAvis",
           "type": "string",
-          "default": "Excellent"
-        },
-        {
-          "name": "noteGlobale",
-          "type": "string",
-          "default": "4.8"
-        },
-        {
-          "name": "volume",
-          "type": "string",
-          "default": "93 avis"
-        },
-        {
-          "name": "montrerControles",
-          "type": "boolean",
-          "default": true
+          "default": "",
+          "description": "Adresse du bouton « Voir tous les avis » — la fiche Google de l'établissement. Réglable depuis le panneau Odoo. Vide, le bouton ne navigue pas."
         }
       ],
       "children": {
@@ -1705,15 +1752,26 @@
     {
       "id": "ds.header",
       "name": "Header",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher).",
       "figma": {
         "representation": "component",
-        "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420"
+        "componentSetKey": "7c1e4586ab514d119e71389d1f60efa82d6c5513"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : la feuille responsive/header.pqr.css réécrit les règles par mode en @media sur les breakpoints des jetons."
+        },
         {
           "name": "items",
           "type": {
@@ -1855,6 +1913,107 @@
           "type": "boolean",
           "default": true,
           "description": "Extracted from Figma \"SousTitre2\" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22)."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.menu-entree",
+      "name": "MenuEntree",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Une entrée du menu mobile ouvert (vague 031, décision owner 2026-09-04) : libellé en capitales, chevron sur une boîte tactile 44, et en état ouvert les sous-entrées le long d'un rail orange. Extrait du set 031 `MenuEntree` 2738:13482 (journal specs/tiny/vague-031/menu-mobile.md). L'état ouvert/fermé est une VARIANTE et une prop `etat`, sur le modèle d'AccordionRow : c'est un fait dessiné (chevron, couleur, sous-entrées visibles) ; le clic qui bascule l'état est la couche comportement (script Odoo, jamais le contrat). Typographie par typography.menu-entree et typography.menu-sous-entree (responsive : 24/30 en Mobile, 16/16 dès Tablette ; 18/27 puis 16/24). Filet bas color.blanc-14. Le lien de chaque entrée (`href`) est du contenu code-only, comme sur ds.nav-item.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "def00fcac5d711a43275c6a937f03e246b555cc4"
+      },
+      "props": [
+        {
+          "name": "etat",
+          "type": [
+            "ferme",
+            "ouvert"
+          ],
+          "default": "ferme",
+          "description": "Fermé (défaut) ou ouvert. Sur le canevas la première entrée du set MenuMobile est dessinée ouverte pour montrer les sous-entrées ; côté code toutes les entrées naissent fermées, l'ouverture est une interaction."
+        },
+        {
+          "name": "libelle",
+          "type": "string",
+          "default": "Portes de garage"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "default": "/portes-de-garage",
+          "description": "Cible du lien — contenu, jamais dessiné (même règle que ds.nav-item). Côté Odoo la donnée vient de website.menu."
+        },
+        {
+          "name": "chevron",
+          "type": "boolean",
+          "default": true,
+          "description": "L'entrée a des sous-entrées : chevron visible. Côté Odoo dérivé (l'entrée a des enfants)."
+        },
+        {
+          "name": "sousEntree1",
+          "type": "string",
+          "default": "Portes résidentielles"
+        },
+        {
+          "name": "sousEntree2",
+          "type": "string",
+          "default": "Portes industrielles"
+        },
+        {
+          "name": "deuxSousEntrees",
+          "type": "boolean",
+          "default": true,
+          "description": "Deux sous-entrées dessinées (défaut) ou une seule. Limite nommée : le set dessine au plus deux sous-entrées ; côté Odoo la liste réelle vient de website.menu."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.menu-mobile",
+      "name": "MenuMobile",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "a2eb854dd98fd60de2fb958324fd6e22c552f007"
+      },
+      "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette"
+          ],
+          "default": "mobile",
+          "description": "Deux étages seulement : le menu n'existe pas en Desktop ni en Wide (la nav est dans la barre). Côté Odoo la valeur n'est jamais posée : responsive/menu-mobile.pqr.css réécrit les règles par mode en @media."
+        },
+        {
+          "name": "items",
+          "type": {
+            "arrayOf": {
+              "libelle": "text",
+              "href": "text",
+              "chevron": "boolean",
+              "sousEntree1": "text",
+              "sousEntree2": "text",
+              "deuxSousEntrees": "boolean"
+            }
+          },
+          "description": "Les entrées du menu — code-only par construction (arrayOf ⇔ figma NONE). Même donnée que ds.header.items, côté Odoo la boucle sur website.menu. Limite nommée : une liste dans une liste ne se porte pas (au plus deux sous-entrées par entrée dans le dessin ; la liste réelle vient du menu du client)."
         }
       ],
       "children": {

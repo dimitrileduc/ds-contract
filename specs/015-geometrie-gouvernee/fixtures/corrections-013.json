@@ -1,22 +1,76 @@
 {
   "schemaVersion": 1,
-  "provenance": "013 (auditer-fidelite-organismes) n'a pas produit proofs/closure/ — cet inventaire est RECONSTRUIT depuis deux sources croisées : specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (DW-004 nomme les valeurs padding/gap ; DW-005 nomme les largeurs de cadre) et `git log`/`git show` sur contracts/{footer,faq,reassurances}.contract.json dans la fenêtre 013 — commit dddeafa (footer, 'footer remédié 96,91% → 1,04%') et commit f6156f6 (faq + reassurances, 'VAGUE 2'). Chaque entrée ci-dessous est vérifiée par `git show <commit> -- <fichier>` montrant la ligne ajoutée en '+', pas devinée depuis le texte de DW-004 seul. SUPERSESSION (2026-08-19, tinyspec odoo-showcase-fidelity-fixes) : l'entrée `ds.faq /anatomy/root/literals/width = 1728px` a été RETIRÉE — la décision responsive (docs/organisms-responsive-decisions.md, « FAQ root Fill », plus récente que 013) convertit le root FAQ en `layout.width: fill`, et le fait 1728px vit désormais dans `layout.referenceWidth` (patron du Hero), plus dans un littéral/token de largeur. La correction 013 sur la LARGEUR FIXE est donc superséée, pas clobberée ; les paddings/gap FAQ restent gardés. SUPERSESSION (2026-08-23, spec 023) : l'entrée `ds.footer /anatomy/root/parts/Row/literals/width = 1385px` a été RETIRÉE — la réparation source-cleanliness §VIII passe le Row de FIXED 1385px à FILL (layoutSizingHorizontal, Figma corrigé + contrat `layout.grow: true`), et la largeur 1385px est superséée par le comportement dynamique.",
+  "provenance": "013 (auditer-fidelite-organismes) n'a pas produit proofs/closure/ — cet inventaire est RECONSTRUIT depuis deux sources croisées : specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (DW-004 nomme les valeurs padding/gap ; DW-005 nomme les largeurs de cadre) et `git log`/`git show` sur contracts/{footer,faq,reassurances}.contract.json dans la fenêtre 013 — commit dddeafa (footer, 'footer remédié 96,91% → 1,04%') et commit f6156f6 (faq + reassurances, 'VAGUE 2'). Chaque entrée ci-dessous est vérifiée par `git show <commit> -- <fichier>` montrant la ligne ajoutée en '+', pas devinée depuis le texte de DW-004 seul. SUPERSESSION (2026-08-19, tinyspec odoo-showcase-fidelity-fixes) : l'entrée `ds.faq /anatomy/root/literals/width = 1728px` a été RETIRÉE — la décision responsive (docs/organisms-responsive-decisions.md, « FAQ root Fill », plus récente que 013) convertit le root FAQ en `layout.width: fill`, et le fait 1728px vit désormais dans `layout.referenceWidth` (patron du Hero), plus dans un littéral/token de largeur. La correction 013 sur la LARGEUR FIXE est donc superséée, pas clobberée ; les paddings/gap FAQ restent gardés. SUPERSESSION (2026-08-23, spec 023) : l'entrée `ds.footer /anatomy/root/parts/Row/literals/width = 1385px` a été RETIRÉE — la réparation source-cleanliness §VIII passe le Row de FIXED 1385px à FILL (layoutSizingHorizontal, Figma corrigé + contrat `layout.grow: true`), et la largeur 1385px est superséée par le comportement dynamique. SUPERSESSION (2026-09-04, vague 031 responsive) : SIX entrées de ds.footer RETIRÉES (contrat 2.0.0, commit 41711295). La racine passe en largeur FILL avec 1728px porté par layout.referenceWidth (patron du Hero, déjà appliqué à ds.faq le 2026-08-19) : la largeur fixe 1728px est superséée, pas clobberée. Les cinq autres valeurs ne sont pas perdues, elles deviennent CONDITIONNELLES à l'écran et vivent désormais dans le mode qui les porte, via tokensByProp sur l'axe presentation : padding-top 128px et padding-bottom 32px en desktop/wide (64/64 en mobile/tablette), padding-left/right 89px absorbés par le raccourci padding-inline (24 · 48 · 56 · 89), col1 gap 32px en desktop/wide (24 en mobile/tablette). Une correction 013 protégeait une valeur INCONDITIONNELLE : l'entrée n'a plus d'objet dès lors que la valeur est portée par mode. Chaque retrait est vérifié sur le contrat 2.0.0, valeur d'origine retrouvée dans son mode, avant suppression. Les DEUX faits ds.reassurances (largeur 1550px, gap 48px) sont dans le même cas mais RESTENT au registre : le cas d'éval preservation-013-clobber-detected exige (2026-08-23, réaffirmé 2026-09-02) qu'ils demeurent détectables, et les écarte lui-même du compte des sabotages injectés. Le footer n'a pas cette clause ; ses trois gaps restants portent désormais l'injection du cas.",
   "entries": [
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/width", "channel": "width", "expectedResolvedPx": "1728px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-005 territory. CORRIGÉ 2026-08-04 (Phase 6, T058, named-repair-DW-005.md) : 013 avait posé 1550px, une valeur content-box (1728-89-89) redevenue fausse sous border-box (T013, Phase 3) — le diagnostic DW-005 d'origine nommait pourtant déjà 1728px comme fait Figma observé. La valeur protégée par checkPreservation est désormais la bonne, pas celle que 013 avait écrite." },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/padding-top", "channel": "padding-top", "expectedResolvedPx": "128px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/padding-right", "channel": "padding-right", "expectedResolvedPx": "89px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/padding-bottom", "channel": "padding-bottom", "expectedResolvedPx": "32px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/padding-left", "channel": "padding-left", "expectedResolvedPx": "89px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/literals/gap", "channel": "gap", "expectedResolvedPx": "0px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%)" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/parts/Row/parts/col1/literals/gap", "channel": "gap", "expectedResolvedPx": "32px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/parts/Row/parts/col5/literals/gap", "channel": "gap", "expectedResolvedPx": "16px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.footer", "pointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap", "channel": "gap", "expectedResolvedPx": "16px", "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004" },
-    { "contractId": "ds.faq", "pointer": "/anatomy/root/literals/padding-left", "channel": "padding-left", "expectedResolvedPx": "89px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" },
-    { "contractId": "ds.faq", "pointer": "/anatomy/root/literals/padding-right", "channel": "padding-right", "expectedResolvedPx": "89px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" },
-    { "contractId": "ds.faq", "pointer": "/anatomy/root/literals/gap", "channel": "gap", "expectedResolvedPx": "48px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" },
-    { "contractId": "ds.reassurances", "pointer": "/anatomy/root/literals/width", "channel": "width", "expectedResolvedPx": "1550px", "setBy": "f6156f6 (013, VAGUE 2 — reassurances 22 → 30 faits prouvés)" },
-    { "contractId": "ds.reassurances", "pointer": "/anatomy/root/literals/gap", "channel": "gap", "expectedResolvedPx": "48px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" },
-    { "contractId": "ds.reassurances", "pointer": "/anatomy/root/parts/items/literals/gap", "channel": "gap", "expectedResolvedPx": "32px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" },
-    { "contractId": "ds.reassurances", "pointer": "/anatomy/root/parts/Boutons/literals/gap", "channel": "gap", "expectedResolvedPx": "16px", "setBy": "f6156f6 (013, VAGUE 2) — DW-004" }
+    {
+      "contractId": "ds.footer",
+      "pointer": "/anatomy/root/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "0px",
+      "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%)"
+    },
+    {
+      "contractId": "ds.footer",
+      "pointer": "/anatomy/root/parts/Row/parts/col5/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "16px",
+      "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004"
+    },
+    {
+      "contractId": "ds.footer",
+      "pointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "16px",
+      "setBy": "dddeafa (013, footer remédié 96,91% → 1,04%) — DW-004"
+    },
+    {
+      "contractId": "ds.faq",
+      "pointer": "/anatomy/root/literals/padding-left",
+      "channel": "padding-left",
+      "expectedResolvedPx": "89px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    },
+    {
+      "contractId": "ds.faq",
+      "pointer": "/anatomy/root/literals/padding-right",
+      "channel": "padding-right",
+      "expectedResolvedPx": "89px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    },
+    {
+      "contractId": "ds.faq",
+      "pointer": "/anatomy/root/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "48px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    },
+    {
+      "contractId": "ds.reassurances",
+      "pointer": "/anatomy/root/parts/items/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "32px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    },
+    {
+      "contractId": "ds.reassurances",
+      "pointer": "/anatomy/root/parts/Boutons/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "16px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    },
+    {
+      "contractId": "ds.reassurances",
+      "pointer": "/anatomy/root/literals/width",
+      "channel": "width",
+      "expectedResolvedPx": "1550px",
+      "setBy": "f6156f6 (013, VAGUE 2 — reassurances 22 → 30 faits prouvés)"
+    },
+    {
+      "contractId": "ds.reassurances",
+      "pointer": "/anatomy/root/literals/gap",
+      "channel": "gap",
+      "expectedResolvedPx": "48px",
+      "setBy": "f6156f6 (013, VAGUE 2) — DW-004"
+    }
   ]
 }

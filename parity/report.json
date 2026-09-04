@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 32,
+    "acknowledged": 33,
     "pending": 0,
     "bySurface": {}
   },
@@ -44,27 +44,17 @@
     },
     {
       "surface": "figma",
-      "classification": "ahead",
-      "subject": "Header.Fond",
-      "detail": "Figma set declares VARIANT property \"Fond\" the contract does not define",
-      "proposedPatch": {
-        "name": "fond",
-        "type": {
-          "enum": [
-            "Transparent"
-          ]
-        },
-        "bindings": {
-          "figma": {
-            "kind": "VARIANT",
-            "property": "Fond"
-          },
-          "code": {
-            "prop": "fond"
-          }
-        }
-      },
-      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+      "classification": "behind",
+      "subject": "Header.NavItem",
+      "detail": "Contract composes ds.nav-item but no NavItem instance exists inside the Figma component",
+      "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Header.Bouton",
+      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
+      "remedy": "Re-run the component sync script"
     },
     {
       "surface": "figma",
@@ -266,15 +256,17 @@
     "ds.faq@1.3.0",
     "ds.field@2.0.0",
     "ds.footer-column@1.1.0",
-    "ds.footer@1.2.0",
+    "ds.footer@2.0.0",
     "ds.formulaire@2.0.0",
     "ds.google-reviews@3.0.0",
-    "ds.header@2.1.0",
+    "ds.header@3.0.0",
     "ds.hero-video@2.0.0",
     "ds.hero@2.0.0",
     "ds.input@1.0.0",
     "ds.member-card@1.4.0",
     "ds.member-picture@1.3.0",
+    "ds.menu-entree@1.0.0",
+    "ds.menu-mobile@1.0.0",
     "ds.nav-item@1.2.0",
     "ds.notation@1.0.0",
     "ds.piqueray-logo@1.0.0",
@@ -283,7 +275,7 @@
     "ds.produits-ecommerce@1.0.0",
     "ds.realisation@1.1.0",
     "ds.reassurances@2.0.0",
-    "ds.review-card@3.0.0",
+    "ds.review-card@4.0.0",
     "ds.sav@2.0.0",
     "ds.section-header@3.0.0",
     "ds.select@1.0.0",

@@ -1,0 +1,317 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.menu-entree",
+  "name": "MenuEntree",
+  "version": "1.0.0",
+  "description": "Une entrée du menu mobile ouvert (vague 031, décision owner 2026-09-04) : libellé en capitales, chevron sur une boîte tactile 44, et en état ouvert les sous-entrées le long d'un rail orange. Extrait du set 031 `MenuEntree` 2738:13482 (journal specs/tiny/vague-031/menu-mobile.md). L'état ouvert/fermé est une VARIANTE et une prop `etat`, sur le modèle d'AccordionRow : c'est un fait dessiné (chevron, couleur, sous-entrées visibles) ; le clic qui bascule l'état est la couche comportement (script Odoo, jamais le contrat). Typographie par typography.menu-entree et typography.menu-sous-entree (responsive : 24/30 en Mobile, 16/16 dès Tablette ; 18/27 puis 16/24). Filet bas color.blanc-14. Le lien de chaque entrée (`href`) est du contenu code-only, comme sur ds.nav-item.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "ferme",
+          "ouvert"
+        ]
+      },
+      "default": "ferme",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "ferme": "Fermé",
+            "ouvert": "Ouvert"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      },
+      "description": "Fermé (défaut) ou ouvert. Sur le canevas la première entrée du set MenuMobile est dessinée ouverte pour montrer les sous-entrées ; côté code toutes les entrées naissent fermées, l'ouverture est une interaction."
+    },
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Portes de garage",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Libellé"
+        },
+        "code": {
+          "prop": "libelle"
+        }
+      }
+    },
+    {
+      "name": "href",
+      "type": "text",
+      "default": "/portes-de-garage",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "href"
+        }
+      },
+      "description": "Cible du lien — contenu, jamais dessiné (même règle que ds.nav-item). Côté Odoo la donnée vient de website.menu."
+    },
+    {
+      "name": "chevron",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Chevron"
+        },
+        "code": {
+          "prop": "chevron"
+        }
+      },
+      "description": "L'entrée a des sous-entrées : chevron visible. Côté Odoo dérivé (l'entrée a des enfants)."
+    },
+    {
+      "name": "sousEntree1",
+      "type": "text",
+      "default": "Portes résidentielles",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Sous-entrée 1"
+        },
+        "code": {
+          "prop": "sousEntree1"
+        }
+      }
+    },
+    {
+      "name": "sousEntree2",
+      "type": "text",
+      "default": "Portes industrielles",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Sous-entrée 2"
+        },
+        "code": {
+          "prop": "sousEntree2"
+        }
+      }
+    },
+    {
+      "name": "deuxSousEntrees",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Deux sous-entrées"
+        },
+        "code": {
+          "prop": "deuxSousEntrees"
+        }
+      },
+      "description": "Deux sous-entrées dessinées (défaut) ou une seule. Limite nommée : le set dessine au plus deux sous-entrées ; côté Odoo la liste réelle vient de website.menu."
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "stretch"
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "border-bottom-width": "{border-width.1}",
+        "border-color": "{color.blanc-14}"
+      },
+      "parts": {
+        "tete": {
+          "description": "Ligne de tête : libellé + boîte tactile du chevron. Hauteur minimale spacing.menu.entree-hauteur (68 Mobile · 52 Tablette), la même avec ou sans chevron.",
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center"
+          },
+          "tokens": {
+            "padding-block": "{spacing.menu.entree-pad-v}",
+            "gap": "{space.8}",
+            "min-height": "{spacing.menu.entree-hauteur}"
+          },
+          "parts": {
+            "libelle": {
+              "content": {
+                "prop": "libelle"
+              },
+              "declared": {
+                "text-transform": "uppercase"
+              },
+              "tokens": {
+                "color": "{color.blanc}",
+                "font-family": "{typography.menu-entree.family}",
+                "font-size": "{typography.menu-entree.size}",
+                "font-weight": "{typography.menu-entree.weight}",
+                "line-height": "{typography.menu-entree.line-height}"
+              },
+              "tokensByProp": {
+                "prop": "etat",
+                "map": {
+                  "ouvert": {
+                    "color": "{color.orange}"
+                  }
+                }
+              }
+            },
+            "chevronBox": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "tokens": {
+                "width": "{size.cible-tactile.min}",
+                "height": "{size.cible-tactile.min}"
+              },
+              "visibleWhen": {
+                "prop": "chevron"
+              },
+              "parts": {
+                "chevronHaut": {
+                  "icon": {
+                    "asset": "chevron-up",
+                    "size": 16
+                  },
+                  "tokens": {
+                    "color": "{color.orange}"
+                  },
+                  "visibleWhen": {
+                    "prop": "etat",
+                    "equals": "ouvert"
+                  }
+                },
+                "chevronBas": {
+                  "icon": {
+                    "asset": "chevron-down",
+                    "size": 16
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  },
+                  "visibleWhen": {
+                    "prop": "etat",
+                    "equals": "ferme"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sousEntrees": {
+          "description": "Dessiné en état ouvert seulement : rail orange (largeur size.nav-item.soulignement) + liste des sous-entrées, chaque rangée à la boîte tactile 44.",
+          "layout": {
+            "direction": "row",
+            "align": "stretch"
+          },
+          "tokens": {
+            "gap": "{space.22}",
+            "padding-bottom": "{space.24}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          },
+          "parts": {
+            "rail": {
+              "tokens": {
+                "background-color": "{color.orange}",
+                "width": "{size.nav-item.soulignement}"
+              }
+            },
+            "liste": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch",
+                "grow": true
+              },
+              "tokens": {
+                "gap": "{space.4}"
+              },
+              "parts": {
+                "SousEntree1": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "min-height": "{size.cible-tactile.min}"
+                  },
+                  "parts": {
+                    "texte": {
+                      "content": {
+                        "prop": "sousEntree1"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-family": "{typography.menu-sous-entree.family}",
+                        "font-size": "{typography.menu-sous-entree.size}",
+                        "font-weight": "{typography.menu-sous-entree.weight}",
+                        "line-height": "{typography.menu-sous-entree.line-height}"
+                      }
+                    }
+                  }
+                },
+                "SousEntree2": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "min-height": "{size.cible-tactile.min}"
+                  },
+                  "visibleWhen": {
+                    "prop": "deuxSousEntrees"
+                  },
+                  "parts": {
+                    "texte2": {
+                      "content": {
+                        "prop": "sousEntree2"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-family": "{typography.menu-sous-entree.family}",
+                        "font-size": "{typography.menu-sous-entree.size}",
+                        "font-weight": "{typography.menu-sous-entree.weight}",
+                        "line-height": "{typography.menu-sous-entree.line-height}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "def00fcac5d711a43275c6a937f03e246b555cc4",
+      "nodeId": "2738:13482",
+      "dumpedAt": "2026-09-04"
+    },
+    "code": {
+      "importPath": "src/components/MenuEntree",
+      "export": "MenuEntree"
+    }
+  },
+  "category": "molecule"
+}

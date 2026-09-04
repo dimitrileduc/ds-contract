@@ -1,15 +1,25 @@
 {
   "id": "ds.footer",
   "name": "Footer",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
+  "description": "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md.",
   "figma": {
     "representation": "component",
-    "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b"
+    "componentSetKey": "cf79e2e8f660aec1cd30185d29b6134b11a86f63"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile"
+    },
     {
       "name": "items",
       "type": {

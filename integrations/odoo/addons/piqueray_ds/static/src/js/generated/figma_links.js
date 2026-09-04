@@ -12,7 +12,7 @@ export const FIGMA_PANEL_LINKS = Object.freeze([
     Object.freeze({ panelId: "equipe", selector: ".s_pqr_equipe", contractId: "ds.equipe", contractVersion: "1.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2115:3947" }),
     Object.freeze({ panelId: "faq", selector: ".s_pqr_faq", contractId: "ds.faq", contractVersion: "1.3.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2104:2914" }),
     Object.freeze({ panelId: "faq-row", selector: ".s_pqr_faq [data-pqr-faq-row]", contractId: "ds.accordion-row", contractVersion: "1.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2059:1417" }),
-    Object.freeze({ panelId: "footer", selector: ".footer[data-pqr-shell=\"footer\"]", contractId: "ds.footer", contractVersion: "1.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2120:4785" }),
+    Object.freeze({ panelId: "footer", selector: ".footer[data-pqr-shell=\"footer\"]", contractId: "ds.footer", contractVersion: "1.2.0", status: "unavailable", reason: "version-mismatch" }),
     Object.freeze({ panelId: "google-reviews", selector: ".s_pqr_google_reviews", contractId: "ds.google-reviews", contractVersion: "2.0.0", status: "unavailable", reason: "version-mismatch" }),
     Object.freeze({ panelId: "hero", selector: ".s_pqr_hero", contractId: "ds.hero", contractVersion: "2.0.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2111:3382" }),
     Object.freeze({ panelId: "hero-video", selector: ".s_pqr_hero_video", contractId: "ds.hero-video", contractVersion: "2.0.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2689:15832" }),

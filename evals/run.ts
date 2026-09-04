@@ -6448,14 +6448,18 @@ const cases: Case[] = [
     run: () => {
       resetScratch();
       // 015 Phase 6 (T057) converted these sites literals->tokens on the real
-      // footer.contract.json — the clobber simulation now mutates `tokens`,
-      // not `literals` (checkPreservation's own mirrorToTokenPointer already
-      // follows a pure conversion; this fixture just needs to match where the
-      // values live today).
+      // footer.contract.json — the clobber simulation mutates `tokens`, not
+      // `literals` (checkPreservation's own mirrorToTokenPointer already
+      // follows a pure conversion).
+      // 2026-09-04 (vague 031) : les paddings de racine du footer ont quitté le
+      // registre (SUPERSESSION — ils sont devenus conditionnels à l'écran, voir
+      // la provenance de corrections-013.json). L'injection porte donc sur les
+      // trois entrées footer QUI RESTENT gardées : le gap de racine (reverti) et
+      // les deux gaps de col5 (droppés). Même forme, mêmes comptes, sites vivants.
       editJson('contracts/footer.contract.json', (c) => {
-        c.anatomy.root.tokens['padding-top'] = '{space.0}'; // reverted (resolves to a different px than expected)
-        delete c.anatomy.root.tokens['padding-left']; // dropped
-        delete c.anatomy.root.tokens['padding-right']; // dropped
+        c.anatomy.root.tokens['gap'] = '{space.48}'; // reverted (resolves to a different px than expected)
+        delete c.anatomy.root.parts.Row.parts.col5.tokens['gap']; // dropped
+        delete c.anatomy.root.parts.Row.parts.col5.parts.rseauxSociaux.tokens['gap']; // dropped
       });
       // The toolchain alone must NOT catch it (this IS the gap T038 closes).
       if (generate().status !== 0) throw new Error('generate must still succeed on a schema-valid, geometrically-wrong contract');

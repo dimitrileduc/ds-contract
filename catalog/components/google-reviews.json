@@ -1,20 +1,33 @@
 {
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
-  "category": "section",
-  "description": "Le bloc « Avis Google » historique. Le nouveau parent public `ds.google-reviews-section` le compose avec `ds.section-header`, sans modifier sa surface Odoo authorée existante. La grille garde cinq colonnes égales et les flèches restent des overlays absolus.",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
   "figma": {
     "representation": "component",
-    "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
+    "componentSetKey": "92ddbd842f0f0a22f284322298a9a6865c397055"
   },
   "props": [
     {
-      "name": "noteGlobale",
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile"
+    },
+    {
+      "name": "accroche",
       "type": "string",
-      "default": "4.8",
-      "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
+      "default": "Nos avis Google vérifiés"
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Plus de 1500 portes installées par année et autant de clients satisfaits"
     },
     {
       "name": "qualificatif",
@@ -23,15 +36,15 @@
       "description": "Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel."
     },
     {
+      "name": "noteGlobale",
+      "type": "string",
+      "default": "4.8",
+      "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
+    },
+    {
       "name": "volume",
       "type": "string",
       "default": "93 avis"
-    },
-    {
-      "name": "montrerControles",
-      "type": "boolean",
-      "default": true,
-      "description": "Flèches de carrousel — mesurées présentes aux deux bords de l'aplat (T012)."
     },
     {
       "name": "avis",
@@ -57,10 +70,29 @@
             ]
           },
           "photoUrl": "text",
-          "photoAlt": "text"
+          "photoAlt": "text",
+          "lienAvis": "text"
         }
       },
-      "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010)."
+      "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010). Chaque avis porte son propre `lienAvis` : l'adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite » de sa carte."
+    },
+    {
+      "name": "note",
+      "type": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "default": "5",
+      "description": "Nombre d'étoiles pleines du bloc résumé. Pilote la variante du composant gouverné ds.notation. Le composant ne connaît que des notes ENTIÈRES : une note affichée « 4.8 » se dessine avec cinq étoiles pleines, ce que fait la maquette. Réglable depuis le panneau Odoo, pas en édition directe (décision owner 2026-09-03)."
+    },
+    {
+      "name": "lienAvis",
+      "type": "string",
+      "default": "",
+      "description": "Adresse du bouton « Voir tous les avis » — la fiche Google de l'établissement. Réglable depuis le panneau Odoo. Vide, le bouton ne navigue pas."
     }
   ],
   "children": {

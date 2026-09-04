@@ -1,0 +1,1761 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-menu-mobile-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.menu-mobile",
+    "version": "1.0.0"
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "remove",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    }
+  ],
+  "controls": [
+    {
+      "decisionId": "menu-mobile-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-items",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "items"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-mobile-nav\"]",
+      "label": "Liens du menu",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "menu-mobile-piqueraylogo-couleur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
+        ],
+        "prop": "couleur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "État ouvert — interaction (menu_mobile_interaction.js)",
+      "reasonCode": "computed-from-menu"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-libelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "libelle"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-href",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "href"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-chevron",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "chevron"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Dérivé du menu (enfants)",
+      "reasonCode": "computed-from-menu"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-sousentree1",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "sousEntree1"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-sousentree2",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "sousEntree2"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-deuxsousentrees",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "prop": "deuxSousEntrees"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
+      "label": "Dérivé du menu (enfants)",
+      "reasonCode": "computed-from-menu"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-iconleftglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-bouton-iconrightglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-iconleftglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-iconrightglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "menu-mobile-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-voile",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "voile"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-voile\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-tiroir\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-barre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-piqueraylogo",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "PiquerayLogo"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-piqueraylogo\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-piqueraylogo-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"piqueraylogo-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-piqueraylogo-part-root-marque",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Marque"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"piqueraylogo-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-piqueraylogo-part-root-wordmark",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Wordmark"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"piqueraylogo-wordmark\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-actions\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-user",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions",
+          "User"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-user\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-cart",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions",
+          "Cart"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-cart\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-fermer",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions",
+          "fermer"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-fermer\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-fermer-croix",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions",
+          "fermer",
+          "croix"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-croix\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-fermer-croix-glyphe",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "barre",
+          "actions",
+          "fermer",
+          "croix",
+          "glyphe"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-glyphe\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-nav",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "nav"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-nav\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-nav-menuentree",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "nav",
+          "MenuEntree"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "repeat",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-menuentree\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-tete",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "tete"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-tete\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-tete-libelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "tete",
+          "libelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-libelle\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-tete-chevronbox",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "tete",
+          "chevronBox"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-chevronbox\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-tete-chevronbox-chevronhaut",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "tete",
+          "chevronBox",
+          "chevronHaut"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-chevronhaut\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-tete-chevronbox-chevronbas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "tete",
+          "chevronBox",
+          "chevronBas"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-chevronbas\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-sousentrees\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-rail",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "rail"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-rail\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-liste",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-liste\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-liste-sousentree1",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste",
+          "SousEntree1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-sousentree1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-liste-sousentree1-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste",
+          "SousEntree1",
+          "texte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-liste-sousentree2",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste",
+          "SousEntree2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-sousentree2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-menuentree-part-root-sousentrees-liste-sousentree2-texte2",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.menu-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "MenuEntree",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste",
+          "SousEntree2",
+          "texte2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"menuentree-texte2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-pied\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied-telephone",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied",
+          "telephone"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-telephone\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied-telephone-icone",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied",
+          "telephone",
+          "icone"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-icone\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied-telephone-numero",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied",
+          "telephone",
+          "numero"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-numero\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied-bouton",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied",
+          "Bouton"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-bouton\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-bouton-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-bouton-part-root-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-iconleft\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-bouton-part-root-icononlyicon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-icononlyicon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-bouton-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-bouton-part-root-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-iconright\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-part-root-tiroir-pied-boutontablette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "tiroir",
+          "pied",
+          "BoutonTablette"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".menu-mobile [data-pqr-part=\"menumobile-boutontablette\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".menu-mobile [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-part-root-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-iconleft\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-part-root-icononlyicon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-icononlyicon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".menu-mobile [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "menu-mobile-boutontablette-part-root-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.menu-mobile",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonTablette"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".menu-mobile [data-pqr-part=\"button-iconright\"]",
+      "allowedMarks": []
+    }
+  ]
+}
