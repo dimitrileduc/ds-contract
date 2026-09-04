@@ -77,6 +77,8 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/categories-principales.pqr.css",
             "piqueray_ds/static/src/css/responsive/reassurances.pqr.css",
             "piqueray_ds/static/src/css/responsive/devis.pqr.css",
+            "piqueray_ds/static/src/css/responsive/review-card.pqr.css",
+            "piqueray_ds/static/src/css/responsive/google-reviews.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",
             # Dépliage public de la FAQ : bascule pure + Interaction du noyau 19.

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v2.0.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -42,6 +42,16 @@ const meta = {
         "src côté code ; inerte sur le canevas (trou A5, R6) — une prop scalaire ne peut pas être figma.kind:'NONE'.",
     },
     photoAlt: { control: 'text' },
+    verifie: {
+      control: 'boolean',
+      description:
+        "Pastille noire de vérification, à droite des étoiles. Relevé du 2026-09-03 sur le set 031 : le calque `verification` est MASQUÉ sur le maître (2700:26539) ET sur les cinq instances des quatre vues. Il n'est donc jamais dessiné aujourd'hui — la présence devient une option gouvernée par défaut à faux plutôt qu'un calque caché (§VIII : jamais un calque masqué en dur).",
+    },
+    lienAvis: {
+      control: 'text',
+      description:
+        "Adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite ». PAR AVIS : elle entre par la collection de la section, jamais par un réglage global. Vide, le bouton ne navigue pas.",
+    },
   },
   args: {
     auteur: 'Prénom N.',
@@ -52,6 +62,8 @@ const meta = {
     note: '5',
     photoUrl: '',
     photoAlt: '',
+    verifie: false,
+    lienAvis: '',
   },
 } satisfies Meta<typeof ReviewCard>;
 

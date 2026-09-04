@@ -2,15 +2,84 @@
   "$schema": "./contract.schema.json",
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
-  "category": "section",
-  "description": "Le bloc « Avis Google » historique. Le nouveau parent public `ds.google-reviews-section` le compose avec `ds.section-header`, sans modifier sa surface Odoo authorée existante. La grille garde cinq colonnes égales et les flèches restent des overlays absolus.",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
   "semantics": {
     "element": "section",
     "provenance": "authored"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
+      "name": "accroche",
+      "type": "text",
+      "default": "Nos avis Google vérifiés",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Accroche"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Plus de 1500 portes installées par année et autant de clients satisfaits",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "qualificatif",
+      "type": "text",
+      "default": "Excellent",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Qualificatif"
+        },
+        "code": {
+          "prop": "qualificatif"
+        }
+      },
+      "description": "Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel."
+    },
     {
       "name": "noteGlobale",
       "type": "text",
@@ -27,21 +96,6 @@
       "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
     },
     {
-      "name": "qualificatif",
-      "type": "text",
-      "default": "Excellent",
-      "description": "Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel.",
-      "bindings": {
-        "figma": {
-          "kind": "TEXT",
-          "property": "Qualificatif"
-        },
-        "code": {
-          "prop": "qualificatif"
-        }
-      }
-    },
-    {
       "name": "volume",
       "type": "text",
       "default": "93 avis",
@@ -52,21 +106,6 @@
         },
         "code": {
           "prop": "volume"
-        }
-      }
-    },
-    {
-      "name": "montrerControles",
-      "type": "boolean",
-      "default": true,
-      "description": "Flèches de carrousel — mesurées présentes aux deux bords de l'aplat (T012).",
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Contrôles"
-        },
-        "code": {
-          "prop": "montrerControles"
         }
       }
     },
@@ -94,10 +133,11 @@
             ]
           },
           "photoUrl": "text",
-          "photoAlt": "text"
+          "photoAlt": "text",
+          "lienAvis": "text"
         }
       },
-      "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010).",
+      "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010). Chaque avis porte son propre `lienAvis` : l'adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite » de sa carte.",
       "bindings": {
         "figma": {
           "kind": "NONE"
@@ -106,404 +146,509 @@
           "prop": "avis"
         }
       }
+    },
+    {
+      "name": "note",
+      "type": {
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "default": "5",
+      "description": "Nombre d'étoiles pleines du bloc résumé. Pilote la variante du composant gouverné ds.notation. Le composant ne connaît que des notes ENTIÈRES : une note affichée « 4.8 » se dessine avec cinq étoiles pleines, ce que fait la maquette. Réglable depuis le panneau Odoo, pas en édition directe (décision owner 2026-09-03).",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "note"
+        }
+      }
+    },
+    {
+      "name": "lienAvis",
+      "type": "text",
+      "default": "",
+      "description": "Adresse du bouton « Voir tous les avis » — la fiche Google de l'établissement. Réglable depuis le panneau Odoo. Vide, le bouton ne navigue pas.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "lienAvis"
+        }
+      }
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
-      "description": "Correction de convergence T040 (spec 006, decisions.md) : R10 avait décidé `{color.bleu-clair}` pour séparer visuellement la carte du fond (repli du box-shadow refusé). Mesure directe sur l'aplat (scan de bord, deux zones) : le fond hors-carte est en réalité #F8F9FA-#FFFFFF (bruit de compression autour du blanc), PAS teinté bleu — la séparation réelle est un dégradé d'ombre douce (box-shadow), confirmé absent des deux registres de canaux. Décision corrigée : fond blanc partout, aucune séparation de couleur (le seul mécanisme réel — l'ombre — reste un trou nommé, pas remplacé par une couleur inventée).",
-      "element": "section",
       "layout": {
         "display": "flex",
-        "direction": "column"
-      },
-      "tokens": {
-        "background-color": "{color.blanc}",
-        "font-family": "{font.family.montserrat}",
-        "width": "{size.google-reviews.root-w}",
-        "min-height": "{size.google-reviews.root-h}",
-        "gap": "{space.12}",
-        "padding-top": "{space.4}",
-        "padding-bottom": "{space.8}",
-        "padding-left": "{space.11}",
-        "padding-right": "{space.11}"
+        "direction": "column",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "parts": {
-        "resume": {
-          "description": "Barre-résumé — Google | Excellent | ★★★★★ 4,8 | 93 avis, CTA à droite (measures/mesures-aplat.md). Bordure fine en repli du box-shadow refusé (trouvaille T040 : sans elle, blanc sur fond blanc = boîte invisible).",
+        "SectionHeader": {
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.16}"
+              },
+              "wide": {
+                "gap": "{space.16}"
+              }
+            }
+          },
           "layout": {
-            "display": "flex",
-            "direction": "row",
-            "align": "center",
-            "justify": "space-between"
+            "direction": "column",
+            "align": "start"
           },
           "tokens": {
-            "background-color": "{color.blanc}",
-            "border-color": "{color.bleu-clair}",
-            "padding-top": "{space.12}",
-            "padding-bottom": "{space.12}",
-            "padding-left": "{space.16}",
-            "padding-right": "{space.16}"
-          },
-          "literals": {
-            "border-radius": "8px",
-            "border-width": "1px"
+            "gap": "{space.8}"
           },
           "parts": {
-            "infos": {
-              "layout": {
-                "display": "flex",
-                "direction": "row",
+            "Accroche": {
+              "content": {
+                "prop": "accroche"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.overline.size}",
+                "font-weight": "{typography.overline.weight}",
+                "line-height": "{typography.overline.line-height}"
+              },
+              "declared": {
+                "text-align": "left"
+              },
+              "description": "Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — relevé sur les quatre variantes (SectionHeader MIN en Mobile/Tablette, CENTER en Desktop/Wide). Le canal `declared` ne varie pas par mode : le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section."
+            },
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{font.weight.semibold}",
+                "letter-spacing": "{space.0}",
+                "line-height": "{typography.h2.line-height}"
+              },
+              "declared": {
+                "text-align": "left"
+              },
+              "description": "Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — relevé sur les quatre variantes (SectionHeader MIN en Mobile/Tablette, CENTER en Desktop/Wide). Le canal `declared` ne varie pas par mode : le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section."
+            }
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
                 "align": "center"
               },
-              "tokens": {
-                "gap": "{space.10}"
-              },
-              "parts": {
-                "marque": {
-                  "description": "Wordmark « Google » en toutes lettres, quadrichrome — mesuré sur l'aplat : la barre-résumé porte le mot complet, pas le seul logogramme « G » (celui-ci vit sur chaque carte). Glyphe interne D7 (assets/icons/google-wordmark.svg), hors registre gouverné (R4). ⚠️ `icon.size` est volontairement OMIS : il force width ET height à la même valeur (core/emit-react.ts:1108), ce qui écraserait un glyphe non carré — les dimensions viennent du SVG lui-même. Limite nommée : les lettres sont dessinées en Montserrat (la seule fonte gouvernée), pas dans la fonte propriétaire de Google — la forme des lettres diffère, les couleurs et les proportions sont fidèles.",
-                  "icon": {
-                    "asset": "google-wordmark"
-                  }
-                },
-                "qualificatifTexte": {
-                  "element": "span",
-                  "tokens": {
-                    "font-family": "{font.family.montserrat}",
-                    "font-size": "{font.size.14}",
-                    "font-weight": "{font.weight.semibold}"
-                  },
-                  "literals": {
-                    "color": "#000000"
-                  },
-                  "content": {
-                    "prop": "qualificatif"
-                  }
-                },
-                "notation": {
-                  "layout": {
-                    "display": "flex",
-                    "direction": "row",
-                    "align": "center"
-                  },
-                  "tokens": {
-                    "gap": "{space.2}"
-                  },
-                  "parts": {
-                    "etoile1": {
-                      "icon": {
-                        "asset": "star",
-                        "size": 16
-                      }
-                    },
-                    "etoile2": {
-                      "icon": {
-                        "asset": "star",
-                        "size": 16
-                      }
-                    },
-                    "etoile3": {
-                      "icon": {
-                        "asset": "star",
-                        "size": 16
-                      }
-                    },
-                    "etoile4": {
-                      "icon": {
-                        "asset": "star",
-                        "size": 16
-                      }
-                    },
-                    "etoile5": {
-                      "icon": {
-                        "asset": "star",
-                        "size": 16
-                      }
-                    },
-                    "noteGlobaleTexte": {
-                      "element": "span",
-                      "tokens": {
-                        "font-family": "{font.family.montserrat}",
-                        "font-size": "{font.size.14}",
-                        "font-weight": "{font.weight.semibold}"
-                      },
-                      "literals": {
-                        "color": "#000000"
-                      },
-                      "content": {
-                        "prop": "noteGlobale"
-                      }
-                    }
-                  }
-                },
-                "separateur": {
-                  "description": "Barre verticale entre la note et le volume — mesurée présente sur l'aplat, absente du premier modèle (trouvaille T040). Texte statique, pas une prop de contenu.",
-                  "element": "span",
-                  "literals": {
-                    "color": "#8A8A8A"
-                  },
-                  "text": "|",
-                  "tokens": {
-                    "font-family": "{font.family.montserrat}",
-                    "font-size": "{font.size.14}"
-                  }
-                },
-                "volume": {
-                  "element": "span",
-                  "literals": {
-                    "color": "#8A8A8A"
-                  },
-                  "content": {
-                    "prop": "volume"
-                  },
-                  "tokens": {
-                    "font-family": "{font.family.montserrat}",
-                    "font-size": "{font.size.14}"
-                  }
-                }
-              }
-            },
-            "ecrireAvis": {
-              "description": "CTA « Écrire un avis » — chrome du widget (texte statique). Mesuré sur l'aplat : 226×51 px natifs (151×34 CSS), coins CARRES (aucun rayon), libellé GRAS. Corrections T040 : le libellé n'avait aucune `font-family` et rendait en police à empattements de repli (défaut visible au zoom) ; les coins étaient arrondis à tort. Dessiné en part, jamais un component-ref vers ds.button (R5).",
-              "layout": {
-                "display": "flex",
-                "align": "center",
-                "justify": "center"
-              },
-              "literals": {
-                "border-width": "1px",
-                "border-radius": "0px"
-              },
-              "tokens": {
-                "border-color": "{color.noir}",
-                "padding-top": "{space.8}",
-                "padding-bottom": "{space.8}",
-                "padding-left": "{space.22}",
-                "padding-right": "{space.22}"
-              },
-              "parts": {
-                "libelle": {
-                  "element": "span",
-                  "literals": {
-                    "color": "#000000"
-                  },
-                  "text": "Écrire un avis",
-                  "tokens": {
-                    "font-family": "{font.family.montserrat}",
-                    "font-size": "{font.size.14}",
-                    "font-weight": "{font.weight.semibold}"
-                  }
-                }
+              "wide": {
+                "align": "center"
               }
             }
           }
         },
-        "cartes": {
-          "description": "Viewport positionné des avis. Autorité owner du 2026-08-12 : les cinq cartes forment une grille native de cinq colonnes égales ; chaque carte remplit sa cellule. Les flèches gauche et droite sont superposées aux bords et ne participent jamais au calcul des colonnes.",
+        "avisGoogle": {
           "layout": {
-            "display": "flex",
-            "direction": "row",
-            "align": "center",
-            "justify": "space-between"
+            "direction": "column",
+            "align": "stretch"
           },
-          "declared": {
-            "position": "relative"
+          "tokens": {
+            "background-color": "{color.blanc}",
+            "gap": "{space.12}",
+            "min-height": "{size.google-reviews.root-h}"
           },
           "parts": {
-            "flecheGauche": {
-              "description": "Contrôle gauche superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit left -15 px.",
-              "visibleWhen": {
-                "prop": "montrerControles"
-              },
-              "layout": {
-                "display": "flex",
-                "align": "center",
-                "justify": "center"
-              },
-              "declared": {
-                "position": "absolute"
-              },
-              "stylesWhen": [
-                {
-                  "prop": "montrerControles",
-                  "styles": {
-                    "position": "absolute",
-                    "left": "-15px",
-                    "top": "50%",
-                    "transform": "translateY(-50%)"
+            "resume": {
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-inline": "{space.24}",
+                    "padding-block": "{space.16}",
+                    "gap": "{space.16}"
+                  },
+                  "desktop": {
+                    "padding-block": "{space.12}",
+                    "gap": "{space.0}"
+                  },
+                  "wide": {
+                    "padding-block": "{space.12}",
+                    "gap": "{space.0}"
                   }
                 }
-              ],
+              },
+              "layout": {
+                "direction": "column",
+                "align": "center"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "direction": "row",
+                    "justify": "space-between"
+                  },
+                  "desktop": {
+                    "direction": "row",
+                    "justify": "space-between"
+                  },
+                  "wide": {
+                    "direction": "row",
+                    "justify": "space-between"
+                  }
+                }
+              },
+              "tokens": {
+                "background-color": "{color.blanc}",
+                "border-color": "{color.bleu-clair}",
+                "padding-inline": "{space.16}",
+                "padding-block": "{space.24}",
+                "border-radius": "{radius.8}",
+                "border-width": "{border-width.1}",
+                "gap": "{space.8}"
+              },
               "parts": {
-                "pastilleGauche": {
+                "infos": {
                   "layout": {
-                    "display": "flex",
-                    "align": "center",
-                    "justify": "center"
+                    "direction": "column",
+                    "align": "center"
                   },
-                  "tokens": {
-                    "background-color": "{color.blanc}",
-                    "border-color": "{color.bleu-clair}",
-                    "width": "{size.google-reviews.pastille-gauche}",
-                    "height": "{size.google-reviews.pastille-gauche}",
-                    "min-width": "{size.google-reviews.pastille-gauche}"
-                  },
-                  "literals": {
-                    "border-radius": "15px",
-                    "border-width": "1px"
+                  "layoutByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "tablette": {
+                        "direction": "row"
+                      },
+                      "desktop": {
+                        "direction": "row"
+                      },
+                      "wide": {
+                        "direction": "row"
+                      }
+                    }
                   },
                   "parts": {
-                    "iconeGauche": {
-                      "icon": {
-                        "asset": "chevron-left",
-                        "size": 14
+                    "marque": {
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "parts": {
+                        "logoGoogle": {
+                          "parts": {
+                            "Vector": {
+                              "literals": {
+                                "background-color": "#ea4335"
+                              }
+                            },
+                            "vector2": {
+                              "literals": {
+                                "background-color": "#fbbc05"
+                              }
+                            },
+                            "vector3": {
+                              "literals": {
+                                "background-color": "#4285f4"
+                              }
+                            },
+                            "vector4": {
+                              "literals": {
+                                "background-color": "#34a853"
+                              }
+                            },
+                            "vector5": {
+                              "literals": {
+                                "background-color": "#ea4335"
+                              }
+                            },
+                            "vector6": {
+                              "literals": {
+                                "background-color": "#4285f4"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "qualificatifTexte": {
+                      "content": {
+                        "prop": "qualificatif"
+                      },
+                      "tokens": {
+                        "color": "{color.noir-pur}",
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.14}",
+                        "font-weight": "{font.weight.semibold}",
+                        "letter-spacing": "{space.0}",
+                        "line-height": "{font.line-height.20}"
+                      }
+                    },
+                    "notation": {
+                      "layout": {
+                        "direction": "column",
+                        "align": "center"
+                      },
+                      "layoutByProp": {
+                        "prop": "presentation",
+                        "map": {
+                          "tablette": {
+                            "direction": "row"
+                          },
+                          "desktop": {
+                            "direction": "row"
+                          },
+                          "wide": {
+                            "direction": "row"
+                          }
+                        }
+                      },
+                      "parts": {
+                        "etoiles": {
+                          "layout": {
+                            "direction": "row",
+                            "align": "center"
+                          },
+                          "tokens": {
+                            "gap": "{space.3}"
+                          },
+                          "component": {
+                            "id": "ds.notation",
+                            "props": {
+                              "note": "{note}"
+                            }
+                          },
+                          "description": "Les cinq étoiles du bloc résumé. Réparation de source du 2026-09-03 : c'étaient cinq cadres libres — le maître ne propageait rien et les étoiles se rendaient à 20 px au lieu de 16, ce qui décalait tout le bloc et les cartes en dessous. Remplacées par une instance du composant gouverné ds.notation (variante Note=5), comme sur ds.review-card."
+                        },
+                        "noteGlobaleTexte": {
+                          "content": {
+                            "prop": "noteGlobale"
+                          },
+                          "tokens": {
+                            "color": "{color.noir-pur}",
+                            "font-family": "{font.family.montserrat}",
+                            "font-size": "{typography.review.note-size}",
+                            "font-weight": "{font.weight.semibold}",
+                            "letter-spacing": "{space.0}",
+                            "line-height": "{typography.review.note-line-height}"
+                          }
+                        }
+                      },
+                      "tokens": {
+                        "gap": "{space.8}"
+                      },
+                      "tokensByProp": {
+                        "prop": "presentation",
+                        "map": {
+                          "tablette": {
+                            "gap": "{space.12}"
+                          },
+                          "desktop": {
+                            "gap": "{space.2}"
+                          },
+                          "wide": {
+                            "gap": "{space.2}"
+                          }
+                        }
+                      }
+                    },
+                    "separateur": {
+                      "text": "|",
+                      "tokens": {
+                        "color": "{color.noir-pur}",
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.14}",
+                        "font-weight": "{font.weight.medium}",
+                        "letter-spacing": "{space.0}",
+                        "line-height": "{font.line-height.20}"
+                      }
+                    },
+                    "volume": {
+                      "content": {
+                        "prop": "volume"
+                      },
+                      "tokens": {
+                        "color": "{color.noir-pur}",
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.14}",
+                        "font-weight": "{font.weight.medium}",
+                        "letter-spacing": "{space.0}",
+                        "line-height": "{font.line-height.20}"
+                      }
+                    }
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "tokensByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "tablette": {
+                        "gap": "{space.12}"
+                      },
+                      "desktop": {
+                        "gap": "{space.10}"
+                      },
+                      "wide": {
+                        "gap": "{space.10}"
                       }
                     }
                   }
+                },
+                "ecrireAvis": {
+                  "component": {
+                    "id": "ds.button",
+                    "props": {
+                      "variant": "outlineNoir",
+                      "children": "Voir tous les avis"
+                    }
+                  },
+                  "description": "Le bouton du bloc résumé. Réparation de source du 2026-09-03, décision owner (option A) : c'était un cadre dessiné à la main, différent du bouton gouverné sur quatre canaux (marge 8/22 contre 16/32, taille 14 contre 16 en bureau, interligne 20 contre 22, trait 1 contre 2). Remplacé par une instance de ds.button variante outlineNoir, comme Réassurances et Devis. Le rendu grossit — c'est le prix de la gouvernance, et c'est ce qui rend le bouton NAVIGABLE : le composant se projette en ancre quand il porte une adresse."
                 }
               }
             },
             "groupeCartes": {
-              "description": "Grille native de cinq colonnes égales. Sa largeur vient du viewport ; aucune largeur de carte n'est une règle de layout ici.",
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "desktop": {
+                    "gap": "{space.8}"
+                  },
+                  "wide": {
+                    "gap": "{space.8}"
+                  }
+                }
+              },
               "layout": {
-                "display": "grid",
-                "columns": 5,
-                "width": "fill"
+                "direction": "row"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "direction": "column"
+                  }
+                }
               },
               "tokens": {
-                "gap": "{space.8}"
+                "gap": "{space.16}"
               },
               "parts": {
-                "carte": {
-                  "description": "Chaque instance Review-card remplit sa cellule de grille ; le contrat partagé ds.review-card reste inchangé.",
-                  "layout": {
-                    "width": "fill"
+                "ReviewCard": {
+                  "component": {
+                    "id": "ds.review-card",
+                    "props": {
+                      "verifie": false
+                    }
                   },
                   "repeat": {
                     "itemsProp": "avis",
                     "sample": [
                       {
-                        "auteur": "Prénom N.",
-                        "initiale": "P",
+                        "photoAlt": "",
+                        "texte": "super très pro et service après vente présent",
+                        "photoUrl": "",
                         "date": "il y a 2 mois",
-                        "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "avatar": "Initiale",
-                        "note": "5",
-                        "photoUrl": "",
-                        "photoAlt": ""
+                        "initiale": "P",
+                        "auteur": "pho syster"
                       },
                       {
-                        "auteur": "Prénom N.",
-                        "initiale": "P",
+                        "photoAlt": "",
+                        "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…",
+                        "photoUrl": "",
                         "date": "il y a 3 mois",
-                        "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "avatar": "Initiale",
-                        "note": "5",
-                        "photoUrl": "",
-                        "photoAlt": ""
+                        "initiale": "P",
+                        "auteur": "Petit Nicole"
                       },
                       {
-                        "auteur": "Prénom N.",
-                        "initiale": "P",
+                        "photoAlt": "",
+                        "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui est à fait le suivi…",
+                        "photoUrl": "",
                         "date": "il y a 4 mois",
-                        "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "avatar": "Initiale",
-                        "note": "5",
-                        "photoUrl": "",
-                        "photoAlt": ""
+                        "initiale": "A",
+                        "auteur": "Aun Bukhari"
                       },
                       {
-                        "auteur": "Prénom N.",
-                        "initiale": "P",
+                        "photoAlt": "",
+                        "texte": "Dépannage ultra rapide et professionnel",
+                        "photoUrl": "",
                         "date": "il y a 5 mois",
-                        "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "avatar": "Initiale",
-                        "note": "5",
-                        "photoUrl": "",
-                        "photoAlt": ""
+                        "initiale": "T",
+                        "auteur": "Thierry Picard"
                       },
                       {
-                        "auteur": "Prénom N.",
-                        "initiale": "P",
-                        "date": "il y a 6 mois",
-                        "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "avatar": "Initiale",
-                        "note": "5",
+                        "photoAlt": "",
+                        "texte": "Je ne mais pas 5 étoiles mais 10 les 2 placeurs de mes 2 portes de garage il…",
                         "photoUrl": "",
-                        "photoAlt": ""
+                        "date": "il y a 6 mois",
+                        "initiale": "m",
+                        "auteur": "miguel martinez"
                       }
                     ]
-                  },
-                  "component": {
-                    "id": "ds.review-card"
-                  }
-                }
-              }
-            },
-            "flecheDroite": {
-              "description": "Contrôle droit superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit right -15 px.",
-              "visibleWhen": {
-                "prop": "montrerControles"
-              },
-              "layout": {
-                "display": "flex",
-                "align": "center",
-                "justify": "center"
-              },
-              "declared": {
-                "position": "absolute"
-              },
-              "stylesWhen": [
-                {
-                  "prop": "montrerControles",
-                  "styles": {
-                    "position": "absolute",
-                    "right": "-15px",
-                    "top": "50%",
-                    "transform": "translateY(-50%)"
-                  }
-                }
-              ],
-              "parts": {
-                "pastilleDroite": {
-                  "layout": {
-                    "display": "flex",
-                    "align": "center",
-                    "justify": "center"
-                  },
-                  "tokens": {
-                    "background-color": "{color.blanc}",
-                    "border-color": "{color.bleu-clair}",
-                    "width": "{size.google-reviews.pastille-droite}",
-                    "height": "{size.google-reviews.pastille-droite}",
-                    "min-width": "{size.google-reviews.pastille-droite}"
-                  },
-                  "literals": {
-                    "border-radius": "15px",
-                    "border-width": "1px"
-                  },
-                  "parts": {
-                    "iconeDroite": {
-                      "icon": {
-                        "asset": "chevron-right",
-                        "size": 14
-                      }
-                    }
                   }
                 }
               }
             }
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "padding-inline": "{space.11}",
+                "padding-top": "{space.4}",
+                "padding-bottom": "{space.8}"
+              },
+              "wide": {
+                "padding-top": "{space.4}",
+                "padding-bottom": "{space.8}"
+              }
+            }
+          },
+          "description": "Le bloc d'avis (résumé + grille). Ses marges intérieures 4/11/8 en bureau et 4/0/8 en grand écran sont liées à la source et portées telles quelles : elles sentent l'ajustement manuel (audit A6/C2), l'owner ne les a pas tranchées le 2026-09-03, on reste fidèle au dessin plutôt que de régulariser. L'extraction ne les propose pas d'elle-même car elles sont asymétriques."
+        }
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "gap": "{space.15}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "gap": "{space.40}"
           }
         }
+      },
+      "tokens": {
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.0}",
+        "gap": "{space.32}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
-      "nodeId": "2178:7381",
-      "dumpedAt": "2026-07-26"
+      "componentSetKey": "92ddbd842f0f0a22f284322298a9a6865c397055",
+      "nodeId": "2700:28391",
+      "dumpedAt": "2026-09-03"
     },
     "code": {
       "importPath": "src/components/GoogleReviews",

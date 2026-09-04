@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-google-reviews-authoring",
-  "authoringVersion": "2.0.0",
+  "authoringVersion": "3.0.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.google-reviews",
-    "version": "2.0.0"
+    "version": "3.0.0"
   },
   "rootActions": [
     {
@@ -35,22 +35,58 @@
   ],
   "controls": [
     {
-      "decisionId": "google-summary-rating",
+      "decisionId": "google-presentation-0",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
-        "prop": "noteGlobale"
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "presentation"
+    },
+    {
+      "decisionId": "google-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "accroche"
       },
       "verdict": "controlled",
       "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"note-globale\"]",
-      "label": "Note globale"
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"accroche\"]",
+      "label": "Accroche de section"
+    },
+    {
+      "decisionId": "google-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"google-reviews-header-title\"]",
+      "label": "Titre de section"
     },
     {
       "decisionId": "google-summary-qualifier",
@@ -59,7 +95,7 @@
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -71,13 +107,31 @@
       "label": "Qualificatif"
     },
     {
+      "decisionId": "google-summary-rating",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "noteGlobale"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"note-globale\"]",
+      "label": "Note affichée"
+    },
+    {
       "decisionId": "google-summary-volume",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -86,25 +140,7 @@
       "verdict": "controlled",
       "mechanism": "plain-text",
       "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"volume\"]",
-      "label": "Volume"
-    },
-    {
-      "decisionId": "google-show-controls",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "prop": "montrerControles"
-      },
-      "verdict": "controlled",
-      "mechanism": "boolean",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-controls]",
-      "label": "Afficher les contrôles"
+      "label": "Nombre d’avis"
     },
     {
       "decisionId": "google-review-collection",
@@ -113,7 +149,7 @@
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -125,229 +161,492 @@
       "label": "Avis"
     },
     {
-      "decisionId": "review-author",
+      "decisionId": "google-note",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "auteur"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"auteur\"]",
-      "label": "Auteur"
-    },
-    {
-      "decisionId": "review-initial",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "initiale"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"initiale\"]",
-      "label": "Initiale"
-    },
-    {
-      "decisionId": "review-date",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "date"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"date\"]",
-      "label": "Date"
-    },
-    {
-      "decisionId": "review-testimonial",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "texte"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"temoignage\"]",
-      "label": "Témoignage"
-    },
-    {
-      "decisionId": "review-photo-url",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "photoUrl"
-      },
-      "verdict": "controlled",
-      "mechanism": "computed-display",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"avatar-photo\"] img",
-      "label": "Remplacer l’avatar"
-    },
-    {
-      "decisionId": "review-photo-alt",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "prop": "photoAlt"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"avatar-photo\"] img",
-      "label": "Alternative de l’avatar"
-    },
-    {
-      "decisionId": "review-note",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           }
         ],
         "prop": "note"
       },
       "verdict": "controlled",
       "mechanism": "enum",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card]",
-      "label": "Note de l'avis"
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"note\"]",
+      "label": "Nombre d’étoiles"
     },
     {
-      "decisionId": "review-avatar",
+      "decisionId": "google-lien-avis",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "lienAvis"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"lien-avis\"]",
+      "label": "Lien « Voir tous les avis »"
+    },
+    {
+      "decisionId": "google-note-7",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "prop": "note"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "note"
+    },
+    {
+      "decisionId": "google-variant-10",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "variant"
+    },
+    {
+      "decisionId": "google-children-11",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "children"
+    },
+    {
+      "decisionId": "google-icon-left-12",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconLeft"
+    },
+    {
+      "decisionId": "google-icon-right-13",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconRight"
+    },
+    {
+      "decisionId": "google-icon-left-glyph-14",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconLeftGlyph"
+    },
+    {
+      "decisionId": "google-icon-right-glyph-15",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconRightGlyph"
+    },
+    {
+      "decisionId": "google-auteur-7",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.review-card",
-              "version": "2.0.0"
+              "version": "4.0.0"
             },
-            "viaPart": "carte",
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "auteur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "auteur"
+    },
+    {
+      "decisionId": "google-initiale-8",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "initiale"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "initiale"
+    },
+    {
+      "decisionId": "google-date-9",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "date"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "date"
+    },
+    {
+      "decisionId": "google-texte-10",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "texte"
+    },
+    {
+      "decisionId": "google-avatar-11",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
             "repeat": true
           }
         ],
         "prop": "avatar"
       },
-      "verdict": "controlled",
-      "mechanism": "computed-display",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-review-card]",
-      "label": "Avatar (photo si une photo est posée, sinon initiale)"
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "avatar"
     },
     {
-      "decisionId": "notation-note",
+      "decisionId": "google-note-12",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.review-card",
-              "version": "2.0.0"
+              "version": "4.0.0"
             },
-            "viaPart": "carte",
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "note"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "note"
+    },
+    {
+      "decisionId": "google-photo-url-13",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "photoUrl"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "photoUrl"
+    },
+    {
+      "decisionId": "google-photo-alt-14",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "photoAlt"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "photoAlt"
+    },
+    {
+      "decisionId": "google-verifie-15",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "verifie"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "verifie"
+    },
+    {
+      "decisionId": "google-lien-avis-25",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "prop": "lienAvis"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "lienAvis"
+    },
+    {
+      "decisionId": "google-note-16",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
             "repeat": true
           },
           {
@@ -355,14 +654,213 @@
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "prop": "note"
       },
       "verdict": "fixed-by-composition",
-      "mechanism": "none"
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "note"
+    },
+    {
+      "decisionId": "google-variant-27",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "variant"
+    },
+    {
+      "decisionId": "google-children-28",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "children"
+    },
+    {
+      "decisionId": "google-icon-left-29",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconLeft"
+    },
+    {
+      "decisionId": "google-icon-right-30",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconRight"
+    },
+    {
+      "decisionId": "google-icon-left-glyph-31",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconLeftGlyph"
+    },
+    {
+      "decisionId": "google-icon-right-glyph-32",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_google_reviews",
+      "label": "iconRightGlyph"
     }
   ],
   "parts": [
@@ -373,7 +871,7 @@
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -387,222 +885,105 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-cartes",
+      "decisionId": "google-part-section-header-1",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "cartes"
+          "SectionHeader"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"cartes\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"section-header\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-fleche-droite",
+      "decisionId": "google-part-section-header-accroche-2",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "cartes",
-          "flecheDroite"
+          "SectionHeader",
+          "Accroche"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"fleche-droite\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"accroche\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-pastille-droite",
+      "decisionId": "google-part-section-header-titre-3",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "cartes",
-          "flecheDroite",
-          "pastilleDroite"
+          "SectionHeader",
+          "Titre"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"pastille-droite\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"titre\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-icone-droite",
+      "decisionId": "google-part-avis-google-4",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "cartes",
-          "flecheDroite",
-          "pastilleDroite",
-          "iconeDroite"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icone-droite\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-fleche-gauche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "cartes",
-          "flecheGauche"
+          "avisGoogle"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"fleche-gauche\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"avis-google\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-pastille-gauche",
+      "decisionId": "google-part-avis-google-resume-5",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "cartes",
-          "flecheGauche",
-          "pastilleGauche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"pastille-gauche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-icone-gauche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "cartes",
-          "flecheGauche",
-          "pastilleGauche",
-          "iconeGauche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icone-gauche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-groupe-cartes",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "cartes",
-          "groupeCartes"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-list]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-carte-repeat",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "cartes",
-          "groupeCartes",
-          "carte"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "repeat",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-resume",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
+          "avisGoogle",
           "resume"
         ]
       },
@@ -612,63 +993,19 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-ecrire-avis",
+      "decisionId": "google-part-avis-google-resume-infos-6",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "resume",
-          "ecrireAvis"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"ecrire-avis\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-ecrire-libelle",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "ecrireAvis",
-          "libelle"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"ecrire-avis-libelle\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-infos",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
+          "avisGoogle",
           "resume",
           "infos"
         ]
@@ -679,41 +1016,248 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-marque",
+      "decisionId": "google-part-avis-google-resume-infos-marque-7",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
+          "avisGoogle",
           "resume",
           "infos",
           "marque"
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "media",
+      "contentKind": "structural",
       "selector": ".s_pqr_google_reviews [data-pqr-part=\"marque\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-notation",
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-8",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"logo-google\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector-9",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "Vector"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector2-10",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "vector2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector3-11",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "vector3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector4-12",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "vector4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector5-13",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "vector5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-marque-logo-google-vector6-14",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "marque",
+          "logoGoogle",
+          "vector6"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"vector6\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-qualificatif-texte-15",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "qualificatifTexte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"qualificatif-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-notation-16",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
           "resume",
           "infos",
           "notation"
@@ -725,729 +1269,46 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "google-part-etoile-1",
+      "decisionId": "google-part-avis-google-resume-infos-notation-etoiles-17",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
           }
         ],
         "partPath": [
           "root",
+          "avisGoogle",
           "resume",
           "infos",
-          "notation",
-          "etoile1"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoile-1\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-etoile-2",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "notation",
-          "etoile2"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoile-2\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-etoile-3",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "notation",
-          "etoile3"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoile-3\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-etoile-4",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "notation",
-          "etoile4"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoile-4\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-etoile-5",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "notation",
-          "etoile5"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoile-5\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-note-globale",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "notation",
-          "noteGlobaleTexte"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note-globale\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-qualificatif",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "qualificatifTexte"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"qualificatif\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-separateur",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "separateur"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"separateur\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "google-part-volume",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "resume",
-          "infos",
-          "volume"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"volume\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-entete",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"entete\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-marque",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "marque"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"marque\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-profil",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"profil\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-avatar-initiale",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "avatarInitiale"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"avatar-initiale\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-initiale",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "avatarInitiale",
-          "initialeTexte"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"initiale\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-avatar-photo",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "avatarPhoto"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"avatar-photo\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-identite",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "identite"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"identite\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-auteur",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "identite",
-          "auteur"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"auteur\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-date",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "entete",
-          "profil",
-          "identite",
-          "date"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"date\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-lire-suite",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "lireLaSuite"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"lire-la-suite\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-notation",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "notation"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"notation\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-etoiles",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
           "notation",
           "etoiles"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "component",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"etoiles\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoiles\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "review-part-verification",
+      "decisionId": "google-part-root-18",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "notation",
-          "verification"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"verification\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-coche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "notation",
-          "verification",
-          "coche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"coche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "review-part-temoignage",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
-          }
-        ],
-        "partPath": [
-          "root",
-          "temoignage"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_google_reviews [data-pqr-review-card] [data-pqr-part=\"temoignage\"]",
-      "allowedMarks": [
-        "strong"
-      ]
-    },
-    {
-      "decisionId": "notation-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.google-reviews",
-              "version": "2.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1456,34 +1317,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoiles\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"root\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1",
+      "decisionId": "google-part-note1-19",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1497,30 +1349,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1etoile1",
+      "decisionId": "google-part-note1-note1-etoile1-20",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1531,34 +1374,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1Etoile1\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile1\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1etoile2",
+      "decisionId": "google-part-note1-note1-etoile2-21",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1569,34 +1403,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1Etoile2\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile2\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1etoile3",
+      "decisionId": "google-part-note1-note1-etoile3-22",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1607,34 +1432,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1Etoile3\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile3\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1etoile4",
+      "decisionId": "google-part-note1-note1-etoile4-23",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1645,34 +1461,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1Etoile4\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile4\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note1etoile5",
+      "decisionId": "google-part-note1-note1-etoile5-24",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1683,34 +1490,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1Etoile5\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile5\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2",
+      "decisionId": "google-part-note2-25",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1724,30 +1522,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2etoile1",
+      "decisionId": "google-part-note2-note2-etoile1-26",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1758,34 +1547,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2Etoile1\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile1\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2etoile2",
+      "decisionId": "google-part-note2-note2-etoile2-27",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1796,34 +1576,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2Etoile2\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile2\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2etoile3",
+      "decisionId": "google-part-note2-note2-etoile3-28",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1834,34 +1605,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2Etoile3\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile3\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2etoile4",
+      "decisionId": "google-part-note2-note2-etoile4-29",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1872,34 +1634,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2Etoile4\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile4\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note2etoile5",
+      "decisionId": "google-part-note2-note2-etoile5-30",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1910,34 +1663,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2Etoile5\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile5\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3",
+      "decisionId": "google-part-note3-31",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1951,30 +1695,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3etoile1",
+      "decisionId": "google-part-note3-note3-etoile1-32",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -1985,34 +1720,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3Etoile1\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile1\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3etoile2",
+      "decisionId": "google-part-note3-note3-etoile2-33",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2023,34 +1749,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3Etoile2\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile2\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3etoile3",
+      "decisionId": "google-part-note3-note3-etoile3-34",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2061,34 +1778,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3Etoile3\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile3\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3etoile4",
+      "decisionId": "google-part-note3-note3-etoile4-35",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2099,34 +1807,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3Etoile4\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile4\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note3etoile5",
+      "decisionId": "google-part-note3-note3-etoile5-36",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2137,34 +1836,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3Etoile5\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile5\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4",
+      "decisionId": "google-part-note4-37",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2178,30 +1868,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4etoile1",
+      "decisionId": "google-part-note4-note4-etoile1-38",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2212,34 +1893,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4Etoile1\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile1\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4etoile2",
+      "decisionId": "google-part-note4-note4-etoile2-39",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2250,34 +1922,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4Etoile2\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile2\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4etoile3",
+      "decisionId": "google-part-note4-note4-etoile3-40",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2288,34 +1951,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4Etoile3\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile3\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4etoile4",
+      "decisionId": "google-part-note4-note4-etoile4-41",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2326,34 +1980,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4Etoile4\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile4\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note4etoile5",
+      "decisionId": "google-part-note4-note4-etoile5-42",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2364,34 +2009,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4Etoile5\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile5\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5",
+      "decisionId": "google-part-note5-43",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2405,30 +2041,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5etoile1",
+      "decisionId": "google-part-note5-note5-etoile1-44",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2439,34 +2066,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5Etoile1\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile1\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5etoile2",
+      "decisionId": "google-part-note5-note5-etoile2-45",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2477,34 +2095,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5Etoile2\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile2\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5etoile3",
+      "decisionId": "google-part-note5-note5-etoile3-46",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2515,34 +2124,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5Etoile3\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile3\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5etoile4",
+      "decisionId": "google-part-note5-note5-etoile4-47",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2553,34 +2153,25 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5Etoile4\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile4\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "notation-part-note5etoile5",
+      "decisionId": "google-part-note5-note5-etoile5-48",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.google-reviews",
-              "version": "2.0.0"
+              "version": "3.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.review-card",
-              "version": "2.0.0"
-            },
-            "viaPart": "carte",
-            "repeat": true
           },
           {
             "contract": {
               "id": "ds.notation",
               "version": "1.0.0"
             },
-            "viaPart": "etoiles",
-            "repeat": false
+            "viaPart": "etoiles"
           }
         ],
         "partPath": [
@@ -2591,7 +2182,2090 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5Etoile5\"]",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-notation-note-globale-texte-28",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "notation",
+          "noteGlobaleTexte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note-globale-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-separateur-29",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "separateur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"separateur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-infos-volume-30",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "infos",
+          "volume"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"volume\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-resume-ecrire-avis-31",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "resume",
+          "ecrireAvis"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"ecrire-avis\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-root-53",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-left-54",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-only-icon-55",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-label-56",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-right-57",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "ecrireAvis"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-groupe-cartes-33",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "groupeCartes"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"groupe-cartes\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-avis-google-groupe-cartes-review-card-34",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "avisGoogle",
+          "groupeCartes",
+          "ReviewCard"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"review-card\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-root-35",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-36",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"entete\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-37",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"profil\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-avatar-initiale-38",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "avatarInitiale"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"avatar-initiale\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-avatar-initiale-initiale-texte-39",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "avatarInitiale",
+          "initialeTexte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"initiale-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-avatar-photo-40",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "avatarPhoto"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"avatar-photo\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-identite-41",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "identite"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"identite\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-identite-auteur-42",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "identite",
+          "auteur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"auteur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-profil-identite-date-43",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "profil",
+          "identite",
+          "date"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"date\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-entete-marque-44",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "entete",
+          "marque"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-notation-45",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "notation"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"notation\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-notation-etoiles-46",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "notation",
+          "etoiles"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"etoiles\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-root-47",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-48",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-note1-etoile1-49",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1",
+          "note1Etoile1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-note1-etoile2-50",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1",
+          "note1Etoile2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-note1-etoile3-51",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1",
+          "note1Etoile3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-note1-etoile4-52",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1",
+          "note1Etoile4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note1-note1-etoile5-53",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note1",
+          "note1Etoile5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note1-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-54",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-note2-etoile1-55",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2",
+          "note2Etoile1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-note2-etoile2-56",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2",
+          "note2Etoile2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-note2-etoile3-57",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2",
+          "note2Etoile3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-note2-etoile4-58",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2",
+          "note2Etoile4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note2-note2-etoile5-59",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note2",
+          "note2Etoile5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note2-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-60",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-note3-etoile1-61",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3",
+          "note3Etoile1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-note3-etoile2-62",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3",
+          "note3Etoile2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-note3-etoile3-63",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3",
+          "note3Etoile3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-note3-etoile4-64",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3",
+          "note3Etoile4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note3-note3-etoile5-65",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note3",
+          "note3Etoile5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note3-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-66",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-note4-etoile1-67",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4",
+          "note4Etoile1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-note4-etoile2-68",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4",
+          "note4Etoile2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-note4-etoile3-69",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4",
+          "note4Etoile3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-note4-etoile4-70",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4",
+          "note4Etoile4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note4-note4-etoile5-71",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note4",
+          "note4Etoile5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note4-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-72",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-note5-etoile1-73",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5",
+          "note5Etoile1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile1\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-note5-etoile2-74",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5",
+          "note5Etoile2"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile2\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-note5-etoile3-75",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5",
+          "note5Etoile3"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile3\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-note5-etoile4-76",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5",
+          "note5Etoile4"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile4\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-note5-note5-etoile5-77",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.notation",
+              "version": "1.0.0"
+            },
+            "viaPart": "etoiles"
+          }
+        ],
+        "partPath": [
+          "root",
+          "note5",
+          "note5Etoile5"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"note5-etoile5\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-notation-verification-78",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "notation",
+          "verification"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"verification\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-notation-verification-coche-79",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "notation",
+          "verification",
+          "coche"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"coche\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-temoignage-80",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "temoignage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"temoignage\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-lire-la-suite-81",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "lireLaSuite"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"lire-la-suite\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-root-107",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-left-108",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-only-icon-109",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-label-110",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "google-part-icon-right-111",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.google-reviews",
+              "version": "3.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ReviewCard",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "lireLaSuite"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_google_reviews [data-pqr-part=\"icon-right\"]",
       "allowedMarks": []
     }
   ]

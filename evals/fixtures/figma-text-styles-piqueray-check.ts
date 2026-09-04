@@ -232,8 +232,19 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 //    groupes comme styles ferait retomber le compte ;
 //  · -1 riche — le titre de Reassurances redevient du texte simple : le set 031 ne
 //    dessine ni gras ni saut de ligne (règle owner du 2026-09-02).
-if (linked.length !== 73 || custom.length !== 42 || rich.length !== 10) {
-  fail(`global gate expected 73 linked / 42 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-09-03 (ds.review-card 3.0.0, molécule portée) : 73 -> 77 linked, 42 -> 38 custom,
+// 10 rich inchangé. UN seul mouvement, mesuré : quatre textes de la carte d'avis
+// (auteur, date, et les deux mêmes sur la variante Avatar=Photo) quittent le compte
+// « propre historique » pour le compte « lié » — leur taille, leur interligne et la
+// graisse de la date montent désormais des jetons typography.review.*, relevés sur le
+// maître 031 (2700:26539) où les variables sont réellement posées. Aucun style Figma
+// n'a été déclaré ni modifié : c'est le CONTRAT qui a cessé de porter font.size.16 /
+// font.size.14 et des interlignes littéraux (19.2 / 16.8) à la place des jetons.
+// Les trois textes restants de la carte (initialeTexte, temoignage, lireLaSuite) restent
+// au compte « propre » pour la raison déjà nommée le 2026-09-02 : leur groupe de jetons
+// responsive n'a pas d'extension figmaTextStyle.
+if (linked.length !== 77 || custom.length !== 38 || rich.length !== 10) {
+  fail(`global gate expected 77 linked / 38 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -245,9 +256,14 @@ const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => 
 // 2026-09-02 (vague 031) : la liste suit les compteurs ci-dessus. Les nouveaux
 // venus montent tous un groupe de jetons RESPONSIVE sans style Figma déclaré
 // (overline, body, card-desc) — état nommé, pas une régression silencieuse.
-const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 5, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 9, 'ds.sav': 4 };
+// 2026-09-03 : ds.review-card 9 -> 5. Quatre de ses textes (auteur et date, sur les deux
+// variantes d'avatar) montent maintenant les jetons typography.review.* et rejoignent le
+// compte « lié ». Les cinq restants — initialeTexte, plus temoignage et lireLaSuite sur les
+// deux variantes — gardent leur statut pour la raison déjà écrite : leur groupe responsive
+// n'a pas d'extension figmaTextStyle.
+const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 5, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 5, 'ds.sav': 4 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 73 linked / 42 historical custom / 10 rich; second token apply preserves ids`);
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 77 linked / 38 historical custom / 10 rich; second token apply preserves ids`);

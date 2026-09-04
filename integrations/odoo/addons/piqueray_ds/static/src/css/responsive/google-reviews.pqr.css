@@ -1,0 +1,138 @@
+/* ds.google-reviews 3.0.0 — section Avis Google, zone MANUELLE, vague 031 (2026-09-03).
+ *
+ * `components.pqr.css` émet des règles `.google-reviews--presentation-<mode>` qu'aucun QWeb
+ * ne pose jamais : Odoo n'a aucun moyen d'appliquer une classe selon la fenêtre. Cette feuille
+ * les retranscrit en @media, avec le MÊME vocabulaire de variables, plus les quelques faits
+ * que le contrat ne sait pas dire.
+ *
+ * Seuils = jetons `breakpoint.*` : 768 (tablette), 992 (bureau), 1400 (grand écran).
+ */
+
+/* ---------- base = Mobile ------------------------------------------------- */
+
+/* La grille : Figma empile par retour à la ligne en Mobile (rangée + wrap + largeur mini),
+ * par colonne en Tablette. Le résultat dessiné est le même — un avis par ligne — et la
+ * colonne l'exprime en une déclaration au lieu de trois. Écart de MÉCANIQUE assumé,
+ * identité de RENDU vérifiée à la mesure. Défaut de source noté : deux mécaniques pour
+ * un seul résultat (audit A/C4). */
+.s_pqr_google_reviews_section .google-reviews__groupeCartes {
+  flex-direction: column;
+}
+
+/* Le qualificatif et le séparateur ne sont pas dessinés sous 992 : ils restent dans le DOM
+ * — un bloc Odoo posé est du HTML figé, on ne re-parente jamais entre largeurs — et sont
+ * masqués ici. FAIT CODE-ONLY : le contrat ne porte qu'une condition de présence par part,
+ * et elle est réservée à une prop du rédacteur, pas à l'écran. */
+.s_pqr_google_reviews_section .google-reviews__qualificatifTexte,
+.s_pqr_google_reviews_section .google-reviews__separateur {
+  display: none;
+}
+
+/* L'en-tête est aligné à GAUCHE sous 992 px et CENTRÉ au-delà — relevé sur les quatre variantes.
+ * Le canal `declared` du contrat ne varie pas par mode : FAIT CODE-ONLY. */
+.s_pqr_google_reviews_section .google-reviews__SectionHeader { align-items: flex-start; }
+.s_pqr_google_reviews_section .google-reviews__Accroche,
+.s_pqr_google_reviews_section .google-reviews__Titre { text-align: left; }
+
+/* Le libellé du CTA change de texte ET d'action selon l'écran : « Voir tous les avis » sous
+ * 992 px, « Écrire un avis » au-delà. Les deux sont dans le DOM, un seul s'affiche.
+ * Décision owner du 2026-09-03 en attente sur l'action ; le dessin fait foi en attendant. */
+.s_pqr_google_reviews_section .google-reviews__libelle--large { display: none; }
+
+/* Le mot « Google » du bloc résumé est dessiné à 50,26 × 17 sous 992 px et à 70,96 × 24 au-delà.
+ * L'image SVG est unique et porte la grande taille : on la contraint ici. FAIT CODE-ONLY —
+ * une part instance ne porte aucun canal par mode. */
+.s_pqr_google_reviews_section .google-reviews__logoGoogle,
+.s_pqr_google_reviews_section .google-reviews__marque svg {
+  width: 50.26px;
+  height: 17px;
+}
+
+/* ---------- Tablette ------------------------------------------------------ */
+@media (min-width: 768px) {
+  .s_pqr_google_reviews_section.google-reviews { padding-inline: var(--pqr-space-48); }
+  .s_pqr_google_reviews_section .google-reviews__resume {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: var(--pqr-space-24);
+    padding-block: var(--pqr-space-16);
+  }
+  .s_pqr_google_reviews_section .google-reviews__infos { flex-direction: row; gap: var(--pqr-space-12); }
+  .s_pqr_google_reviews_section .google-reviews__notation { flex-direction: row; gap: var(--pqr-space-12); }
+  .s_pqr_google_reviews_section .google-reviews__resume { gap: var(--pqr-space-16); }
+}
+
+/* ---------- Bureau -------------------------------------------------------- */
+@media (min-width: 992px) {
+  .s_pqr_google_reviews_section.google-reviews {
+    padding-inline: var(--pqr-space-56);
+    gap: var(--pqr-space-15);
+  }
+  .s_pqr_google_reviews_section .google-reviews__SectionHeader { gap: var(--pqr-space-16); }
+  /* padding-inline REMIS à 16 : la règle tablette au-dessus pose 24 et les @media
+   * s'empilent — sans ce retour, le bloc gardait 24 (+1 de bordure = 25) en bureau
+   * et en grand écran, ce qui poussait le contenu de gauche de 8 px et tirait le CTA
+   * de 7 px. Relevé Figma : 16 en mobile, 24 en tablette, 16 en bureau et grand écran. */
+  .s_pqr_google_reviews_section .google-reviews__resume {
+    padding-inline: var(--pqr-space-16);
+    padding-block: var(--pqr-space-12);
+    gap: var(--pqr-space-0);
+  }
+  .s_pqr_google_reviews_section .google-reviews__infos { gap: var(--pqr-space-10); }
+  .s_pqr_google_reviews_section .google-reviews__notation { gap: var(--pqr-space-2); }
+  .s_pqr_google_reviews_section .google-reviews__logoGoogle,
+  .s_pqr_google_reviews_section .google-reviews__marque svg { width: 70.96px; height: 24px; }
+
+  /* En-tête centré à partir du bureau. */
+  .s_pqr_google_reviews_section .google-reviews__SectionHeader { align-items: center; }
+  .s_pqr_google_reviews_section .google-reviews__Accroche,
+  .s_pqr_google_reviews_section .google-reviews__Titre { text-align: center; }
+
+  /* Le CTA bascule de libellé. */
+  .s_pqr_google_reviews_section .google-reviews__libelle--compact { display: none; }
+  .s_pqr_google_reviews_section .google-reviews__libelle--large { display: inline; }
+
+  /* Marges intérieures du bloc d'avis — 4 / 11 / 8, liées à la source, portées telles quelles
+   * (audit A6 : elles sentent l'ajustement manuel, non tranché par l'owner). */
+  .s_pqr_google_reviews_section .google-reviews__avisGoogle {
+    padding-inline: var(--pqr-space-11);
+    padding-top: var(--pqr-space-4);
+    padding-bottom: var(--pqr-space-8);
+  }
+
+  /* Le qualificatif et le séparateur reparaissent : le dessin les porte à partir du bureau. */
+  .s_pqr_google_reviews_section .google-reviews__qualificatifTexte,
+  .s_pqr_google_reviews_section .google-reviews__separateur { display: inline; }
+
+  /* La grille : cinq colonnes égales, cartes étirées à la hauteur de la plus haute.
+   * Figma le dessine en GRID ; l'émetteur ne sait produire que du flex, d'où cette
+   * transcription à la main. C'est elle qui explique l'écart de -24px mesuré sur la
+   * carte seule au round précédent : hors grille, la carte prend sa hauteur naturelle. */
+  .s_pqr_google_reviews_section .google-reviews__groupeCartes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: stretch;
+    gap: var(--pqr-space-8);
+  }
+
+  /* Troncature du témoignage à trois lignes — relevée sur les instances Desktop et Wide.
+   * FAIT CODE-ONLY : `maxLines` n'est pas liable sur un nœud texte dans Figma (sonde du
+   * 2026-09-02 : « invalid field for text node »), il y vit en surcharge d'instance ; et
+   * une part instance ne porte aucun canal par mode. */
+  .s_pqr_google_reviews_section .review-card__temoignage {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ---------- Grand écran --------------------------------------------------- */
+@media (min-width: 1400px) {
+  .s_pqr_google_reviews_section.google-reviews {
+    padding-inline: var(--pqr-space-89);
+    gap: var(--pqr-space-40);
+  }
+  /* En grand écran le bloc n'a plus de marge horizontale — seulement 4 en haut, 8 en bas. */
+  .s_pqr_google_reviews_section .google-reviews__avisGoogle { padding-inline: var(--pqr-space-0); }
+}

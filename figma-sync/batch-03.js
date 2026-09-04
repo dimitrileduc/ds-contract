@@ -4,10 +4,15 @@ const COMPONENTS = [
   {
     "setName": "ReviewCard",
     "contractId": "ds.review-card",
-    "anchorKey": "864876fc02245c65ef4216bc4355e4128f79d181",
-    "description": "ReviewCard — generated from contract ds.review-card v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "anchorKey": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c",
+    "description": "ReviewCard — generated from contract ds.review-card v3.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "Verifie",
+        "default": false
+      }
+    ],
     "textProps": [
       {
         "property": "URL photo",
@@ -22,7 +27,8 @@ const COMPONENTS = [
     "swapProps": [],
     "fontStyles": [
       "Medium",
-      "Semi Bold"
+      "Semi Bold",
+      "Regular"
     ],
     "variants": [
       {
@@ -40,22 +46,19 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-clair",
-          "fixedWidth": {
-            "px": 299,
-            "varName": "size/review-card/root-w"
-          },
           "bindings": {
-            "minHeight": "size/review-card/root-h",
             "paddingTop": "space/24",
             "paddingBottom": "space/24",
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
-            "itemSpacing": "space/14"
+            "itemSpacing": "spacing/review/gap",
+            "topLeftRadius": "radius/8",
+            "topRightRadius": "radius/8",
+            "bottomLeftRadius": "radius/8",
+            "bottomRightRadius": "radius/8",
+            "strokeWeight": "border-width/1"
           },
-          "lits": {
-            "radius": 8,
-            "strokeWeight": 1
-          },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
@@ -96,20 +99,21 @@ const COMPONENTS = [
                         "varName": "size/review-card/avatar-initiale"
                       },
                       "bindings": {
-                        "minWidth": "size/review-card/avatar-initiale"
-                      },
-                      "lits": {
-                        "radius": 20
+                        "minWidth": "size/review-card/avatar-initiale",
+                        "topLeftRadius": "radius/20",
+                        "topRightRadius": "radius/20",
+                        "bottomLeftRadius": "radius/20",
+                        "bottomRightRadius": "radius/20"
                       },
                       "children": [
                         {
                           "type": "text",
                           "name": "initialeTexte",
                           "characters": "P",
-                          "fontSize": 18,
+                          "fontSize": 14,
                           "fontStyle": "Semi Bold",
                           "textFill": "color/blanc",
-                          "lineHeight": 18,
+                          "lineHeight": 24,
                           "fontFamily": "Montserrat",
                           "contentProp": "Initiale"
                         }
@@ -134,7 +138,9 @@ const COMPONENTS = [
                           "characters": "Prénom N.",
                           "fontSize": 16,
                           "fontStyle": "Semi Bold",
-                          "lineHeight": 19.2,
+                          "textStyle": "Titre 6",
+                          "textFill": "color/noir-pur",
+                          "lineHeight": 20,
                           "fontFamily": "Montserrat",
                           "contentProp": "Auteur"
                         },
@@ -143,8 +149,10 @@ const COMPONENTS = [
                           "name": "date",
                           "characters": "il y a 2 mois",
                           "fontSize": 14,
-                          "fontStyle": "Medium",
-                          "lineHeight": 16.8,
+                          "fontStyle": "Regular",
+                          "textStyle": "Paragraphe",
+                          "textFill": "color/noir-pur",
+                          "lineHeight": 24,
                           "fontFamily": "Montserrat",
                           "contentProp": "Date"
                         }
@@ -198,16 +206,13 @@ const COMPONENTS = [
                     "varName": "size/review-card/verification"
                   },
                   "bindings": {
-                    "minWidth": "size/review-card/verification"
+                    "minWidth": "size/review-card/verification",
+                    "topLeftRadius": "radius/8",
+                    "topRightRadius": "radius/8",
+                    "bottomLeftRadius": "radius/8",
+                    "bottomRightRadius": "radius/8"
                   },
-                  "lits": {
-                    "radius": 8,
-                    "fillColor": {
-                      "r": 0,
-                      "g": 0,
-                      "b": 0
-                    }
-                  },
+                  "fill": "color/noir-pur",
                   "children": [
                     {
                       "type": "svg",
@@ -215,7 +220,9 @@ const COMPONENTS = [
                       "svg": "<svg width=\"10\" height=\"10\" viewBox=\"0 0 13 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M1 5.4L4.5 9L11.5 1\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>",
                       "iconSize": 10
                     }
-                  ]
+                  ],
+                  "visibleProp": "Verifie",
+                  "visibleDefault": false
                 }
               ]
             },
@@ -223,9 +230,10 @@ const COMPONENTS = [
               "type": "text",
               "name": "temoignage",
               "characters": "Un témoignage neutre, exemple générique de contenu.",
-              "fontSize": 14,
-              "fontStyle": "Medium",
-              "lineHeight": 19.6,
+              "fontSize": 16,
+              "fontStyle": "Regular",
+              "textFill": "color/noir-pur",
+              "lineHeight": 24,
               "fontFamily": "Montserrat",
               "contentProp": "Témoignage"
             },
@@ -235,6 +243,8 @@ const COMPONENTS = [
               "characters": "Lire la suite",
               "fontSize": 14,
               "fontStyle": "Medium",
+              "textFill": "color/noir-pur",
+              "lineHeight": 24,
               "fontFamily": "Montserrat"
             }
           ]
@@ -255,22 +265,19 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-clair",
-          "fixedWidth": {
-            "px": 299,
-            "varName": "size/review-card/root-w"
-          },
           "bindings": {
-            "minHeight": "size/review-card/root-h",
             "paddingTop": "space/24",
             "paddingBottom": "space/24",
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
-            "itemSpacing": "space/14"
+            "itemSpacing": "spacing/review/gap",
+            "topLeftRadius": "radius/8",
+            "topRightRadius": "radius/8",
+            "bottomLeftRadius": "radius/8",
+            "bottomRightRadius": "radius/8",
+            "strokeWeight": "border-width/1"
           },
-          "lits": {
-            "radius": 8,
-            "strokeWeight": 1
-          },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
@@ -310,17 +317,20 @@ const COMPONENTS = [
                         "varName": "size/review-card/avatar-photo"
                       },
                       "bindings": {
-                        "minWidth": "size/review-card/avatar-photo"
+                        "minWidth": "size/review-card/avatar-photo",
+                        "topLeftRadius": "radius/20",
+                        "topRightRadius": "radius/20",
+                        "bottomLeftRadius": "radius/20",
+                        "bottomRightRadius": "radius/20"
                       },
+                      "imgPlaceholder": true,
                       "lits": {
-                        "radius": 20,
                         "fillColor": {
                           "r": 0.8509803921568627,
                           "g": 0.8509803921568627,
                           "b": 0.8509803921568627
                         }
                       },
-                      "imgPlaceholder": true,
                       "children": []
                     },
                     {
@@ -342,7 +352,9 @@ const COMPONENTS = [
                           "characters": "Prénom N.",
                           "fontSize": 16,
                           "fontStyle": "Semi Bold",
-                          "lineHeight": 19.2,
+                          "textStyle": "Titre 6",
+                          "textFill": "color/noir-pur",
+                          "lineHeight": 20,
                           "fontFamily": "Montserrat",
                           "contentProp": "Auteur"
                         },
@@ -351,8 +363,10 @@ const COMPONENTS = [
                           "name": "date",
                           "characters": "il y a 2 mois",
                           "fontSize": 14,
-                          "fontStyle": "Medium",
-                          "lineHeight": 16.8,
+                          "fontStyle": "Regular",
+                          "textStyle": "Paragraphe",
+                          "textFill": "color/noir-pur",
+                          "lineHeight": 24,
                           "fontFamily": "Montserrat",
                           "contentProp": "Date"
                         }
@@ -406,16 +420,13 @@ const COMPONENTS = [
                     "varName": "size/review-card/verification"
                   },
                   "bindings": {
-                    "minWidth": "size/review-card/verification"
+                    "minWidth": "size/review-card/verification",
+                    "topLeftRadius": "radius/8",
+                    "topRightRadius": "radius/8",
+                    "bottomLeftRadius": "radius/8",
+                    "bottomRightRadius": "radius/8"
                   },
-                  "lits": {
-                    "radius": 8,
-                    "fillColor": {
-                      "r": 0,
-                      "g": 0,
-                      "b": 0
-                    }
-                  },
+                  "fill": "color/noir-pur",
                   "children": [
                     {
                       "type": "svg",
@@ -423,7 +434,9 @@ const COMPONENTS = [
                       "svg": "<svg width=\"10\" height=\"10\" viewBox=\"0 0 13 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M1 5.4L4.5 9L11.5 1\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>",
                       "iconSize": 10
                     }
-                  ]
+                  ],
+                  "visibleProp": "Verifie",
+                  "visibleDefault": false
                 }
               ]
             },
@@ -431,9 +444,10 @@ const COMPONENTS = [
               "type": "text",
               "name": "temoignage",
               "characters": "Un témoignage neutre, exemple générique de contenu.",
-              "fontSize": 14,
-              "fontStyle": "Medium",
-              "lineHeight": 19.6,
+              "fontSize": 16,
+              "fontStyle": "Regular",
+              "textFill": "color/noir-pur",
+              "lineHeight": 24,
               "fontFamily": "Montserrat",
               "contentProp": "Témoignage"
             },
@@ -443,6 +457,8 @@ const COMPONENTS = [
               "characters": "Lire la suite",
               "fontSize": 14,
               "fontStyle": "Medium",
+              "textFill": "color/noir-pur",
+              "lineHeight": 24,
               "fontFamily": "Montserrat"
             }
           ]

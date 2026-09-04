@@ -3,10 +3,10 @@
   "snapshotId": "odoo-019-foundation",
   "generatorVersion": "1.0.0",
   "coverage": {
-    "expectedProps": 226,
-    "decidedProps": 226,
-    "expectedParts": 369,
-    "decidedParts": 369,
+    "expectedProps": 245,
+    "decidedProps": 245,
+    "expectedParts": 409,
+    "decidedParts": 409,
     "missingDecisionIds": [],
     "extraDecisionIds": [],
     "invalidAddresses": []
@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "9d98a84c963d39c09793fddb7604c10ecd07e1d049bbd6d5a47e3cff85250bf1",
-      "actualSha256": "9d98a84c963d39c09793fddb7604c10ecd07e1d049bbd6d5a47e3cff85250bf1",
-      "bytes": 67836
+      "expectedSha256": "518974a3568fb6c0ce70247f19f6162fb919528dda785953d674f67a64e409b7",
+      "actualSha256": "518974a3568fb6c0ce70247f19f6162fb919528dda785953d674f67a64e409b7",
+      "bytes": 69751
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -29,9 +29,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css",
       "status": "clean",
-      "expectedSha256": "009634f20038f32b3162d8aeb6d8cc45dede038b7f9c95f4aba6fd9c12a2ddeb",
-      "actualSha256": "009634f20038f32b3162d8aeb6d8cc45dede038b7f9c95f4aba6fd9c12a2ddeb",
-      "bytes": 22384
+      "expectedSha256": "ee8a49c75b54c272aeeec6a9661dcbc0dc4f9fba9bfc382a9265f71b31e3dc73",
+      "actualSha256": "ee8a49c75b54c272aeeec6a9661dcbc0dc4f9fba9bfc382a9265f71b31e3dc73",
+      "bytes": 23671
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2",
@@ -72,15 +72,15 @@
   "manualDelta": {
     "files": 17,
     "blocks": 82,
-    "lines": 4112,
-    "bytes": 251120,
+    "lines": 4197,
+    "bytes": 256031,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
         "files": 4,
         "blocks": 20,
-        "lines": 1214,
-        "bytes": 68419
+        "lines": 1293,
+        "bytes": 72756
       },
       {
         "key": "odoo-internal-api",
@@ -93,8 +93,8 @@
         "key": "odoo-layout-bridge",
         "files": 1,
         "blocks": 11,
-        "lines": 313,
-        "bytes": 14203
+        "lines": 309,
+        "bytes": 14198
       },
       {
         "key": "odoo-media-dialog",
@@ -128,8 +128,8 @@
         "key": "odoo-qweb-composition",
         "files": 4,
         "blocks": 28,
-        "lines": 900,
-        "bytes": 95169
+        "lines": 910,
+        "bytes": 95748
       },
       {
         "key": "odoo-repeat-dom",
@@ -151,8 +151,8 @@
         "key": "builder-option",
         "files": 4,
         "blocks": 20,
-        "lines": 1214,
-        "bytes": 68419
+        "lines": 1293,
+        "bytes": 72756
       },
       {
         "key": "compatibility",
@@ -172,8 +172,8 @@
         "key": "odoo-bridge",
         "files": 1,
         "blocks": 11,
-        "lines": 313,
-        "bytes": 14203
+        "lines": 309,
+        "bytes": 14198
       },
       {
         "key": "page-composition",
@@ -186,8 +186,8 @@
         "key": "qweb",
         "files": 4,
         "blocks": 29,
-        "lines": 949,
-        "bytes": 98460
+        "lines": 959,
+        "bytes": 99039
       },
       {
         "key": "repeat-action",
@@ -214,8 +214,11 @@
   },
   "unclassified": {
     "files": [],
-    "blocks": [],
+    "blocks": [
+      "ODOO-031-GOOGLE-REVIEWS-PANEL",
+      "imbrique/integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js/667/ODOO-031-GOOGLE-REVIEWS-PANEL/dans/ODOO-019-AUTHORING-PLUGIN"
+    ],
     "registryEntries": []
   },
-  "canonicalDigest": "89480e328bf61397bf322d4d121567a6e40b1008fe371a759f5548659c719246"
+  "canonicalDigest": "f754d395eecfcda567d0b1a4d74b11204272dade57551398206d46373224e7c1"
 }

@@ -664,6 +664,57 @@ export class SetColonnesAction extends BuilderAction {
     }
 }
 
+/* ODOO-031-GOOGLE-REVIEWS-PANEL BEGIN — réglages du bloc Avis Google au PANNEAU.
+ *
+ * Décision owner du 2026-09-03 : la note affichée, le qualificatif, le nombre d'avis et le
+ * nombre d'étoiles se règlent depuis le panneau, PAS en édition directe dans le bloc.
+ * Le panneau d'avant se contentait d'écrire « se modifient directement dans le bloc » —
+ * un texte, pas un réglage. */
+
+/** Écrit le texte d'une part nommée. Générique : le nom de la part est le paramètre,
+ * pour qu'un quatrième champ ne demande pas une quatrième classe. */
+export class SetPartTextAction extends BuilderAction {
+    static id = "pqrSetPartText";
+    cible(editingElement, part) {
+        return part ? editingElement.querySelector(`[data-pqr-part="${part}"]`) : null;
+    }
+    getValue({ editingElement, params: { mainParam } = {} }) {
+        return this.cible(editingElement, mainParam)?.textContent?.trim() || "";
+    }
+    apply({ editingElement, value, params: { mainParam } = {} }) {
+        const el = this.cible(editingElement, mainParam);
+        if (!el) return;
+        el.textContent = String(value ?? "");
+    }
+}
+
+/** Nombre d'étoiles PLEINES du bloc résumé. Même mécanique que la note d'une carte
+ * (SetReviewNoteAction) : le gabarit rend les cinq bandes, l'action ne fait que déplacer
+ * le `hidden`. Elle ne construit rien — un bloc posé est une copie HTML gelée.
+ *
+ * Limite nommée : ds.notation ne connaît que des notes ENTIÈRES. Une note affichée « 4.8 »
+ * se dessine avec cinq étoiles pleines, ce que fait déjà la maquette. */
+export class SetSummaryStarsAction extends BuilderAction {
+    static id = "pqrSetSummaryStars";
+    getValue({ editingElement }) {
+        return editingElement?.dataset?.pqrNoteEtoiles ?? "5";
+    }
+    isApplied(arg) {
+        return this.getValue(arg) === String(arg.params.mainParam);
+    }
+    apply({ editingElement, params: { mainParam } }) {
+        const note = String(mainParam);
+        if (!editingElement || !["1", "2", "3", "4", "5"].includes(note)) return;
+        editingElement.dataset.pqrNoteEtoiles = note;
+        const etoiles = editingElement.querySelector('[data-pqr-part="etoiles"] .notation');
+        if (!etoiles) return;
+        for (const bande of etoiles.children) {
+            bande.hidden = bande.getAttribute("data-pqr-part") !== `note${note}`;
+        }
+    }
+}
+// ODOO-031-GOOGLE-REVIEWS-PANEL END
+
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";
 
@@ -728,6 +779,8 @@ export class PiquerayAuthoringPlugin extends Plugin {
             OpenFigmaAction,
             SetCtaHrefAction,
             SetLinkHrefAction,
+            SetPartTextAction,
+            SetSummaryStarsAction,
             // SetColonnesAction retirée le 2026-09-02 (vague 031) : plus de réglage Colonnes.
             SetFooterCtaHrefAction,
             AddCarteAction,

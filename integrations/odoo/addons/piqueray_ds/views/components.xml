@@ -55,57 +55,67 @@
       </div>
       <div class="review-card__notation" data-pqr-part="notation">
         <div class="review-card__etoiles" data-pqr-part="etoiles"><t t-call="piqueray_ds.pqr_notation"><t t-set="note" t-value="review.get('note', '5')"/></t></div>
-        <div class="review-card__verification" data-pqr-part="verification"><span class="review-card__coche" data-pqr-part="coche"><t t-call="piqueray_ds.pqr_check"/></span></div>
+        <div t-if="review.get('verifie')" class="review-card__verification" data-pqr-part="verification"><span class="review-card__coche" data-pqr-part="coche"><t t-call="piqueray_ds.pqr_check"/></span></div>
       </div>
       <p class="review-card__temoignage o_pqr_editable" data-pqr-part="temoignage" data-pqr-marks="strong"><t t-esc="review.get('texte', 'Un témoignage neutre, exemple générique de contenu.')"/></p>
-      <span class="review-card__lireLaSuite" data-pqr-part="lire-la-suite">Lire la suite</span>
+      <div class="review-card__lireLaSuite" data-pqr-part="lire-la-suite"><t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="review.get('lienAvis') or '#'"/><t t-set="variant" t-value="'link'"/><t t-set="label" t-value="'Lire la suite'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="False"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t></div>
     </article>
   </template>
 
   <!-- Corps interne du widget. La seule racine <section> appartient au parent
        public, pour ne jamais imbriquer deux sections. -->
   <template id="s_pqr_google_reviews" name="Piqueray · Google Reviews">
+    <!-- Réglages du panneau Odoo (décision owner 2026-09-03) : le nombre d'étoiles pleines
+         et l'adresse du bouton se règlent depuis le panneau, pas en édition directe.
+         Le composant Notation ne connaît que des notes ENTIÈRES — « 4.8 » se dessine
+         avec cinq étoiles pleines, comme la maquette. -->
+    <t t-set="note_etoiles" t-value="note_etoiles or '5'"/>
+    <t t-set="lien_avis" t-value="lien_avis or ''"/>
     <t t-set="reviews" t-value="[
-      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 2 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''},
-      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 3 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''},
-      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 4 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''},
-      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 5 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''},
-      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 6 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': ''}
+      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 2 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''},
+      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 3 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''},
+      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 4 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''},
+      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 5 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''},
+      {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 6 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''}
     ]"/>
-    <div class="s_pqr_google_reviews google-reviews pqr-controls-visible" data-name="Piqueray · Google Reviews"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
+    <div class="s_pqr_google_reviews google-reviews__avisGoogle" data-name="Piqueray · Google Reviews"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
              data-montrer-controles=""
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
-             data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="root">
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="avis-google">
       <div class="google-reviews__resume" data-pqr-part="resume">
         <div class="google-reviews__infos" data-pqr-part="infos">
           <span class="google-reviews__marque" data-pqr-part="marque"><t t-call="piqueray_ds.pqr_google_wordmark"/></span>
           <span class="google-reviews__qualificatifTexte o_pqr_editable" data-pqr-part="qualificatif" data-pqr-marks="">Excellent</span>
-          <div class="google-reviews__notation" data-pqr-part="notation"><span class="google-reviews__etoile1" data-pqr-part="etoile-1"><t t-call="piqueray_ds.pqr_star"/></span><span class="google-reviews__etoile2" data-pqr-part="etoile-2"><t t-call="piqueray_ds.pqr_star"/></span><span class="google-reviews__etoile3" data-pqr-part="etoile-3"><t t-call="piqueray_ds.pqr_star"/></span><span class="google-reviews__etoile4" data-pqr-part="etoile-4"><t t-call="piqueray_ds.pqr_star"/></span><span class="google-reviews__etoile5" data-pqr-part="etoile-5"><t t-call="piqueray_ds.pqr_star"/></span><span class="google-reviews__noteGlobaleTexte o_pqr_editable" data-pqr-part="note-globale" data-pqr-marks="">4.8</span></div>
+          <div class="google-reviews__notation" data-pqr-part="notation"><div class="google-reviews__etoiles" data-pqr-part="etoiles"><t t-call="piqueray_ds.pqr_notation"><t t-set="note" t-value="note_etoiles or '5'"/></t></div><span class="google-reviews__noteGlobaleTexte o_pqr_editable" data-pqr-part="note-globale" data-pqr-marks="">4.8</span></div>
           <span class="google-reviews__separateur" data-pqr-part="separateur">|</span>
           <span class="google-reviews__volume o_pqr_editable" data-pqr-part="volume" data-pqr-marks="">93 avis</span>
         </div>
-        <div class="google-reviews__ecrireAvis" data-pqr-part="ecrire-avis"><span class="google-reviews__libelle" data-pqr-part="ecrire-avis-libelle">Écrire un avis</span></div>
+        <div class="google-reviews__ecrireAvis" data-pqr-part="ecrire-avis"><t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="lien_avis or '#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Voir tous les avis'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="False"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t></div>
       </div>
-      <div class="google-reviews__cartes" data-pqr-part="cartes">
-        <div class="google-reviews__flecheGauche" data-pqr-part="fleche-gauche" data-pqr-controls=""><div class="google-reviews__pastilleGauche" data-pqr-part="pastille-gauche"><span class="google-reviews__iconeGauche" data-pqr-part="icone-gauche"><t t-call="piqueray_ds.pqr_chevron_left"/></span></div></div>
+      
         <div class="google-reviews__groupeCartes" data-pqr-review-list="" data-pqr-part="groupe-cartes">
           <t t-foreach="reviews" t-as="review"><t t-call="piqueray_ds.review_card"><t t-set="review" t-value="review"/><t t-set="review_index" t-value="review_index"/></t></t>
         </div>
-        <div class="google-reviews__flecheDroite" data-pqr-part="fleche-droite" data-pqr-controls=""><div class="google-reviews__pastilleDroite" data-pqr-part="pastille-droite"><span class="google-reviews__iconeDroite" data-pqr-part="icone-droite"><t t-call="piqueray_ds.pqr_chevron_right"/></span></div></div>
-      </div>
-      <template data-pqr-review-blueprint=""><t t-call="piqueray_ds.review_card"><t t-set="review" t-value="{'auteur': 'Nouvel avis', 'initiale': 'N', 'date': 'à l’instant', 'avatar': 'Initiale', 'note': '5', 'texte': 'Nouveau témoignage.', 'photoUrl': '', 'photoAlt': ''}"/><t t-set="review_index" t-value="'blueprint'"/></t></template>
+        
+      <template data-pqr-review-blueprint=""><t t-call="piqueray_ds.review_card"><t t-set="review" t-value="{'auteur': 'Nouvel avis', 'initiale': 'N', 'date': 'à l’instant', 'avatar': 'Initiale', 'note': '5', 'texte': 'Nouveau témoignage.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''}"/><t t-set="review_index" t-value="'blueprint'"/></t></template>
     </div>
   </template>
   <!-- Racine publique composée : les nouveaux snippets portent le titre et le
        widget, tandis que les anciens blocs sauvegardés restent lisibles. -->
   <template id="s_pqr_google_reviews_section" name="Piqueray · Section Avis Google">
-    <section class="s_pqr_google_reviews_section google-reviews-section" data-snippet="s_pqr_google_reviews_section" data-name="Piqueray · Section Avis Google"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+    <section class="s_pqr_google_reviews_section google-reviews" data-snippet="s_pqr_google_reviews_section" data-name="Piqueray · Section Avis Google"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-section-default" data-pqr-part="root">
-      <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Nos avis Google vérifiés'"/><t t-set="title_part" t-value="'google-reviews-header-title'"/><t t-set="title_html"><span>Plus de 1500 portes installées par année et autant de clients satisfaits</span></t></t>
+      <!-- L'en-tête est décrit DANS la section (contrat ds.google-reviews 3.0.0) et non plus
+           composé depuis ds.section-header : le composant commun n'a aucune dimension par écran
+           et figerait le titre. Même traitement que ds.sav et ds.reassurances. Dette E-031-044. -->
+      <div class="google-reviews__SectionHeader section-header oe_unremovable oe_unmovable" data-pqr-part="section-header">
+        <span class="google-reviews__Accroche section-header__Accroche o_pqr_editable" data-pqr-part="accroche" data-pqr-marks="">Nos avis Google vérifiés</span>
+        <span class="google-reviews__Titre section-header__Titre o_pqr_editable" data-pqr-part="google-reviews-header-title" data-pqr-marks="strong"><span>Plus de 1500 portes installées par année et autant de clients satisfaits</span></span>
+      </div>
       <t t-call="piqueray_ds.s_pqr_google_reviews"/>
     </section>
   </template>
@@ -158,7 +168,7 @@
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
              data-ds-contract="ds.presentation" data-ds-contract-version="4.0.1" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
@@ -178,7 +188,7 @@
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero pqr-soustitre-on" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
              data-ds-contract="ds.hero" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
@@ -201,7 +211,7 @@
   <template id="s_pqr_hero_video" name="Piqueray · Hero vidéo">
     <section class="s_pqr_hero_video hero-video" data-snippet="s_pqr_hero_video" data-name="Piqueray · Hero vidéo"
              data-ds-contract="ds.hero-video" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-video-default" data-pqr-part="root">
       <img class="hero-video__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-video-poster" alt=""/>
@@ -262,7 +272,7 @@
     ]"/>
     <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
              data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
       <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
@@ -306,7 +316,7 @@
     ]"/>
     <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
              data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
       <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
@@ -324,7 +334,7 @@
   <template id="s_pqr_devis" name="Piqueray · Devis">
     <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
              data-ds-contract="ds.devis" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
              data-fond="">
@@ -345,7 +355,7 @@
          Ordre mobile (image AU-DESSUS du texte) ; Desktop/Wide = row-reverse (responsive/sav.pqr.css). -->
     <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
              data-ds-contract="ds.sav" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
       <img class="sav__background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="sav-background" data-pqr-native-image="1" alt=""/>
@@ -400,7 +410,7 @@
     ]"/>
     <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
              data-ds-contract="ds.texte-seo" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
       <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
@@ -430,7 +440,7 @@
   <template id="s_pqr_coordonnees" name="Piqueray · Coordonnées">
     <section class="s_pqr_coordonnees coordonnees" data-snippet="s_pqr_coordonnees" data-name="Piqueray · Coordonnées"
              data-ds-contract="ds.coordonnees" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="coordonnees-default" data-pqr-part="root">
       <!-- Plan Google : PLACEHOLDER sans src (décision gate 2026-08-19). Alimenté
@@ -503,7 +513,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     ]"/>
     <section class="s_pqr_reassurances reassurances reassurances--disposition-5Cartes" data-snippet="s_pqr_reassurances" data-name="Piqueray · Réassurances"
              data-ds-contract="ds.reassurances" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="reassurances-default" data-pqr-part="root">
       <!-- ds.reassurances 2.0.0 (vague 031) : en-tête MODÉLISÉ DANS LA SECTION.
@@ -608,7 +618,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     ]"/>
     <section class="s_pqr_categories_principales categories-principales" data-snippet="s_pqr_categories_principales" data-name="Piqueray · Catégories principales"
              data-ds-contract="ds.categories-principales" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-style="superpose"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="categories-principales-default" data-pqr-part="root">
@@ -642,7 +652,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     ]"/>
     <section class="s_pqr_produits_ecommerce produits-ecommerce" data-snippet="s_pqr_produits_ecommerce" data-name="Piqueray · Produits e-commerce"
              data-ds-contract="ds.produits-ecommerce" data-ds-contract-version="1.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="0d13598e38ed54b6e0547e6d8b3db6aa89c61624dfcb08fb3ac14e07bd35465d" data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
+             data-ds-graph-digest="0ed08fc88d24990741ec535f0762d9b6d8b3529bed36c09607a5fb1aa4d0fd06" data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="produits-ecommerce-default" data-pqr-part="root">
       <span class="produits-ecommerce__Titre o_pqr_editable" data-pqr-part="produits-ecommerce-title" data-pqr-marks="strong">Découvrez nos produits disponibles en ligne</span>
       <div data-pqr-part="root-bouton"><t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Voir les produits'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t></div>

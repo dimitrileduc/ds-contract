@@ -16,7 +16,6 @@ export * from './Footer';
 export * from './FooterColumn';
 export * from './Formulaire';
 export * from './GoogleReviews';
-export * from './GoogleReviewsSection';
 export * from './Header';
 export * from './Hero';
 export * from './HeroVideo';

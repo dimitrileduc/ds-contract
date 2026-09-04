@@ -1,0 +1,19 @@
+/* ds.review-card 3.0.0 — zone MANUELLE, vague 031 (2026-09-03).
+ *
+ * Une molécule n'a pas d'axe de présentation : toute sa typographie et son écart
+ * intérieur roulent déjà sur des jetons qui varient par écran (`typography.review.*`,
+ * `spacing.review.gap`), émis par `tokens.pqr.css` dans ses blocs @media. Cette feuille
+ * ne porte donc RIEN de la typographie — un seul fait, qui n'a pas de canal de contrat.
+ *
+ * FAIT CODE-ONLY — le logo Google de la carte
+ * Relevé du 2026-09-03 sur le set 031 (AvisGoogle 2700:28391) : le calque `marque` est
+ * VISIBLE sur les instances Mobile et Tablette, MASQUÉ sur Desktop et Wide.
+ * Le contrat ne peut pas le dire : une part instance ne porte aucun canal par mode
+ * (mode d'emploi § « Ce qu'une part instance ne peut PAS porter »), et la carte n'a
+ * pas d'axe de présentation. Le logo reste donc TOUJOURS dans le DOM — un bloc Odoo
+ * posé est du HTML figé, on ne re-parente jamais entre largeurs — et il est masqué ici.
+ * Nommé aussi dans la description de la part `marque` du contrat.
+ */
+@media (min-width: 992px) {
+  .review-card .review-card__marque { display: none; }
+}

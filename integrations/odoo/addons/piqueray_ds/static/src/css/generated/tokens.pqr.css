@@ -68,10 +68,12 @@
   --pqr-space-11: 11px;
   --pqr-space-12: 12px;
   --pqr-space-14: 14px;
+  --pqr-space-15: 15px;
   --pqr-space-16: 16px;
   --pqr-space-22: 22px;
   --pqr-space-24: 24px;
   --pqr-space-32: 32px;
+  --pqr-space-40: 40px;
   --pqr-space-47: 47px;
   --pqr-space-48: 48px;
   --pqr-space-56: 56px;
@@ -149,6 +151,7 @@
   --pqr-size-review-card-avatar-initiale: 40px;
   --pqr-size-review-card-avatar-photo: 40px;
   --pqr-size-review-card-verification: 16px;
+  --pqr-size-review-card-min-w: 250px;
   --pqr-size-sav-content-padding: 131px;
   --pqr-size-sav-image-right-inset: 78px;
   --pqr-size-sav-section-w: 1550px;
@@ -190,6 +193,8 @@
   --pqr-size-carte-categorie-min-w: 320px;
   --pqr-size-categories-principales-carte-h-mobile: 418px;
   --pqr-size-categories-principales-carte-h-tablette: 288px;
+  --pqr-radius-8: 8px;
+  --pqr-radius-20: 20px;
   --pqr-radius-32: 32px;
   --pqr-radius-500: 500px;
   --pqr-border-width-0: 0px;
@@ -306,6 +311,10 @@
   --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
   --pqr-typography-review-initiale-size: var(--pqr-font-size-14);
   --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-24);
+  --pqr-typography-review-note-size: var(--pqr-font-size-32);
+  --pqr-typography-review-libelle-size: var(--pqr-font-size-16);
+  --pqr-typography-review-note-line-height: var(--pqr-font-line-height-40);
+  --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
   --pqr-spacing-card-categorie-pad-h: var(--pqr-space-24);
   --pqr-spacing-carte-reassurance-gap: var(--pqr-space-16);
   --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-16);
@@ -345,6 +354,10 @@
     --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
     --pqr-typography-review-initiale-size: var(--pqr-font-size-14);
     --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-24);
+    --pqr-typography-review-note-size: var(--pqr-font-size-32);
+    --pqr-typography-review-libelle-size: var(--pqr-font-size-16);
+    --pqr-typography-review-note-line-height: var(--pqr-font-line-height-40);
+    --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
@@ -386,6 +399,10 @@
     --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
     --pqr-typography-review-initiale-size: var(--pqr-font-size-18);
     --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-18);
+    --pqr-typography-review-note-size: var(--pqr-font-size-14);
+    --pqr-typography-review-libelle-size: var(--pqr-font-size-14);
+    --pqr-typography-review-note-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-20);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-16);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);
@@ -427,6 +444,10 @@
     --pqr-typography-review-lien-line-height: var(--pqr-font-line-height-24);
     --pqr-typography-review-initiale-size: var(--pqr-font-size-18);
     --pqr-typography-review-initiale-line-height: var(--pqr-font-line-height-18);
+    --pqr-typography-review-note-size: var(--pqr-font-size-14);
+    --pqr-typography-review-libelle-size: var(--pqr-font-size-18);
+    --pqr-typography-review-note-line-height: var(--pqr-font-line-height-20);
+    --pqr-typography-review-libelle-line-height: var(--pqr-font-line-height-22);
     --pqr-typography-libelle-bouton-size: var(--pqr-font-size-18);
     --pqr-spacing-card-categorie-pad-h: var(--pqr-space-32);
     --pqr-spacing-carte-reassurance-gap: var(--pqr-space-24);

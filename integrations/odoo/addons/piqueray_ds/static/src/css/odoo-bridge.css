@@ -1,17 +1,12 @@
-/*
- * ODOO-019-GOOGLE-REVIEWS-BRIDGE BEGIN
+/* ODOO-019-GOOGLE-REVIEWS-BRIDGE BEGIN
  *
- * Pont Odoo minimal : aucune valeur visuelle n'est dupliquée ici. La géométrie
- * et l'apparence résident dans `css/generated/`; ce fichier ne traduit que les
- * états persistés du builder vers l'attribut `hidden` et la classe de panneau.
- */
-.s_pqr_google_reviews [hidden] {
-  display: none !important;
-}
+ * Pont Odoo minimal du bloc Avis Google.
+ *
+ * ODOO-031 (2026-09-03) : la règle qui masquait les flèches de carrousel a été retirée
+ * avec les flèches elles-mêmes — elles étaient masquées dans les quatre vues de la
+ * maquette, l'owner a acté leur suppression. Le réglage « Contrôles » du panneau part
+ * avec elles : un interrupteur qui ne commande plus rien est un mensonge. */
 
-.s_pqr_google_reviews:not(.pqr-controls-visible) [data-pqr-controls] {
-  display: none;
-}
 
 /* Le repeat QWeb rend directement la racine de ReviewCard : ce pont porte
  * donc le Fill déclaré sur la part composée `carte`, sans modifier le contrat
@@ -396,16 +391,14 @@
 /* .o_pqr_page     { outline: 2px solid #e6007a; }   container */
 /* .o_pqr_page > * { outline: 1px solid #00a3ff; }   sections */
 /* ODOO-PAGE-DEBUG END */
-/* Parent public composé (spec drift 2026-08-23). Le widget historique garde
-   son contrat 1552px pour les snippets sauvegardés ; dans ce nouveau parent,
-   le Container Odoo possède la largeur et le widget remplit cette largeur. */
-.s_pqr_google_reviews_section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--pqr-space-12);
-  width: 100%;
-}
-.s_pqr_google_reviews_section .google-reviews {
+/* Parent public composé — RÉDUIT le 2026-09-03 (vague 031, round section).
+   La règle d'origine (2026-08-23) posait ici display/flex, align-items:center et
+   gap 12 parce que la section n'était pas gouvernée : elle n'était qu'un cadre
+   autour du widget. Depuis ds.google-reviews 3.0.0, la section EST le contrat —
+   elle porte sa propre disposition, son écart (32 / 32 / 15 / 40) et son
+   alignement (à gauche sous 992, centré au-delà). Garder ces déclarations ici
+   les écrasait en silence : l'écart tombait à 12 et l'en-tête restait centré.
+   Ne subsiste que la largeur du widget interne, qui n'appartient à aucun contrat. */
+.s_pqr_google_reviews_section .google-reviews__avisGoogle {
   width: 100%;
 }

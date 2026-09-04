@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 29,
+    "acknowledged": 32,
     "pending": 0,
     "bySurface": {}
   },
@@ -107,6 +107,20 @@
       "subject": "Reassurances.Bouton",
       "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
       "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "ReviewCard.Auteur (default)",
+      "detail": "Default differs — contract: \"Prénom N.\", figma: \"p. syster\"",
+      "remedy": "Adopt into contract (promotion) or reset the property default"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "ReviewCard.Témoignage (default)",
+      "detail": "Default differs — contract: \"Un témoignage neutre, exemple générique de contenu.\", figma: \"super très pro et service après vente présent\"",
+      "remedy": "Adopt into contract (promotion) or reset the property default"
     },
     {
       "surface": "figma-tokens",
@@ -226,6 +240,13 @@
       "subject": "assets/icons/close.svg",
       "detail": "code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)",
       "remedy": "Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset"
+    },
+    {
+      "surface": "icons",
+      "classification": "ahead",
+      "subject": "assets/icons/google-wordmark.svg",
+      "detail": "code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)",
+      "remedy": "Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset"
     }
   ],
   "pending": [],
@@ -247,8 +268,7 @@
     "ds.footer-column@1.1.0",
     "ds.footer@1.2.0",
     "ds.formulaire@2.0.0",
-    "ds.google-reviews-section@1.0.0",
-    "ds.google-reviews@2.0.0",
+    "ds.google-reviews@3.0.0",
     "ds.header@2.1.0",
     "ds.hero-video@2.0.0",
     "ds.hero@2.0.0",
@@ -263,7 +283,7 @@
     "ds.produits-ecommerce@1.0.0",
     "ds.realisation@1.1.0",
     "ds.reassurances@2.0.0",
-    "ds.review-card@2.0.0",
+    "ds.review-card@3.0.0",
     "ds.sav@2.0.0",
     "ds.section-header@3.0.0",
     "ds.select@1.0.0",

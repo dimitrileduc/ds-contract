@@ -60,10 +60,12 @@
   --space-11: 11px;
   --space-12: 12px;
   --space-14: 14px;
+  --space-15: 15px;
   --space-16: 16px;
   --space-22: 22px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-40: 40px;
   --space-47: 47px;
   --space-48: 48px;
   --space-56: 56px;
@@ -141,6 +143,7 @@
   --size-review-card-avatar-initiale: 40px;
   --size-review-card-avatar-photo: 40px;
   --size-review-card-verification: 16px;
+  --size-review-card-min-w: 250px;
   --size-sav-content-padding: 131px;
   --size-sav-image-right-inset: 78px;
   --size-sav-section-w: 1550px;
@@ -182,6 +185,8 @@
   --size-carte-categorie-min-w: 320px;
   --size-categories-principales-carte-h-mobile: 418px;
   --size-categories-principales-carte-h-tablette: 288px;
+  --radius-8: 8px;
+  --radius-20: 20px;
   --radius-32: 32px;
   --radius-500: 500px;
   --border-width-0: 0px;
@@ -298,6 +303,10 @@
   --typography-review-lien-line-height: var(--font-line-height-24);
   --typography-review-initiale-size: var(--font-size-14);
   --typography-review-initiale-line-height: var(--font-line-height-24);
+  --typography-review-note-size: var(--font-size-32);
+  --typography-review-libelle-size: var(--font-size-16);
+  --typography-review-note-line-height: var(--font-line-height-40);
+  --typography-review-libelle-line-height: var(--font-line-height-20);
   --spacing-card-categorie-pad-h: var(--space-24);
   --spacing-carte-reassurance-gap: var(--space-16);
   --spacing-carte-reassurance-pad-bas: var(--space-16);
@@ -337,6 +346,10 @@
     --typography-review-lien-line-height: var(--font-line-height-24);
     --typography-review-initiale-size: var(--font-size-14);
     --typography-review-initiale-line-height: var(--font-line-height-24);
+    --typography-review-note-size: var(--font-size-32);
+    --typography-review-libelle-size: var(--font-size-16);
+    --typography-review-note-line-height: var(--font-line-height-40);
+    --typography-review-libelle-line-height: var(--font-line-height-20);
     --typography-libelle-bouton-size: var(--font-size-16);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);
@@ -378,6 +391,10 @@
     --typography-review-lien-line-height: var(--font-line-height-24);
     --typography-review-initiale-size: var(--font-size-18);
     --typography-review-initiale-line-height: var(--font-line-height-18);
+    --typography-review-note-size: var(--font-size-14);
+    --typography-review-libelle-size: var(--font-size-14);
+    --typography-review-note-line-height: var(--font-line-height-20);
+    --typography-review-libelle-line-height: var(--font-line-height-20);
     --typography-libelle-bouton-size: var(--font-size-16);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);
@@ -419,6 +436,10 @@
     --typography-review-lien-line-height: var(--font-line-height-24);
     --typography-review-initiale-size: var(--font-size-18);
     --typography-review-initiale-line-height: var(--font-line-height-18);
+    --typography-review-note-size: var(--font-size-14);
+    --typography-review-libelle-size: var(--font-size-18);
+    --typography-review-note-line-height: var(--font-line-height-20);
+    --typography-review-libelle-line-height: var(--font-line-height-22);
     --typography-libelle-bouton-size: var(--font-size-18);
     --spacing-card-categorie-pad-h: var(--space-32);
     --spacing-carte-reassurance-gap: var(--space-24);

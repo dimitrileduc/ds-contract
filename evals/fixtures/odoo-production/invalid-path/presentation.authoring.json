@@ -3,15 +3,34 @@
   "configId": "fixture-invalid-path",
   "authoringVersion": "1.0.0",
   "snapshotId": "odoo-019-foundation",
-  "rootContract": { "id": "ds.presentation", "version": "4.0.1" },
-  "rootActions": [{ "action": "move", "verdict": "allowed" }],
+  "rootContract": {
+    "id": "ds.presentation",
+    "version": "4.0.1"
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    }
+  ],
   "controls": [
     {
       "decisionId": "fx-chemin-inexistant",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.presentation", "version": "4.0.1" } },
-          { "contract": { "id": "ds.review-card", "version": "2.0.0" }, "viaPart": "carte" }
+          {
+            "contract": {
+              "id": "ds.presentation",
+              "version": "4.0.1"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.review-card",
+              "version": "3.0.0"
+            },
+            "viaPart": "carte"
+          }
         ],
         "prop": "auteur"
       },
@@ -23,8 +42,19 @@
       "decisionId": "fx-version-fausse",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.presentation", "version": "4.0.1" } },
-          { "contract": { "id": "ds.section-header", "version": "9.9.9" }, "viaPart": "SectionHeader" }
+          {
+            "contract": {
+              "id": "ds.presentation",
+              "version": "4.0.1"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "9.9.9"
+            },
+            "viaPart": "SectionHeader"
+          }
         ],
         "prop": "titre"
       },
@@ -37,8 +67,18 @@
     {
       "decisionId": "fx-part-inexistante",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "4.0.1" } }],
-        "partPath": ["root", "colonneQuiNexistePas"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.presentation",
+              "version": "4.0.1"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "colonneQuiNexistePas"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -48,13 +88,26 @@
     {
       "decisionId": "fx-selecteur-non-prefixe",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "4.0.1" } }],
-        "partPath": ["root", "wrapper", "Texte"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.presentation",
+              "version": "4.0.1"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "Texte"
+        ]
       },
       "verdict": "directly-editable",
       "contentKind": "rich-text",
       "selector": ".pqr-texte",
-      "allowedMarks": ["strong"]
+      "allowedMarks": [
+        "strong"
+      ]
     }
   ]
 }

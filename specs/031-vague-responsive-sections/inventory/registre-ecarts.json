@@ -730,5 +730,22 @@
     "verdict": "Remplacé par un dégradé lissé de 25 arrêts, calé sur la position réelle du contenu (titre 32-50 %, bouton 57-68 %) : montée en smoothstep de 8 à 45 %, plateau à 0,74 jusqu'à 72 %, descente lissée ensuite, extrémités à 0,10 en haut et 0,24 en bas pour que la photo reste lisible. Contrastes obtenus sur une luminance de fond de 0,65 : haut du titre 3,3:1, bas du titre 4,8:1, bouton 4,8:1. Tous au-dessus des seuils.",
     "renvoi": "WCAG 2.2 AA — 3:1 grand texte, 4,5:1 texte courant · technique du scrim étagé · E-031-032 (même classe de défaut sur le hero)",
     "note": "DEUX ITÉRATIONS NÉCESSAIRES, et la première était fausse. Une courbe smoothstep démarrant à 6 % et pleine à 60 % donnait 2,3:1 au HAUT du titre — le lissage repoussait la montée au-delà de la première ligne. Corrigé en avançant la montée (8 % -> 45 %). LEÇON : une courbe lisse n'est pas automatiquement une courbe juste ; il faut vérifier l'alpha À LA POSITION EXACTE du texte, pas juger la forme. Deuxième point : une première version à 11 arrêts laissait une ARÊTE VISIBLE dans le ciel, qui est un aplat lisse — il a fallu 25 arrêts et une interpolation smoothstep pour la faire disparaître. Le nombre d'arrêts dépend du FOND, pas seulement de la courbe."
+  },
+  {
+    "id": "E-031-044",
+    "famille": "dette",
+    "campagne": "google-reviews-section",
+    "phase": "pré-contrat",
+    "constateA": "2026-09-03T10:20:00Z",
+    "decisionRef": "décision owner en conversation, 2026-09-03",
+    "preuveRef": "contracts/reassurances.contract.json (description 2.0.0) · contracts/sav.contract.json l.410 · contracts/section-header.contract.json 3.0.0 (aucune dimension par écran)",
+    "exigencesCouvertes": [],
+    "briefSuivant": "Rendre ds.section-header responsive (axe Presentation / valeurs par écran), puis reprendre les quatre sections qui décrivent leur en-tête à plat — sav, reassurances, google-reviews-section — et recoller sur le composant commun.",
+    "ecart": "ds.section-header 3.0.0 n'a aucune dimension par écran : son titre et son sur-titre ne peuvent pas varier entre Mobile, Tablette, Desktop et Wide. Toute section responsive qui le compose voit sa typographie figée.",
+    "cause": "Le composant commun n'a pas été porté par la vague 031 : il est partagé par quatre sections (google-reviews-section, faq, formulaire, coordonnees) dont trois sont hors périmètre home. Le rendre responsive pendant la vague aurait fait entrer ces trois sections dans le chantier.",
+    "disposition": "décision-owner",
+    "verdict": "dette assumée",
+    "renvoi": "constitution §VIII (réparer la source) — ici la réparation est DIFFÉRÉE, pas contournée",
+    "note": "Contournement retenu, identique à celui déjà appliqué deux fois sur la home : la section décrit son en-tête à plat et lui rend ses tailles par écran. SAV et Réassurances l'ont fait pendant la vague ; google-reviews-section fera de même. Conséquence nommée : le titre de section est décrit à deux endroits dans le dépôt (le composant commun + chaque section à plat) tant que la dette n'est pas soldée. L'owner a explicitement dit le 2026-09-03 : « il aurait fallu fix le sectionTitle et on le fera plus tard »."
   }
 ]

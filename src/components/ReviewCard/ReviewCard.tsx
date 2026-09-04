@@ -1,11 +1,12 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v2.0.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
 import type { HTMLAttributes } from 'react';
 import { Notation } from '../Notation';
+import { Button } from '../Button';
 import styles from './ReviewCard.module.css';
 
 const ICONS: Record<string, string> = {
@@ -27,6 +28,10 @@ export interface ReviewCardProps extends HTMLAttributes<HTMLElement> {
   /** src côté code ; inerte sur le canevas (trou A5, R6) — une prop scalaire ne peut pas être figma.kind:'NONE'. */
   photoUrl?: string;
   photoAlt?: string;
+  /** Pastille noire de vérification, à droite des étoiles. Relevé du 2026-09-03 sur le set 031 : le calque `verification` est MASQUÉ sur le maître (2700:26539) ET sur les cinq instances des quatre vues. Il n'est donc jamais dessiné aujourd'hui — la présence devient une option gouvernée par défaut à faux plutôt qu'un calque caché (§VIII : jamais un calque masqué en dur). */
+  verifie?: boolean;
+  /** Adresse de l'avis Google d'origine, ouverte par le bouton « Lire la suite ». PAR AVIS : elle entre par la collection de la section, jamais par un réglage global. Vide, le bouton ne navigue pas. */
+  lienAvis?: string;
 }
 
 /** Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).
@@ -40,12 +45,14 @@ export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function Revi
   {
     avatar = 'Initiale',
     note = '5',
+    verifie = false,
     auteur,
     initiale = 'P',
     date = 'il y a 2 mois',
     texte,
     photoUrl = '',
     photoAlt = '',
+    lienAvis = '',
     className,
     children,
     ...rest
@@ -56,7 +63,7 @@ export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function Revi
     .filter(Boolean)
     .join(' ');
   return (
-    <article ref={ref} className={classes} {...rest}>
+    <article ref={ref} className={classes} data-verifie={verifie || undefined} {...rest}>
       <div className={styles.entete}>
         <div className={styles.profil}>
           {avatar === 'Initiale' ? (
@@ -80,16 +87,18 @@ export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function Revi
       </div>
       <div className={styles.notation}>
         <Notation note={note} />
-        <div className={styles.verification}>
-          <span
-            className={styles.coche}
-            aria-hidden="true"
-            dangerouslySetInnerHTML={{ __html: ICONS['check'] }}
-          />
-        </div>
+        {verifie ? (
+          <div className={styles.verification}>
+            <span
+              className={styles.coche}
+              aria-hidden="true"
+              dangerouslySetInnerHTML={{ __html: ICONS['check'] }}
+            />
+          </div>
+        ) : null}
       </div>
       <p className={styles.temoignage}>{texte}</p>
-      <span className={styles.lireLaSuite}>Lire la suite</span>
+      <Button variant="link">Lire la suite</Button>
     </article>
   );
 });
