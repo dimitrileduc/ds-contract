@@ -1,25 +1,72 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-footer-authoring",
-  "authoringVersion": "1.0.0",
+  "authoringVersion": "2.0.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.footer",
-    "version": "1.2.0"
+    "version": "2.0.0"
   },
   "rootActions": [
-    { "action": "move", "verdict": "forbidden", "reasonCode": "shell-systeme" },
-    { "action": "duplicate", "verdict": "forbidden", "reasonCode": "shell-systeme" },
-    { "action": "remove", "verdict": "forbidden", "reasonCode": "shell-systeme" },
-    { "action": "save-as-custom", "verdict": "forbidden", "reasonCode": "shell-systeme" },
-    { "action": "resize", "verdict": "forbidden", "reasonCode": "shell-systeme" },
-    { "action": "background", "verdict": "forbidden", "reasonCode": "shell-systeme" }
+    {
+      "action": "move",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "remove",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    }
   ],
   "controls": [
     {
+      "decisionId": "footer-ctl-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "footer-items",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
         "prop": "items"
       },
       "verdict": "fixed-by-composition",
@@ -29,8 +76,19 @@
       "decisionId": "footer-logo-couleur",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
         ],
         "prop": "couleur"
       },
@@ -41,8 +99,19 @@
       "decisionId": "footer-cta-variant",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "variant"
       },
@@ -53,8 +122,19 @@
       "decisionId": "footer-cta-children",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "children"
       },
@@ -65,8 +145,19 @@
       "decisionId": "footer-cta-icon-right",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "iconRight"
       },
@@ -77,8 +168,19 @@
       "decisionId": "footer-cta-icon-left",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "iconLeft"
       },
@@ -89,8 +191,19 @@
       "decisionId": "footer-cta-icon-left-glyph",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "iconLeftGlyph"
       },
@@ -101,8 +214,19 @@
       "decisionId": "footer-cta-icon-right-glyph",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
         "prop": "iconRightGlyph"
       },
@@ -113,8 +237,20 @@
       "decisionId": "footer-column-texte",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.footer-column",
+              "version": "1.1.0"
+            },
+            "viaPart": "FooterColumn",
+            "repeat": true
+          }
         ],
         "prop": "texte"
       },
@@ -128,8 +264,20 @@
       "decisionId": "footer-column-titre",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.footer-column",
+              "version": "1.1.0"
+            },
+            "viaPart": "FooterColumn",
+            "repeat": true
+          }
         ],
         "prop": "titre"
       },
@@ -140,8 +288,19 @@
       "decisionId": "footer-copyright-texte",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "Copyright"
+          }
         ],
         "prop": "texte"
       },
@@ -150,14 +309,47 @@
       "targetSelector": ".footer [data-pqr-part=\"copyright-texte\"]",
       "label": "Texte du copyright",
       "reasonCode": "t-field-inline"
+    },
+    {
+      "decisionId": "footer-copyright-bas-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "CopyrightBas"
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "reasonCode": "odoo-desktop-ligne-bas-css"
     }
   ],
   "parts": [
     {
       "decisionId": "footer-part-root",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -167,8 +359,18 @@
     {
       "decisionId": "footer-part-background",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Background"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Background"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -178,8 +380,18 @@
     {
       "decisionId": "footer-part-row",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -189,8 +401,19 @@
     {
       "decisionId": "footer-part-col1",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col1"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col1"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -200,8 +423,20 @@
     {
       "decisionId": "footer-part-logo",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col1", "PiquerayLogo"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col1",
+          "PiquerayLogo"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "component",
@@ -211,8 +446,20 @@
     {
       "decisionId": "footer-part-cta",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col1", "Bouton"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col1",
+          "Bouton"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "component",
@@ -222,8 +469,19 @@
     {
       "decisionId": "footer-part-column-collection",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "FooterColumn"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "FooterColumn"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "repeat",
@@ -233,8 +491,19 @@
     {
       "decisionId": "footer-part-col5",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col5"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col5"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -244,8 +513,20 @@
     {
       "decisionId": "footer-part-titre-reseaux",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col5", "TitreReseaux"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col5",
+          "TitreReseaux"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "plain-text",
@@ -255,8 +536,20 @@
     {
       "decisionId": "footer-part-reseaux-sociaux",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col5", "rseauxSociaux"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col5",
+          "rseauxSociaux"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -266,8 +559,21 @@
     {
       "decisionId": "footer-part-facebook",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col5", "rseauxSociaux", "Facebook"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col5",
+          "rseauxSociaux",
+          "Facebook"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "media",
@@ -277,8 +583,21 @@
     {
       "decisionId": "footer-part-instagram",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Row", "col5", "rseauxSociaux", "Instagram"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Row",
+          "col5",
+          "rseauxSociaux",
+          "Instagram"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "media",
@@ -288,8 +607,18 @@
     {
       "decisionId": "footer-part-spacer",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Spacer"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Spacer"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -299,8 +628,18 @@
     {
       "decisionId": "footer-part-separator",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Separator"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Separator"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -310,8 +649,18 @@
     {
       "decisionId": "footer-part-spacer2",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "spacer2"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "spacer2"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -321,8 +670,18 @@
     {
       "decisionId": "footer-part-copyright",
       "address": {
-        "componentPath": [{ "contract": { "id": "ds.footer", "version": "1.2.0" } }],
-        "partPath": ["root", "Copyright"]
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Copyright"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "component",
@@ -333,10 +692,23 @@
       "decisionId": "footer-logo-part-root",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
         ],
-        "partPath": ["root"]
+        "partPath": [
+          "root"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "structural",
@@ -347,10 +719,24 @@
       "decisionId": "footer-logo-part-marque",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
         ],
-        "partPath": ["root", "Marque"]
+        "partPath": [
+          "root",
+          "Marque"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "media",
@@ -361,10 +747,24 @@
       "decisionId": "footer-logo-part-wordmark",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.piqueray-logo", "version": "1.0.0" }, "viaPart": "PiquerayLogo" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.piqueray-logo",
+              "version": "1.0.0"
+            },
+            "viaPart": "PiquerayLogo"
+          }
         ],
-        "partPath": ["root", "Wordmark"]
+        "partPath": [
+          "root",
+          "Wordmark"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "media",
@@ -375,10 +775,23 @@
       "decisionId": "footer-cta-part-root",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
-        "partPath": ["root"]
+        "partPath": [
+          "root"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -389,10 +802,24 @@
       "decisionId": "footer-cta-part-icon-left",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
-        "partPath": ["root", "iconLeft"]
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "media",
@@ -403,10 +830,24 @@
       "decisionId": "footer-cta-part-icon-only",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
-        "partPath": ["root", "iconOnlyIcon"]
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "media",
@@ -417,10 +858,24 @@
       "decisionId": "footer-cta-part-label",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
-        "partPath": ["root", "label"]
+        "partPath": [
+          "root",
+          "label"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
@@ -431,10 +886,24 @@
       "decisionId": "footer-cta-part-icon-right",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.button", "version": "2.1.0" }, "viaPart": "Bouton" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
         ],
-        "partPath": ["root", "iconRight"]
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "media",
@@ -445,10 +914,24 @@
       "decisionId": "footer-column-part-root",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.footer-column",
+              "version": "1.1.0"
+            },
+            "viaPart": "FooterColumn",
+            "repeat": true
+          }
         ],
-        "partPath": ["root"]
+        "partPath": [
+          "root"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -459,10 +942,25 @@
       "decisionId": "footer-column-part-titre",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.footer-column",
+              "version": "1.1.0"
+            },
+            "viaPart": "FooterColumn",
+            "repeat": true
+          }
         ],
-        "partPath": ["root", "Titre"]
+        "partPath": [
+          "root",
+          "Titre"
+        ]
       },
       "verdict": "fixed-by-composition",
       "contentKind": "plain-text",
@@ -473,10 +971,25 @@
       "decisionId": "footer-column-part-texte",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.footer-column", "version": "1.1.0" }, "viaPart": "FooterColumn", "repeat": true }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.footer-column",
+              "version": "1.1.0"
+            },
+            "viaPart": "FooterColumn",
+            "repeat": true
+          }
         ],
-        "partPath": ["root", "Texte"]
+        "partPath": [
+          "root",
+          "Texte"
+        ]
       },
       "verdict": "directly-editable",
       "contentKind": "plain-text",
@@ -487,10 +1000,23 @@
       "decisionId": "footer-copyright-part-root",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "Copyright"
+          }
         ],
-        "partPath": ["root"]
+        "partPath": [
+          "root"
+        ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
@@ -501,15 +1027,202 @@
       "decisionId": "footer-copyright-part-texte",
       "address": {
         "componentPath": [
-          { "contract": { "id": "ds.footer", "version": "1.2.0" } },
-          { "contract": { "id": "ds.copyright", "version": "1.0.0" }, "viaPart": "Copyright" }
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "Copyright"
+          }
         ],
-        "partPath": ["root", "Texte"]
+        "partPath": [
+          "root",
+          "Texte"
+        ]
       },
       "verdict": "directly-editable",
       "contentKind": "plain-text",
       "selector": ".footer [data-pqr-part=\"copyright-texte\"]",
       "allowedMarks": []
+    },
+    {
+      "decisionId": "footer-part-ligne-bas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "LigneBas"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"root\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-part-copyright-bas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "LigneBas",
+          "CopyrightBas"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".footer [data-pqr-part=\"copyright-root\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-part-reseaux-sociaux-bas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "LigneBas",
+          "rseauxSociauxBas"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"reseaux-sociaux\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-part-facebook-bas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "LigneBas",
+          "rseauxSociauxBas",
+          "FacebookBas"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"facebook\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-part-instagram-bas",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "LigneBas",
+          "rseauxSociauxBas",
+          "InstagramBas"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".footer [data-pqr-part=\"instagram\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-copyright-bas-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "CopyrightBas"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".footer [data-pqr-part=\"copyright-root\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
+    },
+    {
+      "decisionId": "footer-copyright-bas-part-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.footer",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.copyright",
+              "version": "1.0.0"
+            },
+            "viaPart": "CopyrightBas"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Texte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".footer [data-pqr-part=\"copyright-texte\"]",
+      "allowedMarks": [],
+      "reasonCode": "odoo-desktop-ligne-bas-css"
     }
   ]
 }

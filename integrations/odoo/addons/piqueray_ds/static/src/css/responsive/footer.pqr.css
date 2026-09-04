@@ -1,0 +1,171 @@
+/*
+ * responsive/footer.pqr.css — ZONE MANUELLE (footer 031, 2026-09-04).
+ *
+ * Projection Odoo des règles PAR MODE de ds.footer 2.0.0 (tokensByProp /
+ * layoutByProp sur l'axe `presentation`), réécrites en @media sur les
+ * breakpoints des jetons — même forme que responsive/header.pqr.css :
+ *   Mobile   = base (components.pqr.css, mobile-first)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la
+ * classe `.footer--presentation-<mode>` (Odoo ne pose jamais cette classe).
+ *
+ * La typographie du titre « Suivez-nous » n'est PAS ici : elle roule sur le
+ * style responsive H4 (--pqr-typography-h4-*), dont tokens.pqr.css porte déjà
+ * les blocs @media. Le libellé du CTA suit typography/button/size (16·16·16·18).
+ *
+ * TROIS FAITS CODE-ONLY (aucun canal par mode sur une part instance) :
+ *   · la typographie des colonnes de contact — 20/14 sous 992 px, 24/18 au-delà,
+ *     titre en Medium. ds.footer-column est figé à 24/18 en Regular et compte 36
+ *     instances vivantes ailleurs : le rendre responsive (et corriger sa graisse,
+ *     que les QUATRE usages surchargent en Medium) est un pivot différé — journal
+ *     specs/tiny/vague-031/footer.md, « à corriger à la source ».
+ *   · le copyright passe à 18 px dans la seule plage desktop — même cause,
+ *     ds.copyright est figé à 14.
+ *   · le SIZING des enfants (FILL/HUG par mode) : le contrat porte la direction
+ *     et les gaps, pas la répartition ; elle se réécrit ici en flex.
+ *
+ * La part LigneBas du contrat existe dans le DOM à toutes les largeurs et se
+ * réduit au copyright seul hors desktop (règle « tout rendre + masquer »).
+ */
+
+/* ---- Base = Mobile -------------------------------------------------------- */
+
+/* Sizing : tout est pleine largeur dans la colonne empilée. La largeur fixe de
+ * 310px que ds.footer-column porte sur son propre root est neutralisée ici —
+ * elle vaut pour l'usage desktop/wide du master, pas pour la pile mobile. */
+.footer .footer__col1,
+.footer .footer-column,
+.footer .footer__col5 {
+  width: 100%;
+}
+.footer .footer__col1 a.button {
+  width: 100%;
+}
+
+/* Colonnes de contact : 20/14, titre en Medium (fait code-only nº1). */
+.footer .footer-column__Titre {
+  font-size: var(--pqr-font-size-20);
+  line-height: var(--pqr-font-line-height-25);
+  font-weight: var(--pqr-font-weight-medium);
+}
+.footer .footer-column__Texte {
+  font-size: var(--pqr-font-size-14);
+  line-height: var(--pqr-font-line-height-24);
+}
+
+/* Ligne basse : hors desktop, le copyright occupe seul la ligne. */
+.footer .footer__LigneBas {
+  display: block;
+}
+.footer .footer__rseauxSociauxBas {
+  display: none;
+}
+
+/* ---- Tablette ≥ 768 ------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .footer[data-pqr-shell="footer"] {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* ---- Desktop ≥ 992 (et Wide, sauf mention contraire) ---------------------- */
+
+@media (min-width: 992px) {
+  .footer[data-pqr-shell="footer"] {
+    padding-inline: var(--pqr-space-56);
+    padding-top: var(--pqr-space-128);
+    padding-bottom: var(--pqr-space-32);
+  }
+
+  .footer .footer__Row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--pqr-space-64);
+  }
+
+  .footer .footer__col1 {
+    gap: var(--pqr-space-32);
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .footer .footer__col1 a.button {
+    width: auto;
+  }
+
+  /* Les trois colonnes se partagent le reste à parts égales (FILL du canevas :
+   * 225,7 px à 1200, 309,3 px à 1728). */
+  .footer .footer-column {
+    width: auto;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .footer .footer__col5 {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  /* Colonnes de contact : 24/18 (fait code-only nº1). */
+  .footer .footer-column__Titre {
+    font-size: var(--pqr-font-size-24);
+    line-height: var(--pqr-font-line-height-30);
+  }
+  .footer .footer-column__Texte {
+    font-size: var(--pqr-font-size-18);
+    line-height: var(--pqr-font-line-height-27);
+  }
+
+  .footer .footer__Spacer {
+    height: var(--pqr-size-footer-spacer);
+  }
+  /* Le filet du canevas est un contour CENTRÉ sur une boîte de hauteur nulle : il
+   * n'occupe aucune hauteur de flux. Notre bordure de 1 px en occupe une et
+   * décalait de 1 px tout ce qui suit (footer 463 au lieu de 462). La marge
+   * négative lui rend sa hauteur de flux nulle. */
+  .footer .footer__Separator {
+    border-color: var(--pqr-color-blanc);
+    margin-bottom: -1px;
+  }
+  .footer .footer__spacer2 {
+    height: var(--pqr-size-footer-spacer2);
+  }
+}
+
+/* ---- Desktop SEUL, 992 → 1399 : la ligne basse ---------------------------- */
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  /* La maquette desktop n'a pas de colonne « Suivez-nous » : les mêmes icônes
+   * vivent en bas à droite, à 24 px, sur la ligne du copyright. */
+  .footer .footer__col5 {
+    display: none;
+  }
+  .footer .footer__LigneBas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer .footer__rseauxSociauxBas {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--pqr-space-16);
+  }
+  /* Copyright à 18 px sur cette seule plage (fait code-only nº2). */
+  .footer .copyright__Texte {
+    font-size: var(--pqr-font-size-18);
+    line-height: var(--pqr-font-line-height-27);
+  }
+}
+
+/* ---- Wide ≥ 1400 ---------------------------------------------------------- */
+
+@media (min-width: 1400px) {
+  .footer[data-pqr-shell="footer"] {
+    padding-inline: var(--pqr-space-89);
+  }
+}

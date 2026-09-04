@@ -305,6 +305,7 @@
 .footer[data-pqr-shell="footer"] .footer__Spacer,
 .footer[data-pqr-shell="footer"] .footer__Separator,
 .footer[data-pqr-shell="footer"] .footer__spacer2,
+.footer[data-pqr-shell="footer"] .footer__LigneBas,
 .footer[data-pqr-shell="footer"] .copyright {
   position: relative;
 }
@@ -319,14 +320,21 @@
   border-right-style: none;
 }
 
-/* (2) Icônes sociales blanches sur fond sombre, hover gris léger */
+/* (2) Icônes sociales blanches sur fond sombre, hover gris léger.
+ * La paire `…Bas` (part LigneBas du contrat, mode desktop) est ajoutée le
+ * 2026-09-04 : elle porte le même `color: blanc` du contrat et le perdait de la
+ * même façon — la couleur de lien Bootstrap gagne en spécificité sur `a`. */
 .footer[data-pqr-shell="footer"] .footer__Facebook,
-.footer[data-pqr-shell="footer"] .footer__Instagram {
+.footer[data-pqr-shell="footer"] .footer__Instagram,
+.footer[data-pqr-shell="footer"] .footer__FacebookBas,
+.footer[data-pqr-shell="footer"] .footer__InstagramBas {
   color: var(--pqr-color-blanc);
   transition: opacity 0.2s ease;
 }
 .footer[data-pqr-shell="footer"] .footer__Facebook:hover,
-.footer[data-pqr-shell="footer"] .footer__Instagram:hover {
+.footer[data-pqr-shell="footer"] .footer__Instagram:hover,
+.footer[data-pqr-shell="footer"] .footer__FacebookBas:hover,
+.footer[data-pqr-shell="footer"] .footer__InstagramBas:hover {
   color: var(--pqr-color-blanc);
   opacity: 0.6;
 }

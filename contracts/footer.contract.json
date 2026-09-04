@@ -2,13 +2,35 @@
   "$schema": "./contract.schema.json",
   "id": "ds.footer",
   "name": "Footer",
-  "version": "1.2.0",
-  "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
+  "version": "2.0.0",
+  "description": "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md.",
   "semantics": {
-    "element": "div",
+    "element": "footer",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": ["mobile", "tablette", "desktop", "wide"]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
     {
       "name": "items",
       "type": {
@@ -30,39 +52,91 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL (auto-layout Figma natif), itemSpacing 0, padding 128/89/32/89. La largeur portée ici (`{size.footer.root}` = 1728px) est la boîte TOTALE padding-inclus, telle que Figma la mesure nativement pour un frame auto-layout (`absoluteBoundingBox.width`) — la feuille générée déclare `box-sizing: border-box` (T013) donc ce même 1728px, posé en CSS `width`, retombe sur la même boîte. Corrigé le 2026-08-04 (Phase 6, named-repair:DW-004+DW-005) : la valeur portée jusque-là (1550px) était le calcul CONTENU (1728−89−89), correct seulement sous l'ancien défaut content-box — voir `size.footer.root` dans tokens/primitives.tokens.json pour le detail de la correction.",
+      "description": "Racine du set 031 `Footer` 2735:12509. Largeur FILL (les 390/834/1200/1728 relevés sont des témoins de planche, pas des jetons) avec 1728 comme largeur de référence. La gouttière suit l'écran (24 · 48 · 56 · 89) ; le padding vertical n'est PAS symétrique au-delà de la tablette (64/64 en mobile et tablette, 128/32 en desktop et wide), d'où deux canaux séparés plutôt qu'un padding-block.",
       "layout": {
         "display": "flex",
-        "direction": "column"
+        "direction": "column",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "declared": {
         "position": "relative"
       },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-top": "{space.64}",
+        "padding-bottom": "{space.64}",
+        "gap": "{space.0}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "padding-top": "{space.128}",
+            "padding-bottom": "{space.32}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "padding-top": "{space.128}",
+            "padding-bottom": "{space.32}"
+          }
+        }
+      },
       "parts": {
         "Background": {
-          "description": "Plan de fond ABSOLU du master (layoutPositioning ABSOLUTE, 1728×459 posé en (0,0)). Les insets sont portés explicitement : sans eux le plan se poserait à son origine STATIQUE, c'est-à-dire au coin de la boîte de CONTENU du root, décalé des 89px de padding horizontal — il débordait alors du viewport de capture de ces 89px exactement.",
+          "description": "Plan de fond ABSOLU (layoutPositioning ABSOLUTE dans Figma). Depuis le nettoyage 031 il est en contrainte STRETCH sur les deux axes et couvre exactement la racine : les insets sont portés sur les QUATRE côtés, et la hauteur n'est plus une valeur indépendante (l'ancienne liaison à {size.footer.background} = 459 laissait 27 px de bande transparente en tablette et 3 px en desktop).",
           "declared": {
             "position": "absolute",
             "top": "0",
-            "left": "0",
-            "right": "0"
+            "right": "0",
+            "bottom": "0",
+            "left": "0"
           },
           "tokens": {
-            "height": "{size.footer.background}",
             "background-color": "{color.noir-bleute}"
           }
         },
         "Row": {
-          "description": "FRAME 2120:4779, layoutMode HORIZONTAL SPACE_BETWEEN, layoutSizingHorizontal FILL (corrigé 2026-08-23, §VIII source-cleanliness : était FIXED 1385px, passé FILL pour que le footer soit dynamique au resize). L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse.",
+          "description": "Rangée principale. Colonne empilée en mobile et tablette, rangée en desktop et wide. L'ordre des parts est l'ordre visuel : logo/CTA, les trois colonnes, puis « Suivez-nous ».",
           "layout": {
             "display": "flex",
-            "direction": "row",
-            "justify": "space-between",
-            "align": "start",
-            "grow": true
+            "direction": "column",
+            "align": "stretch"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "direction": "row",
+                "align": "start"
+              },
+              "wide": {
+                "direction": "row",
+                "align": "start"
+              }
+            }
           },
           "declared": {
             "position": "relative"
+          },
+          "tokens": {
+            "gap": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.64}"
+              },
+              "wide": {
+                "gap": "{space.64}"
+              }
+            }
           },
           "parts": {
             "col1": {
@@ -70,11 +144,22 @@
                 "direction": "column"
               },
               "tokens": {
-                "gap": "{space.32}"
+                "gap": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "desktop": {
+                    "gap": "{space.32}"
+                  },
+                  "wide": {
+                    "gap": "{space.32}"
+                  }
+                }
               },
               "parts": {
                 "PiquerayLogo": {
-                  "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
+                  "description": "Instance gouvernée. Avant le nettoyage 031, mobile et tablette portaient un cadre détaché de 64,6 et 139,4 px de haut pour un dessin de 34 : la hauteur fantôme est supprimée, le footer s'est resserré de 30,6 et 105,4 px.",
                   "component": {
                     "id": "ds.piqueray-logo",
                     "props": {
@@ -83,11 +168,13 @@
                   }
                 },
                 "Bouton": {
+                  "description": "Le libellé passe de 16 à 18 px en wide : « Libellé bouton » est un style responsive (ds.button 2.1.0), la variante wide porte le mode Wide. Déviation attendue, identique à celle du header.",
                   "component": {
                     "id": "ds.button",
                     "text": "Contactez-nous",
                     "props": {
                       "variant": "outlineBlanc",
+                      "iconLeft": false,
                       "iconRight": false
                     }
                   }
@@ -95,7 +182,7 @@
               }
             },
             "FooterColumn": {
-              "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+              "description": "Trois instances de ds.footer-column. Les tailles de texte relevées (titre 20/20/24/24, texte 14/14/18/18) sont des SURCHARGES d'instance sur le canevas, pas des jetons : le master DS `FooterColumn` 2079:2246 est figé à 24/18 et compte 36 instances vivantes ailleurs — le rendre responsive est un pivot différé, décidé hors de ce contrat. Conséquence nommée : une part instance ne peut porter ni tokensByProp ni literalsByProp, la typographie par écran des colonnes est donc portée code-only côté Odoo.",
               "component": {
                 "id": "ds.footer-column"
               },
@@ -103,37 +190,42 @@
                 "itemsProp": "items",
                 "sample": [
                   {
-                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                    "texte": "Rue Alfred Drèze 7,\n4860 Pepinster",
                     "titre": "Adresse"
                   },
                   {
-                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "texte": "Du lundi au vendredi\nde 8h00 à 12h00 et\nde 13h30 à 17h00",
                     "titre": "Horaires"
                   },
                   {
-                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                    "texte": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
                     "titre": "Contact"
                   }
                 ]
               }
             },
             "col5": {
+              "description": "Colonne « Suivez-nous ». Absente du mode desktop, qui range les mêmes icônes dans LigneBas, en bas à droite (fait de maquette, acté par l'owner le 2026-09-04, pas un défaut).",
+              "hiddenWhen": {
+                "prop": "presentation",
+                "equals": "desktop"
+              },
               "layout": {
-                "direction": "column"
+                "direction": "column",
+                "align": "stretch"
               },
               "tokens": {
                 "gap": "{space.16}"
               },
               "parts": {
                 "TitreReseaux": {
+                  "description": "Style Figma responsive « H4 » : 20 px en mobile et tablette, 24 en desktop et wide.",
                   "text": "Suivez-nous",
                   "tokens": {
                     "color": "{color.orange}",
-                    "font-weight": "{font.weight.regular}"
-                  },
-                  "literals": {
-                    "font-size": "24px",
-                    "line-height": "30px"
+                    "font-size": "{typography.h4.size}",
+                    "line-height": "{typography.h4.line-height}",
+                    "font-weight": "{font.weight.medium}"
                   }
                 },
                 "rseauxSociaux": {
@@ -146,7 +238,7 @@
                   },
                   "parts": {
                     "Facebook": {
-                      "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                      "description": "Instance du master d'icône gouverné, remplissage surchargé en blanc : le master `Facebook` 2053:1259 n'a pas de propriété Couleur et rend sombre. Hauteur relevée 31.857126235961914px, transcrite telle quelle.",
                       "icon": {
                         "asset": "facebook",
                         "size": 31.857126235961914
@@ -171,25 +263,120 @@
           }
         },
         "Spacer": {
+          "description": "Cadre d'espacement au-dessus du filet. Conservé comme part plutôt que converti en gap : les écarts avant et après le filet sont asymétriques en desktop et wide (121 puis 27), un itemSpacing unique ne sait pas les porter.",
           "tokens": {
-            "height": "{size.footer.spacer}"
+            "height": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "height": "{size.footer.spacer}"
+              },
+              "wide": {
+                "height": "{size.footer.spacer}"
+              }
+            }
           }
         },
         "Separator": {
+          "description": "Filet de 1 px. Sur le canevas il est dessiné de deux façons — boîte de 1 px remplie en {color.gris-clair} en mobile et tablette, boîte de hauteur nulle avec un contour blanc en desktop et wide. Les deux sont liées ; l'unifier changerait la couleur d'un des deux groupes, décision laissée ouverte. Traduit ici en une bordure haute de 1 px sur une boîte de hauteur nulle, avec la couleur relevée par écran.",
           "tokens": {
-            "border-color": "{color.blanc}",
+            "border-color": "{color.gris-clair}",
             "height": "{space.0}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "border-color": "{color.blanc}"
+              },
+              "wide": {
+                "border-color": "{color.blanc}"
+              }
+            }
           },
           "literals": {
             "border-top-width": "1px"
           }
         },
         "spacer2": {
+          "description": "Cadre d'espacement sous le filet.",
           "tokens": {
-            "height": "{size.footer.spacer2}"
+            "height": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "height": "{size.footer.spacer2}"
+              },
+              "wide": {
+                "height": "{size.footer.spacer2}"
+              }
+            }
+          }
+        },
+        "LigneBas": {
+          "description": "Ligne basse du seul mode desktop : copyright à gauche, icônes sociales à droite. Les trois autres écrans posent le copyright seul (part Copyright) et les icônes dans col5.",
+          "visibleWhen": {
+            "prop": "presentation",
+            "equals": "desktop"
+          },
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center"
+          },
+          "parts": {
+            "CopyrightBas": {
+              "description": "Le texte du copyright est relevé à 18 px en desktop, contre 14 partout ailleurs. ds.copyright est figé à 14 : l'écart est une surcharge d'instance sur le canevas, portée code-only côté Odoo et nommée ici.",
+              "component": {
+                "id": "ds.copyright",
+                "props": {
+                  "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+                }
+              }
+            },
+            "rseauxSociauxBas": {
+              "layout": {
+                "direction": "row",
+                "justify": "end",
+                "align": "center"
+              },
+              "tokens": {
+                "gap": "{space.16}"
+              },
+              "parts": {
+                "FacebookBas": {
+                  "description": "24 px en desktop, contre 31,86 dans col5 — fait de maquette relevé, acté.",
+                  "icon": {
+                    "asset": "facebook",
+                    "size": 24
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  }
+                },
+                "InstagramBas": {
+                  "icon": {
+                    "asset": "instagram",
+                    "size": 24
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  }
+                }
+              }
+            }
           }
         },
         "Copyright": {
+          "description": "Copyright pleine largeur des modes mobile, tablette et wide. En desktop il vit dans LigneBas.",
+          "hiddenWhen": {
+            "prop": "presentation",
+            "equals": "desktop"
+          },
           "component": {
             "id": "ds.copyright",
             "props": {
@@ -197,24 +384,15 @@
             }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "width": "{size.footer.root}",
-        "padding-top": "{space.128}",
-        "padding-right": "{space.89}",
-        "padding-bottom": "{space.32}",
-        "padding-left": "{space.89}",
-        "gap": "{space.0}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
-      "nodeId": "2120:4785",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "cf79e2e8f660aec1cd30185d29b6134b11a86f63",
+      "nodeId": "2735:12509",
+      "dumpedAt": "2026-09-04"
     },
     "code": {
       "importPath": "src/components/Footer",
