@@ -549,7 +549,7 @@ export function campaignCaptureScaleCss(
 /** The playground's withOverridesAsDefaults: the chosen values become the
  *  clone's prop defaults, so the emitter's first showcase item IS the
  *  requested state. core/ stays untouched. */
-function withOverridesAsDefaults(
+export function withOverridesAsDefaults(
   contract: Contract,
   subst: Record<string, string>,
   bools: Record<string, boolean>,
@@ -659,7 +659,7 @@ const FRAME_CSS = `
   *, *::before, *::after { animation-play-state: paused !important; transition: none !important; }
 `;
 
-const ROOT_SELECTOR = '.showcase > .showcase__item:first-child > :nth-child(2)';
+export const ROOT_SELECTOR = '.showcase > .showcase__item:first-child > :nth-child(2)';
 const FIRST_ITEM_SELECTOR = '.showcase > .showcase__item:first-child';
 
 /** subjects.ts ContractSubject.renderWidth and campaign root-size override,

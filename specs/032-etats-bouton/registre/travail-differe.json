@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "032-etats-bouton",
+  "date": "2026-09-04",
+  "note": "Travail nommé et REPORTÉ par la vague 032. Chacun porte sa raison : un report sans raison est une omission déguisée. Les identifiants DW-032-* sont locaux à cette vague.",
+  "items": [
+    {
+      "id": "DW-032-001",
+      "limitId": "L4",
+      "titre": "Garde @media (hover: hover) sur les règles de survol",
+      "categorie": "emitter-change",
+      "cause": "Les règles de survol émises ne sont pas gardées par @media (hover: hover). Sur un écran tactile, l'état de survol peut RESTER appliqué après un appui, jusqu'au geste suivant — le bouton paraît alors bloqué dans un état que personne ne maintient.",
+      "pourquoiReporte": "Poser la garde est une modification d'ÉMETTEUR (core/emit-react.ts et core/emit-html.ts), qui toucherait les 39 contrats et sortirait du périmètre annoncé « ds.button seul ». La vague 032 n'a touché aucun émetteur, et le re-pin de examples/polaris/ est resté à zéro — c'est une propriété qu'elle tient et qu'elle ne veut pas perdre pour ce défaut.",
+      "attenuation": ":active fournit déjà le retour d'appui exigé, et il est prouvé sur la page vive (7 styles, teintes distinctes du repos et du survol).",
+      "coutEstime": "une modification d'émetteur + re-pin de golden.json, engine.receipt.json, catalog et examples/polaris",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-002",
+      "limitId": "L6",
+      "titre": "Gouverner le survol manuel des icônes sociales du pied de page",
+      "categorie": "emitter-change",
+      "cause": "odoo-bridge.css (règle (2) de ODOO-023-FOOTER-BRIDGE) porte à la main le survol des quatre icônes sociales. Il agit sur `opacity`, qui n'appartient pas à PART_STATE_CHANNELS (core/emit-react.ts : color, background-color, border-color).",
+      "pourquoiReporte": "Le gouverner demanderait d'élargir PART_STATE_CHANNELS — encore une modification d'émetteur, contre le périmètre annoncé.",
+      "consequence": "L'exigence « aucune règle d'état écrite à la main » et son critère de succès se lisent donc DANS LE PÉRIMÈTRE DU BOUTON, pas sur tout le dépôt. L'exception est nommée au rapport de clôture, pas effacée.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-003",
+      "titre": "Aucune porte ne surveille la cascade CSS d'Odoo contre les états gouvernés",
+      "categorie": "missing-instrument",
+      "cause": "Le défaut trouvé par cette vague — une règle du pont (0,3,1) battant une règle d'état générée (0,3,0), libellé blanc sur fond blanc, contraste 1,00 — n'a été vu que parce qu'une mesure manuelle a été faite sur la page vive. `parity` compare le contrat au code et au canevas ; il ne rend aucune page Odoo et ne connaît pas la cascade d'Odoo. `image-parity` compare des images, pas des règles.",
+      "pourquoiReporte": "Construire cet instrument est un projet en soi (rendre la page Odoo, énumérer les règles gagnantes par canal gouverné, les confronter au contrat). Hors périmètre d'une vague qui remplit un canal.",
+      "risqueResiduel": "Tout nouveau bloc, tout changement de style d'un CTA, toute mise à jour d'Odoo peut réintroduire ce défaut EN SILENCE. La règle (6) couvre les sept styles pour cette raison, mais seulement dans le pied de page.",
+      "pointDeDepart": "specs/032-etats-bouton/tools/mesure-etats.mts — il fait déjà le relevé des couleurs calculées et nomme la règle gagnante par el.matches() sur document.styleSheets.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-004",
+      "limitId": "L5",
+      "titre": "Six glyphes sans currentColor, dont deux dans l'énuméré du Bouton",
+      "categorie": "asset-conversion",
+      "cause": "check, google, google-wordmark, star-empty, star et octicon-chevron-down12 n'ont pas fill=\"currentColor\" : leur couleur est figée dans le SVG et ne suivrait pas la couleur de libellé d'un état.",
+      "correctionDeLaSpec": "La spec 032 affirmait qu'AUCUN de ces six n'est porté par un bouton. C'est FAUX, vérifié à l'exécution : `star` et `octicon-chevron-down12` sont dans l'énuméré iconLeftGlyph/iconRightGlyph de ds.button. Les quatre autres ne sont pas dans le registre d'icônes du tout.",
+      "pourquoiReporte": "Aucun éditeur de site ne peut les choisir : les 13 fichiers *.authoring.json classent TOUTES les décisions de glyphe en not-editable ou fixed-by-composition. Le risque est donc borné à un choix fait à la composition par un développeur.",
+      "risqueResiduel": "Rien ne vérifie qu'un glyphe posé sur un bouton porte currentColor.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-005",
+      "titre": "L'enveloppe de section s_pqr_google_reviews_section ne porte aucun attribut de version de module",
+      "categorie": "template-gap",
+      "cause": "Elle n'émet ni data-vcss, ni data-vxml, ni data-vjs, donc scan-saved-versions la classe policy-stale en permanence. Son contrat, sa version d'édition et son graphDigest sont pourtant corrects.",
+      "preExistant": true,
+      "preuve": "Le seul changement de la vague 032 dans views/components.xml est le graphDigest (git diff privé des lignes de digest : vide), et l'enveloppe n'a jamais porté data-vcss (git show HEAD, lignes 107-112 : 0 occurrence).",
+      "pourquoiReporte": "Sans rapport avec les états du Bouton. La corriger demanderait de décider si une enveloppe de snippet DOIT porter ces attributs ou si le classifieur doit l'exclure — une décision de gouvernance Odoo, pas une correction de la vague.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-006",
+      "titre": "Deux évaluations d'états restent en quarantaine",
+      "categorie": "eval-restoration",
+      "cause": "state-previews-bounded-canvas-only et state-axis-drift-both-directions sont écrites contre le Bouton de la DÉMO (12 variantes, axes Variant x Size, jetons color/action/*). Les repointer sur Piqueray demande de réécrire leurs comptes et leurs noms de jetons.",
+      "pourquoiReporte": "La vague a restauré DEUX cas (focus-not-pressed-browser-probe et refuse-hollow-state-previews), ce qui dépasse l'exigence d'au moins un. Ces deux-là sont chiffrés dans la recherche et n'étaient pas des tâches de la vague.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-007",
+      "titre": "Un alias dans la couche `primitives` peint des variables NaN sur le canevas, en silence",
+      "categorie": "generator-gap",
+      "cause": "figma-sync/01-tokens.js traite la couche primitive comme purement litterale : `hexToRgb(t.value)` sans aucun test d'alias. Une valeur `{color.x}` y devient { r: NaN, g: NaN, b: NaN }. Verifie par execution dans le bac a sable Figma, sans mutation.",
+      "trouveComment": "Lecture du code AVANT execution. La vague 032 placait ses 35 alias dans primitives.tokens.json ; les lancer aurait pose 35 variables invalides sur le fichier de l'owner.",
+      "contourneParLaVague": "Les 35 alias ont ete deplaces vers tokens/semantic.tokens.json, ou la boucle SEMANTIC les resout en VARIABLE_ALIAS. Nom de variable CSS inchange, surface livree identique au octet, repos toujours a diffCount 0.",
+      "pourquoiReporte": "Corriger le generateur (resoudre les alias primitifs, ou les REFUSER par nom) est une modification d'emetteur, hors du perimetre « ds.button seul » que la vague tient — re-pin examples/polaris reste a zero.",
+      "risqueResiduel": "AUCUNE porte ne refuse un alias dans la couche primitive : ni le build de jetons (il resout correctement pour le CSS), ni emitters:check, ni la parite. Un futur contributeur reproduira le defaut sans avertissement.",
+      "correctionSouhaitee": "refuser par nom au moment de l'emission, ou resoudre l'alias comme le font les boucles BRAND et SEMANTIC",
+      "preuve": "specs/032-etats-bouton/proofs/etape4/alias-primitifs-nan.md",
+      "statut": "resolved",
+      "resoluLe": "2026-09-04",
+      "resoluComment": "REPORT INJUSTIFIE, corrige a la revue. La raison ecrite ici — « modification d'emetteur, hors perimetre… re-pin examples/polaris reste a zero » — supposait un cout qui n'existe pas. Verifie par execution : les trois boucles soeurs (brand ligne 597, semantic 617, modes 629 de core/emit-figma-script.ts) refusent DEJA le cas miroir par nom, `aliasTarget` est deja importe ligne 55, et examples/polaris/generate.ts:112 resout ses alias AVANT d'alimenter le creneau primitif — donc le refus ne s'y declenche jamais. Mesure apres pose : sortie generee byte-identique, examples/polaris 0 fichier modifie, golden inchange.",
+      "correctif": "core/emit-figma-script.ts : la boucle PRIMITIVES refuse desormais PAR NOM un jeton dont la valeur est un alias, en nommant le jeton fautif et la couche ou il doit aller. Garde par le cas C2 `refuse-alias-in-primitives-layer`, qui porte aussi un controle negatif (une primitive litterale doit passer)."
+    },
+    {
+      "id": "DW-032-008",
+      "titre": "Les selecteurs d'etat emis sortent a (0,3,0) — aucun crochet ne resiste a une enveloppe d'hote",
+      "categorie": "emitter-change",
+      "cause": "La regle (6) du pont pied-de-page defend l'axe qui NE varie pas (7 styles, un seul pose) et laisse ouvert celui qui varie : quelle section porte un CTA. La cause n'est pas « le pied de page epingle color » mais que `.button--variant-X:hover:not(:disabled)` sort a (0,3,0) : n'importe quelle enveloppe d'hote a (0,3,1) lui prend le canal en silence.",
+      "distinctionAvecDW032003": "DW-032-003 enregistre la PORTE manquante (rien ne surveille la cascade CSS d'Odoo). Celui-ci enregistre le CROCHET manquant (rien ne rend la regle emise defendable). Les deux sont necessaires ; le second etait absent du registre.",
+      "correctifsPossibles": [
+        "cler les selecteurs d'etat sur le crochet de part existant : [data-pqr-part=\"button-root\"].button--variant-X:hover:not(:disabled) -> (0,4,0), qui bat les deux pretendants DANS N'IMPORTE QUEL HOTE ; la regle (6) et probablement la (3) disparaissent",
+        "emettre une indirection de propriete personnalisee par variante (--btn-libelle-survol) : toute neutralisation d'hote redevient UNE paire de regles au lieu d'un produit cartesien"
+      ],
+      "pourquoiReporte": "Une ligne dans le constructeur de selecteurs de core/emit-html.ts et core/emit-react.ts, mais le CSS des 39 contrats change : re-pin golden.json, catalog et examples/polaris. Contrairement a DW-032-007, ce cout est reel et sort du perimetre annonce.",
+      "risqueResiduel": "Un futur bloc dans .o_cc2 — l'autre zone ou Odoo colore, nommee dans proofs/etape3/conflit-bootstrap.md §5 — reproduira le defaut malgre les 14 regles.",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-032-009",
+      "titre": "La liste des 7 styles est ecrite deux fois : generee, et a la main dans le pont",
+      "categorie": "missing-gate",
+      "cause": "components.pqr.css emet 14 regles d'etat depuis l'enumere `variant` du contrat ; odoo-bridge.css en ecrit 14 a la main pour les neutraliser. Ajouter une 8e valeur d'enumere regenere le CSS et laisse le pont a 7 : le nouveau style perdrait sa couleur de libelle dans le pied de page, en silence.",
+      "pourquoiReporte": "Rien dans scripts/ ne compare le pont au CSS genere ; ecrire cette porte est une infrastructure nouvelle, hors perimetre. Note : le correctif DW-032-008 rendrait ce probleme sans objet en supprimant la regle (6).",
+      "statut": "deferred"
+    }
+  ]
+}

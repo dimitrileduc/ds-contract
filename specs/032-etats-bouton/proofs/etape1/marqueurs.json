@@ -1,0 +1,33 @@
+{
+  "$comment": "T010 + T011 — migration de marqueur d'identité sur deux styles de texte. Écriture de MÉTADONNÉE PURE : aucun pixel ne bouge, aucun nœud n'est créé. Elle débloque figma-sync/01-tokens.js, dont le préflight refusait AVANT la première écriture de variable.",
+  "date": "2026-09-04",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "espaceDeDonnees": { "namespace": "ds_contracts", "cle": "textStyleToken" },
+  "preflight": {
+    "regle": "refuser si le marqueur visé est DÉJÀ porté par un AUTRE style (Duplicate Text Style identity marker)",
+    "marqueursDejaPortes": 22,
+    "conflits": 0,
+    "verdict": "aucun conflit — les deux chemins visés étaient libres"
+  },
+  "recetteVive_confrontee_aux_jetons": [
+    {
+      "style": "Entrée menu",
+      "figma": { "fontName": { "family": "Montserrat", "style": "Medium" }, "fontSize": 24, "lineHeight": { "unit": "PIXELS", "value": 30 }, "textCase": "UPPER" },
+      "jeton": "typography.menu-entree.size = {font.size.24}",
+      "descriptionJeton": "mobile 24/30 Medium capitales",
+      "concordance": true
+    },
+    {
+      "style": "Sous-entrée menu",
+      "figma": { "fontName": { "family": "Montserrat", "style": "Regular" }, "fontSize": 18, "lineHeight": { "unit": "PIXELS", "value": 27 }, "textCase": "ORIGINAL" },
+      "jeton": "typography.menu-sous-entree.size = {font.size.18}",
+      "descriptionJeton": "mobile 18/27 Regular",
+      "concordance": true
+    }
+  ],
+  "poses": [
+    { "nom": "Entrée menu",      "id": "S:3e776937325f9d50406ff037442297d8879164b2,", "avant": null, "apres": "typography.menu-entree.size",      "applique": true },
+    { "nom": "Sous-entrée menu", "id": "S:3b67b059a86bdf816c480c55baef7a0b77b6dc93,", "avant": null, "apres": "typography.menu-sous-entree.size", "applique": true }
+  ],
+  "nbPoses": 2
+}

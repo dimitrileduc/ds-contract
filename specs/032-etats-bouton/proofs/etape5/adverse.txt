@@ -1,0 +1,24 @@
+# T044 — contrôle adverse de `focus-not-pressed-browser-probe`
+
+Un cas qui reste vert quand on le sabote ne prouve rien. On casse une ligne
+à la fois, dans l'espace de travail copié de l'évaluation, et on exige le rouge.
+
+## 0. Témoin — avant tout sabotage
+  VERT — le focus clavier garde le fond de repos sous l anneau
+
+## 1. Sabotage — retirer `"focus-visible"` de `contract.states`
+  attendu ROUGE — obtenu ROUGE
+  message : if (!c.states.includes("focus-visible")) throw new Error("le contrat ne declare plus focus-visible");
+  ✔ le cas refuse par NOM
+
+## 2. Sabotage — faire porter au `:focus-visible` le fond de survol
+  attendu ROUGE — obtenu ROUGE
+  message : Error: le focus clavier a change le fond: rgb(64, 66, 69), repos rgb(38, 40, 44) (survol rgb(64, 66, 69))
+  ✔ le cas attrape le fond de survol sous l anneau
+
+## 3. Restauration — le contrat sain revient
+  attendu VERT — obtenu VERT
+
+## VERDICT
+  Les deux sabotages rougissent, la restauration reverdit. Le cas prouve
+  quelque chose : il tient FR-004 et FR-006 dans un vrai navigateur.

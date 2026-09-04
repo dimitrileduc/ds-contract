@@ -1,0 +1,47 @@
+{
+  "$comment": "T048 + T049 + T051 — contrôle d'identité APRÈS la pose de l'axe State. Confronté à proofs/T0/canvas-avant.json.",
+  "date": "2026-09-04",
+  "setId": "6:122",
+  "setNom": "Bouton",
+  "avant": { "variantes": 7, "instances": 369 },
+  "apres": { "variantes": 28, "instances": 369 },
+  "axeState": { "type": "VARIANT", "defaultValue": "Default", "variantOptions": ["Default", "Hover", "Active", "Focus Visible"] },
+  "amendementEnPlace": {
+    "amended": true,
+    "nodeIdInchange": "6:122",
+    "cleInchangee": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+    "renamedVariants": 7,
+    "addedVariants": 21,
+    "extraVariants": 0,
+    "addedProps": 0,
+    "editedDefaults": 0,
+    "photosVerdict": "vert",
+    "refusAvantMutation": null
+  },
+  "identiteDes7Origines": [
+    { "id": "6:107",     "avant": "Style=Default",       "apres": "Style=Default, State=Default",       "conforme": true, "instances": 21 },
+    { "id": "6:123",     "avant": "Style=Orange",        "apres": "Style=Orange, State=Default",        "conforme": true, "instances": 0 },
+    { "id": "6:129",     "avant": "Style=Blanc",         "apres": "Style=Blanc, State=Default",         "conforme": true, "instances": 13 },
+    { "id": "6:135",     "avant": "Style=Outline blanc", "apres": "Style=Outline blanc, State=Default", "conforme": true, "instances": 73 },
+    { "id": "9:206",     "avant": "Style=Link",          "apres": "Style=Link, State=Default",          "conforme": true, "instances": 173 },
+    { "id": "28:114",    "avant": "Style=Outline noir",  "apres": "Style=Outline noir, State=Default",  "conforme": true, "instances": 57 },
+    { "id": "2238:4417", "avant": "Style=Icône seule",   "apres": "Style=Icône seule, State=Default",   "conforme": true, "instances": 32 }
+  ],
+  "verdictSC003": {
+    "memeCompteDInstances": true,
+    "orphelines": 0,
+    "doublons": 0,
+    "identifiantsPreserves": "7 / 7",
+    "memeParent": "7 / 7"
+  },
+  "idempotence": {
+    "secondPassageDuMemeScript": { "skipped": true, "reason": "unchanged", "createdNodeIds": [] },
+    "verdict": "zéro nœud créé, zéro modifié au second passage"
+  },
+  "les21Creees": {
+    "Hover": ["2749:17087", "2749:17093", "2749:17099", "2749:17105", "2749:17111", "2749:17117", "2749:17123"],
+    "Active": ["2749:17130", "2749:17136", "2749:17142", "2749:17148", "2749:17154", "2749:17160", "2749:17166"],
+    "FocusVisible": ["2749:17173", "2749:17179", "2749:17185", "2749:17191", "2749:17197", "2749:17203", "2749:17209"]
+  },
+  "note": "Le script GÉNÉRÉ figma-sync/04-button.js a été exécuté TEL QUEL (138 349 octets), servi au bac à sable par specs/016-canvas-vrai/tools/serve-scripts.mjs sur le port 9227 — l'outil que la vague 016 a écrit exactement pour ça. Le bac à sable ne peut atteindre que localhost:9223-9232 (manifeste du plugin) ; une première tentative sur le port 8799 avait échoué et m'avait fait conclure à tort que le transport était impossible. Le script porte un `await` et un `return` de premier niveau, qu'`eval()` refuse : il est exécuté par un constructeur de fonction ASYNCHRONE, sans qu'un octet du script soit touché."
+}

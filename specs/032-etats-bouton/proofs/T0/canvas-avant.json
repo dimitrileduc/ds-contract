@@ -1,0 +1,35 @@
+{
+  "$comment": "T008 — relevé AVANT du master Bouton, par IDENTIFIANT DE NŒUD et jamais par nom de calque. C'est ce document qui fait foi pour SC-003, pas le chiffre 354 cité par la spec : le relevé vif donne 369.",
+  "date": "2026-09-04",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "methode": "pont figma-console — loadAllPagesAsync() puis getNodeByIdAsync('6:122'), getInstancesAsync() sur CHAQUE variante (la méthode vit sur COMPONENT, pas sur COMPONENT_SET)",
+  "setId": "6:122",
+  "setNom": "Bouton",
+  "setType": "COMPONENT_SET",
+  "nbVariantes": 7,
+  "nbInstances": 369,
+  "proprietes": [
+    "Icone gauche#2024:0",
+    "Icone droite#2024:7",
+    "Glyphe gauche#2028:14",
+    "Glyphe droite#2028:21",
+    "Libelle#2044:28",
+    "Style"
+  ],
+  "variantes": [
+    { "id": "6:107",     "nom": "Style=Default",       "instances": 21 },
+    { "id": "6:123",     "nom": "Style=Orange",        "instances": 0 },
+    { "id": "6:129",     "nom": "Style=Blanc",         "instances": 13 },
+    { "id": "6:135",     "nom": "Style=Outline blanc", "instances": 73 },
+    { "id": "9:206",     "nom": "Style=Link",          "instances": 173 },
+    { "id": "28:114",    "nom": "Style=Outline noir",  "instances": 57 },
+    { "id": "2238:4417", "nom": "Style=Icône seule",   "instances": 32 }
+  ],
+  "invariantAVerifierApres": [
+    "les 7 identifiants ci-dessus existent encore et portent le même style, renommés `Style=X, State=Default`",
+    "le total d'instances rattachées reste 369",
+    "aucune instance orpheline, aucun doublon de variante"
+  ],
+  "ecartAvecLaSpec": "La spec annonçait ~354 instances. Le relevé vif en compte 369. Le relevé fait foi ; l'écart est nommé, pas corrigé en silence."
+}

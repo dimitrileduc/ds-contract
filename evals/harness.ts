@@ -76,6 +76,14 @@ export function resetScratch() {
   const extractScratchRoots = new Set([
     path.join(ROOT, 'extract', 'figma', 'visual-parity', 'out'),
     path.join(ROOT, 'extract', 'figma', 'organism-audit', 'out'),
+    // 032 — the page-state photography cache. 376 MB of version-keyed PNGs
+    // after one wave, gitignored, and read by ZERO evals (grep: 0 hits) — but
+    // cpSync does not honour .gitignore, so every one of the ~250 cases copied
+    // it. That is ~93 GB per `npm run eval`, invisible on APFS (clonefile
+    // makes it 0.09 s) and minutes of real I/O on a CI filesystem without
+    // reflink. Third time this class appears; the two lines above are the
+    // first two.
+    path.join(ROOT, 'extract', 'figma', 'state-photo', 'out'),
   ]);
   // 019 — `integrations/` porte l'addon Odoo de production. Les cas
   // `odoo-production-*` exécutent `scripts/odoo/*` dans le scratch : sans mise

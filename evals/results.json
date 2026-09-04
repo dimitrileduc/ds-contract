@@ -1,7 +1,7 @@
 {
-  "passed": 245,
-  "total": 245,
-  "quarantined": 48,
+  "passed": 248,
+  "total": 248,
+  "quarantined": 46,
   "results": [
     {
       "id": "odoo-figma-links-governance",
@@ -1226,6 +1226,21 @@
     {
       "id": "nested-heading-part-semantics-and-margin-reset",
       "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "focus-not-pressed-browser-probe",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "refuse-hollow-state-previews",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "refuse-alias-in-primitives-layer",
+      "claim": "C2-refusal",
       "pass": true
     }
   ]

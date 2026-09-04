@@ -351,25 +351,6 @@ export const legacyCases: Case[] = [
       expectFinding(readReport(), 'figma', 'behind', 'Heading');
     },
   },
-  // RE-ENABLE WHEN: a Piqueray component with interaction states (hover/active/focus-visible/disabled) and figmaStatePreviews.
-  {
-    // figmaStatePreviews (v8): the opt-in must be refused by name when hollow.
-    id: 'refuse-hollow-state-previews',
-    claim: 'C2-refusal',
-    run: () => {
-      const pristine = readFileSync(path.join(SCRATCH, CONTRACT), 'utf8');
-      editJson(CONTRACT, (c) => { c.states = []; delete c.anatomy.root.states; });
-      let r = generate();
-      writeFileSync(path.join(SCRATCH, CONTRACT), pristine);
-      if (r.status === 0 || !r.out.includes('declares no interaction states'))
-        throw new Error('previews without states not refused by name');
-      editJson(CONTRACT, (c) => { c.anatomy.root.states = { hover: c.anatomy.root.states.hover }; });
-      r = generate();
-      writeFileSync(path.join(SCRATCH, CONTRACT), pristine);
-      if (r.status === 0 || !r.out.includes('state "focus-visible" declares no token overrides'))
-        throw new Error('override-less state not refused by name');
-    },
-  },
   // RE-ENABLE WHEN: a Piqueray component with interaction states + figmaStatePreviews.
   {
     // State previews multiply ONLY the primary enum axis; overrides land on
@@ -405,7 +386,6 @@ export const legacyCases: Case[] = [
       if (!script.includes('withStateAxis')) throw new Error('runtime merge helper missing');
     },
   },
-  // RE-ENABLE WHEN: a Piqueray component with interaction states.
   {
     // The State axis is declared surface when opted in, kit-rot drift when not.
     id: 'state-axis-drift-both-directions',
@@ -856,49 +836,6 @@ export const legacyCases: Case[] = [
     },
   },
   // RE-ENABLE WHEN: a Piqueray component with interaction states.
-  {
-    // BROWSER PROBE — real keyboard focus must NOT render the pressed/hover
-    // fill. Field failure (visual-parity): every CBDS/Eventz focus row
-    // screenshotted the hover fill under the ring (68-70% masked) — the
-    // harness's stale mouse, not the emitters; this pins the emitter truth in
-    // a real browser so the class can never be a silent emitter regression.
-    id: 'focus-not-pressed-browser-probe',
-    claim: 'C1-determinism',
-    run: () => {
-      const probe = run(TSX, ['-e', `
-        import fs from 'node:fs';
-        import { chromium } from 'playwright-core';
-        import { chromiumExecutable } from './extract/figma/visual-parity/render.ts';
-        import { emitHtml } from './core/emit-html.ts';
-        import { ContractSchema } from './scripts/contract-schema.ts';
-        import { tokenInventoryFromJson } from './core/tokens.ts';
-        const j = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
-        const c = ContractSchema.parse(j('contracts/button.contract.json'));
-        const inv = tokenInventoryFromJson(['tokens/primitives.tokens.json','tokens/semantic.tokens.json','tokens/modes/semantic.light.tokens.json','tokens/modes/semantic.dark.tokens.json'].map(j));
-        const icons = new Map(fs.readdirSync('assets/icons').filter(f=>f.endsWith('.svg')).map(f=>[f.replace('.svg',''),fs.readFileSync('assets/icons/'+f,'utf8').trim()]));
-        const emitted = emitHtml(c, { tokens: inv, icons, contracts: new Map([[c.id, c]]) });
-        const doc = '<!doctype html><html><head><meta charset="utf-8"><style>' + fs.readFileSync('src/styles/tokens.css','utf8') + '</style><style>body{margin:0;padding:32px}</style><style>' + emitted.css + '</style></head><body>' + emitted.html + '</body></html>';
-        (async () => {
-          const browser = await chromium.launch({ executablePath: chromiumExecutable(), headless: true });
-          try {
-            const page = await browser.newPage();
-            await page.setContent(doc, { waitUntil: 'load' });
-            await page.mouse.move(0, 0); // pointer parked OFF the component
-            await page.keyboard.press('Tab');
-            const r = await page.evaluate("(() => { const el = document.querySelector('.showcase .button'); const cs = getComputedStyle(el); const v = (n) => { const probe = document.createElement('div'); probe.style.backgroundColor = 'var(' + n + ')'; document.body.appendChild(probe); const out = getComputedStyle(probe).backgroundColor; probe.remove(); return out; }; return { focused: document.activeElement === el, fv: el.matches(':focus-visible'), bg: cs.backgroundColor, outlineStyle: cs.outlineStyle, def: v('--color-action-primary-background'), hover: v('--color-action-primary-background-hover') }; })()");
-            if (!r.focused || !r.fv) throw new Error('Tab did not keyboard-focus the button: ' + JSON.stringify(r));
-            if (r.outlineStyle !== 'solid') throw new Error('focus ring missing: ' + JSON.stringify(r));
-            if (r.bg !== r.def) throw new Error('real keyboard focus changed the fill: got ' + r.bg + ', default is ' + r.def + ' (hover is ' + r.hover + ')');
-            if (r.bg === r.hover) throw new Error('focus renders the hover fill');
-            console.log('keyboard focus keeps the default fill under the ring');
-          } finally { await browser.close(); }
-        })().catch((e) => { console.error(e); process.exit(1); });
-      `]);
-      if (probe.status !== 0 || !probe.out.includes('keyboard focus keeps the default fill under the ring')) {
-        throw new Error(`focus browser probe failed:\n${probe.out}`);
-      }
-    },
-  },
   // RE-ENABLE WHEN: a Piqueray component with a slot, and one with slot defaultContent.
   {
     // Empty slot = ABSENT content — never painted placeholder text (field

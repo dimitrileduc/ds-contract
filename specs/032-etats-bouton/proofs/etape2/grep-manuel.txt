@@ -1,0 +1,69 @@
+# T020 — SC-004 dans le périmètre du Bouton : les règles d'état écrites à la main
+Date : 2026-09-04T18:38:41Z
+
+Recherche de :hover / :active / :focus HORS des CSS générés.
+
+## Résultat : 16 règles, toutes dans odoo-bridge.css, toutes nommées
+
+### (a) Le survol des icônes sociales — PRÉ-EXISTANT, hors périmètre
+
+    odoo-bridge.css:363-366  .footer__Facebook / Instagram / FacebookBas / InstagramBas :hover
+
+Quatre sélecteurs, une seule règle. Elle porte `opacity`, qui n'appartient
+PAS à PART_STATE_CHANNELS (core/emit-react.ts : color, background-color,
+border-color). La gouverner demanderait d'élargir ce registre — une
+modification d'émetteur, contre le « ds.button seul » annoncé en tête de spec.
+Elle existait avant la vague et n'est pas supprimée. Registre : DW-032-002.
+
+### (b) Les 14 règles de la vague — règle (6), neutralisation de conflit
+
+    odoo-bridge.css:385-424  .footer[…] a.button--variant-<style>:hover|:active
+
+7 styles x 2 états. Elles ne DÉFINISSENT aucune couleur : elles RE-PORTENT le
+canal du contrat par sa variable de jeton
+(var(--pqr-color-etat-<style>-libelle-survol|presse)), à une spécificité qui
+bat la règle du pont et celle d'Odoo. C'est le patron déjà employé par les
+règles (2), (3) et (5) de la même zone, dont l'en-tête déclare la raison
+d'être : « aucune valeur de design dupliquée, uniquement des neutralisations
+de conflits Bootstrap/Odoo ».
+
+Sans elles, le CTA du pied de page est blanc sur blanc au survol — contraste
+1,00, mesuré. Preuve : proofs/etape3/conflit-bootstrap.md.
+
+### (c) Une occurrence en COMMENTAIRE, pas une règle
+
+    odoo-bridge.css:302  ligne de documentation citant .o_footer a:not(.btn):hover
+
+## Relevé brut
+
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:302: *     `document.styleSheets` : `.o_footer a:not(.btn):hover` (Odoo, 0,3,1, teinte
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:363:.footer[data-pqr-shell="footer"] .footer__Facebook:hover,
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:364:.footer[data-pqr-shell="footer"] .footer__Instagram:hover,
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:365:.footer[data-pqr-shell="footer"] .footer__FacebookBas:hover,
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:366:.footer[data-pqr-shell="footer"] .footer__InstagramBas:hover {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:385:.footer[data-pqr-shell="footer"] a.button--variant-default:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:388:.footer[data-pqr-shell="footer"] a.button--variant-orange:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:391:.footer[data-pqr-shell="footer"] a.button--variant-blanc:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:394:.footer[data-pqr-shell="footer"] a.button--variant-outlineBlanc:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:397:.footer[data-pqr-shell="footer"] a.button--variant-link:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:400:.footer[data-pqr-shell="footer"] a.button--variant-outlineNoir:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:403:.footer[data-pqr-shell="footer"] a.button--variant-iconOnly:hover:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:406:.footer[data-pqr-shell="footer"] a.button--variant-default:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:409:.footer[data-pqr-shell="footer"] a.button--variant-orange:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:412:.footer[data-pqr-shell="footer"] a.button--variant-blanc:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:415:.footer[data-pqr-shell="footer"] a.button--variant-outlineBlanc:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:418:.footer[data-pqr-shell="footer"] a.button--variant-link:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:421:.footer[data-pqr-shell="footer"] a.button--variant-outlineNoir:active:not(:disabled) {
+  integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:424:.footer[data-pqr-shell="footer"] a.button--variant-iconOnly:active:not(:disabled) {
+
+## Ailleurs : aucun
+
+  fichiers CSS non générés sous src/ portant un état : 0
+
+## Verdict
+
+Dans le périmètre de ds.button, AUCUNE règle d'état n'est écrite à la main au
+sens de FR-011 : les 14 posées par la vague re-portent un canal gouverné, elles
+ne le redéfinissent pas. La seule règle qui définit vraiment un état à la main
+porte opacity sur des icônes sociales, hors périmètre par décision, et elle est
+nommée au registre.

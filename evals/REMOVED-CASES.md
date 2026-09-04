@@ -1,7 +1,7 @@
 # Quarantined eval cases
 
-These 48 cases (51 at the reconversion, 3 since revived — 2 by spec 002, 1 by
-spec 006 — see **Counts** below) were taken out of the live suite during the
+These 47 cases (51 at the reconversion, 4 since revived — 2 by spec 002, 1 by
+spec 006, 1 by spec 032 — see **Counts** below) were taken out of the live suite during the
 **Piqueray reconversion (2026-07-22)**, when the repo went from a
 51-component demo design system with two themes and two brands to Piqueray:
 **one component (Button), one theme, one brand, no slots, no nested
@@ -23,7 +23,7 @@ go quiet:
 
 ```
 N/113 evals passed — evals/results.json
-48 legacy cases quarantined (not run) — …
+47 legacy cases quarantined (not run) — …
 ```
 
 The live `N/N` counts executed cases only, so the pass rate stays honest. **Trust the live `npm run eval` output over this file** — it prints the count on every run; update this note when it drifts (`grep -rn` the number, per CLAUDE.md).
@@ -109,7 +109,6 @@ restore is a move, not a rewrite.
 | `refuse-role-recreating-native-control` | C2-refusal | a role that re-creates a control the platform ships (<button role=checkbox>) refuses BY NAME at generation, a DECLARED exception passes, and a dangling exception refuses too | needs the checkbox contract to reintroduce the shape on, and ds.progress-bar to carry the declared exception | a Piqueray component whose role claim could shadow a native control, plus one with a declared roleException |
 | `playground-caption-consistency` | C3-detection | every countable claim in the Examples gallery captions is DERIVED from a real contract, and reintroduced hardcoded counts are refused | playground/src/engine/examples.ts still references ds.badge, ds.switch and other deleted demo contracts | the playground examples re-authored against the Piqueray catalogue |
 | `switch-canvas-thumb` | C1-determinism | a styled static-text part (the Switch thumb) keeps its fill, 16px box and radius binding in the compiled spec, and the canvas renderer's text branch renders them | Piqueray ships no switch | a Piqueray component with a styled static-text part carrying box channels |
-| `focus-not-pressed-browser-probe` | C1-determinism | real keyboard focus renders the DEFAULT fill under the ring in a real browser, never the hover/pressed fill | the Piqueray Button declares `states: []`, so the emitted CSS carries no :hover/:focus-visible rules and there is no fill to compare | a Piqueray component with interaction states |
 | `slot-empty-not-placeholder` | C1-determinism | an empty slot is ABSENT and NAMED in a comment, never painted placeholder text, while declared defaultContent still renders | Piqueray has no slots (the demo Token and Breadcrumbs carried them) | a Piqueray component with a slot, and one with slot defaultContent |
 | `heading-margin-reset` | C1-determinism | a root that can render as a UA-margined element carries margin:0 on both CSS surfaces, and a root that cannot carries none | Piqueray ships no block-level component (the demo Heading/Blockquote/Divider/List carried the rule; Badge was the negative case) | a Piqueray component whose root is a UA-margined element (h1-h6, p, blockquote, ul, hr) |
 | `token-size-live` | C1-determinism | an enum size axis is LIVE: each non-default value emits a distinct, non-empty override rule (the dead-prop class) | Piqueray ships no component with a size axis | a Piqueray component with a size (or other secondary) enum axis |
@@ -156,7 +155,9 @@ these capabilities back by gaining:
   `slot-empty-not-placeholder`
 - **interaction states** — `refuse-hollow-state-previews`,
   `state-previews-bounded-canvas-only`, `state-axis-drift-both-directions`,
-  `focus-not-pressed-browser-probe`, `wc-emitter-css-parity`
+  `wc-emitter-css-parity`
+  (`focus-not-pressed-browser-probe` is no longer here — **revived 2026-09-04 by
+  spec 032**, see below)
 - **a second enum axis** — `naxis-full-cartesian-product`, `token-size-live`
 - **a second token mode or brand** — `refuse-incomplete-mode-set`,
   `brand-added-token-layer-only`
@@ -171,3 +172,10 @@ separately:
   matching `font.<group>.size`, and Piqueray's typography lives at
   `typography.<role>.{family,size,weight}`. Zero text styles are derived, so
   Piqueray's 8 Montserrat styles currently reach no surface.
+
+## Revivals — a case leaves quarantine, and it is never silent
+
+| case | date | by | what unblocked it |
+|---|---|---|---|
+| `focus-not-pressed-browser-probe` | 2026-09-04 | spec 032 (états du Bouton) | `ds.button` 2.2.0 fills the state channel — `states: ["hover","active","focus-visible"]` — so the emitted CSS finally carries `:hover` / `:focus-visible` rules and there IS a fill to compare. The case was repointed from the demo token names (`--color-action-primary-background*`) onto the Piqueray family (`--color-noir-bleute` for the rest fill, `--color-etat-default-fond-survol` for hover). Its dark-mode token file reference was dropped: Piqueray is single-mode and `tokens/modes/semantic.dark.tokens.json` does not exist. **Proven by sabotage** (`specs/032-etats-bouton/proofs/etape5/adverse.txt`): removing `focus-visible` from `contract.states` reddens it by name, and making `:focus-visible` carry the hover fill reddens it with the measured colours — a case that stays green under sabotage proves nothing. |
+

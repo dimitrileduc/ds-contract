@@ -38,6 +38,7 @@ import {
   type Case, type RunResult,
 } from './harness.js';
 import { legacyCases } from './legacy-cases.js';
+import { FOCUS_NOT_PRESSED_MARKER, FOCUS_NOT_PRESSED_PROBE } from './probes/focus-not-pressed.js';
 import { normalizeVectorSvg } from '../extract/figma/vector-assets.js';
 
 /**
@@ -6712,6 +6713,109 @@ const cases: Case[] = [
       const ctrl = readFileSync(path.join(SCRATCH, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
       if (ruleOf(ctrl, 'Accroche').includes('margin: 0;')) {
         throw new Error('Reassurances.Accroche (a non-heading text part) gained a gratuitous UA-margin reset');
+      }
+    },
+  },
+  {
+    // Sorti de quarantaine par la vague 032 (2026-09-04), repointé sur la
+    // famille de jetons Piqueray `color.etat.<style>.<canal>`.
+    //
+    // Ce qu'il prouve, dans un VRAI Chromium et non par lecture du CSS : une
+    // arrivée au CLAVIER peint l'anneau de focus SANS peindre le fond de
+    // survol. La distinction n'est pas cosmétique — si le focus rendait le
+    // fond de survol, une personne qui navigue au clavier verrait un état
+    // qu'elle n'a pas déclenché, et la mesure de parité visuelle
+    // photographierait le survol en croyant photographier le focus (défaut
+    // constaté sur les campagnes CBDS/Eventz : 68-70 % de surface masquée).
+    //
+    // Il tient FR-004 (l'anneau existe) et FR-006 (le fond ne bascule pas).
+    id: 'focus-not-pressed-browser-probe',
+    claim: 'C1-determinism',
+    run: () => {
+      const probe = run(TSX, ['-e', FOCUS_NOT_PRESSED_PROBE]);
+      if (probe.status !== 0 || !probe.out.includes(FOCUS_NOT_PRESSED_MARKER)) {
+        throw new Error(`sonde navigateur de focus en echec:\n${probe.out}`);
+      }
+    },
+  },
+  {
+    // Sorti de quarantaine par la vague 032 (2026-09-04).
+    //
+    // Il garde `figmaStatePreviews` HONNÊTE : le contrat ne peut pas promettre
+    // une grille d'états sur le canevas s'il n'a rien à y montrer. Deux refus,
+    // tous deux PAR NOM :
+    //   1. previews demandées mais AUCUN état déclaré -> rien à prévisualiser ;
+    //   2. un état déclaré SANS surcharge de jeton -> sa case rendrait
+    //      exactement la case Default, une grille creuse qui ment.
+    //
+    // Adaptation à Piqueray : le second sabotage laisse `hover` ET `active` en
+    // place pour que le SEUL état sans surcharge soit `focus-visible` — sinon
+    // l'ordre de signalement du générateur déciderait quel nom apparaît, et
+    // l'assertion deviendrait dépendante d'un détail d'implémentation.
+    id: 'refuse-hollow-state-previews',
+    claim: 'C2-refusal',
+    run: () => {
+      const pristine = readFileSync(path.join(SCRATCH, CONTRACT), 'utf8');
+
+      editJson(CONTRACT, (c: any) => { c.states = []; delete c.anatomy.root.states; });
+      let r = generate();
+      writeFileSync(path.join(SCRATCH, CONTRACT), pristine);
+      if (r.status === 0 || !r.out.includes('declares no interaction states')) {
+        throw new Error(`previews sans etats non refusees par nom:\n${r.out.slice(0, 600)}`);
+      }
+
+      editJson(CONTRACT, (c: any) => {
+        c.anatomy.root.states = {
+          hover: c.anatomy.root.states.hover,
+          active: c.anatomy.root.states.active,
+        };
+      });
+      r = generate();
+      writeFileSync(path.join(SCRATCH, CONTRACT), pristine);
+      if (r.status === 0 || !r.out.includes('state "focus-visible" declares no token overrides')) {
+        throw new Error(`etat sans surcharge non refuse par nom:\n${r.out.slice(0, 600)}`);
+      }
+    },
+  },
+  {
+    // Posé par la vague 032 (2026-09-04), après avoir failli peindre 35
+    // variables invalides sur le fichier client.
+    //
+    // La couche `primitives` du script de sync passe sa valeur à `hexToRgb`,
+    // qui n'a AUCUNE branche d'alias : `{color.x}` y devient
+    // { r: NaN, g: NaN, b: NaN } — une couleur invalide écrite sans exception,
+    // invisible jusqu'à ce qu'un designer ouvre la variable.
+    //
+    // Les trois boucles sœurs (brand, semantic, modes) refusent déjà le cas
+    // MIROIR par nom (« must be an alias »). Ce cas garde le quatrième coin :
+    // un alias dans les primitives est refusé À L'ÉMISSION, pas découvert sur
+    // le canevas.
+    id: 'refuse-alias-in-primitives-layer',
+    claim: 'C2-refusal',
+    run: () => {
+      const tokens = path.join(SCRATCH, 'tokens/primitives.tokens.json');
+      const pristine = readFileSync(tokens, 'utf8');
+      const doc = JSON.parse(pristine);
+      // Un alias posé là où seules des valeurs littérales sont peintes.
+      doc.color['piege-alias'] = { $type: 'color', $value: '{color.blanc}' };
+      writeFileSync(tokens, `${JSON.stringify(doc, null, 2)}\n`);
+      const r = run(TSX, ['scripts/generate-figma.ts']);
+      writeFileSync(tokens, pristine);
+      if (r.status === 0) {
+        throw new Error("un alias dans la couche primitives n'a PAS été refusé — il aurait été peint en NaN sur le canevas");
+      }
+      if (!r.out.includes('color.piege-alias') || !r.out.includes('paints literal values only')) {
+        throw new Error(`le refus ne nomme pas le jeton fautif ni la raison :\n${r.out.slice(0, 600)}`);
+      }
+      // Contrôle négatif : une primitive LITTÉRALE passe. Sans lui, un refus
+      // qui dirait non à tout passerait ce cas.
+      const doc2 = JSON.parse(pristine);
+      doc2.color['temoin-litteral'] = { $type: 'color', $value: '#ABCDEF' };
+      writeFileSync(tokens, `${JSON.stringify(doc2, null, 2)}\n`);
+      const ok = run(TSX, ['scripts/generate-figma.ts']);
+      writeFileSync(tokens, pristine);
+      if (ok.status !== 0) {
+        throw new Error(`une primitive littérale a été refusée à tort :\n${ok.out.slice(0, 600)}`);
       }
     },
   },

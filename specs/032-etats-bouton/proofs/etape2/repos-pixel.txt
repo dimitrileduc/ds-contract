@@ -1,0 +1,20 @@
+# T019 — SC-006 prouvé au pixel : le repos n'a pas bougé
+Date : 2026-09-04T17:30:21Z
+
+Comparaison STRICTE (extract/image-parity) : dimensions identiques exigées,
+aucun redimensionnement, aucun alignement.
+  avant  = specs/032-etats-bouton/proofs/T0/repos/     — ds.button 2.1.0
+  après  = specs/032-etats-bouton/proofs/etape2/repos/ — ds.button 2.2.0
+
+  style          statut        diffCount    diffPct dimensions
+  ---------------------------------------------------------------------
+  default        identical             0          0 1280x400 =
+  orange         identical             0          0 1280x400 =
+  blanc          identical             0          0 1280x400 =
+  outlineBlanc   identical             0          0 1280x400 =
+  link           identical             0          0 1280x400 =
+  outlineNoir    identical             0          0 1280x400 =
+  iconOnly       identical             0          0 1280x400 =
+
+VERDICT : les 7 styles sont IDENTIQUES — diffCount 0, diffPct 0, soit 0.0000 %.
+SC-006 et FR-010 sont tenus, au pixel et non par raisonnement.

@@ -181,7 +181,7 @@
       },
       "asset": "star",
       "size": 20,
-      "description": "Star — ratings. Intrinsically orange (color/orange): does NOT recolor via currentColor, unlike the other governed icons."
+      "description": "Star — ratings. Intrinsically orange (color/orange): does NOT recolor via currentColor, unlike the other governed icons. LIMITE L5 (vague 032, 2026-09-04, CORRIGEE a l'execution) : ce glyphe ne porte PAS fill=\"currentColor\" — sa couleur est figee dans le SVG, il ne suit donc pas la couleur de libelle d'un etat de bouton (survol, presse). Il EST dans l'enumere iconLeftGlyph/iconRightGlyph de ds.button — la spec 032 affirmait le contraire, c'etait faux. Il n'est pas atteignable par un editeur de site : les 13 fichiers *.authoring.json classent toutes les decisions de glyphe en not-editable ou fixed-by-composition. Le risque residuel est un choix fait A LA COMPOSITION par un developpeur, que rien ne verifie. Le convertir a currentColor avant de le poser sur un bouton."
     },
     {
       "name": "external-link",
@@ -214,7 +214,7 @@
       },
       "asset": "octicon-chevron-down12",
       "size": 16,
-      "description": "Compact downward chevron (12px, Octicon family) — small dropdown / expand indicator. Formerly named « octicon:chevron-down-12 » on canvas."
+      "description": "Compact downward chevron (12px, Octicon family) — small dropdown / expand indicator. Formerly named « octicon:chevron-down-12 » on canvas. LIMITE L5 (vague 032, 2026-09-04, CORRIGEE a l'execution) : ce glyphe ne porte PAS fill=\"currentColor\" — sa couleur est figee dans le SVG, il ne suit donc pas la couleur de libelle d'un etat de bouton (survol, presse). Il EST dans l'enumere iconLeftGlyph/iconRightGlyph de ds.button — la spec 032 affirmait le contraire, c'etait faux. Il n'est pas atteignable par un editeur de site : les 13 fichiers *.authoring.json classent toutes les decisions de glyphe en not-editable ou fixed-by-composition. Le risque residuel est un choix fait A LA COMPOSITION par un developpeur, que rien ne verifie. Le convertir a currentColor avant de le poser sur un bouton."
     }
   ]
 }

@@ -580,13 +580,35 @@ const derivedTextStyles = deriveNamedTextStyles({
 
 function buildTokensScript(fileKey: string | null): string {
   // `breakpoint.*` never becomes a variable — see viewportPaths above.
-  const prim = [...primitives].filter(([p]) => !p.startsWith('breakpoint.')).map(([p, entry]) => ({
-    name: figmaName(p),
-    type: figmaType(entry),
-    value: figmaValue(entry),
-    scopes: scopesFor(p, entry),
-    codeSyntax: cssVarName(p),
-  }));
+  const prim = [...primitives].filter(([p]) => !p.startsWith('breakpoint.')).map(([p, entry]) => {
+    // The primitives loop paints LITERALS: the emitted script hands the value
+    // straight to hexToRgb, which has no alias branch. An alias reaching here
+    // becomes { r: NaN, g: NaN, b: NaN } — a silently invalid colour written
+    // onto the live file, with no exception and nothing to see until a
+    // designer opens the variable. Found on 2026-09-04 (spec 032) with 35
+    // state aliases one run away from being painted that way.
+    //
+    // The three sibling loops below already refuse the MIRROR case by name
+    // ("must be an alias" for brand, semantic and mode tokens). This closes
+    // the fourth corner: aliases belong to the semantic/brand layer, and a
+    // primitive that carries one is refused HERE rather than discovered on
+    // the canvas.
+    if (aliasTarget(entry.value)) {
+      throw new Error(
+        `Primitive token "${p}" is an alias ({${aliasTarget(entry.value)}}) — the primitives ` +
+          `collection paints literal values only, so an alias would be written as an invalid ` +
+          `colour. Move it to the semantic layer (tokens/semantic.tokens.json), where aliases ` +
+          `are resolved into a real Figma VARIABLE_ALIAS.`,
+      );
+    }
+    return {
+      name: figmaName(p),
+      type: figmaType(entry),
+      value: figmaValue(entry),
+      scopes: scopesFor(p, entry),
+      codeSyntax: cssVarName(p),
+    };
+  });
 
   // Brand collection payload: per-variable alias target per brand mode.
   const brandDefault = brandModes.get('default')!;

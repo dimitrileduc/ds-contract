@@ -1,0 +1,71 @@
+# T003 — Relevé des trois accès de la vague 032
+Date : 2026-09-04
+Worktree : /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak
+Branche : oceanic-oak
+
+## (a) Pont figma-console
+
+figma_get_status --probe=true :
+  mode                : local
+  currentFileName     : Piqueray (Copy)
+  currentFileKey      : d9FYAUcqdcNtsuaMgLefvJ      <- le fichier attendu par le plan
+  transport actif     : websocket
+  port                : 9230
+  preferredPort       : 9223
+  portFallbackUsed    : TRUE
+  probeResult         : success=true, latencyMs=2
+  setup.valid         : true
+  page connectée      : « 031 · Planches de validation »
+  autres instances    : 9223, 9224, 9225, 9226, 9229, 9231, 9232 (7 serveurs)
+
+ÉCART AU CRITÈRE LITTÉRAL DE T003, écrit plutôt que dissimulé.
+La tâche demande `portFallbackUsed: false`. Il vaut TRUE : le port préféré 9223
+est occupé par une autre session et le serveur est retombé sur 9230.
+
+Pourquoi ce n'est PAS le cas que la recette « pont-figma-ports-satures » vise :
+  - 9230 est DANS la plage 9223-9232 que le plugin Desktop Bridge balaie. Le cas
+    dangereux est un repli sur 9233+, qui laisse la session SANS pont.
+  - Le probe est vif : roundtrip réussi en 2 ms. Le pont répond, il n'est pas
+    seulement TCP-ouvert.
+  - Le fichier connecté est bien « Piqueray (Copy) » d9FYAUcqdcNtsuaMgLefvJ.
+Conclusion : accès canevas OPÉRATIONNEL. Le drapeau de repli est vrai mais sans
+conséquence ici ; il est relevé pour que personne ne le redécouvre comme un bug.
+
+## (b) FIGMA_TOKEN
+
+Absent du worktree (pas de .env.local ici).
+Présent et lisible dans le checkout principal : /Users/dlstudio/Documents/ds-contract/.env.local
+  FIGMA_TOKEN=figd_B…  (une seule ligne, non vide)
+Emploi prévu par la vague : REST en LECTURE seule (dumps, relevés).
+Aucune manoeuvre n'est nécessaire : `extract/fidelity-matrix/scripts/env.ts`
+(figmaToken()) cherche d'abord process.env, puis le .env.local du cwd, PUIS
+celui du checkout principal qu'il localise par
+`git rev-parse --git-common-dir` — le cas du worktree est déjà prévu par le
+dépôt. Vérifié en lisant le fichier, pas supposé. Aucune copie du secret n'est
+faite dans le worktree, et le token n'est jamais imprimé.
+
+## (c) Instance Odoo jetable
+
+Projet Docker retenu : piqueray-odoo-pilote
+  conteneur   : piqueray-odoo-pilote-odoo-1
+  port hôte   : 8087 -> 8069
+  longpolling : 8088 -> 8072
+  état        : Up (healthy)
+  compose     : /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/integrations/odoo/qa/compose.yaml
+  -> déjà rattaché À CE worktree. C'est l'instance de l'agent.
+
+INTERDIT, et non employé par cette vague :
+  piqueray-odoo-test (port 8071) — instance de l'owner.
+
+## (d) Worktree auto-suffisant (T001, relevé ici)
+
+npm install : OK — « changed 1 package, audited 207 packages ».
+npx playwright install chromium : INDISPONIBLE — le dépôt dépend de
+  `playwright-core`, qui n'expose pas la CLI `playwright`. La commande sort en
+  erreur en demandant d'installer `@playwright/test`.
+Chromium est néanmoins DISPONIBLE, et c'est ce qui compte : le résolveur du
+dépôt (`extract/figma/visual-parity/render.ts:455 chromiumExecutable()`) le
+trouve dans le cache machine partagé. Vérifié par exécution :
+  /Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+Aucun téléchargement n'était donc nécessaire. Si un futur worktree ne le trouve
+pas, le repli documenté est PLAYWRIGHT_CHROMIUM_PATH (render.ts:456).

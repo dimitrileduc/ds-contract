@@ -53,6 +53,41 @@
     "noir-bleute-72": {
       "$value": "#26282CB8",
       "$description": "Noir-bleuté à 72 % : voile du menu mobile en Tablette. Minté from-dump 2026-09-04 (set MenuMobile 2738:13621) ; variable Figma color/noir-bleute-72."
+    },
+    "noir-bleute-survol": {
+      "$type": "color",
+      "$description": "Relevée le 2026-09-04 sur la planche 2738:15904 (vague 032). Entorse §VIII assumée : la teinte a été CALCULÉE puis POSÉE par l'owner, le relevé est POSTÉRIEUR au calcul — ce n'est pas un fait préexistant du fichier, c'est une décision de couleur. Note de la matrice : éclaircissement 12 % de color.noir-bleute vers le blanc.",
+      "$value": "#404245"
+    },
+    "noir-bleute-presse": {
+      "$type": "color",
+      "$description": "Relevée le 2026-09-04 sur la planche 2738:15904 (vague 032). Entorse §VIII assumée : la teinte a été CALCULÉE puis POSÉE par l'owner, le relevé est POSTÉRIEUR au calcul — ce n'est pas un fait préexistant du fichier, c'est une décision de couleur. Note de la matrice : pressé du Default.",
+      "$value": "#4A4D51"
+    },
+    "orange-survol": {
+      "$type": "color",
+      "$description": "Relevée le 2026-09-04 sur la planche 2738:15904 (vague 032). Entorse §VIII assumée : la teinte a été CALCULÉE puis POSÉE par l'owner, le relevé est POSTÉRIEUR au calcul — ce n'est pas un fait préexistant du fichier, c'est une décision de couleur. Note de la matrice : color.orange x 0,90.",
+      "$value": "#E07C0A"
+    },
+    "orange-presse": {
+      "$type": "color",
+      "$description": "Relevée le 2026-09-04 sur la planche 2738:15904 (vague 032). Entorse §VIII assumée : la teinte a été CALCULÉE puis POSÉE par l'owner, le relevé est POSTÉRIEUR au calcul — ce n'est pas un fait préexistant du fichier, c'est une décision de couleur. Note de la matrice : color.orange x 0,80.",
+      "$value": "#C76D09"
+    },
+    "gris-presse": {
+      "$type": "color",
+      "$description": "Relevée le 2026-09-04 sur la planche 2738:15904 (vague 032). Entorse §VIII assumée : la teinte a été CALCULÉE puis POSÉE par l'owner, le relevé est POSTÉRIEUR au calcul — ce n'est pas un fait préexistant du fichier, c'est une décision de couleur. Note de la matrice : pressé des styles Blanc.",
+      "$value": "#CFCFCF"
+    },
+    "transparent": {
+      "$type": "color",
+      "$description": "POSÉE PAR LA SPEC 032 (2026-09-04), NON relevée de la planche owner : elle rend la matrice d'états complète pour le style link, qui n'a pas de fond. Valeur littérale #FFFFFF00 — blanc à alpha zéro, soit la valeur de repos du link exprimée explicitement plutôt que laissée implicite. Ce n'est donc pas une couleur nouvelle au sens du dessin. Aucune entorse §VIII ici : rien n'a été relevé, la primitive est posée et le dit.",
+      "$value": "#FFFFFF00"
+    },
+    "noir-profond": {
+      "$type": "color",
+      "$description": "POSÉE PAR LA SPEC 032 (2026-09-04), NON relevée de la planche owner : arbitrage de l'owner ce jour-là pour le pressé du style link, choisi entre color.noir-bleute et color.noir-pur. Valeur littérale #131416. Aucune entorse §VIII ici : rien n'a été relevé, la primitive est posée et le dit — contrairement aux cinq teintes de survol/pressé, qui elles portent l'entorse.",
+      "$value": "#131416"
     }
   },
   "nav": {

@@ -1,0 +1,78 @@
+{
+  "$comment": "Contrat d'interface de la spec 032 — la matrice d'états, arrêtée. Ce fichier N'EST PAS lu par le build : il est la référence de revue, et la source depuis laquelle tokens/primitives.tokens.json et contracts/button.contract.json sont écrits à la main. Une divergence entre ce fichier et les deux autres est un défaut de la vague, vérifié par la tâche de conformité du quickstart.",
+  "specId": "032-etats-bouton",
+  "date": "2026-09-04",
+  "source": {
+    "figmaFileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "figmaNodeId": "2738:15904",
+    "figmaNodeName": "PROPOSITION — États du Bouton (à valider) · ne PAS synchroniser",
+    "page": "DS · Atomes",
+    "readAt": "2026-09-04",
+    "method": "REST GET /v1/files/:key/nodes?ids=2738:15904 — lecture seule",
+    "honesty": "Les cinq teintes validées ont été CALCULÉES puis POSÉES par l'owner ; le relevé est postérieur au calcul. Entorse à la règle de propreté de source (§VIII), écrite ici et dans chaque $description de jeton."
+  },
+  "primitivesToMint": [
+    { "path": "color.noir-bleute-survol", "value": "#404245", "origin": "planche owner", "note": "éclaircissement 12 % de color.noir-bleute vers le blanc" },
+    { "path": "color.noir-bleute-presse", "value": "#4A4D51", "origin": "planche owner", "note": "pressé du Default" },
+    { "path": "color.orange-survol", "value": "#E07C0A", "origin": "planche owner", "note": "color.orange x 0,90" },
+    { "path": "color.orange-presse", "value": "#C76D09", "origin": "planche owner", "note": "color.orange x 0,80" },
+    { "path": "color.gris-presse", "value": "#CFCFCF", "origin": "planche owner", "note": "pressé des styles Blanc" },
+    { "path": "color.transparent", "value": "#FFFFFF00", "origin": "posée par la spec 032", "note": "complétude de la matrice — le style Link n'a pas de fond ; alias de sa valeur de repos, pas une couleur nouvelle" },
+    { "path": "color.noir-profond", "value": "#131416", "origin": "posée par la spec 032", "note": "pressé du style Link — arbitrage owner du 2026-09-04, entre noir-bleute et noir-pur" }
+  ],
+  "primitivesReused": [
+    { "path": "color.blanc", "value": "#FFFFFF" },
+    { "path": "color.noir-bleute", "value": "#26282C" },
+    { "path": "color.noir-pur", "value": "#000000" },
+    { "path": "color.gris-clair", "value": "#E0E0E0" },
+    { "path": "border-width.2", "value": "2px" }
+  ],
+  "channels": ["fond-survol", "libelle-survol", "fond-presse", "libelle-presse", "anneau-focus"],
+  "variants": ["default", "orange", "blanc", "outlineBlanc", "link", "outlineNoir", "iconOnly"],
+  "matrix": {
+    "default":      { "fond-survol": "color.noir-bleute-survol", "libelle-survol": "color.blanc",       "fond-presse": "color.noir-bleute-presse", "libelle-presse": "color.blanc",         "anneau-focus": "color.noir-bleute" },
+    "orange":       { "fond-survol": "color.orange-survol",       "libelle-survol": "color.blanc",       "fond-presse": "color.orange-presse",      "libelle-presse": "color.blanc",         "anneau-focus": "color.noir-bleute" },
+    "blanc":        { "fond-survol": "color.gris-clair",          "libelle-survol": "color.noir-bleute", "fond-presse": "color.gris-presse",        "libelle-presse": "color.noir-bleute",   "anneau-focus": "color.blanc" },
+    "outlineBlanc": { "fond-survol": "color.blanc",               "libelle-survol": "color.noir-bleute", "fond-presse": "color.gris-clair",         "libelle-presse": "color.noir-bleute",   "anneau-focus": "color.blanc" },
+    "link":         { "fond-survol": "color.transparent",         "libelle-survol": "color.noir-pur",    "fond-presse": "color.transparent",        "libelle-presse": "color.noir-profond",  "anneau-focus": "color.noir-bleute" },
+    "outlineNoir":  { "fond-survol": "color.noir-bleute",         "libelle-survol": "color.blanc",       "fond-presse": "color.noir-bleute-survol", "libelle-presse": "color.blanc",         "anneau-focus": "color.noir-bleute" },
+    "iconOnly":     { "fond-survol": "color.noir-bleute",         "libelle-survol": "color.blanc",       "fond-presse": "color.noir-bleute-survol", "libelle-presse": "color.blanc",         "anneau-focus": "color.noir-bleute" }
+  },
+  "contractStates": {
+    "hover":         { "background-color": "{color.etat.{variant}.fond-survol}",  "color": "{color.etat.{variant}.libelle-survol}" },
+    "active":        { "background-color": "{color.etat.{variant}.fond-presse}",  "color": "{color.etat.{variant}.libelle-presse}" },
+    "focus-visible": { "outline-color": "{color.etat.{variant}.anneau-focus}",    "outline-width": "{border-width.2}" }
+  },
+  "contrastLedger": {
+    "$comment": "Contraste WCAG du LIBELLÉ sur son FOND. Règle FR-019 telle qu'arbitrée le 2026-09-04 : plancher AA 4,5 ; un style déjà sous AA au repos (orange, FR-012) ne doit jamais empirer.",
+    "rule": "min>=4.5 OR (rest<4.5 AND monotone increasing)",
+    "rows": [
+      { "variant": "default",      "repos": 14.76, "survol": 10.08, "presse": 8.50,  "verdict": "pass" },
+      { "variant": "orange",       "repos": 2.42,  "survol": 2.98,  "presse": 3.74,  "verdict": "pass-par-exception-FR-012 (croissant)" },
+      { "variant": "blanc",        "repos": 14.76, "survol": 11.18, "presse": 9.48,  "verdict": "pass" },
+      { "variant": "outlineBlanc", "repos": 14.76, "survol": 14.76, "presse": 11.18, "verdict": "pass" },
+      { "variant": "link",         "repos": 14.76, "survol": 21.00, "presse": 18.43, "verdict": "pass" },
+      { "variant": "outlineNoir",  "repos": 14.76, "survol": 14.76, "presse": 10.08, "verdict": "pass" },
+      { "variant": "iconOnly",     "repos": 14.76, "survol": 14.76, "presse": 10.08, "verdict": "pass" }
+    ]
+  },
+  "focusRingLedger": {
+    "$comment": "FR-005 / SC-002 — contraste de l'anneau contre le fond de page réellement employé par les styles qui s'y posent.",
+    "grounds": [
+      { "token": "color.blanc",       "value": "#FFFFFF", "usedBy": "sections claires par défaut", "ring": "color.noir-bleute", "ratio": 14.76 },
+      { "token": "color.bleu-clair",  "value": "#F4F6FA", "usedBy": "ds.coordonnees",              "ring": "color.noir-bleute", "ratio": 13.65 },
+      { "token": "color.beige-clair", "value": "#FFF3E2", "usedBy": "encarts",                     "ring": "color.noir-bleute", "ratio": 13.48 },
+      { "token": "color.noir-bleute", "value": "#26282C", "usedBy": "hero, pied de page, menu",    "ring": "color.blanc",       "ratio": 14.76 },
+      { "token": "color.noir-pur",    "value": "#000000", "usedBy": "ds.devis",                    "ring": "color.blanc",       "ratio": 21.00 }
+    ],
+    "namedLimit": "L'anneau est choisi PAR STYLE. Il suppose que le style reste posé sur le fond pour lequel il est dessiné (blanc et outlineBlanc sur fond sombre, les cinq autres sur fond clair). Aucun instrument ne détecte aujourd'hui un style posé sur le mauvais fond."
+  },
+  "namedLimits": [
+    { "id": "L1", "subject": "soulignement du style Link", "statement": "declaredStates est indexé état -> canal -> valeur sur la racine, sans dimension par valeur d'énuméré. Souligner le Link au survol soulignerait les 7 styles. Repli : changement de couleur du libellé (FR-013, décision owner 2026-09-04).", "destination": "docs/FIGMA-CAPABILITY-MATRIX.md" },
+    { "id": "L2", "subject": "réaction de prototype Figma", "statement": "Le générateur ne pose aucune interaction de prototype. Un ajout manuel serait effacé au sync suivant (FR-014).", "destination": "docs/FIGMA-CAPABILITY-MATRIX.md" },
+    { "id": "L3", "subject": "outline-offset sur le canevas", "statement": "La bague dessinée sur le canevas colle au bord ; en CSS elle est décalée de 2 px. Approximation déjà nommée dans core/emit-figma-script.ts:1722.", "destination": "docs/FIGMA-CAPABILITY-MATRIX.md" },
+    { "id": "L4", "subject": "survol collant sur écran tactile", "statement": "Les règles de survol ne sont pas gardées par @media (hover: hover). L'état peut rester appliqué après un appui jusqu'au geste suivant. Accepté : :active fournit le retour d'appui, et poser la garde serait une modification d'émetteur touchant les 39 contrats.", "destination": "registre de travail différé" },
+    { "id": "L5", "subject": "glyphes sans currentColor", "statement": "check, google, google-wordmark, octicon-chevron-down12, star, star-empty ne suivent pas la couleur d'état. Aucun n'est aujourd'hui porté par un bouton ; les six glyphes réellement employés le sont tous.", "destination": "contracts/icons.registry.json (description)" },
+    { "id": "L6", "subject": "survol manuel du pied de page", "statement": "odoo-bridge.css:334-340 garde le survol des quatre icônes sociales. Il porte opacity, qui n'est pas un canal d'état de part (PART_STATE_CHANNELS). Le gouverner demanderait d'élargir ce registre — hors du périmètre « ds.button seul ». FR-011 et SC-004 se lisent donc dans le périmètre du Bouton.", "destination": "registre de travail différé + rapport de clôture" }
+  ]
+}

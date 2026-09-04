@@ -190,6 +190,16 @@ So the link lives in the Odoo integration and is governed there: `link_href` on 
 
 **The other choice was weighed, and the engine supports it.** The archived `docs/reference/demo-archive/breadcrumb-item.contract.json` renders a part with `"element": "a"` plus `"attrs": { "href": "{href}" }`, and `ds.button`'s root already uses the `attrs` channel (`{"type": "button"}`) — so putting `href` on `ds.button` is expressible today, with no schema change. It was rejected because it would make the contract carry site content. If that trade is ever re-decided, this is the paragraph to edit, and the receipt to cite.
 
+**Three named limits of the state channel, measured 2026-09-04 (spec 032, the first Piqueray contract to fill it).** `figmaStatePreviews` shipped long before anything used it; these are what the first real use found. They are written here, at the row that claims the capability, and not in a footnote elsewhere.
+
+**L1 — a state cannot vary BY ENUM VALUE, so `link` cannot gain an underline.** `anatomy.root.states` is indexed *state → channel → value* on the root. There is no dimension per enum value: a `text-decoration: underline` written under `hover` would underline **all seven** button styles, not just `link`. The `{variant}` substitution helps only *inside* a token reference (`{color.etat.{variant}.libelle-survol}` picks a different token per style) — it cannot make a channel exist for one style and not another. Adding that dimension means a schema change (a per-enum branch under `states`), which spec 032 declined as far more expensive than the alternative. **Owner's fallback, 2026-09-04:** the `link` style changes its LABEL COLOUR instead — `noir-pur` on hover, `noir-profond` when pressed. Measured contrast 14.76 → 21.00 → 18.43. The underline stays impossible until someone pays for the schema branch.
+
+**L2 — no prototype reaction is generated, and a hand-added one is destroyed at the next sync.** The state axis produces *preview variants* — static frames a designer reads. It produces no Figma prototype interaction, so nothing animates in play mode. This is not merely "not implemented": `emit-figma-script.ts` rebuilds the variant set, so a reaction wired by hand on a preview variant is removed the next time the component syncs, **silently**. If a designer needs the transition to be felt rather than read, that belongs in the delivered surface (where CSS `transition` already runs), not on the canvas.
+
+**L3 — `outline-offset` does not reach the canvas: the drawn ring hugs the edge, the CSS ring stands 2 px off it.** `translateStateOverrides` (`core/emit-figma-script.ts:1722`) maps the `outline-color` + `outline-width` pair onto an OUTSIDE-aligned stroke (`spec.strokeOutside`). Figma has no per-stroke offset, so the 2 px gap the browser paints has no canvas equivalent. The approximation is bounded and one-directional — the canvas ring is *tighter* than the real one, never looser — so a designer reading the preview never over-estimates the ring's clearance. The pair must be COMPLETE (both colour and width) or the channel falls inert; spec 032's contract carries both.
+
+---
+
 ### 10 · Conditionals & carriers
 
 | CSS channel | Figma expression | Bindable | Contract today | Verdict |

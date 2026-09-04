@@ -1,0 +1,28 @@
+# T017 — contrôles ligne à ligne après build
+Date : 2026-09-04T17:29:20Z
+
+## Jetons d'état dans le CSS livré
+  --color-etat-*                 attendu 35   mesuré 35
+
+## Les deux primitives neuves posées par la spec
+  --color-transparent              1 occurrence(s)
+  --color-noir-profond             1 occurrence(s)
+  valeurs :
+    --color-noir-bleute-survol: #404245;
+    --color-noir-bleute-presse: #4A4D51;
+    --color-orange-survol: #E07C0A;
+    --color-orange-presse: #C76D09;
+    --color-gris-presse: #CFCFCF;
+    --color-transparent: #FFFFFF00;
+    --color-noir-profond: #131416;
+
+## Règles d'état dans le React livré (Button.module.css)
+  :hover              attendu 14   mesuré 14
+  :active             attendu 14   mesuré 14
+  :focus-visible      attendu  9   mesuré 9
+  outline-style: solid             mesuré 1
+
+## Règles d'état dans le CSS Odoo (components.pqr.css)
+  :hover              non nul ?    mesuré 14
+  :active                          mesuré 14
+  :focus-visible                   mesuré 9

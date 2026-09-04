@@ -4,6 +4,81 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-09-04 — 032 : le Bouton répond au geste — le canal d'états rempli pour la première fois, et deux défauts trouvés en lisant avant d'écrire
+
+Le canal `states` existait dans le schéma, rendu par les trois émetteurs, et **vide
+sur les 39 contrats**. La vague le remplit pour `ds.button` et le fait descendre
+jusqu'au site : survol, pressé, anneau de focus clavier, sur les sept styles.
+
+- **Le repos ne bouge pas d'un pixel** — les 7 styles rendus avant (`ds.button`
+  2.1.0) et après (2.2.0), comparés en mode strict : `identical`, `diffCount 0`,
+  **0,0000 %** sur les sept. C'est la garantie qui rendait la vague acceptable, et
+  elle est mesurée, pas raisonnée.
+- **42 feuilles de jetons neuves** : 7 primitives littérales + 35 alias
+  `color.etat.<style>.<canal>`. Aucune valeur de couleur littérale n'entre dans le
+  contrat.
+- **Le site répond, et les contrastes mesurés sur la page vive reproduisent le
+  registre de la matrice au centième** sur les six styles présents sur la home.
+  Anneau de focus : 16/16 boutons, `solid 2px`, bonne couleur par style. Aucun
+  anneau au clic souris : 16/16.
+- **Le master Figma passe de 7 à 28 variantes**, amendé EN PLACE : `6:122` et sa
+  clé inchangés, les 7 variantes d'origine renommées sur place avec leurs
+  identifiants, **369 instances avant, 369 après**, zéro orpheline. Second passage
+  du même script : `skipped: true, reason: "unchanged"`. Les 10 planches de
+  maquette photographiées avant/après : pire écart **0,001 %**.
+- **`parity` vert sans acquittement neuf** — `parity/baseline.json` reste à **40**
+  entrées. La dette que 015 avait créée (7 → 89) et que 016 a remboursée n'est pas
+  reproduite.
+- **Balayage de clôture : 21 portes sur 21 vertes, `248/248` évaluations**
+  (ligne de base : 245/245 ; quarantaine 48 → 46). Le `N/N` est relevé de la
+  sortie vive, jamais recopié.
+- **Un quatrième coin fermé, trouvé à la revue de nettoyage.** La boucle
+  `primitives` du sync de jetons refuse désormais PAR NOM un jeton dont la
+  valeur est un alias — le défaut qui aurait peint 35 variables invalides. Le
+  report initial était injustifié : les trois boucles sœurs refusaient déjà le
+  cas miroir, `aliasTarget` était déjà importé, et `examples/polaris` résout ses
+  alias avant d'alimenter le créneau primitif. Coût mesuré : **sortie générée
+  byte-identique, zéro re-pin Polaris**. Gardé par le cas C2
+  `refuse-alias-in-primitives-layer`, contrôle négatif compris.
+- **Deux évaluations sorties de quarantaine** (48 → 46), dont
+  `focus-not-pressed-browser-probe` **prouvée par sabotage** : retirer
+  `focus-visible` du contrat la fait rougir par nom, faire porter au focus le fond
+  de survol la fait rougir avec les couleurs mesurées, la restauration la reverdit.
+
+**Deux défauts trouvés en lisant le code AVANT de l'exécuter, et c'est le résultat
+de méthode de cette vague.**
+
+1. **Un alias dans la couche `primitives` peint des variables NaN sur le canevas,
+   en silence.** `figma-sync/01-tokens.js` passe la valeur à `hexToRgb` sans jamais
+   tester si c'est un alias. Vérifié dans le bac à sable Figma sans aucune
+   mutation : `hexToRgb('{color.noir-bleute-survol}')` rend `{r:NaN,g:NaN,b:NaN}`.
+   Lancer le script tel quel aurait posé **35 variables invalides** sur le fichier
+   client. Corrigé en déplaçant les 35 alias vers la couche sémantique — leur bonne
+   place par la doctrine du dépôt, et la seule où le générateur les résout. Le nom
+   de variable CSS n'a pas bougé : la surface livrée est identique à l'octet.
+   **Aucune porte ne refuse ce cas** — `DW-032-007`.
+2. **Le CTA du pied de page devenait blanc sur blanc au survol.** Prédit par
+   arithmétique de spécificité avant qu'une ligne soit écrite, puis MESURÉ sur la
+   page vive : la règle du pont `.footer[…] a.button` (0,3,1) bat le sélecteur
+   d'état émis (0,3,0) et épingle le libellé au blanc pendant que le fond y passe.
+   **Contraste 1,00.** La prédiction avait manqué un second prétendant à la même
+   spécificité, venu d'Odoo — ce qui interdisait le correctif « simple ». Réparé
+   par une règle qui re-porte le canal du contrat à 0,5,1 : **14,76 / 14,76 /
+   11,18**, les valeurs exactes de la matrice.
+
+**Trois erreurs du plan corrigées à l'exécution**, toutes écrites au rapport :
+`odoo:derivation` vit à l'intérieur de `npm run build`, donc les épingles de
+version doivent précéder le build (528 violations sinon) ; le compte d'épingles
+était **264, pas 253** (la répartition par fichier du plan somme à 264) ; et
+`npm run odoo:save` vise **l'instance de l'owner par défaut**, `PQR_PROJECT`
+n'ayant aucun effet sur lui.
+
+Sept entrées au registre de travail différé, chacune avec sa raison. La plus
+importante après `DW-032-007` : **aucune porte ne surveille la cascade CSS
+d'Odoo** — le défaut du pied de page n'a été vu que par une mesure manuelle.
+
+Rapport complet : `specs/032-etats-bouton/RAPPORT-CLOTURE.md`.
+
 ## 2026-08-27 — 030 : l'outillage de la vague — six capacités, et deux défauts trouvés en répétant ce que 029 n'avait jamais joué
 
 Les sept prérequis P1–P7 de la rétro 029 sont livrés comme **six capacités du runner**,

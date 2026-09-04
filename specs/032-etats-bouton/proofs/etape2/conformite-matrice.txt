@@ -1,0 +1,44 @@
+# T016 — conformite matrice / jetons / contrat
+
+Trois fichiers doivent dire la meme chose. Une divergence est un defaut de la
+vague, verifie ici par execution et non par relecture.
+
+## 1. Chaque cellule de la matrice a son alias dans les jetons
+  35 / 35 cellules conformes
+
+## 2. Les primitives mintees portent la valeur de la matrice
+  ✔ color.noir-bleute-survol         #404245   (entorse §VIII ecrite)
+  ✔ color.noir-bleute-presse         #4A4D51   (entorse §VIII ecrite)
+  ✔ color.orange-survol              #E07C0A   (entorse §VIII ecrite)
+  ✔ color.orange-presse              #C76D09   (entorse §VIII ecrite)
+  ✔ color.gris-presse                #CFCFCF   (entorse §VIII ecrite)
+  ✔ color.transparent                #FFFFFF00   (entorse §VIII ecrite)
+  ✔ color.noir-profond               #131416   (entorse §VIII ecrite)
+
+## 3. Les primitives reutilisees telles quelles n'ont pas bouge
+  ✔ color.blanc                      #FFFFFF
+  ✔ color.noir-bleute                #26282C
+  ✔ color.noir-pur                   #000000
+  ✔ color.gris-clair                 #E0E0E0
+  ✔ border-width.2                   2px
+
+## 4. Chaque contractStates de la matrice a sa contrepartie au contrat
+  ✔ hover          background-color   {color.etat.{variant}.fond-survol}
+  ✔ hover          color              {color.etat.{variant}.libelle-survol}
+  ✔ active         background-color   {color.etat.{variant}.fond-presse}
+  ✔ active         color              {color.etat.{variant}.libelle-presse}
+  ✔ focus-visible  outline-color      {color.etat.{variant}.anneau-focus}
+  ✔ focus-visible  outline-width      {border-width.2}
+
+## 5. Aucun alias orphelin sous color.etat
+  7 styles, 35 canaux — aucun orphelin
+
+## 6. Au plus UN enumere substitue sur l'ensemble des etats (schema)
+  substitue : ['variant']
+
+## 7. Les sept valeurs de l'enumere `variant` ont toutes leur feuille
+  enum = ['default', 'orange', 'blanc', 'outlineBlanc', 'link', 'outlineNoir', 'iconOnly']
+  toutes portees : True
+
+## VERDICT
+  Les trois fichiers disent la meme chose. Aucune divergence.

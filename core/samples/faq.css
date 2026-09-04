@@ -222,7 +222,7 @@
   top: 0px;
 }
 
-/* Button — from ds.button v2.1.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.2.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -258,6 +258,11 @@
   width: max(100%, 44px);
   height: max(100%, 44px);
   transform: translate(-50%, -50%);
+}
+
+.button:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
 }
 
 .button--variant-default {
@@ -299,6 +304,150 @@
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
+}
+
+.button--variant-default:hover:not(:disabled) {
+  background-color: var(--color-etat-default-fond-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  background-color: var(--color-etat-orange-fond-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  background-color: var(--color-etat-blanc-fond-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  background-color: var(--color-etat-outlineBlanc-fond-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  background-color: var(--color-etat-link-fond-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  background-color: var(--color-etat-outlineNoir-fond-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  background-color: var(--color-etat-iconOnly-fond-survol);
+}
+
+.button--variant-default:hover:not(:disabled) {
+  color: var(--color-etat-default-libelle-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  color: var(--color-etat-orange-libelle-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  color: var(--color-etat-blanc-libelle-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  color: var(--color-etat-outlineBlanc-libelle-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  color: var(--color-etat-link-libelle-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  color: var(--color-etat-outlineNoir-libelle-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  color: var(--color-etat-iconOnly-libelle-survol);
+}
+
+.button--variant-default:active:not(:disabled) {
+  background-color: var(--color-etat-default-fond-presse);
+}
+
+.button--variant-orange:active:not(:disabled) {
+  background-color: var(--color-etat-orange-fond-presse);
+}
+
+.button--variant-blanc:active:not(:disabled) {
+  background-color: var(--color-etat-blanc-fond-presse);
+}
+
+.button--variant-outlineBlanc:active:not(:disabled) {
+  background-color: var(--color-etat-outlineBlanc-fond-presse);
+}
+
+.button--variant-link:active:not(:disabled) {
+  background-color: var(--color-etat-link-fond-presse);
+}
+
+.button--variant-outlineNoir:active:not(:disabled) {
+  background-color: var(--color-etat-outlineNoir-fond-presse);
+}
+
+.button--variant-iconOnly:active:not(:disabled) {
+  background-color: var(--color-etat-iconOnly-fond-presse);
+}
+
+.button--variant-default:active:not(:disabled) {
+  color: var(--color-etat-default-libelle-presse);
+}
+
+.button--variant-orange:active:not(:disabled) {
+  color: var(--color-etat-orange-libelle-presse);
+}
+
+.button--variant-blanc:active:not(:disabled) {
+  color: var(--color-etat-blanc-libelle-presse);
+}
+
+.button--variant-outlineBlanc:active:not(:disabled) {
+  color: var(--color-etat-outlineBlanc-libelle-presse);
+}
+
+.button--variant-link:active:not(:disabled) {
+  color: var(--color-etat-link-libelle-presse);
+}
+
+.button--variant-outlineNoir:active:not(:disabled) {
+  color: var(--color-etat-outlineNoir-libelle-presse);
+}
+
+.button--variant-iconOnly:active:not(:disabled) {
+  color: var(--color-etat-iconOnly-libelle-presse);
+}
+
+.button--variant-default:focus-visible {
+  outline-color: var(--color-etat-default-anneau-focus);
+}
+
+.button--variant-orange:focus-visible {
+  outline-color: var(--color-etat-orange-anneau-focus);
+}
+
+.button--variant-blanc:focus-visible {
+  outline-color: var(--color-etat-blanc-anneau-focus);
+}
+
+.button--variant-outlineBlanc:focus-visible {
+  outline-color: var(--color-etat-outlineBlanc-anneau-focus);
+}
+
+.button--variant-link:focus-visible {
+  outline-color: var(--color-etat-link-anneau-focus);
+}
+
+.button--variant-outlineNoir:focus-visible {
+  outline-color: var(--color-etat-outlineNoir-anneau-focus);
+}
+
+.button--variant-iconOnly:focus-visible {
+  outline-color: var(--color-etat-iconOnly-anneau-focus);
+}
+
+.button:focus-visible {
+  outline-width: var(--border-width-2);
 }
 
 .button__iconLeft svg {

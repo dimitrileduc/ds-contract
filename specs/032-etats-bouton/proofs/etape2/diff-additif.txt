@@ -1,0 +1,43 @@
+# T018 — FR-010 prouvé par le diff : le repos n'a rien perdu
+Date : 2026-09-04T17:29:49Z
+
+## Le contrôle brut, tel que T018 le formule
+
+$ git diff src/components/Button/Button.module.css | grep "^-" | grep -v "^---"
+    - * Source of truth: contracts/button.contract.json (ds.button v2.1.0)
+    -> 1 ligne(s)
+
+## L'exception, nommée plutôt que contournée
+
+La seule ligne retirée est la BANNIÈRE du fichier généré, qui porte le numéro
+de version du contrat :
+
+    -  * Source of truth: contracts/button.contract.json (ds.button v2.1.0)
+    +  * Source of truth: contracts/button.contract.json (ds.button v2.2.0)
+
+Ce n'est pas une déclaration de style : c'est un commentaire, et il DOIT changer
+puisque le contrat monte en 2.2.0. La règle littérale de T018 ne distingue pas la
+bannière d'une règle CSS ; l'écart est écrit ici plutôt que la règle desserrée en
+silence.
+
+## Le contrôle qui compte : aucune DÉCLARATION retirée
+
+$ git diff … | grep "^-" | grep -v "^---" | grep -v "^- \*"
+    -> 0 ligne(s) hors commentaire
+
+## Contrôle indépendant : les sélecteurs de repos sont tous encore là
+    .root                      avant 5   après 5   OK
+    .variant-default           avant 1   après 1   OK
+    .variant-orange            avant 1   après 1   OK
+    .variant-blanc             avant 1   après 1   OK
+    .variant-outlineBlanc      avant 1   après 1   OK
+    .variant-link              avant 1   après 1   OK
+    .variant-outlineNoir       avant 1   après 1   OK
+    .variant-iconOnly          avant 2   après 2   OK
+
+   src/components/Button/Button.module.css | 151 +++++++++++++++++++++++++++++++-
+   1 file changed, 150 insertions(+), 1 deletion(-)
+
+VERDICT : additif sur toutes les DÉCLARATIONS. La seule suppression est la
+bannière de version, obligatoire. Le repos est intact au niveau du code.
+La preuve au PIXEL (T019) reste l'autorité : c'est elle qui tranche.

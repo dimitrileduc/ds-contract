@@ -1,4 +1,163 @@
 {
+  "color": {
+    "$description": "Couleurs d'ETAT du Bouton (vague 032, 2026-09-04). Elles vivent dans la couche SEMANTIQUE et non dans les primitives, et c'est une correction faite a l'execution : la boucle PRIMITIVES du script de sync genere passe la valeur a hexToRgb sans jamais tester si c'est un alias — un alias y devient une couleur NaN. Verifie dans le bac a sable Figma avant toute ecriture : hexToRgb('{color.noir-bleute-survol}') rend {r:NaN,g:NaN,b:NaN}. La boucle SEMANTIC, elle, resout l'alias en VARIABLE_ALIAS. Le nom de la variable CSS est inchange (--color-etat-<style>-<canal>), donc la surface livree ne bouge pas d'un octet.",
+    "etat": {
+      "default": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.noir-bleute-survol}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.noir-bleute-presse}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        }
+      },
+      "orange": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.orange-survol}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.orange-presse}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        }
+      },
+      "blanc": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.gris-clair}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.gris-presse}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        }
+      },
+      "outlineBlanc": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.gris-clair}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        }
+      },
+      "link": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.transparent}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.noir-pur}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.transparent}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.noir-profond}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        }
+      },
+      "outlineNoir": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.noir-bleute-survol}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        }
+      },
+      "iconOnly": {
+        "fond-survol": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        },
+        "libelle-survol": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "fond-presse": {
+          "$type": "color",
+          "$value": "{color.noir-bleute-survol}"
+        },
+        "libelle-presse": {
+          "$type": "color",
+          "$value": "{color.blanc}"
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}"
+        }
+      }
+    }
+  },
   "typography": {
     "titre-1": {
       "$extensions": {

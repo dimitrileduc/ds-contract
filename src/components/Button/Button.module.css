@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.1.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -43,6 +43,11 @@
   transform: translate(-50%, -50%);
 }
 
+.root:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
 .variant-default {
   background-color: var(--color-noir-bleute);
 }
@@ -82,6 +87,150 @@
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
+}
+
+.variant-default:hover:not(:disabled) {
+  background-color: var(--color-etat-default-fond-survol);
+}
+
+.variant-orange:hover:not(:disabled) {
+  background-color: var(--color-etat-orange-fond-survol);
+}
+
+.variant-blanc:hover:not(:disabled) {
+  background-color: var(--color-etat-blanc-fond-survol);
+}
+
+.variant-outlineBlanc:hover:not(:disabled) {
+  background-color: var(--color-etat-outlineBlanc-fond-survol);
+}
+
+.variant-link:hover:not(:disabled) {
+  background-color: var(--color-etat-link-fond-survol);
+}
+
+.variant-outlineNoir:hover:not(:disabled) {
+  background-color: var(--color-etat-outlineNoir-fond-survol);
+}
+
+.variant-iconOnly:hover:not(:disabled) {
+  background-color: var(--color-etat-iconOnly-fond-survol);
+}
+
+.variant-default:hover:not(:disabled) {
+  color: var(--color-etat-default-libelle-survol);
+}
+
+.variant-orange:hover:not(:disabled) {
+  color: var(--color-etat-orange-libelle-survol);
+}
+
+.variant-blanc:hover:not(:disabled) {
+  color: var(--color-etat-blanc-libelle-survol);
+}
+
+.variant-outlineBlanc:hover:not(:disabled) {
+  color: var(--color-etat-outlineBlanc-libelle-survol);
+}
+
+.variant-link:hover:not(:disabled) {
+  color: var(--color-etat-link-libelle-survol);
+}
+
+.variant-outlineNoir:hover:not(:disabled) {
+  color: var(--color-etat-outlineNoir-libelle-survol);
+}
+
+.variant-iconOnly:hover:not(:disabled) {
+  color: var(--color-etat-iconOnly-libelle-survol);
+}
+
+.variant-default:active:not(:disabled) {
+  background-color: var(--color-etat-default-fond-presse);
+}
+
+.variant-orange:active:not(:disabled) {
+  background-color: var(--color-etat-orange-fond-presse);
+}
+
+.variant-blanc:active:not(:disabled) {
+  background-color: var(--color-etat-blanc-fond-presse);
+}
+
+.variant-outlineBlanc:active:not(:disabled) {
+  background-color: var(--color-etat-outlineBlanc-fond-presse);
+}
+
+.variant-link:active:not(:disabled) {
+  background-color: var(--color-etat-link-fond-presse);
+}
+
+.variant-outlineNoir:active:not(:disabled) {
+  background-color: var(--color-etat-outlineNoir-fond-presse);
+}
+
+.variant-iconOnly:active:not(:disabled) {
+  background-color: var(--color-etat-iconOnly-fond-presse);
+}
+
+.variant-default:active:not(:disabled) {
+  color: var(--color-etat-default-libelle-presse);
+}
+
+.variant-orange:active:not(:disabled) {
+  color: var(--color-etat-orange-libelle-presse);
+}
+
+.variant-blanc:active:not(:disabled) {
+  color: var(--color-etat-blanc-libelle-presse);
+}
+
+.variant-outlineBlanc:active:not(:disabled) {
+  color: var(--color-etat-outlineBlanc-libelle-presse);
+}
+
+.variant-link:active:not(:disabled) {
+  color: var(--color-etat-link-libelle-presse);
+}
+
+.variant-outlineNoir:active:not(:disabled) {
+  color: var(--color-etat-outlineNoir-libelle-presse);
+}
+
+.variant-iconOnly:active:not(:disabled) {
+  color: var(--color-etat-iconOnly-libelle-presse);
+}
+
+.variant-default:focus-visible {
+  outline-color: var(--color-etat-default-anneau-focus);
+}
+
+.variant-orange:focus-visible {
+  outline-color: var(--color-etat-orange-anneau-focus);
+}
+
+.variant-blanc:focus-visible {
+  outline-color: var(--color-etat-blanc-anneau-focus);
+}
+
+.variant-outlineBlanc:focus-visible {
+  outline-color: var(--color-etat-outlineBlanc-anneau-focus);
+}
+
+.variant-link:focus-visible {
+  outline-color: var(--color-etat-link-anneau-focus);
+}
+
+.variant-outlineNoir:focus-visible {
+  outline-color: var(--color-etat-outlineNoir-anneau-focus);
+}
+
+.variant-iconOnly:focus-visible {
+  outline-color: var(--color-etat-iconOnly-anneau-focus);
+}
+
+.root:focus-visible {
+  outline-width: var(--border-width-2);
 }
 
 .iconLeft svg {

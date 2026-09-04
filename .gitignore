@@ -110,3 +110,12 @@ specs/029-figma-responsive-categories/proofs/**/*.png
 # sont plus.
 specs/component-repairs/*/*/captures/
 specs/component-repairs/*/captures/
+
+# Captures de preuve de la vague 032 — RÉGÉNÉRABLES, non committées.
+# Convention du dépôt : aucune spec ne suit de PNG (031, 029, 017 : zéro).
+# Les reçus CHIFFRÉS, eux, sont committés — manifest.json (octets, dimensions,
+# version de Chromium, boîte de chaque style) et les relevés .txt/.md qui
+# portent les verdicts. Pour reproduire les images :
+#   npx tsx specs/032-etats-bouton/tools/render-repos.mts --out <dir>
+#   npx tsx specs/032-etats-bouton/tools/mesure-etats.mts --url <url> --out <dir>
+specs/032-etats-bouton/proofs/**/*.png

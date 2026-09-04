@@ -289,7 +289,28 @@
  *     contraste MESURÉ 1.23 — invisible. Le fix reprend le canal du contrat avec une
  *     spécificité gagnante. Portée vérifiée : sur les DIX titres gouvernés de la
  *     page, seul celui-ci perd sa couleur — Odoo ne pose de règle de titre que dans
- *     `.o_footer` / `.o_cc2`. */
+ *     `.o_footer` / `.o_cc2`.
+ * (6) États du CTA : même famille de conflit que (3) et (5), déclenché par le
+ *     remplissage du canal d'états (vague 032, 2026-09-04). MESURÉ sur la page vive,
+ *     pas déduit : au survol du CTA `outlineBlanc` du pied, le fond passe à blanc
+ *     (règle générée, 0,3,0, non contestée) mais le libellé RESTE blanc — épinglé
+ *     par la règle (3) `.footer[…] a.button` (0,3,1), qui bat la règle d'état.
+ *     Résultat : blanc sur blanc, contraste 1.00, libellé effacé — exactement ce que
+ *     l'exigence de non-régression de la vague interdit (un état n'a jamais le droit
+ *     d'être MOINS lisible que le repos, ici 14,76).
+ *     Deux règles se disputaient le canal, relevées par `el.matches()` sur
+ *     `document.styleSheets` : `.o_footer a:not(.btn):hover` (Odoo, 0,3,1, teinte
+ *     #432C3D) et la règle (3) (0,3,1, blanc) — à spécificité égale, la dernière
+ *     source gagne, donc (3). Il ne suffit donc PAS de neutraliser (3) pendant les
+ *     états : Odoo reprendrait la main avec une couleur non gouvernée.
+ *     Le fix reprend le canal du contrat, par la VARIABLE DE JETON et jamais par une
+ *     valeur littérale, à une spécificité (0,5,1) qui bat les deux prétendants.
+ *     Les sept styles sont couverts bien qu'un seul (`outlineBlanc`) soit
+ *     aujourd'hui posé dans le pied : c'est ce qui évite qu'un changement de style du
+ *     CTA fasse revenir le défaut en silence, aucune porte ne le surveillant.
+ *     Ce n'est pas une règle d'état écrite à la main au sens de « aucune règle
+ *     d'état manuelle » : c'est une neutralisation de conflit qui RE-PORTE un canal
+ *     gouverné, comme (2), (3) et (5) le font déjà. */
 
 /* (1) Le footer couvre tout le viewport */
 .footer[data-pqr-shell="footer"] {
@@ -356,6 +377,52 @@
  * règle de titre d'Odoo — voir (5) en tête de zone. */
 .footer[data-pqr-shell="footer"] .footer__TitreReseaux {
   color: var(--pqr-color-orange);
+}
+
+/* (6) Les états du CTA conservent les couleurs de libellé du contrat contre la
+ * règle (3) ci-dessus et contre la couleur de lien d'Odoo — voir (6) en tête
+ * de zone. Spécificité 0,5,1 : elle bat les deux (0,3,1). */
+.footer[data-pqr-shell="footer"] a.button--variant-default:hover:not(:disabled) {
+  color: var(--pqr-color-etat-default-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-orange:hover:not(:disabled) {
+  color: var(--pqr-color-etat-orange-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-blanc:hover:not(:disabled) {
+  color: var(--pqr-color-etat-blanc-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-outlineBlanc:hover:not(:disabled) {
+  color: var(--pqr-color-etat-outlineBlanc-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-link:hover:not(:disabled) {
+  color: var(--pqr-color-etat-link-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-outlineNoir:hover:not(:disabled) {
+  color: var(--pqr-color-etat-outlineNoir-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-iconOnly:hover:not(:disabled) {
+  color: var(--pqr-color-etat-iconOnly-libelle-survol);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-default:active:not(:disabled) {
+  color: var(--pqr-color-etat-default-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-orange:active:not(:disabled) {
+  color: var(--pqr-color-etat-orange-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-blanc:active:not(:disabled) {
+  color: var(--pqr-color-etat-blanc-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-outlineBlanc:active:not(:disabled) {
+  color: var(--pqr-color-etat-outlineBlanc-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-link:active:not(:disabled) {
+  color: var(--pqr-color-etat-link-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-outlineNoir:active:not(:disabled) {
+  color: var(--pqr-color-etat-outlineNoir-libelle-presse);
+}
+.footer[data-pqr-shell="footer"] a.button--variant-iconOnly:active:not(:disabled) {
+  color: var(--pqr-color-etat-iconOnly-libelle-presse);
 }
 
 /* (4) Logo link : boîte flex exacte comme le header */
