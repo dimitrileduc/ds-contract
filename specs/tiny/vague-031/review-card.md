@@ -230,3 +230,24 @@ devra devenir `GoogleReviews.ReviewCard` — le renommage est réel et voulu (la
 un set), ce n'est pas la régression vers l'appariement par nom que le commentaire du cas redoute.
 Mais il ne faudra le changer QU'UNE FOIS la composition réparée, sinon la sonde devient creuse :
 elle attendrait un constat déjà présent sans sa mutation.
+
+---
+
+# Les 6 px de la carte d'avis en Wide — revus le 2026-09-04, non corrigés
+
+**Le fait, mesuré.** Sur la planche 031 en Wide, la carte la plus haute mesure 258 px
+alors que son contenu se termine à 240 (24 + entête 56 + 14 + notation 16 + 14 +
+témoignage 72 + 14 + « lire la suite » 30). La marge basse effective y vaut donc
+**18 px au lieu des 24** que la carte déclare. Notre rendu applique les 24 et fait
+264 px : d'où +6 px sur la section Avis en Wide.
+
+**Ce que ce n'est pas.** Rien n'est tronqué : aucun texte coupé, aucun élément
+masqué. L'écart ne se voit pas à l'œil — vérifié par l'owner sur le canevas.
+Une première rédaction parlait d'une carte « rognée », ce qui laissait entendre une
+perte de contenu : c'était faux et c'est corrigé ici comme dans la description du
+contrat.
+
+**Décision (owner, 2026-09-04)** : on ne touche pas. Le rendu est conforme au
+contrat ; c'est le dessin qui est un peu plus serré, de façon invisible. Le sujet
+se rouvrira naturellement au développement du carrousel, quand cette carte sera
+reprise.

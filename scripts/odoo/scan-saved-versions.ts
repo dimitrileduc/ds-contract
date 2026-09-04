@@ -4,7 +4,7 @@ import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 import { ROOT_CLASSES } from './lib/repo-data.js';
 
-const EXPECTED_GRAPH = '69929b77328a602b863dc2a0b0a5ee8aa99459418d7d86dab8b6df0b67a6909d';
+const EXPECTED_GRAPH = 'fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e';
 const AUTHORING = '3.0.0';
 const MODULE = '19.0.1.11.0';
 const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '3.0.1', 'ds.presentation': '4.1.0', 'ds.hero': '2.0.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '2.0.0', 'ds.sav': '2.1.0', 'ds.texte-seo': '3.0.0', 'ds.coordonnees': '2.2.0', 'ds.reassurances': '2.0.0', 'ds.categories-principales': '2.0.0', 'ds.hero-video': '2.0.0', 'ds.produits-ecommerce': '2.0.0' };
