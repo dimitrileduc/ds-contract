@@ -74,9 +74,11 @@
   --space-48: 48px;
   --space-56: 56px;
   --space-64: 64px;
+  --space-80: 80px;
   --space-89: 89px;
   --space-96: 96px;
   --space-128: 128px;
+  --space-192: 192px;
   --space-288: 288px;
   --space-392: 392px;
   --space-418: 418px;
@@ -138,6 +140,10 @@
   --size-presentation-col-gauche: 628px;
   --size-product-card-image: 240px;
   --size-product-card-root: 364px;
+  --size-product-card-mobile: 260px;
+  --size-product-card-tablette: 322px;
+  --size-product-card-desktop: 326px;
+  --size-product-card-wide: 363px;
   --size-realisation-image: 743px;
   --size-realisation-image-petit: 339.5px;
   --size-reassurances-root: 1550px;
@@ -334,6 +340,7 @@
   --spacing-review-gap: var(--space-16);
   --spacing-menu-entree-pad-v: var(--space-12);
   --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-mobile);
+  --spacing-product-card-width: var(--size-product-card-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -384,6 +391,7 @@
     --spacing-review-gap: var(--space-16);
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
+    --spacing-product-card-width: var(--size-product-card-tablette);
   }
 }
 
@@ -435,6 +443,7 @@
     --spacing-review-gap: var(--space-14);
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
+    --spacing-product-card-width: var(--size-product-card-desktop);
   }
 }
 
@@ -486,5 +495,6 @@
     --spacing-review-gap: var(--space-14);
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
+    --spacing-product-card-width: var(--size-product-card-wide);
   }
 }

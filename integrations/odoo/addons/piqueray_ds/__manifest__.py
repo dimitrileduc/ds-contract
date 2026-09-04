@@ -81,6 +81,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/google-reviews.pqr.css",
             "piqueray_ds/static/src/css/responsive/header.pqr.css",
             "piqueray_ds/static/src/css/responsive/menu-mobile.pqr.css",
+            "piqueray_ds/static/src/css/responsive/produits-ecommerce.pqr.css",
             "piqueray_ds/static/src/css/responsive/footer.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",

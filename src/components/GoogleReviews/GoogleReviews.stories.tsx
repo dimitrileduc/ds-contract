@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.1)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.',
+          "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide.",
       },
     },
   },
@@ -66,6 +66,9 @@ const meta = {
         date: 'il y a 2 mois',
         initiale: 'P',
         auteur: 'pho syster',
+        avatar: 'Initiale',
+        note: '5',
+        lienAvis: '',
       },
       {
         photoAlt: '',
@@ -75,6 +78,9 @@ const meta = {
         date: 'il y a 3 mois',
         initiale: 'P',
         auteur: 'Petit Nicole',
+        avatar: 'Initiale',
+        note: '5',
+        lienAvis: '',
       },
       {
         photoAlt: '',
@@ -84,6 +90,9 @@ const meta = {
         date: 'il y a 4 mois',
         initiale: 'A',
         auteur: 'Aun Bukhari',
+        avatar: 'Initiale',
+        note: '5',
+        lienAvis: '',
       },
       {
         photoAlt: '',
@@ -92,6 +101,9 @@ const meta = {
         date: 'il y a 5 mois',
         initiale: 'T',
         auteur: 'Thierry Picard',
+        avatar: 'Initiale',
+        note: '5',
+        lienAvis: '',
       },
       {
         photoAlt: '',
@@ -100,6 +112,9 @@ const meta = {
         date: 'il y a 6 mois',
         initiale: 'm',
         auteur: 'miguel martinez',
+        avatar: 'Initiale',
+        note: '5',
+        lienAvis: '',
       },
     ],
     note: '5',

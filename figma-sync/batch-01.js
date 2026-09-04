@@ -1274,7 +1274,7 @@ const COMPONENTS = [
     "setName": "CarouselControls",
     "contractId": "ds.carousel-controls",
     "anchorKey": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
-    "description": "CarouselControls — generated from contract ds.carousel-controls v1.0.2",
+    "description": "CarouselControls — generated from contract ds.carousel-controls v1.1.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -1293,8 +1293,11 @@ const COMPONENTS = [
           "name": "CarouselControls",
           "layout": {
             "mode": "HORIZONTAL",
-            "primary": "SPACE_BETWEEN",
+            "primary": "MIN",
             "counter": "CENTER"
+          },
+          "bindings": {
+            "itemSpacing": "space/8"
           },
           "children": [
             {

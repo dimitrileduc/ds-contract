@@ -785,6 +785,12 @@
         "$value": "{size.menu-entree.hauteur.mobile}",
         "$description": "Hauteur minimale de la tête d’une entrée du menu mobile, avec ou sans chevron (68 Mobile · 52 dès Tablette). Menu mobile 031 (2026-09-04), variable Figma créée le même jour dans la collection Responsive — 031 provisoire."
       }
+    },
+    "product-card": {
+      "width": {
+        "$value": "{size.product-card.mobile}",
+        "$description": "Largeur d une carte produit dans le carrousel, par écran (260 · 322 · 326 · 363). Une molécule n a pas d axe présentation : ce qui change par écran passe par un jeton qui varie par écran, comme spacing.carte-reassurance. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
+      }
     }
   }
 }

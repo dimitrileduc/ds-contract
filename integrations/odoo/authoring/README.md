@@ -115,18 +115,32 @@ porte le gutter (`--pqr-space-89`), le `row-gap` (`--pqr-space-128`) et le
 **padding bas de page** (`padding-bottom` : `--pqr-space-128`) — au container,
 jamais par section. Pas de padding top (la 1re section touche la nav).
 
-**Règle non négociable pour un futur émetteur html→odoo :**
+**Règle en vigueur (RENVERSÉE le 2026-09-04, vague 031) :**
 
-- Les **sections restent full-width** côté contrat. Le gutter/gap sont de la
-  **composition NON gouvernée** — ni dans `contracts/*.contract.json`, ni surveillés
-  par `parity`/image-parity (image-parity mesure le **bloc nu**, plein largeur).
-  C'est cohérent avec Figma, où le 89 est porté par un frame `Container` non gouverné
-  (nœud `2496:7189`), pas par le master de section.
-- **NE JAMAIS cuire le gutter dans un contrat** : ça casserait image-parity (bloc-avec-89
-  vs master Figma full-width) et le modèle « on ne gouverne que les sections ».
-- Une section **pleine largeur** (bord à bord, ex. `devis`) reçoit `"add_class": ["s_pqr_bleed"]`
-  → `grid-column: full` : elle sort du gutter **en gardant son gap vertical** (pas de marge
-  négative). `header`/`footer` sont hors de `#wrap` par construction — rien à faire pour eux.
+- Le conteneur de page ne porte **QUE l'écart vertical**, par écran : **80 · 80 · 128 · 192**
+  (jetons `space.80`, `space.128`, `space.192`), plus un padding bas de même valeur. Aucune
+  gouttière : chaque section prend toute la largeur.
+- La **gouttière vit dans le contrat de chaque section** (`padding-inline` 24 · 48 · 56 · 89),
+  posée par la vague 031. Deux sections sont bord à bord par contrat (`produits-ecommerce`,
+  `devis` : padding-inline 0) ; `presentation` est bornée à 1287 et centrée en wide, par la
+  zone `ODOO-PRESENTATION-MAXWIDTH` d'`odoo-bridge.css`.
+- `header` et `footer` sont hors de `#wrap` par construction — rien à faire pour eux.
+
+<details>
+<summary>Ce que disait cette section jusqu'au 2026-09-03, et pourquoi c'est faux depuis</summary>
+
+La version du 2026-08-23 (tinyspec `odoo-page-gutter-gap.md`) posait la gouttière **sur le
+conteneur** (deux colonnes de 89 px, content-grid) et interdisait de « cuire le gutter dans un
+contrat », en s'appuyant sur le cadre `Container` non gouverné de Figma (nœud `2496:7189`). Une
+section bord à bord recevait alors `"add_class": ["s_pqr_bleed"]` pour sortir de la gouttière.
+
+C'était juste tant que les sections étaient pleine largeur sans padding. La vague 031 a inversé
+le modèle : les quatre vues home de la page `031 · Planches de validation` montrent un conteneur
+à **padding 0** dont toutes les sections partent de x = 0, et chaque contrat porte sa propre
+gouttière par écran. Les deux se cumulaient : mesuré le 2026-09-04 sur le pilote, la colonne de
+contenu ne faisait plus que **212 px** à 390 px de large. `s_pqr_bleed` a été retiré des huit
+descripteurs : sans gouttière de page, la pleine largeur est le défaut.
+</details>
 
 Tracé dans `integrations/odoo/config/adaptation-registry.json` (reason code `odoo-page-layout`).
 

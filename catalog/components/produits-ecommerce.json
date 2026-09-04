@@ -1,15 +1,26 @@
 {
   "id": "ds.produits-ecommerce",
   "name": "ProduitsECommerce",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+  "description": "Piqueray ProduitsECommerce, responsive (vague 031). 2.0.0 (2026-09-04) : les ancres passent de l'ancien master DS 2116:4475 (une variante) au set 031 `ProduitsECommerce` 2694:21337, quatre variantes Presentation — la seule section de la home restée hors de la vague, ce qui figeait ses cartes à 364 px à toutes les largeurs et faisait déborder la page horizontalement. La source a été nettoyée avant extraction (journal specs/tiny/vague-031/produits-ecommerce.md) : structure unifiée sur UN arbre pour les quatre variantes, Bouton et CarouselControls re-liés en instances, écart des contrôles rétabli (SPACE_BETWEEN annulait le gap — dixième occurrence). Deux formes selon l'écran, portées par présence et par layoutByProp : Mobile et Tablette montrent le titre seul puis le bouton pleine largeur en pied, contrôles masqués ; Desktop et Wide mettent le titre et le bouton sur une ligne et affichent les contrôles sous la piste. La piste est bornée par le cadre sous 992 et libre au-delà : elle déborde volontairement du cadre rognant, c'est le carrousel. Wide dessine cinq cartes, les autres quatre. Le mécanisme du carrousel est DIFFÉRÉ (décision owner 2026-09-04) : les contrôles sont inertes, le glissement au doigt viendra plus tard. Le 2026-09-04, la propriété TEXT « Titre » a été ajoutée au set et référencée par les quatre variantes : le titre est désormais une donnée liée, pas un texte dessiné.",
   "figma": {
     "representation": "component",
-    "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f"
+    "componentSetKey": "70f037b37186389a20d2025654428119ef584b35"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile",
+      "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : responsive/produits-ecommerce.pqr.css réécrit les règles par mode en @media."
+    },
     {
       "name": "titre",
       "type": "string",
@@ -17,7 +28,8 @@
         {
           "text": "Découvrez nos produits disponibles en ligne"
         }
-      ]
+      ],
+      "description": "Titre de section, lié à la propriété TEXT « Titre » du set. La liaison a été POSÉE À LA SOURCE le 2026-09-04 (§VIII) : le set 031 n'exposait aucune propriété TEXT, le titre n'était qu'un texte dessiné et le contrat le portait en NONE. La propriété est maintenant définie sur le set et les quatre variantes y réfèrent leur nœud Titre."
     },
     {
       "name": "produits",
@@ -27,7 +39,7 @@
           "prix": "text"
         }
       },
-      "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here."
+      "description": "La collection de produits — code-only par construction (arrayOf ⇔ figma NONE). Le canevas rend le `sample` du repeat : cinq entrées, l'union des cartes dessinées (Wide en montre cinq, les autres quatre). Côté Odoo la liste vient du descripteur de page."
     }
   ],
   "children": {

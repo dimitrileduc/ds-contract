@@ -664,7 +664,7 @@ export class SetColonnesAction extends BuilderAction {
     }
 }
 
-/* ODOO-031-GOOGLE-REVIEWS-PANEL BEGIN — réglages du bloc Avis Google au PANNEAU.
+/* Réglages du bloc Avis Google au PANNEAU — réglages du bloc Avis Google au PANNEAU.
  *
  * Décision owner du 2026-09-03 : la note affichée, le qualificatif, le nombre d'avis et le
  * nombre d'étoiles se règlent depuis le panneau, PAS en édition directe dans le bloc.
@@ -713,7 +713,6 @@ export class SetSummaryStarsAction extends BuilderAction {
         }
     }
 }
-// ODOO-031-GOOGLE-REVIEWS-PANEL END
 
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";

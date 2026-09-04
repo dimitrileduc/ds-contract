@@ -83,9 +83,11 @@
   --pqr-space-48: 48px;
   --pqr-space-56: 56px;
   --pqr-space-64: 64px;
+  --pqr-space-80: 80px;
   --pqr-space-89: 89px;
   --pqr-space-96: 96px;
   --pqr-space-128: 128px;
+  --pqr-space-192: 192px;
   --pqr-space-288: 288px;
   --pqr-space-392: 392px;
   --pqr-space-418: 418px;
@@ -147,6 +149,10 @@
   --pqr-size-presentation-col-gauche: 628px;
   --pqr-size-product-card-image: 240px;
   --pqr-size-product-card-root: 364px;
+  --pqr-size-product-card-mobile: 260px;
+  --pqr-size-product-card-tablette: 322px;
+  --pqr-size-product-card-desktop: 326px;
+  --pqr-size-product-card-wide: 363px;
   --pqr-size-realisation-image: 743px;
   --pqr-size-realisation-image-petit: 339.5px;
   --pqr-size-reassurances-root: 1550px;
@@ -343,6 +349,7 @@
   --pqr-spacing-review-gap: var(--pqr-space-16);
   --pqr-spacing-menu-entree-pad-v: var(--pqr-space-12);
   --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-mobile);
+  --pqr-spacing-product-card-width: var(--pqr-size-product-card-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -393,6 +400,7 @@
     --pqr-spacing-review-gap: var(--pqr-space-16);
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
+    --pqr-spacing-product-card-width: var(--pqr-size-product-card-tablette);
   }
 }
 
@@ -444,6 +452,7 @@
     --pqr-spacing-review-gap: var(--pqr-space-14);
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
+    --pqr-spacing-product-card-width: var(--pqr-size-product-card-desktop);
   }
 }
 
@@ -495,5 +504,6 @@
     --pqr-spacing-review-gap: var(--pqr-space-14);
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
+    --pqr-spacing-product-card-width: var(--pqr-size-product-card-wide);
   }
 }

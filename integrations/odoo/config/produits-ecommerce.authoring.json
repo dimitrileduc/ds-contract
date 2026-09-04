@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-produits-ecommerce-authoring",
-  "authoringVersion": "3.0.0",
+  "authoringVersion": "2.0.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.produits-ecommerce",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "rootActions": [
     {
@@ -35,13 +35,29 @@
   ],
   "controls": [
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-titre",
+      "decisionId": "produits-ecommerce-ctl-presentation",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-ctl-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
             }
           }
         ],
@@ -50,32 +66,34 @@
       "verdict": "controlled",
       "mechanism": "rich-text",
       "targetSelector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produits-ecommerce-title\"]",
-      "label": "titre"
+      "label": "Titre de section"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-produits",
+      "decisionId": "produits-ecommerce-ctl-produits",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
         "prop": "produits"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "targetSelector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-produits\"]",
+      "label": "Produits"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-variant",
+      "decisionId": "produits-ecommerce-bouton-ctl-variant",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -88,17 +106,17 @@
         ],
         "prop": "variant"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-children",
+      "decisionId": "produits-ecommerce-bouton-ctl-children",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -111,17 +129,17 @@
         ],
         "prop": "children"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "not-editable",
+      "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-ico-eft",
+      "decisionId": "produits-ecommerce-bouton-ctl-icon-left",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -134,17 +152,17 @@
         ],
         "prop": "iconLeft"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-ico-ight",
+      "decisionId": "produits-ecommerce-bouton-ctl-icon-right",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -157,17 +175,17 @@
         ],
         "prop": "iconRight"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-ico-ef-lyph",
+      "decisionId": "produits-ecommerce-bouton-ctl-icon-left-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -180,17 +198,17 @@
         ],
         "prop": "iconLeftGlyph"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-bouton-button-ico-igh-lyph",
+      "decisionId": "produits-ecommerce-bouton-ctl-icon-right-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
@@ -203,383 +221,161 @@
         ],
         "prop": "iconRightGlyph"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-variant",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-variant",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "variant"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-children",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-children",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "children"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "not-editable",
+      "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-ico-eft",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-icon-left",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "iconLeft"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-ico-ight",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-icon-right",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "iconRight"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-ico-ef-lyph",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-icon-left-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "iconLeftGlyph"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-ico-igh-lyph",
+      "decisionId": "produits-ecommerce-bouton-wide-ctl-icon-right-glyph",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "prop": "iconRightGlyph"
       },
-      "verdict": "fixed-by-composition",
+      "verdict": "not-editable",
       "mechanism": "none"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-variant",
+      "decisionId": "produits-ecommerce-product-card-ctl-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-ico-eft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-ico-ight",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-ico-ef-lyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-ico-igh-lyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-produc-ard-product-card-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -587,23 +383,25 @@
         ],
         "prop": "titre"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-titre\"]",
+      "label": "Nom du produit"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-produc-ard-product-card-prix",
+      "decisionId": "produits-ecommerce-product-card-ctl-prix",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -611,23 +409,25 @@
         ],
         "prop": "prix"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-prix\"]",
+      "label": "Prix"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-produc-ard-product-card-imag-rl",
+      "decisionId": "produits-ecommerce-product-card-ctl-image-url",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -635,23 +435,25 @@
         ],
         "prop": "imageUrl"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-image\"]",
+      "label": "Photo du produit"
     },
     {
-      "decisionId": "produits-ecommerce-ctl-produits-ecommerce-produc-ard-product-card-imag-lt",
+      "decisionId": "produits-ecommerce-product-card-ctl-image-alt",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -659,19 +461,517 @@
         ],
         "prop": "imageAlt"
       },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
-    }
-  ],
-  "parts": [
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root",
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-variant",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-icon-left-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-ctl-icon-right-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-icon-left-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-ctl-icon-right-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-icon-left-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-ctl-icon-right-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "produits-ecommerce-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
             }
           }
         ],
@@ -685,103 +985,40 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root-bouton",
+      "decisionId": "produits-ecommerce-part-root-en-tete",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "Bouton"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-bouton\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root-carouse-ontrols",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "CarouselControls"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-carouse-ontrols\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root-produits",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "Produits"
+          "enTete"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-produits\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-entete\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root-produits-produc-ard",
+      "decisionId": "produits-ecommerce-part-root-en-tete-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           }
         ],
         "partPath": [
           "root",
-          "Produits",
-          "ProductCard"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "repeat",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-produits-produc-ard\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-root-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
+          "enTete",
           "Titre"
         ]
       },
@@ -793,250 +1030,204 @@
       ]
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-bouton-button-root",
+      "decisionId": "produits-ecommerce-part-root-en-tete-bouton",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-bouton-button-root-ico-eft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Bouton"
           }
         ],
         "partPath": [
           "root",
-          "iconLeft"
+          "enTete",
+          "Bouton"
         ]
       },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-eft\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-bouton-button-root-ico-nl-con",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-nl-con\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-bouton-button-root-ico-ight",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-ight\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-bouton-button-root-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-root-suivant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Suivant"
-        ]
-      },
-      "verdict": "not-editable",
+      "verdict": "fixed-by-composition",
       "contentKind": "component",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-suivant\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-entete-bouton\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-root-prcdent",
+      "decisionId": "produits-ecommerce-bouton-part-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
+              "id": "ds.button",
+              "version": "2.1.0"
             },
-            "viaPart": "CarouselControls"
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-part-root-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
           }
         ],
         "partPath": [
           "root",
-          "prcdent"
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-part-root-icon-only-icon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
         ]
       },
       "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-part-root-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-en-tete-bouton-wide",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "enTete",
+          "BoutonWide"
+        ]
+      },
+      "verdict": "fixed-by-composition",
       "contentKind": "component",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-prcdent\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-entete-bouton-wide\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-root",
+      "decisionId": "produits-ecommerce-bouton-wide-part-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "partPath": [
@@ -1049,28 +1240,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-root-ico-eft",
+      "decisionId": "produits-ecommerce-bouton-wide-part-root-icon-left",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "partPath": [
@@ -1078,34 +1262,27 @@
           "iconLeft"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "fixed-by-composition",
       "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-eft\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-left\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-root-ico-nl-con",
+      "decisionId": "produits-ecommerce-bouton-wide-part-root-icon-only-icon",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "partPath": [
@@ -1113,69 +1290,27 @@
           "iconOnlyIcon"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "fixed-by-composition",
       "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-nl-con\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-only-icon\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-root-ico-ight",
+      "decisionId": "produits-ecommerce-bouton-wide-part-root-label",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "Suivant"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-ight\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-suivant-button-root-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "Suivant"
+            "viaPart": "BoutonWide"
           }
         ],
         "partPath": [
@@ -1189,132 +1324,21 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-root",
+      "decisionId": "produits-ecommerce-bouton-wide-part-root-icon-right",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
           },
           {
             "contract": {
               "id": "ds.button",
               "version": "2.1.0"
             },
-            "viaPart": "prcdent"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-root-ico-eft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconLeft"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-eft\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-root-ico-nl-con",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-nl-con\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-root-ico-ight",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
+            "viaPart": "BoutonWide"
           }
         ],
         "partPath": [
@@ -1322,60 +1346,115 @@
           "iconRight"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "fixed-by-composition",
       "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-ico-ight\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-right\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-carouse-ontrols-carousel-controls-prcdent-button-root-label",
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.carousel-controls",
-              "version": "1.0.2"
-            },
-            "viaPart": "CarouselControls"
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.1.0"
-            },
-            "viaPart": "prcdent"
           }
         ],
         "partPath": [
           "root",
-          "label"
+          "pisteEtControles"
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-piste\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-produc-ard-product-card-root",
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles-carrousel-produits",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "pisteEtControles",
+          "carrouselProduits"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-carrousel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles-carrousel-produits-produits",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "pisteEtControles",
+          "carrouselProduits",
+          "Produits"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-produits\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles-carrousel-produits-produits-product-card",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "pisteEtControles",
+          "carrouselProduits",
+          "Produits",
+          "ProductCard"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-produits-card\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-product-card-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1387,23 +1466,23 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-card\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-produc-ard-product-card-root-image",
+      "decisionId": "produits-ecommerce-product-card-part-root-image",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "2.0.0"
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1414,25 +1493,54 @@
           "Image"
         ]
       },
-      "verdict": "not-editable",
+      "verdict": "fixed-by-composition",
       "contentKind": "media",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-image\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-image\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-produc-ard-product-card-root-prix",
+      "decisionId": "produits-ecommerce-product-card-part-root-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
+              "version": "2.0.0"
             }
           },
           {
             "contract": {
               "id": "ds.product-card",
+              "version": "3.0.0"
+            },
+            "viaPart": "ProductCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Titre"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-titre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-product-card-part-root-prix",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
               "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.product-card",
+              "version": "3.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1445,36 +1553,665 @@
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-prix\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-prix\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "produits-ecommerce-part-produits-ecommerce-produc-ard-product-card-root-titre",
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles-controles",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.produits-ecommerce",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.product-card",
               "version": "2.0.0"
-            },
-            "viaPart": "ProductCard",
-            "repeat": true
+            }
           }
         ],
         "partPath": [
           "root",
-          "Titre"
+          "pisteEtControles",
+          "controles"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-controles\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-piste-et-controles-controles-carousel-controls",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "pisteEtControles",
+          "controles",
+          "CarouselControls"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-controles-carousel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-part-root-prcdent",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          }
+        ],
+        "partPath": [
+          "root",
+          "prcdent"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-prcdent\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-part-root-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-part-root-icon-only-icon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-titre\"]",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-prcdent-part-root-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "prcdent"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-part-root-suivant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Suivant"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-suivant\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-part-root-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-part-root-icon-only-icon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-carousel-controls-suivant-part-root-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carousel-controls",
+              "version": "1.1.0"
+            },
+            "viaPart": "CarouselControls"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "Suivant"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-bouton-conteneur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "boutonConteneur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-bouton-conteneur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-part-root-bouton-conteneur-bouton-pied",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "boutonConteneur",
+          "BoutonPied"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-bouton-pied\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-part-root-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-part-root-icon-only-icon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-bouton-pied-part-root-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.1.0"
+            },
+            "viaPart": "BoutonPied"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"root-icon-right\"]",
       "allowedMarks": []
     }
   ]

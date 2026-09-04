@@ -2,13 +2,41 @@
   "$schema": "./contract.schema.json",
   "id": "ds.produits-ecommerce",
   "name": "ProduitsECommerce",
-  "version": "1.0.0",
-  "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+  "version": "2.0.0",
+  "description": "Piqueray ProduitsECommerce, responsive (vague 031). 2.0.0 (2026-09-04) : les ancres passent de l'ancien master DS 2116:4475 (une variante) au set 031 `ProduitsECommerce` 2694:21337, quatre variantes Presentation — la seule section de la home restée hors de la vague, ce qui figeait ses cartes à 364 px à toutes les largeurs et faisait déborder la page horizontalement. La source a été nettoyée avant extraction (journal specs/tiny/vague-031/produits-ecommerce.md) : structure unifiée sur UN arbre pour les quatre variantes, Bouton et CarouselControls re-liés en instances, écart des contrôles rétabli (SPACE_BETWEEN annulait le gap — dixième occurrence). Deux formes selon l'écran, portées par présence et par layoutByProp : Mobile et Tablette montrent le titre seul puis le bouton pleine largeur en pied, contrôles masqués ; Desktop et Wide mettent le titre et le bouton sur une ligne et affichent les contrôles sous la piste. La piste est bornée par le cadre sous 992 et libre au-delà : elle déborde volontairement du cadre rognant, c'est le carrousel. Wide dessine cinq cartes, les autres quatre. Le mécanisme du carrousel est DIFFÉRÉ (décision owner 2026-09-04) : les contrôles sont inertes, le glissement au doigt viendra plus tard. Le 2026-09-04, la propriété TEXT « Titre » a été ajoutée au set et référencée par les quatre variantes : le titre est désormais une donnée liée, pas un texte dessiné.",
   "semantics": {
-    "element": "section",
-    "provenance": "authored"
+    "element": "div",
+    "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      },
+      "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : responsive/produits-ecommerce.pqr.css réécrit les règles par mode en @media."
+    },
     {
       "name": "titre",
       "type": "rich-text",
@@ -25,11 +53,11 @@
         "code": {
           "prop": "titre"
         }
-      }
+      },
+      "description": "Titre de section, lié à la propriété TEXT « Titre » du set. La liaison a été POSÉE À LA SOURCE le 2026-09-04 (§VIII) : le set 031 n'exposait aucune propriété TEXT, le titre n'était qu'un texte dessiné et le contrat le portait en NONE. La propriété est maintenant définie sur le set et les quatre variantes y réfèrent leur nœud Titre."
     },
     {
       "name": "produits",
-      "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here.",
       "type": {
         "arrayOf": {
           "titre": "text",
@@ -43,104 +71,352 @@
         "code": {
           "prop": "produits"
         }
-      }
+      },
+      "description": "La collection de produits — code-only par construction (arrayOf ⇔ figma NONE). Le canevas rend le `sample` du repeat : cinq entrées, l'union des cartes dessinées (Wide en montre cinq, les autres quatre). Côté Odoo la liste vient du descripteur de page."
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Racine du set 031 : colonne pleine largeur, sans padding propre (chaque bande porte le sien), écart 32 sous 992 et 48 au-delà.",
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "start",
+        "align": "stretch",
         "width": "fill",
-        "referenceWidth": 1596
+        "referenceWidth": 1728
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.0}",
+        "padding-block": "{space.0}",
+        "gap": "{space.32}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "gap": "{space.48}"
+          },
+          "wide": {
+            "gap": "{space.48}"
+          }
+        }
       },
       "parts": {
-        "Titre": {
+        "enTete": {
+          "description": "Titre seul en colonne sous 992 ; titre et bouton sur une ligne au-delà, séparés en Desktop et accolés en Wide.",
           "layout": {
-            "width": "fill",
-            "align": "start"
+            "direction": "column",
+            "align": "stretch"
           },
-          "content": {
-            "prop": "titre",
-            "marks": {
-              "strong": "{font.weight.bold}"
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "direction": "row",
+                "justify": "space-between",
+                "align": "center"
+              },
+              "wide": {
+                "direction": "row",
+                "align": "center"
+              }
             }
           },
           "tokens": {
-            "color": "{color.noir-bleute}",
-            "font-size": "{font.size.32}",
-            "font-weight": "{font.weight.regular}"
+            "padding-inline": "{space.24}",
+            "gap": "{space.32}"
           },
-          "literals": {
-            "line-height": "40px"
-          }
-        },
-        "Bouton": {
-          "component": {
-            "id": "ds.button",
-            "text": "Voir les produits",
-            "props": {
-              "variant": "outlineNoir",
-              "iconLeft": false,
-              "iconRight": true
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "padding-inline": "{space.48}"
+              },
+              "desktop": {
+                "padding-inline": "{space.48}",
+                "gap": "{space.8}"
+              },
+              "wide": {
+                "padding-inline": "{space.89}",
+                "gap": "{space.8}"
+              }
             }
-          }
-        },
-        "Produits": {
-          "layout": {
-            "display": "grid",
-            "columns": 4,
-            "width": "fill"
           },
           "parts": {
-            "ProductCard": {
-              "component": {
-                "id": "ds.product-card"
+            "Titre": {
+              "content": {
+                "prop": "titre",
+                "marks": {
+                  "strong": "{font.weight.bold}"
+                }
               },
-              "repeat": {
-                "itemsProp": "produits",
-                "sample": [
-                  {
-                    "titre": "Télécommande Hörmann HSE4-868BS",
-                    "prix": "74,99€"
-                  },
-                  {
-                    "titre": "Clavier à code Hörmann FCT3-1BS",
-                    "prix": "139,99€"
-                  },
-                  {
-                    "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
-                    "prix": "89,99€"
-                  },
-                  {
-                    "titre": "Passerelle BiSecure Hörmann",
-                    "prix": "74,99€"
-                  }
-                ]
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{typography.h2.family}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{typography.h2.weight}",
+                "line-height": "{typography.h2.line-height}"
+              },
+              "layout": {
+                "grow": true
+              },
+              "description": "Le titre REMPLIT l'axe principal (Figma : layoutGrow 1 en Desktop et Wide). Sous 992 l'en-tête est une colonne de hauteur au contenu : il n'y a pas d'espace libre, la croissance n'a aucun effet — c'est ce qui permet de porter le fait une seule fois, sans canal par mode. C'est lui, et non un justify, qui pousse le bouton à droite en Wide (l'en-tête y est aligné au début)."
+            },
+            "Bouton": {
+              "description": "Le bouton de l'en-tête, dessiné en Desktop et Wide seulement (sous 992 il est en pied de section).",
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "outlineNoir",
+                  "iconLeft": false,
+                  "iconRight": false,
+                  "iconLeftGlyph": "arrow-left",
+                  "iconRightGlyph": "arrow-right"
+                },
+                "text": "Voir les produits"
+              },
+              "visibleWhen": {
+                "prop": "presentation",
+                "equals": "desktop"
+              }
+            },
+            "BoutonWide": {
+              "description": "Même bouton en Wide. Deux parts plutôt qu'une : le schéma n'admet qu'UNE valeur par visibleWhen sur une part instance.",
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "outlineNoir",
+                  "iconLeft": false,
+                  "iconRight": false,
+                  "iconLeftGlyph": "arrow-left",
+                  "iconRightGlyph": "arrow-right"
+                },
+                "text": "Voir les produits"
+              },
+              "visibleWhen": {
+                "prop": "presentation",
+                "equals": "wide"
               }
             }
           }
         },
-        "CarouselControls": {
-          "component": {
-            "id": "ds.carousel-controls"
+        "pisteEtControles": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch"
+          },
+          "tokens": {
+            "gap": "{space.24}"
+          },
+          "parts": {
+            "carrouselProduits": {
+              "description": "Le cadre qui ROGNE (clip). Il ne porte qu'un padding GAUCHE — la piste sort par la droite, c'est le carrousel. Sous 992 la piste tient dans le cadre, au-delà elle est libre et déborde.",
+              "layout": {
+                "direction": "column",
+                "align": "start",
+                "clip": true
+              },
+              "tokens": {
+                "gap": "{space.0}",
+                "padding-left": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-left": "{space.48}"
+                  },
+                  "desktop": {
+                    "padding-left": "{space.48}"
+                  },
+                  "wide": {
+                    "padding-left": "{space.89}"
+                  }
+                }
+              },
+              "parts": {
+                "Produits": {
+                  "description": "La piste. Largeur au CONTENU par défaut (Desktop et Wide : elle déborde volontairement du cadre rognant, c'est le carrousel) ; largeur au parent sous 992, où les cartes rétrécissent pour tenir. Le canal de largeur du schéma n'admet que « fill » : le contenu est donc le défaut et le fill l'exception.",
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "layoutByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "mobile": {
+                        "width": "fill"
+                      },
+                      "tablette": {
+                        "width": "fill"
+                      }
+                    }
+                  },
+                  "tokens": {
+                    "gap": "{space.16}"
+                  },
+                  "tokensByProp": {
+                    "prop": "presentation",
+                    "map": {
+                      "wide": {
+                        "gap": "{space.24}"
+                      }
+                    }
+                  },
+                  "parts": {
+                    "ProductCard": {
+                      "description": "La largeur par écran (260 · 322 · 326 · 363) est portée par la racine de ds.product-card, pas ici : un jeton posé sur une part `component` n'est émis par aucun émetteur (vérifié le 2026-09-04). Patron d'art antérieur ds.avatar-group.",
+                      "component": {
+                        "id": "ds.product-card"
+                      },
+                      "repeat": {
+                        "itemsProp": "produits",
+                        "sample": [
+                          {
+                            "titre": "Télécommande Hörmann HSE4-868BS",
+                            "prix": "74,99€"
+                          },
+                          {
+                            "titre": "Clavier à code Hörmann FCT3-1BS",
+                            "prix": "139,99€"
+                          },
+                          {
+                            "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
+                            "prix": "89,99€"
+                          },
+                          {
+                            "titre": "Passerelle BiSecure Hörmann",
+                            "prix": "74,99€"
+                          },
+                          {
+                            "titre": "Télécommande Hörmann HSE4-868BS",
+                            "prix": "74,99€"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "controles": {
+              "description": "Contrôles alignés à droite, dessinés en Desktop et Wide seulement. INERTES : le mécanisme du carrousel est différé (décision owner 2026-09-04, glissement au doigt plus tard).",
+              "layout": {
+                "direction": "row",
+                "justify": "end",
+                "align": "center",
+                "width": "fill"
+              },
+              "tokens": {
+                "padding-inline": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-inline": "{space.48}"
+                  },
+                  "desktop": {
+                    "padding-inline": "{space.48}"
+                  },
+                  "wide": {
+                    "padding-inline": "{space.89}"
+                  }
+                }
+              },
+              "stylesWhen": [
+                {
+                  "prop": "presentation",
+                  "equals": "mobile",
+                  "styles": {
+                    "display": "none"
+                  }
+                },
+                {
+                  "prop": "presentation",
+                  "equals": "tablette",
+                  "styles": {
+                    "display": "none"
+                  }
+                }
+              ],
+              "parts": {
+                "CarouselControls": {
+                  "component": {
+                    "id": "ds.carousel-controls"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boutonConteneur": {
+          "description": "Le bouton en pied, pleine largeur, dessiné sous 992 seulement.",
+          "layout": {
+            "direction": "row",
+            "align": "stretch",
+            "width": "fill"
+          },
+          "tokens": {
+            "padding-inline": "{space.24}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "padding-inline": "{space.48}"
+              },
+              "desktop": {
+                "padding-inline": "{space.48}"
+              },
+              "wide": {
+                "padding-inline": "{space.89}"
+              }
+            }
+          },
+          "stylesWhen": [
+            {
+              "prop": "presentation",
+              "equals": "desktop",
+              "styles": {
+                "display": "none"
+              }
+            },
+            {
+              "prop": "presentation",
+              "equals": "wide",
+              "styles": {
+                "display": "none"
+              }
+            }
+          ],
+          "parts": {
+            "BoutonPied": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "outlineNoir",
+                  "iconLeft": false,
+                  "iconRight": false,
+                  "iconLeftGlyph": "arrow-left",
+                  "iconRightGlyph": "arrow-right"
+                },
+                "text": "Voir les produits"
+              }
+            }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "gap": "{space.32}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f",
-      "nodeId": "2116:4475",
-      "dumpedAt": "2026-08-23"
+      "componentSetKey": "70f037b37186389a20d2025654428119ef584b35",
+      "nodeId": "2694:21337",
+      "dumpedAt": "2026-09-04"
     },
     "code": {
       "importPath": "src/components/ProduitsECommerce",

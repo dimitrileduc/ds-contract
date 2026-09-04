@@ -1,5 +1,5 @@
 <!--
-  ProduitsECommerce — static HTML+CSS emitted from contract ds.produits-ecommerce v1.0.0 by core/emit-html.ts.
+  ProduitsECommerce — static HTML+CSS emitted from contract ds.produits-ecommerce v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,50 +9,248 @@
 <section class="showcase showcase--produits-ecommerce">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <section class="produits-ecommerce" data-part="root">
-      <span class="produits-ecommerce__Titre" data-part="Titre"><span>Découvrez nos produits disponibles en ligne</span></span>
-      <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
-        <span class="button__label" data-part="label">Voir les produits</span>
-        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
-</svg></span>
-      </button>
-      <div class="produits-ecommerce__Produits" data-part="Produits">
-        <div class="product-card" data-part="root">
-          <img class="product-card__Image" src="" alt="" data-part="Image"></img>
-          <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
-          <span class="product-card__Prix" data-part="Prix">74,99€</span>
-        </div>
-        <div class="product-card" data-part="root">
-          <img class="product-card__Image" src="" alt="" data-part="Image"></img>
-          <span class="product-card__Titre" data-part="Titre">Clavier à code Hörmann FCT3-1BS</span>
-          <span class="product-card__Prix" data-part="Prix">139,99€</span>
-        </div>
-        <div class="product-card" data-part="root">
-          <img class="product-card__Image" src="" alt="" data-part="Image"></img>
-          <span class="product-card__Titre" data-part="Titre">Bouton poussoir Hörmann FIT2-1-868-BS</span>
-          <span class="product-card__Prix" data-part="Prix">89,99€</span>
-        </div>
-        <div class="product-card" data-part="root">
-          <img class="product-card__Image" src="" alt="" data-part="Image"></img>
-          <span class="product-card__Titre" data-part="Titre">Passerelle BiSecure Hörmann</span>
-          <span class="product-card__Prix" data-part="Prix">74,99€</span>
-        </div>
+    <div class="produits-ecommerce produits-ecommerce--presentation-mobile" data-part="root">
+      <div class="produits-ecommerce__enTete" data-part="enTete">
+        <span class="produits-ecommerce__Titre" data-part="Titre"><span>Découvrez nos produits disponibles en ligne</span></span>
       </div>
-      <nav class="carousel-controls" data-part="CarouselControls" aria-label="Navigation du carrousel">
-        <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right" data-part="prcdent" type="button">
-          <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="produits-ecommerce__pisteEtControles" data-part="pisteEtControles">
+        <div class="produits-ecommerce__carrouselProduits" data-part="carrouselProduits">
+          <div class="produits-ecommerce__Produits" data-part="Produits">
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Clavier à code Hörmann FCT3-1BS</span>
+              <span class="product-card__Prix" data-part="Prix">139,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Bouton poussoir Hörmann FIT2-1-868-BS</span>
+              <span class="product-card__Prix" data-part="Prix">89,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Passerelle BiSecure Hörmann</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+          </div>
+        </div>
+        <div class="produits-ecommerce__controles" data-part="controles">
+          <nav class="carousel-controls" data-part="CarouselControls" aria-label="Navigation du carrousel">
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right" data-part="prcdent" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z" fill="currentColor"/>
 </svg></span>
-          <span class="button__label" data-part="label">Précédent</span>
-        </button>
-        <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right" data-part="Suivant" type="button">
-          <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <span class="button__label" data-part="label">Précédent</span>
+            </button>
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right" data-part="Suivant" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M11.293 7.29302C11.6835 6.90249 12.3165 6.90249 12.707 7.29302L20.707 15.293C21.0975 15.6835 21.0975 16.3166 20.707 16.7071L12.707 24.7071C12.3165 25.0976 11.6835 25.0976 11.293 24.7071C10.9024 24.3166 10.9024 23.6835 11.293 23.293L18.5859 16L11.293 8.70708C10.9024 8.31655 10.9024 7.68354 11.293 7.29302Z" fill="currentColor"/>
 </svg></span>
-          <span class="button__label" data-part="label">Suivant</span>
+              <span class="button__label" data-part="label">Suivant</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="produits-ecommerce__boutonConteneur" data-part="boutonConteneur">
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="BoutonPied" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
         </button>
-      </nav>
-    </section>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=tablette</p>
+    <div class="produits-ecommerce produits-ecommerce--presentation-tablette" data-part="root">
+      <div class="produits-ecommerce__enTete" data-part="enTete">
+        <span class="produits-ecommerce__Titre" data-part="Titre"><span>Découvrez nos produits disponibles en ligne</span></span>
+      </div>
+      <div class="produits-ecommerce__pisteEtControles" data-part="pisteEtControles">
+        <div class="produits-ecommerce__carrouselProduits" data-part="carrouselProduits">
+          <div class="produits-ecommerce__Produits" data-part="Produits">
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Clavier à code Hörmann FCT3-1BS</span>
+              <span class="product-card__Prix" data-part="Prix">139,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Bouton poussoir Hörmann FIT2-1-868-BS</span>
+              <span class="product-card__Prix" data-part="Prix">89,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Passerelle BiSecure Hörmann</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+          </div>
+        </div>
+        <div class="produits-ecommerce__controles" data-part="controles">
+          <nav class="carousel-controls" data-part="CarouselControls" aria-label="Navigation du carrousel">
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right" data-part="prcdent" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Précédent</span>
+            </button>
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right" data-part="Suivant" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.293 7.29302C11.6835 6.90249 12.3165 6.90249 12.707 7.29302L20.707 15.293C21.0975 15.6835 21.0975 16.3166 20.707 16.7071L12.707 24.7071C12.3165 25.0976 11.6835 25.0976 11.293 24.7071C10.9024 24.3166 10.9024 23.6835 11.293 23.293L18.5859 16L11.293 8.70708C10.9024 8.31655 10.9024 7.68354 11.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Suivant</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="produits-ecommerce__boutonConteneur" data-part="boutonConteneur">
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="BoutonPied" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=desktop</p>
+    <div class="produits-ecommerce produits-ecommerce--presentation-desktop" data-part="root">
+      <div class="produits-ecommerce__enTete" data-part="enTete">
+        <span class="produits-ecommerce__Titre" data-part="Titre"><span>Découvrez nos produits disponibles en ligne</span></span>
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
+        </button>
+      </div>
+      <div class="produits-ecommerce__pisteEtControles" data-part="pisteEtControles">
+        <div class="produits-ecommerce__carrouselProduits" data-part="carrouselProduits">
+          <div class="produits-ecommerce__Produits" data-part="Produits">
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Clavier à code Hörmann FCT3-1BS</span>
+              <span class="product-card__Prix" data-part="Prix">139,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Bouton poussoir Hörmann FIT2-1-868-BS</span>
+              <span class="product-card__Prix" data-part="Prix">89,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Passerelle BiSecure Hörmann</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+          </div>
+        </div>
+        <div class="produits-ecommerce__controles" data-part="controles">
+          <nav class="carousel-controls" data-part="CarouselControls" aria-label="Navigation du carrousel">
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right" data-part="prcdent" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Précédent</span>
+            </button>
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right" data-part="Suivant" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.293 7.29302C11.6835 6.90249 12.3165 6.90249 12.707 7.29302L20.707 15.293C21.0975 15.6835 21.0975 16.3166 20.707 16.7071L12.707 24.7071C12.3165 25.0976 11.6835 25.0976 11.293 24.7071C10.9024 24.3166 10.9024 23.6835 11.293 23.293L18.5859 16L11.293 8.70708C10.9024 8.31655 10.9024 7.68354 11.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Suivant</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="produits-ecommerce__boutonConteneur" data-part="boutonConteneur">
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="BoutonPied" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=wide</p>
+    <div class="produits-ecommerce produits-ecommerce--presentation-wide" data-part="root">
+      <div class="produits-ecommerce__enTete" data-part="enTete">
+        <span class="produits-ecommerce__Titre" data-part="Titre"><span>Découvrez nos produits disponibles en ligne</span></span>
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="BoutonWide" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
+        </button>
+      </div>
+      <div class="produits-ecommerce__pisteEtControles" data-part="pisteEtControles">
+        <div class="produits-ecommerce__carrouselProduits" data-part="carrouselProduits">
+          <div class="produits-ecommerce__Produits" data-part="Produits">
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Clavier à code Hörmann FCT3-1BS</span>
+              <span class="product-card__Prix" data-part="Prix">139,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Bouton poussoir Hörmann FIT2-1-868-BS</span>
+              <span class="product-card__Prix" data-part="Prix">89,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Passerelle BiSecure Hörmann</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+            <div class="product-card" data-part="root">
+              <img class="product-card__Image" src="" alt="" data-part="Image"></img>
+              <span class="product-card__Titre" data-part="Titre">Télécommande Hörmann HSE4-868BS</span>
+              <span class="product-card__Prix" data-part="Prix">74,99€</span>
+            </div>
+          </div>
+        </div>
+        <div class="produits-ecommerce__controles" data-part="controles">
+          <nav class="carousel-controls" data-part="CarouselControls" aria-label="Navigation du carrousel">
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right" data-part="prcdent" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Précédent</span>
+            </button>
+            <button class="button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right" data-part="Suivant" type="button">
+              <span class="button__iconOnlyIcon" role="img" aria-label="Contactez-nous" data-part="iconOnlyIcon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.293 7.29302C11.6835 6.90249 12.3165 6.90249 12.707 7.29302L20.707 15.293C21.0975 15.6835 21.0975 16.3166 20.707 16.7071L12.707 24.7071C12.3165 25.0976 11.6835 25.0976 11.293 24.7071C10.9024 24.3166 10.9024 23.6835 11.293 23.293L18.5859 16L11.293 8.70708C10.9024 8.31655 10.9024 7.68354 11.293 7.29302Z" fill="currentColor"/>
+</svg></span>
+              <span class="button__label" data-part="label">Suivant</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="produits-ecommerce__boutonConteneur" data-part="boutonConteneur">
+        <button class="button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="BoutonPied" type="button">
+          <span class="button__label" data-part="label">Voir les produits</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>

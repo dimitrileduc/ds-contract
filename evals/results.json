@@ -1,13 +1,12 @@
 {
-  "passed": 237,
+  "passed": 243,
   "total": 243,
   "quarantined": 48,
   "results": [
     {
       "id": "odoo-figma-links-governance",
       "claim": "C2-refusal",
-      "pass": false,
-      "error": "Error: la projection Figma n'est pas byte-stable ou --check est rouge"
+      "pass": true
     },
     {
       "id": "odoo-production-generated-output",
@@ -17,8 +16,7 @@
     {
       "id": "odoo-authoring-coverage-refusal",
       "claim": "C2-refusal",
-      "pass": false,
-      "error": "Error: R2: un chemin inexistant n'est pas refusé par son nom :\n\n✖ evals/fixtures/odoo-production/invalid-path/presentation.authoring.json  (racine ds.presentation)\n    props 0/10 · parts 1/11\n    ! control « fx-chemin-inexistant » : version épinglée ds.review-card@3.0.0, le dépôt porte @4.0.0\n    ! control « fx-version-fausse » : version épinglée ds.section-header@9.9.9, le dépôt porte @3.0.0\n    ! part « fx-part-inexistante » : chemin « root.colonneQuiNexistePas » inconnu de ds.presentation\n    ! part « fx-selecteur-non-prefixe » : sélecteur « .pqr-texte » non préfixé par « .s_pqr_presentation »\n    manquant : ds.presentation / Bouton→ds.button :: part root\n    manquant : ds.presentation / Bouton→ds.button :: part root.iconLeft\n    manquant : ds.presentation / Bouton→ds.button :: part root.iconOnlyIcon\n    manquant : ds.presentation / Bouton→ds.button :: part root.iconRight\n    manquant : ds.presentation / Bouton→ds.button :: part root.label\n    manquant : ds.presentation / Bouton→ds.button :: prop children\n    manquant : ds.presentation / Bouton→ds.button :: prop iconLeft\n    manquant : ds.presentation / Bouton→ds.button :: prop iconLeftGlyph\n    manquant : ds.presentation / Bouton→ds.button :: prop iconRight\n    manquant : ds.presentation / Bouton→ds.button :: prop iconRightGlyph\n    manquant : ds.presentation / Bouton→ds.button :: prop variant\n    manquant : ds.presentation :: part root\n    manquant : ds.presentation :: part root.colGauche\n    manquant : ds.presentation :: part root.colGauche.Titre\n    manquant : ds.presentation :: part root.wrapper\n    manquant : ds.presentation :: part root.wrapper.Bouton\n    manquant : ds.presentation :: prop bouton\n    manquant : ds.presentation :: prop presentation\n    manquant : ds.presentation :: prop texte\n    manquant : ds.presentation :: prop titre\n    surnuméraire : fx-chemin-inexistant\n    surnuméraire : fx-part-inexistante\n    surnuméraire : fx-version-fausse\n\n1 config(s) en défaut.\n"
+      "pass": true
     },
     {
       "id": "odoo-production-derivation-report",
@@ -28,8 +26,7 @@
     {
       "id": "odoo-production-version-drift",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: current: état structure-stale"
+      "pass": true
     },
     {
       "id": "accordion-row-source-cleanup-extraction",
@@ -1049,8 +1046,7 @@
     {
       "id": "deterministic-roundtrip",
       "claim": "C1-determinism",
-      "pass": false,
-      "error": "Error: deterministic-roundtrip failed:\n\nDETERMINISTIC ROUND-TRIP — ds.google-reviews@3.0.0 (GoogleReviews)\n\n1. contract → canvas  (the plugin engine, run twice)\n  ✔ mock seeded with 24 migrated (marker-stamped) historical Text Styles\nevalmachine.<anonymous>:919\n    throw new Error('Governed icon component not found: ' + ref.asset + ' (nodeId=' + ref.nodeId + ', key=' + ref.key + ')');\n          ^\n\nError: Governed icon component not found: arrow-left (nodeId=6:99, key=8a405ce4e36d1b4f47454b3ed19e36572a8f376f)\n    at findIconComponent (evalmachine.<anonymous>:919:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async buildNode (evalmachine.<anonymous>:1097:18)\n    at async buildNode (evalmachine.<anonymous>:1229:23)\n    at async syncOne (evalmachine.<anonymous>:2029:18)\n    at async evalmachine.<anonymous>:2136:16\n    at async <anonymous> (/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/scripts/deterministic-roundtrip.mjs:124:34)\n\nNode.js v24.19.0\n"
+      "pass": true
     },
     {
       "id": "react-hyphenated-part-names-execute",
@@ -1130,8 +1126,7 @@
     {
       "id": "detect-figma-missing-nested-instance",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Drift not detected"
+      "pass": true
     },
     {
       "id": "review-card-avatar-exclusivity-is-schema-enforced",
@@ -1141,8 +1136,7 @@
     {
       "id": "google-reviews-repeat-renders-sample-on-static-surfaces",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "TypeError: Cannot read properties of undefined (reading 'parts')"
+      "pass": true
     },
     {
       "id": "img-part-canvas-placeholder-named",

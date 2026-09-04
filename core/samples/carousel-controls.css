@@ -114,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* CarouselControls — from ds.carousel-controls v1.0.2 (core/emit-html.ts) */
+/* CarouselControls — from ds.carousel-controls v1.1.0 (core/emit-html.ts) */
 
 .carousel-controls, .carousel-controls *, .carousel-controls *::before, .carousel-controls *::after {
   box-sizing: border-box;
@@ -124,8 +124,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   border: 0;
+  gap: var(--space-8);
 }
 
 /* showcase chrome */

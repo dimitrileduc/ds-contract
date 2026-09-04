@@ -244,13 +244,19 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // au compte « propre » pour la raison déjà nommée le 2026-09-02 : leur groupe de jetons
 // responsive n'a pas d'extension figmaTextStyle.
 // 2026-09-04 (menu mobile 031, ds.menu-entree + ds.menu-mobile) : 77 → 87 liés, 38 → 53 propres.
+// 2026-09-04 (round Produits 031) : 10 → 13 riches ; 87 liés et 53 propres inchangés.
+// UN seul mouvement, mesuré : ds.produits-ecommerce passe d'UNE variante à QUATRE
+// (set responsive 2694:21337). Son titre reste RICHE — c'est une prop rich-text liée
+// à la propriété TEXT « Titre » posée sur le set le même jour — mais il est compté
+// une fois PAR VARIANTE : 1 → 4, soit +3. Aucune recette ajoutée, aucun propriétaire
+// propre nouveau, aucun texte statique lié en plus.
 // Les DEUX nouveaux styles (Entrée menu, Sous-entrée menu) lient les entrées et sous-entrées du
 // menu au compte « lié » ; le numéro de téléphone (deux variantes) monte typography.libelle-nav
 // et reste au compte « propre » (+2, ds.menu-mobile). Les 13 autres propres supplémentaires
 // mesurés ce jour appartiennent au chantier Avis Google / ReviewCard en cours dans le même
 // worktree (ds.google-reviews 5 → 20, ds.review-card) — pas au menu ; leur clôture re-mesurera.
-if (linked.length !== 87 || custom.length !== 53 || rich.length !== 10) {
-  fail(`global gate expected 87 linked / 53 historical custom / 10 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+if (linked.length !== 87 || custom.length !== 53 || rich.length !== 13) {
+  fail(`global gate expected 87 linked / 53 historical custom / 13 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -272,4 +278,4 @@ if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 87 linked / 53 historical custom / 10 rich; second token apply preserves ids`);
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 87 linked / 53 historical custom / 13 rich; second token apply preserves ids`);

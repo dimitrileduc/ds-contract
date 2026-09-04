@@ -250,6 +250,11 @@
     "64": {
       "$value": "64px"
     },
+    "80": {
+      "$type": "dimension",
+      "$value": "80px",
+      "$description": "Écart vertical entre sections de page en Mobile et Tablette (128 en Desktop, 192 en Wide). Minté from-dump le 2026-09-04 depuis les quatre vues home de la page 031 (itemSpacing du conteneur de page). Espacement vertical de page, couche COMPOSITION : lu par la zone ODOO-024-PAGE-LAYOUT, jamais par un contrat de section."
+    },
     "89": {
       "$value": "89px"
     },
@@ -258,6 +263,11 @@
     },
     "128": {
       "$value": "128px"
+    },
+    "192": {
+      "$type": "dimension",
+      "$value": "192px",
+      "$description": "Écart vertical entre sections de page en Wide. Minté from-dump le 2026-09-04 depuis les quatre vues home de la page 031 (itemSpacing du conteneur de page). Espacement vertical de page, couche COMPOSITION : lu par la zone ODOO-024-PAGE-LAYOUT, jamais par un contrat de section."
     },
     "288": {
       "$type": "dimension",
@@ -598,6 +608,26 @@
         "$type": "dimension",
         "$description": "Authored from ds.product-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "364px"
+      },
+      "mobile": {
+        "$type": "dimension",
+        "$value": "260px",
+        "$description": "Largeur d une carte produit en mobile. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
+      },
+      "tablette": {
+        "$type": "dimension",
+        "$value": "322px",
+        "$description": "Largeur d une carte produit en tablette. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
+      },
+      "desktop": {
+        "$type": "dimension",
+        "$value": "326px",
+        "$description": "Largeur d une carte produit en desktop. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
+      },
+      "wide": {
+        "$type": "dimension",
+        "$value": "363px",
+        "$description": "Largeur d une carte produit en wide. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
       }
     },
     "realisation": {

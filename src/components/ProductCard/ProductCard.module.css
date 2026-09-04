@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v2.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -17,7 +17,8 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-16);
-  width: var(--size-product-card-root);
+  width: var(--spacing-product-card-width);
+  min-width: var(--spacing-product-card-width);
   text-rendering: geometricprecision;
 }
 
@@ -28,18 +29,24 @@
 
 .Titre {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-semibold);
-  line-height: 20px;
+  font-size: var(--typography-titre-6-size);
+  font-weight: var(--typography-titre-6-weight);
+  font-family: var(--typography-titre-6-family);
+  line-height: var(--typography-titre-6-line-height);
   text-align: center;
   align-self: stretch;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 }
 
 .Prix {
   color: var(--color-bleu);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-semibold);
-  line-height: 20px;
+  font-size: var(--typography-titre-6-size);
+  font-weight: var(--typography-titre-6-weight);
+  font-family: var(--typography-titre-6-family);
+  line-height: var(--typography-titre-6-line-height);
   text-align: center;
   align-self: stretch;
 }

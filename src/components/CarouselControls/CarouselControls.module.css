@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.0.2)
+ * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   border: 0;
+  gap: var(--space-8);
 }

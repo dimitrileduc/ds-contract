@@ -353,40 +353,56 @@
 
 /* ODOO-024-PAGE-LAYOUT BEGIN
  *
- * Page container (COUCHE COMPOSITION, NON gouvernée). Le gutter horizontal et le
- * gap vertical des pages vivent ICI, une seule fois — JAMAIS dans un contrat de
- * section (cohérent avec Figma : le 89 est porté par un frame `Container` non
- * gouverné, cf. nœud 2496:7189). Les sections restent full-width côté contrat ;
- * parity et image-parity ne surveillent pas ces valeurs (image-parity mesure le
- * bloc nu). Voir integrations/odoo/authoring/README.md § « Layout de page ».
+ * Page container (COUCHE COMPOSITION, NON gouvernée). Le conteneur de page ne
+ * porte QU'UNE chose : l'espacement vertical entre sections, par écran.
  *
- * content-grid à lignes nommées (Mulligan/Comeau) : pas de marge négative, pas
- * de littéral (valeurs via tokens). Les sections vont en colonne `content` ; une
- * section full-bleed (`s_pqr_bleed`, ex. devis) prend `full` — pleine largeur
- * SANS toucher au gap vertical, que la grille conserve toute seule.
+ * RENVERSEMENT DU MODÈLE, 2026-09-04 (vague 031). La version du 2026-08-23
+ * (tinyspec odoo-page-gutter-gap.md) posait ici une content-grid à trois colonnes :
+ * deux gouttières de 89 px et une colonne de contenu, plus un row-gap fixe de 128.
+ * C'était juste À L'ÉPOQUE — le Figma portait la gouttière sur un cadre `Container`
+ * non gouverné (2496:7189) et les sections étaient pleine largeur sans padding.
+ *
+ * La vague 031 a inversé le modèle : chaque contrat de section porte désormais son
+ * `padding-inline` par écran (24 · 48 · 56 · 89), et les quatre vues home de la page
+ * `031 · Planches de validation` (mobile 2617:55170, tablette 2674:14994, desktop
+ * 2647:6734, wide 2624:57624) montrent un conteneur à padding 0 dont TOUTES les
+ * sections partent de x = 0 et occupent la largeur d'écran. La gouttière de page
+ * s'ajoutait donc à celle des sections : mesuré le 2026-09-04 sur le pilote, la
+ * colonne de contenu ne faisait plus que 212 px à 390 px de large.
+ *
+ * Conséquences : plus de gouttière ici, plus de colonne `content`, et `s_pqr_bleed`
+ * disparaît — sans gouttière, la pleine largeur est le défaut, plus rien à fuir.
+ * Deux sections sont bord à bord par CONTRAT (produits-ecommerce, devis : padding
+ * inline 0), et Presentation est bornée à 1287 en wide par la zone
+ * ODOO-PRESENTATION-MAXWIDTH. Rien de tout cela n'appartient au conteneur.
+ *
+ * Écart vertical relevé sur les quatre vues : 80 · 80 · 128 · 192. Le padding bas
+ * (entre la dernière section et le footer système, hors de #wrap) suit le même
+ * écart : dans les vues, le Footer est la dernière section de la même colonne.
+ *
+ * Voir integrations/odoo/authoring/README.md § « Layout de page ».
  */
 .o_pqr_page {
   display: grid;
-  grid-template-columns:
-    [full-start] var(--pqr-space-89)
-    /* minmax(0, 1fr) et non 1fr : une piste `fr` vaut minmax(auto, 1fr), et ce
-     * minimum `auto` cale la colonne sur le min-content de la section la plus
-     * large (~1552 = 4×364+3×32, DW-002) — la page ne rétrécit alors plus et
-     * rogne. minmax(0, …) neutralise ce minimum, la colonne suit le viewport.
-     * Au large, comportement identique à 1fr (aucune régression maquette). */
-    [content-start] minmax(0, 1fr) [content-end]
-    var(--pqr-space-89) [full-end];
-  row-gap: var(--pqr-space-128);
-  /* Padding bas de page (128) : au container, pas par section. Pas de top
-   * (la 1re section touche la nav). N'affecte ni le gutter, ni le row-gap,
-   * ni le full-bleed. */
-  padding-bottom: var(--pqr-space-128);
+  /* minmax(0, 1fr) et non 1fr : une piste `fr` vaut minmax(auto, 1fr), et ce
+   * minimum `auto` cale la colonne sur le min-content de la section la plus
+   * large — la page ne rétrécirait plus et rognerait. minmax(0, …) neutralise
+   * ce minimum, la colonne suit le viewport. */
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--pqr-space-80);
+  padding-bottom: var(--pqr-space-80);
 }
-.o_pqr_page > * {
-  grid-column: content;
+@media (min-width: 992px) {
+  .o_pqr_page {
+    row-gap: var(--pqr-space-128);
+    padding-bottom: var(--pqr-space-128);
+  }
 }
-.o_pqr_page > .s_pqr_bleed {
-  grid-column: full;
+@media (min-width: 1400px) {
+  .o_pqr_page {
+    row-gap: var(--pqr-space-192);
+    padding-bottom: var(--pqr-space-192);
+  }
 }
 /* ODOO-024-PAGE-LAYOUT END */
 

@@ -60,9 +60,32 @@ function fingerprint(node) {
   return JSON.stringify(walk(node));
 }
 
+// Les icônes gouvernées sont des COMPONENTs qui EXISTENT sur le canevas réel :
+// le moteur les retrouve par `key` (findIconComponent) et refuse par NOM si elles
+// manquent. Un mock vierge n'en a aucune — le sujet du round-trip a gagné un
+// bouton (ds.google-reviews 3.0.0, en-tête décrit dans la section) et l'aller
+// s'est mis à refuser sur `arrow-left`. On sème donc ici l'ÉTAT DU CANEVAS que
+// le moteur suppose : un COMPONENT par entrée du registre, à sa clé exacte.
+// Même discipline que le semis des Text Styles migrés juste au-dessus : on
+// reproduit la précondition, on ne contourne pas la garde (2026-09-04).
+function seedGovernedIcons(figma, root) {
+  const registry = JSON.parse(read('contracts/icons.registry.json'));
+  const page = root.children[0] ?? root;
+  let n = 0;
+  for (const icon of registry.icons) {
+    const component = figma.createComponent();
+    component.name = icon.figma.componentName;
+    component.key = icon.figma.key;
+    page.appendChild(component);
+    n += 1;
+  }
+  return n;
+}
+
 // Run the plugin engine's contract→canvas once, in a fresh mocked Figma.
 function contractToCanvas() {
   const { figma, root } = createFigmaMock();
+  seedGovernedIcons(figma, root);
   const sandbox = { window: {}, console: { log() {}, warn() {}, error() {} } };
   vm.createContext(sandbox);
   vm.runInContext(bundle.code, sandbox, { timeout: 120_000 });
@@ -202,11 +225,18 @@ console.log('\n3. contract → code  (emit React from the contract)');
 const { emitReact } = await import(path.join(ROOT, 'core', 'emit-react.js'));
 const { tokenInventoryFromJson } = await import(path.join(ROOT, 'core', 'tokens.js'));
 const { readdirSync } = await import('node:fs');
-// Both contracts in scope: emitReact resolves the component{id:"ds.review-card"} ref.
-const byId = new Map([
-  [googleReviewsContract.id, googleReviewsContract],
-  [reviewCardContract.id, reviewCardContract],
-]);
+// TOUTE la fermeture en portée : emitReact refuse par NOM une part `component`
+// dont le contrat manque. Deux contrats suffisaient tant que ds.google-reviews ne
+// composait que ds.review-card ; la version 3.0.0 y a ajouté ds.button et
+// ds.notation (en-tête décrit dans la section) et l'émission s'est mise à refuser.
+// On lit donc contracts/ en entier plutôt que d'épingler une liste qui périme
+// à chaque composition ajoutée (2026-09-04).
+const byId = new Map(
+  readdirSync(path.join(ROOT, 'contracts'))
+    .filter((name) => name.endsWith('.contract.json'))
+    .map((name) => JSON.parse(read(`contracts/${name}`)))
+    .map((contract) => [contract.id, contract]),
+);
 const icons = new Map(readdirSync(path.join(ROOT, 'assets', 'icons')).filter((f) => f.endsWith('.svg')).map((f) => [f.replace(/\.svg$/, ''), read(`assets/icons/${f}`).trim()]));
 // The REAL token inventory the generator uses — an empty one would make the
 // emitter refuse every binding by name (that refusal gate is a feature).

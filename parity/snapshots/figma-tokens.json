@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788513694062,
+  "extractedAt": 1788522324916,
   "collections": [
     {
       "name": "Primitives",
@@ -2104,6 +2104,72 @@
           "values": {
             "Value": 52
           }
+        },
+        {
+          "name": "space/80",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 80
+          }
+        },
+        {
+          "name": "space/192",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 192
+          }
+        },
+        {
+          "name": "size/product-card/mobile",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-product-card-mobile)",
+          "values": {
+            "Value": 260
+          }
+        },
+        {
+          "name": "size/product-card/tablette",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-product-card-tablette)",
+          "values": {
+            "Value": 322
+          }
+        },
+        {
+          "name": "size/product-card/desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-product-card-desktop)",
+          "values": {
+            "Value": 326
+          }
+        },
+        {
+          "name": "size/product-card/wide",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-product-card-wide)",
+          "values": {
+            "Value": 363
+          }
         }
       ]
     },
@@ -3637,6 +3703,20 @@
             "Tablette": 52,
             "Desktop": 52,
             "Wide": 52
+          }
+        },
+        {
+          "name": "spacing/product-card/width",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 260,
+            "Tablette": 322,
+            "Desktop": 326,
+            "Wide": 363
           }
         }
       ]

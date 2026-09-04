@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -264,7 +264,7 @@ export interface GoogleReviewsProps extends HTMLAttributes<HTMLElement> {
   lienAvis?: string;
 }
 
-/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. */
+/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. */
 export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(function GoogleReviews(
   { presentation = 'mobile', note = '5', accroche = 'Nos avis Google vérifiés', titre = 'Plus de 1500 portes installées par année et autant de clients satisfaits', qualificatif = 'Excellent', noteGlobale = '4.8', volume = '93 avis', lienAvis = '', avis, style, children, ...rest },
   ref,
@@ -311,11 +311,11 @@ export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(functio
 <Button variant="outlineNoir">Voir tous les avis</Button>
 </div>
 <div style={{ ...S.groupeCartes, ...(V[`presentation-${presentation}:groupeCartes`] ?? {}) }}>
-<ReviewCard verifie={false} photoAlt="" texte="super très pro et service après vente présent" photoUrl="" date="il y a 2 mois" initiale="P" auteur="pho syster" />
-<ReviewCard verifie={false} photoAlt="" texte="Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…" photoUrl="" date="il y a 3 mois" initiale="P" auteur="Petit Nicole" />
-<ReviewCard verifie={false} photoAlt="" texte="Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui est à fait le suivi…" photoUrl="" date="il y a 4 mois" initiale="A" auteur="Aun Bukhari" />
-<ReviewCard verifie={false} photoAlt="" texte="Dépannage ultra rapide et professionnel" photoUrl="" date="il y a 5 mois" initiale="T" auteur="Thierry Picard" />
-<ReviewCard verifie={false} photoAlt="" texte="Je ne mais pas 5 étoiles mais 10 les 2 placeurs de mes 2 portes de garage il…" photoUrl="" date="il y a 6 mois" initiale="m" auteur="miguel martinez" />
+<ReviewCard verifie={false} photoAlt="" texte="super très pro et service après vente présent" photoUrl="" date="il y a 2 mois" initiale="P" auteur="pho syster" avatar="Initiale" note="5" lienAvis="" />
+<ReviewCard verifie={false} photoAlt="" texte="Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…" photoUrl="" date="il y a 3 mois" initiale="P" auteur="Petit Nicole" avatar="Initiale" note="5" lienAvis="" />
+<ReviewCard verifie={false} photoAlt="" texte="Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui est à fait le suivi…" photoUrl="" date="il y a 4 mois" initiale="A" auteur="Aun Bukhari" avatar="Initiale" note="5" lienAvis="" />
+<ReviewCard verifie={false} photoAlt="" texte="Dépannage ultra rapide et professionnel" photoUrl="" date="il y a 5 mois" initiale="T" auteur="Thierry Picard" avatar="Initiale" note="5" lienAvis="" />
+<ReviewCard verifie={false} photoAlt="" texte="Je ne mais pas 5 étoiles mais 10 les 2 placeurs de mes 2 portes de garage il…" photoUrl="" date="il y a 6 mois" initiale="m" auteur="miguel martinez" avatar="Initiale" note="5" lienAvis="" />
 </div>
 </div>
     </section>

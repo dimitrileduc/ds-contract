@@ -5921,12 +5921,21 @@ const cases: Case[] = [
     id: 'detect-figma-missing-nested-instance',
     claim: 'C3-detection',
     run: () => {
+      // 2026-09-04 (vague 031) : le set joint par le contrat a changé. Le fichier
+      // porte DEUX ensembles d'avis — l'ancien « Avis Google » et le set
+      // responsive « AvisGoogle » (2700:28391), seul ancré par ds.google-reviews.
+      // La sonde mordait encore sur l'ancien : elle sabotait un set que la parité
+      // ne joint plus, et « aucune dérive » était la bonne réponse à une mauvaise
+      // question. On la re-pointe sur le set ancré, par sa CLÉ — le commentaire
+      // ci-dessus prévoyait ce moment et annonçait un nom qui périme ; c'est fait.
+      const CLE_SET_AVIS = '92ddbd842f0f0a22f284322298a9a6865c397055';
       editJson(FIGMA_COMPONENTS, (s) => {
-        const set = s.sets.find((x: any) => x.name === 'Avis Google');
-        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'Review-card');
+        const set = s.sets.find((x: any) => x.key === CLE_SET_AVIS);
+        if (!set) throw new Error(`aucun set à la clé ${CLE_SET_AVIS} dans le cliché`);
+        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'ReviewCard');
       });
       if (parity().status === 0) throw new Error('Drift not detected');
-      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.Review-card');
+      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.ReviewCard');
     },
   },
   {
@@ -6037,7 +6046,22 @@ const cases: Case[] = [
       // never a live array — five distinct sample dates ("il y a 2 mois" …
       // "il y a 6 mois") must all appear verbatim in the markup.
       const { html } = coreEmitHtml(section, { tokens: tokenInv, icons, contracts: byId });
-      const sample = (section.anatomy.root.parts!.cartes as SchemaPart).parts!.groupeCartes.parts!.carte.repeat!.sample as Array<Record<string, unknown>>;
+      // 2026-09-04 (vague 031) : le chemin d'anatomie était écrit EN DUR
+      // (root.cartes.groupeCartes.carte). ds.google-reviews 3.0.0 l'a renommé
+      // (root.avisGoogle.groupeCartes.ReviewCard) et la sonde plantait sur un
+      // `undefined.parts` — un plantage, pas un échec de la propriété testée.
+      // On CHERCHE la part qui répète, ce que le cas voulait dire depuis le début.
+      const trouverRepeat = (part: SchemaPart): SchemaPart | undefined => {
+        if (part.repeat) return part;
+        for (const enfant of Object.values(part.parts ?? {})) {
+          const trouve = trouverRepeat(enfant as SchemaPart);
+          if (trouve) return trouve;
+        }
+        return undefined;
+      };
+      const partRepetee = trouverRepeat(section.anatomy.root as SchemaPart);
+      if (!partRepetee) throw new Error('ds.google-reviews ne porte plus aucune part `repeat`');
+      const sample = partRepetee.repeat!.sample as Array<Record<string, unknown>>;
       if (sample.length !== 5) throw new Error(`expected 5-record sample, got ${sample.length}`);
       for (const rec of sample) {
         const date = String(rec.date);

@@ -6,9 +6,6 @@
   "sections": [
     {
       "component": "s_pqr_hero_video",
-      "add_class": [
-        "s_pqr_bleed"
-      ],
       "set_html": {
         "hero-video-title": "Le numéro 1 des portes HÖRMANN<br/>en Province de Liège !"
       },
@@ -33,9 +30,6 @@
           "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
           "image": "cat_entree"
         }
-      ],
-      "add_class": [
-        "s_pqr_bleed"
       ]
     },
     {
@@ -46,26 +40,47 @@
       },
       "set_button": {
         "button-root": "En savoir plus"
-      },
-      "add_class": [
-        "s_pqr_bleed"
-      ]
+      }
     },
     {
       "component": "s_pqr_sav",
       "images": {
         "sav-background": "sav_bg",
         "sav-photo": "sav_tech"
-      },
-      "add_class": [
-        "s_pqr_bleed"
+      }
+    },
+    {
+      "component": "s_pqr_produits_ecommerce",
+      "cards": [
+        {
+          "titre": "Télécommande Hörmann HSE4-868BS",
+          "prix": "74,99€",
+          "image": "produit1"
+        },
+        {
+          "titre": "Clavier à code Hörmann FCT3-1BS",
+          "prix": "139,99€",
+          "image": "produit2"
+        },
+        {
+          "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
+          "prix": "89,99€",
+          "image": "produit3"
+        },
+        {
+          "titre": "Passerelle BiSecure Hörmann",
+          "prix": "74,99€",
+          "image": "produit4"
+        },
+        {
+          "titre": "Télécommande Hörmann HSE4-868BS",
+          "prix": "74,99€",
+          "image": "produit1"
+        }
       ]
     },
     {
       "component": "s_pqr_devis",
-      "add_class": [
-        "s_pqr_bleed"
-      ],
       "images": {
         "devis-background": "devis"
       },
@@ -78,23 +93,23 @@
       "disposition": "5Cartes",
       "cards": [
         {
-          "titre": "Conseil personnalisé",
-          "body": "Devis gratuits réalisés sur place, nous recherchons chaque solution avec vous.",
+          "titre": "Sécurité et conformité",
+          "body": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
           "image": "rea1"
         },
         {
-          "titre": "Produits de qualité",
-          "body": "Partenaire de la marque Hörmann, l’excellence de la qualité allemande.",
+          "titre": "Intégration parfaite",
+          "body": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
           "image": "rea2"
         },
         {
-          "titre": "Peinture",
-          "body": "Mise en peinture personnalisée en cabine pour une finition durable.",
+          "titre": "Moteur performant",
+          "body": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
           "image": "rea3"
         },
         {
-          "titre": "Service après-vente",
-          "body": "Une équipe réactive pour vos dépannages et entretiens.",
+          "titre": "SAV & maintenance dédiés",
+          "body": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
           "image": "rea4"
         },
         {
@@ -102,47 +117,51 @@
           "body": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
           "image": "rea5"
         }
-      ]
+      ],
+      "set_html": {
+        "reassurances-eyebrow": "Plus de 50 ans d’expérience",
+        "reassurances-title": "Pourquoi choisir nos portes de garage industrielles ?"
+      }
     },
     {
       "component": "s_pqr_google_reviews_section",
       "set_html": {
-        "google-reviews-header-title": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>"
+        "accroche": "Nos avis Google vérifiés",
+        "google-reviews-header-title": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>",
+        "note-globale": "4.8",
+        "volume": "93 avis"
       },
       "reviews": [
         {
-          "auteur": "pho syster",
+          "auteur": "p. syster",
           "initiale": "P",
           "date": "il y a 2 mois",
           "texte": "super très pro et service après vente présent"
         },
         {
-          "auteur": "Petit Nicole",
+          "auteur": "P. Nicole",
           "initiale": "P",
           "date": "il y a 3 mois",
           "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…"
         },
         {
-          "auteur": "Aun Bukhari",
+          "auteur": "A. Bukhari",
           "initiale": "A",
           "date": "il y a 4 mois",
           "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…"
         },
         {
-          "auteur": "Thierry Picard",
+          "auteur": "T. Picard",
           "initiale": "T",
           "date": "il y a 5 mois",
           "texte": "Dépannage ultra rapide et professionnel"
         },
         {
-          "auteur": "miguel martinez",
+          "auteur": "m. martinez",
           "initiale": "m",
           "date": "il y a 6 mois",
           "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…"
         }
-      ],
-      "add_class": [
-        "s_pqr_bleed"
       ]
     }
   ]

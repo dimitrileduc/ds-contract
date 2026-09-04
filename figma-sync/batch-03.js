@@ -1147,7 +1147,7 @@ const COMPONENTS = [
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
     "anchorKey": "92ddbd842f0f0a22f284322298a9a6865c397055",
-    "description": "GoogleReviews — generated from contract ds.google-reviews v3.0.0",
+    "description": "GoogleReviews — generated from contract ds.google-reviews v3.0.1",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1507,7 +1507,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 2 mois",
                         "Initiale": "P",
-                        "Auteur": "pho syster"
+                        "Auteur": "pho syster",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1522,7 +1523,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 3 mois",
                         "Initiale": "P",
-                        "Auteur": "Petit Nicole"
+                        "Auteur": "Petit Nicole",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1537,7 +1539,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 4 mois",
                         "Initiale": "A",
-                        "Auteur": "Aun Bukhari"
+                        "Auteur": "Aun Bukhari",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1552,7 +1555,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 5 mois",
                         "Initiale": "T",
-                        "Auteur": "Thierry Picard"
+                        "Auteur": "Thierry Picard",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1567,7 +1571,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 6 mois",
                         "Initiale": "m",
-                        "Auteur": "miguel martinez"
+                        "Auteur": "miguel martinez",
+                        "Avatar": "Initiale"
                       }
                     }
                   ]
@@ -1925,7 +1930,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 2 mois",
                         "Initiale": "P",
-                        "Auteur": "pho syster"
+                        "Auteur": "pho syster",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1940,7 +1946,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 3 mois",
                         "Initiale": "P",
-                        "Auteur": "Petit Nicole"
+                        "Auteur": "Petit Nicole",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1955,7 +1962,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 4 mois",
                         "Initiale": "A",
-                        "Auteur": "Aun Bukhari"
+                        "Auteur": "Aun Bukhari",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1970,7 +1978,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 5 mois",
                         "Initiale": "T",
-                        "Auteur": "Thierry Picard"
+                        "Auteur": "Thierry Picard",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -1985,7 +1994,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 6 mois",
                         "Initiale": "m",
-                        "Auteur": "miguel martinez"
+                        "Auteur": "miguel martinez",
+                        "Avatar": "Initiale"
                       }
                     }
                   ]
@@ -2347,7 +2357,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 2 mois",
                         "Initiale": "P",
-                        "Auteur": "pho syster"
+                        "Auteur": "pho syster",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2362,7 +2373,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 3 mois",
                         "Initiale": "P",
-                        "Auteur": "Petit Nicole"
+                        "Auteur": "Petit Nicole",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2377,7 +2389,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 4 mois",
                         "Initiale": "A",
-                        "Auteur": "Aun Bukhari"
+                        "Auteur": "Aun Bukhari",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2392,7 +2405,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 5 mois",
                         "Initiale": "T",
-                        "Auteur": "Thierry Picard"
+                        "Auteur": "Thierry Picard",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2407,7 +2421,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 6 mois",
                         "Initiale": "m",
-                        "Auteur": "miguel martinez"
+                        "Auteur": "miguel martinez",
+                        "Avatar": "Initiale"
                       }
                     }
                   ]
@@ -2767,7 +2782,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 2 mois",
                         "Initiale": "P",
-                        "Auteur": "pho syster"
+                        "Auteur": "pho syster",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2782,7 +2798,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 3 mois",
                         "Initiale": "P",
-                        "Auteur": "Petit Nicole"
+                        "Auteur": "Petit Nicole",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2797,7 +2814,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 4 mois",
                         "Initiale": "A",
-                        "Auteur": "Aun Bukhari"
+                        "Auteur": "Aun Bukhari",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2812,7 +2830,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 5 mois",
                         "Initiale": "T",
-                        "Auteur": "Thierry Picard"
+                        "Auteur": "Thierry Picard",
+                        "Avatar": "Initiale"
                       }
                     },
                     {
@@ -2827,7 +2846,8 @@ const COMPONENTS = [
                         "URL photo": "",
                         "Date": "il y a 6 mois",
                         "Initiale": "m",
-                        "Auteur": "miguel martinez"
+                        "Auteur": "miguel martinez",
+                        "Avatar": "Initiale"
                       }
                     }
                   ]

@@ -3,13 +3,10 @@
   "name": "Devis test",
   "key": "devis_test",
   "header_overlay": false,
-  "_note": "Page de MESURE de la vague 031 (2026-09-02) : le bloc Devis SEUL, même contenu que la home, pleine largeur (s_pqr_bleed — le bandeau est full-bleed sur la home). Sert à comparer le bloc Odoo aux 4 planches 031 du set 2694:21604.",
+  "_note": "Page de MESURE de la vague 031 (2026-09-02) : le bloc Devis SEUL, même contenu que la home, pleine largeur (le bandeau est bord à bord par contrat : padding-inline 0 ; la classe s_pqr_bleed a été retirée le 2026-09-04, le conteneur de page n'a plus de gouttière). Sert à comparer le bloc Odoo aux 4 planches 031 du set 2694:21604.",
   "sections": [
     {
       "component": "s_pqr_devis",
-      "add_class": [
-        "s_pqr_bleed"
-      ],
       "images": {
         "devis-background": "devis"
       },

@@ -1,0 +1,111 @@
+/*
+ * responsive/produits-ecommerce.pqr.css — ZONE MANUELLE (vague 031, 2026-09-04).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.produits-ecommerce 2.0.0
+ * (tokensByProp / layoutByProp / stylesWhen sur l'axe `presentation`), réécrites en
+ * @media sur les breakpoints des jetons :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.produits-ecommerce`)
+ *   Tablette = @media (min-width: 768px)   ← breakpoint.tablette
+ *   Desktop  = @media (min-width: 992px)   ← breakpoint.desktop
+ *   Wide     = @media (min-width: 1400px)  ← breakpoint.wide
+ *
+ * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
+ *
+ * TOUTE règle que la feuille générée porte sur une classe de présentation
+ * (`.produits-ecommerce--presentation-*`) doit être recopiée ici : Odoo ne pose
+ * JAMAIS ces classes. Une première version ne recopiait que les bascules
+ * d'affichage en supposant que les marges vivaient ailleurs — mesuré le
+ * 2026-09-04, la section rendait ses marges mobiles (24) aux quatre largeurs et
+ * gardait son en-tête en colonne au-dessus de 992. Rien n'est « déjà là ».
+ *
+ * Le carrousel est INERTE : les contrôles ne bougent rien, le glissement au doigt
+ * est différé (décision owner 2026-09-04). Au-dessus de 992 la piste déborde
+ * volontairement du cadre rognant — c'est le dessin, pas un défaut.
+ */
+
+/* ---- Base = Mobile -------------------------------------------------------- */
+
+/* La piste tient dans le cadre sous 992 (contrat : width fill en mobile/tablette). */
+.s_pqr_produits_ecommerce .produits-ecommerce__Produits {
+  width: 100%;
+  min-width: 0;
+}
+/* Contrôles masqués sous 992 (contrat : stylesWhen display none, mobile + tablette). */
+.s_pqr_produits_ecommerce .produits-ecommerce__controles {
+  display: none;
+}
+/* Bouton d'en-tête : dessiné en Desktop et Wide seulement (contrat : deux parts
+ * `Bouton` et `BoutonWide` sous visibleWhen — un seul nœud côté Odoo, les deux
+ * étages étant la même règle @media). */
+.s_pqr_produits_ecommerce .produits-ecommerce__Bouton {
+  display: none;
+}
+/* Le bouton de pied prend toute la largeur sous 992 (canvas : 342 puis 738). */
+.s_pqr_produits_ecommerce .produits-ecommerce__boutonConteneur .button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ---- Tablette ≥ 768 ------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .s_pqr_produits_ecommerce .produits-ecommerce__enTete,
+  .s_pqr_produits_ecommerce .produits-ecommerce__controles,
+  .s_pqr_produits_ecommerce .produits-ecommerce__boutonConteneur {
+    padding-inline: var(--pqr-space-48);
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
+    padding-left: var(--pqr-space-48);
+  }
+}
+
+/* ---- Desktop ≥ 992 -------------------------------------------------------- */
+
+@media (min-width: 992px) {
+  .s_pqr_produits_ecommerce.produits-ecommerce {
+    gap: var(--pqr-space-48);
+  }
+  /* Titre et bouton sur une ligne, séparés. */
+  .s_pqr_produits_ecommerce .produits-ecommerce__enTete {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--pqr-space-8);
+  }
+  /* La piste redevient au CONTENU et déborde du cadre rognant : c'est le carrousel. */
+  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
+    width: max-content;
+    min-width: max-content;
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__controles {
+    display: flex;
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__Bouton {
+    display: block;
+  }
+  /* Le bouton de pied disparaît, il est monté dans l'en-tête. */
+  .s_pqr_produits_ecommerce .produits-ecommerce__boutonConteneur {
+    display: none;
+  }
+}
+
+/* ---- Wide ≥ 1400 ---------------------------------------------------------- */
+
+@media (min-width: 1400px) {
+  .s_pqr_produits_ecommerce .produits-ecommerce__enTete,
+  .s_pqr_produits_ecommerce .produits-ecommerce__controles,
+  .s_pqr_produits_ecommerce .produits-ecommerce__boutonConteneur {
+    padding-inline: var(--pqr-space-89);
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
+    padding-left: var(--pqr-space-89);
+  }
+  /* Le canvas aligne l'en-tête AU DÉBUT ici : c'est le titre qui remplit
+   * (layout.grow du contrat) et pousse le bouton à droite, pas un justify. */
+  .s_pqr_produits_ecommerce .produits-ecommerce__enTete {
+    justify-content: flex-start;
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
+    gap: var(--pqr-space-24);
+  }
+}

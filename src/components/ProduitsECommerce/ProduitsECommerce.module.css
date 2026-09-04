@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/produits-ecommerce.contract.json (ds.produits-ecommerce v1.0.0)
+ * Source of truth: contracts/produits-ecommerce.contract.json (ds.produits-ecommerce v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -13,30 +13,181 @@
 .root {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
+  padding-inline: var(--space-0);
+  padding-block: var(--space-0);
   gap: var(--space-32);
 }
 
+.presentation-desktop {
+  gap: var(--space-48);
+}
+
+.presentation-wide {
+  gap: var(--space-48);
+}
+
+.enTete {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-inline: var(--space-24);
+  gap: var(--space-32);
+}
+
+.presentation-tablette .enTete {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .enTete {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .enTete {
+  gap: var(--space-8);
+}
+
+.presentation-wide .enTete {
+  padding-inline: var(--space-89);
+}
+
+.presentation-wide .enTete {
+  gap: var(--space-8);
+}
+
+.presentation-desktop .enTete {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.presentation-wide .enTete {
+  flex-direction: row;
+  align-items: center;
+}
+
 .Titre {
-  width: 100%;
+  flex: 1 1 auto;
   min-width: 0;
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
-  font-weight: var(--font-weight-regular);
-  line-height: 40px;
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
 }
 
 .Titre > strong {
   font-weight: var(--font-weight-bold);
 }
 
+.pisteEtControles {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-24);
+}
+
+.carrouselProduits {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  gap: var(--space-0);
+  padding-left: var(--space-24);
+}
+
+.presentation-tablette .carrouselProduits {
+  padding-left: var(--space-48);
+}
+
+.presentation-desktop .carrouselProduits {
+  padding-left: var(--space-48);
+}
+
+.presentation-wide .carrouselProduits {
+  padding-left: var(--space-89);
+}
+
 .Produits {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.presentation-wide .Produits {
+  gap: var(--space-24);
+}
+
+.presentation-mobile .Produits {
   width: 100%;
   min-width: 0;
+}
+
+.presentation-tablette .Produits {
+  width: 100%;
+  min-width: 0;
+}
+
+.controles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+  padding-inline: var(--space-24);
+}
+
+.presentation-tablette .controles {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .controles {
+  padding-inline: var(--space-48);
+}
+
+.presentation-wide .controles {
+  padding-inline: var(--space-89);
+}
+
+.presentation-mobile .controles {
+  display: none;
+}
+
+.presentation-tablette .controles {
+  display: none;
+}
+
+.boutonConteneur {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  padding-inline: var(--space-24);
+}
+
+.presentation-tablette .boutonConteneur {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .boutonConteneur {
+  padding-inline: var(--space-48);
+}
+
+.presentation-wide .boutonConteneur {
+  padding-inline: var(--space-89);
+}
+
+.presentation-desktop .boutonConteneur {
+  display: none;
+}
+
+.presentation-wide .boutonConteneur {
+  display: none;
 }

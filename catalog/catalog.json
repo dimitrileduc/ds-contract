@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "41711295",
+    "gitCommit": "d9a71153",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -171,7 +171,8 @@
       "--spacing-carte-reassurance-photo-h",
       "--spacing-review-gap",
       "--spacing-menu-entree-pad-v",
-      "--spacing-menu-entree-hauteur"
+      "--spacing-menu-entree-hauteur",
+      "--spacing-product-card-width"
     ],
     "allCssVariables": [
       "--color-bleu",
@@ -244,9 +245,11 @@
       "--space-48",
       "--space-56",
       "--space-64",
+      "--space-80",
       "--space-89",
       "--space-96",
       "--space-128",
+      "--space-192",
       "--space-288",
       "--space-392",
       "--space-418",
@@ -308,6 +311,10 @@
       "--size-presentation-col-gauche",
       "--size-product-card-image",
       "--size-product-card-root",
+      "--size-product-card-mobile",
+      "--size-product-card-tablette",
+      "--size-product-card-desktop",
+      "--size-product-card-wide",
       "--size-realisation-image",
       "--size-realisation-image-petit",
       "--size-reassurances-root",
@@ -503,7 +510,8 @@
       "--spacing-carte-reassurance-photo-h",
       "--spacing-review-gap",
       "--spacing-menu-entree-pad-v",
-      "--spacing-menu-entree-hauteur"
+      "--spacing-menu-entree-hauteur",
+      "--spacing-product-card-width"
     ]
   },
   "components": [
@@ -689,10 +697,10 @@
     {
       "id": "ds.carousel-controls",
       "name": "CarouselControls",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary.",
+      "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary. 1.1.0 (2026-09-04, vague 031) : le master DS 2077:2191 était en SPACE_BETWEEN avec un itemSpacing de 0 — la dixième occurrence du défaut de source E-031-023, où l'alignement réparti annule silencieusement l'écart. Corrigé À LA SOURCE (§VIII) : alignement au début, écart 8, largeur 104 → 112 ; les quinze instances du fichier sont désormais uniformes, version nommée dans l'historique Figma. Le contrat suit la source réparée : sans cet écart les deux boutons de navigation étaient collés partout où le composant est rendu hors Figma.",
       "figma": {
         "representation": "component",
         "componentSetKey": "f9cf66306491d239164a61b8a0ac6ba8d0de0238"
@@ -1612,9 +1620,9 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "3.0.0",
+      "version": "3.0.1",
       "status": "draft",
-      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide.",
       "figma": {
         "representation": "component",
         "componentSetKey": "92ddbd842f0f0a22f284322298a9a6865c397055"
@@ -2108,13 +2116,13 @@
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
+      "description": "Piqueray ProductCard. 3.0.0 (2026-09-04, vague 031) : les ancres passent du master DS 2068:1972 au master 031 `ProductCard` 2693:21081, celui que le set ProduitsECommerce de la page 031 instancie réellement — décision owner, patron déjà appliqué à ReviewCard, CarteCategorie et CarteReassurance. Deux changements avec : la typographie monte le groupe de jetons `typography.titre-6` (au lieu de font.size.16 / font.weight.semibold en dur, même recette résolue) ; et la largeur devient un PLAFOND, pas une largeur fixe — dans les quatre vues la carte vaut 260 · 322 · 326 · 363 selon l'écran, posée par la section via le jeton responsive `spacing.product-card.width` (une molécule n'a pas d'axe présentation : ce qui change par écran passe par un jeton qui varie par écran). L'URL et l'alternative textuelle de l'image restent des sémantiques de code : Figma les fournit par surcharge d'instance, jamais comme propriété de composant. La LARGEUR par écran (260 · 322 · 326 · 363) est portée par le jeton `spacing.product-card.width` sur la racine de CETTE molécule, et non sur la part instance de la section : les jetons posés sur une part `component` sont silencieusement ignorés par les émetteurs (vérifié le 2026-09-04 — zéro règle générée). C'est le patron d'art antérieur du dépôt (ds.avatar-group : largeur fixe sur la racine de l'enfant), la seule route qui traverse. Le jeton résout par mode viewport, ce qu'une molécule sans axe presentation ne saurait faire elle-même. `min-width` répète `width` : la carte est dans une piste flex et le rétrécissement par défaut la ferait passer sous la largeur dessinée — le carrousel exige qu'elle garde sa taille et que la piste déborde. Canal jeton, donc gouverné des deux côtés ; `flex-shrink` n'est pas un canal `declared` du registre (refus du schéma, 2026-09-04). Le titre est tronqué sur une ligne (maxLines 1 / ENDING au canevas) : porté par les canaux declared white-space, overflow et text-overflow.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7"
+        "componentSetKey": "9d5b5ffa2711233858c0a684cd7e9a24b573db97"
       },
       "props": [
         {
@@ -2148,15 +2156,26 @@
     {
       "id": "ds.produits-ecommerce",
       "name": "ProduitsECommerce",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray ProduitsECommerce. Canonical section promoted from the audited source master 2116:4475. It owns its 32/40 title and CTA; it never delegates a specialised hierarchy to SectionHeader.",
+      "description": "Piqueray ProduitsECommerce, responsive (vague 031). 2.0.0 (2026-09-04) : les ancres passent de l'ancien master DS 2116:4475 (une variante) au set 031 `ProduitsECommerce` 2694:21337, quatre variantes Presentation — la seule section de la home restée hors de la vague, ce qui figeait ses cartes à 364 px à toutes les largeurs et faisait déborder la page horizontalement. La source a été nettoyée avant extraction (journal specs/tiny/vague-031/produits-ecommerce.md) : structure unifiée sur UN arbre pour les quatre variantes, Bouton et CarouselControls re-liés en instances, écart des contrôles rétabli (SPACE_BETWEEN annulait le gap — dixième occurrence). Deux formes selon l'écran, portées par présence et par layoutByProp : Mobile et Tablette montrent le titre seul puis le bouton pleine largeur en pied, contrôles masqués ; Desktop et Wide mettent le titre et le bouton sur une ligne et affichent les contrôles sous la piste. La piste est bornée par le cadre sous 992 et libre au-delà : elle déborde volontairement du cadre rognant, c'est le carrousel. Wide dessine cinq cartes, les autres quatre. Le mécanisme du carrousel est DIFFÉRÉ (décision owner 2026-09-04) : les contrôles sont inertes, le glissement au doigt viendra plus tard. Le 2026-09-04, la propriété TEXT « Titre » a été ajoutée au set et référencée par les quatre variantes : le titre est désormais une donnée liée, pas un texte dessiné.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f"
+        "componentSetKey": "70f037b37186389a20d2025654428119ef584b35"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : responsive/produits-ecommerce.pqr.css réécrit les règles par mode en @media."
+        },
         {
           "name": "titre",
           "type": "string",
@@ -2164,7 +2183,8 @@
             {
               "text": "Découvrez nos produits disponibles en ligne"
             }
-          ]
+          ],
+          "description": "Titre de section, lié à la propriété TEXT « Titre » du set. La liaison a été POSÉE À LA SOURCE le 2026-09-04 (§VIII) : le set 031 n'exposait aucune propriété TEXT, le titre n'était qu'un texte dessiné et le contrat le portait en NONE. La propriété est maintenant définie sur le set et les quatre variantes y réfèrent leur nœud Titre."
         },
         {
           "name": "produits",
@@ -2174,7 +2194,7 @@
               "prix": "text"
             }
           },
-          "description": "Product cards shown by the source carousel. IMAGE overrides remain product-card runtime data; title and price are the bounded textual catalogue carried here."
+          "description": "La collection de produits — code-only par construction (arrayOf ⇔ figma NONE). Le canevas rend le `sample` du repeat : cinq entrées, l'union des cartes dessinées (Wide en montre cinq, les autres quatre). Côté Odoo la liste vient du descripteur de page."
         }
       ],
       "children": {

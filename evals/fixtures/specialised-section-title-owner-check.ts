@@ -29,6 +29,13 @@ const expectations = [
   ['hero.contract.json', 'Hero', '{color.blanc}', '{font.size.54}', '68px'],
   ['presentation.contract.json', 'Presentation', '{color.noir-bleute}', '{typography.h2.size}', '{typography.h2.line-height}'],
   ['texte-seo.contract.json', 'TexteSEO', '{color.noir-bleute}', '{font.size.24}', '30px'],
+  // Vague 031, round Produits (2026-09-04) : ProduitsECommerce rejoint la même
+  // forme. Sa taille figée 32/40 n'était pas un choix, c'était l'unique variante
+  // de l'ancien master DS ; le set responsive 2694:21337 monte le STYLE H2 aux
+  // quatre écrans (24/30 · 24/30 · 32/40 · 40/50, relevé sur le canevas le
+  // 2026-09-04 — textStyleId « H2 » sur les quatre variantes). Épingler 32/40
+  // reviendrait désormais à épingler l'étage Desktop et à refuser les trois autres.
+  ['produits-ecommerce.contract.json', 'ProduitsECommerce', '{color.noir-bleute}', '{typography.h2.size}', '{typography.h2.line-height}'],
 ] as const;
 for (const [file, label, color, size, lineHeight] of expectations) {
   const contract = read(file);
@@ -48,10 +55,8 @@ if (!existsSync(productPath)) failures.push('ProduitsECommerce must become a can
 else {
   const product = read('produits-ecommerce.contract.json');
   if (walk(product.anatomy?.root).length) failures.push('ProduitsECommerce still delegates to ds.section-header');
-  const titles = title(product);
-  if (titles.length !== 1 || titles[0].tokens?.['font-size'] !== '{font.size.32}' || titles[0].literals?.['line-height'] !== '40px') {
-    failures.push('ProduitsECommerce must own a direct dark 32/40 titre');
-  }
+  // La propriété du titre (un seul titre direct, couleur et style) est vérifiée
+  // par la table `expectations` ci-dessus ; ici ne reste que la COMPOSITION.
   const serialised = JSON.stringify(product.anatomy?.root);
   if (!serialised.includes('ds.button') || !serialised.includes('ds.product-card') || !serialised.includes('ds.carousel-controls')) {
     failures.push('ProduitsECommerce must own its CTA, product cards and carousel controls');

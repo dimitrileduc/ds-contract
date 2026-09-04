@@ -27,12 +27,14 @@ ADDON = DESC.get("addon", "piqueray_ds")
 # dans la carte gagne). Ajouter une nouvelle liste ne demande aucune branche :
 # il suffit que ses parts soient couvertes ici.
 KEY_TO_PARTS = {
-    "titre": ("carte-title",),
+    "titre": ("carte-title", "produit-titre"),
     "texte": ("carte-text", "temoignage"),
     "body": ("carte-body",),
     "auteur": ("auteur",),
     "date": ("date",),
     "initiale": ("initiale",),
+    # 2026-09-04 : la collection de produits rejoint le contrat de DOM commun.
+    "prix": ("produit-prix",),
 }
 
 # Les dispositions de section restent des choix de COMPOSITION, jamais un

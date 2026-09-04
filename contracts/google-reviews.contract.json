@@ -2,9 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "status": "draft",
-  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide.",
   "semantics": {
     "element": "section",
     "provenance": "authored"
@@ -563,7 +563,10 @@
                         "photoUrl": "",
                         "date": "il y a 2 mois",
                         "initiale": "P",
-                        "auteur": "pho syster"
+                        "auteur": "pho syster",
+                        "avatar": "Initiale",
+                        "note": "5",
+                        "lienAvis": ""
                       },
                       {
                         "photoAlt": "",
@@ -571,7 +574,10 @@
                         "photoUrl": "",
                         "date": "il y a 3 mois",
                         "initiale": "P",
-                        "auteur": "Petit Nicole"
+                        "auteur": "Petit Nicole",
+                        "avatar": "Initiale",
+                        "note": "5",
+                        "lienAvis": ""
                       },
                       {
                         "photoAlt": "",
@@ -579,7 +585,10 @@
                         "photoUrl": "",
                         "date": "il y a 4 mois",
                         "initiale": "A",
-                        "auteur": "Aun Bukhari"
+                        "auteur": "Aun Bukhari",
+                        "avatar": "Initiale",
+                        "note": "5",
+                        "lienAvis": ""
                       },
                       {
                         "photoAlt": "",
@@ -587,7 +596,10 @@
                         "photoUrl": "",
                         "date": "il y a 5 mois",
                         "initiale": "T",
-                        "auteur": "Thierry Picard"
+                        "auteur": "Thierry Picard",
+                        "avatar": "Initiale",
+                        "note": "5",
+                        "lienAvis": ""
                       },
                       {
                         "photoAlt": "",
@@ -595,7 +607,10 @@
                         "photoUrl": "",
                         "date": "il y a 6 mois",
                         "initiale": "m",
-                        "auteur": "miguel martinez"
+                        "auteur": "miguel martinez",
+                        "avatar": "Initiale",
+                        "note": "5",
+                        "lienAvis": ""
                       }
                     ]
                   }
