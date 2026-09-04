@@ -225,11 +225,11 @@ export const isRichText = (
   p: Prop,
 ): p is Prop & {
   type: 'rich-text';
-  default?: Array<{ text: string; strong?: boolean }>;
+  default?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
 } => p.type === 'rich-text';
 
 export function richTextPlain(
-  value: Array<{ text: string; strong?: boolean }> | undefined,
+  value: Array<{ text: string; strong?: boolean; underline?: boolean }> | undefined,
 ): string {
   return value?.map((segment) => segment.text).join('') ?? '';
 }
@@ -260,8 +260,21 @@ export const normalizeLineSeparators = (text: string): string =>
 export const HAS_LINE_SEPARATOR = /[\n\r\u2028\u2029]/;
 
 /** True when a literal part carries at least one underlined range. */
-export const hasUnderlinedSegment = (part: Part): boolean =>
-  (part.textSegments ?? []).some((segment) => segment.underline);
+export const hasUnderlinedSegment = (part: Part, contract?: Contract): boolean => {
+  if ((part.textSegments ?? []).some((segment) => segment.underline)) return true;
+  // 2026-09-04 : le prédicat ne regardait QUE les segments LITTÉRAUX. Une part
+  // liée à une prop rich-text pouvait porter `underline: true` dans le défaut de
+  // la prop sans qu'aucune règle ne soit émise NI aucun <u> rendu — la marque
+  // était acceptée par le schéma et perdue en silence sur les trois surfaces de
+  // code (relevé sur ds.presentation, « Hörmann » souligné aux quatre variantes
+  // du canevas). Le défaut du dépôt le plus grave est l'omission silencieuse :
+  // la prop est donc lue ici aussi.
+  if (!contract || !part.content) return false;
+  const prop = contract.props.find(
+    (p) => p.type === 'rich-text' && p.bindings.code.prop === part.content!.prop,
+  );
+  return Boolean(prop && Array.isArray(prop.default) && prop.default.some((seg: any) => seg && seg.underline));
+};
 
 /** The declared decoration for `<u>` ranges. `text-decoration-line` has no
  * token vocabulary — it is a keyword channel — so the rule is emitted
@@ -1691,7 +1704,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
           lines.push('', `.${name} > strong {`, ...declarations, '}');
         }
       }
-      if (hasUnderlinedSegment(part)) lines.push(underlineRule(`.${name}`));
+      if (hasUnderlinedSegment(part, contract)) lines.push(underlineRule(`.${name}`));
     }
     return lines.join('\n') + '\n';
   }
@@ -2156,7 +2169,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         );
       }
     }
-    if (hasUnderlinedSegment(part)) {
+    if (hasUnderlinedSegment(part, contract)) {
       nestedSubRules.push('\n' + underlineRule(`.${name}`));
     }
     if (part.animation) {
@@ -2628,7 +2641,7 @@ export function generateTsx(
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
     } else if (isRichText(p)) {
       propLines.push(
-        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean }>;`,
+        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean; underline?: boolean }>;`,
       );
     } else if (p.type === 'boolean') {
       propLines.push(`${doc}  ${p.bindings.code.prop}?: boolean;`);
@@ -3090,7 +3103,7 @@ export function generateTsx(
       // consumer/Field molecule supplies the real options.
       const inner =
         prop.type === 'rich-text'
-          ? `{${prop.bindings.code.prop}.map((segment, index) => segment.strong ? <strong key={index}>{segment.text}</strong> : <span key={index}>{segment.text}</span>)}`
+          ? `{${prop.bindings.code.prop}.map((segment, index) => { const inner = segment.underline ? <u>{segment.text}</u> : segment.text; return segment.strong ? <strong key={index}>{inner}</strong> : <span key={index}>{inner}</span>; })}`
           : el === 'select'
           ? `<option>{${prop.bindings.code.prop}}</option>`
           : `{${prop.bindings.code.prop}}`;

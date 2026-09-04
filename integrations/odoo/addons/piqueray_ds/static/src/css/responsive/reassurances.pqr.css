@@ -86,6 +86,18 @@
   .s_pqr_reassurances.reassurances .reassurances__items > .carte {
     height: 100%;
   }
+  /* Les RANGÉES sont égales entre elles, pas seulement les cartes d'une rangée.
+   * Le canevas pose ici une grille Figma (layoutMode GRID) : elle donne à toutes
+   * ses rangées la même hauteur, et les cinq cartes de la variante Desktop
+   * mesurent 561 px, celles de la première rangée comprises — alors que leur
+   * contenu n'en demande que 531. Une grille CSS dimensionne chaque rangée
+   * indépendamment : sans cette ligne la première rangée retombait à 531 et la
+   * section perdait 30 px (mesuré le 2026-09-04, seul écart de hauteur restant
+   * de la home). `height: 100%` au-dessus égalise DANS une rangée, jamais ENTRE
+   * les rangées — les deux règles sont nécessaires. */
+  .s_pqr_reassurances.reassurances .reassurances__items {
+    grid-auto-rows: 1fr;
+  }
 }
 
 /* Wide ≥ 1400 : grille de 5 colonnes, marges 89. */

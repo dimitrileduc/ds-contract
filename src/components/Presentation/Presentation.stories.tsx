@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v4.0.1)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v4.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only.',
+          "Piqueray Presentation responsive, adopted from the 031 component set. Mobile and tablette stack title, copy and CTA; desktop and wide use two equal columns. The wide component is authored at 1287px: this is the intentional reference width for this section, confirmed by the owner on 2026-09-02. Breakpoints remain an Odoo projection concern; the contract records the four Figma presentations and the design tokens only. 4.1.0 (2026-09-04) : « Hörmann » est SOULIGNÉ dans le paragraphe. Fait de source relevé sur les quatre variantes du set 031 (textDecoration UNDERLINE sur la plage [70,77)), que le contrat ne portait pas — le mot s'affichait en gras seul. La marque `underline` existe au schéma depuis la v19 (segment rich-text, rendue <u> par les émetteurs) : il suffisait de la poser.",
       },
     },
   },
@@ -47,7 +47,7 @@ const meta = {
     texte: [
       { text: 'Depuis plus de 50 ans,', strong: true },
       { text: ' PIQUERAY est dépositaire officiel de la marque ' },
-      { text: 'Hörmann', strong: true },
+      { text: 'Hörmann', strong: true, underline: true },
       {
         text: ', fabricant connu pour ses produits de qualité et ses innovations.\n\nComposée d’une équipe d’une vingtaine de personnes de la ',
       },

@@ -6001,6 +6001,78 @@ const cases: Case[] = [
     },
   },
   {
+    // 2026-09-04 — la marque `underline` d'un défaut de prop RICH-TEXT était
+    // acceptée par le schéma et perdue en silence par les trois surfaces de
+    // code : `hasUnderlinedSegment` ne lisait que les segments LITTÉRAUX
+    // (`textSegments`), et les trois rendus ne testaient que `strong`. Le mot
+    // « Hörmann » de ds.presentation est souligné aux quatre variantes du
+    // canevas ; le contrat pouvait le déclarer sans que rien ne s'affiche.
+    // L'omission silencieuse est la classe de défaut la plus grave du dépôt :
+    // ce cas la tient fermée, dans les deux sens.
+    id: 'rich-text-prop-underline-reaches-every-code-surface',
+    claim: 'C3-detection',
+    run: () => {
+      // La fermeture ENTIÈRE : ds.presentation compose ds.button, et l'émetteur
+      // refuse par nom une part `component` dont le contrat manque.
+      const tous = readdirSync(path.join(ROOT, 'contracts'))
+        .filter((f) => f.endsWith('.contract.json'))
+        .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))));
+      const byId = new Map(tous.map((c) => [c.id, c]));
+      const contrat = byId.get('ds.presentation')!;
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokens = tokenInventoryFromJson([
+        read('tokens/primitives.tokens.json'),
+        read('tokens/semantic.tokens.json'),
+        read('tokens/modes/semantic.light.tokens.json'),
+      ]);
+      const icons = new Map<string, string>();
+      const surfaces = (c: typeof contrat) => {
+        const portee = new Map(byId);
+        portee.set(c.id, c);
+        const { html, css } = coreEmitHtml(c, { tokens, icons, contracts: portee });
+        const react = coreEmitReact(c, { tokens, icons, contracts: portee });
+        return { html, css, tsx: react.tsx, moduleCss: react.css };
+      };
+
+      // --- présent : le <u> est rendu ET la décoration déclarée explicitement.
+      const vif = surfaces(contrat);
+      if (!vif.html.includes('<u>Hörmann</u>')) {
+        throw new Error(`la surface HTML ne souligne pas le segment marqué :\n${vif.html.slice(0, 400)}`);
+      }
+      if (!/\.presentation__Texte u \{\s*text-decoration-line: underline;/.test(vif.css)) {
+        throw new Error("la feuille HTML n'émet pas la règle de décoration du <u>");
+      }
+      if (!vif.tsx.includes('segment.underline ? <u>{segment.text}</u>')) {
+        throw new Error("la surface React ne rend pas le <u> d'un segment marqué");
+      }
+      if (!/\.Texte u \{\s*text-decoration-line: underline;/.test(vif.moduleCss)) {
+        throw new Error("le module CSS React n'émet pas la règle de décoration");
+      }
+
+      // --- contre-épreuve : la marque retirée, TOUT disparaît. Sans cela le cas
+      //     ne prouverait pas que c'est bien `underline` qui porte le rendu.
+      const nu = JSON.parse(JSON.stringify(contrat));
+      for (const prop of nu.props) {
+        if (!Array.isArray(prop.default)) continue;
+        for (const seg of prop.default) delete seg.underline;
+      }
+      const eteint = surfaces(ContractSchema.parse(nu));
+      if (eteint.html.includes('<u>')) throw new Error('la marque retirée, la surface HTML souligne encore');
+      if (eteint.css.includes('__Texte u {')) throw new Error('la marque retirée, la règle de décoration subsiste');
+      // Côté React on NE cherche PAS « <u> » dans le TSX : la branche
+      // `segment.underline ? <u>…` est le RENDU, pas la donnée — elle est écrite
+      // dans la source quoi qu'il arrive et le rester est correct. Ce qui suit la
+      // donnée, c'est la règle de décoration (posée par hasUnderlinedSegment,
+      // qui lit le défaut de la prop) : c'est elle qui doit disparaître.
+      if (eteint.moduleCss.includes('.Texte u {')) {
+        throw new Error('la marque retirée, le module CSS React déclare encore la décoration');
+      }
+      console.log(
+        'rich-text-prop-underline-reaches-every-code-surface: la marque `underline` du défaut d\'une prop rich-text est rendue (<u>) et sa décoration déclarée sur les surfaces HTML et React ; retirée, les deux disparaissent',
+      );
+    },
+  },
+  {
     // T065 (spec 006, US3): ds.google-reviews' `avis` prop is the v12 repeat
     // collection (repeat.sample + component:ds.review-card, R8/T033) — React
     // MAPS THE LIVE ARRAY (per-item props flow through), while the static

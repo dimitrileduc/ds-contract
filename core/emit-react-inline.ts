@@ -443,7 +443,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
     } else if (isRichText(p)) {
       propLines.push(
-        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean }>;`,
+        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean; underline?: boolean }>;`,
       );
     } else if (p.type === 'boolean') {
       propLines.push(`${doc}  ${p.bindings.code.prop}?: boolean;`);
@@ -874,7 +874,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const strongStyle = strongStyleAttr(part.content.marks?.strong);
       const inner =
         prop.type === 'rich-text'
-          ? `{${prop.bindings.code.prop}.map(({ text, strong }, index) => strong ? <strong key={index}${strongStyle}>{text}</strong> : <span key={index}>{text}</span>)}`
+          ? `{${prop.bindings.code.prop}.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index}${strongStyle}>{inner}</strong> : <span key={index}>{inner}</span>; })}`
           : `{${prop.bindings.code.prop}}`;
       return wrapPresence(
         part,

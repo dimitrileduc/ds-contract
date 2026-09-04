@@ -10,7 +10,7 @@ import styles from './TexteSEO.module.css';
 
 export interface TexteSEOProps extends HTMLAttributes<HTMLDivElement> {
   /** Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli. */
   items?: Array<{ contenu: string; etat: 'ferme' | 'ouvert'; titre: string }>;
 }
@@ -34,13 +34,14 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
   return (
     <div ref={ref} className={classes} {...rest}>
       <span className={styles.Titre}>
-        {titre.map((segment, index) =>
-          segment.strong ? (
-            <strong key={index}>{segment.text}</strong>
+        {titre.map((segment, index) => {
+          const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
+          return segment.strong ? (
+            <strong key={index}>{inner}</strong>
           ) : (
-            <span key={index}>{segment.text}</span>
-          ),
-        )}
+            <span key={index}>{inner}</span>
+          );
+        })}
       </span>
       <div className={styles.p}>
         <span className={styles.Paragraphe}>

@@ -23,7 +23,7 @@ export interface CoordonneesProps extends HTMLAttributes<HTMLDivElement> {
   /** Extracted from Figma "Accroche" TEXT property (added by sync pass). */
   accroche?: string;
   /** Extracted from Figma "Titre" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: "{titre}"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
 }
 
 /** Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */

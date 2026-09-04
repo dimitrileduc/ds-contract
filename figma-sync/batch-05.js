@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Presentation",
     "contractId": "ds.presentation",
     "anchorKey": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
-    "description": "Presentation — generated from contract ds.presentation v4.0.1 †",
+    "description": "Presentation — generated from contract ds.presentation v4.1.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],

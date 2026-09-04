@@ -616,7 +616,7 @@ function componentCss(contract: Contract): string[] {
     }
     // v19: the declared decoration for <u> ranges — explicit, never the UA
     // default (see underlineRule in emit-react.ts).
-    if (hasUnderlinedSegment(part)) {
+    if (hasUnderlinedSegment(part, contract)) {
       rule(`${partCls(name)} u`, ['text-decoration-line: underline']);
     }
     for (const [sel, d] of subRules) rule(sel, d);
@@ -805,8 +805,12 @@ function renderComponentHtml(
     if (prop && isRichText(prop) && Array.isArray(segments)) {
       return segments
         .map((segment) => {
+          // v19bis (2026-09-04) : la marque `underline` du défaut d'une prop
+          // rich-text était ignorée ici — seul `strong` était lu. Un <u> peut
+          // se nicher dans un <strong> (une plage peut être les deux).
           const text = escapeHtml(segment.text);
-          return segment.strong ? `<strong>${text}</strong>` : `<span>${text}</span>`;
+          const inner = segment.underline ? `<u>${text}</u>` : text;
+          return segment.strong ? `<strong>${inner}</strong>` : `<span>${inner}</span>`;
         })
         .join('');
     }

@@ -126,3 +126,50 @@ Le portage initial notait « rien relevé ». Relecture du dump :
 - `npm run odoo:authoring:check` : vert, 10 props et 11 parts couvertes pour Presentation.
 - `npm run odoo:assets -- --check`, `npm run odoo:figma-links:check` et `npm run odoo:derivation:check` : verts.
 - `npm run odoo:inputs:check` et `npm run odoo:module:check` : attendent volontairement le repin du lock et l’alignement global de `version_guard.js` par l’orchestrateur ; aucun de ces fichiers n’a été modifié ici.
+
+---
+
+# Présentation — reprise du 2026-09-04 (contrat 4.0.1 → 4.1.0)
+
+## Le mot souligné, et le trou qu'il a révélé
+
+« Hörmann » est **souligné** dans le paragraphe, sur les quatre variantes du canevas
+(`textDecoration: UNDERLINE` sur la plage [70,77)). Le contrat ne le portait pas.
+
+En posant la marque, on découvre qu'elle **ne servait à rien** : `underline` existe au
+schéma depuis la v19, mais seuls les segments **littéraux** (`textSegments`) la
+rendaient. Une part liée à une **prop rich-text** pouvait la déclarer sans qu'aucune
+des trois surfaces de code n'émette quoi que ce soit — `hasUnderlinedSegment` ne
+lisait que les littéraux, et les trois rendus ne testaient que `strong`. La marque
+était acceptée par le schéma et **perdue en silence**, la classe de défaut la plus
+grave du dépôt.
+
+Corrigé sur toute la chaîne :
+
+| Endroit | Ce qui manquait |
+|---|---|
+| `emit-html` | le `<u>` du segment, et la règle de décoration |
+| `emit-react` | idem, plus le type de la prop |
+| `emit-react-inline` | idem |
+| `parity/extract-code` | `underline` faisait retourner `undefined` : le défaut ENTIER devenait illisible, l'axe code annonçait « default differs, code: undefined » |
+| `parity/defaults` | la marque n'était ni normalisée ni comparée — une décoration ajoutée d'un seul côté serait passée |
+
+Un cas d'évaluation la tient fermée dans les deux sens
+(`rich-text-prop-underline-reaches-every-code-surface`) : présente, le `<u>` et sa
+décoration apparaissent sur les surfaces HTML et React ; retirée, les deux
+disparaissent.
+
+**Limite qui demeure, et elle est ancienne** : le script de synchronisation canevas ne
+porte toujours pas la décoration par plage (`richTextRanges` ne lit que `strong`) —
+même limite que pour les segments littéraux, et même famille que la perte des gras à
+la resynchronisation déjà consignée dans CLAUDE.md. Le canevas EST la source ici :
+rien n'est perdu tant qu'on ne régénère pas le master.
+
+## Ce qui reste, et qui n'est pas un défaut
+
+Présentation mesure encore 2,3 à 4,8 % selon la largeur. Toutes les boîtes tombent au
+pixel — relevé contre le canevas : colonne gauche 342×90 à 24,0 ; texte 342×336 à
+24,122 ; bouton 342×54 à 24,490, identiques des deux côtés aux quatre largeurs. Le
+résidu est du **rendu de glyphes** (rastérisation Figma contre Chromium) sur une
+section presque entièrement composée de texte dense. Toutes les sections en portent
+0,5 à 2 % ; celle-ci en porte plus parce qu'elle est plus textuelle.

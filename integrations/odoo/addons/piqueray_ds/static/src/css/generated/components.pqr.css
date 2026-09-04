@@ -2772,7 +2772,7 @@
   line-height: var(--pqr-typography-libelle-nav-line-height);
 }
 
-/* Presentation — from ds.presentation v4.0.1 (core/emit-html.ts) */
+/* Presentation — from ds.presentation v4.1.0 (core/emit-html.ts) */
 
 .presentation, .presentation *, .presentation *::before, .presentation *::after {
   box-sizing: border-box;
@@ -2861,6 +2861,10 @@
 
 .presentation__Texte > strong {
   font-weight: var(--pqr-font-weight-bold);
+}
+
+.presentation__Texte u {
+  text-decoration-line: underline;
 }
 
 /* ProductCard — from ds.product-card v3.0.0 (core/emit-html.ts) */

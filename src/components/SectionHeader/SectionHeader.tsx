@@ -8,7 +8,7 @@ import type { HTMLAttributes } from 'react';
 import styles from './SectionHeader.module.css';
 
 export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   accroche?: string;
   /** Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box. */
   afficherAccroche?: boolean;
@@ -40,13 +40,14 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
     >
       {afficherAccroche ? <span className={styles.Accroche}>{accroche}</span> : null}
       <span className={styles.Titre}>
-        {titre.map((segment, index) =>
-          segment.strong ? (
-            <strong key={index}>{segment.text}</strong>
+        {titre.map((segment, index) => {
+          const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
+          return segment.strong ? (
+            <strong key={index}>{inner}</strong>
           ) : (
-            <span key={index}>{segment.text}</span>
-          ),
-        )}
+            <span key={index}>{inner}</span>
+          );
+        })}
       </span>
     </div>
   );

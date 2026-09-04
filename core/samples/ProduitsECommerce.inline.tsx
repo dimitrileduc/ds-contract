@@ -159,7 +159,7 @@ export interface ProduitsECommerceProps extends HTMLAttributes<HTMLDivElement> {
   /** L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : responsive/produits-ecommerce.pqr.css réécrit les règles par mode en @media. */
   presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   /** Titre de section, lié à la propriété TEXT « Titre » du set. La liaison a été POSÉE À LA SOURCE le 2026-09-04 (§VIII) : le set 031 n'exposait aucune propriété TEXT, le titre n'était qu'un texte dessiné et le contrat le portait en NONE. La propriété est maintenant définie sur le set et les quatre variantes y réfèrent leur nœud Titre. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** La collection de produits — code-only par construction (arrayOf ⇔ figma NONE). Le canevas rend le `sample` du repeat : cinq entrées, l'union des cartes dessinées (Wide en montre cinq, les autres quatre). Côté Odoo la liste vient du descripteur de page. */
   produits?: Array<{ titre: string; prix: string }>;
 }
@@ -172,7 +172,7 @@ export const ProduitsECommerce = forwardRef<HTMLDivElement, ProduitsECommercePro
   return (
     <div ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
       <div style={{ ...S.enTete, ...(V[`presentation-${presentation}:enTete`] ?? {}) }}>
-<span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
+<span style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 {presentation === 'desktop' ? (<Button variant="outlineNoir" iconLeft={false} iconRight={false} iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">Voir les produits</Button>) : null}
 {presentation === 'wide' ? (<Button variant="outlineNoir" iconLeft={false} iconRight={false} iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">Voir les produits</Button>) : null}
 </div>

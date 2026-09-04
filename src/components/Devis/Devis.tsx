@@ -12,7 +12,7 @@ export interface DevisProps extends HTMLAttributes<HTMLElement> {
   /** Axe de présentation du set 031. Le défaut est la première variante dessinée (Mobile) — la parité l'exige. */
   presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   /** Titre du bandeau, texte riche. Le set 031 n'expose AUCUNE propriété TEXT (l'ancien master 2096:2524 exposait Titre) : la liaison figma est NONE — régression de source, nommée. Riche parce que le titre porte un SAUT DE LIGNE après « gratuit, » (règle owner 2026-09-02 : un saut de ligne est du texte riche, et un saut vaut pour tous les modes). Sur le canvas il n'est explicite que sur la variante Desktop (séparateur U+2028, relevé sur 2694:21563) ; Mobile et Tablette coupent naturellement ailleurs — écart de source à corriger dans Figma, comme la planche Tablette du hero l'a été. Le saut vit dans le contenu des pages ; la part déclare white-space pre-line. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** URL fournie par le code pour le plan photo. Le set 031 range ces pixels dans une PEINTURE IMAGE du cadre Background (imageHash 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa, scaleMode FILL, sans imageTransform, identique dans les quatre variantes), jamais dans une propriété de composant : liaison NONE et défaut vide intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl. */
   backgroundUrl?: string;
   /** Alternative textuelle appariée à backgroundUrl. Une peinture IMAGE Figma n'expose aucune propriété d'alternative textuelle : le défaut vide est intentionnel (plan décoratif). */
@@ -50,13 +50,14 @@ export const Devis = forwardRef<HTMLElement, DevisProps>(function Devis(
       {fond ? <div className={styles.Voile}></div> : null}
       <div className={styles.Container}>
         <span className={styles.Titre}>
-          {titre.map((segment, index) =>
-            segment.strong ? (
-              <strong key={index}>{segment.text}</strong>
+          {titre.map((segment, index) => {
+            const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
+            return segment.strong ? (
+              <strong key={index}>{inner}</strong>
             ) : (
-              <span key={index}>{segment.text}</span>
-            ),
-          )}
+              <span key={index}>{inner}</span>
+            );
+          })}
         </span>
         <Button variant="outlineBlanc" iconRight iconRightGlyph="arrow-right">
           Prendre rendez-vous

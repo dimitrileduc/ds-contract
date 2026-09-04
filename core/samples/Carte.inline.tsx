@@ -122,7 +122,7 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
   imageUrl?: string;
   imageAlt?: string;
   /** The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. Défaut relevé sur le set 031 le 2026-09-02. */
-  texte?: Array<{ text: string; strong?: boolean }>;
+  texte?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Nested Categorie Link Button label. The source Carte component does not expose it as a top-level Figma property, so immutable occurrence values come from the nested Button TEXT property retained by the campaign census. */
   ctaLabel?: string;
   /** Nested Categorie Link Button leading glyph retained from the concrete nested Figma instance. */
@@ -152,8 +152,8 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
 <div style={{ ...S.text, ...(V[`disposition-${disposition}:text`] ?? {}) }}>
 {disposition === 'reassurance' ? (<span style={{ ...S.TitreReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{titre}</span>) : null}
 {disposition === 'categorie' ? (<span style={{ ...S.TitreCategorie }}>{titre}</span>) : null}
-{disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
-{disposition === 'categorie' ? (<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
+{disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>) : null}
+{disposition === 'categorie' ? (<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: "700" }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>) : null}
 </div>
 {disposition === 'categorie' ? (<div style={{ ...S.Bouton }}>
 <Button variant="link" iconLeft iconRight iconLeftGlyph={ctaIconLeftGlyph} iconRightGlyph={ctaIconRightGlyph}>{ctaLabel}</Button>

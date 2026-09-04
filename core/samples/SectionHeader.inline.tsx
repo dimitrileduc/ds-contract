@@ -50,7 +50,7 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {};
 
 export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   accroche?: string;
   /** Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box. */
   afficherAccroche?: boolean;
@@ -65,7 +65,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   return (
     <div ref={ref} style={{ ...S.root, ...(alignement === 'gauche' ? {"alignItems":"start","textAlign":"left"} : {}), ...style }} data-afficher-accroche={afficherAccroche || undefined}  {...rest}>
       {afficherAccroche ? (<span style={{ ...S.Accroche }}>{accroche}</span>) : null}
-<span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
+<span style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
     </div>
   );
 });

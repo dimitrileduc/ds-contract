@@ -14,9 +14,9 @@ export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
   /** Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state. */
   backgroundAlt?: string;
   /** Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
-  sousTitre?: Array<{ text: string; strong?: boolean }>;
+  sousTitre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
   sousTitre2?: boolean;
 }
@@ -56,23 +56,25 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
         <div className={styles.Titres}>
           <div className={styles.colGauche}>
             <span className={styles.Titre}>
-              {titre.map((segment, index) =>
-                segment.strong ? (
-                  <strong key={index}>{segment.text}</strong>
+              {titre.map((segment, index) => {
+                const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
+                return segment.strong ? (
+                  <strong key={index}>{inner}</strong>
                 ) : (
-                  <span key={index}>{segment.text}</span>
-                ),
-              )}
+                  <span key={index}>{inner}</span>
+                );
+              })}
             </span>
             {sousTitre2 ? (
               <span className={styles.sousTitre}>
-                {sousTitre.map((segment, index) =>
-                  segment.strong ? (
-                    <strong key={index}>{segment.text}</strong>
+                {sousTitre.map((segment, index) => {
+                  const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
+                  return segment.strong ? (
+                    <strong key={index}>{inner}</strong>
                   ) : (
-                    <span key={index}>{segment.text}</span>
-                  ),
-                )}
+                    <span key={index}>{inner}</span>
+                  );
+                })}
               </span>
             ) : null}
           </div>

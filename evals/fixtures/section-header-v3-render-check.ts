@@ -34,7 +34,7 @@ for (const [surface, source] of [['React', react.tsx], ['HTML', html.html]] as c
 for (const expected of [
   "alignement = 'centre'",
   'afficherAccroche = true',
-  'titre?: Array<{ text: string; strong?: boolean }>',
+  'titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>',
   'afficherAccroche ? (<span className={styles.Accroche}>{accroche}</span>) : null',
   'titre.map((segment, index)',
 ]) {

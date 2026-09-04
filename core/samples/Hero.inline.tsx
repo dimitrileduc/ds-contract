@@ -109,9 +109,9 @@ export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
   /** Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state. */
   backgroundAlt?: string;
   /** Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
-  sousTitre?: Array<{ text: string; strong?: boolean }>;
+  sousTitre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
   sousTitre2?: boolean;
 }
@@ -132,8 +132,8 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
 <div style={{ ...S.blocTexte }}>
 <div style={{ ...S.Titres }}>
 <div style={{ ...S.colGauche }}>
-<span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
-{sousTitre2 ? (<span style={{ ...S.sousTitre }}>{sousTitre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
+<span style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
+{sousTitre2 ? (<span style={{ ...S.sousTitre }}>{sousTitre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>) : null}
 </div>
 <Button variant="outlineBlanc" iconRight>Demander un devis gratuit</Button>
 </div>

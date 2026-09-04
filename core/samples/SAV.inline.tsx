@@ -231,7 +231,7 @@ export interface SAVProps extends HTMLAttributes<HTMLElement> {
   /** Section title « Dépannage / SAV ». Drawn on the node in every 031 variant — the set exposes NO text property (1.4.1 bound the master's TEXT « Titre »): binding NONE, named source gap (journal: à corriger à la source). No line break, no bold: plain text. */
   titre?: string;
   /** The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap. Espaces INSECABLES : normalises a la regle francaise le 2026-09-04 — un insecable avant chaque ? et !, une espace normale partout ailleurs. La source portait DEUX traitements : Mobile et Tablette suivaient deja la regle, Desktop et Wide collaient leurs cinq insecables a l'interieur des groupes en gras (« votre installation », « garage ne »), artefact d'edition des plages. Les deux traitements ne coupent pas les lignes au meme endroit : le contrat portait la version Desktop et la section gagnait UNE LIGNE, donc 24 px, en Mobile. Les quatre variantes du canevas sont desormais identiques (version nommee dans l'historique Figma), plages de gras realignees sur [33,52) [101,122) [252,299). */
-  texte?: Array<{ text: string; strong?: boolean }>;
+  texte?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Code-supplied URL for the full-bleed section IMAGE fill. Figma stores those pixels as a paint on the master (not as a component property) and the contract has no background-image channel; the empty runtime default is intentional and does not substitute an image. */
   backgroundUrl?: string;
   /** Code-supplied text alternative paired with backgroundUrl. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional (decorative plane). */
@@ -283,7 +283,7 @@ export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
 <div style={{ ...S.SectionHeader }}>
 <span style={{ ...S.Titre }}>{titre}</span>
 </div>
-<span style={{ ...S.vousRencontrezUnProblmeA, ...(presentation === 'mobile' ? {"whiteSpace":"normal"} : {}), ...(presentation === 'tablette' ? {"whiteSpace":"normal"} : {}) }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
+<span style={{ ...S.vousRencontrezUnProblmeA, ...(presentation === 'mobile' ? {"whiteSpace":"normal"} : {}), ...(presentation === 'tablette' ? {"whiteSpace":"normal"} : {}) }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 <Button iconRight={false}>Demander de l'aide</Button>
 </div>
 </div>

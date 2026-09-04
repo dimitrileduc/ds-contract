@@ -54,6 +54,12 @@ export function extractCode(root = process.cwd()): CodeExtract[] {
         if (!ts.isObjectLiteralExpression(element)) return undefined;
         let text: string | undefined;
         let strong: boolean | undefined;
+        // 2026-09-04 : `underline` était refusé ici (tout autre clé que text/strong
+        // faisait retourner undefined), donc le défaut ENTIER devenait illisible dès
+        // qu'un segment portait la marque — l'axe code annonçait « default differs,
+        // code: undefined » sur ds.presentation. La marque existe au schéma depuis
+        // la v19 : l'extracteur la lit désormais comme `strong`.
+        let underline: boolean | undefined;
         for (const property of element.properties) {
           if (!ts.isPropertyAssignment(property)) return undefined;
           const key = ts.isIdentifier(property.name)
@@ -64,10 +70,15 @@ export function extractCode(root = process.cwd()): CodeExtract[] {
           if (key === 'text' && ts.isStringLiteral(property.initializer)) text = property.initializer.text;
           else if (key === 'strong' && property.initializer.kind === ts.SyntaxKind.TrueKeyword) strong = true;
           else if (key === 'strong' && property.initializer.kind === ts.SyntaxKind.FalseKeyword) strong = false;
+          else if (key === 'underline' && property.initializer.kind === ts.SyntaxKind.TrueKeyword) underline = true;
+          else if (key === 'underline' && property.initializer.kind === ts.SyntaxKind.FalseKeyword) underline = false;
           else return undefined;
         }
         if (text === undefined) return undefined;
-        segments.push(strong ? { text, strong: true } : { text });
+        const segment: RichTextSegment = { text };
+        if (strong) segment.strong = true;
+        if (underline) segment.underline = true;
+        segments.push(segment);
       }
       return segments;
     };

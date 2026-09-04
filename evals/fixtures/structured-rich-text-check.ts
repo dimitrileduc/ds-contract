@@ -60,7 +60,7 @@ const contracts = new Map([[fixture.id, fixture]]);
 const ctx = { tokens, icons: new Map<string, string>(), contracts };
 
 const react = emitReact(fixture, ctx);
-if (!react.tsx.includes("body?: Array<{ text: string; strong?: boolean }>")) {
+if (!react.tsx.includes("body?: Array<{ text: string; strong?: boolean; underline?: boolean }>")) {
   throw new Error('React prop did not preserve structured rich-text segments');
 }
 if (!react.tsx.includes('body.map((segment, index)')) {

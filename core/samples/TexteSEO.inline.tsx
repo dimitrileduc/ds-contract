@@ -68,7 +68,7 @@ const V: Record<string, CSSProperties> = {};
 
 export interface TexteSEOProps extends HTMLAttributes<HTMLDivElement> {
   /** Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy. */
-  titre?: Array<{ text: string; strong?: boolean }>;
+  titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli. */
   items?: Array<{ contenu: string; etat: 'ferme' | 'ouvert'; titre: string }>;
 }
@@ -80,7 +80,7 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
-      <span style={{ ...S.Titre }}>{titre.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
+      <span style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 <div style={{ ...S.p }}>
 <span style={{ ...S.Paragraphe }}>Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.</span>
 </div>

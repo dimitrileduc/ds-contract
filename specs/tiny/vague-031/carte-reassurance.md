@@ -143,3 +143,51 @@ Ils sont **acquittés** dans `parity/baseline.json`, comme la spec 015 l'avait f
 **Ce que cela veut dire** : l'axe canvas de ces jetons est reconnu, pas surveillé. Le remède est un sync
 tokens vers la collection Responsive, geste d'écriture Figma qui appartient à l'owner. Tant qu'il n'est pas
 fait, une dérive sur ces seize valeurs ne serait pas détectée.
+
+---
+
+# Réassurances — reprise du 2026-09-04
+
+La pire section de la page après la vague : **22 %** à 834, **11,6 %** et **−30 px**
+à 1200. Deux causes, aucune dans le contrat.
+
+## 1. Les rangées de la grille n'étaient pas égales entre elles
+
+Le canevas pose ici une **grille Figma** (`layoutMode: GRID`) : elle donne à toutes
+ses rangées la même hauteur, et les cinq cartes de la variante Desktop mesurent
+561 px — celles de la première rangée comprises, alors que leur contenu n'en demande
+que 531. Une grille CSS dimensionne chaque rangée **indépendamment** : la première
+retombait à 531 et la section perdait 30 px.
+
+`height: 100%` sur les cartes, déjà posé, égalise **dans** une rangée, jamais
+**entre** les rangées. Il fallait `grid-auto-rows: 1fr` en plus. Les deux règles sont
+nécessaires et ne font pas le même travail.
+
+## 2. Quatre photos recadrées à la main
+
+Même classe de défaut que la photo du SAV, quatre fois :
+
+| Variante | Carte | Mode |
+|---|---|---|
+| Mobile | 4 | CROP + zoom 0,374 |
+| Tablette | 1 | CROP + zoom 0,244 |
+| Tablette | 4 | CROP + zoom 0,217 |
+| Tablette | 5 | CROP + zoom 0,488 |
+
+Les cinq cartes portent pourtant **la même image dans les quatre variantes** (hachages
+identiques) : ce n'était donc pas un problème de contenu mais de cadrage. À 738×240,
+un recadrage manuel montrait une autre partie de la photo — d'où l'impression, sur le
+triptyque, que « ce n'est pas la même personne ». C'en était bien une autre : la photo
+est large et contient deux personnes ; les deux cadrages tombaient sur deux moitiés.
+
+Annulés à la source, retour en FILL. Un balayage des **15 ensembles** de la planche 031
+confirme qu'il n'en reste aucun autre.
+
+## Résultat
+
+| Largeur | Avant | Après |
+|---|---|---|
+| 390 | 7,04 % | **1,97 %** |
+| 834 | 21,98 % | **0,89 %** |
+| 1200 | 11,64 % (−30 px) | **0,97 %** · hauteur exacte |
+| 1728 | 1,42 % | **1,21 %** |

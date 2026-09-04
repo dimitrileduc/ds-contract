@@ -10,7 +10,7 @@ try {
   mkdirSync(componentDir, { recursive: true });
   writeFileSync(path.join(componentDir, 'RichText.tsx'), `
     interface RichTextProps {
-      body?: Array<{ text: string; strong?: boolean }>;
+      body?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
     }
     export function RichText({
       body = [

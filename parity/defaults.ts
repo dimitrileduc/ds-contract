@@ -9,6 +9,10 @@
 export interface RichTextSegment {
   text: string;
   strong?: boolean;
+  /** v19 : la seconde marque bornée. Lue et COMPARÉE comme `strong` — sans quoi
+   *  l'axe code laisserait passer une décoration ajoutée d'un côté seulement
+   *  (ajouté le 2026-09-04 avec le portage de la marque aux émetteurs). */
+  underline?: boolean;
 }
 
 export type ExtractedDefault = string | boolean | number | RichTextSegment[];
@@ -19,7 +23,11 @@ export function normalizeRichTextDefault(value: unknown): RichTextSegment[] | un
   for (const segment of value) {
     if (!segment || typeof segment !== 'object' || typeof segment.text !== 'string') return undefined;
     if ('strong' in segment && typeof segment.strong !== 'boolean') return undefined;
-    segments.push(segment.strong ? { text: segment.text, strong: true } : { text: segment.text });
+    if ('underline' in segment && typeof segment.underline !== 'boolean') return undefined;
+    const normalized: RichTextSegment = { text: segment.text };
+    if (segment.strong) normalized.strong = true;
+    if (segment.underline) normalized.underline = true;
+    segments.push(normalized);
   }
   return segments;
 }
