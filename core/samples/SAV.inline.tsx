@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v2.0.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -230,7 +230,7 @@ export interface SAVProps extends HTMLAttributes<HTMLElement> {
   presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   /** Section title « Dépannage / SAV ». Drawn on the node in every 031 variant — the set exposes NO text property (1.4.1 bound the master's TEXT « Titre »): binding NONE, named source gap (journal: à corriger à la source). No line break, no bold: plain text. */
   titre?: string;
-  /** The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap. */
+  /** The long paragraph, RICH: three bold ranges and one line break drawn in every 031 variant (owner rule 2026-09-02). The 031 set exposes NO text property (1.4.1 bound the master's TEXT « Texte »): binding NONE, named source gap. Espaces INSECABLES : normalises a la regle francaise le 2026-09-04 — un insecable avant chaque ? et !, une espace normale partout ailleurs. La source portait DEUX traitements : Mobile et Tablette suivaient deja la regle, Desktop et Wide collaient leurs cinq insecables a l'interieur des groupes en gras (« votre installation », « garage ne »), artefact d'edition des plages. Les deux traitements ne coupent pas les lignes au meme endroit : le contrat portait la version Desktop et la section gagnait UNE LIGNE, donc 24 px, en Mobile. Les quatre variantes du canevas sont desormais identiques (version nommee dans l'historique Figma), plages de gras realignees sur [33,52) [101,122) [252,299). */
   texte?: Array<{ text: string; strong?: boolean }>;
   /** Code-supplied URL for the full-bleed section IMAGE fill. Figma stores those pixels as a paint on the master (not as a component property) and the contract has no background-image channel; the empty runtime default is intentional and does not substitute an image. */
   backgroundUrl?: string;
@@ -256,9 +256,9 @@ Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098
 
 v1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.
 
-v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. */
+v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. 2.1.0 (2026-09-04) : le saut de ligne du paragraphe devient conditionnel a l'ecran. Il n'est dessine qu'en Desktop et Wide ; le rendre partout ajoutait une ligne et 24 px de hauteur sous 992. Le photo de la variante Desktop etait recadree a la main (CROP + zoom vertical 1,356) alors que les trois autres sont en FIT : recadrage annule a la source le 2026-09-04, les quatre variantes sont de nouveau identiques. */
 export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
-  { presentation = 'mobile', titre = 'Dépannage / SAV', backgroundUrl = '', backgroundAlt = '', imageUrl = '', imageAlt = '', texte = [{"text":"Vous rencontrez un problème avec "},{"text":"votre installation ","strong":true},{"text":"Hörmann à Liège ? Il y a une panne de courant et "},{"text":"votre porte de garage","strong":true},{"text":" ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "},{"text":"votre distributeur Hörmann en province de Liège","strong":true},{"text":" est là pour vous aider !"}], style, children, ...rest },
+  { presentation = 'mobile', titre = 'Dépannage / SAV', backgroundUrl = '', backgroundAlt = '', imageUrl = '', imageAlt = '', texte = [{"text":"Vous rencontrez un problème avec "},{"text":"votre installation ","strong":true},{"text":"Hörmann à Liège ? Il y a une panne de courant et "},{"text":"votre porte de garage","strong":true},{"text":" ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "},{"text":"votre distributeur Hörmann en province de Liège","strong":true},{"text":" est là pour vous aider !"}], style, children, ...rest },
   ref,
 ) {
   return (
@@ -283,7 +283,7 @@ export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
 <div style={{ ...S.SectionHeader }}>
 <span style={{ ...S.Titre }}>{titre}</span>
 </div>
-<span style={{ ...S.vousRencontrezUnProblmeA }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
+<span style={{ ...S.vousRencontrezUnProblmeA, ...(presentation === 'mobile' ? {"whiteSpace":"normal"} : {}), ...(presentation === 'tablette' ? {"whiteSpace":"normal"} : {}) }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
 <Button iconRight={false}>Demander de l'aide</Button>
 </div>
 </div>

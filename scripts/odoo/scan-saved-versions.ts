@@ -4,10 +4,10 @@ import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 import { ROOT_CLASSES } from './lib/repo-data.js';
 
-const EXPECTED_GRAPH = '253433bb340902a9cbc70e0ed7af0b060596f2022949486556f736867ebabf93';
+const EXPECTED_GRAPH = '11165b6eaf0cc6eca26e4e237358ed46f92d1586a490a9db5fe68ec3b7ce371d';
 const AUTHORING = '3.0.0';
 const MODULE = '19.0.1.11.0';
-const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '3.0.1', 'ds.presentation': '4.0.1', 'ds.hero': '2.0.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '2.0.0', 'ds.sav': '2.0.0', 'ds.texte-seo': '3.0.0', 'ds.coordonnees': '2.2.0', 'ds.reassurances': '2.0.0', 'ds.categories-principales': '2.0.0', 'ds.hero-video': '2.0.0', 'ds.produits-ecommerce': '2.0.0' };
+const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '3.0.1', 'ds.presentation': '4.0.1', 'ds.hero': '2.0.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '2.0.0', 'ds.sav': '2.1.0', 'ds.texte-seo': '3.0.0', 'ds.coordonnees': '2.2.0', 'ds.reassurances': '2.0.0', 'ds.categories-principales': '2.0.0', 'ds.hero-video': '2.0.0', 'ds.produits-ecommerce': '2.0.0' };
 
 export type VersionState = 'current' | 'policy-stale' | 'structure-stale' | 'unknown';
 export interface SavedCase { id: string; html: string }

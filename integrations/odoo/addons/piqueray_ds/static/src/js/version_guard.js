@@ -8,10 +8,10 @@ import { Plugin, registry, withSequence } from "./odoo19_compat";
 // `authoring.js` et invisible pour la politique de versions.
 import { PIQUERAY_ROOT_SELECTOR } from "./authoring";
 
-export const CURRENT_GRAPH_DIGEST = "253433bb340902a9cbc70e0ed7af0b060596f2022949486556f736867ebabf93";
+export const CURRENT_GRAPH_DIGEST = "11165b6eaf0cc6eca26e4e237358ed46f92d1586a490a9db5fe68ec3b7ce371d";
 export const CURRENT_AUTHORING_VERSION = "3.0.0";
 export const CURRENT_MODULE_VERSION = "19.0.1.11.0";
-const CONTRACT_VERSIONS = { "ds.google-reviews": "3.0.1", "ds.presentation": "4.0.1", "ds.hero": "2.0.0", "ds.equipe": "1.2.0", "ds.faq": "1.3.0", "ds.devis": "2.0.0", "ds.sav": "2.0.0", "ds.texte-seo": "3.0.0", "ds.coordonnees": "2.2.0", "ds.reassurances": "2.0.0", "ds.categories-principales": "2.0.0", "ds.hero-video": "2.0.0", "ds.produits-ecommerce": "2.0.0" };
+const CONTRACT_VERSIONS = { "ds.google-reviews": "3.0.1", "ds.presentation": "4.0.1", "ds.hero": "2.0.0", "ds.equipe": "1.2.0", "ds.faq": "1.3.0", "ds.devis": "2.0.0", "ds.sav": "2.1.0", "ds.texte-seo": "3.0.0", "ds.coordonnees": "2.2.0", "ds.reassurances": "2.0.0", "ds.categories-principales": "2.0.0", "ds.hero-video": "2.0.0", "ds.produits-ecommerce": "2.0.0" };
 
 export function classifySavedRoot(root) {
     const id = root?.dataset?.dsContract;

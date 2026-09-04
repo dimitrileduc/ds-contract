@@ -79,3 +79,78 @@ CTA 279 ; à 1728 rangée 1550×561, carte 651×561, colonne 637×561, photo 556
 `addons/piqueray_ds/{__manifest__.py, views/components.xml, static/src/css/responsive/sav.pqr.css, static/src/js/{authoring.js, odoo19_compat.js, version_guard.js}}` ·
 `scripts/odoo/scan-saved-versions.ts` · `evals/fixtures/odoo-production/version-drift/cases.json` · `authoring/pages/{home.json, sav-test.json}` ·
 re-pins `evals/golden.json`, `figma-sync/`, `figma-sync/plugin/engine.receipt.json` · outils `.page-parity/{capture-sav.mts, probe-sav.mts, mesure-bloc.mjs}`.
+
+---
+
+# SAV — reprise du 2026-09-04 (contrat 2.0.0 → 2.1.0)
+
+Le SAV était la pire section de la page après la vague : **+24 px de hauteur** en
+Mobile et Tablette, **11,37 %** de différence à 1200. Trois causes, toutes
+distinctes, toutes trouvées en regardant le triptyque puis en relevant le canevas.
+
+## 1. Le saut de ligne était inconditionnel
+
+Relevé des quatre variantes : même texte, 324 caractères — mais le saut de ligne
+après « correctement ? » n'existe **qu'en Desktop et Wide**. Notre contrat le portait
+partout, donc une ligne de trop sous 992.
+
+Une prop n'a qu'UNE valeur par défaut : le saut reste donc écrit une fois dans le
+texte, et c'est son **rendu** qui devient conditionnel — `white-space: pre-line` en
+Desktop et Wide, `normal` sous 992, où le saut se replie en espace. Canal gouverné
+(`stylesWhen`), donc porté par React comme par Odoo.
+
+Côté Odoo, deux écritures pour un seul fait, et c'est assumé : le gabarit QWeb écrit
+à la main pose un `<br>` réel (l'éditeur inline d'Odoo le manipule mieux qu'un « \n »)
+et aucune valeur de `white-space` n'agit sur un `<br>` — il faut donc aussi le masquer.
+
+## 2. La photo Desktop était recadrée à la main
+
+| Variante | Remplissage de `img` |
+|---|---|
+| Mobile | FIT, sans transformation |
+| Tablette | FIT, sans transformation |
+| **Desktop** | **CROP, zoom vertical ×1,3558, décalage −0,3554** |
+| Wide | FIT, sans transformation |
+
+Les boîtes tombaient au pixel (rangée 1088×505, panneau 503×505, photo 407×504) :
+ce n'était donc pas la mise en page, c'était le **contenu** de la photo. Trois
+variantes sur quatre en FIT et des valeurs de transformation non rondes : signature
+d'un redimensionnement accidentel dans le cadre, pas d'un cadrage décidé.
+**Annulé à la source**, retour en FIT comme les trois autres. Version nommée.
+
+## 3. Les espaces insécables n'étaient pas au même endroit
+
+Le plus discret, et celui qui restait après les deux premiers. Les quatre variantes
+portent **cinq espaces insécables** — mais pas aux mêmes positions :
+
+| Variantes | Où sont les insécables |
+|---|---|
+| Mobile, Tablette | avant chaque `?` et `!` — **la règle typographique française** |
+| Desktop, Wide | à l'intérieur des groupes en gras (« votre installation », « garage ne ») |
+
+Deux traitements ne coupent pas les lignes au même endroit. Le contrat portait celui
+de Desktop, et à 294 px de colonne le paragraphe passait à **onze lignes au lieu de
+dix** — les 24 px restants.
+
+Normalisé à la règle française **sur les quatre variantes du canevas** et dans le
+contrat. Les plages de gras avaient dérivé d'un caractère sur Desktop et Wide
+(l'espace après « garage » était dans le gras) : réalignées sur `[33,52)`,
+`[101,122)`, `[252,299)`, identiques aux quatre variantes.
+
+## Résultat
+
+| Largeur | Avant | Après | Hauteur |
+|---|---|---|---|
+| 390 | 7,46 % (+24 px) | **2,52 %** | exacte |
+| 834 | 7,34 % (+24 px) | **1,32 %** | exacte |
+| 1200 | 11,37 % | **1,45 %** | exacte |
+| 1728 | 1,10 % | **1,11 %** | exacte |
+
+## La leçon
+
+Les trois défauts venaient de la SOURCE, et aucun n'était visible en lisant le
+contrat : il fallait relever le canevas variante par variante et comparer les quatre
+entre elles. **Ce que deux variantes font pareil et les deux autres autrement est
+presque toujours un défaut, pas une intention.** C'est vrai des insécables, du
+recadrage de la photo et du saut de ligne — trois fois de suite, dans une seule
+section.

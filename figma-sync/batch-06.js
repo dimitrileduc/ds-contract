@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "SAV",
     "contractId": "ds.sav",
     "anchorKey": "55d2731a22907512ac83a63499f969e0bd2bab36",
-    "description": "SAV — generated from contract ds.sav v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "SAV — generated from contract ds.sav v2.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -216,7 +216,7 @@ const COMPONENTS = [
                             "paddingTop": "space/4",
                             "paddingBottom": "space/4"
                           },
-                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                           "fontSize": 16,
                           "fontStyle": "Regular",
                           "textFill": "color/noir",
@@ -462,7 +462,7 @@ const COMPONENTS = [
                             "paddingTop": "space/4",
                             "paddingBottom": "space/4"
                           },
-                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                           "fontSize": 16,
                           "fontStyle": "Regular",
                           "textFill": "color/noir",
@@ -657,7 +657,7 @@ const COMPONENTS = [
                             "paddingTop": "space/4",
                             "paddingBottom": "space/4"
                           },
-                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                           "fontSize": 16,
                           "fontStyle": "Regular",
                           "textFill": "color/noir",
@@ -918,7 +918,7 @@ const COMPONENTS = [
                             "paddingTop": "space/4",
                             "paddingBottom": "space/4"
                           },
-                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                          "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                           "fontSize": 16,
                           "fontStyle": "Regular",
                           "textFill": "color/noir",

@@ -3360,7 +3360,7 @@
   gap: var(--pqr-space-16);
 }
 
-/* SAV — from ds.sav v2.0.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v2.1.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -3589,6 +3589,14 @@
 
 .sav__vousRencontrezUnProblmeA > strong {
   font-weight: var(--pqr-font-weight-bold);
+}
+
+.sav--presentation-mobile .sav__vousRencontrezUnProblmeA {
+  white-space: normal;
+}
+
+.sav--presentation-tablette .sav__vousRencontrezUnProblmeA {
+  white-space: normal;
 }
 
 /* TexteSEO — from ds.texte-seo v3.0.0 (core/emit-html.ts) */

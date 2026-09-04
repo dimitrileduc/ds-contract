@@ -50,6 +50,26 @@
   }
 }
 
+/* Mobile + Tablette : PAS de saut de ligne dans le paragraphe (contrat 2.1.0,
+ * stylesWhen white-space normal). Relevé du canevas le 2026-09-04 : les quatre
+ * variantes portent le même texte, mais le saut n'est dessiné qu'en Desktop et
+ * Wide. Le rendre partout ajoutait une ligne, donc 24 px de hauteur de section.
+ *
+ * DEUX écritures pour un seul fait, et c'est voulu :
+ *   · la première reprend la règle générée (`white-space`), qui suffit aux
+ *     surfaces où le saut est un « \n » dans le texte ;
+ *   · la seconde masque le <br> — le gabarit QWeb écrit ici à la main pose un
+ *     élément réel (l'éditeur inline d'Odoo le manipule mieux qu'un « \n »), et
+ *     aucune valeur de `white-space` n'agit sur un <br>. */
+@media (max-width: 991.98px) {
+  .s_pqr_sav.sav .sav__vousRencontrezUnProblmeA {
+    white-space: normal;
+  }
+  .s_pqr_sav.sav .sav__vousRencontrezUnProblmeA br {
+    display: none;
+  }
+}
+
 /* Tablette ≥ 768 : padding-inline 48 ; le plan de fond suit (canvas : 738 sur 834). */
 @media (min-width: 768px) {
   .s_pqr_sav.sav {
