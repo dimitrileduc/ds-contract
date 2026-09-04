@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v2.0.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md.",
+          "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
       },
     },
   },

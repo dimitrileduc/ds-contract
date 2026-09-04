@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.0.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -150,7 +150,7 @@ export interface ReassurancesProps extends HTMLAttributes<HTMLElement> {
 L'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.
 
 Historique avant 2.0.0 :
-Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). */
+Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const Reassurances = forwardRef<HTMLElement, ReassurancesProps>(function Reassurances(
   { presentation = 'mobile', disposition = '5Cartes', accroche = 'Plus de 50 ans d’expérience', titre = 'Pourquoi choisir nos portes de garage industrielles ?', items, style, children, ...rest },
   ref,
@@ -159,7 +159,7 @@ export const Reassurances = forwardRef<HTMLElement, ReassurancesProps>(function 
     <section ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
       <div style={{ ...S.SectionHeader, ...(V[`presentation-${presentation}:SectionHeader`] ?? {}) }}>
 <span style={{ ...S.Accroche, ...(presentation === 'desktop' ? {"textAlign":"center"} : {}), ...(presentation === 'wide' ? {"textAlign":"center"} : {}) }}>{accroche}</span>
-<span style={{ ...S.Titre, ...(presentation === 'desktop' ? {"textAlign":"center"} : {}), ...(presentation === 'wide' ? {"textAlign":"center"} : {}) }}>{titre}</span>
+<h2 style={{ ...S.Titre, ...(presentation === 'desktop' ? {"textAlign":"center"} : {}), ...(presentation === 'wide' ? {"textAlign":"center"} : {}) }}>{titre}</h2>
 </div>
 <div style={{ ...S.items, ...(V[`presentation-${presentation}:items`] ?? {}) }}>
 <Carte disposition="reassurance" alignement="centre" texte={[{ text: "Respectent les normes des bâtiments publics et les réglementations pompiers." }]} titre="Sécurité et conformité" imageUrl="" />

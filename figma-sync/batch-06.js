@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "SAV",
     "contractId": "ds.sav",
     "anchorKey": "55d2731a22907512ac83a63499f969e0bd2bab36",
-    "description": "SAV — generated from contract ds.sav v2.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "SAV — generated from contract ds.sav v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],

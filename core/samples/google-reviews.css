@@ -575,7 +575,7 @@
   color: var(--color-noir-pur);
 }
 
-/* GoogleReviews — from ds.google-reviews v3.0.1 (core/emit-html.ts) */
+/* GoogleReviews — from ds.google-reviews v3.1.0 (core/emit-html.ts) */
 
 .google-reviews, .google-reviews *, .google-reviews *::before, .google-reviews *::after {
   box-sizing: border-box;
@@ -640,6 +640,7 @@
 }
 
 .google-reviews__Titre {
+  margin: 0;
   color: var(--color-noir-bleute);
   font-family: var(--font-family-montserrat);
   font-size: var(--typography-h2-size);

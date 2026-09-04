@@ -176,7 +176,7 @@
   gap: var(--space-8);
 }
 
-/* ProduitsECommerce — from ds.produits-ecommerce v2.0.0 (core/emit-html.ts) */
+/* ProduitsECommerce — from ds.produits-ecommerce v2.1.0 (core/emit-html.ts) */
 
 .produits-ecommerce, .produits-ecommerce *, .produits-ecommerce *::before, .produits-ecommerce *::after {
   box-sizing: border-box;
@@ -239,6 +239,7 @@
 .produits-ecommerce__Titre {
   flex: 1 1 auto;
   min-width: 0;
+  margin: 0;
   color: var(--color-noir-bleute);
   font-family: var(--typography-h2-family);
   font-size: var(--typography-h2-size);

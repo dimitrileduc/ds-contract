@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v2.1.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -39,7 +39,7 @@ Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098
 
 v1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.
 
-v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. 2.1.0 (2026-09-04) : le saut de ligne du paragraphe devient conditionnel a l'ecran. Il n'est dessine qu'en Desktop et Wide ; le rendre partout ajoutait une ligne et 24 px de hauteur sous 992. Le photo de la variante Desktop etait recadree a la main (CROP + zoom vertical 1,356) alors que les trois autres sont en FIT : recadrage annule a la source le 2026-09-04, les quatre variantes sont de nouveau identiques. */
+v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. 2.1.0 (2026-09-04) : le saut de ligne du paragraphe devient conditionnel a l'ecran. Il n'est dessine qu'en Desktop et Wide ; le rendre partout ajoutait une ligne et 24 px de hauteur sous 992. Le photo de la variante Desktop etait recadree a la main (CROP + zoom vertical 1,356) alors que les trois autres sont en FIT : recadrage annule a la source le 2026-09-04, les quatre variantes sont de nouveau identiques. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
   {
     presentation = 'mobile',
@@ -84,7 +84,7 @@ export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
           <div className={styles.WrapperBackground}></div>
           <div className={styles.inner}>
             <div className={styles.SectionHeader}>
-              <span className={styles.Titre}>{titre}</span>
+              <h2 className={styles.Titre}>{titre}</h2>
             </div>
             <span className={styles.vousRencontrezUnProblmeA}>
               {texte.map((segment, index) => {

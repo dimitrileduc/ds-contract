@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.1)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide.",
+          "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
       },
     },
   },

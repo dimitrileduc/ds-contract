@@ -213,9 +213,21 @@ arch = '<t name="%s" t-name="%s"><t t-call="website.layout">%s</t></t>' % (DESC.
 
 url = DESC["url"]
 pages = env["website.page"].search([("url", "=", url)])
+# Titre de page (WCAG 2.4.2 + referencement). Sans lui, Odoo compose
+# "<nom de vue> | <nom du site>" et sert sa valeur d'usine ("Home | My Website").
+# Le titre est donc GOUVERNE ici ; la LANGUE, elle, est un reglage au niveau du
+# site (website.default_lang_id), pas de la page : elle reste operationnelle.
+meta = {}
+if DESC.get("meta_title"):
+    meta["website_meta_title"] = DESC["meta_title"]
+if DESC.get("meta_description"):
+    meta["website_meta_description"] = DESC["meta_description"]
+
 if pages:
     if "header_overlay" in DESC:
         pages.write({"header_overlay": bool(DESC["header_overlay"])})
+    if meta:
+        pages.write(meta)
     vids = sorted(set(p.view_id.id for p in pages))
     for vid in vids:
         env["ir.ui.view"].browse(vid).write({"arch_db": arch})
@@ -227,6 +239,7 @@ else:
     env["website.page"].create({
         "url": url, "view_id": view.id, "is_published": True, "website_indexed": True,
         "header_overlay": bool(DESC.get("header_overlay", False)),
+        **meta,
     })
     vids = [view.id]
 env.cr.commit()

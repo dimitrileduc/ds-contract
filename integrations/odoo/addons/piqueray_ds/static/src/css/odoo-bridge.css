@@ -281,7 +281,15 @@
  *     `color: blanc` de la classe `.button` — spécificité insuffisante. Le fix
  *     reprend le canal du contrat avec une spécificité gagnante.
  * (4) Logo link : même fix display:flex que le header (l'ancre inline gonfle la
- *     hauteur de ligne). */
+ *     hauteur de ligne).
+ * (5) Titre « Suivez-nous » : même conflit que (3), déclenché par le passage de la
+ *     part en balise h4 (plan de document, accessibilite-home-odoo 2026-09-04).
+ *     Odoo colore les titres du pied via `.o_footer h4` (spécificité 0,1,1) qui bat
+ *     `.footer__TitreReseaux` (0,1,0) : le titre tombe à #1b1319 sur le fond sombre,
+ *     contraste MESURÉ 1.23 — invisible. Le fix reprend le canal du contrat avec une
+ *     spécificité gagnante. Portée vérifiée : sur les DIX titres gouvernés de la
+ *     page, seul celui-ci perd sa couleur — Odoo ne pose de règle de titre que dans
+ *     `.o_footer` / `.o_cc2`. */
 
 /* (1) Le footer couvre tout le viewport */
 .footer[data-pqr-shell="footer"] {
@@ -342,6 +350,12 @@
 /* (3) Le CTA conserve sa couleur de contrat (blanc) contre Bootstrap */
 .footer[data-pqr-shell="footer"] a.button {
   color: var(--pqr-color-blanc);
+}
+
+/* (5) Le titre du bloc réseaux conserve sa couleur de contrat (orange) contre la
+ * règle de titre d'Odoo — voir (5) en tête de zone. */
+.footer[data-pqr-shell="footer"] .footer__TitreReseaux {
+  color: var(--pqr-color-orange);
 }
 
 /* (4) Logo link : boîte flex exacte comme le header */

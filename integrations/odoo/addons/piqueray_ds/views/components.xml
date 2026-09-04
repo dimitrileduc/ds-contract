@@ -79,9 +79,9 @@
       {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 6 mois', 'avatar': 'Initiale', 'note': '5', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'photoUrl': '', 'photoAlt': '', 'lienAvis': ''}
     ]"/>
     <div class="s_pqr_google_reviews google-reviews__avisGoogle" data-name="Piqueray · Google Reviews"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.0.1" data-ds-authoring-version="3.0.0"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.1.0" data-ds-authoring-version="3.0.0"
              data-montrer-controles=""
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="avis-google">
       <div class="google-reviews__resume" data-pqr-part="resume">
@@ -106,15 +106,15 @@
        widget, tandis que les anciens blocs sauvegardés restent lisibles. -->
   <template id="s_pqr_google_reviews_section" name="Piqueray · Section Avis Google">
     <section class="s_pqr_google_reviews_section google-reviews" data-snippet="s_pqr_google_reviews_section" data-name="Piqueray · Section Avis Google"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.0.1" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="3.1.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-section-default" data-pqr-part="root">
       <!-- L'en-tête est décrit DANS la section (contrat ds.google-reviews 3.0.0) et non plus
            composé depuis ds.section-header : le composant commun n'a aucune dimension par écran
            et figerait le titre. Même traitement que ds.sav et ds.reassurances. Dette E-031-044. -->
       <div class="google-reviews__SectionHeader section-header oe_unremovable oe_unmovable" data-pqr-part="section-header">
         <span class="google-reviews__Accroche section-header__Accroche o_pqr_editable" data-pqr-part="accroche" data-pqr-marks="">Nos avis Google vérifiés</span>
-        <span class="google-reviews__Titre section-header__Titre o_pqr_editable" data-pqr-part="google-reviews-header-title" data-pqr-marks="strong"><span>Plus de 1500 portes installées par année et autant de clients satisfaits</span></span>
+        <h2 class="google-reviews__Titre section-header__Titre o_pqr_editable" data-pqr-part="google-reviews-header-title" data-pqr-marks="strong"><span>Plus de 1500 portes installées par année et autant de clients satisfaits</span></h2>
       </div>
       <t t-call="piqueray_ds.s_pqr_google_reviews"/>
     </section>
@@ -167,12 +167,12 @@
 
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
-             data-ds-contract="ds.presentation" data-ds-contract-version="4.1.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.presentation" data-ds-contract-version="4.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
-        <span class="presentation__Titre o_pqr_editable" data-pqr-part="presentation-title" data-pqr-marks="strong"><span>Piqueray, votre distributeur de portes Hörmann </span><strong>en Province de Liège</strong></span>
+        <h2 class="presentation__Titre o_pqr_editable" data-pqr-part="presentation-title" data-pqr-marks="strong"><span>Piqueray, votre distributeur de portes Hörmann </span><strong>en Province de Liège</strong></h2>
       </div>
       <div class="presentation__wrapper" data-pqr-part="content-wrapper">
         <span class="presentation__Texte o_pqr_editable" data-pqr-part="presentation-text" data-pqr-marks="strong,line-break"><strong>Depuis plus de 50 ans,</strong><span> PIQUERAY est dépositaire officiel de la marque </span><strong><u>Hörmann</u></strong><span>, fabricant connu pour ses produits de qualité et ses innovations.</span><br/><br/><span>Composée d’une équipe d’une vingtaine de personnes de la </span><strong>région verviétoise</strong><span> et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.</span><br/><br/><span>Que vous soyez particulier ou une entreprise, </span><strong>Piqueray vous accompagne de A à Z</strong><span> dans votre projet.</span></span>
@@ -188,7 +188,7 @@
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero pqr-soustitre-on" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
              data-ds-contract="ds.hero" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
@@ -210,15 +210,15 @@
   <!-- ODOO-025-HERO-VIDEO-QWEB BEGIN -->
   <template id="s_pqr_hero_video" name="Piqueray · Hero vidéo">
     <section class="s_pqr_hero_video hero-video" data-snippet="s_pqr_hero_video" data-name="Piqueray · Hero vidéo"
-             data-ds-contract="ds.hero-video" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.hero-video" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-video-default" data-pqr-part="root">
       <img class="hero-video__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-video-poster" alt=""/>
       <div class="hero-video__VoileBas oe_unremovable oe_unmovable" data-pqr-part="hero-video-voile-bas"/>
       <div class="hero-video__VoileNavigation oe_unremovable oe_unmovable" data-pqr-part="hero-video-voile-navigation"/>
       <div class="hero-video__Text oe_unremovable oe_unmovable" data-pqr-part="hero-video-content">
-        <span class="hero-video__Accroche o_pqr_editable" data-pqr-part="hero-video-title" data-pqr-marks="line-break">Le numéro 1 des portes HÖRMANN en Province de Liège !</span>
+        <h1 class="hero-video__Accroche o_pqr_editable" data-pqr-part="hero-video-title" data-pqr-marks="line-break">Le numéro 1 des portes HÖRMANN en Province de Liège !</h1>
       </div>
       <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineBlanc'"/><t t-set="label" t-value="'Contactez-nous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
     </section>
@@ -272,7 +272,7 @@
     ]"/>
     <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
              data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
       <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
@@ -316,7 +316,7 @@
     ]"/>
     <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
              data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
       <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
@@ -333,15 +333,15 @@
   <!-- ODOO-019-DEVIS-QWEB BEGIN -->
   <template id="s_pqr_devis" name="Piqueray · Devis">
     <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
-             data-ds-contract="ds.devis" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.devis" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
              data-fond="">
       <img class="devis__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="devis-background" alt=""/>
       <div class="devis__Voile oe_unremovable oe_unmovable" data-pqr-part="devis-veil"/>
       <div class="devis__Container oe_unremovable oe_unmovable" data-pqr-part="devis-container">
-        <span class="devis__Titre o_pqr_editable" data-pqr-part="devis-title" data-pqr-marks="line-break">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</span>
+        <h2 class="devis__Titre o_pqr_editable" data-pqr-part="devis-title" data-pqr-marks="line-break">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</h2>
         <div class="devis__Bouton oe_unremovable oe_unmovable" data-pqr-part="devis-cta">
           <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineBlanc'"/><t t-set="label" t-value="'Prendre rendez-vous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
         </div>
@@ -354,8 +354,8 @@
     <!-- ds.sav 2.0.0 (vague 031, 2026-09-02) : DOM = anatomie plate du set 031 (fond, rangée > colonne image, carte texte).
          Ordre mobile (image AU-DESSUS du texte) ; Desktop/Wide = row-reverse (responsive/sav.pqr.css). -->
     <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
-             data-ds-contract="ds.sav" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.sav" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
       <img class="sav__background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="sav-background" data-pqr-native-image="1" alt=""/>
@@ -368,7 +368,7 @@
           <div class="sav__WrapperBackground oe_unremovable oe_unmovable" data-pqr-part="sav-wrapper-background"/>
           <div class="sav__inner oe_unremovable oe_unmovable" data-pqr-part="sav-inner">
             <div class="sav__SectionHeader oe_unremovable oe_unmovable" data-pqr-part="sav-section-header">
-              <span class="sav__Titre o_pqr_editable" data-pqr-part="sav-title" data-pqr-marks="">Dépannage / SAV</span>
+              <h2 class="sav__Titre o_pqr_editable" data-pqr-part="sav-title" data-pqr-marks="">Dépannage / SAV</h2>
             </div>
             <span class="sav__vousRencontrezUnProblmeA o_pqr_editable" data-pqr-part="sav-text" data-pqr-marks="strong,line-break"><span>Vous rencontrez un problème avec </span><strong>votre installation </strong><span>Hörmann à Liège ? Il y a une panne de courant et </span><strong>votre porte de garage</strong><span> ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?</span><br/><span>Pas de panique, Piqueray, </span><strong>votre distributeur Hörmann en province de Liège</strong><span> est là pour vous aider !</span></span>
             <div class="sav__Bouton oe_unremovable oe_unmovable" data-pqr-part="sav-cta">
@@ -410,7 +410,7 @@
     ]"/>
     <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
              data-ds-contract="ds.texte-seo" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
       <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
@@ -440,7 +440,7 @@
   <template id="s_pqr_coordonnees" name="Piqueray · Coordonnées">
     <section class="s_pqr_coordonnees coordonnees" data-snippet="s_pqr_coordonnees" data-name="Piqueray · Coordonnées"
              data-ds-contract="ds.coordonnees" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="coordonnees-default" data-pqr-part="root">
       <!-- Plan Google : PLACEHOLDER sans src (décision gate 2026-08-19). Alimenté
@@ -497,7 +497,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       <img class="carte__reassuranceImage o_editable_media" data-pqr-part="carte-image" data-pqr-native-image="1"
            t-att-src="carte.get('imageUrl') or None" t-att-alt="carte.get('imageAlt', '')"/>
       <div class="carte__text" data-pqr-part="carte-text">
-        <span class="carte__TitreReassurance o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></span>
+        <h4 class="carte__TitreReassurance o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></h4>
         <span class="carte__TexteReassurance o_pqr_editable" data-pqr-part="carte-body" data-pqr-marks="strong"><strong>SupraMatic &amp; ProMatic.</strong><span> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.</span></span>
       </div>
     </article>
@@ -512,8 +512,8 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'Expérience', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_reassurances reassurances reassurances--disposition-5Cartes" data-snippet="s_pqr_reassurances" data-name="Piqueray · Réassurances"
-             data-ds-contract="ds.reassurances" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-contract="ds.reassurances" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="reassurances-default" data-pqr-part="root">
       <!-- ds.reassurances 2.0.0 (vague 031) : en-tête MODÉLISÉ DANS LA SECTION.
@@ -522,7 +522,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
            désormais leurs jetons par écran (overline, H2). -->
       <div class="reassurances__SectionHeader oe_unremovable oe_unmovable" data-pqr-part="reassurances-section-header">
         <span class="reassurances__Accroche o_pqr_editable" data-pqr-part="reassurances-eyebrow" data-pqr-marks="">Plus de 50 ans d’expérience</span>
-        <span class="reassurances__Titre o_pqr_editable" data-pqr-part="reassurances-title" data-pqr-marks="">Pourquoi choisir nos portes de garage industrielles ?</span>
+        <h2 class="reassurances__Titre o_pqr_editable" data-pqr-part="reassurances-title" data-pqr-marks="">Pourquoi choisir nos portes de garage industrielles ?</h2>
       </div>
       <div class="reassurances__items" data-pqr-carte-list="" data-pqr-part="reassurances-items">
         <t t-foreach="cartes" t-as="carte"><t t-call="piqueray_ds.carte_reassurance"><t t-set="carte" t-value="carte"/><t t-set="carte_index" t-value="carte_index"/></t></t>
@@ -600,7 +600,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         <span t-if="carte.get('afficherDecor', True)" class="carte-categorie__decor" aria-hidden="true" data-pqr-part="carte-decor"><t t-call="piqueray_ds.pqr_categorie_decor"/></span>
         <div class="carte-categorie__inner">
           <div class="carte-categorie__blocTexte">
-            <span class="carte-categorie__TitreSuperpose o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></span>
+            <h3 class="carte-categorie__TitreSuperpose o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></h3>
             <span class="carte-categorie__TexteSuperpose o_pqr_editable" data-pqr-part="carte-text" data-pqr-marks=""><t t-esc="carte.get('texte', '')"/></span>
           </div>
           <span class="carte-categorie__Fleche" aria-hidden="true" data-pqr-part="carte-fleche"><t t-call="piqueray_ds.pqr_categorie_fleche"/></span>
@@ -618,7 +618,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     ]"/>
     <section class="s_pqr_categories_principales categories-principales" data-snippet="s_pqr_categories_principales" data-name="Piqueray · Catégories principales"
              data-ds-contract="ds.categories-principales" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742"
              data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-style="superpose"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="categories-principales-default" data-pqr-part="root">
@@ -660,11 +660,11 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'Passerelle BiSecure Hörmann', 'prix': '74,99€'}
     ]"/>
     <section class="s_pqr_produits_ecommerce produits-ecommerce" data-snippet="s_pqr_produits_ecommerce" data-name="Piqueray · Produits e-commerce"
-             data-ds-contract="ds.produits-ecommerce" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.0.0"
-             data-ds-graph-digest="fa08d5878afa81c716900c1daec6e66db12567fcab10f3374c0272640a4e812e" data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
+             data-ds-contract="ds.produits-ecommerce" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.0.0"
+             data-ds-graph-digest="cde58d95a642ab568b4eedf0d1b23956d44f95a5f4cb26e940fa895093b21742" data-vcss="19.0.1.11.0" data-vxml="19.0.1.11.0" data-vjs="19.0.1.11.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="produits-ecommerce-default" data-pqr-part="root">
       <div class="produits-ecommerce__enTete" data-pqr-part="root-entete">
-        <span class="produits-ecommerce__Titre o_pqr_editable" data-pqr-part="produits-ecommerce-title" data-pqr-marks="strong">Découvrez nos produits disponibles en ligne</span>
+        <h2 class="produits-ecommerce__Titre o_pqr_editable" data-pqr-part="produits-ecommerce-title" data-pqr-marks="strong">Découvrez nos produits disponibles en ligne</h2>
         <div class="produits-ecommerce__Bouton" data-pqr-part="root-entete-bouton"><t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Voir les produits'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="False"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t></div>
       </div>
       <div class="produits-ecommerce__pisteEtControles" data-pqr-part="root-piste">

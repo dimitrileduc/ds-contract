@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.0.1)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -264,7 +264,7 @@ export interface GoogleReviewsProps extends HTMLAttributes<HTMLElement> {
   lienAvis?: string;
 }
 
-/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. */
+/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(function GoogleReviews(
   { presentation = 'mobile', note = '5', accroche = 'Nos avis Google vérifiés', titre = 'Plus de 1500 portes installées par année et autant de clients satisfaits', qualificatif = 'Excellent', noteGlobale = '4.8', volume = '93 avis', lienAvis = '', avis, style, children, ...rest },
   ref,
@@ -273,7 +273,7 @@ export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(functio
     <section ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
       <div style={{ ...S.SectionHeader, ...(V[`presentation-${presentation}:SectionHeader`] ?? {}) }}>
 <span style={{ ...S.Accroche }}>{accroche}</span>
-<span style={{ ...S.Titre }}>{titre}</span>
+<h2 style={{ ...S.Titre }}>{titre}</h2>
 </div>
 <div style={{ ...S.avisGoogle, ...(V[`presentation-${presentation}:avisGoogle`] ?? {}) }}>
 <div style={{ ...S.resume, ...(V[`presentation-${presentation}:resume`] ?? {}) }}>

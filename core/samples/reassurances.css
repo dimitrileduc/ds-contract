@@ -114,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* Carte — from ds.carte v3.0.0 (core/emit-html.ts) */
+/* Carte — from ds.carte v3.1.0 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;
@@ -179,6 +179,7 @@
 }
 
 .carte__TitreReassurance {
+  margin: 0;
   color: var(--color-noir-bleute);
   font-family: var(--typography-h4-family);
   font-size: var(--typography-h4-size);
@@ -237,7 +238,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v2.0.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.1.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -328,6 +329,7 @@
 .reassurances__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--color-noir-bleute);
   font-family: var(--typography-h2-family);
   font-size: var(--typography-h2-size);

@@ -6650,6 +6650,71 @@ const cases: Case[] = [
       }
     },
   },
+  {
+    // 2026-09-04 (accessibilite-home-odoo) — a NESTED heading part carries BOTH
+    // its declared element and the UA-margin reset, on the delivered React
+    // surface. The quarantined `heading-margin-reset` case is NOT revived by
+    // this work: its RE-ENABLE line names a component whose ROOT is a
+    // UA-margined element, and its body reads demo contracts (Heading,
+    // Blockquote, Divider, List, Badge) deleted at the reconversion — moving it
+    // would be a rewrite, which the hybrid rule forbids. It stays quarantined,
+    // accurately; this case covers the nested axis that Piqueray actually has.
+    // The negative control is load-bearing: a sibling TEXT part that is NOT a
+    // heading must gain no gratuitous reset, or the assertion above proves
+    // nothing.
+    id: 'nested-heading-part-semantics-and-margin-reset',
+    claim: 'C1-determinism',
+    run: () => {
+      const HEADINGS: Array<{ file: string; segs: string[]; el: string; dir: string; leaf: string }> = [
+        { file: 'hero-video', segs: ['Text', 'Accroche'], el: 'h1', dir: 'HeroVideo', leaf: 'Accroche' },
+        { file: 'presentation', segs: ['colGauche', 'Titre'], el: 'h2', dir: 'Presentation', leaf: 'Titre' },
+        { file: 'sav', segs: ['row', 'wrapper', 'inner', 'SectionHeader', 'Titre'], el: 'h2', dir: 'SAV', leaf: 'Titre' },
+        { file: 'devis', segs: ['Container', 'Titre'], el: 'h2', dir: 'Devis', leaf: 'Titre' },
+        { file: 'produits-ecommerce', segs: ['enTete', 'Titre'], el: 'h2', dir: 'ProduitsECommerce', leaf: 'Titre' },
+        { file: 'reassurances', segs: ['SectionHeader', 'Titre'], el: 'h2', dir: 'Reassurances', leaf: 'Titre' },
+        { file: 'google-reviews', segs: ['SectionHeader', 'Titre'], el: 'h2', dir: 'GoogleReviews', leaf: 'Titre' },
+        { file: 'carte-categorie', segs: ['contenuSuperpose', 'inner', 'blocTexte', 'TitreSuperpose'], el: 'h3', dir: 'CarteCategorie', leaf: 'TitreSuperpose' },
+        { file: 'carte', segs: ['text', 'TitreReassurance'], el: 'h4', dir: 'Carte', leaf: 'TitreReassurance' },
+        { file: 'footer', segs: ['Row', 'col5', 'TitreReseaux'], el: 'h4', dir: 'Footer', leaf: 'TitreReseaux' },
+      ];
+      // 1. The contract DECLARES the element at the exact anatomy path.
+      for (const h of HEADINGS) {
+        const c = ContractSchema.parse(
+          JSON.parse(readFileSync(path.join(ROOT, 'contracts', `${h.file}.contract.json`), 'utf8')),
+        );
+        let node: SchemaPart = c.anatomy.root;
+        for (const seg of h.segs) {
+          const parts = node.parts;
+          if (!parts || !parts[seg]) throw new Error(`${c.id}: anatomy path broken at ${seg}`);
+          node = parts[seg] as SchemaPart;
+        }
+        if (node.element !== h.el) {
+          throw new Error(`${c.id} ${h.segs.join('.')}: element is ${String(node.element)}, expected ${h.el}`);
+        }
+      }
+      // 2. The DELIVERED surface renders the tag and resets the UA margin.
+      if (generate().status !== 0) throw new Error('generate failed');
+      const ruleOf = (css: string, cls: string) => {
+        const i = css.indexOf(`.${cls} {`);
+        if (i < 0) throw new Error(`rule .${cls} missing`);
+        return css.slice(i, css.indexOf('}', i));
+      };
+      for (const h of HEADINGS) {
+        const css = readFileSync(path.join(SCRATCH, `src/components/${h.dir}/${h.dir}.module.css`), 'utf8');
+        if (!ruleOf(css, h.leaf).includes('margin: 0;')) {
+          throw new Error(`${h.dir}.${h.leaf} (${h.el}) lost the UA-margin reset — the heading would inherit a UA margin the span never had`);
+        }
+        const tsx = readFileSync(path.join(SCRATCH, `src/components/${h.dir}/${h.dir}.tsx`), 'utf8');
+        if (!tsx.includes(`<${h.el}`)) throw new Error(`${h.dir}.tsx no longer renders a <${h.el}>`);
+      }
+      // 3. Negative control — a sibling TEXT part that is not a heading gains
+      //    no reset (without this, a blanket `margin: 0` would pass step 2).
+      const ctrl = readFileSync(path.join(SCRATCH, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
+      if (ruleOf(ctrl, 'Accroche').includes('margin: 0;')) {
+        throw new Error('Reassurances.Accroche (a non-heading text part) gained a gratuitous UA-margin reset');
+      }
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------

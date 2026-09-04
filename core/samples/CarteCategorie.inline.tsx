@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.0.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -174,7 +174,7 @@ Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS ·
 
 Gouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).
 
-Limites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root. */
+Limites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root. Plan de document : la partie titre porte la balise h3 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(function CarteCategorie(
   { style = 'superpose', ctaType = 'lien', afficherDecor = true, titre = 'Portes de garage', texte = 'Une porte de garage pour chaque goût et chaque style de maison.', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', style, children, ...rest },
   ref,
@@ -188,7 +188,7 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(fu
 {afficherDecor ? (<span style={{ ...S.decor }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["carte-categorie-decor"] }} />) : null}
 <div style={{ ...S.inner }}>
 <div style={{ ...S.blocTexte }}>
-<span style={{ ...S.TitreSuperpose }}>{titre}</span>
+<h3 style={{ ...S.TitreSuperpose }}>{titre}</h3>
 <span style={{ ...S.TexteSuperpose }}>{texte}</span>
 </div>
 <span style={{ ...S.Fleche }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["arrow-right"] }} />

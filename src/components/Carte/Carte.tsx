@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v3.0.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -33,7 +33,7 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
 Historique avant 3.0.0 :
 Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
 
-Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. */
+Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
   {
     disposition = 'reassurance',
@@ -77,7 +77,7 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
       ) : null}
       <div className={styles.text}>
         {disposition === 'reassurance' ? (
-          <span className={styles.TitreReassurance}>{titre}</span>
+          <h4 className={styles.TitreReassurance}>{titre}</h4>
         ) : null}
         {disposition === 'categorie' ? (
           <span className={styles.TitreCategorie}>{titre}</span>

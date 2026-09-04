@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v3.0.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -136,7 +136,7 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
 Historique avant 3.0.0 :
 Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
 
-Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. */
+Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
   { disposition = 'reassurance', alignement = 'centre', ctaIconLeftGlyph = 'pdf', ctaIconRightGlyph = 'download', titre = 'Sécurité et conformité', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"Respectent les normes des bâtiments publics et les réglementations pompiers."}], style, children, ...rest },
   ref,
@@ -150,7 +150,7 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
 
 </img>) : null}
 <div style={{ ...S.text, ...(V[`disposition-${disposition}:text`] ?? {}) }}>
-{disposition === 'reassurance' ? (<span style={{ ...S.TitreReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{titre}</span>) : null}
+{disposition === 'reassurance' ? (<h4 style={{ ...S.TitreReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{titre}</h4>) : null}
 {disposition === 'categorie' ? (<span style={{ ...S.TitreCategorie }}>{titre}</span>) : null}
 {disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance, ...(alignement === 'gauche' ? {"textAlign":"left"} : {}) }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>) : null}
 {disposition === 'categorie' ? (<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: "700" }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>) : null}

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/devis.contract.json (ds.devis v2.0.0)
+ * Source of truth: contracts/devis.contract.json (ds.devis v2.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -21,7 +21,7 @@ export interface DevisProps extends HTMLAttributes<HTMLElement> {
   fond?: boolean;
 }
 
-/** Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo. */
+/** Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const Devis = forwardRef<HTMLElement, DevisProps>(function Devis(
   {
     presentation = 'mobile',
@@ -49,7 +49,7 @@ export const Devis = forwardRef<HTMLElement, DevisProps>(function Devis(
       ) : null}
       {fond ? <div className={styles.Voile}></div> : null}
       <div className={styles.Container}>
-        <span className={styles.Titre}>
+        <h2 className={styles.Titre}>
           {titre.map((segment, index) => {
             const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
             return segment.strong ? (
@@ -58,7 +58,7 @@ export const Devis = forwardRef<HTMLElement, DevisProps>(function Devis(
               <span key={index}>{inner}</span>
             );
           })}
-        </span>
+        </h2>
         <Button variant="outlineBlanc" iconRight iconRightGlyph="arrow-right">
           Prendre rendez-vous
         </Button>

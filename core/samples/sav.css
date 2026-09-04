@@ -114,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* SAV — from ds.sav v2.1.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v2.2.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -321,6 +321,7 @@
 .sav__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--color-noir-bleute);
   font-family: var(--typography-h2-family);
   font-size: var(--typography-h2-size);

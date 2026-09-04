@@ -139,7 +139,7 @@
   flex-shrink: 0;
 }
 
-/* CarteCategorie — from ds.carte-categorie v2.0.0 (core/emit-html.ts) */
+/* CarteCategorie — from ds.carte-categorie v2.1.0 (core/emit-html.ts) */
 
 .carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
   box-sizing: border-box;
@@ -230,6 +230,7 @@
 }
 
 .carte-categorie__TitreSuperpose {
+  margin: 0;
   color: var(--pqr-color-blanc);
   font-family: var(--pqr-typography-h3-family);
   font-size: var(--pqr-typography-h3-size);
@@ -525,7 +526,7 @@
   flex-shrink: 0;
 }
 
-/* Devis — from ds.devis v2.0.0 (core/emit-html.ts) */
+/* Devis — from ds.devis v2.1.0 (core/emit-html.ts) */
 
 .devis, .devis *, .devis *::before, .devis *::after {
   box-sizing: border-box;
@@ -620,6 +621,7 @@
 .devis__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-blanc);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);
@@ -1072,7 +1074,7 @@
   line-height: 24px;
 }
 
-/* Footer — from ds.footer v2.0.0 (core/emit-html.ts) */
+/* Footer — from ds.footer v2.1.0 (core/emit-html.ts) */
 
 .footer, .footer *, .footer *::before, .footer *::after {
   box-sizing: border-box;
@@ -1165,6 +1167,7 @@
 }
 
 .footer__TitreReseaux {
+  margin: 0;
   color: var(--pqr-color-orange);
   font-size: var(--pqr-typography-h4-size);
   line-height: var(--pqr-typography-h4-line-height);
@@ -1741,7 +1744,7 @@
   color: var(--pqr-color-noir-pur);
 }
 
-/* GoogleReviews — from ds.google-reviews v3.0.1 (core/emit-html.ts) */
+/* GoogleReviews — from ds.google-reviews v3.1.0 (core/emit-html.ts) */
 
 .google-reviews, .google-reviews *, .google-reviews *::before, .google-reviews *::after {
   box-sizing: border-box;
@@ -1806,6 +1809,7 @@
 }
 
 .google-reviews__Titre {
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-font-family-montserrat);
   font-size: var(--pqr-typography-h2-size);
@@ -2331,7 +2335,7 @@
   font-weight: var(--pqr-font-weight-bold);
 }
 
-/* HeroVideo — from ds.hero-video v2.0.0 (core/emit-html.ts) */
+/* HeroVideo — from ds.hero-video v2.1.0 (core/emit-html.ts) */
 
 .hero-video, .hero-video *, .hero-video *::before, .hero-video *::after {
   box-sizing: border-box;
@@ -2455,6 +2459,7 @@
 .hero-video__Accroche {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-blanc);
   font-family: var(--pqr-typography-h1-family);
   font-size: var(--pqr-typography-h1-size);
@@ -2772,7 +2777,7 @@
   line-height: var(--pqr-typography-libelle-nav-line-height);
 }
 
-/* Presentation — from ds.presentation v4.1.0 (core/emit-html.ts) */
+/* Presentation — from ds.presentation v4.2.0 (core/emit-html.ts) */
 
 .presentation, .presentation *, .presentation *::before, .presentation *::after {
   box-sizing: border-box;
@@ -2825,6 +2830,7 @@
 .presentation__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);
@@ -2929,7 +2935,7 @@
   gap: var(--pqr-space-8);
 }
 
-/* ProduitsECommerce — from ds.produits-ecommerce v2.0.0 (core/emit-html.ts) */
+/* ProduitsECommerce — from ds.produits-ecommerce v2.1.0 (core/emit-html.ts) */
 
 .produits-ecommerce, .produits-ecommerce *, .produits-ecommerce *::before, .produits-ecommerce *::after {
   box-sizing: border-box;
@@ -2992,6 +2998,7 @@
 .produits-ecommerce__Titre {
   flex: 1 1 auto;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);
@@ -3111,7 +3118,7 @@
   display: none;
 }
 
-/* Carte — from ds.carte v3.0.0 (core/emit-html.ts) */
+/* Carte — from ds.carte v3.1.0 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;
@@ -3176,6 +3183,7 @@
 }
 
 .carte__TitreReassurance {
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h4-family);
   font-size: var(--pqr-typography-h4-size);
@@ -3234,7 +3242,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v2.0.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.1.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -3325,6 +3333,7 @@
 .reassurances__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);
@@ -3364,7 +3373,7 @@
   gap: var(--pqr-space-16);
 }
 
-/* SAV — from ds.sav v2.1.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v2.2.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -3571,6 +3580,7 @@
 .sav__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);

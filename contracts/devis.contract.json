@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.devis",
   "name": "Devis",
-  "version": "2.0.0",
-  "description": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo.",
+  "version": "2.1.0",
+  "description": "Piqueray Devis responsive, adopté depuis le set 031 (2694:21604) — bandeau CTA pleine largeur : photo de fond, voile dégradé, titre H2 et un bouton Outline blanc, centrés. MAJEUR : les ancres Figma quittent l'ancien master 2096:2524 pour le set 031, et la prop presentation apparaît. Le set expose quatre variantes dessinées 390x496, 834x466, 1200x358 et 1728x506 ; le contrat porte ces hauteurs, le CSS Odoo en fait des min-height (Odoo force height:auto sur les sections sous 768). Les points de rupture restent une affaire de projection Odoo. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
   "semantics": {
     "element": "section",
     "provenance": "extracted"
@@ -220,6 +220,7 @@
           },
           "parts": {
             "Titre": {
+              "element": "h2",
               "description": "Titre du bandeau. Le master l'enveloppe dans un cadre Titre horizontal centré, sans padding ni fond, dont le seul effet est de centrer : DÉVIATION NOMMÉE, ce cadre est aplati ici en text-align center sur le texte lui-même, ce qui garde le DOM Odoo et les verdicts d'édition en place. La typographie roule sur le style responsive H2 (24/30, 24/30, 32/40, 40/50 relevés sur les quatre variantes : la recette du style correspond exactement).",
               "layout": {
                 "width": "fill"

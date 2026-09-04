@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.footer",
   "name": "Footer",
-  "version": "2.0.0",
-  "description": "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md.",
+  "version": "2.1.0",
+  "description": "Piqueray Footer, responsive. v2.0.0 (spec 031) reprend les ancres sur le set 031 `Footer` 2735:12509 (axe Presentation : Mobile · Tablette · Desktop · Wide) et remplace le master DS 2120:4785, qui ne portait qu'une seule largeur. MAJOR : nouvelle prop publique `presentation`, nouvelles parts (LigneBas et sa paire d'icônes, propres au mode desktop), ancres Figma changées. Les 4 variantes ont été nettoyées à la source avant extraction (instanciation des composants gouvernés, liaison de toutes les valeurs d'espacement, fond en STRETCH) : relevé et mesures dans specs/tiny/vague-031/footer.md. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
   "semantics": {
     "element": "footer",
     "provenance": "extracted"
@@ -219,6 +219,7 @@
               },
               "parts": {
                 "TitreReseaux": {
+                  "element": "h4",
                   "description": "Style Figma responsive « H4 » : 20 px en mobile et tablette, 24 en desktop et wide.",
                   "text": "Suivez-nous",
                   "tokens": {

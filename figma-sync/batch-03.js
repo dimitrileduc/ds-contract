@@ -1147,7 +1147,7 @@ const COMPONENTS = [
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
     "anchorKey": "92ddbd842f0f0a22f284322298a9a6865c397055",
-    "description": "GoogleReviews — generated from contract ds.google-reviews v3.0.1",
+    "description": "GoogleReviews — generated from contract ds.google-reviews v3.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
