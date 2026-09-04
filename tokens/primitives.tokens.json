@@ -183,6 +183,11 @@
     "4": {
       "$value": "4px"
     },
+    "5": {
+      "$type": "dimension",
+      "$value": "5px",
+      "$description": "Écart entre les traits du burger du header (Mobile/Tablette). Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+    },
     "8": {
       "$value": "8px"
     },
@@ -210,6 +215,11 @@
     },
     "24": {
       "$value": "24px"
+    },
+    "26": {
+      "$type": "dimension",
+      "$value": "26px",
+      "$description": "Padding vertical du header en Desktop/Wide (16 en Mobile/Tablette). Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
     },
     "32": {
       "$value": "32px"
@@ -800,6 +810,11 @@
         "$value": "1728px",
         "$type": "dimension",
         "$description": "Authored from the pinned REST dump of the Header master (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-84_285.json, layoutSizingHorizontal FIXED, width 1728) — minted from-dump so anatomy references tokens, not literals. Minted 016 (attribution FINAL2, 2026-08-05) : la largeur racine n'etait pas portee par le contrat et la regeneration rendait le master HUG."
+      },
+      "icone": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "Boîte des icônes de nav du header (Utilisateur, Panier, Mail), 24 px. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
       }
     },
     "equipe": {
@@ -863,9 +878,32 @@
         "$description": "Minted from-dump 2026-09-02: CategoriesPrincipales 031 (2693:20242) draws its Tablette cards 738×288. Desktop (512×288) and Wide (743×418) are exactly the card's own 16/9 and need no height.",
         "$value": "288px"
       }
+    },
+    "cible-tactile": {
+      "min": {
+        "$type": "dimension",
+        "$value": "44px",
+        "$description": "Plancher tactile (burger du header 44×44). Relevé E-031-024 (14 valeurs sans variable), destination proposée dans decisions-mobile-390.md. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+      }
+    },
+    "burger": {
+      "trait-largeur": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "Largeur d un trait du burger du header. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+      },
+      "trait-epaisseur": {
+        "$type": "dimension",
+        "$value": "2px",
+        "$description": "Épaisseur d un trait du burger du header. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+      }
     }
   },
   "radius": {
+    "1": {
+      "$value": "1px",
+      "$description": "Arrondi des traits du burger du header. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+    },
     "8": {
       "$value": "8px",
       "$description": "Minté from-dump le 2026-09-03 depuis le maître ReviewCard 031 (2700:26539) : rayon de la carte et du badge de vérification. Variable Figma `radius/8` créée le même jour."

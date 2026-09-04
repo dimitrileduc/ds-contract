@@ -2,13 +2,41 @@
   "$schema": "./contract.schema.json",
   "id": "ds.header",
   "name": "Header",
-  "version": "2.1.0",
-  "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "3.0.0",
+  "description": "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      },
+      "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : la feuille responsive/header.pqr.css réécrit les règles par mode en @media sur les breakpoints des jetons."
+    },
     {
       "name": "items",
       "type": {
@@ -32,6 +60,7 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Racine du set 031 : une seule boîte, padding T/R/B/L par étage (16/24 · 16/48 · 26/48 · 16/89), SPACE_BETWEEN logo ↔ nav ou burger. Largeur : fill (les 390/834/1200/1728 du set sont des témoins, pas des jetons).",
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -39,6 +68,27 @@
         "align": "center",
         "width": "fill",
         "referenceWidth": 1728
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.16}",
+        "gap": "{space.0}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.48}",
+            "padding-block": "{space.26}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}"
+          }
+        }
       },
       "parts": {
         "PiquerayLogo": {
@@ -50,17 +100,48 @@
           }
         },
         "navWrapper": {
+          "description": "Dessiné en Desktop et Wide seulement (Mobile/Tablette : burger). Présence portée en stylesWhen display:none sur mobile et tablette — le canevas ne la représente pas (les deux variantes n'ont pas la part). Écart nav ↔ icônes : 32 en Desktop, 64 en Wide.",
           "layout": {
             "direction": "row",
             "justify": "end",
             "align": "center"
           },
+          "tokens": {
+            "gap": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "wide": {
+                "gap": "{space.64}"
+              }
+            }
+          },
+          "stylesWhen": [
+            {
+              "prop": "presentation",
+              "equals": "mobile",
+              "styles": {
+                "display": "none"
+              }
+            },
+            {
+              "prop": "presentation",
+              "equals": "tablette",
+              "styles": {
+                "display": "none"
+              }
+            }
+          ],
           "parts": {
             "nav": {
               "layout": {
                 "direction": "row",
                 "justify": "center",
                 "align": "center"
+              },
+              "tokens": {
+                "gap": "{space.32}"
               },
               "parts": {
                 "NavItem": {
@@ -97,6 +178,7 @@
                   }
                 },
                 "Bouton": {
+                  "description": "Dessiné en Wide seulement (Desktop : pas de bouton, décision de dessin des vues 031).",
                   "component": {
                     "id": "ds.button",
                     "props": {
@@ -106,25 +188,25 @@
                       "iconRightGlyph": "arrow-right"
                     },
                     "text": "Contactez-nous"
+                  },
+                  "visibleWhen": {
+                    "prop": "presentation",
+                    "equals": "wide"
                   }
                 }
-              },
-              "tokens": {
-                "gap": "{space.32}"
               }
             },
             "iconsNav": {
+              "description": "Icônes 24 px, encre blanche, inertes (recherche/compte/panier différés). Utilisateur et Panier en Desktop et Wide ; Mail en Desktop seulement. Recherche : calque masqué sur le canevas Wide, non porté.",
               "layout": {
                 "direction": "row",
                 "align": "center"
               },
+              "tokens": {
+                "gap": "{space.16}",
+                "color": "{color.blanc}"
+              },
               "parts": {
-                "Search": {
-                  "icon": {
-                    "asset": "search",
-                    "size": 24
-                  }
-                },
                 "User": {
                   "icon": {
                     "asset": "user",
@@ -136,34 +218,85 @@
                     "asset": "cart",
                     "size": 24
                   }
+                },
+                "Mail": {
+                  "icon": {
+                    "asset": "mail",
+                    "size": 24
+                  },
+                  "visibleWhen": {
+                    "prop": "presentation",
+                    "equals": "desktop"
+                  }
                 }
-              },
-              "tokens": {
-                "gap": "{space.16}",
-                "color": "{color.blanc}"
               }
             }
+          }
+        },
+        "MenuBurger": {
+          "description": "Burger 44×44 (plancher tactile size.cible-tactile.min), trois traits 24×2 blancs, écart 5, arrondi 1. Dessiné en Mobile et Tablette seulement : stylesWhen display:none sur desktop et wide (non représenté sur le canevas). Le menu ouvert n'est pas dans ce contrat (hors périmètre, décision owner 2026-09-03).",
+          "layout": {
+            "direction": "column",
+            "justify": "center",
+            "align": "center"
           },
           "tokens": {
-            "gap": "{space.64}"
+            "gap": "{space.5}",
+            "width": "{size.cible-tactile.min}",
+            "height": "{size.cible-tactile.min}"
+          },
+          "stylesWhen": [
+            {
+              "prop": "presentation",
+              "equals": "desktop",
+              "styles": {
+                "display": "none"
+              }
+            },
+            {
+              "prop": "presentation",
+              "equals": "wide",
+              "styles": {
+                "display": "none"
+              }
+            }
+          ],
+          "parts": {
+            "trait": {
+              "tokens": {
+                "background-color": "{color.blanc}",
+                "border-radius": "{radius.1}",
+                "width": "{size.burger.trait-largeur}",
+                "height": "{size.burger.trait-epaisseur}"
+              }
+            },
+            "trait2": {
+              "tokens": {
+                "background-color": "{color.blanc}",
+                "border-radius": "{radius.1}",
+                "width": "{size.burger.trait-largeur}",
+                "height": "{size.burger.trait-epaisseur}"
+              }
+            },
+            "trait3": {
+              "tokens": {
+                "background-color": "{color.blanc}",
+                "border-radius": "{radius.1}",
+                "width": "{size.burger.trait-largeur}",
+                "height": "{size.burger.trait-epaisseur}"
+              }
+            }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "padding-left": "{space.89}",
-        "padding-right": "{space.89}",
-        "padding-top": "{space.16}",
-        "padding-bottom": "{space.16}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420",
-      "nodeId": "84:285",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "7c1e4586ab514d119e71389d1f60efa82d6c5513",
+      "nodeId": "2732:12096",
+      "dumpedAt": "2026-09-04"
     },
     "code": {
       "importPath": "src/components/Header",

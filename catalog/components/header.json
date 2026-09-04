@@ -1,15 +1,26 @@
 {
   "id": "ds.header",
   "name": "Header",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "description": "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher).",
   "figma": {
     "representation": "component",
-    "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420"
+    "componentSetKey": "7c1e4586ab514d119e71389d1f60efa82d6c5513"
   },
   "props": [
+    {
+      "name": "presentation",
+      "type": [
+        "mobile",
+        "tablette",
+        "desktop",
+        "wide"
+      ],
+      "default": "mobile",
+      "description": "L'étage responsive (axe Presentation du set 031). Défaut = première variante du set (mobile), la parité l'exige. Côté Odoo la valeur n'est jamais posée : la feuille responsive/header.pqr.css réécrit les règles par mode en @media sur les breakpoints des jetons."
+    },
     {
       "name": "items",
       "type": {

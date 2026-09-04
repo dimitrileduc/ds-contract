@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v2.1.0)
+ * Source of truth: contracts/header.contract.json (ds.header v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -19,10 +19,22 @@
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  padding-left: var(--space-89);
-  padding-right: var(--space-89);
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-16);
+  gap: var(--space-0);
+}
+
+.presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop {
+  padding-inline: var(--space-48);
+  padding-block: var(--space-26);
+}
+
+.presentation-wide {
+  padding-inline: var(--space-89);
 }
 
 .navWrapper {
@@ -30,7 +42,19 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  gap: var(--space-32);
+}
+
+.presentation-wide .navWrapper {
   gap: var(--space-64);
+}
+
+.presentation-mobile .navWrapper {
+  display: none;
+}
+
+.presentation-tablette .navWrapper {
+  display: none;
 }
 
 .nav {
@@ -47,16 +71,6 @@
   align-items: center;
   gap: var(--space-16);
   color: var(--color-blanc);
-}
-
-.Search svg {
-  width: 24px;
-  height: 24px;
-}
-
-.Search {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 .User svg {
@@ -77,4 +91,53 @@
 .Cart {
   display: inline-flex;
   flex-shrink: 0;
+}
+
+.Mail svg {
+  width: 24px;
+  height: 24px;
+}
+
+.Mail {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.MenuBurger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  width: var(--size-cible-tactile-min);
+  height: var(--size-cible-tactile-min);
+}
+
+.presentation-desktop .MenuBurger {
+  display: none;
+}
+
+.presentation-wide .MenuBurger {
+  display: none;
+}
+
+.trait {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
+}
+
+.trait2 {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
+}
+
+.trait3 {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
 }

@@ -1,0 +1,92 @@
+/*
+ * responsive/header.pqr.css — ZONE MANUELLE (header 031, 2026-09-04).
+ *
+ * Projection Odoo des règles PAR MODE de ds.header 3.0.0 (tokensByProp /
+ * stylesWhen sur l'axe `presentation`), réécrites en @media sur les breakpoints
+ * des tokens — même forme que responsive.pqr.css (pilote hero) :
+ *   Mobile   = base (components.pqr.css, mobile-first)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la
+ * classe `.header--presentation-<mode>` (Odoo ne pose jamais cette classe).
+ * La typographie n'est pas ici (tokens.pqr.css porte ses blocs @media ; le
+ * libellé du bouton suit typography/button/size = 16·16·16·18).
+ *
+ * Deux faits CODE-ONLY (parts instance : aucun canal par mode dans le contrat) :
+ *   · le bouton « Contactez-nous » n'existe qu'en Wide (contrat : visibleWhen wide) ;
+ *   · l'icône Mail n'existe qu'en Desktop (contrat : visibleWhen desktop).
+ * Le DOM porte tout, l'@media masque (règle « tout rendre + masquer »).
+ *
+ * Bornes basses du dessin (mesurées sur le set, journal header.md) : la nav
+ * chevauche le logo sous 1113 px en Desktop et sous 1487 px en Wide. Non traité
+ * ici — fait de design à trancher, pas une adaptation Odoo.
+ */
+
+/* ---- ds.header 3.0.0 ------------------------------------------------------ */
+
+/* Base = Mobile : burger visible, nav absente (stylesWhen mobile → display:none). */
+.header .header__navWrapper {
+  display: none;
+}
+.header .header__MenuBurger {
+  display: flex;
+}
+/* Le burger est un <button> natif : on retire l'habillage navigateur, la boîte
+ * 44×44 et les traits viennent du contrat (components.pqr.css). Inerte cette
+ * itération (menu mobile hors périmètre, décision owner 2026-09-03). */
+.header .header__MenuBurger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+/* Tablette ≥ 768 : padding-inline 48. */
+@media (min-width: 768px) {
+  .header {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : padding 26 / 48, nav visible (gap 32), burger absent,
+ * Mail visible, bouton absent. */
+@media (min-width: 992px) {
+  .header {
+    padding-inline: var(--pqr-space-48);
+    padding-block: var(--pqr-space-26);
+  }
+  .header .header__navWrapper {
+    display: flex;
+    gap: var(--pqr-space-32);
+  }
+  .header .header__MenuBurger {
+    display: none;
+  }
+}
+/* Desktop seul (BORNÉ à 1399.98) : pas de bouton, icône Mail présente. */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .header .header__nav > .button {
+    display: none;
+  }
+}
+/* Mail : Desktop seul — masquée partout ailleurs (base + Wide). */
+.header .header__Mail {
+  display: none;
+}
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .header .header__Mail {
+    display: inline-flex;
+  }
+}
+
+/* Wide ≥ 1400 : padding-inline 89, padding-block 16, gap nav ↔ icônes 64, bouton présent. */
+@media (min-width: 1400px) {
+  .header {
+    padding-inline: var(--pqr-space-89);
+    padding-block: var(--pqr-space-16);
+  }
+  .header .header__navWrapper {
+    gap: var(--pqr-space-64);
+  }
+}

@@ -217,7 +217,7 @@
   flex-shrink: 0;
 }
 
-/* Header — from ds.header v2.1.0 (core/emit-html.ts) */
+/* Header — from ds.header v3.0.0 (core/emit-html.ts) */
 
 .header, .header *, .header *::before, .header *::after {
   box-sizing: border-box;
@@ -232,10 +232,22 @@
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  padding-left: var(--space-89);
-  padding-right: var(--space-89);
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-16);
+  gap: var(--space-0);
+}
+
+.header--presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.header--presentation-desktop {
+  padding-inline: var(--space-48);
+  padding-block: var(--space-26);
+}
+
+.header--presentation-wide {
+  padding-inline: var(--space-89);
 }
 
 .header__navWrapper {
@@ -243,7 +255,19 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  gap: var(--space-32);
+}
+
+.header--presentation-wide .header__navWrapper {
   gap: var(--space-64);
+}
+
+.header--presentation-mobile .header__navWrapper {
+  display: none;
+}
+
+.header--presentation-tablette .header__navWrapper {
+  display: none;
 }
 
 .header__nav {
@@ -260,17 +284,6 @@
   align-items: center;
   gap: var(--space-16);
   color: var(--color-blanc);
-}
-
-.header__Search svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.header__Search {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 .header__User svg {
@@ -293,6 +306,56 @@
 .header__Cart {
   display: inline-flex;
   flex-shrink: 0;
+}
+
+.header__Mail svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.header__Mail {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.header__MenuBurger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  width: var(--size-cible-tactile-min);
+  height: var(--size-cible-tactile-min);
+}
+
+.header--presentation-desktop .header__MenuBurger {
+  display: none;
+}
+
+.header--presentation-wide .header__MenuBurger {
+  display: none;
+}
+
+.header__trait {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
+}
+
+.header__trait2 {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
+}
+
+.header__trait3 {
+  background-color: var(--color-blanc);
+  border-radius: var(--radius-1);
+  width: var(--size-burger-trait-largeur);
+  height: var(--size-burger-trait-epaisseur);
 }
 
 /* showcase chrome */
