@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788546933270,
+  "extractedAt": 1788593686585,
   "collections": [
     {
       "name": "Primitives",
@@ -1922,9 +1922,9 @@
           "name": "radius/8",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "CORNER_RADIUS"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--radius-8)",
           "values": {
             "Value": 8
           }
@@ -1933,9 +1933,9 @@
           "name": "radius/20",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "CORNER_RADIUS"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--radius-20)",
           "values": {
             "Value": 20
           }
@@ -1944,9 +1944,10 @@
           "name": "space/40",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-40)",
           "values": {
             "Value": 40
           }
@@ -1955,9 +1956,10 @@
           "name": "space/15",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-15)",
           "values": {
             "Value": 15
           }
@@ -1966,9 +1968,9 @@
           "name": "size/review-card/min-w",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-review-card-min-w)",
           "values": {
             "Value": 250
           }
@@ -1977,9 +1979,10 @@
           "name": "space/5",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-5)",
           "values": {
             "Value": 5
           }
@@ -1988,9 +1991,10 @@
           "name": "space/26",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-26)",
           "values": {
             "Value": 26
           }
@@ -1999,9 +2003,9 @@
           "name": "size/cible-tactile/min",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-cible-tactile-min)",
           "values": {
             "Value": 44
           }
@@ -2010,9 +2014,9 @@
           "name": "size/burger/trait-largeur",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-burger-trait-largeur)",
           "values": {
             "Value": 24
           }
@@ -2021,9 +2025,9 @@
           "name": "size/burger/trait-epaisseur",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-burger-trait-epaisseur)",
           "values": {
             "Value": 2
           }
@@ -2032,9 +2036,9 @@
           "name": "size/header/icone",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-header-icone)",
           "values": {
             "Value": 24
           }
@@ -2043,9 +2047,9 @@
           "name": "radius/1",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "CORNER_RADIUS"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--radius-1)",
           "values": {
             "Value": 1
           }
@@ -2054,9 +2058,10 @@
           "name": "color/blanc-14",
           "type": "COLOR",
           "scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--color-blanc-14)",
           "values": {
             "Value": "#FFFFFF24"
           }
@@ -2065,9 +2070,10 @@
           "name": "color/noir-bleute-72",
           "type": "COLOR",
           "scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--color-noir-bleute-72)",
           "values": {
             "Value": "#26282CB8"
           }
@@ -2076,9 +2082,9 @@
           "name": "size/menu-mobile/tiroir",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-menu-mobile-tiroir)",
           "values": {
             "Value": 420
           }
@@ -2087,9 +2093,9 @@
           "name": "size/menu-entree/hauteur/mobile",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-menu-entree-hauteur-mobile)",
           "values": {
             "Value": 68
           }
@@ -2098,9 +2104,9 @@
           "name": "size/menu-entree/hauteur/tablette",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--size-menu-entree-hauteur-tablette)",
           "values": {
             "Value": 52
           }
@@ -2109,9 +2115,10 @@
           "name": "space/80",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-80)",
           "values": {
             "Value": 80
           }
@@ -2120,9 +2127,10 @@
           "name": "space/192",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "WIDTH_HEIGHT",
+            "GAP"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--space-192)",
           "values": {
             "Value": 192
           }
@@ -2253,6 +2261,226 @@
           "codeSyntax": "var(--color-noir-profond)",
           "values": {
             "Value": "#131416"
+          }
+        },
+        {
+          "name": "size/devis/root-h-mobile",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-devis-root-h-mobile)",
+          "values": {
+            "Value": 496
+          }
+        },
+        {
+          "name": "size/devis/root-h-tablette",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-devis-root-h-tablette)",
+          "values": {
+            "Value": 466
+          }
+        },
+        {
+          "name": "size/devis/root-h-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-devis-root-h-desktop)",
+          "values": {
+            "Value": 358
+          }
+        },
+        {
+          "name": "size/devis/root-h-wide",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-devis-root-h-wide)",
+          "values": {
+            "Value": 506
+          }
+        },
+        {
+          "name": "size/sav/row-h-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-row-h-desktop)",
+          "values": {
+            "Value": 505
+          }
+        },
+        {
+          "name": "size/sav/wrapper-h-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-wrapper-h-desktop)",
+          "values": {
+            "Value": 505
+          }
+        },
+        {
+          "name": "size/sav/img-group-h-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-img-group-h-desktop)",
+          "values": {
+            "Value": 505
+          }
+        },
+        {
+          "name": "size/sav/img-group-h-compact",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-img-group-h-compact)",
+          "values": {
+            "Value": 320
+          }
+        },
+        {
+          "name": "size/sav/img-h-compact",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-img-h-compact)",
+          "values": {
+            "Value": 320
+          }
+        },
+        {
+          "name": "size/sav/cta-w-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-sav-cta-w-desktop)",
+          "values": {
+            "Value": 279
+          }
+        },
+        {
+          "name": "size/carte-categorie/min-w",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-carte-categorie-min-w)",
+          "values": {
+            "Value": 320
+          }
+        },
+        {
+          "name": "size/categories-principales/carte-h-mobile",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-categories-principales-carte-h-mobile)",
+          "values": {
+            "Value": 418
+          }
+        },
+        {
+          "name": "size/categories-principales/carte-h-tablette",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-categories-principales-carte-h-tablette)",
+          "values": {
+            "Value": 288
+          }
+        },
+        {
+          "name": "decoration/etat/default/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-default-survol)",
+          "values": {
+            "Value": "none"
+          }
+        },
+        {
+          "name": "decoration/etat/orange/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-orange-survol)",
+          "values": {
+            "Value": "none"
+          }
+        },
+        {
+          "name": "decoration/etat/blanc/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-blanc-survol)",
+          "values": {
+            "Value": "none"
+          }
+        },
+        {
+          "name": "decoration/etat/outlineBlanc/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-outlineBlanc-survol)",
+          "values": {
+            "Value": "none"
+          }
+        },
+        {
+          "name": "decoration/etat/link/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-link-survol)",
+          "values": {
+            "Value": "underline"
+          }
+        },
+        {
+          "name": "decoration/etat/outlineNoir/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-outlineNoir-survol)",
+          "values": {
+            "Value": "none"
+          }
+        },
+        {
+          "name": "decoration/etat/iconOnly/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": "var(--decoration-etat-iconOnly-survol)",
+          "values": {
+            "Value": "none"
           }
         }
       ]
@@ -3136,9 +3364,9 @@
           "name": "typography/menu-entree/family",
           "type": "STRING",
           "scopes": [
-            "ALL_SCOPES"
+            "FONT_FAMILY"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--typography-menu-entree-family)",
           "values": {
             "Light": "{font/family/montserrat}"
           }
@@ -3147,9 +3375,9 @@
           "name": "typography/menu-entree/weight",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--typography-menu-entree-weight)",
           "values": {
             "Light": "{font/weight/medium}"
           }
@@ -3158,9 +3386,9 @@
           "name": "typography/menu-sous-entree/family",
           "type": "STRING",
           "scopes": [
-            "ALL_SCOPES"
+            "FONT_FAMILY"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--typography-menu-sous-entree-family)",
           "values": {
             "Light": "{font/family/montserrat}"
           }
@@ -3169,9 +3397,9 @@
           "name": "typography/menu-sous-entree/weight",
           "type": "FLOAT",
           "scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
-          "codeSyntax": null,
+          "codeSyntax": "var(--typography-menu-sous-entree-weight)",
           "values": {
             "Light": "{font/weight/regular}"
           }

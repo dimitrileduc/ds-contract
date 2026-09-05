@@ -15,7 +15,7 @@ et fait descendre le résultat jusqu'au site.
 | Fait | Preuve |
 |---|---|
 | 7 primitives + 35 alias `color.etat.<style>.<canal>` | `proofs/etape2/conformite-matrice.txt` |
-| `ds.button` 2.1.0 → **2.2.0**, additif seul | `proofs/etape2/diff-additif.txt` |
+| `ds.button` 2.1.0 → **2.3.0**, additif seul | `proofs/etape2/diff-additif.txt` |
 | Les trois surfaces générées | `proofs/etape2/greps.txt` — 35 jetons, 14 `:hover`, 14 `:active`, 9 `:focus-visible` |
 | **Le repos n'a pas bougé d'un pixel** | `proofs/etape2/repos-pixel.txt` — **0,0000 % sur les 7 styles** |
 | Cascade Odoo alignée, six portes vertes | `proofs/etape2/portes-odoo.txt` |
@@ -337,6 +337,45 @@ Une ligne dans `evals/harness.ts`.
 **Vérifié après refactor** : les 7 PNG du repos sont **bit-à-bit identiques**,
 la mesure sur page vive rend le même relevé, et le contrôle adverse repasse — en
 sabotant désormais la vraie sonde.
+
+## 4quater. Le soulignement du style `link` — et la limite que la vague avait inventée
+
+**La 2.2.0 déclarait une limite qui n'existait pas.** Elle affirmait qu'un état ne
+pouvait pas varier par valeur d'énuméré, donc que souligner le style `link`
+soulignerait les sept. C'était faux, et c'était écrit dans trois endroits
+faisant autorité : `docs/FIGMA-CAPABILITY-MATRIX.md` (L1), la `description` du
+contrat, et ce rapport.
+
+Ce que le moteur fait réellement : quand la valeur d'un état porte un
+`{prop}`, la boucle d'états résout l'énuméré et émet **une règle par valeur** —
+`.variant-link:hover`, `.variant-default:hover`, etc. Les règles d'état sont
+per-énuméré depuis toujours.
+
+La vraie contrainte était plus étroite et sans rapport avec le canal d'états :
+un soulignement est un **mot-clé**, pas une couleur, donc il fallait un jeton
+capable de porter un mot-clé. Le dépôt en avait déjà un — `nav.state`, de type
+`string`, qui sort bien en propriété CSS. La recette est ordinaire : un jeton
+`string` par valeur d'énuméré (`underline` pour `link`, un `none` **explicite**
+pour les six autres), et `text-decoration-line` lié dans l'état de survol.
+
+Le `none` explicite n'est pas décoratif : c'est lui qui fait gagner la valeur
+gouvernée contre la règle d'hôte qui souligne nos ancres (`a:hover` d'Odoo).
+
+**Mesuré sur la page vive** : 6 boutons `link` se soulignent au survol, les 10
+autres restent nets. `ds.button` passe en **2.3.0**.
+
+**Comment l'erreur a été trouvée** : l'owner a demandé « pourquoi au juste ? ».
+Un essai a suffi à la renverser. L1 est retirée de la matrice et remplacée par
+son démenti, avec la leçon : *une limite affirmée sans fixture n'est pas une
+limite, c'est une supposition avec une référence.* L'ordre fixture → eval →
+claim vaut **autant pour déclarer qu'une chose est impossible que pour déclarer
+qu'elle marche**.
+
+**Effet de bord favorable, mesuré.** Rejouer `01-tokens.js` en entier (plutôt
+que le sous-ensemble employé plus tôt) a créé **13 variables manquantes** en
+plus des 7 du soulignement : de la dette réelle, acquittée dans
+`parity/baseline.json`. Les constats acquittés tombent de **33 à 20**. La vague
+rembourse plus qu'elle n'emprunte.
 
 ## 5. Ce que la vague laisse derrière elle
 

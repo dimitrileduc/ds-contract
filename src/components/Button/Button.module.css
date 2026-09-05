@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.2.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -143,6 +143,34 @@
 
 .variant-iconOnly:hover:not(:disabled) {
   color: var(--color-etat-iconOnly-libelle-survol);
+}
+
+.variant-default:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-default-survol);
+}
+
+.variant-orange:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-orange-survol);
+}
+
+.variant-blanc:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-blanc-survol);
+}
+
+.variant-outlineBlanc:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-outlineBlanc-survol);
+}
+
+.variant-link:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-link-survol);
+}
+
+.variant-outlineNoir:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-outlineNoir-survol);
+}
+
+.variant-iconOnly:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-iconOnly-survol);
 }
 
 .variant-default:active:not(:disabled) {

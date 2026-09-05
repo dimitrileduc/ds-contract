@@ -101,6 +101,22 @@
       "cause": "components.pqr.css emet 14 regles d'etat depuis l'enumere `variant` du contrat ; odoo-bridge.css en ecrit 14 a la main pour les neutraliser. Ajouter une 8e valeur d'enumere regenere le CSS et laisse le pont a 7 : le nouveau style perdrait sa couleur de libelle dans le pied de page, en silence.",
       "pourquoiReporte": "Rien dans scripts/ ne compare le pont au CSS genere ; ecrire cette porte est une infrastructure nouvelle, hors perimetre. Note : le correctif DW-032-008 rendrait ce probleme sans objet en supprimant la regle (6).",
       "statut": "deferred"
+    },
+    {
+      "id": "DW-032-010",
+      "titre": "Telephone, email et icones sociales du pied de page ne sont pas gouvernes",
+      "categorie": "source-cleanliness",
+      "constat": "Sur le canevas, le telephone et l'email du pied de page sont UN SEUL bloc de texte sur deux lignes, a l'interieur de FooterColumn. Meme forme dans ds.coordonnees, ou la partie porte le nom fabrique automatiquement `tl32087463266EmailInfopi` — signature d'un element jamais dessine comme gouverne. Les icones sociales sont des instances d'icones brutes, sans etat gouverne (d'ou la regle manuelle en opacity, DW-032-002).",
+      "precedentTrouve": "ds.menu-mobile (vague 031) structure DEJA son telephone : conteneur `telephone` en ligne, ecart {space.12}, avec `icone` (glyphe `phone` du registre, 24 px, orange) et `numero` (texte lie aux jetons de typographie). C'est le precedent de STRUCTURATION. Aucun contrat ne fait d'un telephone ou d'un email un BOUTON — cette partie-la est sans precedent.",
+      "decisionOwner": "2026-09-05 — aller jusqu'au bouton `link`, pas seulement la structuration.",
+      "rayonDImpact": {
+        "FooterColumn": 69,
+        "Facebook": 13,
+        "Instagram": 13
+      },
+      "pourquoiPasDansLa032": "C'est une correction de SOURCE (§VIII) : elle commence dans Figma, sur des masters vivants, et change la structure et non une couleur. Hors du perimetre « ds.button seul » que la vague 032 tient de bout en bout.",
+      "contrainteAConserver": "La destination d'un lien (tel:, mailto:) reste une adaptation d'HOTE et non un canal de contrat — decision owner du 2026-08-18, ecrite dans docs/FIGMA-CAPABILITY-MATRIX.md §9. On gouverne l'apparence ; Odoo garde le `link_href`.",
+      "statut": "deferred-vers-spec-dediee"
     }
   ]
 }

@@ -1043,5 +1043,58 @@
       "$value": "1400px",
       "$description": "Wide mode starts here (Figma witness 1728)."
     }
+  },
+  "decoration": {
+    "etat": {
+      "default": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      },
+      "orange": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      },
+      "blanc": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      },
+      "outlineBlanc": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      },
+      "link": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. Le style link est le seul souligne : c'est le geste attendu d'un lien, et son changement de couleur seul (#26282C -> #000000) etait juge trop discret par l'owner le 2026-09-05.",
+          "$value": "underline"
+        }
+      },
+      "outlineNoir": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      },
+      "iconOnly": {
+        "survol": {
+          "$type": "string",
+          "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
+          "$value": "none"
+        }
+      }
+    }
   }
 }

@@ -29,6 +29,18 @@ jusqu'au site : survol, pressé, anneau de focus clavier, sur les sept styles.
 - **`parity` vert sans acquittement neuf** — `parity/baseline.json` reste à **40**
   entrées. La dette que 015 avait créée (7 → 89) et que 016 a remboursée n'est pas
   reproduite.
+- **Le style `link` se souligne au survol — et la limite qui disait cela
+  impossible est retirée.** La 2.2.0 affirmait qu'un état ne pouvait pas varier
+  par valeur d'énuméré ; c'était faux, écrit dans la matrice de capacités, le
+  contrat et le rapport, sans jamais avoir été essayé. Le moteur émet en réalité
+  UNE règle par valeur d'énuméré ; il manquait seulement un jeton capable de
+  porter un mot-clé — le dépôt en avait déjà un (`nav.state`, type `string`).
+  `ds.button` 2.3.0 : 6 boutons `link` se soulignent, les 10 autres restent nets,
+  mesuré sur la page vive. Trouvé parce que l'owner a demandé « pourquoi au
+  juste ? ». **Une limite affirmée sans fixture n'est pas une limite.**
+- **Dette remboursée au passage** : rejouer le script de jetons en entier a créé
+  13 variables manquantes de longue date ; les constats acquittés de
+  `parity/baseline.json` tombent de 33 à 20.
 - **Balayage de clôture : 21 portes sur 21 vertes, `248/248` évaluations**
   (ligne de base : 245/245 ; quarantaine 48 → 46). Le `N/N` est relevé de la
   sortie vive, jamais recopié.

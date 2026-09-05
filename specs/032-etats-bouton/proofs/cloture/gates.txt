@@ -1,8 +1,8 @@
 # BALAYAGE DE CLÔTURE — vague 032 (T057)
-Date : 2026-09-04T19:10:52Z
+Date : 2026-09-05T07:35:18Z
 Worktree : /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak
 Branche : oceanic-oak
-HEAD : 9e57c15f
+HEAD : 9bbae46b
 
 =============================================================
 ### build
@@ -16,7 +16,7 @@ $ npm run build
 > ds-contracts-poc@0.7.0 tokens
 > node scripts/build-tokens.mjs
 
-✔ Tokens built: 379 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default; 46 viewport overrides × 3 mode(s): tablette≥768px, desktop≥992px, wide≥1400px; + 379 prefixed (--pqr-) for the spec-018 Odoo module
+✔ Tokens built: 386 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default; 46 viewport overrides × 3 mode(s): tablette≥768px, desktop≥992px, wide≥1400px; + 386 prefixed (--pqr-) for the spec-018 Odoo module
 
 > ds-contracts-poc@0.7.0 schema
 > tsx scripts/emit-schema.ts
@@ -31,9 +31,9 @@ $ npm run build
 > ds-contracts-poc@0.7.0 odoo:assets
 > tsx scripts/odoo/build-assets.ts
 
-  ✔   88216 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css
+  ✔   89050 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css
   ✔    1019 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css
-  ✔   29404 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css
+  ✔   29735 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css
   ✔   18780 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2
   ✔   18748 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-500-normal.woff2
   ✔   18688 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-600-normal.woff2
@@ -50,7 +50,7 @@ $ npm run build
 > ds-contracts-poc@0.7.0 odoo:derivation
 > tsx scripts/odoo/build-derivation-report.ts
 
-✔ integrations/odoo/derivation-report.json · 84 blocs · dfabb3866bd4aa3374ac00d93f4aeb51118e335a425472c6b860e91cdf2e7d47
+✔ integrations/odoo/derivation-report.json · 84 blocs · 084ce6fc90fc34f3c3a1668e1bb8e226136f43e2b70cc57ac3b9929e2f64fc0f
 --- exit=0 ---
 
 =============================================================
@@ -68,7 +68,7 @@ $ npm run parity
     · Primitives: 3 breakpoint.* token(s) not expected on the canvas — consumed by the token build as @media conditions, never variables (breakpoint/tablette, breakpoint/desktop, breakpoint/wide)
     · Semantic: 46 viewport-varying token(s) checked against collection "Responsive" instead (tokens/modes/viewport.*)
 
-✔ No new drift — 33 acknowledged finding(s) remain in parity/baseline.json.
+✔ No new drift — 20 acknowledged finding(s) remain in parity/baseline.json.
 
   — acknowledged (baselined, does not fail the check) —
 
@@ -132,58 +132,6 @@ $ npm run parity
     Default differs — contract: "Un témoignage neutre, exemple générique de contenu.", figma: "super très pro et service après vente présent"
     → Adopt into contract (promotion) or reset the property default
 
-  [figma-tokens BEHIND] Primitives/size/devis/root-h-mobile
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/devis/root-h-tablette
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/devis/root-h-desktop
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/devis/root-h-wide
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/row-h-desktop
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/wrapper-h-desktop
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/img-group-h-desktop
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/img-group-h-compact
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/img-h-compact
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/sav/cta-w-desktop
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/carte-categorie/min-w
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/categories-principales/carte-h-mobile
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
-  [figma-tokens BEHIND] Primitives/size/categories-principales/carte-h-tablette
-    Token exists in tokens/ but has no Figma variable
-    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
-
   [figma-tokens AHEAD] Semantic/typography/libelle-bouton/size
     Figma variable has no counterpart in tokens/
     → Review + add to tokens/ (promotion) or delete the variable
@@ -214,8 +162,8 @@ $ npm run plugin:check
 > ds-contracts-poc@0.7.0 plugin:check
 > node scripts/plugin-engine-check.mjs
 
-✔ engine bundle fresh vs committed receipt: 768666 bytes minified, 110 inputs, hash 10f47bd02fe8…
-✔ headless generate: AccordionRow v1.2.0 synced into the mock file (COMPONENT_SET, node 449:450); stored specHash equals the engine mirror (2124589975)
+✔ engine bundle fresh vs committed receipt: 774564 bytes minified, 110 inputs, hash 3f81d32d2f5f…
+✔ headless generate: AccordionRow v1.2.0 synced into the mock file (COMPONENT_SET, node 456:457); stored specHash equals the engine mirror (2124589975)
 ✔ bundle order: ds.carousel-controls plans 2 component scripts, dependencies first (ds.button → ds.carousel-controls)
 ⏭ SKIPPED: the update report's "new — will be created" row and the "N new" count (needs a SECOND contract, so the bundle can carry one the canvas has never seen — Piqueray ships one component). Restore when Piqueray gains a second component.
 ✔ update report (before anything applies):
@@ -223,7 +171,7 @@ $ npm run plugin:check
     1 to update · 0 new · 0 unchanged.
     Nothing has been applied — review the list, then Apply.
     • AccordionRow 1.2.0: unchanged — will be skipped.
-✔ apply: AccordionRow amended in place (same node 449:450), +prop Experimental, markers updated to v9.9.9
+✔ apply: AccordionRow amended in place (same node 456:457), +prop Experimental, markers updated to v9.9.9
 ✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "taille" surfaces "+prop taille" by name (the canvas spelling of "Taille")
 ✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network
 ⏭ SKIPPED: packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.
@@ -285,9 +233,9 @@ $ npm run odoo:inputs:check
 > ds-contracts-poc@0.7.0 odoo:inputs:check
 > tsx scripts/odoo/check-inputs.ts
 
-✔ Entrées conformes au lock — 32 contrats, graphDigest 5f9ed3768188…
+✔ Entrées conformes au lock — 32 contrats, graphDigest e8f87aef4152…
     ds.accordion-row@1.2.0
-    ds.button@2.2.0
+    ds.button@2.3.0
     ds.carousel-controls@1.1.0
     ds.carte@3.1.0
     ds.carte-categorie@2.1.0
@@ -425,7 +373,7 @@ $ npm run odoo:derivation:check
 > ds-contracts-poc@0.7.0 odoo:derivation:check
 > tsx scripts/odoo/build-derivation-report.ts --check
 
-✔ derivation report clean · 84 blocs · dfabb3866bd4…
+✔ derivation report clean · 84 blocs · 084ce6fc90fc…
 --- exit=0 ---
 
 =============================================================
@@ -878,11 +826,11 @@ $ npm run verify:catalog
 
 Checking sharded catalog against catalog/catalog.json …
 
-  catalog.json  140,554 bytes ≈ 35,139 LLM tokens
-  index.json    14,691 bytes ≈ 3,673 LLM tokens
-  tokens.json   19,349 bytes ≈ 4,837 LLM tokens
-  components/   41 shards, 108,193 bytes ≈ 27,048 LLM tokens total (fetched per-use)
-  always-loaded surface: index.json is 10.5% of catalog.json
+  catalog.json  141,359 bytes ≈ 35,340 LLM tokens
+  index.json    14,709 bytes ≈ 3,677 LLM tokens
+  tokens.json   19,633 bytes ≈ 4,908 LLM tokens
+  components/   41 shards, 108,700 bytes ≈ 27,175 LLM tokens total (fetched per-use)
+  always-loaded surface: index.json is 10.4% of catalog.json
 
 ✔ Sharded catalog verified: 41 shards identical to catalog.json, index consistent
 --- exit=0 ---
@@ -898,15 +846,11 @@ $ git status --short examples/polaris/ | wc -l
 ### git status --short
 $ git status --short
 -------------------------------------------------------------
- M CLAUDE.md
- M MILESTONES.md
  M catalog/catalog.json
  M catalog/components/button.json
  M catalog/index.json
  M catalog/tokens.json
  M contracts/button.contract.json
- M contracts/icons.registry.json
- M core/emit-figma-script.ts
  M core/samples/Button.inline.tsx
  M core/samples/button.css
  M core/samples/button.html
@@ -928,28 +872,15 @@ $ git status --short
  M core/samples/reassurances.css
  M core/samples/review-card.css
  M core/samples/sav.css
- M docs/03-token-pipeline.md
  M docs/FIGMA-CAPABILITY-MATRIX.md
- M evals/REMOVED-CASES.md
  M evals/fixtures/odoo-production/version-drift/cases.json
  M evals/golden.json
- M evals/harness.ts
- M evals/legacy-cases.ts
- M evals/results.json
- M evals/run.ts
- M extract/figma/visual-parity/render.ts
  M figma-sync/01-tokens.js
  M figma-sync/04-button.js
  M figma-sync/batch-01.js
- M figma-sync/batch-02.js
- M figma-sync/batch-03.js
- M figma-sync/batch-04.js
- M figma-sync/batch-05.js
- M figma-sync/batch-06.js
  M figma-sync/plugin/engine.receipt.json
  M integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css
  M integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css
- M integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css
  M integrations/odoo/addons/piqueray_ds/static/src/js/version_guard.js
  M integrations/odoo/addons/piqueray_ds/views/components.xml
  M integrations/odoo/config/categories.authoring.json
@@ -972,15 +903,16 @@ $ git status --short
  M parity/snapshots/figma-tokens.json
  M scripts/odoo/scan-saved-versions.ts
  M specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css
+ M specs/032-etats-bouton/proofs/cloture/gates.txt
+ M specs/032-etats-bouton/registre/travail-differe.json
  M src/components/Button/Button.module.css
  M src/components/Button/Button.stories.tsx
  M src/components/Button/Button.tsx
  M src/styles/tokens.css
  M tokens/primitives.tokens.json
- M tokens/semantic.tokens.json
-?? evals/probes/
-?? extract/figma/state-photo/reports/032-avant-vif-vs-032-apres.md
-?? specs/032-etats-bouton/
+?? specs/032-etats-bouton/tools/_probe-td.mts
+?? specs/032-etats-bouton/tools/_probe-td2.mts
+?? specs/032-etats-bouton/tools/_probe-underline.mts
 --- exit=0 ---
 
 ### FIN

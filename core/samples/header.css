@@ -101,7 +101,7 @@
   left: 0px;
 }
 
-/* Button — from ds.button v2.2.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.3.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -239,6 +239,34 @@
 
 .button--variant-iconOnly:hover:not(:disabled) {
   color: var(--color-etat-iconOnly-libelle-survol);
+}
+
+.button--variant-default:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-default-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-orange-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-blanc-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-outlineBlanc-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-link-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-outlineNoir-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  text-decoration-line: var(--decoration-etat-iconOnly-survol);
 }
 
 .button--variant-default:active:not(:disabled) {
