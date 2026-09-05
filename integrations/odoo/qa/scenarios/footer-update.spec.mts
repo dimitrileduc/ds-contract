@@ -41,12 +41,15 @@ async function main() {
     const out = JSON.parse(await page.evaluate(`(function(){
       var f=document.querySelector('[data-pqr-shell="footer"]');
       if(!f) return JSON.stringify({col1:'',col2:'',col3:'',copyright:'',hasLogo:false,hasCta:false});
+      // Colonnes 1 et 2 par position ; la colonne Contact par son adresse d'hôte
+      // — depuis 033 elle porte DEUX lignes, donc l'indice 2 y désignerait le
+      // téléphone seul et l'assertion « col3 identique » passerait à vide.
       var cols=f.querySelectorAll('.footer-column__Texte');
       var cp=f.querySelector('.copyright__Texte');
       return JSON.stringify({
         col1:(cols[0]||{}).textContent||'',
         col2:(cols[1]||{}).textContent||'',
-        col3:(cols[2]||{}).textContent||'',
+        col3:[].map.call(f.querySelectorAll('[data-pqr-footer-contact]'),function(e){return e.textContent.trim()}).join(' | '),
         copyright:(cp||{}).textContent||'',
         hasLogo:!!f.querySelector('.piqueray-logo'),
         hasCta:!!f.querySelector('.button--variant-outlineBlanc')

@@ -252,6 +252,18 @@ export const COORDONNEES_LOCKED_TEXT = [
     '[data-pqr-part="coordonnees-contact-label"]',
     '[data-pqr-part="coordonnees-social-label"]',
 ].map((part) => `.s_pqr_coordonnees ${part}`);
+/** ODOO-033 — Contact du pied de page. Les deux lignes n'autorisent QUE le lien
+ *  (`data-pqr-marks="link"`), et le lien s'édite au popover natif, pas à la
+ *  barre. Sans cette inscription, `toolbar_namespace_providers` retombe sur
+ *  `undefined` et Odoo montre sa barre complète — gras, italique, couleurs — que
+ *  `rich_text_guard` retire ensuite au save : des boutons qui ne « collent » pas.
+ *  Même geste que COORDONNEES_NO_FORMAT, sur l'autre hôte.
+ *  Le pied n'est PAS un snippet : ses zones ne passent pas par PIQUERAY_REOPENED.
+ *  Elles sont éditables parce que ce sont des `t-field` — Odoo rend éditable tout
+ *  `[data-oe-model]` (core_setup_editor_plugin) — donc rien à rouvrir ici. */
+export const FOOTER_CONTACT_NO_FORMAT =
+    '.footer[data-pqr-shell="footer"] [data-pqr-footer-contact]';
+
 /** ODOO-022 (US2) — Réassurances : SEULES les cartes s'éditent (titre simple,
  *  texte rich `strong`) + le libellé du CTA. L'en-tête est FIXÉ par composition
  *  (R3), donc absent des zones rouvertes ; les glyphes/variante du CTA aussi. Les
@@ -849,9 +861,14 @@ export class PiquerayAuthoringPlugin extends Plugin {
             const tousDans = (selecteur) =>
                 targetedNodes.every((node) => closestElement(node, selecteur));
             // Aucune barre de mise en forme : texte simple, PLUS les zones
-            // Coordonnées alignées sur l'allowlist (valeurs + bloc contact). Le
-            // popover natif de lien reste disponible séparément sur le bloc contact.
-            if (tousDans(PIQUERAY_PLAIN_TEXT) || tousDans(COORDONNEES_NO_FORMAT)) return DISABLED_NAMESPACE;
+            // alignées sur leur allowlist — Coordonnées (valeurs + bloc contact)
+            // et les deux lignes de contact du pied. Le popover natif de lien
+            // reste disponible séparément sur ces zones.
+            if (
+                tousDans(PIQUERAY_PLAIN_TEXT) ||
+                tousDans(COORDONNEES_NO_FORMAT) ||
+                tousDans(FOOTER_CONTACT_NO_FORMAT)
+            ) return DISABLED_NAMESPACE;
             if (tousDans(PIQUERAY_RICH_TEXT)) {
                 // Le bouton Gras ne s'offre qu'aux zones dont la liste de marques
                 // (`data-pqr-marks`, la même que lit rich_text_guard) contient

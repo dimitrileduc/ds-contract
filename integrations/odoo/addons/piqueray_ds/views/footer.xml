@@ -42,7 +42,9 @@
             </a>
           </div>
 
-          <!-- FooterColumn ×3 : titres figés, textes éditables via t-field -->
+          <!-- FooterColumn ×3 : titres figés ; Adresse et Horaires en texte
+               simple, Contact en deux lignes de liens — tous des t-field du
+               modèle website. -->
           <div class="footer-column" data-pqr-part="footer-column-root">
             <span class="footer-column__Titre" data-pqr-part="footer-column-titre">Adresse</span>
             <span class="footer-column__Texte" data-pqr-part="footer-column-texte" t-field="website.x_pqr_footer_col1"/>
@@ -51,9 +53,39 @@
             <span class="footer-column__Titre" data-pqr-part="footer-column-titre">Horaires</span>
             <span class="footer-column__Texte" data-pqr-part="footer-column-texte" t-field="website.x_pqr_footer_col2"/>
           </div>
+          <!-- Colonne « Contact » : le téléphone et l'email sont de VRAIS
+               liens, édités DANS la page — un clic sur l'ancre ouvre la fenêtre
+               de lien native d'Odoo, texte et destination au même endroit.
+               DEUX éléments et non un seul : ce sont deux informations
+               distinctes, chacune avec sa propre destination. Recollées en une
+               seule zone, l'éditeur ne saurait plus lequel des deux liens il
+               modifie.
+               Deux champs `Html` du modèle `website` et non du balisage écrit
+               ici : le pied de page est un gabarit système, et une édition
+               faite sur du balisage en dur se sauvegarde dans l'arch de la vue,
+               que `odoo -u piqueray_ds` recharge depuis le XML — l'édition
+               serait effacée au déploiement suivant. Voir models/website.py.
+               `data-pqr-marks="link"` déclare ce que la sauvegarde garde ; la
+               barre de mise en forme est éteinte en face (FOOTER_CONTACT_NO_FORMAT
+               dans authoring.js), pour ne pas offrir des boutons qu'elle annule.
+               Les deux lignes gardent `data-pqr-part="footer-column-texte"` :
+               ce SONT les deux rendus de la part `Texte` du contrat, et cette
+               adresse est ce que la décision d'authoring gouverne. Ce qui les
+               distingue l'une de l'autre est `data-pqr-footer-contact`, un
+               attribut d'HÔTE — inventer deux noms de part aurait créé deux
+               adresses que le contrat ne porte pas et qu'aucune porte ne voit.
+               Le conteneur existe pour UNE raison mesurée : la colonne pose un
+               écart de 16 entre ses enfants (contrat ds.footer-column,
+               `gap: {space.16}`), ce qui écarterait le téléphone de l'email
+               deux fois plus que les lignes des colonnes voisines. Ses deux
+               enfants sont des `div` : de niveau bloc, ils s'empilent d'eux-mêmes.
+               Il n'a ni classe ni adresse : il ne sert qu'à cet écart. -->
           <div class="footer-column" data-pqr-part="footer-column-root">
             <span class="footer-column__Titre" data-pqr-part="footer-column-titre">Contact</span>
-            <span class="footer-column__Texte" data-pqr-part="footer-column-texte" t-field="website.x_pqr_footer_col3"/>
+            <div>
+              <div class="footer-column__Texte o_pqr_editable" data-pqr-part="footer-column-texte" data-pqr-footer-contact="tel" data-pqr-marks="link" t-field="website.x_pqr_footer_tel"/>
+              <div class="footer-column__Texte o_pqr_editable" data-pqr-part="footer-column-texte" data-pqr-footer-contact="email" data-pqr-marks="link" t-field="website.x_pqr_footer_email"/>
+            </div>
           </div>
 
           <!-- col5 : réseaux sociaux -->

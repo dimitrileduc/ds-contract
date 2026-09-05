@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-footer-authoring",
-  "authoringVersion": "2.0.0",
+  "authoringVersion": "2.1.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.footer",
@@ -992,9 +992,12 @@
         ]
       },
       "verdict": "directly-editable",
-      "contentKind": "plain-text",
+      "contentKind": "rich-text",
       "selector": ".footer [data-pqr-part=\"footer-column-texte\"]",
-      "allowedMarks": []
+      "allowedMarks": [
+        "link"
+      ],
+      "reasonCode": "odoo-qweb-composition"
     },
     {
       "decisionId": "footer-copyright-part-root",

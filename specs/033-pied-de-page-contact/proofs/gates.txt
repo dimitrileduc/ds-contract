@@ -1,0 +1,952 @@
+# BALAYAGE DE CLÔTURE — vague 033
+Date : 2026-09-05T14:48:44Z
+Worktree : /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak
+Branche : oceanic-oak
+HEAD : 1d6eb254
+
+=============================================================
+### build
+$ npm run build
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate && npm run odoo:assets && npm run odoo:figma-links && npm run odoo:derivation
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 390 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default; 46 viewport overrides × 3 mode(s): tablette≥768px, desktop≥992px, wide≥1400px; + 390 prefixed (--pqr-) for the spec-018 Odoo module
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 41 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, CarteCategorie, CategoriesPrincipales, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, HeroVideo, Input, MemberCard, MemberPicture, MenuEntree, MenuMobile, NavItem, Notation, PiquerayLogo, Presentation, ProductCard, ProduitsECommerce, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+
+> ds-contracts-poc@0.7.0 odoo:assets
+> tsx scripts/odoo/build-assets.ts
+
+  ✔   89298 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css
+  ✔    1019 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css
+  ✔   29996 o  integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css
+  ✔   18780 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2
+  ✔   18748 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-500-normal.woff2
+  ✔   18688 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-600-normal.woff2
+  ✔   18824 o  integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-700-normal.woff2
+  ✔     478 o  integrations/odoo/addons/piqueray_ds/static/src/img/README.md
+
+8 sortie(s) écrite(s). Vérifier : npm run odoo:assets -- --check
+
+> ds-contracts-poc@0.7.0 odoo:figma-links
+> tsx scripts/odoo/build-figma-links.ts
+
+✔ Figma links generated: 21 panels (0 unavailable)
+
+> ds-contracts-poc@0.7.0 odoo:derivation
+> tsx scripts/odoo/build-derivation-report.ts
+
+✔ integrations/odoo/derivation-report.json · 85 blocs · b27a415c7f3bb0793b0893a2f8ac3ce423d6cf108e820a41540c08b4b7e8bf97
+→ VERT (build)
+
+=============================================================
+### parity
+$ npm run parity
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+ℹ Token expectations rerouted or excluded by design (viewport dimension, spec 031):
+    · Primitives: 3 breakpoint.* token(s) not expected on the canvas — consumed by the token build as @media conditions, never variables (breakpoint/tablette, breakpoint/desktop, breakpoint/wide)
+    · Semantic: 46 viewport-varying token(s) checked against collection "Responsive" instead (tokens/modes/viewport.*)
+
+✔ No new drift — 27 acknowledged finding(s) remain in parity/baseline.json.
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma MISMATCH] CarteCategorie.Style
+    Variant options differ — contract: [Superpose, Empile], figma: [Superpose]
+    → Adopt into contract (promotion) or re-sync the set
+
+  [figma BEHIND] CarteCategorie.State
+    Contract opts into state previews (figmaStatePreviews) but the Figma set has no State variant axis
+    → Re-run the component sync script (amend adds the State preview axis and renames base variants with State=Default)
+
+  [figma BEHIND] CarteCategorie.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] CarteCategorie.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Carte.Disposition
+    Contract prop "disposition" has no VARIANT property on the Figma set
+    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Header.NavItem
+    Contract composes ds.nav-item but no NavItem instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Header.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Presentation.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] ProductCard.State
+    Contract opts into state previews (figmaStatePreviews) but the Figma set has no State variant axis
+    → Re-run the component sync script (amend adds the State preview axis and renames base variants with State=Default)
+
+  [figma BEHIND] Reassurances.Disposition
+    Contract prop "disposition" has no VARIANT property on the Figma set
+    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)
+
+  [figma BEHIND] Reassurances.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Reassurances.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Reassurances.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] Reassurances.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma MISMATCH] ReviewCard.Auteur (default)
+    Default differs — contract: "Prénom N.", figma: "p. syster"
+    → Adopt into contract (promotion) or reset the property default
+
+  [figma MISMATCH] ReviewCard.Témoignage (default)
+    Default differs — contract: "Un témoignage neutre, exemple générique de contenu.", figma: "super très pro et service après vente présent"
+    → Adopt into contract (promotion) or reset the property default
+
+  [figma BEHIND] ReviewCard.State
+    Contract opts into state previews (figmaStatePreviews) but the Figma set has no State variant axis
+    → Re-run the component sync script (amend adds the State preview axis and renames base variants with State=Default)
+
+  [figma-tokens BEHIND] Primitives/color/noir-voile-55
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/shadow/etat/product-card/survol
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/shadow/etat/review-card/survol
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Semantic/color/etat/carte-categorie/voile-survol
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens AHEAD] Semantic/typography/libelle-bouton/size
+    Figma variable has no counterpart in tokens/
+    → Review + add to tokens/ (promotion) or delete the variable
+
+  [figma-tokens BEHIND] Responsive/typography/body/weight
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Responsive/typography/libelle-bouton/size
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+  [icons AHEAD] assets/icons/google-wordmark.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+→ VERT (parity)
+
+=============================================================
+### plugin:check
+$ npm run plugin:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 plugin:check
+> node scripts/plugin-engine-check.mjs
+
+✔ engine bundle fresh vs committed receipt: 780461 bytes minified, 110 inputs, hash 768f226e11ec…
+✔ headless generate: AccordionRow v1.2.0 synced into the mock file (COMPONENT_SET, node 460:461); stored specHash equals the engine mirror (2124589975)
+✔ bundle order: ds.carousel-controls plans 2 component scripts, dependencies first (ds.button → ds.carousel-controls)
+⏭ SKIPPED: the update report's "new — will be created" row and the "N new" count (needs a SECOND contract, so the bundle can carry one the canvas has never seen — Piqueray ships one component). Restore when Piqueray gains a second component.
+✔ update report (before anything applies):
+    • AccordionRow 1.2.0 → 9.9.9: +prop Experimental.
+    1 to update · 0 new · 0 unchanged.
+    Nothing has been applied — review the list, then Apply.
+    • AccordionRow 1.2.0: unchanged — will be skipped.
+✔ apply: AccordionRow amended in place (same node 460:461), +prop Experimental, markers updated to v9.9.9
+✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "taille" surfaces "+prop taille" by name (the canvas spelling of "Taille")
+✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network
+⏭ SKIPPED: packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.
+⏭ SKIPPED: the reverse journey for that composite (design→code recovery of both roots, the composed INSTANCE and the repeated collection — same missing shape). Restore when Piqueray gains a composite.
+plugin-engine-check: all flows green (bundle, generate, update-report, apply, propose-diff, pr-dry-run) — 3 flow(s) SKIPPED and named above; see evals/REMOVED-CASES.md
+→ VERT (plugin:check)
+
+=============================================================
+### deterministic-roundtrip
+$ npx tsx scripts/deterministic-roundtrip.mjs
+-------------------------------------------------------------
+
+DETERMINISTIC ROUND-TRIP — ds.google-reviews@3.1.0 (GoogleReviews)
+
+1. contract → canvas  (the plugin engine, run twice)
+  ✔ mock seeded with 24 migrated (marker-stamped) historical Text Styles
+  ✔ built GoogleReviews both times; node trees byte-identical (30421 bytes fingerprint) — DETERMINISTIC
+  ✔ the repeat+component produced 5 nested instances in "groupeCartes" — dependency depth exercised
+
+2. canvas → contract  (dump attempt; core proof: step 1 byte-identical ×2)
+  ✔ proposeDiff recovered a contract — element: <div>, props: 7
+  ✔ round-trip closes: the anatomy that went to canvas came back (byte-identical ×2 proves the loop)
+
+3. contract → code  (emit React from the contract)
+  ✔ emitted 4724B of React from the same contract — <section> host, repeat+component, text props typed
+
+✔ THE FULL LOOP RAN WITH ZERO AI — pure deterministic functions (the same engine the plugin runs):
+    contract → canvas → contract → code, byte-reproducible.
+  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.
+  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.
+
+→ VERT (deterministic-roundtrip)
+
+=============================================================
+### core-browser-check
+$ node scripts/core-browser-check.mjs
+-------------------------------------------------------------
+✔ core barrel bundles for platform=browser: 11.97 MB raw, 5.27 MB minified
+✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+4044+2301B, html=3577+4512B, react-inline=6992B, figma-script=90343B
+→ VERT (core-browser-check)
+
+=============================================================
+### tsc --noEmit
+$ npx tsc --noEmit
+-------------------------------------------------------------
+→ VERT (tsc --noEmit)
+
+=============================================================
+### tsc -p tsconfig.build.json
+$ npx tsc -p tsconfig.build.json
+-------------------------------------------------------------
+→ VERT (tsc -p tsconfig.build.json)
+
+=============================================================
+### odoo:inputs:check
+$ npm run odoo:inputs:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:inputs:check
+> tsx scripts/odoo/check-inputs.ts
+
+✔ Entrées conformes au lock — 32 contrats, graphDigest 6eda0eaf80c6…
+    ds.accordion-row@1.2.0
+    ds.button@2.3.0
+    ds.carousel-controls@1.1.0
+    ds.carte@3.1.0
+    ds.carte-categorie@2.2.0
+    ds.categories-principales@2.0.0
+    ds.coordonnees@2.2.0
+    ds.copyright@1.0.0
+    ds.devis@2.1.0
+    ds.equipe@1.2.0
+    ds.faq@1.3.0
+    ds.footer@2.1.0
+    ds.footer-column@1.1.0
+    ds.google-reviews@3.1.0
+    ds.header@3.0.0
+    ds.hero@2.0.0
+    ds.hero-video@2.1.0
+    ds.member-card@1.4.0
+    ds.member-picture@1.3.0
+    ds.menu-entree@1.0.0
+    ds.menu-mobile@1.0.0
+    ds.nav-item@1.2.0
+    ds.notation@1.0.0
+    ds.piqueray-logo@1.0.0
+    ds.presentation@4.2.0
+    ds.product-card@3.1.0
+    ds.produits-ecommerce@2.1.0
+    ds.reassurances@2.1.0
+    ds.review-card@4.1.0
+    ds.sav@2.2.0
+    ds.section-header@3.0.0
+    ds.texte-seo@3.0.0
+→ VERT (odoo:inputs:check)
+
+=============================================================
+### odoo:authoring:check
+$ npm run odoo:authoring:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:authoring:check
+> tsx scripts/odoo/check-authoring.ts
+
+
+✔ integrations/odoo/config/categories.authoring.json  (racine ds.categories-principales)
+    props 22/22 · parts 28/28
+
+✔ integrations/odoo/config/coordonnees.authoring.json  (racine ds.coordonnees)
+    props 8/8 · parts 21/21
+
+✔ integrations/odoo/config/devis.authoring.json  (racine ds.devis)
+    props 11/11 · parts 11/11
+
+✔ integrations/odoo/config/equipe.authoring.json  (racine ds.equipe)
+    props 9/9 · parts 11/11
+
+✔ integrations/odoo/config/faq.authoring.json  (racine ds.faq)
+    props 20/20 · parts 30/30
+
+✔ integrations/odoo/config/footer.authoring.json  (racine ds.footer)
+    props 13/13 · parts 36/36
+
+✔ integrations/odoo/config/google-reviews.authoring.json  (racine ds.google-reviews)
+    props 33/33 · parts 112/112
+
+✔ integrations/odoo/config/header.authoring.json  (racine ds.header)
+    props 13/13 · parts 26/26
+
+✔ integrations/odoo/config/hero-video.authoring.json  (racine ds.hero-video)
+    props 11/11 · parts 12/12
+
+✔ integrations/odoo/config/hero.authoring.json  (racine ds.hero)
+    props 11/11 · parts 14/14
+
+✔ integrations/odoo/config/menu-mobile.authoring.json  (racine ds.menu-mobile)
+    props 22/22 · parts 45/45
+
+✔ integrations/odoo/config/presentation.authoring.json  (racine ds.presentation)
+    props 10/10 · parts 11/11
+
+✔ integrations/odoo/config/produits-ecommerce.authoring.json  (racine ds.produits-ecommerce)
+    props 37/37 · parts 45/45
+
+✔ integrations/odoo/config/reassurances.authoring.json  (racine ds.reassurances)
+    props 44/44 · parts 46/46
+
+✔ integrations/odoo/config/sav.authoring.json  (racine ds.sav)
+    props 13/13 · parts 18/18
+
+✔ integrations/odoo/config/texte-seo.authoring.json  (racine ds.texte-seo)
+    props 6/6 · parts 16/16
+
+Toutes les configs couvrent leur graphe.
+→ VERT (odoo:authoring:check)
+
+=============================================================
+### odoo:module:check
+$ npm run odoo:module:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:module:check
+> tsx scripts/odoo/check-module.ts
+
+Porte de structure du module Odoo — sans instance, sans Docker.
+
+  ✔ le manifeste est un littéral lisible — 14 clé(s)
+  ✔ version 19.0.x.y.z — 19.0.1.14.0
+  ✔ dépend de `website` — html_builder arrive par transitivité
+  ✔ déclare une licence — LGPL-3
+  ✔ l'addon de production ne déclare aucune page de banc — banc isolé dans integrations/odoo/addons/piqueray_ds_qa
+  ✔ chaque fichier `data` existe — 5 fichier(s)
+  ✔ les bundles sont exactement les deux attendus — web.assets_frontend + website.website_builder_assets
+  ✔ chaque asset est préfixé `piqueray_ds/` — 29 entrée(s)
+  ✔ chaque asset de bundle existe sur le disque — 29 fichier(s)
+  ✔ harness.xml est bien formé
+  ✔ components.xml est bien formé
+  ✔ snippets.xml est bien formé
+  ✔ au plus 13 racines inscrites — 13
+  ✔ aucun composant interne posable — 11 composants restent internes
+  ✔ aucune racine shell inscrite comme snippet — ds.header, ds.footer, ds.menu-mobile reste(nt) gabarit système
+  ✔ aucune <section> imbriquée dans la chaîne t-call — 84 gabarit(s) traversé(s)
+  ✔ les images du compose sont celles du lock — odoo:19.0-20260803 + postgres:15
+  ✔ le lock et l'épinglage du script concordent
+  ✔ les transcriptions de versions concordent avec le lock — 32 contrats du lock, 3 transcriptions ancrées — versions de contrat, digest, module et authoring
+  ✔ la projection Figma est générée et identifiable
+  ✔ une unique action/option Figma ouvre un onglet isolé
+  ✔ l’option Figma lit la sélection du BuilderContext
+  ✔ la projection Figma précède son consommateur dans les assets
+
+23 passé(s), 0 sauté(s), 0 échoué(s).
+→ VERT (odoo:module:check)
+
+=============================================================
+### odoo:derivation:check
+$ npm run odoo:derivation:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:derivation:check
+> tsx scripts/odoo/build-derivation-report.ts --check
+
+✔ derivation report clean · 85 blocs · b27a415c7f3b…
+→ VERT (odoo:derivation:check)
+
+=============================================================
+### odoo:figma-links:check
+$ npm run odoo:figma-links:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:figma-links:check
+> tsx scripts/odoo/build-figma-links.ts --check
+
+✔ Figma links current: 21 panels
+→ VERT (odoo:figma-links:check)
+
+=============================================================
+### odoo:typecheck
+$ npm run odoo:typecheck
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 odoo:typecheck
+> tsc -p integrations/odoo/tsconfig.json --noEmit
+
+→ VERT (odoo:typecheck)
+
+=============================================================
+### eval
+$ npm run eval
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 eval
+> tsx evals/run.ts
+
+  ✔ C2-refusal  odoo-figma-links-governance
+  ✔ C1-determinism  odoo-production-generated-output
+  ✔ C2-refusal  odoo-authoring-coverage-refusal
+  ✔ C2-refusal  odoo-production-derivation-report
+  ✔ C3-detection  odoo-production-version-drift
+  ✔ C5-extraction  accordion-row-source-cleanup-extraction
+  ✔ C3-detection  baseline-parity-clean
+  ✔ C2-refusal  section-header-v3-api
+  ✔ C2-refusal  section-header-migration-ledger
+  ✔ C2-refusal  section-header-v3-render
+  ✔ C2-refusal  section-header-v3-figma
+  ✔ C2-refusal  section-header-owner-migration
+  ✔ C3-detection  figma-font-family-from-token
+  ✔ C3-detection  figma-text-styles-piqueray
+  ✔ C3-detection  figma-border-color-without-width
+  ✔ C3-detection  absolute-part-out-of-flow
+  ✔ C2-refusal  figma-projection-repair-campaign-gates
+  ✔ C2-refusal  component-repair-workflow-gates
+  ✔ C5-extraction  figma-projection-repair-manifest-generator
+  ✔ C2-refusal  figma-projection-repair-inherited-lock-preflight
+  ✔ C2-refusal  figma-projection-repair-shared-decision-root
+  ✔ C1-determinism  figma-projection-repair-capture-light-verdicts
+  ✔ C8-journey  figma-projection-repair-driver-chain-resume
+  ✔ C2-refusal  figma-projection-repair-board-structural-witness
+  ✔ C2-refusal  responsive-hero-video-foundation-validators
+  ✔ C2-refusal  responsive-hero-video-option-packet
+  ✔ C2-refusal  component-repair-source-baseline
+  ✔ C3-detection  component-repair-protected-facts
+  ✔ C2-refusal  component-repair-live-apply-receipt
+  ✔ C2-refusal  figma-responsive-component-set-declared-creates
+  ✔ C2-refusal  figma-responsive-existing-set-topology
+  ✔ C3-detection  figma-responsive-multiaxis-scenarios
+  ✔ C3-detection  figma-responsive-presentation-scenarios-explicit
+  ✔ C2-refusal  figma-responsive-bindings-typography-allowlisted
+  ✔ C2-refusal  figma-responsive-boundary-idempotence
+  ✔ C2-refusal  figma-responsive-boundary-propagation-idempotence
+  ✔ C3-detection  figma-projection-repair-absolute-lowering
+  ✔ C2-refusal  figma-projection-repair-direct-geometry
+  ✔ C3-detection  figma-projection-repair-growing-image-proportions
+  ✔ C3-detection  figma-projection-repair-bounded-grid
+  ✔ C3-detection  figma-projection-repair-composed-parent-prop-forwarding
+  ✔ C3-detection  figma-projection-repair-icon-instance-swap-visible
+  ✔ C2-refusal  figma-projection-repair-shared-consumer-impact
+  ✔ C2-refusal  figma-projection-repair-reconstruction-idempotence
+  ✔ C2-refusal  figma-projection-repair-repair-receipt-gates
+  ✔ C3-detection  icon-size-tokens-by-prop
+  ✔ C3-detection  dep-resolved-by-marker
+  ✔ C1-determinism  composed-child-slot-content
+  ✔ C1-determinism  zero-height-line-part
+  ✔ C1-determinism  text-prop-and-visible-refs-coexist
+  ✔ C1-determinism  text-fills-constrained-parent
+  ✔ C3-detection  primitives-border-width-parity
+  ✔ C2-refusal  visual-campaign-schema-guards
+  ✔ C2-refusal  visual-layout-context-size
+  ✔ C2-refusal  visual-parity-font-faces
+  ✔ C2-refusal  figma-render-bounds-alignment
+  ✔ C2-refusal  visual-evidence-integrity-guards
+  ✔ C2-refusal  visual-campaign-011-exact-coverage
+  ✔ C2-refusal  visual-campaign-slot-comparison
+  ✔ C2-refusal  visual-campaign-scope-additive
+  ✔ C2-refusal  organism-audit-campaign-scope
+  ✔ C2-refusal  organism-audit-wave-entry
+  ✔ C2-refusal  organism-audit-verdict-algebra
+  ✔ C2-refusal  organism-audit-probative-evidence
+  ✔ C2-refusal  organism-audit-dependency-mapping
+  ✔ C2-refusal  organism-audit-blocked-parent
+  ✔ C2-refusal  organism-audit-non-conversion
+  ✔ C2-refusal  declared-inset-channels
+  ✔ C2-refusal  organism-audit-contract-pin
+  ✔ C3-detection  organism-audit-react-capture
+  ✔ C3-detection  organism-audit-prop-projection
+  ✔ C3-detection  organism-audit-image-prop-path
+  ✔ C3-detection  organism-audit-token-resolution
+  ✔ C3-detection  geometry-detection-code-side
+  ✔ C3-detection  geometry-detection-canvas-side
+  ✔ C3-detection  field-slotted-control-semantics
+  ✔ C2-refusal  declared-object-position
+  ✔ C3-detection  semantic-attribute-map
+  ✔ C3-detection  tab-external-roving-context
+  ✔ C2-refusal  icon-glyph-geometry
+  ✔ C2-refusal  bounded-typography-geometry-justification
+  ✔ C3-detection  component-scalar-propagation
+  ✔ C3-detection  component-boolean-false-propagation
+  ✔ C3-detection  literal-text-newline-preservation
+  ✔ C2-refusal  img-paint-preserved-on-amend
+  ✔ C2-refusal  photos-instance-overrides-preserved
+  ✔ C3-detection  component-rich-text-prop-value
+  ✔ C3-detection  part-literal-rich-text
+  ✔ C3-detection  repeat-enum-item-field
+  ✔ C2-refusal  visual-probative-evidence
+  ✔ C2-refusal  fractional-image-receipt
+  ✔ C2-refusal  campaign-capture-scale
+  ✔ C2-refusal  jpeg-exif-orientation-dimensions
+  ✔ C2-refusal  visual-regions-and-geometry
+  ✔ C2-refusal  visual-attribution-audit
+  ✔ C3-detection  baseline-acknowledges-without-failing
+  ✔ C4-convergence  promotion-converges
+  ✔ C3-detection  detect-icon-registry-divergence
+  ✔ C2-refusal  refuse-unregistered-icon-enum
+  ✔ C5-extraction  lower-icon-swap-and-visibility-into-props
+  ✔ C5-extraction  preserve-nested-empty-boolean-and-swap-props
+  ✔ C2-refusal  figma-script-referees-invalid-contracts
+  ✔ C3-detection  detect-default-and-kind-drift
+  ✔ C2-refusal  refuse-unknown-token-reference
+  ✔ C1-determinism  provenance-fields-survive-roundtrip
+  ✔ C2-refusal  refuse-schema-invalid-contract
+  ✔ C2-refusal  refuse-unknown-category
+  ✔ C1-determinism  tolerate-contract-without-category
+  ✔ C6-theming  category-groups-story-and-catalog
+  ✔ C1-determinism  native-input-root-void-self-closes-with-attrs
+  ✔ C1-determinism  native-checkbox-and-select-render-correctly
+  ✔ C3-detection  internal-glyph-consumed-not-orphan
+  ✔ C1-determinism  deterministic-regeneration
+  ✔ C1-determinism  odoo-tokens-output
+  ✔ C3-detection  detect-code-added-prop
+  ✔ C3-detection  detect-code-removed-prop
+  ✔ C3-detection  detect-code-enum-drift
+  ✔ C3-detection  detect-code-default-drift
+  ✔ C3-detection  detect-figma-missing-property
+  ✔ C3-detection  detect-figma-extra-property
+  ✔ C3-detection  detect-figma-variant-options-drift
+  ✔ C3-detection  detect-token-alias-drift
+  ✔ C3-detection  detect-token-missing-variable
+  ✔ C3-detection  detect-token-extra-variable
+  ✔ C2-refusal  refuse-circular-dependency
+  ✔ C2-refusal  refuse-unknown-component-ref
+  ✔ C2-refusal  refuse-contract-edge-cases
+  ✔ C5-extraction  extract-foreign-library
+  ✔ C5-extraction  diagnose-foreign-green-red-green
+  ✔ C5-extraction  fluent-sibling-types-merge
+  ✔ C5-extraction  as-expression-named
+  ✔ C5-extraction  intersection-named
+  ✔ C5-extraction  keyof-enum-resolution
+  ✔ C5-extraction  union-of-refs-composition
+  ✔ C5-extraction  cem-nameless-event-skip
+  ✔ C3-detection  native-button-type
+  ✔ C3-detection  code-only-scalar-prop
+  ✔ C3-detection  component-visiblewhen-emission
+  ✔ C3-detection  component-children-prop-emission
+  ✔ C3-detection  single-value-enum-code-extraction
+  ✔ C3-detection  visual-root-alignment
+  ✔ C3-detection  visual-mask-cannot-false-green
+  ✔ C3-detection  visual-transparent-ink-surface
+  ✔ C3-detection  bottom-inset-border
+  ✔ C3-detection  icon-variant-svg-size
+  ✔ C3-detection  structured-rich-text
+  ✔ C3-detection  rich-text-parity-projection
+  ✔ C2-refusal  rich-text-mark-styles
+  ✔ C5-extraction  plain-token-wrap
+  ✔ C5-extraction  stylex-token-wrap
+  ✔ C5-extraction  fill-matrix-depth-mint
+  ✔ C3-detection  raw-text-root-projection
+  ✔ C3-detection  underscore-set-compose
+  ✔ C2-refusal  session-id-collision-suffix
+  ✔ C3-detection  slot-wrapper-floor
+  ✔ C1-determinism  golden-generated-output
+  ✔ C3-detection  detect-snapshot-provenance-mismatch
+  ✔ C3-detection  detect-stale-snapshot
+  ✖ C5-extraction  extract-code-roundtrip-identity
+      Error: Round trip not clean:
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/core/extract-react-tsx.js' imported from /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/extract/adapters/react-tsx.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolveBaseSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:9115)
+    at resolveDirectorySync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:10328)
+    at resolveTsPathsSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:11560)
+    at resolve (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:13343) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/core/extract-react-tsx.js'
+}
+
+Node.js v24.19.0
+
+  ✖ C5-extraction  extract-raw-values-never-invented
+      Error: Extraction failed:
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/extract/run.ts' imported from /Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolveBaseSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:9115)
+    at resolveDirectorySync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:10328)
+    at resolveTsPathsSync (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:11560)
+    at resolve (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/node_modules/tsx/dist/register-D5KIhaFJ.mjs:2:13343) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/oceanic-oak/evals/.scratch/extract/run.ts'
+}
+
+Node.js v24.19.0
+
+  ✔ C5-extraction  design-propose-unbound-fill-provisional-mint
+  ✔ C1-determinism  emitter-invariants-hold-and-fail
+  ✔ C1-determinism  core-browser-importable
+  ✔ C5-extraction  design-base-instance-flattening-no-self-reference
+  ✔ C2-refusal  generator-refuses-component-ref-cycles
+  ✔ C5-extraction  design-semantics-element-inference
+  ✔ C5-extraction  design-state-axis-promotion-cbds-replay
+  ✔ C5-extraction  design-child-stubs-prevent-scope-refusals
+  ✔ C5-extraction  cross-import-token-scope
+  ✔ C5-extraction  part-level-state-overrides
+  ✔ C1-determinism  part-state-disabled-label-browser-probe
+  ✔ C5-extraction  design-shadow-mints-and-renders
+  ✔ C5-extraction  design-pointer-geometry-carried
+  ✔ C5-extraction  design-pointer-false-no-arrow
+  ✔ C5-extraction  design-text-weight-and-line-height-carried
+  ✔ C5-extraction  design-id-sanitize-at-proposal
+  ✔ C5-extraction  design-batch-isolation-plain-words-skips
+  ✔ C5-extraction  design-imported-token-layer-registration-resolution
+  ✔ C5-extraction  design-correlation-over-default-state-occurrences
+  ✔ C5-extraction  design-dialog-global-part-dedup
+  ✔ C5-extraction  design-canvas-box-parity
+  ✔ C2-refusal  design-ai-fix-removal-guardrails
+  ✔ C5-extraction  design-min-height-carried
+  ✔ C1-determinism  hit-area-enforced
+  ✔ C1-determinism  a11y-role-and-accessible-name
+  ✔ C1-determinism  button-icon-only-and-carousel-controls
+  ✔ C5-extraction  theme-axis-promotion
+  ✔ C5-extraction  negative-spacing-overlap
+  ✔ C5-extraction  var-chain-resolution
+  ✔ C5-extraction  composition-typography-carry
+  ✔ C2-refusal  multi-tokensbyprop-refusals
+  ✔ C1-determinism  width-override-fill-both-surfaces
+  ✔ C2-refusal  columns-override-grid-only
+  ✔ C1-determinism  reassurances-grid-variant-isolation
+  ✔ C1-determinism  rgba-stroke-emitter-fixes
+  ✔ C1-determinism  s4-canvas-channel-lifts
+  ✔ C1-determinism  figma-60-canvas-emitter-fixes
+  ✔ C1-determinism  polaris-showcase-reproducible
+  ✔ C1-determinism  computed-floor-gate
+dom-anatomy-promotion: ribbon "box-2", 4 tone glyphs, dismiss+action gated parts present; HTML renders inline svg
+  ✔ C3-detection  dom-anatomy-promotion
+  ✔ C1-determinism  svg-content-round-trip
+canvas-pixel-gate: 10 scorecards present, summaries row-consistent, every >10% cell named
+  ✔ C3-detection  canvas-pixel-gate-receipts
+cli-smoke: init → extract(5+2 named) → generate/figma byte-stable ×2 → diff 0/1 → propose-pr dry-run plan → lazy computed seam intact
+  ✔ C7-cli  cli-smoke
+propose-pr-live-shape: PUT body carries sha on update, omits it on create, base64 verbatim; PR body summarizes the change (live open is a network receipt)
+  ✔ C7-cli  propose-pr-live-shape
+emitter-plugin-loads: registered (live array + getEmitters + byName), 4 named refusals, CLI --emitter emitted badge.inventory.txt
+  ✔ C7-cli  emitter-plugin-loads
+canvas-gate-standing-pin: 7/10 PASS pinned (Avatar, Badge, Banner, Checkbox, RadioButton, Spinner, Thumbnail); 10/10 means at or under their round-5d pins, all >10% cells named
+  ✔ C3-detection  canvas-gate-standing-pin
+journey-engineer: dump → propose (1/0) → manifest generate (local CLI build) → skeleton glob hit → browser render matches the 11-point Figma ground truth
+  ✔ C8-journey  journey-engineer
+journey-designer: manifest figma-emit (local CLI build) → 42-variant compiled set (14×3, tone-substituted fills, slash-bound tokens, icon+label anatomy) → push DRY through the real worker pipeline (zero network)
+  ✔ C8-journey  journey-designer
+deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the anatomy, contract→code emits — the full journey is pure functions, no AI in the conversion
+  ✔ C1-determinism  deterministic-roundtrip
+react-hyphenated-part-names-execute: emitReact + emitReactInline outputs bundled and EXECUTED with react-dom/server — hyphen-named parts render real classes (the styles.label-2 subtraction defect stays fixed)
+  ✔ C3-detection  react-hyphenated-part-names-execute
+svg-dash-animation-vehicle-pin: 22 committed assets dash-free; committed checkbox capture (dasharray 2px in style) reconstructs to the continuous stroke with the svg-dash-channels-dropped receipt, byte-equal to the committed asset
+  ✔ C3-detection  svg-dash-animation-vehicle-pin
+canvas-margin-gap-pin: checkbox/radio itemSpacing binds the margin-right variable; badge keeps residual pip margins + applyMarginBox runtime; all four badge corners bind p/border-radius-200 (no size-8 siblings)
+  ✔ C3-detection  canvas-margin-gap-pin
+amend-margin-box: badge script carries applyMarginBox on BOTH the create (buildNode) and re-amend (amendSet) top-level child loops — margins now survive a re-amend at source, not a canvas correction
+  ✔ C3-detection  amend-margin-box
+checkbox-center: an inset-overlay container WITH content compiles to CENTER/CENTER (glyph centered in the control box); empty backdrop overlays untouched
+  ✔ C3-detection  checkbox-center
+optional-adornment-gating-general-fixture: default variant plain (no pip), pip=a variant has it, "Show Icon" boolean exposed default OFF (icon node visibleDefault false), unset value enumerated as a real variant
+  ✔ C3-detection  optional-adornment-gating-general-fixture
+portal-capture-modal: current reader ABSENT (0) → 1 portaled root, 3765 B dialog; descends to 2 real roots
+  ✔ C5-extraction  portal-capture-modal
+multi-root-anatomy: {dialog, backdrop}, 21 parts depth 8 (spike 17/7) — single-root reader returns 0
+  ✔ C5-extraction  multi-root-anatomy
+simple-component-anatomy-unchanged: Badge/Button/Checkbox descend zero wrappers; multi-root anatomy == single-root anatomy (byte-identical)
+  ✔ C1-determinism  simple-component-anatomy-unchanged
+emitter-multi-root-modal: {dialog, backdrop} emits valid React (bundles+renders headless) + HTML markup + figma-script (referee frame carries both roots, headless-executes) — dialog+backdrop present, Cancel/Save actions render
+  ✔ C8-journey  emitter-multi-root-modal
+single-root-golden-invariant: all 41 repo contracts are single-root (0 multi-root); Badge/Button/Card take the untouched forwardRef+.root path, zero multi-root marker — byte authority is golden-generated-output
+  ✔ C1-determinism  single-root-golden-invariant
+  ✔ C5-extraction  vector-asset-figma-capture-proposes-external-geometry
+  ✔ C3-detection  vector-asset-non-square-token-bound
+astryx-dev-journey: 10 flagship contracts → generator byte-stable × 2 runs (fd7424e47e73…); committed badge.figma.js compiles to the 14-variant Badge set (referee)
+  ✔ C8-journey  astryx-dev-journey
+pages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1
+  ✔ C1-determinism  pages-compare-regions-additive
+  ✔ C3-detection  detect-figma-missing-nested-instance
+review-card-avatar-exclusivity-is-schema-enforced: les deux booléens ont disparu; `avatar` est un enum Initiale|Photo et les deux parts sont gardées par la même prop sur deux valeurs distinctes — l'état « deux avatars » n'a plus de représentation, l'exclusivité n'est plus une convention
+  ✔ C3-detection  review-card-avatar-exclusivity-is-schema-enforced
+rich-text-prop-underline-reaches-every-code-surface: la marque `underline` du défaut d'une prop rich-text est rendue (<u>) et sa décoration déclarée sur les surfaces HTML et React ; retirée, les deux disparaissent
+  ✔ C3-detection  rich-text-prop-underline-reaches-every-code-surface
+google-reviews-repeat-renders-sample-on-static-surfaces: React maps the live "avis" array (avis?.map, undefined renders nothing); html + react-inline both render the contract's 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)
+  ✔ C3-detection  google-reviews-repeat-renders-sample-on-static-surfaces
+img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas; the caption carries the image-frame clause on ONE line with the † still last, and a component without an img part is untouched; and — a first for this repo — the two documentation copies (capability-matrix row + its A5 addendum, handoff §6 + its pointer) are pinned BYTE-FOR-BYTE, so canvas copy and doc copy cannot drift apart in silence
+  ✔ C3-detection  img-part-canvas-placeholder-named
+member-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)
+  ✔ C2-refusal  member-picture-fixed-circle-and-named-a5-placeholder
+  ✔ C3-detection  organism-audit-case-reference-provenance
+  ✔ C2-refusal  triage-six-value-vocabulary
+  ✔ C2-refusal  measure-gate-fail-closed-policy
+  ✔ C2-refusal  geometry-gate-policy-check
+  ✔ C2-refusal  gradient-literal-channel
+  ✔ C1-determinism  react-box-model-border-box
+  ✔ C1-determinism  emit-html-select-option-text
+  ✔ C3-detection  icon-tokens-by-prop-svg-mirror
+  ✔ C3-detection  preservation-013-clobber-detected
+  ✔ C2-refusal  figma-readiness-foundation
+  ✔ C2-refusal  figma-readiness-timeline-and-candidates
+  ✔ C2-refusal  figma-readiness-owner-gates
+  ✔ C3-detection  figma-readiness-diagnosis-and-impact
+  ✔ C2-refusal  figma-readiness-routing-and-consolidation
+  ✔ C1-determinism  nested-heading-part-semantics-and-margin-reset
+  ✔ C1-determinism  focus-not-pressed-browser-probe
+  ✔ C2-refusal  refuse-hollow-state-previews
+  ✔ C2-refusal  refuse-alias-in-primitives-layer
+
+246/248 evals passed — evals/results.json
+46 legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.
+→ ROUGE (eval)
+
+=============================================================
+### baseline — compte
+$ npx tsx -e "const b=require('./parity/baseline.json'); const n=Array.isArray(b)?b.length:(Array.isArray(b.acknowledged)?b.acknowledged.length:Object.keys(b).length); console.log('ENTREES='+n)"
+-------------------------------------------------------------
+ENTREES=47
+→ VERT (baseline — compte)
+
+=============================================================
+### geometry:gate
+$ npm run geometry:gate
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 geometry:gate
+> tsx extract/geometry-gate/run.ts
+
+geometry:gate — verdict: PASS (exit 0)
+Comptage (en direct, jamais figé) :
+  contracts 41 · geometric entries 12 · governed refs 391 · named literals 12 · invisible 0
+✓ zero invisible literal, zero registry refusal
+→ VERT (geometry:gate)
+
+=============================================================
+### mint:check
+$ npm run mint:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 mint:check
+> tsx core/mint-check.ts
+
+
+Back-compat (mintUnbound off)
+  ✔ no mintedTokens on the result
+  ✔ unbound literals stay report entries
+  ✔ no imported.* ref anywhere
+
+Minting (mintUnbound on)
+  ✔ mintedTokens returned
+  ✔ dedupe: #333333 ×3 sites → imported.shared.color-333333
+  ✔ dedupe: the shared color leaf lists all 3 usage sites
+  ✔ dedupe: a, b, c all bind the shared color leaf
+  ✔ dedupe: 4px ×5 sites (radii + padding-block) → imported.shared.size-4
+  ✔ dedupe: the shared size leaf lists 5 usage sites
+  ✔ variants: root background-color is the substituted ref {imported.sample.root.background-color.{tone}}
+  ✔ variants: a leaf per axis value with the right literals
+  ✔ variants: uncorrelated d fill minted NOTHING
+  ✔ variants: the uncorrelated drift is a named review item
+  ✔ variants: d fill survives as the one remaining UNBOUND entry
+  ✔ gap minted with px units
+  ✔ padding-inline minted with px units
+  ✔ text color minted by usage site
+  ✔ font-size minted when no derived style matches
+  ✔ every minted ref lives under the imported. namespace
+  ✔ every minted ref lands in notes as provisional
+  ✔ minting is deterministic
+  ✔ emitReact + emitHtml run green with repo + minted trees
+  ✔ emitted css references the minted custom properties
+  ✔ mintedTokenCss carries every literal the bindings resolve to
+
+✔ all minting invariants hold (dedupe, per-variant, refusal, determinism, generation)
+→ VERT (mint:check)
+
+=============================================================
+### mint:code:check
+$ npm run mint:code:check
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 mint:code:check
+> tsx core/mint-code-check.ts
+
+
+Harvest (:root custom properties)
+  ✔ declarations harvested from :root and html
+  ✔ media-scoped :root override ignored (base value wins)
+  ✔ attribute-scoped :root ignored
+
+Uniform + foreign-var resolution
+  ✔ chained var resolves to the literal (gap → 0.5rem)
+  ✔ px leaf minted (border-radius → 8px)
+  ✔ number leaf minted (font-weight → 600)
+  ✔ html-block declaration resolves (line-height → 20px)
+  ✔ fallback resolves when the var is undeclared (font-size → 16px)
+
+Dedupe
+  ✔ #333333 ×3 uniform sites → imported.shared.color-333333
+  ✔ the shared leaf lists all 3 usage sites
+  ✔ all three parts bind the shared leaf
+
+Variants
+  ✔ variant-classed background binds the substituted ref
+  ✔ uncovered primary fills from the base rule (cascade default)
+  ✔ per-variant leaves carry the resolved literals
+  ✔ size-classed min-height binds the substituted ref
+  ✔ size leaves carry the literals
+
+States
+  ✔ hover rule mints under the state segment
+
+Refusals (named, never guessed)
+  ✔ undeclared var carried verbatim with the expression and reason
+  ✔ unmintable keyword refused by name
+  ✔ partial axis coverage without a base rule refused by name
+  ✔ undeclared axis refused by name
+
+Invariants
+  ✔ every minted ref lives under the imported. namespace
+  ✔ count equals the leaf ledger
+  ✔ minting is deterministic
+  ✔ mintedTokenCss carries every literal the bindings resolve to
+
+Wired: proposeFromCode default (mint off — report-only behavior unchanged)
+  ✔ no mintedTokens on the result
+  ✔ no imported.* ref anywhere
+  ✔ foreign vars stay named refusals
+  ✔ raw literals stay RAW VALUE report entries
+
+Wired: proposeFromCode with mintUnbound + extraCss (tokens.css)
+  ✔ mintedTokens returned on the proposal
+  ✔ variant-classed background binds the substituted ref in the CONTRACT
+  ✔ padding shorthand split and minted (padding-inline 16px)
+  ✔ hover state bound to the minted state leaf
+  ✔ hover reaches the contract states list
+  ✔ unresolvable var carried verbatim in the notes, not bound
+  ✔ MINTED notes name every leaf as provisional
+  ✔ bound sites no longer report as refusals
+  ✔ emitReact + emitHtml run green with repo + minted trees
+  ✔ emitted css references the minted custom properties per variant
+
+✔ all code-minting invariants hold (harvest, uniform, dedupe, variants, states, verbatim, wiring, generation)
+→ VERT (mint:code:check)
+
+=============================================================
+### verify:catalog
+$ npm run verify:catalog
+-------------------------------------------------------------
+
+> ds-contracts-poc@0.7.0 verify:catalog
+> node scripts/verify-catalog-shards.mjs
+
+Checking sharded catalog against catalog/catalog.json …
+
+  catalog.json  141,359 bytes ≈ 35,340 LLM tokens
+  index.json    14,709 bytes ≈ 3,677 LLM tokens
+  tokens.json   19,633 bytes ≈ 4,908 LLM tokens
+  components/   41 shards, 108,700 bytes ≈ 27,175 LLM tokens total (fetched per-use)
+  always-loaded surface: index.json is 10.4% of catalog.json
+
+✔ Sharded catalog verified: 41 shards identical to catalog.json, index consistent
+→ VERT (verify:catalog)
+
+=============================================================
+### polaris re-pin (ZERO)
+$ test "$(git status --short examples/polaris/ | wc -l | tr -d " ")" = "0"
+-------------------------------------------------------------
+→ VERT (polaris re-pin (ZERO))
+
+=============================================================
+### git status --short
+$ git status --short
+-------------------------------------------------------------
+ M contracts/product-card.contract.json
+ M evals/fixtures/odoo-production/version-drift/cases.json
+ M evals/golden.json
+ M evals/results.json
+ M figma-sync/36-productcard.js
+ M figma-sync/batch-06.js
+ M figma-sync/plugin/engine.receipt.json
+ M integrations/odoo/addons/piqueray_ds/models/website.py
+ M integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css
+ M integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js
+ M integrations/odoo/addons/piqueray_ds/static/src/js/generated/figma_links.js
+ M integrations/odoo/addons/piqueray_ds/static/src/js/version_guard.js
+ M integrations/odoo/addons/piqueray_ds/views/components.xml
+ M integrations/odoo/addons/piqueray_ds/views/footer.xml
+ M integrations/odoo/config/footer.authoring.json
+ M integrations/odoo/config/inputs.lock.json
+ M integrations/odoo/qa/scenarios/footer-edit.spec.mts
+ M integrations/odoo/qa/scenarios/footer-update.spec.mts
+ M parity/snapshots/figma-components.json
+ M parity/snapshots/figma-tokens.json
+ M scripts/odoo/scan-saved-versions.ts
+ M specs/023-odoo-footer-shell/proofs/footer-edit.json
+ M specs/023-odoo-footer-shell/proofs/footer-update.json
+ M src/components/ProductCard/ProductCard.stories.tsx
+ M src/components/ProductCard/ProductCard.tsx
+?? extract/figma/state-photo/reports/033-avant-vs-033-apres.md
+?? integrations/odoo/qa/scenarios/footer-contact.spec.mts
+?? specs/033-pied-de-page-contact/
+?? specs/tiny/vague-033-etats-cartes.md
+→ VERT (git status --short)
+
+=============================================================
+### FIN — 20 vert(s), 1 rouge(s)
+Rouges : eval

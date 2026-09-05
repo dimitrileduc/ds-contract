@@ -1,0 +1,22 @@
+{
+  "receiptId": "footer-contact-odoo-019-foundation",
+  "scenarioId": "footer-contact",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "insertion hostile dans la ligne téléphone du pied",
+  "observations": [
+    "[pass] 1 — un clic sur le lien ouvre la fenêtre de lien native — attendu « popover visible sur une destination tel: », observé « popover sur « tel:+3287463266 » »",
+    "[pass] 1 bis — aucune barre de mise en forme sur la zone — attendu « pas de bouton Gras », observé « aucun bouton de format »",
+    "[pass] 2 — la sauvegarde part et répond 2xx — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] 3 — l'édition est dans le CHAMP du modèle — attendu « le champ contient « Tél QA » », observé « <p>Tél QA :  <a href=\"tel:+3211111111\">+32 (0)11 11 11 11</a>italique <a>hostile »",
+    "[pass] 3 bis — le gabarit du pied n’a pas été copié pour ce site — attendu « copies site-spécifiques : 0 », observé « copies : 0 (vues : 1) »",
+    "[pass] 4 — liens conservés, italique déplié, URL exécutable refusée — attendu « 0 balise interdite · 0 URL exécutable · au moins un lien tel: », observé « {\"interdites\":0,\"executables\":[],\"liens\":[\"tel:+3211111111\",null,\"mailto:info@piqueray.be\"]} »",
+    "[pass] 4 bis — la colonne rend toujours DEUX lignes — attendu « 2 lignes », observé « 2 »",
+    "[pass] 5 — mise à jour du module : exit 0 — attendu « exit 0 », observé « exit 0 »",
+    "[pass] 5 bis — Odoo repart — attendu « healthcheck OK », observé « OK »",
+    "[pass] 5 ter — l'édition du rédacteur SURVIT au déploiement — attendu « la ligne contient toujours « Tél QA » », observé « [\"Tél QA : \\n+32 (0)11 11 11 11italique\\nhostile\",\"Email: info@piqueray.be\"] »",
+    "[pass] 5 quater — les destinations survivent aussi — attendu « [\"tel:+3211111111\",null,\"mailto:info@piqueray.be\"] », observé « [\"tel:+3211111111\",null,\"mailto:info@piqueray.be\"] »"
+  ],
+  "artifacts": [],
+  "limitCodes": []
+}

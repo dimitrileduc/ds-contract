@@ -1,0 +1,51 @@
+{
+  "$comment": "T0 — relevé AVANT, par identifiant de nœud. Master FooterColumn 2079:2246, 69 instances, dont 23 colonnes « Contact ».",
+  "date": "2026-09-05",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "master": { "id": "2079:2246", "nom": "FooterColumn", "type": "COMPONENT" },
+  "versionNommee": { "libelle": "033 — avant contact gouverne dans le pied de page", "versionId": "2395626461603698209" },
+  "photographieX": { "label": "033-avant", "planches": 10, "versionFichier": "v2395626461603698209" },
+  "nbInstances": 69,
+  "repartitionParTitre": { "Adresse": 23, "Horaires": 23, "Contact": 23 },
+  "repartitionParPage": { "031 · Planches de validation": 39, "Pages": 27, "DS · Organisms": 3 },
+  "defautDeSourceReleve": {
+    "constat": "Les 23 colonnes Contact portent le MÊME contenu écrit de deux façons : 14 avec un retour chariot suivi de deux espaces (\\r  ), 9 avec un simple saut de ligne (\\n). Même chose sur Adresse et Horaires.",
+    "consequence": "Un séparateur invisible qui varie selon l'instance — exactement ce que la règle de propreté de source demande de nettoyer AVANT de contracter.",
+    "resolution": "Disparaît par construction : téléphone et email deviennent deux champs distincts, il n'y a plus de séparateur à écrire."
+  },
+  "contenuUniforme": {
+    "telephone": "+32 (0)87 46 32 66",
+    "email": "info@piqueray.be",
+    "note": "Les 23 colonnes portent la MÊME valeur. Aucune n'a de contenu propre — donc le défaut du master peut porter les deux champs, et aucune surcharge d'instance n'est nécessaire."
+  },
+  "les23ColonnesContact": [
+    { "id": "2342:33149", "hote": "Footer", "page": "DS · Organisms", "role": "master du pied de page — c'est LUI qui propage aux 9 pages" },
+    { "id": "2735:12617", "hote": "031 · FOOTER — 4 variantes", "page": "031 · Planches de validation" },
+    { "id": "2735:12626", "hote": "031 · FOOTER — 4 variantes", "page": "031 · Planches de validation" },
+    { "id": "2735:12497", "hote": "031 · FOOTER — 4 variantes", "page": "031 · Planches de validation" },
+    { "id": "2732:10941", "hote": "031 · FOOTER — 4 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2735:12510;2735:12617", "hote": "031 · FOOTER — 4 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2738:15136;2735:12626", "hote": "031 · MENU MOBILE — 2 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2738:13712;2735:12626", "hote": "031 · MENU MOBILE — 2 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2738:14633;2735:12617", "hote": "031 · MENU MOBILE — 2 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2738:13632;2735:12617", "hote": "031 · MENU MOBILE — 2 variantes", "page": "031 · Planches de validation" },
+    { "id": "I2735:12684;2735:12626", "hote": "031 · DEMO HOME TABLETTE", "page": "031 · Planches de validation" },
+    { "id": "I2735:12728;2735:12497", "hote": "031 · DEMO HOME DESKTOP", "page": "031 · Planches de validation" },
+    { "id": "I2735:12640;2735:12617", "hote": "031 · DEMO HOME MOBILE", "page": "031 · Planches de validation" },
+    { "id": "I2735:12771;2732:10941", "hote": "Accueil (planche 031)", "page": "031 · Planches de validation" },
+    { "id": "I2121:5128;2342:33149", "hote": "Accueil", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:5088;2342:33149", "hote": "Portes de garage", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:5048;2342:33149", "hote": "Portes de garage résidentielles", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:5008;2342:33149", "hote": "Portes de garage industrielles", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:4968;2342:33149", "hote": "Motorisation", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:4928;2342:33149", "hote": "Portes d’entrée", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:4888;2342:33149", "hote": "Dépannage/SAV", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:4848;2342:33149", "hote": "À Propos", "page": "Pages", "herite": "2342:33149" },
+    { "id": "I2121:4808;2342:33149", "hote": "Contactez-nous", "page": "Pages", "herite": "2342:33149" }
+  ],
+  "correctionDeLEstimation": {
+    "annonce": "23 instances à reprendre une par une, dont 27 sur des pages réelles",
+    "mesure": "Les 9 colonnes des pages réelles sont IMBRIQUÉES dans une instance du master Footer (2342:33149) : elles héritent de lui. Poser la variante sur le master suffit. Le nombre de gestes manuels tombe de 23 à ~14, et aucune surcharge de texte n'est à ressaisir puisque les 23 portent la même valeur.",
+    "aVerifierApres": "que les 9 pages ont bien hérité, sans surcharge résiduelle"
+  }
+}

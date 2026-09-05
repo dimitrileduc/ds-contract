@@ -364,11 +364,25 @@
  *     gouverné, comme (2), (3) et (5) le font déjà.
  * (7) Téléphone et email de la colonne « Contact » : même famille, déclenchée par
  *     le passage des deux valeurs en `<a>` (spec 033). MESURÉ, pas déduit : au
- *     REPOS, `.o_footer a:not(.btn)` (Odoo, 0,2,1, teinte #583B51) bat
- *     `.footer-column__numero` (0,1,0) — les deux valeurs s'affichaient en
- *     bordeaux au lieu du blanc du contrat. Au SURVOL en revanche la règle
- *     générée est à (0,4,0) et gagne déjà : le survol était juste, le repos
- *     faux — ce qui rendait le défaut facile à manquer.
+ *     REPOS, `.o_footer a:not(.btn)` (Odoo, 0,2,1) impose #583B51 et retire le
+ *     soulignement. Relevé sur la page vive en COUPANT nos deux règles : les
+ *     liens passent de `rgb(255,255,255) / underline` à `rgb(88,59,81) / none`,
+ *     et les seuls prétendants qui matchent sont `a` (Bootstrap),
+ *     `.o_footer a:not(.btn)` (#583B51) et `.o_footer a:not(.btn):hover`
+ *     (#432C3D).
+ *     La règle porte donc REPOS ET ÉTATS. Non par prudence : ce `:hover` de
+ *     l'hôte est à (0,3,1), la MÊME spécificité que notre sélecteur de repos —
+ *     à égalité, c'est l'ordre des sources qui tranche, un équilibre trop
+ *     fragile pour être laissé au hasard. Nos sélecteurs d'état montent à
+ *     (0,4,1) et gagnent par spécificité.
+ *     La leçon est celle de (6), une porte plus loin : neutraliser un conflit
+ *     d'hôte sur un canal oblige à le neutraliser dans TOUS les états de ce
+ *     canal, sinon on répare le repos en cassant le survol.
+ *     Ce sont les deux SEULS canaux repris (`color`, `text-decoration`), et
+ *     `color: inherit` plutôt qu'un jeton : la valeur juste est celle que la
+ *     colonne porte déjà depuis le contrat, pas une seconde copie de la même
+ *     couleur qui pourrait en diverger. Le contrat ne porte aucun canal de lien
+ *     et n'a pas à en porter : `<a href>` est HOST-ONLY (matrice de capacité §9).
  *     TROISIÈME occurrence de cette classe de conflit dans cette zone. La cause
  *     de fond — les règles générées sortent sans crochet résistant à une
  *     enveloppe d'hôte — est au registre sous DW-032-008. */
@@ -486,24 +500,26 @@
   color: var(--pqr-color-etat-iconOnly-libelle-presse);
 }
 
-/* (7) Le téléphone et l'email de la colonne « Contact » conservent les couleurs
- * du contrat — repos ET survol — contre la couleur de lien d'Odoo. Voir (7) en
- * tête de zone.
- *
- * Les DEUX règles sont nécessaires, et l'ordre dans lequel on l'a découvert
- * vaut d'être écrit : la règle de repos seule (0,3,1) battait ensuite la règle
- * de survol GÉNÉRÉE (0,3,0 depuis que le survol est par ligne) et tuait le
- * survol. Neutraliser un conflit d'hôte sur un canal oblige à le neutraliser
- * dans TOUS les états de ce canal, sinon on répare le repos en cassant le
- * survol. */
-.footer[data-pqr-shell="footer"] a.footer-column__numero,
-.footer[data-pqr-shell="footer"] a.footer-column__adresse {
-  color: var(--pqr-color-blanc);
-  text-decoration: none;
+/* (7) Le téléphone et l'email de la colonne « Contact » gardent la couleur de
+ * la colonne et restent soulignés, au repos comme dans tous les états. Voir (7)
+ * en tête de zone. */
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] a,
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] a:hover,
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] a:focus,
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] a:active,
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] a:visited {
+  color: inherit;
+  text-decoration: underline;
 }
-.footer[data-pqr-shell="footer"] a.footer-column__numero:hover,
-.footer[data-pqr-shell="footer"] a.footer-column__adresse:hover {
-  color: var(--pqr-color-orange);
+
+/* Un champ `Html` d'Odoo stocke du contenu de BLOC : la valeur est enregistrée
+ * enveloppée dans un `<p>`, qui apporte la marge de paragraphe de Bootstrap.
+ * MESURÉ sur la page vive : 16 px sous chaque ligne, colonne Contact à 132 px
+ * contre 100 pour Adresse. Ce n'est pas un fait de design à gouverner, c'est la
+ * boîte que l'hôte impose au contenu du rédacteur — le contrat, lui, pose déjà
+ * l'écart entre les enfants de la colonne. */
+.footer[data-pqr-shell="footer"] [data-pqr-footer-contact] p {
+  margin: 0;
 }
 
 /* (4) Logo link : boîte flex exacte comme le header */
