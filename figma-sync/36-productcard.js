@@ -6,7 +6,7 @@ const COMPONENTS = [
   {
     "setName": "ProductCard",
     "contractId": "ds.product-card",
-    "anchorKey": "9d5b5ffa2711233858c0a684cd7e9a24b573db97",
+    "anchorKey": "2e7981e1e2deb32e4e98f291e31e66697cfbfc30",
     "description": "ProductCard — generated from contract ds.product-card v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],

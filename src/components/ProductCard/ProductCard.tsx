@@ -16,7 +16,7 @@ export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   imageAlt?: string;
 }
 
-/** 3.1.0 (2026-09-05, vague 033) : elevation au survol. L'ombre est portee par la RACINE, donc elle trace la boite entiere de la carte — photo + titre + prix — et non la photo seule. La distinction n'est pas theorique : la premiere proposition faite a l'owner rendait l'ombre autour de l'image uniquement, et a ete refusee pour cela.
+/** 3.1.0 (2026-09-05, vague 033) : elevation au survol. L'ancre Figma change de nature avec cette version : ProductCard etait un COMPONENT simple, il devient un COMPONENT_SET a axe `Etat` (2763:10149). Le composant d'origine 2693:21081 devient la variante `Etat=Defaut` et GARDE son identifiant — ses 52 instances ont ete comptees avant (52) et apres (52) le geste, aucune n'a ete detachee. L'ombre est portee par la RACINE, donc elle trace la boite entiere de la carte — photo + titre + prix — et non la photo seule. La distinction n'est pas theorique : la premiere proposition faite a l'owner rendait l'ombre autour de l'image uniquement, et a ete refusee pour cela.
 
 La carte ne porte AUCUNE ombre au repos, donc aucun octet du repos ne bouge. Valeur a 12 % et non 10 % : 10 % sur fond blanc s'est avere invisible a l'oeil, constate puis releve le 2026-09-05.
 
