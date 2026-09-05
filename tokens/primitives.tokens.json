@@ -88,6 +88,11 @@
       "$type": "color",
       "$description": "POSÉE PAR LA SPEC 032 (2026-09-04), NON relevée de la planche owner : arbitrage de l'owner ce jour-là pour le pressé du style link, choisi entre color.noir-bleute et color.noir-pur. Valeur littérale #131416. Aucune entorse §VIII ici : rien n'a été relevé, la primitive est posée et le dit — contrairement aux cinq teintes de survol/pressé, qui elles portent l'entorse.",
       "$value": "#131416"
+    },
+    "noir-voile-55": {
+      "$type": "color",
+      "$value": "#0000008C",
+      "$description": "Voile de survol de la CarteCategorie (vague 033, 2026-09-05, choix owner A3). Noir a 55 % (0x8C = 140/255). Litteral, donc il vit bien dans les PRIMITIVES : c'est un ALIAS en primitives qui peint du NaN (piege 032), jamais une valeur. Il se compose SOUS le degrade de 16 arrets du voile, qui n'est pas touche : au repos la carte est inchangee a l'octet."
     }
   },
   "nav": {
@@ -1093,6 +1098,25 @@
           "$type": "string",
           "$description": "Soulignement au survol, PAR STYLE (vague 032, 2026-09-05). Jeton de type `string` — le dépôt en portait déjà un (`nav.state`), et il sort bien en propriete CSS. C'est ce qui rend le soulignement possible par style : le canal d'etats emet UNE regle par valeur d'enumere (`.variant-link:hover`), donc chaque style recoit sa propre valeur. La vague avait d'abord ecrit l'inverse — « souligner le link soulignerait les sept » — c'etait FAUX, corrige apres essai. `none` explicite : le style porte le canal pour que la matrice soit complete (un jeton manquant est un refus par nom au build), et parce qu'une valeur explicite resiste a une regle d'hote qui soulignerait.",
           "$value": "none"
+        }
+      }
+    }
+  },
+  "shadow": {
+    "$description": "Ombres d'ETAT (vague 033, 2026-09-05). Type `string`, comme `decoration.etat.*` de la vague 032 : le canal box-shadow attend une valeur CSS complete, pas une couleur. Litteraux, donc primitives. AUCUNE ombre au repos sur aucune carte — ces jetons ne servent que le survol, ce qui garantit que le repos ne bouge pas d'un pixel.",
+    "etat": {
+      "product-card": {
+        "survol": {
+          "$type": "string",
+          "$value": "0 8px 24px rgba(0,0,0,0.12)",
+          "$description": "Elevation de la carte produit au survol (choix owner B2). L'ombre trace la boite de la RACINE — photo + titre + prix — et non la photo seule : c'est ce que fait box-shadow en CSS, et c'est la correction demandee par l'owner apres une premiere proposition ou l'ombre ne cernait que l'image. 12 % : la valeur a 10 % s'est averee invisible a l'oeil sur fond blanc, mesuree puis relevee."
+        }
+      },
+      "review-card": {
+        "survol": {
+          "$type": "string",
+          "$value": "0 12px 32px rgba(0,0,0,0.20)",
+          "$description": "Elevation de la carte d'avis au survol (choix owner C3). Une seule couche, et c'est le resultat d'une mesure qui a DEMENTI l'hypothese de depart. On avait lu dans le CSS genere que la bordure de cette carte etait dessinee en `box-shadow: inset` — donc qu'une ombre de survol la remplacerait et la ferait disparaitre — et le jeton portait au depart une couche inset pour la re-declarer. Faux : des que le canal box-shadow est utilise par un etat, l'emetteur bascule DE LUI-MEME la bordure en `border` reel (`border-style/-color/-width`). Verifie sur la page Odoo rendue le 2026-09-05 : au repos `border: 1px solid rgb(244,246,250)` et `box-shadow: none`. La couche inset etait donc redondante — elle repeignait un 1px par-dessus une bordure deja la — et elle figeait #F4F6FA alors que {color.bleu-clair} le porte. Retiree."
         }
       }
     }

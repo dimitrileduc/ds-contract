@@ -37,6 +37,7 @@
   --pqr-color-gris-presse: #CFCFCF;
   --pqr-color-transparent: #FFFFFF00;
   --pqr-color-noir-profond: #131416;
+  --pqr-color-noir-voile-55: #0000008C;
   --pqr-nav-state: Transparent;
   --pqr-opacity-base: 100;
   --pqr-font-family-montserrat: Montserrat, sans-serif;
@@ -236,6 +237,8 @@
   --pqr-decoration-etat-link-survol: underline;
   --pqr-decoration-etat-outlineNoir-survol: none;
   --pqr-decoration-etat-iconOnly-survol: none;
+  --pqr-shadow-etat-product-card-survol: 0 8px 24px rgba(0,0,0,0.12);
+  --pqr-shadow-etat-review-card-survol: 0 12px 32px rgba(0,0,0,0.20);
   --pqr-color-etat-default-fond-survol: var(--pqr-color-noir-bleute-survol);
   --pqr-color-etat-default-libelle-survol: var(--pqr-color-blanc);
   --pqr-color-etat-default-fond-presse: var(--pqr-color-noir-bleute-presse);
@@ -271,6 +274,7 @@
   --pqr-color-etat-iconOnly-fond-presse: var(--pqr-color-noir-bleute-survol);
   --pqr-color-etat-iconOnly-libelle-presse: var(--pqr-color-blanc);
   --pqr-color-etat-iconOnly-anneau-focus: var(--pqr-color-noir-bleute);
+  --pqr-color-etat-carte-categorie-voile-survol: var(--pqr-color-noir-voile-55);
   --pqr-typography-titre-1-family: var(--pqr-font-family-montserrat);
   --pqr-typography-titre-1-size: var(--pqr-font-size-48);
   --pqr-typography-titre-1-weight: var(--pqr-font-weight-medium);

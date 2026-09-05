@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v3.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v3.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -20,6 +20,10 @@
   width: var(--spacing-product-card-width);
   min-width: var(--spacing-product-card-width);
   text-rendering: geometricprecision;
+}
+
+.root:hover:not(:disabled) {
+  box-shadow: var(--shadow-etat-product-card-survol);
 }
 
 .Image {

@@ -291,7 +291,7 @@
   flex-shrink: 0;
 }
 
-/* CarteCategorie — from ds.carte-categorie v2.1.0 (core/emit-html.ts) */
+/* CarteCategorie — from ds.carte-categorie v2.2.0 (core/emit-html.ts) */
 
 .carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
   box-sizing: border-box;
@@ -348,6 +348,10 @@
   right: 0;
   bottom: 0;
   z-index: 2;
+}
+
+.carte-categorie:hover:not(:disabled) .carte-categorie__contenuSuperpose {
+  background-color: var(--color-etat-carte-categorie-voile-survol);
 }
 
 .carte-categorie__decor svg {

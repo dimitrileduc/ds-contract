@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v4.0.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -148,7 +148,9 @@ export interface ReviewCardProps extends HTMLAttributes<HTMLElement> {
   lienAvis?: string;
 }
 
-/** Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).
+/** 4.1.0 (2026-09-05, vague 033) : elevation au survol. La carte ne porte aucune ombre au repos, donc le repos ne bouge pas d'un octet ; le survol pose `0 12px 32px rgba(0,0,0,0.20)`.
+
+Ce qui merite d'etre retenu ici est une hypothese REFUTEE PAR LA MESURE, gardee parce qu'elle se represente. En lisant le CSS genere avant d'ecrire, on a vu la bordure de cette carte dessinee en `box-shadow: inset 0 0 0 <w> <c>` et conclu qu'une ombre de survol la remplacerait — la carte perdrait son contour. Le jeton a d'abord porte une couche inset pour le re-declarer. La mesure sur la page rendue a montre l'inverse : des que le canal `box-shadow` est utilise par un etat, l'emetteur bascule la bordure en `border` reel (border-style/-color/-width), et les deux canaux cessent de se disputer. Au repos, page Odoo du 2026-09-05 : `border: 1px solid rgb(244,246,250)`, `box-shadow: none`. La couche inset a donc ete retiree — elle repeignait un 1px par-dessus une bordure deja presente et figeait un hexadecimal qu'un jeton portait deja.
 
 Limites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.
 

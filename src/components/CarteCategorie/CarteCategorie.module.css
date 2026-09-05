@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.1.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -79,6 +79,10 @@
   right: 0;
   bottom: 0;
   z-index: 2;
+}
+
+.root:hover:not(:disabled) .contenuSuperpose {
+  background-color: var(--color-etat-carte-categorie-voile-survol);
 }
 
 .decor svg {
