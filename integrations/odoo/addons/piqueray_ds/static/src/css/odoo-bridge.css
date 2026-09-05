@@ -153,6 +153,57 @@
 }
 /* ODOO-019-CTA-LIEN-BRIDGE END */
 
+/* ODOO-033-CARTE-LIEN-BRIDGE BEGIN
+ * Deux cartes deviennent des ancres : la carte-catégorie SUPERPOSÉE (la flèche
+ * est l'affordance, il n'y a pas de CTA) et la carte PRODUIT. Le lien est une
+ * adaptation d'hôte — la matrice de capacité §9 range `<a href>` en HOST-ONLY et
+ * aucun contrat n'en porte la notion. Ces règles ne sont donc que de la
+ * NEUTRALISATION UA/Bootstrap : tout ce qui se voit vient des classes générées.
+ *
+ * Le curseur main vient de l'UA (`a:any-link { cursor: pointer }`) : rien à
+ * poser. Les couleurs de texte non plus — chaque part interne pose la sienne
+ * (TitreSuperpose/TexteSuperpose en blanc, product-card Titre/Prix), donc la
+ * couleur de lien d'Odoo n'a aucune part à peindre. Reste le SOULIGNEMENT, qui
+ * se propage aux descendants et que Bootstrap ré-arme au survol. */
+.s_pqr_categories_principales a[data-pqr-part="carte-root"],
+.s_pqr_categories_principales a[data-pqr-part="carte-root"]:hover,
+.s_pqr_produits_ecommerce a[data-pqr-part="produit-card"],
+.s_pqr_produits_ecommerce a[data-pqr-part="produit-card"]:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* En ÉDITION, même problème que le CTA-lien (ODOO-019 ci-dessus) : un ancêtre
+ * focusable vole le focus à l'îlot éditable qu'il contient — ici le titre et le
+ * texte de la carte-catégorie, qui sont éditables en ligne. La parade de 019
+ * (`pointer-events: none` sur l'hôte) ne peut pas être recopiée telle quelle :
+ * l'hôte EST la carte entière, la neutraliser sèchement la rendrait
+ * insélectionnable et son panneau injoignable. On rend donc l'ancre transparente
+ * aux clics MAIS on ré-arme ses enfants — qui, ici, couvrent TOUTE sa surface
+ * (photo en absolu sur la carte entière + voile). Le clic atteint donc toujours
+ * une part, jamais l'ancre : sélection et panneau intacts, pas de vol de focus,
+ * pas de navigation en édition.
+ *
+ * La carte PRODUIT est délibérément HORS de cette parade, et la raison est
+ * mesurée (2026-09-05) : ses enfants ne couvrent pas sa boîte — un clic dans une
+ * gouttière traversait l'ancre neutralisée et Odoo recevait le conteneur de
+ * collection comme cible, donc le panneau par produit ne s'ouvrait jamais. Elle
+ * n'en a de toute façon pas besoin : elle ne contient AUCUN îlot éditable (ni
+ * titre ni prix ne portent `o_pqr_editable` — ils sont gouvernés par la
+ * composition), donc il n'y a aucun focus à lui disputer. Poser la parade
+ * « au cas où » aurait coûté le réglage qu'elle est censée servir.
+ *
+ * Le lien reste pleinement actif sur le site publié, où `.odoo-editor-editable`
+ * n'existe pas. */
+.odoo-editor-editable a[data-pqr-part="carte-root"] {
+  pointer-events: none;
+}
+
+.odoo-editor-editable a[data-pqr-part="carte-root"] > * {
+  pointer-events: auto;
+}
+/* ODOO-033-CARTE-LIEN-BRIDGE END */
+
 /* ODOO-022-COORDONNEES-BRIDGE BEGIN
  * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
  * La racine porte des largeurs FIXES fidèles à Figma (plan 1152 + wrapper 576 =
@@ -310,7 +361,17 @@
  *     CTA fasse revenir le défaut en silence, aucune porte ne le surveillant.
  *     Ce n'est pas une règle d'état écrite à la main au sens de « aucune règle
  *     d'état manuelle » : c'est une neutralisation de conflit qui RE-PORTE un canal
- *     gouverné, comme (2), (3) et (5) le font déjà. */
+ *     gouverné, comme (2), (3) et (5) le font déjà.
+ * (7) Téléphone et email de la colonne « Contact » : même famille, déclenchée par
+ *     le passage des deux valeurs en `<a>` (spec 033). MESURÉ, pas déduit : au
+ *     REPOS, `.o_footer a:not(.btn)` (Odoo, 0,2,1, teinte #583B51) bat
+ *     `.footer-column__numero` (0,1,0) — les deux valeurs s'affichaient en
+ *     bordeaux au lieu du blanc du contrat. Au SURVOL en revanche la règle
+ *     générée est à (0,4,0) et gagne déjà : le survol était juste, le repos
+ *     faux — ce qui rendait le défaut facile à manquer.
+ *     TROISIÈME occurrence de cette classe de conflit dans cette zone. La cause
+ *     de fond — les règles générées sortent sans crochet résistant à une
+ *     enveloppe d'hôte — est au registre sous DW-032-008. */
 
 /* (1) Le footer couvre tout le viewport */
 .footer[data-pqr-shell="footer"] {
@@ -423,6 +484,26 @@
 }
 .footer[data-pqr-shell="footer"] a.button--variant-iconOnly:active:not(:disabled) {
   color: var(--pqr-color-etat-iconOnly-libelle-presse);
+}
+
+/* (7) Le téléphone et l'email de la colonne « Contact » conservent les couleurs
+ * du contrat — repos ET survol — contre la couleur de lien d'Odoo. Voir (7) en
+ * tête de zone.
+ *
+ * Les DEUX règles sont nécessaires, et l'ordre dans lequel on l'a découvert
+ * vaut d'être écrit : la règle de repos seule (0,3,1) battait ensuite la règle
+ * de survol GÉNÉRÉE (0,3,0 depuis que le survol est par ligne) et tuait le
+ * survol. Neutraliser un conflit d'hôte sur un canal oblige à le neutraliser
+ * dans TOUS les états de ce canal, sinon on répare le repos en cassant le
+ * survol. */
+.footer[data-pqr-shell="footer"] a.footer-column__numero,
+.footer[data-pqr-shell="footer"] a.footer-column__adresse {
+  color: var(--pqr-color-blanc);
+  text-decoration: none;
+}
+.footer[data-pqr-shell="footer"] a.footer-column__numero:hover,
+.footer[data-pqr-shell="footer"] a.footer-column__adresse:hover {
+  color: var(--pqr-color-orange);
 }
 
 /* (4) Logo link : boîte flex exacte comme le header */

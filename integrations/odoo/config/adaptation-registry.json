@@ -707,7 +707,10 @@
         "ds.faq",
         "ds.header",
         "ds.footer",
-        "ds.hero-video"
+        "ds.hero-video",
+        "ds.texte-seo",
+        "ds.equipe",
+        "ds.google-reviews"
       ],
       "reasonCode": "odoo-layout-bridge",
       "decisionRefs": [
@@ -1212,6 +1215,20 @@
         "specs/tiny/vague-031/menu-mobile.md"
       ],
       "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-033-CARTE-LIEN-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.categories-principales",
+        "ds.produits-ecommerce"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "categories.authoring.json",
+        "produits-ecommerce.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }

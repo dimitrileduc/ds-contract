@@ -295,6 +295,16 @@
       <span data-pqr-control="produits-ecommerce-title">Le titre se modifie directement dans le bloc. La collection et les contrôles de carrousel sont gouvernés.</span>
     </BuilderRow>
   </t>
+
+  <!-- ODOO-033-CARTE-LIEN — panneau PAR PRODUIT. La section n'en avait aucun :
+       elle n'offrait qu'une phrase d'information, donc rien n'était réglable
+       carte par carte. Une seule ligne pour l'instant, la destination ; le titre,
+       le prix et l'image restent gouvernés par la composition. -->
+  <t t-name="piqueray_ds.ProductCardOption">
+    <BuilderRow label.translate="Lien du produit">
+      <span data-pqr-control="produit-lien-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'produit-card'"/></span>
+    </BuilderRow>
+  </t>
   <!-- ODOO-026-PRODUITS-ECOMMERCE-PANEL END -->
 
   <!-- ODOO-022-COORDONNEES-PANEL BEGIN -->
@@ -402,6 +412,19 @@
     </BuilderRow>
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteCategorieImageAlt'"/></span>
+    </BuilderRow>
+    <!-- ODOO-033-CARTE-LIEN — la destination de la carte ENTIÈRE, style superposé.
+         Le superposé n'a pas de CTA : la flèche est l'affordance et la carte est
+         la cible, donc c'est sa racine qui porte l'ancre (`a[data-pqr-part=
+         "carte-root"]`), d'où l'action générique `pqrSetLinkHref` — la même que
+         les icônes sociales et le CTA de Hero vidéo, qui portent aussi leur
+         adresse sur l'ancre elle-même. Symétrie avec les deux réglages ci-dessous :
+         cette ligne n'a de cible qu'en superposé, celles du CTA qu'en empilé.
+         Aucun contrat n'est modifié : le lien est une adaptation d'hôte, gouvernée
+         au registre d'adaptations (ODOO-019-CTA-LIEN-BRIDGE), jamais dans un
+         `*.authoring.json` — décision owner du 2026-08-18. -->
+    <BuilderRow label.translate="Lien de la carte">
+      <span data-pqr-control="carte-lien-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'carte-root'"/></span>
     </BuilderRow>
     <!-- Le style superposé n'a PAS de CTA (titre + texte + flèche). Les deux
          réglages disparaissent donc du panneau quand la carte est superposée :

@@ -9,8 +9,8 @@ import { Plugin, registry, withSequence } from "./odoo19_compat";
 import { PIQUERAY_ROOT_SELECTOR } from "./authoring";
 
 export const CURRENT_GRAPH_DIGEST = "e8f87aef41529da08357747c0ec3c2af3dcb181f3d922e266f0903851c840a80";
-export const CURRENT_AUTHORING_VERSION = "3.0.0";
-export const CURRENT_MODULE_VERSION = "19.0.1.11.0";
+export const CURRENT_AUTHORING_VERSION = "3.1.0";
+export const CURRENT_MODULE_VERSION = "19.0.1.13.0";
 const CONTRACT_VERSIONS = { "ds.google-reviews": "3.1.0", "ds.presentation": "4.2.0", "ds.hero": "2.0.0", "ds.equipe": "1.2.0", "ds.faq": "1.3.0", "ds.devis": "2.1.0", "ds.sav": "2.2.0", "ds.texte-seo": "3.0.0", "ds.coordonnees": "2.2.0", "ds.reassurances": "2.1.0", "ds.categories-principales": "2.0.0", "ds.hero-video": "2.1.0", "ds.produits-ecommerce": "2.1.0" };
 
 export function classifySavedRoot(root) {

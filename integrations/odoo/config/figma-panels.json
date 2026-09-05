@@ -236,6 +236,29 @@
       ]
     },
     {
+      "panelId": "product-card",
+      "kind": "child",
+      "optionClass": "PiquerayProductCardOption",
+      "optionTemplate": "piqueray_ds.ProductCardOption",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-produit]",
+      "componentPath": [
+        {
+          "contract": {
+            "id": "ds.produits-ecommerce",
+            "version": "2.1.0"
+          }
+        },
+        {
+          "contract": {
+            "id": "ds.product-card",
+            "version": "3.0.0"
+          },
+          "viaPart": "ProductCard",
+          "repeat": true
+        }
+      ]
+    },
+    {
       "panelId": "reassurances",
       "kind": "root",
       "optionClass": "PiquerayReassurancesOption",

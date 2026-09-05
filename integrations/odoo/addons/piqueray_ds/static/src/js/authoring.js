@@ -552,6 +552,17 @@ export class PiquerayProduitsEcommerceOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+/** ODOO-033-CARTE-LIEN — panneau par carte produit. Il n'existait pas : la
+ * section Produits n'inscrivait QUE sa racine, donc aucune carte n'était
+ * sélectionnable et aucun réglage par produit n'était possible. Même forme que
+ * PiquerayCarteCategorieOption / PiquerayReviewCardOption : une option dont le
+ * sélecteur descend jusqu'à la carte. */
+export class PiquerayProductCardOption extends BaseOptionComponent {
+    static template = "piqueray_ds.ProductCardOption";
+    static selector = ".s_pqr_produits_ecommerce [data-pqr-produit]";
+    static editableOnly = false;
+}
+
 export class PiquerayCarteCategorieOption extends BaseOptionComponent {
     static template = "piqueray_ds.CarteCategorieOption";
     static selector = ".s_pqr_categories_principales [data-pqr-carte]";
@@ -773,7 +784,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayProduitsEcommerceOption, PiquerayFooterOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayProduitsEcommerceOption, PiquerayProductCardOption, PiquerayFooterOption],
         builder_actions: {
             OpenFigmaAction,
             SetCtaHrefAction,
