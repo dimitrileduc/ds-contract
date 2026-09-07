@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "vague-034-carrousel-produits",
+  "date": "2026-09-07",
+  "note": "Travail nommé et REPORTÉ par la vague 034 (mécanisme du carrousel Produits e-commerce). Chacun porte sa raison : un report sans raison est une omission déguisée. Les identifiants DW-034-* sont locaux à cette vague.",
+  "items": [
+    {
+      "id": "DW-034-001",
+      "titre": "Le mécanisme du carrousel n'existe que côté Odoo : la bibliothèque React générée reste inerte",
+      "categorie": "emitter-change",
+      "cause": "docs/09-advanced-components.md § « Behavior-heavy components » décrit le patron — un hook headless écrit à la main à côté de la coquille générée, nommé par un futur champ `behavior` du contrat — mais le schéma ne porte pas ce champ et l'émetteur react n'importe aucun hook manuel. Le fichier généré ProduitsECommerce.tsx ne peut pas être édité (« GENERATED FILE — DO NOT EDIT »), et les propriétés scroll-snap ne sont pas des canaux du schéma (matrice l. 178 : CARRY-CODE-ONLY, absentes de declared/literals/stylesWhen).",
+      "pourquoiReporte": "Outiller le canal `behavior` (schéma + émetteur react + convention de hook) est un travail d'architecture qui toucherait les 39 contrats et ferait basculer la vague en spec complète. Le besoin livré est le site Odoo ; Storybook n'a pas de consommateur.",
+      "risqueResiduel": "Un consommateur de la bibliothèque React verrait des contrôles de carrousel sans effet — exactement ce que CarouselControls déclare déjà (« click callbacks remain a documented consumer boundary »).",
+      "pointDeDepart": "docs/09-advanced-components.md l. 57-69 ; integrations/odoo/addons/piqueray_ds/static/src/js/produits_ecommerce_carrousel_interaction.js (la logique à porter dans un hook, sans nombre en dur)",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-034-002",
+      "titre": "ds.button n'a aucun état disabled : le bouton en bout de piste ne peut pas se griser",
+      "categorie": "source-cleanliness",
+      "cause": "La planche Figma montre « Précédent » gris en début de piste, mais c'est une surcharge de couleur brute (#E0E0E0) posée sur les instances, pas un état gouverné : le master Bouton n'a pas de variante Etat=Desactive et le contrat ds.button ne déclare pas l'état (relevé vague 031, specs/tiny/vague-031/produits-ecommerce.md § « Résidu nommé »). La vague 034 pose aria-disabled par JS aux deux bouts ; l'apparence reste celle du repos.",
+      "dependanceTrouveeEnRevue": "Revue du 2026-09-07 : les émetteurs câblent l'état sur le pseudo-sélecteur natif :disabled (core/emit-react.ts l. 81-86, core/emit-html.ts l. 73-78 ; survol/actif gardés par :not(:disabled)), et rien dans core/ ne connaît [aria-disabled]. Conséquence double : (1) aujourd'hui les boutons aria-disabled gardent leur survol, leur état actif et cursor: pointer ; (2) ajouter l'état disabled à ds.button par la méthode 032 émettrait `.button:disabled {…}` et ne griserait PAS ces boutons, puisque l'Interaction ne pose jamais l'attribut natif. Le round qui reprend ce point doit soit élargir le sélecteur d'état des émetteurs à `:disabled, [aria-disabled=\"true\"]` (re-pin golden), soit faire poser l'attribut natif `disabled` par l'Interaction en gérant la perte de focus du bouton qui devient inerte (raison pour laquelle le patron APG carousel préfère aria-disabled).",
+      "pourquoiReporte": "Ajouter un état à ds.button est un round à soi seul : jetons d'état, axe Figma State sur le master (28 variantes aujourd'hui), 264 épingles Odoo, re-pins, et maintenant une décision d'émetteur. Hors du périmètre « mécanisme du carrousel ».",
+      "risqueResiduel": "Un visiteur voit deux boutons noirs identiques, survolables, même quand l'un ne peut plus agir ; seul un lecteur d'écran entend « désactivé ».",
+      "pointDeDepart": "specs/032-etats-bouton/ (la méthode d'ajout d'un état au Bouton, avec ses 28 variantes amendées en place)",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-034-003",
+      "titre": "Le glissement au doigt n'est pas prouvé par le scénario QA, seulement par la molette horizontale",
+      "categorie": "missing-instrument",
+      "cause": "Playwright headless n'offre que `page.touchscreen.tap()` ; un glissement tactile exige une session CDP `Input.dispatchTouchEvent` séquencée, que le harnais QA n'a pas. Le scénario prouve que le cadre est un vrai conteneur de défilement (molette `deltaX` → scrollLeft > 0, focus clavier → défilement), ce qui est la condition nécessaire et suffisante côté CSS pour que le navigateur mobile accepte le geste tactile natif.",
+      "pourquoiReporte": "Le geste tactile réel se vérifie sur appareil, pas en headless ; construire l'émulation CDP est un instrument à part.",
+      "risqueResiduel": "Un `touch-action` ou un `overscroll-behavior` posé plus tard par une règle Odoo pourrait bloquer le geste tactile sans que le scénario le voie.",
+      "pointDeDepart": "integrations/odoo/qa/scenarios/produits-ecommerce-carrousel.spec.mts (constat sauté sous le code de limite L-034-TOUCH)",
+      "statut": "deferred"
+    },
+    {
+      "id": "DW-034-004",
+      "titre": "Le sample QWeb du bloc est une copie manuelle du repeat.sample du contrat, et rien ne les compare",
+      "categorie": "missing-gate",
+      "cause": "Le `t-set=\"produits\"` de components.xml recopie à la main les 5 entrées de `repeat.sample` du contrat ; home.json et produits-ecommerce-test.json en sont deux autres copies. Aucun script (scripts/odoo/*.ts, compose_page.py, evals) ne lit `sample`, et le scénario QA compte les cartes sans les comparer. Preuve que ça dérive en silence : à HEAD le gabarit portait 4 entrées alors que le contrat en avait 5 depuis la 031 — trouvé par la vague 034 parce que le banc Wide ne débordait pas.",
+      "pourquoiReporte": "Une porte « sample du contrat = t-set du bloc » est une infrastructure nouvelle (le même motif existe pour les questions de la FAQ et les cartes de catégories), hors périmètre du mécanisme.",
+      "risqueResiduel": "Une vague qui renomme un produit ou revient à 4 cartes dans le contrat laisse le bloc de la bibliothèque et les descripteurs sur l'ancien contenu, toutes portes vertes.",
+      "pointDeDepart": "scripts/odoo/check-authoring.ts (il lit déjà `part.repeat`, en booléen seulement)",
+      "statut": "deferred"
+    }
+  ]
+}

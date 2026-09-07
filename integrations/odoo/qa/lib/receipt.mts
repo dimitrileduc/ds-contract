@@ -111,7 +111,11 @@ export class Recueil {
     return 'pass';
   }
 
-  ecrire(nomFichier: string, durationMs?: number): Receipt {
+  /** `dossier` : par défaut le dossier de preuves de la spec 019, que le manifeste
+   *  de qualification (`odoo:qualification`) ramasse en entier. Un scénario dont
+   *  les codes de limite ne sont PAS dans ACCEPTED_LIMITS y ferait basculer la
+   *  release en « failed » : il écrit ailleurs (vague 034, revue A1). */
+  ecrire(nomFichier: string, durationMs?: number, dossier: string = PROOFS): Receipt {
     const recu: Receipt = {
       receiptId: `${this.scenarioId}-${this.snapshotId}`,
       scenarioId: this.scenarioId,
@@ -131,8 +135,8 @@ export class Recueil {
       recu.observations = ['aucun constat produit — le scénario n\'a rien exercé'];
       recu.status = 'skipped';
     }
-    const dest = path.join(PROOFS, nomFichier);
-    mkdirSync(PROOFS, { recursive: true });
+    const dest = path.join(dossier, nomFichier);
+    mkdirSync(dossier, { recursive: true });
     writeFileSync(dest, JSON.stringify(recu, null, 2) + '\n');
     const r = this.resume;
     console.log(`\n→ ${path.relative(REPO, dest)}`);

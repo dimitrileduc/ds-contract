@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.produits-ecommerce",
   "name": "ProduitsECommerce",
-  "version": "2.1.0",
-  "description": "Piqueray ProduitsECommerce, responsive (vague 031). 2.0.0 (2026-09-04) : les ancres passent de l'ancien master DS 2116:4475 (une variante) au set 031 `ProduitsECommerce` 2694:21337, quatre variantes Presentation — la seule section de la home restée hors de la vague, ce qui figeait ses cartes à 364 px à toutes les largeurs et faisait déborder la page horizontalement. La source a été nettoyée avant extraction (journal specs/tiny/vague-031/produits-ecommerce.md) : structure unifiée sur UN arbre pour les quatre variantes, Bouton et CarouselControls re-liés en instances, écart des contrôles rétabli (SPACE_BETWEEN annulait le gap — dixième occurrence). Deux formes selon l'écran, portées par présence et par layoutByProp : Mobile et Tablette montrent le titre seul puis le bouton pleine largeur en pied, contrôles masqués ; Desktop et Wide mettent le titre et le bouton sur une ligne et affichent les contrôles sous la piste. La piste est bornée par le cadre sous 992 et libre au-delà : elle déborde volontairement du cadre rognant, c'est le carrousel. Wide dessine cinq cartes, les autres quatre. Le mécanisme du carrousel est DIFFÉRÉ (décision owner 2026-09-04) : les contrôles sont inertes, le glissement au doigt viendra plus tard. Le 2026-09-04, la propriété TEXT « Titre » a été ajoutée au set et référencée par les quatre variantes : le titre est désormais une donnée liée, pas un texte dessiné. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
+  "version": "2.2.0",
+  "description": "Piqueray ProduitsECommerce, responsive (vague 031). 2.0.0 (2026-09-04) : les ancres passent de l'ancien master DS 2116:4475 (une variante) au set 031 `ProduitsECommerce` 2694:21337, quatre variantes Presentation — la seule section de la home restée hors de la vague, ce qui figeait ses cartes à 364 px à toutes les largeurs et faisait déborder la page horizontalement. La source a été nettoyée avant extraction (journal specs/tiny/vague-031/produits-ecommerce.md) : structure unifiée sur UN arbre pour les quatre variantes, Bouton et CarouselControls re-liés en instances, écart des contrôles rétabli (SPACE_BETWEEN annulait le gap — dixième occurrence). Deux formes selon l'écran, portées par présence et par layoutByProp : Mobile et Tablette montrent le titre seul puis le bouton pleine largeur en pied, contrôles masqués ; Desktop et Wide mettent le titre et le bouton sur une ligne et affichent les contrôles sous la piste. La piste est bornée par le cadre sous 992 et libre au-delà : elle déborde volontairement du cadre rognant, c'est le carrousel. Wide dessine cinq cartes, les autres quatre. Le mécanisme du carrousel est DIFFÉRÉ (décision owner 2026-09-04) : les contrôles sont inertes, le glissement au doigt viendra plus tard. Le 2026-09-04, la propriété TEXT « Titre » a été ajoutée au set et référencée par les quatre variantes : le titre est désormais une donnée liée, pas un texte dessiné. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. 2.2.0 (2026-09-07, vague 034) : le carrousel DÉFILE. Le cadre carrouselProduits porte overflow-x auto en canal declared — CARRY-CODE-ONLY : le canvas garde clipsContent, le code devient un conteneur de défilement horizontal (overflow-y reste hidden). La piste Produits perd son width fill Mobile/Tablette, corrigé À LA SOURCE (§VIII) le 2026-09-07 : les pistes 2694:21090 et 2694:21149 passent de FILL à HUG comme Desktop et Wide (versions Figma 2396423436246074729 avant, 2396428224592792964 puis 2396429110435865682 après ; 8 instances avant, 8 après ; cadres inchangés). Second défaut de source trouvé PAR LA MESURE : les cadres Mobile 2694:21089 et Tablette 2694:21148 alignaient leur contre-axe à la FIN (MAX), invisible tant que la piste était fill ; en HUG la piste de 1088 se calait à droite et l'instance montrait la fin de la piste (29,7 % de pixels en Mobile, 38,8 % en Tablette). Alignés au début comme Desktop, Wide et le contrat (align start) : 0 pixel d'écart entre l'avant et l'après final sur les quatre instances visibles. En Mobile les quatre cartes de 260 faisaient déjà 1088 px dans une piste de 366 : elles débordaient, rognées par le cadre — la phrase « les cartes rétrécissent » de la 2.0.0 était fausse. Le scroll-snap, le pas des boutons (largeur de carte + écart, lus dans le DOM) et l'ARIA de carrousel (région, diapositives « n sur N », piste focalisable) sont des faits code-only hors schéma (matrice l. 178), portés par la zone Odoo manuelle responsive/produits-ecommerce.pqr.css et l'Interaction produits_ecommerce_carrousel_interaction.js ; la bibliothèque React reste inerte (DW-034-001). Le bouton en bout de piste reçoit aria-disabled mais ne se grise pas : ds.button n'a pas d'état disabled (DW-034-002).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -213,7 +213,7 @@
           },
           "parts": {
             "carrouselProduits": {
-              "description": "Le cadre qui ROGNE (clip). Il ne porte qu'un padding GAUCHE — la piste sort par la droite, c'est le carrousel. Sous 992 la piste tient dans le cadre, au-delà elle est libre et déborde.",
+              "description": "Le cadre qui ROGNE (clip) — et, depuis 2.2.0, qui DÉFILE : overflow-x auto en canal declared (le canvas ne le dessine pas, il garde clipsContent ; le code obtient overflow: hidden puis overflow-x: auto, l'axe y reste rogné). Il ne porte qu'un padding GAUCHE — la piste sort par la droite, c'est le carrousel. Le scroll-padding et le snap vivent hors schéma, côté Odoo.",
               "layout": {
                 "direction": "column",
                 "align": "start",
@@ -239,21 +239,10 @@
               },
               "parts": {
                 "Produits": {
-                  "description": "La piste. Largeur au CONTENU par défaut (Desktop et Wide : elle déborde volontairement du cadre rognant, c'est le carrousel) ; largeur au parent sous 992, où les cartes rétrécissent pour tenir. Le canal de largeur du schéma n'admet que « fill » : le contenu est donc le défaut et le fill l'exception.",
+                  "description": "La piste, au CONTENU aux quatre largeurs (source réparée le 2026-09-07 : HUG en Mobile et Tablette comme en Desktop et Wide) : elle déborde volontairement du cadre, qui la rogne et la fait défiler — c'est le carrousel. Jusqu'en 2.1.0 elle était fill sous 992, ce qui fixait sa boîte à 366 puis 786 sans contraindre les cartes (260 et 322, largeur et min-width par jeton) : elles débordaient déjà.",
                   "layout": {
                     "direction": "row",
                     "align": "center"
-                  },
-                  "layoutByProp": {
-                    "prop": "presentation",
-                    "map": {
-                      "mobile": {
-                        "width": "fill"
-                      },
-                      "tablette": {
-                        "width": "fill"
-                      }
-                    }
                   },
                   "tokens": {
                     "gap": "{space.16}"
@@ -300,10 +289,13 @@
                     }
                   }
                 }
+              },
+              "declared": {
+                "overflow-x": "auto"
               }
             },
             "controles": {
-              "description": "Contrôles alignés à droite, dessinés en Desktop et Wide seulement. INERTES : le mécanisme du carrousel est différé (décision owner 2026-09-04, glissement au doigt plus tard).",
+              "description": "Contrôles alignés à droite, dessinés en Desktop et Wide seulement. ACTIFS depuis 2.2.0 (vague 034) côté Odoo : Précédent/Suivant déplacent le cadre d'une carte (Interaction, pas lu dans le DOM), aria-disabled aux bouts. Sous 992 les contrôles sont masqués et c'est le glissement au doigt, natif, qui défile. La bibliothèque React reste inerte (DW-034-001).",
               "layout": {
                 "direction": "row",
                 "justify": "end",

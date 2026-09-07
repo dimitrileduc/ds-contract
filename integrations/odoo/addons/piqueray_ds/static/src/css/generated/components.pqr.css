@@ -3198,7 +3198,7 @@
   gap: var(--pqr-space-8);
 }
 
-/* ProduitsECommerce — from ds.produits-ecommerce v2.1.0 (core/emit-html.ts) */
+/* ProduitsECommerce — from ds.produits-ecommerce v2.2.0 (core/emit-html.ts) */
 
 .produits-ecommerce, .produits-ecommerce *, .produits-ecommerce *::before, .produits-ecommerce *::after {
   box-sizing: border-box;
@@ -3287,6 +3287,7 @@
   overflow: hidden;
   gap: var(--pqr-space-0);
   padding-left: var(--pqr-space-24);
+  overflow-x: auto;
 }
 
 .produits-ecommerce--presentation-tablette .produits-ecommerce__carrouselProduits {
@@ -3310,16 +3311,6 @@
 
 .produits-ecommerce--presentation-wide .produits-ecommerce__Produits {
   gap: var(--pqr-space-24);
-}
-
-.produits-ecommerce--presentation-mobile .produits-ecommerce__Produits {
-  width: 100%;
-  min-width: 0;
-}
-
-.produits-ecommerce--presentation-tablette .produits-ecommerce__Produits {
-  width: 100%;
-  min-width: 0;
 }
 
 .produits-ecommerce__controles {

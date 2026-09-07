@@ -238,6 +238,19 @@
     <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
+  <!-- ODOO-034-HARNESS-PRODUITS-ECOMMERCE BEGIN -->
+  <!-- Banc du carrousel (vague 034) : le bloc est PRÉ-RENDU dans un #wrap
+       sauvegardable, avec le sample du gabarit (5 cartes, celui du contrat).
+       Le scénario mesure le défilement (visiteur) et l'éditabilité (rédacteur)
+       sur cette page ; la page composée `/produits-ecommerce-test` (descripteur)
+       sert à la preuve pixel avec les vraies photos. -->
+  <template id="harness_produits_ecommerce" name="Piqueray — banc Produits e-commerce">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure o_pqr_page"><t t-call="piqueray_ds.s_pqr_produits_ecommerce"/></div></t>
+  </template>
+  <record id="page_harness_produits_ecommerce" model="website.page">
+    <field name="url">/piqueray-harness/produits-ecommerce</field><field name="view_id" ref="harness_produits_ecommerce"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-034-HARNESS-PRODUITS-ECOMMERCE END -->
   <!-- ODOO-022-HARNESS-COORDONNEES BEGIN -->
   <!-- Page vide : le scénario y pose la racine depuis la bibliothèque Website
        (un #wrap que le Builder sait sauvegarder). -->

@@ -1217,6 +1217,20 @@
       "mechanism": "repeat-action"
     },
     {
+      "adaptationId": "ODOO-034-PRODUITS-CARROUSEL-INTERACTION",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/produits_ecommerce_carrousel_interaction.js",
+      "rootContracts": [
+        "ds.produits-ecommerce"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "specs/tiny/vague-034-carrousel-produits.md",
+        "DW-034-001",
+        "DW-034-002"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
       "adaptationId": "ODOO-033-CARTE-LIEN-BRIDGE",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
       "rootContracts": [

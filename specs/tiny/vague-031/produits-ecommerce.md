@@ -92,6 +92,9 @@ c'est un round à soi seul, pas un ajout de CSS. C'est la part visible du résid
 (décision owner 2026-09-04, glissement au doigt plus tard), les contrôles sont
 inertes et l'état désactivé n'a pas encore de sens fonctionnel.
 
+*(Renvoi, 2026-09-07 : le mécanisme est livré par la vague 034 — `specs/tiny/vague-034-carrousel-produits.md`,
+scroll-snap natif. L'état désactivé reste ouvert, sous `DW-034-002`.)*
+
 ## Autres réparations emportées par ce round
 
 Le dépôt était **rouge avant** (237/243 évaluations). Cinq cas cassés par les rounds

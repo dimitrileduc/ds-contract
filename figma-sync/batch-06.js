@@ -1279,7 +1279,7 @@ const COMPONENTS = [
     "setName": "ProduitsECommerce",
     "contractId": "ds.produits-ecommerce",
     "anchorKey": "70f037b37186389a20d2025654428119ef584b35",
-    "description": "ProduitsECommerce — generated from contract ds.produits-ecommerce v2.1.0",
+    "description": "ProduitsECommerce — generated from contract ds.produits-ecommerce v2.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1432,8 +1432,7 @@ const COMPONENTS = [
                             "Prix": "74,99€"
                           }
                         }
-                      ],
-                      "fillWidth": true
+                      ]
                     }
                   ],
                   "clipContent": true
@@ -1616,8 +1615,7 @@ const COMPONENTS = [
                             "Prix": "74,99€"
                           }
                         }
-                      ],
-                      "fillWidth": true
+                      ]
                     }
                   ],
                   "clipContent": true

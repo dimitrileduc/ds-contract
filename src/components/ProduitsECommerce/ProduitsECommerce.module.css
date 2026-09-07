@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/produits-ecommerce.contract.json (ds.produits-ecommerce v2.1.0)
+ * Source of truth: contracts/produits-ecommerce.contract.json (ds.produits-ecommerce v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -99,6 +99,7 @@
   overflow: hidden;
   gap: var(--space-0);
   padding-left: var(--space-24);
+  overflow-x: auto;
 }
 
 .presentation-tablette .carrouselProduits {
@@ -122,16 +123,6 @@
 
 .presentation-wide .Produits {
   gap: var(--space-24);
-}
-
-.presentation-mobile .Produits {
-  width: 100%;
-  min-width: 0;
-}
-
-.presentation-tablette .Produits {
-  width: 100%;
-  min-width: 0;
 }
 
 .controles {

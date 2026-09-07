@@ -319,6 +319,42 @@ export async function withInstance<T>(fn: (i: Instance) => Promise<T>): Promise<
   }
 }
 
+/** Le port et le projet de l'instance OWNER (`piqueray-odoo-test`, CLAUDE.md :
+ *  « jamais »). `withInstance` ne peut pas l'atteindre (il ne parle qu'à ses
+ *  propres services compose) ; un helper qui accepte n'importe quel port doit
+ *  le refuser PAR NOM. */
+const PORT_OWNER = '8071';
+const PROJET_OWNER = 'piqueray-odoo-test';
+
+/**
+ * Ouvre un navigateur sur une instance DÉJÀ levée, sans la reconstruire.
+ *
+ * Réservé au cycle rouge → vert d'un scénario en cours d'écriture (vague 034,
+ * carrousel) : on veut mesurer le même code avant et après l'implémentation,
+ * sur la même base, et `withInstance` DÉTRUIT la base à chaque appel. Un reçu
+ * produit ici porte le code de limite `ODOO-LIMIT-INSTANCE-REUTILISEE` : il
+ * prouve le mécanisme, pas l'installation propre — le rejeu de release passe
+ * par `withInstance`. L'appelant choisit avec `PQR_QA_REUSE=1`.
+ *
+ * Refus explicite de l'instance owner : `withInstance` n'y touche jamais par
+ * construction, ce helper n'a que le port pour cible — il ne l'accepte pas
+ * (revue 2026-09-07).
+ */
+export async function withInstanceExistante<T>(fn: (i: Instance) => Promise<T>): Promise<T> {
+  const env = readQaEnv();
+  if (env.odooPort === PORT_OWNER || process.env.COMPOSE_PROJECT_NAME === PROJET_OWNER) {
+    throw new Error(`Refus : ${baseUrl(env)} / ${process.env.COMPOSE_PROJECT_NAME ?? '(projet non défini)'} est l'instance OWNER (${PROJET_OWNER}, :${PORT_OWNER}) — un scénario ne s'y exécute jamais.`);
+  }
+  if (!(await attendreOdoo(env, 15_000))) throw new Error(`Aucune instance ne répond sur ${baseUrl(env)}/web/health — lever l'instance d'abord (--smoke).`);
+  console.log(`  instance RÉUTILISÉE · base ${env.dbName} · ${baseUrl(env)} (aucune réinstallation)`);
+  const { browser, version: chromium } = await launchBrowser();
+  try {
+    return await fn({ env, browser, chromium });
+  } finally {
+    await browser.close();
+  }
+}
+
 // ---------------------------------------------------------------------------
 // CLI de fumée
 // ---------------------------------------------------------------------------

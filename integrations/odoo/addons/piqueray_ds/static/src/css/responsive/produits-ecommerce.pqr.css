@@ -18,18 +18,61 @@
  * 2026-09-04, la section rendait ses marges mobiles (24) aux quatre largeurs et
  * gardait son en-tête en colonne au-dessus de 992. Rien n'est « déjà là ».
  *
- * Le carrousel est INERTE : les contrôles ne bougent rien, le glissement au doigt
- * est différé (décision owner 2026-09-04). Au-dessus de 992 la piste déborde
- * volontairement du cadre rognant — c'est le dessin, pas un défaut.
+ * Le carrousel DÉFILE (vague 034, 2026-09-07) : le cadre est un conteneur
+ * `overflow-x: auto` — ce fait-là est porté par le CONTRAT 2.2.0 (canal declared,
+ * émis dans components.pqr.css). Ce qui vit ICI, et seulement ici, ce sont les
+ * propriétés que le schéma ne connaît pas (docs/FIGMA-CAPABILITY-MATRIX.md l. 178,
+ * CARRY-CODE-ONLY) : scroll-snap, scroll-padding, barre de défilement masquée,
+ * padding de fin de piste. Le pas des boutons est dans
+ * js/produits_ecommerce_carrousel_interaction.js ; le glissement au doigt est
+ * le défilement natif du navigateur. La piste est au CONTENU aux quatre
+ * largeurs (source Figma réparée le 2026-09-07 : piste HUG en Mobile/Tablette
+ * comme en Desktop/Wide) et déborde du cadre — c'est le carrousel.
+ *
+ * ODOO-034-PRODUITS-CARROUSEL-SNAP : `proximity` plutôt que `mandatory` — la
+ * piste montre volontairement une carte coupée à droite, et `mandatory`
+ * interdirait de s'arrêter entre deux cartes au doigt. Choix mesuré, pas
+ * doctrinal : à revoir si un relevé sur appareil montre un arrêt flottant.
  */
 
 /* ---- Base = Mobile -------------------------------------------------------- */
 
-/* La piste tient dans le cadre sous 992 (contrat : width fill en mobile/tablette). */
+/* ODOO-034-PRODUITS-CARROUSEL-SNAP BEGIN */
+/* La piste est au CONTENU à toutes les largeurs et déborde du cadre (contrat 2.2.0,
+ * piste sans width fill). Le padding de fin vaut la gouttière du mode : la dernière
+ * carte s'arrête à la même distance du bord droit que la première du bord gauche.
+ * Décision owner 2026-09-07 : la DERNIÈRE position montre la dernière carte entière,
+ * calée à droite — pas ramenée au début avec du vide derrière. Le bout de piste est
+ * donc un point d'accroche : `scroll-snap-align: end` sur la dernière carte, et
+ * `scroll-padding-right` = gouttière pour que ce point tombe exactement sur le
+ * défilement maximal. (Une première version posait un padding de fin « largeur du
+ * cadre − carte » pour aligner chaque carte au début ; elle rendait le cadre
+ * défilable même quand tout tenait — course à vide, constat de revue A2.) */
 .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
-  width: 100%;
-  min-width: 0;
+  width: max-content;
+  min-width: max-content;
+  padding-right: var(--pqr-space-24);
 }
+/* Le cadre est le conteneur de défilement (overflow-x auto : contrat). Snap au
+ * début de chaque carte, décalé de la gouttière du mode ; barre masquée (les
+ * boutons et le débordement visible restent l'affordance). */
+.s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
+  scroll-snap-type: x proximity;
+  scroll-padding-left: var(--pqr-space-24);
+  scroll-padding-right: var(--pqr-space-24);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits::-webkit-scrollbar {
+  display: none;
+}
+.s_pqr_produits_ecommerce .product-card {
+  scroll-snap-align: start;
+}
+.s_pqr_produits_ecommerce .produits-ecommerce__Produits > .product-card:last-child {
+  scroll-snap-align: end;
+}
+/* ODOO-034-PRODUITS-CARROUSEL-SNAP END */
 /* Contrôles masqués sous 992 (contrat : stylesWhen display none, mobile + tablette). */
 .s_pqr_produits_ecommerce .produits-ecommerce__controles {
   display: none;
@@ -56,6 +99,11 @@
   }
   .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
     padding-left: var(--pqr-space-48);
+    scroll-padding-left: var(--pqr-space-48);
+    scroll-padding-right: var(--pqr-space-48);
+  }
+  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
+    padding-right: var(--pqr-space-48);
   }
 }
 
@@ -71,11 +119,6 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--pqr-space-8);
-  }
-  /* La piste redevient au CONTENU et déborde du cadre rognant : c'est le carrousel. */
-  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
-    width: max-content;
-    min-width: max-content;
   }
   .s_pqr_produits_ecommerce .produits-ecommerce__controles {
     display: flex;
@@ -99,7 +142,13 @@
   }
   .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
     padding-left: var(--pqr-space-89);
+    scroll-padding-left: var(--pqr-space-89);
+    scroll-padding-right: var(--pqr-space-89);
   }
+  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
+    padding-right: var(--pqr-space-89);
+  }
+
   /* Le canvas aligne l'en-tête AU DÉBUT ici : c'est le titre qui remplit
    * (layout.grow du contrat) et pousse le bouton à droite, pas un justify. */
   .s_pqr_produits_ecommerce .produits-ecommerce__enTete {

@@ -95,6 +95,9 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             # Menu mobile (ds.menu-mobile, 2026-09-04) : bascule des entrées déroulantes ;
             # l'ouverture du menu est l'offcanvas du noyau.
             "piqueray_ds/static/src/js/menu_mobile_interaction.js",
+            # Carrousel Produits e-commerce (vague 034, 2026-09-07) : Précédent/Suivant
+            # et aria-disabled aux bouts ; le défilement lui-même est natif (scroll-snap).
+            "piqueray_ds/static/src/js/produits_ecommerce_carrousel_interaction.js",
         ],
         # Chargé uniquement dans l'éditeur de site.
         "website.website_builder_assets": [
