@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.3.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.4.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -164,6 +164,34 @@
 
 .button--variant-iconOnly:hover:not(:disabled) {
   text-decoration-line: var(--decoration-etat-iconOnly-survol);
+}
+
+.button--variant-default:hover:not(:disabled) {
+  font-weight: var(--typography-etat-default-graisse-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  font-weight: var(--typography-etat-orange-graisse-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-blanc-graisse-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineBlanc-graisse-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  font-weight: var(--typography-etat-link-graisse-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineNoir-graisse-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  font-weight: var(--typography-etat-iconOnly-graisse-survol);
 }
 
 .button--variant-default:active:not(:disabled) {
@@ -415,7 +443,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v2.1.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.1.1 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -537,7 +565,8 @@
 }
 
 .reassurances--presentation-wide .reassurances__items {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
 }
 
 .reassurances__Boutons {

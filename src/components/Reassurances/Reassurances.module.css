@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.1)
  * Regenerate with: npm run generate
  */
 
@@ -126,7 +126,8 @@
 }
 
 .presentation-wide .items {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
 }
 
 .Boutons {

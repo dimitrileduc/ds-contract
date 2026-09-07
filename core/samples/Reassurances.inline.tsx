@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -125,10 +125,11 @@ const V: Record<string, CSSProperties> = {
     "minWidth": "0"
   },
   "presentation-wide:items": {
-    "display": "grid",
+    "display": "flex",
+    "flexDirection": "row",
     "width": "100%",
     "minWidth": "0",
-    "gridTemplateColumns": "repeat(5, minmax(0, 1fr))"
+    "gridTemplateColumns": "repeat(1, minmax(0, 1fr))"
   }
 };
 
@@ -145,7 +146,9 @@ export interface ReassurancesProps extends HTMLAttributes<HTMLElement> {
   items?: Array<{ texte: string; titre: string; imageUrl: string }>;
 }
 
-/** Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.
+/** 2.1.1 (2026-09-07) : en WIDE, la rangee de cartes cesse d'etre une grille a nombre de colonnes FIXE pour devenir une simple ligne. Le defaut : `columns: 5` etait calcule pour le cas a cinq cartes, donc quatre cartes laissaient une piste vide et le bloc ne remplissait plus la largeur. Le nombre de cartes est du CONTENU — la collection `items`, clonee par item au montage, sans plafond — jamais une variante, et aucun composant du systeme ne compte ses items par un axe. Une ligne resout le probleme SANS rien declarer de neuf : les cartes portent deja `width: 100 %`, donc leur base de flex est egale, donc le retrait se fait au prorata et les colonnes sortent EXACTEMENT egales — 284,4 a cinq cartes, 363,5 a quatre, mesure dans le navigateur le 2026-09-07, au dixieme, identique a ce que rendait la grille. CARRY-BOTH, et c'est ce qui rend ce choix meilleur qu'une regle ecrite a la main : Figma exprime la meme chose nativement avec un auto-layout horizontal dont les enfants sont en Fill, et repartit lui aussi a parts egales. Le canevas reflue donc comme le site quand une carte de moins est posee. PORTEE : le WIDE seulement, decision owner du 2026-09-07. Le Desktop garde sa grille de TROIS colonnes en toutes circonstances — quatre cartes s'y rangent en 3 + 1, exactement comme avant. Mobile et Tablette sont en colonne, inchanges.
+
+Piqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.
 
 L'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.
 

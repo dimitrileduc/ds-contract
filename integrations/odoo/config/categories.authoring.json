@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.categories-principales",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "rootActions": [
     {
@@ -41,7 +41,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -51,13 +51,31 @@
       "mechanism": "none"
     },
     {
+      "decisionId": "cat-ctl-sec-style",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "2.1.0"
+            }
+          }
+        ],
+        "prop": "style"
+      },
+      "verdict": "controlled",
+      "mechanism": "enum",
+      "targetSelector": ".s_pqr_categories_principales[data-pqr-style]",
+      "label": "Type de carte"
+    },
+    {
       "decisionId": "cat-ctl-sec-cartes",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -75,7 +93,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -99,7 +117,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -123,7 +141,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -147,7 +165,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -173,7 +191,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -199,7 +217,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -225,7 +243,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -251,7 +269,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -277,7 +295,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -308,7 +326,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -341,7 +359,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -372,7 +390,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -403,7 +421,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -434,7 +452,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -465,7 +483,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -496,7 +514,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -529,7 +547,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -560,7 +578,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -591,7 +609,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -622,7 +640,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -655,7 +673,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -675,7 +693,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -696,7 +714,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -724,7 +742,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -753,7 +771,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -783,7 +801,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -812,7 +830,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -842,7 +860,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -873,7 +891,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -905,7 +923,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -937,7 +955,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -968,7 +986,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -997,7 +1015,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1026,7 +1044,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1056,7 +1074,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1086,7 +1104,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1115,7 +1133,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1145,7 +1163,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1175,7 +1193,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1210,7 +1228,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1246,7 +1264,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1282,7 +1300,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1318,7 +1336,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1354,7 +1372,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1389,7 +1407,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1425,7 +1443,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1461,7 +1479,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {
@@ -1497,7 +1515,7 @@
           {
             "contract": {
               "id": "ds.categories-principales",
-              "version": "2.0.0"
+              "version": "2.1.0"
             }
           },
           {

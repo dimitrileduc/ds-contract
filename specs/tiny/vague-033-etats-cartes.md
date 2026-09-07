@@ -206,3 +206,178 @@ dette que la vague 033 s'était engagée à retirer.
 passé de `cac4ddb8` à `67bb51e9` (nous), puis `a290ca83` (elle), puis `4e9098f5` (verrou repiné et
 réaligné sur les 19 emplacements). Il rebougera à sa clôture. **À revérifier au merge**, ce n'est pas
 un chiffre à recopier depuis ce document.
+
+## Rangement de la page « 031 · Planches de validation » (2026-09-07, fin de journée)
+
+Demande owner : les trois chantiers du jour (survol de la carte, FAQ, Réalisations) étant finis,
+rendre la page lisible. Version Figma nommée posée avant le geste.
+
+**Ce que le rangement a RÉVÉLÉ, et qui n'était pas visible à l'œil :**
+
+- **`031 · HERO — 4 variantes` ne contenait pas le Hero.** Elle contient le set `HeroVideo`
+  (`2689:15832`, ancré par `ds.hero-video` 2.1.0). Le vrai Hero v2 (`2770:20976`, `ds.hero` 3.0.0)
+  vivait dans une section appelée « HERO IMAGE ». Deux étiquettes fausses, corrigées.
+- **La section `PRESENTATION` était MASQUÉE et imbriquée DANS la section
+  `CATEGORIES-PRINCIPALES`.** Son set (`2693:20805`) est pourtant l'ancre de `ds.presentation`
+  4.2.0, un composant gouverné à part entière. Sortie à la page, rendue visible, placée à son rang.
+- **Deux nœuds de texte vides** (largeur 0, chaîne vide) traînaient à l'origine de la page. Supprimés.
+- Cinq sections portaient encore « (candidat v2) » alors que leur set est ancré par un contrat
+  adopté. Le suffixe est retiré partout.
+
+**La règle de nommage retenue** : `031 · NN · NOM — ds.<contrat>`, plus ` · molécule` quand c'en est
+une. Le numéro donne l'ordre de lecture du site (header → menu → hero → … → footer), et une molécule
+précède la section qui la compose. Le nom du contrat est dans l'étiquette, PAS sa version : une
+version dans un nom de calque devient fausse au premier bump et personne ne la corrige.
+
+Colonne unique à x = −12000, écart 300, chaque cadre réajusté à son contenu. **Zéro chevauchement**,
+vérifié dans la colonne ET contre le reste de la page. Les 21 sets sont là, avec leurs variantes et
+leurs instances : Header 4, MenuEntree 2, MenuMobile 2, Hero 4, HeroVideo 4, CarteCategorie 4,
+CategoriesPrincipales 4, Presentation 4, ProduitsECommerce 4, ProductCard 2, SAV 4, Devis 4,
+CarteReassurance 2, Reassurances 4, ReviewCard 4, AvisGoogle 4, AccordionRow 8, TexteSEO 4, FAQ 4,
+Realisations 8, Footer 4.
+
+**Fait notable : `Realisations` a 0 instance.** Le set est neuf et n'est encore posé nulle part —
+ni maquette, ni témoin. À vérifier à sa clôture.
+
+**Pas touché, et pourquoi** : le grand rectangle gris (`Rectangle 1`, 7294 × 11017) est un fond
+VERROUILLÉ et volontaire derrière les démos, pas un débris. Les quatre maquettes de référence
+(`Accueil`, `Base -`, `Portes de garage`, `Portes de garage résidentielles`) flottent encore à la
+page au lieu d'être dans une section ; les regrouper déplacerait des cadres qui ne sont pas de cette
+vague, c'est une décision owner et non un rangement.
+
+## La section Catégories retrouve son axe Style, et la page 3 monte en 4 vues (2026-09-07)
+
+**Pourquoi le réglage revient.** La 2.0.0 avait RETIRÉ `style` le 2026-09-02, et le motif était exact
+à sa date : le set 031 ne dessinait que du superposé. La page « Portes de garage résidentielles »
+compose ses deux catégories en EMPILÉ. Le set dessine maintenant les deux — passé de 4 à 8 variantes
+(Style × Presentation), **12 instances avant le geste, 12 après** — et la carte porte sa variante
+empilée depuis la 3.0.0. Le contrat passe donc en **2.1.0, MINEUR additif**, défaut `superpose` :
+un consommateur qui ne passe rien ne voit aucun changement.
+
+Le style descend aux cartes par le canal `{style}` du schéma (une prop scalaire du parent
+cartographiée dans l'enfant). Le verdict Odoo reste `fixed-by-composition` côté carte : les deux
+cartes d'une section portent toujours le même style, ce n'est pas un choix carte par carte.
+
+**Ce qui existait déjà côté Odoo, et qu'il ne fallait pas réécrire.** Le gabarit pose
+`data-pqr-style` sur la racine, le panneau offre déjà « Type de carte » avec ses deux entrées
+(`pqrSetStyleCarte`), et la feuille `responsive/carte-categorie.pqr.css` neutralise déjà les deux
+hauteurs que la section impose au superposé, pour le seul style empilé. **Rien à écrire côté Odoo :
+seul le contrat manquait.** La configuration d'authoring portait elle aussi tous ses verdicts, y
+compris ceux du Bouton atteint par le CTA empilé ; il manquait UNE ligne, le contrôle de la prop
+`style` de la section elle-même, posé en `controlled` / `enum` puisque le rédacteur le choisit.
+
+**Décision owner du 2026-09-07 sur la tablette.** Deux cartes empilées y font 1228 px de haut contre
+640 en superposé. La consigne était « que ça reste pareil mais propre » : la tablette garde UNE
+colonne, comme le superposé. Basculer à deux colonnes plus tard est une variante à rejouer, pas une
+rupture de contrat.
+
+**Le montage de la page 3.** Section `031 · DEMO PORTES DE GARAGE RESIDENTIELLES — 4 vues
+(instances v2)`, même recette que les pages 1 et 2 : quatre cadres de 390 / 834 / 1200 / 1728, en
+colonne, sans gouttière propre, écarts entre blocs **80 · 80 · 128 · 192**, et le header posé EN
+ABSOLU par-dessus (contraintes STRETCH / MIN). Neuf blocs en flux : Hero, Catégories (Style=Empile),
+Devis, Réassurances, Réalisations (En-tête=Presentation), FAQ, Avis Google, Texte SEO, Footer.
+Hauteurs obtenues : 10008 · 10835 · 6957 · 7568.
+
+**Écart de source qui reste ouvert, nommé.** Le contrat `ds.reassurances` 2.1.0 porte un réglage
+`disposition` à trois valeurs (`4Cartes`, `quatrecartesdeuxcta`, `5Cartes`) que **le set Figma v2 ne
+déclare pas** : il dessine toujours cinq cartes, aux quatre écrans. La maquette de la page 3 en
+montre quatre. Le contrat est en AVANCE sur le canevas — les quatre vues montrent donc cinq cartes.
+À refermer à la source, pas à contourner dans la démo.
+
+### Correctif : la démo de la page 3 montait sans son contenu (2026-09-07)
+
+Défaut de ma part, relevé par l'owner. J'avais instancié chaque set à sa variante `Presentation`
+et je m'étais arrêté là. Une instance neuve porte le contenu PAR DÉFAUT de son set, et les défauts
+des sets ont été relevés sur la maquette **industrielle** : la démo annonçait donc « Portes de garage
+industrielles » en hero et « Portes de garage » / « Portes d'entrée » en catégories. Pas un texte
+neutre — le contenu d'une autre page. La démo de la page 2, elle, porte bien son vrai contenu : la
+marche existait, je l'ai sautée.
+
+Contenu relevé sur la maquette `Portes de garage résidentielles` (2771:23633) et posé sur les quatre
+vues, **plages de gras comprises** : titre et sous-titre du hero, les deux cartes catégories
+(« Porte sectionnelle » / « Porte basculante », première phrase en gras), titre et texte des
+Réalisations, et le bloc Texte SEO en entier.
+
+**Le piège du gras n'a PAS mordu, vérifié plutôt que supposé.** `setRangeFontName` peut faire cesser
+la liaison de taille au niveau du nœud (leçon du 2026-09-07 sur la carte empilée). Relevé après coup
+sur les quatre vues : le titre du hero fait 32 · 32 · 40 · 54, la description de carte 16 · 18 · 18 ·
+18, le paragraphe SEO 16 · 16 · 18 · 18. Les liaisons responsive tiennent.
+
+**Ce qui diffère encore de la maquette, et c'est voulu :**
+- Les **Réassurances affichent cinq cartes** là où la maquette en montre quatre — l'axe `Disposition`
+  du contrat n'existe pas sur le set Figma. Écart de source déjà nommé.
+- Le titre des Réassurances dit « nos portes de garage **industrielles** ». Ce n'est pas un reste de
+  défaut : **la maquette elle-même le dit**. Copie à trancher côté rédaction, pas côté composant.
+- Les **photos ont été transférées elles aussi**, dans un second passage : 16 paints IMAGE par vue,
+  relevés sur la maquette et reposés en `scaleMode` FILL — le fond du hero, les deux cartes
+  catégories, les quatre cartes de réassurance et les neuf tuiles de réalisations. Le fond du bloc
+  Devis était déjà le bon. La CINQUIÈME carte de réassurance garde la photo du set, faute de source :
+  la maquette n'en montre que quatre. Rappel : une photo est hors contrat (route A5), ce transfert
+  vaut pour la planche Figma ; côté Odoo elle entrera par le dialogue média au montage de la page.
+
+## Le colonnage des Réassurances : une ligne au lieu d'une grille figée (2026-09-07)
+
+**Le défaut.** En Wide, `columns: 5` était calculé pour le cas à cinq cartes. Avec quatre cartes, la
+grille gardait une piste vide et le bloc ne remplissait plus la largeur.
+
+**Ce qu'on n'a PAS fait, et l'owner a eu raison deux fois.** D'abord j'ai proposé de rendre au set son
+axe `Disposition` : refusé, et à juste titre — le nombre de cartes est du CONTENU (la collection
+`items`, clonée par item au montage, sans plafond), aucun composant du système ne compte ses items
+par un axe, et un énuméré aurait créé deux sources pour un seul fait. Ensuite j'ai écrit six règles
+CSS de comptage (`quantity queries`) : ça marchait, mais c'était un fait code-only de plus, que Figma
+ne pouvait pas dire. L'owner a insisté pour que le composant v2 reflète Odoo. Il avait raison.
+
+**Le correctif, et il tient en une ligne de contrat.** En Wide, la part `items` passe de
+`columns: 5` à `display: flex, direction: row`. Les cartes portent déjà `width: 100 %`, donc leur base
+de flex est égale, donc le retrait se fait au prorata et **les colonnes sortent exactement égales**.
+Le nombre de cartes fait le nombre de colonnes, sans qu'aucun compte ne soit déclaré nulle part.
+
+**J'avais affirmé le contraire, et c'était faux.** J'avais écarté cette piste en invoquant la leçon du
+dépôt sur `flex: 1 1 auto` et sa base liée au contenu. Mesuré dans le navigateur : grille et flex
+donnent 284,4 à cinq cartes et 363,5 à quatre, au dixième. La leçon ne s'appliquait pas ici, parce que
+la largeur à 100 % égalise les bases.
+
+**CARRY-BOTH, et c'est tout l'intérêt.** Le conteneur du Wide passe de la grille Figma à un
+auto-layout HORIZONTAL à enfants Fill, qui répartit lui aussi à parts égales. Géométrie du master
+identique au centième après le geste : variante 1728×829, cartes 284,4 ×5. Et surtout, **le canevas
+reflue maintenant comme le site** : masquer une carte sur une instance donne quatre cartes de 363,5.
+
+Les quatre vues de la démo page 3 et les quatre captures Odoo donnent désormais les **mêmes boîtes** :
+
+| Écran | Figma | Odoo |
+|---|---|---|
+| 390 | 390×1618 | 390×1618 |
+| 834 | 834×1676 | 834×1676 |
+| 1200 | 1200×1380 | 1200×1380 |
+| 1728 | 1728×772 | 1728×772 |
+
+**PORTÉE : le Wide seulement**, décision owner. Le Desktop garde sa grille de trois colonnes en toutes
+circonstances : quatre cartes s'y rangent en 3 + 1, des deux côtés.
+
+**Piège attrapé par la mesure, à ne pas rediscover.** Le générateur émet la règle sous
+`.reassurances--presentation-wide`, mais **aucun QWeb ne pose les classes de présentation sur le DOM
+Odoo** : c'est la feuille par écran qui les traduit en `@media`. Ma première version supprimait la
+règle Wide de cette feuille en croyant le générateur suffisant — le bloc retombait alors sur la grille
+à trois colonnes du Desktop, encore active à 1728, et grandissait de 829 à 1281 px. La règle est donc
+recopiée dans la feuille, à l'identique du contrat, avec `grid-auto-rows: auto` pour neutraliser le
+reliquat de grille.
+
+**La non-régression sur les pages en ligne.** Photographié avant et après sur le pilote, home et
+« Portes de garage », quatre largeurs :
+
+| Page | 390 | 834 | 1200 | 1728 |
+|---|---|---|---|---|
+| Home | 0,0000 % | 0,0000 % | 0,0000 % | **0,0061 %** |
+| Portes de garage | 0,0000 % | 0,0000 % | 0,0000 % | **0,0061 %** |
+
+Le résidu de 1728 est nommé, pas balayé : **88 pixels sur 1,43 million**, tous de l'anticrénelage de
+texte à l'intérieur des cartes. Les cartes sont aux mêmes abscisses et aux mêmes largeurs à **0,02 px**
+près — grille et flex n'arrondissent pas la distribution fractionnaire de la même façon. Aucune
+différence de structure ; l'image de différence est archivée.
+
+**Portes** : `build`, `geometry:gate`, `odoo:authoring:check`, `odoo:module:check` 23/23,
+`emitters:check`, `tsc`, `parity` — toutes vertes.
+
+**Reste, nommé** : le réglage `disposition` du contrat est inerte des deux côtés (Odoo rend un seul
+bouton, Figma en dessine un seul). Reste de v1, à RETIRER par une rupture majeure, pas à brancher.
+

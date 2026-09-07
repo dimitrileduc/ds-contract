@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788795427443,
+  "extractedAt": 1788798542702,
   "sets": [
     {
       "name": "Input",
@@ -1688,8 +1688,17 @@
       "nodeId": "2693:20242",
       "key": "6495b5175604b69af5a2b670bdbc1e49a60e68d3",
       "description": "",
-      "variantCount": 4,
+      "variantCount": 8,
       "properties": {
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose",
+            "Empile"
+          ],
+          "preferredValues": null
+        },
         "Presentation": {
           "type": "VARIANT",
           "defaultValue": "Mobile",
@@ -1707,28 +1716,6 @@
         "CarteCategorie",
         "ArrowRight"
       ]
-    },
-    {
-      "name": "Presentation",
-      "nodeId": "2693:20805",
-      "key": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
     },
     {
       "name": "SAV",
@@ -2335,7 +2322,6 @@
       },
       "forwardedProperties": {},
       "nestedInstances": [
-        "SectionHeader",
         "Realisation"
       ]
     },
@@ -2367,6 +2353,28 @@
         "ArrowLeft",
         "ArrowRight"
       ]
+    },
+    {
+      "name": "Presentation",
+      "nodeId": "2693:20805",
+      "key": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
     }
   ],
   "collections": [

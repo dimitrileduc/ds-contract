@@ -1,7 +1,7 @@
 /*
  * responsive/reassurances.pqr.css — ZONE MANUELLE (vague 031, 2026-09-02).
  *
- * Projection Odoo des règles PAR MODE du contrat ds.reassurances 2.0.0
+ * Projection Odoo des règles PAR MODE du contrat ds.reassurances 2.1.1
  * (layoutByProp / tokensByProp sur l'axe `presentation`), réécrites en @media sur
  * les breakpoints des jetons :
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.reassurances`)
@@ -105,7 +105,21 @@
   .s_pqr_reassurances.reassurances {
     padding-inline: var(--pqr-space-89);
   }
+  /* Wide : UNE LIGNE, plus une grille a nombre de colonnes fige (2026-09-07).
+   * Le contrat le dit desormais (layoutByProp wide : display flex, direction row)
+   * et le generateur l'emet sous `.reassurances--presentation-wide` — mais AUCUN
+   * QWeb ne pose les classes de presentation sur le DOM Odoo, c'est cette feuille
+   * qui les traduit en @media. La regle est donc recopiee ici, a l'identique du
+   * contrat, et non inventee.
+   * Pourquoi une ligne plutot que cinq colonnes : les cartes portent `width: 100 %`,
+   * donc leur base de flex est egale, donc le retrait se fait au prorata et les
+   * colonnes sortent EXACTEMENT egales — 284,4 a cinq cartes, 363,5 a quatre
+   * (mesure). Le nombre de cartes fait le nombre de colonnes, sans qu'aucun compte
+   * ne soit declare. Il faut aussi neutraliser `grid-auto-rows` du bloc Desktop,
+   * qui reste actif a cette largeur et n'a plus de sens hors grille. */
   .s_pqr_reassurances.reassurances .reassurances__items {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    display: flex;
+    flex-direction: row;
+    grid-auto-rows: auto;
   }
 }
