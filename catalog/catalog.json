@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "d04e7aab",
+    "gitCommit": "16e5b7f3",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -80,6 +80,7 @@
       "--color-etat-iconOnly-fond-presse",
       "--color-etat-iconOnly-libelle-presse",
       "--color-etat-iconOnly-anneau-focus",
+      "--color-etat-carte-categorie-voile-survol",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -234,6 +235,7 @@
       "--color-gris-presse",
       "--color-transparent",
       "--color-noir-profond",
+      "--color-noir-voile-55",
       "--nav-state",
       "--opacity-base",
       "--font-family-montserrat",
@@ -433,6 +435,8 @@
       "--decoration-etat-link-survol",
       "--decoration-etat-outlineNoir-survol",
       "--decoration-etat-iconOnly-survol",
+      "--shadow-etat-product-card-survol",
+      "--shadow-etat-review-card-survol",
       "--color-etat-default-fond-survol",
       "--color-etat-default-libelle-survol",
       "--color-etat-default-fond-presse",
@@ -468,6 +472,7 @@
       "--color-etat-iconOnly-fond-presse",
       "--color-etat-iconOnly-libelle-presse",
       "--color-etat-iconOnly-anneau-focus",
+      "--color-etat-carte-categorie-voile-survol",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -602,13 +607,13 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "stable",
       "category": "molecule",
-      "description": "Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.",
+      "description": "Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d"
+        "componentSetKey": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a"
       },
       "props": [
         {
@@ -798,10 +803,10 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray CarteCategorie, responsive. 2.0.0 (2026-09-02, vague 031) : le style superposé est ré-extrait du set 2692:19667 (page « 031 · Planches de validation »), qui remplace le master 2495:6770. Ce qui change : le voile occupe toute la carte au lieu du seul bas, son padding horizontal suit le token responsive spacing.card-categorie.pad-h (24 / 32), le titre monte le style responsive « Titre carte » (typography.h3.*, 20/25 SemiBold → 32/40 Medium) et la description « Description carte » (typography.card-desc.*, 16/24 → 18/27), le plan photo passe en absolu parce que la hauteur de la carte appartient à la section (quatre hauteurs par mode), et la largeur minimale dessinée 320 est mintée. Deux propriétés TEXT (Titre, Texte) ont été posées sur le set le 2026-09-02 : titre et texte sont de nouveau liés. Le style empilé est conservé tel quel (décision owner) bien que le set 031 ne le dessine plus.\n\nHistorique avant 2.0.0 :\nPiqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root. Plan de document : la partie titre porte la balise h3 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
+      "description": "2.2.0 (2026-09-05, vague 033) : la carte repond au geste. UN seul etat, `hover`, et il ne touche QUE le style superpose : un voile noir a 55 % se compose SOUS le degrade existant du voile (`contenuSuperpose`), qui n'est pas modifie. Le repos est donc inchange a l'octet sur les deux styles.\n\nDeux faits mesures le 2026-09-05, avant d'ecrire.\n(1) Le texte blanc de la carte n'a PAS de probleme de lisibilite au repos : 17,3:1 sur la description et 18,3:1 sur le titre, quand AAA commence a 7:1. Le survol est donc un signal d'INTERACTIVITE, jamais une correction de contraste — l'ecrire ici evite qu'une relecture future le justifie par l'accessibilite.\n(2) Le degrade lui-meme ne peut pas varier par etat : `contenuSuperpose` est une part NON-racine, et le canal d'etats d'une part non-racine n'accepte que de la couleur (`PART_STATE_CHANNELS` : color, background-color, border-color). Accentuer les arrets du degrade au survol aurait demande d'elargir ce canal au `background-image` — modification d'emetteur touchant les 39 contrats, refusee par l'owner au profit du voile. LIMITE NOMMEE, pas un oubli.\n\nPiqueray CarteCategorie, responsive. 2.0.0 (2026-09-02, vague 031) : le style superposé est ré-extrait du set 2692:19667 (page « 031 · Planches de validation »), qui remplace le master 2495:6770. Ce qui change : le voile occupe toute la carte au lieu du seul bas, son padding horizontal suit le token responsive spacing.card-categorie.pad-h (24 / 32), le titre monte le style responsive « Titre carte » (typography.h3.*, 20/25 SemiBold → 32/40 Medium) et la description « Description carte » (typography.card-desc.*, 16/24 → 18/27), le plan photo passe en absolu parce que la hauteur de la carte appartient à la section (quatre hauteurs par mode), et la largeur minimale dessinée 320 est mintée. Deux propriétés TEXT (Titre, Texte) ont été posées sur le set le 2026-09-02 : titre et texte sont de nouveau liés. Le style empilé est conservé tel quel (décision owner) bien que le set 031 ne le dessine plus.\n\nHistorique avant 2.0.0 :\nPiqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root. Plan de document : la partie titre porte la balise h3 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
       "figma": {
         "representation": "component",
         "componentSetKey": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c"
@@ -1620,10 +1625,10 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.\n\nPromotion 2.0.0 (2026-08-18, demande owner). MAJEUR : trois props retirées. (1) `tronque` disparaît — « Lire la suite » était caché sur les instances alors que le master l'affichait toujours ; l'owner le veut visible partout, la prop n'avait donc plus d'objet. (2) `initialeVisible` et `photo` étaient DEUX booléens indépendants, ce que la limite (1) ci-dessus nommait déjà comme une convention fragile : ils autorisaient les deux états absurdes (aucun avatar, ou les deux à la fois) et exposaient au rédacteur Odoo deux bascules là où la règle métier est « photo s'il y a une photo, sinon initiale ». Ils sont remplacés par UNE variante `avatar`, exclusive par construction. Le master Figma est devenu un set de deux variantes le même jour ; la variante `Avatar=Initiale` conserve l'id et la clé historiques, donc les 45 instances survivent (vérifié : 45/45, textes intacts). (3) `note` apparaît — la note d'un avis était le seul fait important non éditable. Elle est portée par le composant imbriqué `ds.notation` (cinq bandes exclusives ; voir son contrat pour les trois mécanismes moins coûteux testés et refusés par le moteur). Son binding Figma est `NONE` À DESSEIN : le porter en VARIANT sur la carte forcerait un produit Avatar × Note = dix variantes du master. La contrepartie est nommée — le canevas montre toujours la note par défaut, et les cinq états se lisent sur l'atome `Notation`, pas sur la carte. (Au passage : la limite (1) d'origine affirmait qu'« une prop scalaire ne peut pas être figma.kind NONE » ; re-testé sur le schéma le 2026-08-18, c'est faux — seul l'inverse est imposé, les props `arrayOf` DOIVENT être NONE.) La prop `verifie` disparaît elle aussi (même geste, même raison que `tronque`) : le badge est inconditionnel.\n\nTEXTES — sans Text Style, comme 172 des 332 textes du fichier (compté le 2026-08-18). Les cinq textes de la carte (initialeTexte, auteur, date, temoignage, lireLaSuite) ne portent aucun Text Style. Ce n'est PAS une singularité de ce composant : sur les 332 nœuds texte des masters, 160 portent un style, 0 lient une variable de typographie, 172 n'ont ni l'un ni l'autre. Les variables `font/size/*`, `font/weight/*` et `typography/*` existent mais alimentent les Text Styles ; sur un nœud texte, seule la couleur est liée — aucun nœud du fichier ne lie sa taille ou sa graisse. Aucun des 18 styles ne correspond exactement à ces cinq recettes : initialeTexte est SemiBold 18/18 quand le seul style à 18 (« Lead ») est Regular 18/27 ; auteur est SemiBold 16/19,2 quand « Titre 6 » est SemiBold 16/20 ; date, temoignage et lireLaSuite sont Medium 14 quand les trois styles à 14 sont Regular ou Bold. Ces valeurs (19,2 = 16×1,2 ; 16,8 = 14×1,2 ; 19,6 = 14×1,4) sont des interlignes de navigateur héritées du widget tiers dont la carte a été extraite en 006, pas des valeurs dessinées. Les rapprocher d'un style voisin changerait le rendu d'un contenu client adopté, et le workflow interdit le rapprochement « au plus proche ». La réparation utile n'est donc pas locale à ce composant : c'est une passe de typographie sur les 172, à décider par l'owner. Écart de 6 px nommé, et volontairement NON corrigé (2026-09-04, revu avec l'owner). Sur la planche 031 en Wide, la carte la plus haute mesure 258 px alors que son contenu se termine à 240 : la marge basse effective y vaut 18 px au lieu des 24 que la carte déclare. RIEN N'EST TRONQUÉ — aucun texte coupé, aucun élément masqué, l'écart ne se voit pas à l'œil. Notre rendu applique les 24 px et fait donc 264 px, d'où +6 px sur la section Avis en Wide, seul écart de hauteur restant de la home. Le rendu est conforme au contrat ; c'est le dessin qui est légèrement plus serré. Rien à réparer tant que le développement du carrousel n'a pas rouvert cette carte.",
+      "description": "4.1.0 (2026-09-05, vague 033) : elevation au survol. La carte ne porte aucune ombre au repos, donc le repos ne bouge pas d'un octet ; le survol pose `0 12px 32px rgba(0,0,0,0.20)`.\n\nCe qui merite d'etre retenu ici est une hypothese REFUTEE PAR LA MESURE, gardee parce qu'elle se represente. En lisant le CSS genere avant d'ecrire, on a vu la bordure de cette carte dessinee en `box-shadow: inset 0 0 0 <w> <c>` et conclu qu'une ombre de survol la remplacerait — la carte perdrait son contour. Le jeton a d'abord porte une couche inset pour le re-declarer. La mesure sur la page rendue a montre l'inverse : des que le canal `box-shadow` est utilise par un etat, l'emetteur bascule la bordure en `border` reel (border-style/-color/-width), et les deux canaux cessent de se disputer. Au repos, page Odoo du 2026-09-05 : `border: 1px solid rgb(244,246,250)`, `box-shadow: none`. La couche inset a donc ete retiree — elle repeignait un 1px par-dessus une bordure deja presente et figeait un hexadecimal qu'un jeton portait deja.\n\nEFFET DE BORD MESURE, ET IL TOUCHE LE REPOS. Ce basculement n'est pas neutre : avec `border: 0` + ombre inset, le 1px etait peint SANS consommer de place ; avec un `border` reel et `box-sizing: border-box`, il en consomme. Mesure sur la page Odoo rendue le 2026-09-05 : la boite exterieure de la carte est inchangee (elle est posee par la grille, `width: 100%`), donc AUCUN deplacement dans la page ; mais la boite de contenu passe de 198 a 196 px — 1 px de chaque cote. C'est le seul changement au repos apporte par cette version, il est borne a l'interieur de la carte, et il est le prix du canal d'ombre. Ecrit ici parce que la version se presente comme « le repos ne bouge pas » sur les deux autres cartes, et que l'exception doit se lire au meme endroit que la regle.\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.\n\nPromotion 2.0.0 (2026-08-18, demande owner). MAJEUR : trois props retirées. (1) `tronque` disparaît — « Lire la suite » était caché sur les instances alors que le master l'affichait toujours ; l'owner le veut visible partout, la prop n'avait donc plus d'objet. (2) `initialeVisible` et `photo` étaient DEUX booléens indépendants, ce que la limite (1) ci-dessus nommait déjà comme une convention fragile : ils autorisaient les deux états absurdes (aucun avatar, ou les deux à la fois) et exposaient au rédacteur Odoo deux bascules là où la règle métier est « photo s'il y a une photo, sinon initiale ». Ils sont remplacés par UNE variante `avatar`, exclusive par construction. Le master Figma est devenu un set de deux variantes le même jour ; la variante `Avatar=Initiale` conserve l'id et la clé historiques, donc les 45 instances survivent (vérifié : 45/45, textes intacts). (3) `note` apparaît — la note d'un avis était le seul fait important non éditable. Elle est portée par le composant imbriqué `ds.notation` (cinq bandes exclusives ; voir son contrat pour les trois mécanismes moins coûteux testés et refusés par le moteur). Son binding Figma est `NONE` À DESSEIN : le porter en VARIANT sur la carte forcerait un produit Avatar × Note = dix variantes du master. La contrepartie est nommée — le canevas montre toujours la note par défaut, et les cinq états se lisent sur l'atome `Notation`, pas sur la carte. (Au passage : la limite (1) d'origine affirmait qu'« une prop scalaire ne peut pas être figma.kind NONE » ; re-testé sur le schéma le 2026-08-18, c'est faux — seul l'inverse est imposé, les props `arrayOf` DOIVENT être NONE.) La prop `verifie` disparaît elle aussi (même geste, même raison que `tronque`) : le badge est inconditionnel.\n\nTEXTES — sans Text Style, comme 172 des 332 textes du fichier (compté le 2026-08-18). Les cinq textes de la carte (initialeTexte, auteur, date, temoignage, lireLaSuite) ne portent aucun Text Style. Ce n'est PAS une singularité de ce composant : sur les 332 nœuds texte des masters, 160 portent un style, 0 lient une variable de typographie, 172 n'ont ni l'un ni l'autre. Les variables `font/size/*`, `font/weight/*` et `typography/*` existent mais alimentent les Text Styles ; sur un nœud texte, seule la couleur est liée — aucun nœud du fichier ne lie sa taille ou sa graisse. Aucun des 18 styles ne correspond exactement à ces cinq recettes : initialeTexte est SemiBold 18/18 quand le seul style à 18 (« Lead ») est Regular 18/27 ; auteur est SemiBold 16/19,2 quand « Titre 6 » est SemiBold 16/20 ; date, temoignage et lireLaSuite sont Medium 14 quand les trois styles à 14 sont Regular ou Bold. Ces valeurs (19,2 = 16×1,2 ; 16,8 = 14×1,2 ; 19,6 = 14×1,4) sont des interlignes de navigateur héritées du widget tiers dont la carte a été extraite en 006, pas des valeurs dessinées. Les rapprocher d'un style voisin changerait le rendu d'un contenu client adopté, et le workflow interdit le rapprochement « au plus proche ». La réparation utile n'est donc pas locale à ce composant : c'est une passe de typographie sur les 172, à décider par l'owner. Écart de 6 px nommé, et volontairement NON corrigé (2026-09-04, revu avec l'owner). Sur la planche 031 en Wide, la carte la plus haute mesure 258 px alors que son contenu se termine à 240 : la marge basse effective y vaut 18 px au lieu des 24 que la carte déclare. RIEN N'EST TRONQUÉ — aucun texte coupé, aucun élément masqué, l'écart ne se voit pas à l'œil. Notre rendu applique les 24 px et fait donc 264 px, d'où +6 px sur la section Avis en Wide, seul écart de hauteur restant de la home. Le rendu est conforme au contrat ; c'est le dessin qui est légèrement plus serré. Rien à réparer tant que le développement du carrousel n'a pas rouvert cette carte.",
       "figma": {
         "representation": "component",
         "componentSetKey": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c"
@@ -1941,20 +1946,31 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
+      "description": "Piqueray Hero (image), responsive. 3.0.0 (2026-09-07, vague 031 suite, page « Portes de garage »): re-extracted from the candidate set 2770:20976 (page 031, section « 031 · HERO IMAGE — 4 variantes (candidat v2) »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner on 2026-09-07 — the anchors move from the single COMPONENT 2111:3382 to the set, hence MAJOR. Everything the canvas draws is proposed by `npm run extract:figma` on the dump v1.8 and adopted: layout per mode (Titres column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings and gap per mode as tokensByProp on the presentation axis (64/24 · 64/48 · 96-48/56 · 96-48/89, gap 24 · 24 · 32 · 32), the title riding the responsive text style H1 (typography.h1.* — SemiBold; the 2.0.0 master drew it Bold: weight change decided by the owner), the paragraph riding typography.body.* (Regular under 992, Medium above — typography.body.weight varies by viewport mode). Veils: the 2.0.0 Titres scrim (2 stops) is REMOVED (owner decision « B »); a new full-inset `Voile` plane carries the DS token color.noir-voile-55 (55 % black) PLUS a bottom gradient (0 → 30 % transparent, 0.8 at 100 %), and `VoileNavigation` reuses the HeroVideo top veil per mode. Added by hand, each named: the host element (section — not drawn), the text alignment per mode (center / left), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the schema has no channel on a nested instance — Odoo projection, code-only), the flattening of the `Titre direct` wrapper frame. The drawn widths 390/834/1200/1728 are witnesses, not tokens: the root fills its parent. The photo keeps the 2.0.0 model (code-side `backgroundUrl`, `Background` plane, object-fit cover). Breakpoints are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build, never by this contract.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
+        "componentSetKey": "18e85e203a80f1190745ae89352759020b6cbaa0"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Viewport presentation, mirroring the canvas axis Presentation of the 031 candidate set. Default = mobile, the first variant of the set (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer."
+        },
         {
           "name": "backgroundUrl",
           "type": "string",
           "default": "",
-          "description": "Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder."
+          "description": "Code-only source of the Background plane's photographic IMAGE fill. The set exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder. Every page instance overrides the photo on the canvas (10 usages, each with its own image)."
         },
         {
           "name": "backgroundAlt",
@@ -1967,14 +1983,10 @@
           "type": "string",
           "default": [
             {
-              "text": "Portes de garage",
-              "strong": true
-            },
-            {
-              "text": " industrielles"
+              "text": "Portes de garage industrielles"
             }
           ],
-          "description": "Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero."
+          "description": "Hero title, bound to the native TEXT property « Titre ». Stays rich-text (marks.strong governed) so the editor keeps bold available; the DEFAULT carries no bold segment — the 031 candidate draws the whole title uniform SemiBold (fontStyle SemiBold on the node, style H1). The 2.0.0 default (« Portes de garage » in bold) came from the old master and is dropped."
         },
         {
           "name": "sousTitre",
@@ -1998,13 +2010,13 @@
               "text": "."
             }
           ],
-          "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges."
+          "description": "The hero paragraph as a governed rich-text prop bound to the native TEXT property « SousTitre » (016/T042). The two 700 ranges drawn on the candidate (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges."
         },
         {
           "name": "sousTitre2",
           "type": "boolean",
           "default": true,
-          "description": "Extracted from Figma \"SousTitre2\" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22)."
+          "description": "Figma « SousTitre2 » BOOLEAN property (visibility of the sousTitre node, carried by the 031 set as on the 2026-08-22 master). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22)."
         }
       ],
       "children": {
@@ -2201,13 +2213,13 @@
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray ProductCard. 3.0.0 (2026-09-04, vague 031) : les ancres passent du master DS 2068:1972 au master 031 `ProductCard` 2693:21081, celui que le set ProduitsECommerce de la page 031 instancie réellement — décision owner, patron déjà appliqué à ReviewCard, CarteCategorie et CarteReassurance. Deux changements avec : la typographie monte le groupe de jetons `typography.titre-6` (au lieu de font.size.16 / font.weight.semibold en dur, même recette résolue) ; et la largeur devient un PLAFOND, pas une largeur fixe — dans les quatre vues la carte vaut 260 · 322 · 326 · 363 selon l'écran, posée par la section via le jeton responsive `spacing.product-card.width` (une molécule n'a pas d'axe présentation : ce qui change par écran passe par un jeton qui varie par écran). L'URL et l'alternative textuelle de l'image restent des sémantiques de code : Figma les fournit par surcharge d'instance, jamais comme propriété de composant. La LARGEUR par écran (260 · 322 · 326 · 363) est portée par le jeton `spacing.product-card.width` sur la racine de CETTE molécule, et non sur la part instance de la section : les jetons posés sur une part `component` sont silencieusement ignorés par les émetteurs (vérifié le 2026-09-04 — zéro règle générée). C'est le patron d'art antérieur du dépôt (ds.avatar-group : largeur fixe sur la racine de l'enfant), la seule route qui traverse. Le jeton résout par mode viewport, ce qu'une molécule sans axe presentation ne saurait faire elle-même. `min-width` répète `width` : la carte est dans une piste flex et le rétrécissement par défaut la ferait passer sous la largeur dessinée — le carrousel exige qu'elle garde sa taille et que la piste déborde. Canal jeton, donc gouverné des deux côtés ; `flex-shrink` n'est pas un canal `declared` du registre (refus du schéma, 2026-09-04). Le titre est tronqué sur une ligne (maxLines 1 / ENDING au canevas) : porté par les canaux declared white-space, overflow et text-overflow.",
+      "description": "3.1.0 (2026-09-05, vague 033) : elevation au survol. L'ancre Figma change de nature avec cette version : ProductCard etait un COMPONENT simple, il devient un COMPONENT_SET a axe `Etat` (2763:10149). Le composant d'origine 2693:21081 devient la variante `Etat=Defaut` et GARDE son identifiant — ses 52 instances ont ete comptees avant (52) et apres (52) le geste, aucune n'a ete detachee. L'ombre est portee par la RACINE, donc elle trace la boite entiere de la carte — photo + titre + prix — et non la photo seule. La distinction n'est pas theorique : la premiere proposition faite a l'owner rendait l'ombre autour de l'image uniquement, et a ete refusee pour cela.\n\nLa carte ne porte AUCUNE ombre au repos, donc aucun octet du repos ne bouge. Valeur a 12 % et non 10 % : 10 % sur fond blanc s'est avere invisible a l'oeil, constate puis releve le 2026-09-05.\n\nPiqueray ProductCard. 3.0.0 (2026-09-04, vague 031) : les ancres passent du master DS 2068:1972 au master 031 `ProductCard` 2693:21081, celui que le set ProduitsECommerce de la page 031 instancie réellement — décision owner, patron déjà appliqué à ReviewCard, CarteCategorie et CarteReassurance. Deux changements avec : la typographie monte le groupe de jetons `typography.titre-6` (au lieu de font.size.16 / font.weight.semibold en dur, même recette résolue) ; et la largeur devient un PLAFOND, pas une largeur fixe — dans les quatre vues la carte vaut 260 · 322 · 326 · 363 selon l'écran, posée par la section via le jeton responsive `spacing.product-card.width` (une molécule n'a pas d'axe présentation : ce qui change par écran passe par un jeton qui varie par écran). L'URL et l'alternative textuelle de l'image restent des sémantiques de code : Figma les fournit par surcharge d'instance, jamais comme propriété de composant. La LARGEUR par écran (260 · 322 · 326 · 363) est portée par le jeton `spacing.product-card.width` sur la racine de CETTE molécule, et non sur la part instance de la section : les jetons posés sur une part `component` sont silencieusement ignorés par les émetteurs (vérifié le 2026-09-04 — zéro règle générée). C'est le patron d'art antérieur du dépôt (ds.avatar-group : largeur fixe sur la racine de l'enfant), la seule route qui traverse. Le jeton résout par mode viewport, ce qu'une molécule sans axe presentation ne saurait faire elle-même. `min-width` répète `width` : la carte est dans une piste flex et le rétrécissement par défaut la ferait passer sous la largeur dessinée — le carrousel exige qu'elle garde sa taille et que la piste déborde. Canal jeton, donc gouverné des deux côtés ; `flex-shrink` n'est pas un canal `declared` du registre (refus du schéma, 2026-09-04). Le titre est tronqué sur une ligne (maxLines 1 / ENDING au canevas) : porté par les canaux declared white-space, overflow et text-overflow.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "9d5b5ffa2711233858c0a684cd7e9a24b573db97"
+        "componentSetKey": "2e7981e1e2deb32e4e98f291e31e66697cfbfc30"
       },
       "props": [
         {
@@ -2524,31 +2536,93 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray TexteSEO, v2 (2026-09-07): anchored on the candidate set 2768:20428 (page 031, four variants Presentation=Mobile|Tablette|Desktop|Wide, cloned from the DS master 2108:3123 and reworked with the owner). MAJOR: the anchors leave the single COMPONENT master. What changes against 3.0.0: the viewport axis `presentation` (padding-inline 24/48/56/89 by mode, gap 32 everywhere), the title rides the DS H2 role (24/30 then 32/40 then 40/50, SemiBold — was 24/30 Regular), the paragraph rides the body role (16/24 Regular under 992, 18/27 Medium above — was 14/24 Regular) and becomes a governed rich-text prop `texte` (bold ranges kept), the sub-title rides the H4 role (20/25 then 24/30) and becomes the prop `sousTitre` bound to the new TEXT property `SousTitre`, and it wraps (FILL). The rows are ds.accordion-row 2.0.0 in Petit, unchanged. Named deviations against the dump are carried on each part's description.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9"
+        "componentSetKey": "3a13552df8319a513d0ee623f27c7b571013d96b"
       },
       "props": [
+        {
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Viewport presentation, mirroring the canvas axis Presentation of the candidate set. Default = mobile, the first variant (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer."
+        },
         {
           "name": "titre",
           "type": "string",
           "default": [
             {
-              "text": "Visitez notre "
+              "text": "Visitez notre showroom à Pepinster ou contactez-nous"
+            }
+          ],
+          "description": "Section title, bound to the set's TEXT property « Titre ». Kept RICH (marks.strong) as in 3.0.0 so the writer may still bold a range; the candidate draws it UNIFORM SemiBold (dump: fontStyle SemiBold on the whole node, no bold segment) so the default carries no bold segment — 3.0.0's « showroom à Pepinster » in bold came from the old master, not from the candidate."
+        },
+        {
+          "name": "texte",
+          "type": "string",
+          "default": [
+            {
+              "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre "
             },
             {
-              "text": "showroom à Pepinster",
+              "text": "showroom",
               "strong": true
             },
             {
-              "text": " ou contactez-nous"
+              "text": " situé rue Alfred Drèze à "
+            },
+            {
+              "text": "Pepinster",
+              "strong": true
+            },
+            {
+              "text": " (proche de "
+            },
+            {
+              "text": "Verviers",
+              "strong": true
+            },
+            {
+              "text": ") vous permet de découvrir en taille réelle nos"
+            },
+            {
+              "text": " portes de garage, motorisations ",
+              "strong": true
+            },
+            {
+              "text": "et"
+            },
+            {
+              "text": " portes d'entrée",
+              "strong": true
+            },
+            {
+              "text": ". Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits "
+            },
+            {
+              "text": "Hörmann",
+              "strong": true
+            },
+            {
+              "text": ". Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
             }
           ],
-          "description": "Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy."
+          "description": "The long paragraph, RICH: six bold ranges drawn on every variant of the candidate (owner rule 2026-09-02: a text with bold is rich). The candidate set exposes NO text property for it on purpose (owner decision 2026-09-02: a rich text is bound NONE, the canvas keeps its ranges by hand). 3.0.0 carried it as a static part text with no bold: it is now a governed prop so the Odoo writer edits it as rich text. The default is the candidate's own text, bold ranges as drawn — the spaces glued to the bold boundaries (« nos» + « portes de garage, motorisations » + «et» + « portes d'entrée») are the source's, reproduced as is."
+        },
+        {
+          "name": "sousTitre",
+          "type": "string",
+          "default": "Infos pratiques",
+          "description": "Sub-title above the rows, bound to the TEXT property « SousTitre » added on the candidate set (source defect n°1 of the audit, fixed on the candidate: the master had no property and the 9 instances overrode the text raw). Plain text, no bold, no line break."
         },
         {
           "name": "items",
@@ -2564,7 +2638,7 @@
               "titre": "text"
             }
           },
-          "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli."
+          "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le candidat (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli."
         }
       ],
       "children": {

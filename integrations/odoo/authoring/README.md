@@ -91,6 +91,7 @@ nomme un **bloc** (`component`) et son **contenu**. Extraits réels de `pages/ho
 | `variant` | `"superpose"` pour les catégories (2 cartes superposées) |
 | `cards` | liste de cartes (`titre` / `texte` ou `body` / `image`) — réassurances, catégories |
 | `reviews` | liste d'avis (`auteur` / `initiale` / `date` / `texte`) — Avis Google |
+| `rows` | liste de rangées d'accordéon (`titre` / `contenu` / `etat` = `ferme` ou `ouvert`) — Texte SEO, FAQ |
 | `remove_class` | retire une classe du bloc (ex : `pqr-soustitre-on` pour masquer un sous-titre) |
 | `add_class` | ajoute une classe de composition au bloc (ex : `s_pqr_bleed` pour la pleine largeur — voir « Layout de page ») |
 | `set_empty` | vide un texte |
@@ -145,9 +146,11 @@ descripteurs : sans gouttière de page, la pleine largeur est le défaut.
 Tracé dans `integrations/odoo/config/adaptation-registry.json` (reason code `odoo-page-layout`).
 
 ## Les images
-Elles vivent dans **`assets/`** (`assets/hero.png`, `assets/cat_garage.png`…).
-Pour en ajouter une : dépose le `.png` dans `assets/`, puis référence-la par son nom
-(sans `.png`) dans le fichier de contenu (`"images": { "hero-background": "mon_image" }`).
+Elles vivent dans **`assets/`** (`assets/hero.png`, `assets/cat_garage.png`…), en `.jpg` ou `.png`
+(le type est déduit de l'extension — une photo va en JPEG à la taille du cadre, un PNG de
+5 Mo servi tel quel a coûté 4 s de chargement le 2026-09-07).
+Pour en ajouter une : dépose le fichier dans `assets/`, puis référence-la par son nom
+(sans extension) dans le fichier de contenu (`"images": { "hero-background": "mon_image" }`).
 
 ## « Et si un bloc change ? »
 Tu **relances la commande** `npm run odoo:page -- <nom> <projet>`. Elle reconstruit la

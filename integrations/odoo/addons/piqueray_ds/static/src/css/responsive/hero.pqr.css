@@ -1,0 +1,114 @@
+/*
+ * responsive/hero.pqr.css — ZONE MANUELLE (vague 031 suite, section Hero IMAGE, 2026-09-07).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.hero 3.0.0 (layoutByProp / tokensByProp /
+ * literalsByProp / stylesWhen sur l'axe `presentation`, set candidat 2770:20976), réécrites en
+ * @media sur les breakpoints des tokens :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.hero`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.hero--presentation-<mode>` (qu'aucun QWeb ne pose) — même source, même vocabulaire.
+ * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
+ * (typography/h1 = 32/32/40/54 SemiBold, typography/body = 16/16/18/18, body/weight =
+ * Regular/Regular/Medium/Medium).
+ *
+ * DEUX faits CODE-ONLY, nommés dans le contrat (parts `Bouton` et `colGauche`) : le schéma refuse stylesWhen /
+ * layoutByProp / declared sur une part instance, donc le contrat garde le CTA dans le flux —
+ * le canevas le dessine ABSOLU en pied sur Mobile/Tablette (bottom = padding-bottom 64,
+ * insets = gouttière 24 / 48, pleine largeur), dans le flux HUG à droite sur Desktop/Wide.
+ * Et une contrainte Odoo : le cœur force `section { height: auto !important }` sous 768 px —
+ * la hauteur du contrat (size.hero.root = 640) est portée en min-height.
+ * La page (`#wrap.o_pqr_page`) n'a plus de gouttière depuis la vague 031 : la section est
+ * pleine largeur et porte la sienne (Titres) — pas de `s_pqr_bleed`, pas de `.container`.
+ */
+
+/* ---- ds.hero 3.0.0 ---------------------------------------------------------- */
+
+/* Base = Mobile. `height` du contrat → min-height (Odoo, sections < 768). Le conteneur
+ * flex garde `align-items: stretch` (contrat) : blocTexte, puis Titres (grow), remplissent
+ * les 640 px, ce qui centre le texte et donne au CTA absolu son cadre. */
+.s_pqr_hero.hero {
+  height: auto;
+  min-height: var(--pqr-size-hero-root);
+}
+
+/* Mobile + Tablette (< 992) : CTA épinglé en pied, pleine largeur dans la gouttière.
+ * Fait code-only (contrat : part instance sans canal par mode). Le cadre de référence est
+ * `.hero__blocTexte` (position: relative, z-index 2, étiré sur toute la boîte). BORNÉ à
+ * 991.98 — sans borne, `left: 24px` resterait actif sur un bouton dans le flux
+ * (le hero vidéo a perdu une heure sur ce point, 2026-09-02). */
+@media (max-width: 991.98px) {
+  /* SECOND fait code-only : colGauche est HUG en hauteur sur le canevas (216 / 128 px, centré
+   * par Titres), mais le contrat porte `grow: true` (nécessaire en rangée Desktop/Wide, où
+   * la colonne absorbe la largeur restante) et `grow` n'a pas de canal par mode
+   * (layoutByProp ne porte que direction / justify / align). En colonne, `flex: 1 1 auto`
+   * étirait la colonne sur 512 px et collait le titre en haut (mesuré : titre à y 64 au lieu
+   * de 212, 2026-09-07). Même remède que le hero vidéo (Text, 2026-09-02). */
+  .s_pqr_hero.hero .hero__colGauche {
+    flex: 0 0 auto;
+  }
+  .s_pqr_hero.hero .hero__Bouton {
+    position: absolute;
+    left: var(--pqr-space-24);
+    right: var(--pqr-space-24);
+    bottom: var(--pqr-space-64);
+  }
+  /* Canevas : Bouton FIXED = pleine largeur du cadre (342 / 738), libellé centré par le
+   * bouton lui-même (primary CENTER de ds.button). */
+  .s_pqr_hero.hero .hero__Bouton > .button {
+    width: 100%;
+  }
+}
+
+/* Tablette ≥ 768 : gouttière 48 (canevas : 738 de contenu sur 834). */
+@media (min-width: 768px) {
+  .s_pqr_hero.hero .hero__Titres {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+/* Tablette seule : les insets du CTA épinglé suivent la gouttière 48. Borné. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .s_pqr_hero.hero .hero__Bouton {
+    left: var(--pqr-space-48);
+    right: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : bloc texte en bas (racine align end), Titres en RANGÉE bas-alignée,
+ * padding 96 haut / 48 bas, gouttière 56, gap 32, texte à gauche, voile de navigation
+ * du mode Desktop (literalsByProp). Le CTA revient dans le flux par la borne du bloc
+ * précédent (HUG, à droite de la rangée). */
+@media (min-width: 992px) {
+  .s_pqr_hero.hero {
+    align-items: flex-end;
+  }
+  .s_pqr_hero.hero .hero__Titres {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: var(--pqr-space-32);
+    padding-top: var(--pqr-space-96);
+    padding-bottom: var(--pqr-space-48);
+    padding-inline: var(--pqr-space-56);
+  }
+  .s_pqr_hero.hero .hero__Titre,
+  .s_pqr_hero.hero .hero__sousTitre {
+    text-align: left;
+  }
+  /* Voile de navigation Desktop (lu sur le set HeroVideo 031, repris par décision owner
+   * 2026-09-07 — literalsByProp du contrat, entrée du registre des littéraux nommés). */
+  .s_pqr_hero.hero > .hero__VoileNavigation {
+    background-image: linear-gradient(to top, rgba(0,0,0,0) 70%, rgba(0,0,0,0.022) 72.3%, rgba(0,0,0,0.078) 74.5%, rgba(0,0,0,0.158) 76.7%, rgba(0,0,0,0.25) 79%, rgba(0,0,0,0.342) 81.3%, rgba(0,0,0,0.422) 83.5%, rgba(0,0,0,0.479) 85.8%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.54) 94%, rgba(0,0,0,0.58) 100%);
+  }
+}
+
+/* Wide ≥ 1400 : gouttière 89 (canevas : 1550 de contenu sur 1728). Le voile de navigation
+ * Wide du contrat est IDENTIQUE à celui de Desktop : la règle ≥ 992 reste vraie, rien à
+ * recopier. */
+@media (min-width: 1400px) {
+  .s_pqr_hero.hero .hero__Titres {
+    padding-inline: var(--pqr-space-89);
+  }
+}

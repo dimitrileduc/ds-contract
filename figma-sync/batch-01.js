@@ -4,8 +4,8 @@ const COMPONENTS = [
   {
     "setName": "AccordionRow",
     "contractId": "ds.accordion-row",
-    "anchorKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
-    "description": "AccordionRow — generated from contract ds.accordion-row v1.2.0 †",
+    "anchorKey": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
+    "description": "AccordionRow — generated from contract ds.accordion-row v2.0.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -13,7 +13,6 @@ const COMPONENTS = [
     "swapProps": [],
     "fontStyles": [
       "Medium",
-      "Semi Bold",
       "Regular",
       "Bold"
     ],
@@ -36,12 +35,8 @@ const COMPONENTS = [
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
           },
+          "stroke": "color/noir-bleute",
           "lits": {
-            "strokeColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "strokeSides": {
               "top": 0,
               "right": 0,
@@ -54,14 +49,10 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Titre",
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/titre"
-              },
               "characters": "Question",
               "fontSize": 20,
-              "fontStyle": "Semi Bold",
-              "textStyle": "Titre 5",
+              "fontStyle": "Medium",
+              "textStyle": "H4",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 0,
@@ -71,7 +62,8 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "ChevronDown",
-              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#26282C\"/>\n</svg>",
+              "svgPaintVar": "color/noir-bleute",
               "iconSize": 32
             },
             {
@@ -114,8 +106,7 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "counter": "MIN"
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1",
@@ -123,12 +114,8 @@ const COMPONENTS = [
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
           },
+          "stroke": "color/noir-bleute",
           "lits": {
-            "strokeColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "strokeSides": {
               "top": 0,
               "right": 0,
@@ -146,23 +133,14 @@ const COMPONENTS = [
                 "primary": "SPACE_BETWEEN",
                 "counter": "CENTER"
               },
-              "grow": true,
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/title"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "fixedHeight": {
-                    "px": 32,
-                    "varName": "size/accordion-row/titre-ouvert"
-                  },
                   "characters": "Question",
                   "fontSize": 20,
-                  "fontStyle": "Semi Bold",
-                  "textStyle": "Titre 5",
+                  "fontStyle": "Medium",
+                  "textStyle": "H4",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 25,
                   "letterSpacing": 0,
@@ -172,23 +150,25 @@ const COMPONENTS = [
                 {
                   "type": "svg",
                   "name": "ChevronUp",
-                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z\" fill=\"#000000\"/>\n</svg>",
+                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z\" fill=\"#26282C\"/>\n</svg>",
+                  "svgPaintVar": "color/noir-bleute",
                   "iconSize": 32
                 }
-              ]
+              ],
+              "fillWidth": true
             },
             {
               "type": "text",
               "name": "Contenu",
               "characters": "Réponse",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontStyle": "Regular",
-              "textStyle": "Paragraphe",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
               "fontFamily": "Montserrat",
-              "contentProp": "Contenu"
+              "contentProp": "Contenu",
+              "fillWidth": true
             },
             {
               "type": "frame",
@@ -238,6 +218,7 @@ const COMPONENTS = [
             "paddingTop": "space/8",
             "paddingBottom": "space/8"
           },
+          "stroke": "color/noir-bleute",
           "lits": {
             "strokeColor": {
               "r": 0.14901960784313725,
@@ -257,14 +238,9 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Titre",
-              "fixedHeight": {
-                "px": 24,
-                "varName": "size/accordion-row/titre-petit"
-              },
               "characters": "Question",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontStyle": "Bold",
-              "textStyle": "Paragraphe gras",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
@@ -274,7 +250,8 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "ChevronDown",
-              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#26282C\"/>\n</svg>",
+              "svgPaintVar": "color/noir-bleute",
               "iconSize": 24
             },
             {
@@ -317,8 +294,7 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "counter": "MIN"
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1",
@@ -326,6 +302,7 @@ const COMPONENTS = [
             "paddingTop": "space/8",
             "paddingBottom": "space/8"
           },
+          "stroke": "color/noir-bleute",
           "lits": {
             "strokeColor": {
               "r": 0.14901960784313725,
@@ -350,23 +327,13 @@ const COMPONENTS = [
                 "primary": "SPACE_BETWEEN",
                 "counter": "CENTER"
               },
-              "grow": true,
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/title"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "fixedHeight": {
-                    "px": 24,
-                    "varName": "size/accordion-row/titre-ouvert-petit"
-                  },
                   "characters": "Question",
-                  "fontSize": 14,
+                  "fontSize": 16,
                   "fontStyle": "Bold",
-                  "textStyle": "Paragraphe gras",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 24,
                   "letterSpacing": 0,
@@ -376,23 +343,25 @@ const COMPONENTS = [
                 {
                   "type": "svg",
                   "name": "ChevronUp",
-                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z\" fill=\"#000000\"/>\n</svg>",
+                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z\" fill=\"#26282C\"/>\n</svg>",
+                  "svgPaintVar": "color/noir-bleute",
                   "iconSize": 24
                 }
-              ]
+              ],
+              "fillWidth": true
             },
             {
               "type": "text",
               "name": "Contenu",
               "characters": "Réponse",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontStyle": "Regular",
-              "textStyle": "Paragraphe",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
               "fontFamily": "Montserrat",
-              "contentProp": "Contenu"
+              "contentProp": "Contenu",
+              "fillWidth": true
             },
             {
               "type": "frame",
@@ -3225,6 +3194,15 @@ async function buildNode(spec, registry) {
     const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
     const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
     if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
+    if (spec.svgPaintVar) {
+      const glyphPaint = boundPaint(spec.svgPaintVar, node);
+      const rebind = (n) => {
+        if (Array.isArray(n.fills) && n.fills.length > 0) n.fills = [glyphPaint];
+        if (Array.isArray(n.strokes) && n.strokes.length > 0) n.strokes = [glyphPaint];
+        if (n.children) for (const c of n.children) rebind(c);
+      };
+      for (const c of node.children) rebind(c);
+    }
   } else if (spec.type === 'icon-instance') {
     const main = await findIconComponent(spec.iconComponent);
     node = main.createInstance();
@@ -3285,15 +3263,6 @@ async function buildNode(spec, registry) {
         }
       }
 
-      // A component-property text with only a fixed height is still a block
-      // in a vertical auto-layout column: its parent supplies the width. The
-      // native TEXT must therefore wrap inside its generated wrapper.
-      if (spec.contentProp && spec.fixedHeight && !spec.fixedWidth && spec.characters) {
-        try {
-          node.textAutoResize = 'HEIGHT';
-          node.layoutSizingHorizontal = 'FILL';
-        } catch (e) { /* wrapper is an auto-layout parent in supported Figma */ }
-      }
       wrap.name = spec.name;
       node = wrap;
     }
@@ -3399,12 +3368,6 @@ async function buildNode(spec, registry) {
     }
 
 
-    // A property-backed, fixed-height text wrapper has no intrinsic width in
-    // CSS. In a vertical column it fills the cross axis and its native TEXT
-    // child wraps at that width.
-    if (child.contentProp && child.fixedHeight && !child.fixedWidth && node.layoutMode === 'VERTICAL') {
-      try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* parent is not auto-layout */ }
-    }
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
     // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
@@ -3994,12 +3957,6 @@ async function amendSet(set, C) {
         }
 
 
-    // A property-backed, fixed-height text wrapper has no intrinsic width in
-    // CSS. In a vertical column it fills the cross axis and its native TEXT
-    // child wraps at that width.
-    if (childSpec.contentProp && childSpec.fixedHeight && !childSpec.fixedWidth && comp.layoutMode === 'VERTICAL') {
-      try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* parent is not auto-layout */ }
-    }
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
         if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
@@ -4103,12 +4060,6 @@ async function amendComponent(comp, C) {
     }
 
 
-    // A property-backed, fixed-height text wrapper has no intrinsic width in
-    // CSS. In a vertical column it fills the cross axis and its native TEXT
-    // child wraps at that width.
-    if (childSpec.contentProp && childSpec.fixedHeight && !childSpec.fixedWidth && comp.layoutMode === 'VERTICAL') {
-      try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* parent is not auto-layout */ }
-    }
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
     if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {

@@ -30,11 +30,26 @@ for (const [file, label, liaisonAttendue] of [
     failures.push(`${label} must keep title content as one rich-text prop bound ${liaisonAttendue === 'NONE' ? 'NONE (the set draws the title on the node)' : "to the set's TEXT property « Titre »"}, got ${liaison ?? 'nothing'}`);
   }
   const serialised = JSON.stringify(contract.anatomy?.root);
-  if (!serialised.includes('"align":"start"') || !serialised.includes('"width":"fill"')) {
-    failures.push(`${label} direct title route must remain left-aligned and fill its owner width`);
-  }
-  if (label === 'Hero' && !serialised.includes('"font-weight":"300"')) {
-    failures.push('Hero must preserve its observed light base weight under rich-text strong ranges');
+  if (!serialised.includes('"width":"fill"')) failures.push(`${label} direct title route must fill its owner width`);
+  if (label === 'Hero') {
+    // 2026-09-07 (ds.hero 3.0.0, décision owner « B » sur duel 1:1, modèle HeroVideo) : sous 992
+    // le bloc titre est CENTRÉ (base = Mobile) ; à partir de Desktop il redevient en bas à
+    // gauche. La route directe reste : texte aligné à gauche en Desktop/Wide, pleine largeur.
+    const gaucheDesktop = /"equals":"desktop","styles":\{[^}]*"text-align":"left"/.test(serialised);
+    const gaucheWide = /"equals":"wide","styles":\{[^}]*"text-align":"left"/.test(serialised);
+    if (!gaucheDesktop || !gaucheWide) {
+      failures.push('Hero direct title route must be left-aligned on desktop/wide (centred below, owner 2026-09-07)');
+    }
+  } else if (label === 'TexteSEO') {
+    // 2026-09-07 (ds.texte-seo 4.0.0) : le cadre intermédiaire « Titre direct » (align start)
+    // a été aplati ; la racine est une colonne `align: stretch` dont le titre est un texte
+    // pleine largeur, donc aligné à gauche par défaut — même route, une part de moins.
+    const racine = contract.anatomy?.root?.layout ?? {};
+    if (racine.direction !== 'column' || racine.align !== 'stretch' || serialised.includes('"text-align":"center"')) {
+      failures.push('TexteSEO direct title route must remain left-aligned (column, stretch, no centring)');
+    }
+  } else if (!serialised.includes('"align":"start"')) {
+    failures.push(`${label} direct title route must remain left-aligned`);
   }
 }
 if (failures.length) {

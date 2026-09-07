@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v2.0.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v3.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -8,26 +8,29 @@ import type { HTMLAttributes } from 'react';
 import { Button } from '../Button';
 import styles from './Hero.module.css';
 
-export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
-  /** Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder. */
+export interface HeroProps extends HTMLAttributes<HTMLElement> {
+  /** Viewport presentation, mirroring the canvas axis Presentation of the 031 candidate set. Default = mobile, the first variant of the set (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer. */
+  presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
+  /** Code-only source of the Background plane's photographic IMAGE fill. The set exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder. Every page instance overrides the photo on the canvas (10 usages, each with its own image). */
   backgroundUrl?: string;
   /** Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state. */
   backgroundAlt?: string;
-  /** Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero. */
+  /** Hero title, bound to the native TEXT property « Titre ». Stays rich-text (marks.strong governed) so the editor keeps bold available; the DEFAULT carries no bold segment — the 031 candidate draws the whole title uniform SemiBold (fontStyle SemiBold on the node, style H1). The 2.0.0 default (« Portes de garage » in bold) came from the old master and is dropped. */
   titre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
-  /** The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
+  /** The hero paragraph as a governed rich-text prop bound to the native TEXT property « SousTitre » (016/T042). The two 700 ranges drawn on the candidate (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
   sousTitre?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
-  /** Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
+  /** Figma « SousTitre2 » BOOLEAN property (visibility of the sousTitre node, carried by the 031 set as on the 2026-08-22 master). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
   sousTitre2?: boolean;
 }
 
-/** Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug. */
-export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
+/** Piqueray Hero (image), responsive. 3.0.0 (2026-09-07, vague 031 suite, page « Portes de garage »): re-extracted from the candidate set 2770:20976 (page 031, section « 031 · HERO IMAGE — 4 variantes (candidat v2) »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner on 2026-09-07 — the anchors move from the single COMPONENT 2111:3382 to the set, hence MAJOR. Everything the canvas draws is proposed by `npm run extract:figma` on the dump v1.8 and adopted: layout per mode (Titres column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings and gap per mode as tokensByProp on the presentation axis (64/24 · 64/48 · 96-48/56 · 96-48/89, gap 24 · 24 · 32 · 32), the title riding the responsive text style H1 (typography.h1.* — SemiBold; the 2.0.0 master drew it Bold: weight change decided by the owner), the paragraph riding typography.body.* (Regular under 992, Medium above — typography.body.weight varies by viewport mode). Veils: the 2.0.0 Titres scrim (2 stops) is REMOVED (owner decision « B »); a new full-inset `Voile` plane carries the DS token color.noir-voile-55 (55 % black) PLUS a bottom gradient (0 → 30 % transparent, 0.8 at 100 %), and `VoileNavigation` reuses the HeroVideo top veil per mode. Added by hand, each named: the host element (section — not drawn), the text alignment per mode (center / left), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the schema has no channel on a nested instance — Odoo projection, code-only), the flattening of the `Titre direct` wrapper frame. The drawn widths 390/834/1200/1728 are witnesses, not tokens: the root fills its parent. The photo keeps the 2.0.0 model (code-side `backgroundUrl`, `Background` plane, object-fit cover). Breakpoints are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build, never by this contract. */
+export const Hero = forwardRef<HTMLElement, HeroProps>(function Hero(
   {
+    presentation = 'mobile',
     sousTitre2 = true,
     backgroundUrl = '',
     backgroundAlt = '',
-    titre = [{ text: 'Portes de garage', strong: true }, { text: ' industrielles' }],
+    titre = [{ text: 'Portes de garage industrielles' }],
     sousTitre = [
       { text: 'La ' },
       { text: 'performance', strong: true },
@@ -43,19 +46,22 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
   },
   ref,
 ) {
-  const classes = [styles.root, className].filter(Boolean).join(' ');
+  const classes = [styles.root, styles[`presentation-${presentation}`], className]
+    .filter(Boolean)
+    .join(' ');
   return (
-    <div ref={ref} className={classes} data-sous-titre2={sousTitre2 || undefined} {...rest}>
+    <section ref={ref} className={classes} data-sous-titre2={sousTitre2 || undefined} {...rest}>
       <img
         className={styles.Background}
         src={String(backgroundUrl)}
         alt={String(backgroundAlt)}
       ></img>
+      <div className={styles.Voile}></div>
       <div className={styles.VoileNavigation}></div>
       <div className={styles.blocTexte}>
         <div className={styles.Titres}>
           <div className={styles.colGauche}>
-            <span className={styles.Titre}>
+            <h1 className={styles.Titre}>
               {titre.map((segment, index) => {
                 const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
                 return segment.strong ? (
@@ -64,7 +70,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
                   <span key={index}>{inner}</span>
                 );
               })}
-            </span>
+            </h1>
             {sousTitre2 ? (
               <span className={styles.sousTitre}>
                 {sousTitre.map((segment, index) => {
@@ -78,11 +84,11 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
               </span>
             ) : null}
           </div>
-          <Button variant="outlineBlanc" iconRight>
+          <Button variant="outlineBlanc" iconLeft={false} iconRight iconRightGlyph="arrow-right">
             Demander un devis gratuit
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 });

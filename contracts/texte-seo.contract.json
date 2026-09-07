@@ -2,27 +2,48 @@
   "$schema": "./contract.schema.json",
   "id": "ds.texte-seo",
   "name": "TexteSEO",
-  "version": "3.0.0",
-  "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "4.0.0",
+  "description": "Piqueray TexteSEO, v2 (2026-09-07): anchored on the candidate set 2768:20428 (page 031, four variants Presentation=Mobile|Tablette|Desktop|Wide, cloned from the DS master 2108:3123 and reworked with the owner). MAJOR: the anchors leave the single COMPONENT master. What changes against 3.0.0: the viewport axis `presentation` (padding-inline 24/48/56/89 by mode, gap 32 everywhere), the title rides the DS H2 role (24/30 then 32/40 then 40/50, SemiBold — was 24/30 Regular), the paragraph rides the body role (16/24 Regular under 992, 18/27 Medium above — was 14/24 Regular) and becomes a governed rich-text prop `texte` (bold ranges kept), the sub-title rides the H4 role (20/25 then 24/30) and becomes the prop `sousTitre` bound to the new TEXT property `SousTitre`, and it wraps (FILL). The rows are ds.accordion-row 2.0.0 in Petit, unchanged. Named deviations against the dump are carried on each part's description.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
     {
+      "name": "presentation",
+      "description": "Viewport presentation, mirroring the canvas axis Presentation of the candidate set. Default = mobile, the first variant (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
       "name": "titre",
-      "description": "Texte SEO-owned rich title. The prior compact SectionHeader variant is replaced by direct 24/30 anatomy.",
+      "description": "Section title, bound to the set's TEXT property « Titre ». Kept RICH (marks.strong) as in 3.0.0 so the writer may still bold a range; the candidate draws it UNIFORM SemiBold (dump: fontStyle SemiBold on the whole node, no bold segment) so the default carries no bold segment — 3.0.0's « showroom à Pepinster » in bold came from the old master, not from the candidate.",
       "type": "rich-text",
       "default": [
         {
-          "text": "Visitez notre "
-        },
-        {
-          "text": "showroom à Pepinster",
-          "strong": true
-        },
-        {
-          "text": " ou contactez-nous"
+          "text": "Visitez notre showroom à Pepinster ou contactez-nous"
         }
       ],
       "bindings": {
@@ -36,8 +57,83 @@
       }
     },
     {
+      "name": "texte",
+      "description": "The long paragraph, RICH: six bold ranges drawn on every variant of the candidate (owner rule 2026-09-02: a text with bold is rich). The candidate set exposes NO text property for it on purpose (owner decision 2026-09-02: a rich text is bound NONE, the canvas keeps its ranges by hand). 3.0.0 carried it as a static part text with no bold: it is now a governed prop so the Odoo writer edits it as rich text. The default is the candidate's own text, bold ranges as drawn — the spaces glued to the bold boundaries (« nos» + « portes de garage, motorisations » + «et» + « portes d'entrée») are the source's, reproduced as is.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre "
+        },
+        {
+          "text": "showroom",
+          "strong": true
+        },
+        {
+          "text": " situé rue Alfred Drèze à "
+        },
+        {
+          "text": "Pepinster",
+          "strong": true
+        },
+        {
+          "text": " (proche de "
+        },
+        {
+          "text": "Verviers",
+          "strong": true
+        },
+        {
+          "text": ") vous permet de découvrir en taille réelle nos"
+        },
+        {
+          "text": " portes de garage, motorisations ",
+          "strong": true
+        },
+        {
+          "text": "et"
+        },
+        {
+          "text": " portes d'entrée",
+          "strong": true
+        },
+        {
+          "text": ". Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits "
+        },
+        {
+          "text": "Hörmann",
+          "strong": true
+        },
+        {
+          "text": ". Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    },
+    {
+      "name": "sousTitre",
+      "description": "Sub-title above the rows, bound to the TEXT property « SousTitre » added on the candidate set (source defect n°1 of the audit, fixed on the candidate: the master had no property and the 9 instances overrode the text raw). Plain text, no bold, no line break.",
+      "type": "text",
+      "default": "Infos pratiques",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "SousTitre"
+        },
+        "code": {
+          "prop": "sousTitre"
+        }
+      }
+    },
+    {
       "name": "items",
-      "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
+      "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le candidat (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
       "type": {
         "arrayOf": {
           "contenu": "text",
@@ -63,16 +159,19 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Section root, FILL width (the drawn widths 390/834/1200/1728 are witnesses, not tokens — the extraction proposed them as imported.texte-seo.root.width.*, dropped). Column in every variant (dump: VERTICAL, counter MIN — carried as align stretch since every child is FILL, same rendering); padding-inline bound space/24 · 48 · 56 · 89 by presentation, gap bound space/32 on all four variants (owner decision 2026-09-07: 32 everywhere, no mobile reference exists). No padding-block on the set (0). 3.0.0's declared align-self stretch is dropped: width fill carries it.",
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "stretch"
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "parts": {
         "Titre": {
+          "description": "DEVIATION (named), same as 3.0.0: on the canvas this is the frame `h2` (row, FILL) holding the frame `Titre direct` (column, counter CENTER, gap space/8, FILL) holding the text `Titre` (FILL, HEIGHT auto) — two single-child wrappers flattened into this one text part with width fill (the gap has nothing to space; prior art: ds.presentation 4.0.0 dropped the same `Titre direct` frame). Rides the responsive text style H2 recognized by the extraction: size 24/24/32/40 and line-height 30/30/40/50 by viewport come from typography.h2.* (tokens/modes/viewport.*), weight SemiBold (dump: SemiBold on every variant), color color/noir-bleute bound. Heights measured on the candidate: 90 (3 lines) / 30 / 40 / 50.",
           "layout": {
-            "width": "fill",
-            "align": "start"
+            "width": "fill"
           },
           "content": {
             "prop": "titre",
@@ -82,50 +181,75 @@
           },
           "tokens": {
             "color": "{color.noir-bleute}",
-            "font-size": "{font.size.24}",
-            "font-weight": "{font.weight.regular}"
-          },
-          "literals": {
-            "line-height": "30px"
+            "font-family": "{typography.h2.family}",
+            "font-size": "{typography.h2.size}",
+            "font-weight": "{typography.h2.weight}",
+            "line-height": "{typography.h2.line-height}"
           }
         },
         "p": {
+          "description": "Paragraph frame: column, FILL width, no padding, no gap (dump, all four variants).",
           "layout": {
             "direction": "column",
-            "align": "stretch"
+            "align": "stretch",
+            "width": "fill"
           },
           "parts": {
             "Paragraphe": {
-              "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+              "description": "The long paragraph, FILL width, HEIGHT auto. The text node has NO Figma text style (the DS has no body style): it is bound directly to the body variables, which the extraction cannot see (dump v1.8 flattens text bindings) — it minted imported.texte-seo.p-paragraphe.font-size/line-height.<mode> (16/24 · 16/24 · 18/27 · 18/27) and a single font-weight 500. Renamed by hand on owner decision to the responsive body role: font-size typography.body.size, line-height typography.body.line-height, and the base weight typography.body.weight — which DOES vary by viewport (Regular under 992, Medium at Desktop/Wide), exactly what the candidate draws per range (Regular ×2 / Medium ×2, like ds.sav; the extraction's uniform 500 was wrong for Mobile/Tablette). Bold ranges via marks.strong = font.weight.bold. Color color/noir (#37373B) bound on the source — the only DS text in that color, kept on owner decision (audit defect n°4, not contested). No line break in the text: no white-space rule, like 3.0.0. letter-spacing 0 minted by the extraction (imported.texte-seo.p-paragraphe.letter-spacing) is the UA default: not carried, as in 3.0.0. Heights on the candidate: 312 (13 lines) / 144 (6) / 135 (5) / 81 (3).",
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "texte",
+                "marks": {
+                  "strong": "{font.weight.bold}"
+                }
+              },
               "tokens": {
                 "color": "{color.noir}",
-                "font-size": "{font.size.14}",
-                "font-weight": "{font.weight.regular}",
-                "line-height": "{font.line-height.24}"
+                "font-size": "{typography.body.size}",
+                "font-weight": "{typography.body.weight}",
+                "line-height": "{typography.body.line-height}"
               }
             }
           }
         },
         "h3": {
+          "description": "Sub-title frame: row, FILL width, no padding (dump). 3.0.0 carried no layout on it; the row + FILL come from the candidate.",
+          "layout": {
+            "direction": "row",
+            "width": "fill"
+          },
           "parts": {
             "SousTitre": {
-              "text": "Infos pratiques",
+              "description": "Sub-title, FILL width so it WRAPS (audit defect n°3: the master's HUG sub-title overflowed under 1550; fixed on the candidate). Rides the responsive text style H4 recognized by the extraction: size 20/20/24/24 and line-height 25/25/30/30 by viewport from typography.h4.* (tokens/modes/viewport.*), weight Medium (dump: Medium on every variant — 3.0.0 carried « Titre 5 » SemiBold from the old master), color color/noir-bleute bound. Rendered as the Odoo/HTML h3 level of the section (semantic level, not the H4 text style).",
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "sousTitre"
+              },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.20}",
-                "font-weight": "{font.weight.semibold}",
-                "line-height": "{font.line-height.25}"
+                "font-family": "{typography.h4.family}",
+                "font-size": "{typography.h4.size}",
+                "font-weight": "{typography.h4.weight}",
+                "line-height": "{typography.h4.line-height}"
               }
             }
           }
         },
         "accordion": {
+          "description": "Rows container: column, counter CENTER, gap 0, FILL width (dump, all four variants). The three rows are FILL too (342 / 738 / 1088 / 1550), heights on the candidate 40·168·40 / 40·96·40 / 43·105·43 / 43·105·43 — the rows' own geometry belongs to ds.accordion-row 2.0.0.",
           "layout": {
             "direction": "column",
-            "align": "center"
+            "align": "center",
+            "width": "fill"
           },
           "parts": {
             "AccordionRow": {
+              "description": "Three adjacent instances of the candidate AccordionRow set (linked by componentSetKey 7b4cc8de…, the anchor of ds.accordion-row 2.0.0), Taille=Petit, Etat Ferme / Ouvert / Ferme — one item template repeated over `items`, the drawn siblings as the static sample.",
               "component": {
                 "id": "ds.accordion-row",
                 "props": {
@@ -159,19 +283,30 @@
       "tokens": {
         "font-family": "{font.family.montserrat}",
         "gap": "{space.32}",
-        "padding-inline": "{space.89}"
+        "padding-inline": "{space.24}"
       },
-      "declared": {
-        "align-self": "stretch"
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}"
+          }
+        }
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
-      "nodeId": "2108:3123",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "3a13552df8319a513d0ee623f27c7b571013d96b",
+      "nodeId": "2768:20428",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/TexteSEO",

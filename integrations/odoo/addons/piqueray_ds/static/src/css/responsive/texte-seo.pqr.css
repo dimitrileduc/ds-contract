@@ -1,0 +1,49 @@
+/*
+ * responsive/texte-seo.pqr.css — ZONE MANUELLE (vague 031 suite, section Texte SEO, 2026-09-07).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.texte-seo 4.0.0 (tokensByProp sur
+ * l'axe `presentation`, set candidat 2768:20428), réécrites en @media sur les breakpoints
+ * des tokens :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.texte-seo`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.texte-seo--presentation-<mode>` (qu'aucun QWeb ne pose) — même source, même vocabulaire.
+ *
+ * Sur cette section, UNE SEULE déclaration varie par mode : la gouttière
+ * (padding-inline 24 / 48 / 56 / 89). Le gap (32) est le même sur les quatre variantes.
+ * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
+ * (typography/h2 = 24/24/32/40, typography/h4 = 20/20/24/24, typography/body = 16/16/18/18,
+ * typography/body/weight = Regular/Regular/Medium/Medium). Le repli du sous-titre et du
+ * titre, la hauteur des lignes d'accordéon : CSS généré, rien à ajouter.
+ * Aucun fait code-only sur cette section : la seule part instance (AccordionRow) ne
+ * change pas par mode.
+ * La page (`#wrap.o_pqr_page`) n'a plus de gouttière depuis la vague 031 : la section
+ * est pleine largeur et porte la sienne — pas de `s_pqr_bleed`, pas de `.container`.
+ */
+
+/* ---- ds.texte-seo 4.0.0 ---------------------------------------------------- */
+
+/* Base = Mobile : padding-inline 24, déjà dans components.pqr.css. */
+
+/* Tablette ≥ 768 : padding-inline 48 (canvas : 738 de contenu sur 834). */
+@media (min-width: 768px) {
+  .s_pqr_texte_seo.texte-seo {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : padding-inline 56 (canvas : 1088 sur 1200). */
+@media (min-width: 992px) {
+  .s_pqr_texte_seo.texte-seo {
+    padding-inline: var(--pqr-space-56);
+  }
+}
+
+/* Wide ≥ 1400 : padding-inline 89 (canvas : 1550 sur 1728). */
+@media (min-width: 1400px) {
+  .s_pqr_texte_seo.texte-seo {
+    padding-inline: var(--pqr-space-89);
+  }
+}

@@ -113,8 +113,10 @@ if (sectionTitles.length === 0 || sectionTitles.some((node) => node.textStyle ==
   fail(`SectionHeader.Titre is break-only rich text and must ride a named Text Style, got ${JSON.stringify(sectionTitles.map((n: any) => n.textStyle))}`);
 }
 const heroSubtitles = named('ds.hero', 'sousTitre');
-if (heroSubtitles.length !== 1 || heroSubtitles[0].textStyle !== undefined || !heroSubtitles[0].richTextRanges?.length) {
-  fail('Hero.sousTitre must keep native rich ranges without a whole-node Text Style');
+// 2026-09-07 : ds.hero 3.0.0 porte quatre variantes Presentation ⇒ quatre nœuds
+// sousTitre ; chacun garde ses plages riches natives, sans style de nœud.
+if (heroSubtitles.length !== 4 || heroSubtitles.some((node: any) => node.textStyle !== undefined || !node.richTextRanges?.length)) {
+  fail(`Hero.sousTitre must keep native rich ranges without a whole-node Text Style on its 4 variants, got ${JSON.stringify(heroSubtitles.map((n: any) => [n.textStyle, n.richTextRanges?.length]))}`);
 }
 
 if (tokensScript.includes('adoptExisting') || tokensScript.includes('adoptedStyles')) {
@@ -255,8 +257,20 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // et reste au compte « propre » (+2, ds.menu-mobile). Les 13 autres propres supplémentaires
 // mesurés ce jour appartiennent au chantier Avis Google / ReviewCard en cours dans le même
 // worktree (ds.google-reviews 5 → 20, ds.review-card) — pas au menu ; leur clôture re-mesurera.
-if (linked.length !== 87 || custom.length !== 53 || rich.length !== 13) {
-  fail(`global gate expected 87 linked / 53 historical custom / 13 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-09-07 (page « Portes de garage » : ds.accordion-row 2.0.0, ds.texte-seo 4.0.0,
+// ds.hero 3.0.0 — décisions owner du jour, typo hiérarchisée sur le DS) :
+// 87 → 85 liés, 53 → 61 propres, 13 → 22 riches. Mesuré contrat par contrat, avant/après :
+//  · ds.accordion-row : 6 liés → 2 liés + 4 propres. Le titre Grand monte le style H4 (2 nœuds,
+//    liés) ; le titre Petit et le contenu montent typography.body sans style Figma déclaré
+//    (4 nœuds, propres — même raison que SAV le 2026-09-02) ;
+//  · ds.texte-seo : 1 variante → 4. Le paragraphe quitte « Paragraphe » (lié) pour
+//    typography.body (propre, ×4) ; le sous-titre monte H4 (lié, ×4) ; le titre reste une
+//    prop riche, comptée par variante (riche, 1 → 4) ;
+//  · ds.hero : 1 variante → 4. Titre (prop riche sur H1) et sous-titre (plages riches natives)
+//    comptés par variante : riches 2 → 8.
+// Bilan : liés −6 +4 = −2 · propres +8 · riches +3 +6 = +9. Aucune recette ajoutée.
+if (linked.length !== 85 || custom.length !== 61 || rich.length !== 22) {
+  fail(`global gate expected 85 linked / 61 historical custom / 22 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
@@ -273,9 +287,11 @@ const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => 
 // compte « lié ». Les cinq restants — initialeTexte, plus temoignage et lireLaSuite sur les
 // deux variantes — gardent leur statut pour la raison déjà écrite : leur groupe responsive
 // n'a pas d'extension figmaTextStyle.
-const expectedCustomOwners = { 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 20, 'ds.menu-mobile': 2, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 3, 'ds.sav': 4 };
+// 2026-09-07 : +ds.accordion-row 4 (titre Petit, contenu ×2, titre ouvert Petit) et +ds.texte-seo 4
+// (paragraphe, ×4 variantes) — tous sur typography.body, groupe sans extension figmaTextStyle.
+const expectedCustomOwners = { 'ds.accordion-row': 4, 'ds.carte-categorie': 2, 'ds.carte': 2, 'ds.google-reviews': 20, 'ds.menu-mobile': 2, 'ds.presentation': 8, 'ds.reassurances': 12, 'ds.review-card': 3, 'ds.sav': 4, 'ds.texte-seo': 4 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 87 linked / 53 historical custom / 13 rich; second token apply preserves ids`);
+console.log(`figma-text-styles-piqueray ok: ${expectedStyles.length} independent recipes; strict marker preflight; 85 linked / 61 historical custom / 22 rich; second token apply preserves ids`);

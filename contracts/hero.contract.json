@@ -2,16 +2,44 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero",
   "name": "Hero",
-  "version": "2.0.0",
-  "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
+  "version": "3.0.0",
+  "description": "Piqueray Hero (image), responsive. 3.0.0 (2026-09-07, vague 031 suite, page « Portes de garage »): re-extracted from the candidate set 2770:20976 (page 031, section « 031 · HERO IMAGE — 4 variantes (candidat v2) »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner on 2026-09-07 — the anchors move from the single COMPONENT 2111:3382 to the set, hence MAJOR. Everything the canvas draws is proposed by `npm run extract:figma` on the dump v1.8 and adopted: layout per mode (Titres column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings and gap per mode as tokensByProp on the presentation axis (64/24 · 64/48 · 96-48/56 · 96-48/89, gap 24 · 24 · 32 · 32), the title riding the responsive text style H1 (typography.h1.* — SemiBold; the 2.0.0 master drew it Bold: weight change decided by the owner), the paragraph riding typography.body.* (Regular under 992, Medium above — typography.body.weight varies by viewport mode). Veils: the 2.0.0 Titres scrim (2 stops) is REMOVED (owner decision « B »); a new full-inset `Voile` plane carries the DS token color.noir-voile-55 (55 % black) PLUS a bottom gradient (0 → 30 % transparent, 0.8 at 100 %), and `VoileNavigation` reuses the HeroVideo top veil per mode. Added by hand, each named: the host element (section — not drawn), the text alignment per mode (center / left), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the schema has no channel on a nested instance — Odoo projection, code-only), the flattening of the `Titre direct` wrapper frame. The drawn widths 390/834/1200/1728 are witnesses, not tokens: the root fills its parent. The photo keeps the 2.0.0 model (code-side `backgroundUrl`, `Background` plane, object-fit cover). Breakpoints are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build, never by this contract.",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
     {
+      "name": "presentation",
+      "description": "Viewport presentation, mirroring the canvas axis Presentation of the 031 candidate set. Default = mobile, the first variant of the set (Figma's default) and the mobile-first base of the delivered CSS; in the delivered CSS the mode is selected by the viewport through the breakpoint tokens, never by a consumer.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
       "name": "backgroundUrl",
-      "description": "Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder.",
+      "description": "Code-only source of the Background plane's photographic IMAGE fill. The set exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder. Every page instance overrides the photo on the canvas (10 usages, each with its own image).",
       "type": "text",
       "default": "",
       "bindings": {
@@ -39,15 +67,11 @@
     },
     {
       "name": "titre",
-      "description": "Hero-owned rich title. The former generic emphasis variant is now direct anatomy so no generic SectionHeader hierarchy leaks into Hero.",
+      "description": "Hero title, bound to the native TEXT property « Titre ». Stays rich-text (marks.strong governed) so the editor keeps bold available; the DEFAULT carries no bold segment — the 031 candidate draws the whole title uniform SemiBold (fontStyle SemiBold on the node, style H1). The 2.0.0 default (« Portes de garage » in bold) came from the old master and is dropped.",
       "type": "rich-text",
       "default": [
         {
-          "text": "Portes de garage",
-          "strong": true
-        },
-        {
-          "text": " industrielles"
+          "text": "Portes de garage industrielles"
         }
       ],
       "bindings": {
@@ -62,7 +86,7 @@
     },
     {
       "name": "sousTitre",
-      "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges.",
+      "description": "The hero paragraph as a governed rich-text prop bound to the native TEXT property « SousTitre » (016/T042). The two 700 ranges drawn on the candidate (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges.",
       "type": "rich-text",
       "default": [
         {
@@ -97,7 +121,7 @@
       "name": "sousTitre2",
       "type": "boolean",
       "default": true,
-      "description": "Extracted from Figma \"SousTitre2\" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22).",
+      "description": "Figma « SousTitre2 » BOOLEAN property (visibility of the sousTitre node, carried by the 031 set as on the 2026-08-22 master). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22).",
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
@@ -112,18 +136,29 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Root frame, row, gap space.10 (bound on the four variants), height size.hero.root (640, bound on the four variants), width FIXED per variant on the canvas (witness) — fill here, 1728 as authoring reference. Cross-axis: the dump reads counter MIN on Mobile/Tablette and MAX on Desktop/Wide; blocTexte is FIXED 640 = the root's own height on Mobile/Tablette, so `stretch` is the faithful CSS statement of that fill (named deviation from the literal MIN), and `end` on Desktop/Wide where blocTexte hugs its content at the bottom.",
       "layout": {
         "display": "flex",
         "direction": "row",
-        "justify": "space-between",
-        "align": "end",
+        "align": "stretch",
         "width": "fill",
         "referenceWidth": 1728,
         "clip": true
       },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "align": "end"
+          },
+          "wide": {
+            "align": "end"
+          }
+        }
+      },
       "parts": {
         "Background": {
-          "description": "The root's fills[0] IMAGE paint as a photo plane. Out of flow (position: absolute) so it does not join the root's flex row; the emitter's replaced-element chrome then sizes it to the full inset box, which is the faithful statement — a Figma paint fills its NODE rather than occupying a box of its own, so no fixed 1728×640 is restated here. object-fit: cover reproduces scaleMode FILL (centered; the paint carries no imageTransform). Declared FIRST so the later positioned sibling paints over it.",
+          "description": "The photo plane (canvas: frame « Background », IMAGE fill, FILL scale mode — the dump v1 does not carry IMAGE paints, degradation named). Out of flow (position: absolute) so it does not join the root's flex row; the emitter's replaced-element chrome then sizes it to the full inset box. object-fit: cover reproduces scaleMode FILL (centered); a framing gap against Figma's FILL at widths other than 1728 is possible and is measured, never corrected here. Declared FIRST so the later positioned siblings paint over it.",
           "element": "img",
           "attrs": {
             "src": "{backgroundUrl}",
@@ -139,10 +174,13 @@
             "z-index": "0"
           }
         },
-        "VoileNavigation": {
-          "description": "Mandatory Hero-owned top veil. It sits above the photo and below all Hero content so an overlaid Page header remains readable without a Page-specific patch.",
+        "Voile": {
+          "description": "Full-inset veil « B » (owner decision 2026-09-07, judged on the clear photo of « Portes de garage »): a SOLID fill bound to the DS token color/noir-voile-55 (the token value #0000008C carries the 55 % alpha itself — the extraction note « alpha not representable on a token ref » is an extraction limit, the token is exact) PLUS a bottom linear gradient (black, alpha 0 from 0 to 30 %, 0.8 at 100 %) as the second paint. The dump v1 carries the first SOLID only (« paint-stack-truncated », expected): the gradient is read on the canvas and carried as a governed literal (named-literals registry). Sits above the photo and below VoileNavigation (same z-index, earlier in DOM order = painted first, as on the canvas). The drawn size 390…1728 × 640 is the root's own box: inset 0, never a token.",
+          "tokens": {
+            "background-color": "{color.noir-voile-55}"
+          },
           "literals": {
-            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%)"
+            "background-image": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.8) 100%)"
           },
           "declared": {
             "position": "absolute",
@@ -154,7 +192,36 @@
             "pointer-events": "none"
           }
         },
+        "VoileNavigation": {
+          "description": "Top veil (navigation readability, the Page header overlays the hero). Owner decision 2026-09-07: the HeroVideo veil of the same mode — the values are the ones read on the HeroVideo 031 set on 2026-09-02 and carried by ds.hero-video (from 75 % to 0.65 on Mobile/Tablette, from 70 % to 0.58 on Desktop/Wide), literalsByProp on the presentation axis. The dump v1 does not carry GRADIENT paints (degradation named).",
+          "literals": {
+            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.02) 78%, rgba(0,0,0,0.07) 82%, rgba(0,0,0,0.17) 86%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0.41) 93%, rgba(0,0,0,0.51) 96%, rgba(0,0,0,0.59) 98%, rgba(0,0,0,0.65) 100%)"
+          },
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "1",
+            "pointer-events": "none"
+          },
+          "literalsByProp": [
+            {
+              "prop": "presentation",
+              "map": {
+                "desktop": {
+                  "background-image": "linear-gradient(to top, rgba(0,0,0,0) 70%, rgba(0,0,0,0.022) 72.3%, rgba(0,0,0,0.078) 74.5%, rgba(0,0,0,0.158) 76.7%, rgba(0,0,0,0.25) 79%, rgba(0,0,0,0.342) 81.3%, rgba(0,0,0,0.422) 83.5%, rgba(0,0,0,0.479) 85.8%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.54) 94%, rgba(0,0,0,0.58) 100%)"
+                },
+                "wide": {
+                  "background-image": "linear-gradient(to top, rgba(0,0,0,0) 70%, rgba(0,0,0,0.022) 72.3%, rgba(0,0,0,0.078) 74.5%, rgba(0,0,0,0.158) 76.7%, rgba(0,0,0,0.25) 79%, rgba(0,0,0,0.342) 81.3%, rgba(0,0,0,0.422) 83.5%, rgba(0,0,0,0.479) 85.8%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.54) 94%, rgba(0,0,0,0.58) 100%)"
+                }
+              }
+            }
+          ]
+        },
         "blocTexte": {
+          "description": "Content plane, column, gap space.16 (bound on the four variants). FILL width; FIXED 640 (= fill) height on Mobile/Tablette, HUG on Desktop/Wide — stretched / bottom-aligned by the root. Positioned above the veils.",
           "layout": {
             "direction": "column",
             "align": "stretch",
@@ -170,24 +237,58 @@
           },
           "parts": {
             "Titres": {
+              "description": "Titles block. Mobile/Tablette: COLUMN, content centered on both axes (primary CENTER / counter CENTER), padding 64 top and bottom, gutter 24 / 48, gap 24 — the block fills the 640 height (FIXED = fill on the canvas, `grow` here). Desktop/Wide: ROW, bottom-aligned (counter MAX), padding 96 top / 48 bottom, gutter 56 / 89, gap 32. Every padding is bound on the four variants; the gap is bound on Mobile/Tablette (space/24) and RAW 32 on Desktop/Wide (extraction: « bound in 2/4 variants — not proposed ») — carried as space.32 on the owner's decision, source defect listed in the journal. The 2.0.0 scrim on this block (2 stops) is removed (owner decision 2026-09-07).",
               "layout": {
-                "direction": "row",
-                "align": "end",
+                "direction": "column",
+                "justify": "center",
+                "align": "center",
+                "grow": true,
                 "width": "fill"
               },
-              "literals": {
-                "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)"
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "desktop": {
+                    "direction": "row",
+                    "justify": "start",
+                    "align": "end"
+                  },
+                  "wide": {
+                    "direction": "row",
+                    "justify": "start",
+                    "align": "end"
+                  }
+                }
               },
               "tokens": {
-                "gap": "{space.32}",
-                "padding-top": "{space.96}",
-                "padding-right": "{space.89}",
-                "padding-bottom": "{space.48}",
-                "padding-left": "{space.89}"
+                "gap": "{space.24}",
+                "padding-top": "{space.64}",
+                "padding-bottom": "{space.64}",
+                "padding-inline": "{space.24}"
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "padding-inline": "{space.48}"
+                  },
+                  "desktop": {
+                    "gap": "{space.32}",
+                    "padding-top": "{space.96}",
+                    "padding-bottom": "{space.48}",
+                    "padding-inline": "{space.56}"
+                  },
+                  "wide": {
+                    "gap": "{space.32}",
+                    "padding-top": "{space.96}",
+                    "padding-bottom": "{space.48}",
+                    "padding-inline": "{space.89}"
+                  }
+                }
               },
               "parts": {
                 "colGauche": {
-                  "description": "Colonne gauche : titre puis sous-titre. Sa hauteur suit son contenu ; alignée en bas avec le CTA par le `align: end` de Titres.",
+                  "description": "Left column: title then paragraph, gap space.16 (bound on the four variants — was raw 16 on the 2.0.0 master). FILL width on the four variants; HUG height. On Desktop/Wide it absorbs the row's remaining width (grow) and is bottom-aligned with the CTA by the `align: end` of Titres. Named code-only fact: `grow` has no per-mode channel (layoutByProp carries direction/justify/align only), so in the Mobile/Tablette column the code surface stretches the column vertically (512 px instead of the drawn 216 / 128, title pushed to the top) — the Odoo projection resets flex to 0 0 auto under the desktop breakpoint (responsive/hero.pqr.css), exactly as HeroVideo's Text does. The canvas wraps the title in a `Titre direct` frame (column, gap space/8, one child): flattened here as in 2.0.0 — an envelope with a single child whose gap spaces nothing (named deviation).",
                   "layout": {
                     "direction": "column",
                     "align": "stretch",
@@ -199,9 +300,10 @@
                   },
                   "parts": {
                     "Titre": {
+                      "element": "h1",
+                      "description": "Title, h1 (accessibilite-home-odoo, 2026-09-04: the token name carries the level). Rides the responsive text style H1 (recognised by the extraction on the set): size 32/32/40/54 and line-height 40/40/50/68 by viewport mode come from typography.h1.* (tokens/modes/viewport.*), weight SemiBold — the 2.0.0 master drew 54 Bold without a style (named weight change, owner decision). Centered on Mobile/Tablette, left on Desktop/Wide (declared + stylesWhen: the only text-alignment channel). Bold ranges stay governed by content.marks.strong.",
                       "layout": {
-                        "width": "fill",
-                        "align": "start"
+                        "width": "fill"
                       },
                       "content": {
                         "prop": "titre",
@@ -211,23 +313,41 @@
                       },
                       "tokens": {
                         "color": "{color.blanc}",
-                        "font-size": "{font.size.54}"
+                        "font-family": "{typography.h1.family}",
+                        "font-size": "{typography.h1.size}",
+                        "font-weight": "{typography.h1.weight}",
+                        "line-height": "{typography.h1.line-height}"
                       },
-                      "literals": {
-                        "font-weight": "300",
-                        "line-height": "68px"
-                      }
+                      "declared": {
+                        "text-align": "center"
+                      },
+                      "stylesWhen": [
+                        {
+                          "prop": "presentation",
+                          "equals": "desktop",
+                          "styles": {
+                            "text-align": "left"
+                          }
+                        },
+                        {
+                          "prop": "presentation",
+                          "equals": "wide",
+                          "styles": {
+                            "text-align": "left"
+                          }
+                        }
+                      ]
                     },
                     "sousTitre": {
-                      "description": "Rich Hero paragraph bound to the native SousTitre text property. Its two bold ranges remain governed by content.marks.strong. Width is parent-owned Fill; the column above absorbs the available space, and `sousTitre2` decides whether it occupies any at all.",
+                      "description": "Rich Hero paragraph bound to the native SousTitre text property; `sousTitre2` decides whether it occupies any space. No Figma text style on the node (body has none): the bindings are set by hand to the responsive body tokens — size 16/16/18/18 and line-height 24/24/27/27 (typography.body.size / line-height), weight Regular on Mobile/Tablette and Medium on Desktop/Wide (typography.body.weight varies by viewport mode; the extraction minted a uniform 500, wrong for Mobile/Tablette — renamed, nothing minted). The 2.0.0 master drew 24/32 Medium: size drops in Wide (owner decision). letter-spacing 0 is the UA default, not carried. Centered on Mobile/Tablette, left on Desktop/Wide. Bold ranges governed by content.marks.strong.",
                       "layout": {
                         "width": "fill"
                       },
                       "tokens": {
                         "color": "{color.blanc}",
-                        "font-size": "{font.size.24}",
-                        "font-weight": "{font.weight.medium}",
-                        "line-height": "{font.line-height.32}"
+                        "font-size": "{typography.body.size}",
+                        "font-weight": "{typography.body.weight}",
+                        "line-height": "{typography.body.line-height}"
                       },
                       "content": {
                         "prop": "sousTitre",
@@ -237,17 +357,39 @@
                       },
                       "visibleWhen": {
                         "prop": "sousTitre2"
-                      }
+                      },
+                      "declared": {
+                        "text-align": "center"
+                      },
+                      "stylesWhen": [
+                        {
+                          "prop": "presentation",
+                          "equals": "desktop",
+                          "styles": {
+                            "text-align": "left"
+                          }
+                        },
+                        {
+                          "prop": "presentation",
+                          "equals": "wide",
+                          "styles": {
+                            "text-align": "left"
+                          }
+                        }
+                      ]
                     }
                   }
                 },
                 "Bouton": {
+                  "description": "CTA, Outline blanc, right icon on the four variants (unlike HeroVideo). ONE named deviation from the canvas, because the schema has no channel on a nested instance (stylesWhen / layoutByProp / declared are refused on component parts — the child contract owns its styling): on Mobile/Tablette the canvas pins the CTA ABSOLUTE to the bottom edge, full width inside the gutter (bottom 64 = padding-bottom, inset 24 / 48 = padding-inline, drawn 342 / 738 wide) — here it stays in the flow under the paragraph (gap 24); the Odoo projection applies the pin under the desktop breakpoint as a code-only fact (responsive/hero.pqr.css). On Desktop/Wide it is HUG, in the flow, at the right of the row (354 / 386 wide on the canvas).",
                   "component": {
                     "id": "ds.button",
                     "text": "Demander un devis gratuit",
                     "props": {
                       "variant": "outlineBlanc",
-                      "iconRight": true
+                      "iconLeft": false,
+                      "iconRight": true,
+                      "iconRightGlyph": "arrow-right"
                     }
                   }
                 }
@@ -272,9 +414,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-      "nodeId": "2111:3382",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "18e85e203a80f1190745ae89352759020b6cbaa0",
+      "nodeId": "2770:20976",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/Hero",

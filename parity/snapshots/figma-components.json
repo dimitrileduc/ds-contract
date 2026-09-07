@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788606804548,
+  "extractedAt": 1788775564575,
   "sets": [
     {
       "name": "Input",
@@ -1669,7 +1669,7 @@
       "nodeId": "2692:19667",
       "key": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c",
       "description": "",
-      "variantCount": 1,
+      "variantCount": 2,
       "properties": {
         "Titre#2714:5": {
           "type": "TEXT",
@@ -1688,6 +1688,15 @@
           "defaultValue": "Superpose",
           "variantOptions": [
             "Superpose"
+          ],
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover"
           ],
           "preferredValues": null
         }
@@ -1808,21 +1817,30 @@
     },
     {
       "name": "ProductCard",
-      "nodeId": "2693:21081",
-      "key": "9d5b5ffa2711233858c0a684cd7e9a24b573db97",
-      "description": "ProductCard — generated from contract ds.product-card v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
+      "nodeId": "2763:10149",
+      "key": "2e7981e1e2deb32e4e98f291e31e66697cfbfc30",
+      "description": "",
+      "variantCount": 2,
       "properties": {
-        "Titre#2068:34": {
+        "Titre#2763:16": {
           "type": "TEXT",
           "defaultValue": "Télécommande Hörmann HSE4-868BS",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Prix#2068:35": {
+        "Prix#2763:17": {
           "type": "TEXT",
           "defaultValue": "74,99€",
           "variantOptions": null,
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ],
           "preferredValues": null
         }
       },
@@ -1916,7 +1934,7 @@
       "nodeId": "2731:9375",
       "key": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c",
       "description": "",
-      "variantCount": 2,
+      "variantCount": 4,
       "properties": {
         "Auteur#2731:22": {
           "type": "TEXT",
@@ -1966,6 +1984,15 @@
           "variantOptions": [
             "Initiale",
             "Photo"
+          ],
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover"
           ],
           "preferredValues": null
         }
@@ -2162,6 +2189,131 @@
       "nestedInstances": [
         "PiquerayLogo",
         "MenuEntree",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "AccordionRow",
+      "nodeId": "2767:20198",
+      "key": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
+      "description": "Candidat v2 (2026-09-07) — cloné du set DS 2059:1417. Typo hiérarchisée sur le DS responsive (H4 / body), chevrons = icônes gouvernées, titre repliable, zone de clic étirée. 031 provisoire, non validé.",
+      "variantCount": 4,
+      "properties": {
+        "Titre#2059:13": {
+          "type": "TEXT",
+          "defaultValue": "Question",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Contenu#2059:18": {
+          "type": "TEXT",
+          "defaultValue": "Réponse",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Taille": {
+          "type": "VARIANT",
+          "defaultValue": "Grand",
+          "variantOptions": [
+            "Grand",
+            "Petit"
+          ],
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Ferme",
+          "variantOptions": [
+            "Ferme",
+            "Ouvert"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "ChevronDown"
+      ]
+    },
+    {
+      "name": "TexteSEO",
+      "nodeId": "2768:20428",
+      "key": "3a13552df8319a513d0ee623f27c7b571013d96b",
+      "description": "Candidat v2 (2026-09-07) — décision owner « ok pour A » : Titre H2. Paragraphe body (Regular sous 992, Medium au-dessus), sous-titre H4 repliable, gouttières 24/48/56/89, lignes = AccordionRow v2. 031 provisoire.",
+      "variantCount": 4,
+      "properties": {
+        "Titre#2768:187": {
+          "type": "TEXT",
+          "defaultValue": "Visitez notre showroom à Pepinster ou contactez-nous",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "SousTitre#2768:188": {
+          "type": "TEXT",
+          "defaultValue": "Infos pratiques",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Tablette",
+            "Desktop",
+            "Wide",
+            "Mobile"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "AccordionRow",
+        "ChevronDown",
+        "ChevronUp"
+      ]
+    },
+    {
+      "name": "Hero",
+      "nodeId": "2770:20976",
+      "key": "18e85e203a80f1190745ae89352759020b6cbaa0",
+      "description": "Candidat v2 (2026-09-07) — décisions owner : « B » (Mobile/Tablette texte centré, bouton pleine largeur en pied à 64) et voile « B » (fond color/noir-voile-55 + dégradé bas transparent→80 % à partir de 30 %). Desktop/Wide texte en bas à gauche. VoileNavigation = HeroVideo par mode. Titre H1, sous-titre body (gras conservé), gouttières 24/48/56/89, hauteur 640. 031 provisoire.",
+      "variantCount": 4,
+      "properties": {
+        "SousTitre#2770:195": {
+          "type": "TEXT",
+          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "SousTitre2#2770:196": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2770:197": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage industrielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
@@ -4648,6 +4800,40 @@
           "values": {
             "Value": "none"
           }
+        },
+        {
+          "name": "color/noir-voile-55",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "#0000008C"
+          }
+        },
+        {
+          "name": "shadow/etat/product-card/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "0 8px 24px rgba(0,0,0,0.12)"
+          }
+        },
+        {
+          "name": "shadow/etat/review-card/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "0 12px 32px rgba(0,0,0,0.20)"
+          }
         }
       ]
     },
@@ -5988,6 +6174,18 @@
           "codeSyntax": "var(--color-etat-iconOnly-anneau-focus)",
           "values": {
             "Light": "{color/noir-bleute}"
+          }
+        },
+        {
+          "name": "color/etat/carte-categorie/voile-survol",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/noir-voile-55}"
           }
         }
       ]

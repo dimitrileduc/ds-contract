@@ -15,7 +15,7 @@
 #
 # Usage : odoo shell -d <db> ... < compose_page.py   (PQR_DESCRIPTOR par env)
 
-import json, base64, os, copy
+import json, base64, os, copy, mimetypes
 from lxml import html as LH
 from markupsafe import Markup
 
@@ -49,15 +49,25 @@ COMPOSITION_DISPOSITIONS = {
 }
 
 _att = {}
+IMG_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp")
 def img_url(name):
+    """Attache l'image `assets/<name>.<ext>` (jpg/jpeg/png/webp, premier trouvé)
+    et rend son URL. Le type MIME suit l'extension — plus de `.png` imposé
+    (2026-09-07 : un hero PNG de 5,6 Mo servi tel quel ; le JPEG à la taille du
+    cadre pèse dix fois moins)."""
     if not name:
         return ""
     if name not in _att:
-        with open(os.path.join(IMG_DIR, name + ".png"), "rb") as f:
+        path = next((os.path.join(IMG_DIR, name + ext) for ext in IMG_EXTENSIONS
+                     if os.path.exists(os.path.join(IMG_DIR, name + ext))), None)
+        if path is None:
+            raise FileNotFoundError("image introuvable dans %s : %s(%s)" % (IMG_DIR, name, "|".join(IMG_EXTENSIONS)))
+        with open(path, "rb") as f:
             data = f.read()
         att = env["ir.attachment"].create({
             "name": "pqr_" + name, "type": "binary",
-            "datas": base64.b64encode(data), "mimetype": "image/png", "public": True,
+            "datas": base64.b64encode(data),
+            "mimetype": mimetypes.guess_type(path)[0] or "application/octet-stream", "public": True,
         })
         _att[name] = "/web/image/%d" % att.id
     return _att[name]
@@ -145,6 +155,51 @@ def fill_list(root, items, variant=""):
                 im.set("src", img_url(item["image"]))
         lst.append(card)
 
+ROW_TEMPLATES = {
+    # attribut de liste → (gabarit QWeb de la rangée, nom de la valeur item, nom de l'index)
+    "data-pqr-accordion-list": ("texte_seo_row", "row", "row_index"),
+    "data-pqr-faq-list": ("faq_accordion_row", "question", "question_index"),
+}
+
+def fill_rows(root, rows):
+    """Remplit UNE liste de rangées d'accordéon (Texte SEO, FAQ) — 2026-09-07.
+
+    Chaque rangée est RENDUE par son gabarit QWeb (`texte_seo_row` /
+    `faq_accordion_row`), exactement comme au rendu de référence : classe d'état,
+    plans `hidden`, aria-expanded et aria-label sont calculés par le gabarit, une
+    seule fois dans le dépôt (le JS ne fait que basculer). Index 0-based comme le
+    `t-foreach` du bloc. Limite nommée : `faq_accordion_row` ne lit pas `etat`
+    (rangée toujours fermée) — le jour où une page FAQ ouvre une rangée, c'est
+    le gabarit qu'il faut étendre, pas ce composeur.
+    """
+    for attr, (xmlid, item_name, index_name) in ROW_TEMPLATES.items():
+        lst = next(iter(root.xpath(".//*[@%s]" % attr)), None)
+        if lst is None:
+            continue
+        for c in list(lst):
+            lst.remove(c)
+        for i, item in enumerate(rows):
+            row = parse(render(xmlid, {item_name: item, index_name: i})).find("*")
+            for key in ("titre", "contenu"):  # balisage riche éventuel, que t-esc a échappé
+                if item.get(key) and "<" in item[key]:
+                    set_html(part(row, key), item[key])
+            lst.append(row)
+        return
+
+def write_arch(view, arch):
+    """Pose `arch` comme source de la vue dans TOUTES les langues installées.
+
+    `arch_db` est un champ TRADUIT (JSON par langue). Un `write` sans contexte
+    n'écrit que la langue du shell (en_US) : une vue déjà traduite — c'est le cas
+    dès que l'éditeur a enregistré la page une fois sous la langue du site
+    (fr_BE, copie COW par site) — gardait son ancienne copie fr_BE, et le site,
+    qui sert fr_BE, montrait la page d'AVANT la recomposition (trouvé le
+    2026-09-07, Texte SEO). La page composée est la source partout ; ce helper est
+    le seul endroit du composeur qui écrit une arch, création comprise.
+    """
+    for lang, _name in env["res.lang"].get_installed():
+        view.with_context(lang=lang).write({"arch_db": arch})
+
 def set_disposition(root, component, disposition):
     if disposition is None:
         return
@@ -180,6 +235,8 @@ def build():
         items = sec.get("cards") or sec.get("reviews")
         if items:
             fill_list(root, items, sec.get("variant", ""))
+        if sec.get("rows"):
+            fill_rows(root, sec["rows"])
         for pt, html in sec.get("set_html", {}).items():
             set_html(part(root, pt), html)
         for pt in sec.get("set_empty", []):
@@ -230,12 +287,13 @@ if pages:
         pages.write(meta)
     vids = sorted(set(p.view_id.id for p in pages))
     for vid in vids:
-        env["ir.ui.view"].browse(vid).write({"arch_db": arch})
+        write_arch(env["ir.ui.view"].browse(vid), arch)
 else:
     view = env["ir.ui.view"].create({
         "name": DESC.get("name", "Page"), "type": "qweb",
         "key": ADDON + "." + DESC.get("key", "page"), "arch_db": arch,
     })
+    write_arch(view, arch)
     env["website.page"].create({
         "url": url, "view_id": view.id, "is_published": True, "website_indexed": True,
         "header_overlay": bool(DESC.get("header_overlay", False)),

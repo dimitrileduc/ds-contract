@@ -2,9 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.accordion-row",
   "name": "AccordionRow",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "status": "stable",
-  "description": "Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.",
+  "description": "Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description.",
   "semantics": {
     "element": "div"
   },
@@ -111,6 +111,7 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Row 1550 wide on the set (FIXED width bound to size.accordion-row.root) — a set member cannot be FILL, so 1550 is a witness: the root is width fill with referenceWidth 1550, the max-width the extraction proposed is dropped. Bottom rule border-width.1; Grand rule bound to color.noir-bleute (dump: stroke var color/noir-bleute), Petit rule stays the raw #26282c at 32 % the set draws (owner decision 2026-09-07: no opacity variable exists, governed literal as in 1.2.0 — the extraction reports it UNBOUND, expected). Padding-block space.16 (Grand) / space.8 (Petit); gap space.24 everywhere except Petit+Ouvert = space.8, as drawn. Dump v1.8 does not record layoutPositioning: the trigger is carried as the absolute overlay it is on the canvas (constraints STRETCH), see its description.",
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -125,64 +126,62 @@
           "ouvert": {
             "direction": "column",
             "justify": "start",
-            "align": "stretch"
+            "align": "start"
           }
         }
       },
       "parts": {
         "title": {
+          "description": "Open-state title row: FILL width (dump fillWidth), HUG height — 1.2.0 pinned it to size.accordion-row.title (32px), which is what kept the title from wrapping; the chevron is centred on the wrapped title's height, as the candidate draws it (owner decision 2026-09-07, alternative 'top of first line' rejected).",
           "layout": {
             "direction": "row",
             "justify": "space-between",
             "align": "center",
-            "grow": true
+            "width": "fill"
           },
           "parts": {
             "TitreOuvert": {
+              "description": "DEVIATION (named): on the canvas this is a frame `TitreOuvert` (FILL/HUG) holding the text node `Question` (FILL width, HEIGHT auto). The frame is flattened into this single text part (grow = the frame's FILL) so the Odoo DOM (`data-pqr-part=\"titre\"`, one element for both states) keeps working — prior art: ds.accordion-item `titleText` in the demo archive. The extraction cannot read the text's variable bindings (dump v1.8 flattens fontSize/lineHeight to numbers): bound BY HAND on owner decision — Grand = DS role H4 (typography.h4.*, 20/25 then 24/30 per viewport, Medium), Petit = body role (typography.body.size/line-height, 16/24 then 18/27) in Bold (font.weight.bold, 700; no body text style exists on the Figma side, the node is bound directly to the variables, on purpose). letter-spacing 0 is the literal it was in 1.2.0, not a token.",
               "content": {
                 "prop": "titre"
               },
+              "layout": {
+                "grow": true
+              },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-family": "{typography.titre-5.family}",
-                "font-size": "{typography.titre-5.size}",
-                "font-weight": "{typography.titre-5.weight}",
-                "height": "{size.accordion-row.titre-ouvert}"
+                "font-family": "{typography.h4.family}",
+                "font-size": "{typography.h4.size}",
+                "font-weight": "{typography.h4.weight}",
+                "line-height": "{typography.h4.line-height}"
               },
               "tokensByProp": {
                 "prop": "taille",
                 "map": {
                   "petit": {
-                    "font-family": "{typography.paragraphe.family}",
-                    "font-size": "{typography.paragraphe.size}",
-                    "height": "{size.accordion-row.titre-ouvert-petit}"
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{typography.body.size}",
+                    "font-weight": "{font.weight.bold}",
+                    "line-height": "{typography.body.line-height}"
                   }
                 }
               },
               "literals": {
-                "letter-spacing": "0px",
-                "line-height": "25px"
+                "letter-spacing": "0px"
               },
-              "literalsByProp": [
-                {
-                  "prop": "taille",
-                  "map": {
-                    "petit": {
-                      "font-weight": "700",
-                      "line-height": "24px"
-                    }
-                  }
-                }
-              ],
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
               }
             },
             "ChevronUp": {
+              "description": "Governed icon chevron-up (registry identity, instance of ChevronUp 226:374 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-up-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here).",
               "icon": {
                 "asset": "chevron-up",
                 "size": 32
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
               },
               "tokensByProp": {
                 "prop": "taille",
@@ -202,76 +201,73 @@
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
-          },
-          "tokens": {
-            "height": "{size.accordion-row.title}"
           }
         },
         "Contenu": {
+          "description": "Open content: FILL width, height AUTO (016: a fixed height clipped real content). Body role for size/line-height (typography.body.size / line-height, 16/24 then 18/27 per viewport), weight REGULAR everywhere (font.weight.regular) — owner decision 2026-09-07: NOT bound to typography.body.weight, which goes Medium above 992. Bound by hand (dump v1.8 flattens text bindings). letter-spacing 0 literal as in 1.2.0.",
           "content": {
             "prop": "contenu"
           },
+          "layout": {
+            "width": "fill"
+          },
           "tokens": {
             "color": "{color.noir-bleute}",
-            "font-family": "{typography.paragraphe.family}",
-            "font-size": "{typography.paragraphe.size}",
-            "font-weight": "{typography.paragraphe.weight}"
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{typography.body.size}",
+            "font-weight": "{font.weight.regular}",
+            "line-height": "{typography.body.line-height}"
           },
           "literals": {
-            "letter-spacing": "0px",
-            "line-height": "24px"
+            "letter-spacing": "0px"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
-          },
-          "description": "016: la hauteur fixe (minted du sample court d'extraction) clippait tout contenu réel (503 chars rendus 1 ligne, TexteSEO industrielles 431 vs 503 origine) ; le contenu d'un accordéon ouvert est AUTO, sa hauteur est celle de son texte."
+          }
         },
         "Titre": {
+          "description": "Closed-state title. Same named DEVIATION as TitreOuvert: the canvas frame `Titre` (FILL/HUG) holding the text `Question` (FILL, HEIGHT auto — the extraction renamed it TitreQuestion) is flattened into this text part, grow = the frame's FILL, so a long question wraps instead of overflowing (the v1 defect n°3). Typography identical to TitreOuvert, bound by hand to the H4 / body roles on owner decision. No fixed height any more (1.2.0: size.accordion-row.titre / titre-petit).",
           "content": {
             "prop": "titre"
           },
+          "layout": {
+            "grow": true
+          },
           "tokens": {
             "color": "{color.noir-bleute}",
-            "font-family": "{typography.titre-5.family}",
-            "font-size": "{typography.titre-5.size}",
-            "font-weight": "{typography.titre-5.weight}",
-            "height": "{size.accordion-row.titre}"
+            "font-family": "{typography.h4.family}",
+            "font-size": "{typography.h4.size}",
+            "font-weight": "{typography.h4.weight}",
+            "line-height": "{typography.h4.line-height}"
           },
           "tokensByProp": {
             "prop": "taille",
             "map": {
               "petit": {
-                "font-family": "{typography.paragraphe.family}",
-                "font-size": "{typography.paragraphe.size}",
-                "height": "{size.accordion-row.titre-petit}"
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.body.size}",
+                "font-weight": "{font.weight.bold}",
+                "line-height": "{typography.body.line-height}"
               }
             }
           },
           "literals": {
-            "letter-spacing": "0px",
-            "line-height": "25px"
+            "letter-spacing": "0px"
           },
-          "literalsByProp": [
-            {
-              "prop": "taille",
-              "map": {
-                "petit": {
-                  "font-weight": "700",
-                  "line-height": "24px"
-                }
-              }
-            }
-          ],
           "visibleWhen": {
             "prop": "etat",
             "equals": "ferme"
           }
         },
         "ChevronDown": {
+          "description": "Governed icon chevron-down (registry identity, instance of ChevronDown 226:373 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-down-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here).",
           "icon": {
             "asset": "chevron-down",
             "size": 32
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
           },
           "tokensByProp": {
             "prop": "taille",
@@ -288,7 +284,7 @@
           }
         },
         "trigger": {
-          "description": "Code-only native disclosure trigger; absolutely overlaid so it contributes no Figma layout geometry.",
+          "description": "Code-only native disclosure trigger; absolutely overlaid so it contributes no Figma layout geometry (on the candidate: absolute, constraints STRETCH so it follows the row width — the 1550 the extraction proposed as a token is the set witness, dropped). Height size.accordion-row.trigger (32) / trigger-petit (24), unchanged from 1.2.0. KNOWN LIMIT (named 2026-09-07): now that the title wraps, this fixed-height overlay only covers the FIRST line of a wrapped title; the rest of the title is not a hit area. Deciding whether the trigger should cover the whole title row belongs to the contract (not the canvas) and is left to the owner.",
           "element": "button",
           "attrs": {
             "aria-label": "{titre}"
@@ -337,11 +333,9 @@
       },
       "tokens": {
         "border-bottom-width": "{border-width.1}",
+        "border-color": "{color.noir-bleute}",
         "gap": "{space.24}",
         "padding-block": "{space.16}"
-      },
-      "literals": {
-        "border-color": "#000000"
       },
       "declared": {
         "position": "relative"
@@ -380,9 +374,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
-      "nodeId": "2059:1417",
-      "dumpedAt": "2026-07-28"
+      "componentSetKey": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
+      "nodeId": "2767:20198",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/AccordionRow",

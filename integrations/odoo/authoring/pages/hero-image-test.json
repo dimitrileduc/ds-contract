@@ -1,0 +1,22 @@
+{
+  "url": "/hero-image-test",
+  "name": "Hero image test",
+  "key": "hero_image_test",
+  "header_overlay": true,
+  "_note": "Page de MESURE de la vague 031 suite (2026-09-07) : le Hero IMAGE (ds.hero 3.0.0, bloc s_pqr_hero) seul, contenu = défauts du set candidat 2770:20976 (planches .page-parity/vague-031/planches-hero/). En-tête en superposition comme la home (le hero passe sous l'en-tête). Sert à comparer le bloc Odoo aux 4 planches. La photo hero_industriel = le cadre Background exporté à 1728×640. `hero-test.json` reste la page du hero VIDÉO.",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "Portes de garage industrielles",
+        "hero-subtitle": "La <strong>performance</strong> sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons <strong>la solution idéale</strong>."
+      },
+      "set_button": {
+        "hero-cta": "Demander un devis gratuit"
+      },
+      "images": {
+        "hero-background": "hero_industriel"
+      }
+    }
+  ]
+}

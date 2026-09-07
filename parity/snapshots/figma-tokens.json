@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788606804548,
+  "extractedAt": 1788775564575,
   "collections": [
     {
       "name": "Primitives",
@@ -2482,6 +2482,40 @@
           "values": {
             "Value": "none"
           }
+        },
+        {
+          "name": "color/noir-voile-55",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "#0000008C"
+          }
+        },
+        {
+          "name": "shadow/etat/product-card/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "0 8px 24px rgba(0,0,0,0.12)"
+          }
+        },
+        {
+          "name": "shadow/etat/review-card/survol",
+          "type": "STRING",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "0 12px 32px rgba(0,0,0,0.20)"
+          }
         }
       ]
     },
@@ -3822,6 +3856,18 @@
           "codeSyntax": "var(--color-etat-iconOnly-anneau-focus)",
           "values": {
             "Light": "{color/noir-bleute}"
+          }
+        },
+        {
+          "name": "color/etat/carte-categorie/voile-survol",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/noir-voile-55}"
           }
         }
       ]

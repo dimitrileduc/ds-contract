@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.2.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef, useState, useId } from 'react';
@@ -24,7 +24,7 @@ export interface AccordionRowProps extends HTMLAttributes<HTMLDivElement> {
   onToggle?: () => void;
 }
 
-/** Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability. */
+/** Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description. */
 export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(function AccordionRow(
   { taille = 'grand', etat: etatProp, titre, contenu, onToggle, className, children, ...rest },
   ref,

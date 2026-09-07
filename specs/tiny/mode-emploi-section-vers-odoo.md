@@ -1,8 +1,217 @@
-# Mode d'emploi — porter UNE section 031 vers Odoo, responsive et mesurée
+# Mode d'emploi — porter UN composant v2 (Figma → contrat → Odoo), responsive et mesuré
 
-**Version** : 2026-09-02 (écrit depuis le pilote hero, `specs/tiny/pilote-odoo-hero-video.md`).
-**Pour** : un agent, une section, une journée. Le hero est la référence exécutée ; ce document est la
-recette rejouable. **Statut : brouillon, à valider par l'owner avant lancement.**
+**Version** : 2026-09-07 (runbook consolidé après 3 agents seuls sur la recette : AccordionRow, TexteSEO, Hero ; un
+orchestrateur + owner pour la partie Figma). **Pour** : un agent d'exécution qui n'a PAS le contexte de la journée.
+La PARTIE A dit quoi faire, dans l'ordre, avec la commande exacte, ce que tu dois obtenir, et quand t'arrêter.
+La PARTIE B (plus bas) est l'historique daté : les leçons y sont, la PARTIE A les a déjà intégrées.
+
+---
+
+# PARTIE A — RUNBOOK D'EXÉCUTION (lis tout, puis exécute dans l'ordre)
+
+## A0. Ce que tu es, ce que tu n'es pas
+
+- Tu es **l'agent** d'UN composant (`<set>` ci-dessous = son nom Figma, ex. `TexteSEO` ; `<slug>` = son id de contrat
+  sans préfixe, ex. `texte-seo` ; `<bloc>` = son snippet Odoo, ex. `s_pqr_texte_seo`). Tu livres le contrat, les miroirs
+  Odoo, le CSS par écran, la page de test, la mesure, le test d'édition, le journal, le rapport.
+- Tu n'es PAS l'orchestrateur. L'orchestrateur : touche Figma, prépare tes entrées, possède le digest/verrou, fusionne,
+  lance `npm run eval`. Toi : **jamais** `npm run eval` (deux evals dans le même worktree se faussent), **jamais**
+  `git commit` / `git checkout --` / `git stash`, **jamais** Figma, **jamais** `inputs.lock.json`, `version_guard.js`,
+  `scan-saved-versions.ts`, `evals/fixtures/odoo-production/version-drift/cases.json`, `evals/golden.json`,
+  `figma-sync/`, `core/`, `packages/schema`, les autres contrats. Une exception : minter un jeton primitif FROM-DUMP
+  dans TON bloc de `tokens/primitives.tokens.json`, avec provenance (set, nœud, date) dans `$description`.
+- Instance Odoo : **`piqueray-odoo-pilote`** (conteneur `piqueray-odoo-pilote-odoo-1`, base `piqueray_pilote`,
+  port **8087**) et rien d'autre. **INTERDIT ABSOLU** : `piqueray-odoo-test` (8071, owner) et `npm run odoo:save`.
+- Si tu es bloqué par quelque chose qui demande l'orchestrateur : écris-le au journal sous « Bloqué / à trancher »
+  et **continue** sur le reste. Une déviation silencieuse est le défaut le plus grave de ce dépôt.
+- Ce shell : `grep` peut rendre vide sur les gros fichiers → utilise `/usr/bin/grep`.
+
+## A1. Ce que tu reçois (l'orchestrateur te donne ces chemins ; s'il en manque un, arrête-toi et demande)
+
+| Entrée | Chemin | Ce que c'est |
+|---|---|---|
+| Relevé du set | `.page-parity/vague-031/dumps-*/<Set>.live.dump.json` | dump v1.8 du set candidat (clé + nodeId dedans, `_degradations` = ce que le dump ne porte pas : IMAGE, dégradés) |
+| Proposition | `.page-parity/vague-031/proposals/<Set>/` | `<slug>.contract.proposed.json`, `<slug>.tokens.proposed.json`, **`figma-proposals.md` = ta liste de travail** |
+| Planches | `.page-parity/vague-031/planches-*/<Set>-{390,834,1200,1728}.png` | export 1x d'INSTANCES témoins (la seule référence visuelle), contenu = défauts du set |
+| Contenu des planches | dans le brief | titre, textes riches (gras entre `**`), lignes… — c'est le contenu de ta page de test, à l'identique |
+| Photos | `.page-parity/vague-031/planches-*/<Set>-photo-original.png` | l'image D'ORIGINE du paint Figma (taille native), jamais un cadre exporté |
+| Décisions owner | dans le brief | rôles typo (H1/H2/H4/body), jetons à utiliser, ce qui reste littéral, version cible |
+
+## A2. Lecture obligatoire, dans cet ordre (avant d'écrire quoi que ce soit)
+
+1. `CLAUDE.md` — règles : géométrie sur jetons (jamais un chiffre tapé à la main), déterminisme, honnêteté.
+2. Ce document en entier.
+3. `specs/tiny/vague-031/<slug>.md` — le journal du composant (étape 0, candidat, décisions). Tu y AJOUTES ta section.
+4. Un journal modèle du même type : molécule → `specs/tiny/vague-031/accordion-row.md` ; section →
+   `specs/tiny/vague-031/texte-seo.md` et `hero.md` (sections « Contrat … + Odoo (agent…) »).
+5. `figma-proposals.md` en entier, puis les deux `.proposed.json`.
+6. Le contrat actuel `contracts/<slug>.contract.json`, ses voisins de forme (`contracts/sav.contract.json` = section
+   à 4 présentations ; `contracts/hero-video.contract.json` = voiles en `literalsByProp` ; `contracts/accordion-row.contract.json`
+   = molécule sans axe présentation), `contracts/named-literals.registry.json`.
+7. Côté Odoo : le bloc dans `integrations/odoo/addons/piqueray_ds/views/components.xml`, `integrations/odoo/config/<slug>.authoring.json`,
+   les feuilles `static/src/css/responsive/*.pqr.css` (forme à reproduire), `__manifest__.py` (bundle),
+   `integrations/odoo/authoring/README.md` et `compose_page.py` (clés `set_html`, `set_button`, `images`, `cards`, `rows`).
+
+## A3. Les règles de modélisation (chacune a été payée)
+
+1. **Figma est la référence, le contrat en est la traduction, Odoo la projection.** On ne tord jamais le contrat
+   pour qu'il colle à Odoo ; un écart Odoo se corrige côté Odoo (CSS/QWeb) et se nomme.
+2. **Chaque valeur vient de la proposition ou d'un jeton existant de valeur identique.** Un `imported.*` proposé se
+   renomme vers le jeton existant (`space.24`, `typography.h2.size`, `font.weight.bold`…) ; s'il n'existe pas, mint
+   from-dump avec provenance. **Les largeurs de racine proposées comme jetons (`imported.<slug>.root.width.*`,
+   `.voile.width.*`, `.trigger.width`) sont des TÉMOINS, pas des jetons → supprime-les** ; la racine porte
+   `layout.width: "fill"` + `referenceWidth: 1728` (ou 1550 pour une molécule posée dans la gouttière).
+3. **Typographie hiérarchisée sur le DS, pas de variable custom.** Rôles responsive existants : `typography.h1.*`,
+   `h2.*`, `h4.*`, `body.*` (size / line-height ; `body.weight` varie Regular→Medium à 992), `card-desc.*`,
+   `overline.*`, `button.size`. L'extraction reconnaît H1/H2/H4 (styles avec marqueur) mais **pas un texte lié aux
+   variables sans style** (body) : elle minte `imported.<slug>.<part>.font-size.<mode>` → tu renommes à la main vers
+   `{typography.body.size}` / `{typography.body.line-height}` et une graisse (`{font.weight.regular|bold}` fixe, ou
+   `{typography.body.weight}` si le brief dit que la graisse varie par écran).
+4. **Texte riche** (gras ou saut de ligne) : prop `rich-text`, `content.marks.strong` porté, liaison Figma TEXT si le set
+   expose la propriété, sinon `NONE`. Un texte avec saut de ligne déclare `white-space: pre-line`.
+5. **Ce qu'une part instance (`component`) ne peut PAS porter** — refusé par le validateur : `layoutByProp`,
+   `tokensByProp`, `literalsByProp`, `stylesWhen`, `declared`. Bouton pleine largeur sous 992, icône par mode, ordre de
+   peinture : **fait code-only** dans ton CSS Odoo, nommé dans la `description` de la part ET au journal.
+6. **Dégradés et voiles** : littéraux gouvernés (`background-image` / `background-color` sur une part absolue `inset 0`),
+   chaque valeur inscrite dans `contracts/named-literals.registry.json` (pointeur JSON exact, provenance, date) sinon
+   `npm run geometry:gate` refuse. Un fond plein sur jeton (`{color.noir-voile-55}`) n'a pas besoin du registre.
+7. **Directions inversées** (`row-reverse`, `column-reverse`) : seulement dans `layoutByProp` (override), jamais en base.
+   L'anatomie garde l'ordre des enfants de la variante par défaut (Mobile).
+8. **Hauteurs** : `height` du contrat → `min-height` dans le CSS Odoo (Odoo force `section { height: auto !important }`
+   sous 768). Un texte qui se replie n'a PAS de hauteur fixe : cadre HUG, texte `width: fill`.
+9. **Version** : MAJEUR si les ancres changent de set ou si un prop disparaît ; MINEUR sinon. Ancres = `anchors.figma`
+   du set candidat (`componentSetKey`, `nodeId`, `dumpedAt`), lus dans le dump (`key`, `nodeId`).
+10. **Descriptions** : jamais un jeton entre accolades dans une description (écris « jeton space.3 »).
+11. **Pas de valeur tapée à la main, pas de déviation silencieuse.** Chaque écart au dump est écrit dans la
+    `description` de la part et au journal.
+
+## A4. Les étapes, avec la commande, le résultat attendu, et quand s'arrêter
+
+### Étape 1 — Classer la liste de travail
+- Ouvre `figma-proposals.md`. Pour CHAQUE note, écris dans ton journal son sort : *adopté tel quel* / *renommé vers
+  <jeton existant>* / *minté* / *décision (laquelle)* / *déviation nommée*.
+- **Fait quand** : chaque note a une ligne. **Arrête-toi si** : une note demande une modification d'émetteur, de schéma
+  ou d'un autre contrat → « Bloqué / à trancher », et continue.
+
+### Étape 2 — Le contrat
+- Pars de `<slug>.contract.proposed.json`, reprends du contrat actuel : `semantics`, les props de contenu et leurs
+  bindings, les descriptions, les parts d'image (`Background`, `declared`), les ancres `code`, les `visibleWhen`,
+  les `events`. Applique A3. Bump la version.
+- `npm run build` → **attendu** : vert (le schéma valide par nom ; lis chaque refus, ne contourne pas).
+  Puis `npm run geometry:gate` → « zero invisible literal, zero registry refusal ».
+- **Arrête-toi si** : `build` rouge autrement que sur l'étape « derivation-report » (celle-là peut rester rouge à cause
+  du digest, c'est attendu et à noter).
+
+### Étape 3 — Les miroirs Odoo (tous obligatoires)
+- `integrations/odoo/config/<slug>.authoring.json` : toutes les épingles `"id": "ds.<slug>", "version"` → nouvelle
+  version ; un contrôle `presentation` (`fixed-by-composition`, `mechanism: none`) pour une section ; un verdict pour
+  chaque prop/part nouvelle. Les autres `*.authoring.json` qui épinglent ton contrat (une molécule est épinglée par ses
+  parents : `/usr/bin/grep -l '"ds.<slug>"' integrations/odoo/config/*.json`).
+- `integrations/odoo/config/figma-panels.json` : la version du panneau.
+- `views/components.xml` : `data-ds-contract-version` du bloc. **Ne touche PAS** `data-ds-graph-digest`.
+- `npm run odoo:authoring:check` → « Toutes les configs couvrent leur graphe. » · `npm run odoo:module:check` → 23/23
+  sauf la ligne du verrou (attendu). `npm run odoo:inputs:check` rouge sur ton contrat = attendu.
+
+### Étape 4 — Le CSS Odoo par écran (seulement ce que le contrat ne peut pas dire)
+- `npm run odoo:assets` puis lis ce que `static/src/css/generated/components.pqr.css` émet pour `.<slug>*` : les
+  classes `.<slug>--presentation-<mode>` existent mais **aucun QWeb ne les pose** — c'est pourquoi tu écris une feuille.
+- **La typographie par écran ne se recopie JAMAIS** : `tokens.pqr.css` porte déjà ses `@media` pour `--pqr-typography-*`.
+  Une molécule dont seul le texte change par écran n'a **aucune** feuille responsive (cas AccordionRow).
+- Sinon, crée `static/src/css/responsive/<slug>.pqr.css`, forme fixe :
+  ```
+  base = Mobile (déjà dans components.pqr.css)
+  @media (min-width: 768px)  { … Tablette … }
+  @media (min-width: 992px)  { … Desktop … }
+  @media (min-width: 1400px) { … Wide … }
+  ```
+  Vocabulaire `var(--pqr-…)` uniquement. Chaque fait code-only commenté (pourquoi le contrat ne peut pas le dire).
+  Un bloc borné `(min-width: 768px) and (max-width: 991.98px)` pour ce qui ne vit qu'en tablette. Jamais les classes
+  `ptN/pbN` de l'éditeur (`!important`). Ajoute la feuille au bundle dans `__manifest__.py` après les autres
+  `responsive/*.pqr.css`. Pas de `s_pqr_bleed`, pas de container : le bloc est pleine largeur, la gouttière est dans le contrat.
+
+### Étape 5 — Le QWeb, seulement si le DOM doit changer
+- Une part nouvelle (un voile, une icône présente sur certains modes) doit être **dans le DOM** (toujours rendue),
+  masquée par `@media`. Ordre de peinture respecté. Un titre avec saut de ligne : `data-pqr-marks="line-break"` ; un
+  texte avec gras : `data-pqr-marks="strong"` (sinon la garde de saisie déplie le gras à l'enregistrement).
+
+### Étape 6 — La page de test
+- `integrations/odoo/authoring/pages/<slug>-test.json` : `url: "/<slug>-test"`, `key: "<slug>_test"`, le bloc seul,
+  `header_overlay: false` (true pour un hero). Contenu = **celui des planches**, à l'identique (gras avec `<strong>`,
+  lignes par la clé `rows`, images par la clé `images` avec le nom d'asset sans extension). Modèle : `pages/sav-test.json`,
+  `pages/portes-de-garage.json`.
+- Image : copie la photo D'ORIGINE dans `integrations/odoo/authoring/assets/<nom>.jpg` **en JPEG à la largeur du cadre**
+  (`sips -s format jpeg -s formatOptions 82 -Z 1728 <src.png> --out <nom>.jpg`) — jamais un PNG de plusieurs Mo, jamais un
+  cadre déjà recadré (`object-fit: cover` le recadrerait une seconde fois : 11–13 % d'écart pur cadrage).
+
+### Étape 7 — Déploiement (pilote uniquement)
+```
+docker exec piqueray-odoo-pilote-odoo-1 odoo -d piqueray_pilote --db_host=db --db_user=odoo --db_password=odoo -u piqueray_ds --stop-after-init
+docker restart piqueray-odoo-pilote-odoo-1        # puis attendre que http://localhost:8087/web/login réponde 200
+npm run odoo:page -- <slug>-test piqueray-odoo-pilote
+```
+- **Les identifiants sur `-u` sont OBLIGATOIRES** : sans eux « no password supplied », et la composition qui suit se fait
+  sur l'ancien gabarit sans le dire. Attendu : `COMPOSE_OK /<slug>-test …`. Vérifie servi : `curl -s http://localhost:8087/<slug>-test | /usr/bin/grep -o 'data-ds-contract="ds.<slug>" data-ds-contract-version="[0-9.]*"'`.
+
+### Étape 8 — La mesure (bloc contre planche, MÊME boîte)
+- Capture : `.page-parity/capture-bloc.mts <baseUrl> <outDir> <selector> <url>` (viewport 390/834/1200/1728, clip =
+  boîte du bloc, en-tête et autres blocs masqués ; modèles : `capture-sav.mts`, `capture-hero-image.mts`).
+- Comparaison : `node .page-parity/mesure-bloc.mjs <planche.png> <odoo.png> <outDir>` par largeur → triptyque pleine
+  taille + % (une différence de hauteur est rapportée, jamais masquée).
+- Sonde des boîtes (modèle `.page-parity/probe-sav.mts`) : gouttières, largeur de contenu, tailles/interlignes/graisses
+  du titre et des textes, hauteurs des enfants, position du CTA — contre les valeurs attendues du contrat.
+- **Molécule dans un parent encore v1** (gouttière fixe 89) : viewports 520 → 342, 916 → 738, 1266 → 1088, 1728 → 1550
+  (même largeur témoin ET même bande de breakpoint). Pixel exact seulement à 1728 sinon ; dis-le.
+- Résidu attendu : lissage du texte + 1 px d'arrondi de boîte de ligne, nombre de pixels constant (~4 500 pour une
+  ligne, ~10 000 pour un hero, ~15 000 pour une section) — 1 à 5 % selon la taille de la boîte. Au-delà : une cause à
+  nommer (voisin qui déborde, voile hérité, saut de ligne, bouton sous le voile, `@media` non borné, libellé 16 vs 18,
+  cadrage photo, contenu différent).
+
+### Étape 9 — Le test d'édition (OBLIGATOIRE, jamais sauté)
+- Modèle `.page-parity/edit-accordion.mts` / `edit-hero-image.mts` / `edit-linebreak.mts`. Env :
+  `PQR_ODOO_PORT=8087 PQR_DB_NAME=piqueray_pilote` (le script lit `.env.example` sinon). Rédacteur `editor@example.test`.
+- Modifier un texte simple ET un mot en gras → enregistrer (RPC 200) → relire en public → **remettre l'original**
+  (pour ne pas polluer la mesure). Le gras doit survivre à la garde de saisie.
+
+### Étape 10 — Le journal et le rapport
+- `specs/tiny/vague-031/<slug>.md`, section « ## Contrat X.Y.Z + Odoo (agent, <date>) » : classement des notes (étape 1),
+  ce que le contrat porte (table par mode), la table de mesure (4 largeurs : Odoo vs planche, %, cause), les faits
+  code-only, les déviations nommées, « À corriger à la source (Figma) », « Bloqué / à trancher », « Fichiers touchés ».
+- Rapport final (ta réponse) : fichiers touchés, les 4 %, la sonde, l'état exact de chaque porte (vert / rouge et
+  pourquoi), et **TOUTES les questions que tu as tranchées seul** — une question tranchée seule et non listée est un défaut.
+
+## A5. Portes à passer avant de rendre (toutes, dans cet ordre)
+```
+npm run build            # vert (derivation-report rouge acceptée si c'est le digest, à noter)
+npm run geometry:gate    # zero invisible literal
+npm run odoo:authoring:check
+npm run odoo:module:check   # 23/23 sauf la ligne du verrou
+npm run emitters:check   # core/samples/*.inline.tsx périmés qui bougent : attendu, à signaler, pas à corriger
+npx tsc --noEmit
+npm run parity           # peut proposer des patchs : N'EN ACCEPTE AUCUN ; un cliché périmé se signale
+```
+Jamais `npm run eval` (orchestrateur).
+
+## A6. Pièges (tous ceux qui ont coûté du temps, du plus fréquent au plus rare)
+- Le parent d'une molécule fixe SA boîte : ne porte pas la hauteur de la molécule, garde un rapport par défaut que la
+  section écrase. Une molécule n'a pas d'axe présentation : ce qui change par écran passe par des jetons par écran.
+- Un `<img>` absolu ne s'étire pas par ses insets : `width: 100 %` ; un plan de fond dans le padding →
+  `width: calc(100% - 2 × inset)`.
+- `emit-react` casse sur un retour de ligne dans un défaut de prop **texte simple** (un riche va bien).
+- `figma:plan` refuse deux styles de même recette.
+- Un cliché de parité périmé rend vert un canevas qui a bougé ; `parity` apparie par clé de set puis par nom : deux sets
+  du même nom (l'ancien du DS, le nouveau 031) sont un piège connu.
+- Le composeur (`compose_page.py`) écrit `arch_db` dans TOUTES les langues et rend les lignes d'accordéon par le gabarit
+  QWeb : si « j'ai recomposé, rien ne change à l'écran », vérifie d'abord que `-u` a bien eu ses identifiants.
+- Le bouton en pied sous 992, le `flex: 0 0 auto` d'une colonne, la hauteur → `min-height` : trois lacunes connues du
+  contrat/émetteur, à porter en CSS et à nommer, pas à « corriger » ailleurs.
+- Le dégradé du voile de navigation d'un hero est celui du HeroVideo par mode : réutilise les entrées de registre
+  existantes, ne retape pas 11 arrêts.
+- Un fichier étranger dans le worktree (`v9.js`, autres contrats) : une autre session travaille peut-être ici. Ne touche
+  pas, ne supprime pas, signale.
+
+---
+
+# PARTIE B — HISTORIQUE ET LEÇONS DATÉES (la recette d'origine, telle qu'écrite le 2026-09-02, et ses compléments)
 
 ## Le but, en une phrase
 
@@ -297,3 +506,81 @@ liaisons Figma ont chacun leur porte, resserrée en fin de vague.
 
 **Priorité proposée** : figer les cinq feuilles manuelles au golden et poser une porte qui vérifie que
 chaque seuil qu'elles écrivent correspond à un jeton `breakpoint.*`. Deux gestes courts, aucun effet visuel.
+
+## Complément du 2026-09-07 — pilote AccordionRow (molécule, 1er agent seul sur la recette)
+
+Le pilote a été fait en deux temps : candidat Figma avec l'owner (orchestrateur), puis contrat + Odoo par un agent
+de fond, seul, sur ce document. Chaque point ci-dessous a coûté un aller-retour ; il est écrit pour que le suivant
+n'ait pas à le retrouver. Journal complet : `specs/tiny/vague-031/accordion-row.md`.
+
+### Ce que l'orchestrateur prépare (et comment, exactement)
+
+- **Receveurs** : deux ports libres de la plage 9223-9232, vérifiés par `lsof -nP -iTCP:<port> -sTCP:LISTEN`. Un
+  port tenu par un `node …/receiver*.mjs` d'une session morte (voir `ps -p <pid> -o lstart=,command=`, `/health`
+  répond avec un `outDir` d'un scratchpad d'une autre session) se **tue**, il ne se contourne pas. PNG :
+  `node extract/figma/page-parity/receiver.mjs <outDir> 9228` (noter le **nonce** imprimé par `/health`, capture.js
+  l'exige). JSON : `node extract/figma/gauntlet/live/capture-receiver.mjs <outDir> 9230`.
+- **Dump** : `extract/figma/dump.plugin.js` patché en mémoire (`TARGET_SETS = ['<Set>']` + `if (node.id !==
+  '<id du set>') continue;` — deux sets portent souvent le même nom — et `return dumps` remplacé par un `fetch` POST
+  vers `http://localhost:9230/chunk?name=<Set>.live.dump`). Le script fait 30 Ko : le servir par le receveur
+  page-parity (`/file?name=bridge/_tmp-dump-<set>.js`, dossier jailé = `extract/figma/page-parity/`) et l'exécuter
+  dans `figma_execute` par `new AsyncFunction(src)`. Supprimer le fichier temporaire après.
+- **Planches** : `bridge/capture.js` via le même `/file`, avec `globalThis.__dsc003_input = { maquette, nodeId,
+  port: 9228, expectNonce }`. **Piège ASI** : `new AsyncFunction('return ' + src)` rend `undefined` (le fichier
+  commence par un commentaire → `return` seul sur sa ligne) ; écrire `'return (\n' + src + '\n)'` après avoir retiré
+  le `;` final.
+- **Exporter depuis des INSTANCES, jamais depuis une variante du set.** La variante Mobile de TexteSEO exportait
+  683 px pour 771 réels (accordéon rendu à sa hauteur v1), six remèdes sans effet ; l'instance rend juste.
+- Un cadre témoin créé par script : `primaryAxisSizingMode = 'AUTO'` **après** `resize()`, et l'export dans un
+  **appel séparé** (hauteurs fantômes). Un témoin destiné au diff ne porte **pas d'étiquette** dans le cadre (sinon
+  l'agent doit deviner où découper — il a déduit y = 39 par bandes d'encre) : étiquette à côté, pas dedans.
+- **Témoins « contenu = page de test »** : un jeu de témoins par mode avec exactement le contenu de la page de test
+  (mêmes lignes, mêmes textes), en plus des témoins de design. C'est celui-là qui donne un triptyque par mode.
+
+### Ce que l'agent doit savoir (tranché seul la première fois, écrit maintenant)
+
+- **Typographie par écran = zéro CSS à la main** : `tokens.pqr.css` porte les `@media`, `components.pqr.css`
+  référence `var(--pqr-typography-…)`. Une molécule dont seul le texte change par écran n'a **aucune** feuille
+  `responsive/`. Vérifier avant d'en créer une.
+- **L'extraction ne reconnaît pas un texte lié aux variables SANS style** (body : il n'y a pas de style Figma) : elle
+  minte `imported.<set>.<part>.font-size.<mode>`. Renommer à la main vers `typography.body.size` /
+  `line-height`, graisse vers `font.weight.<x>`. H2 / H4 (styles avec marqueur) sont reconnus.
+- **Composeur de pages** : la clé `rows` (liste `{titre, contenu, etat}`) remplit les lignes d'accordéon
+  (Texte SEO, FAQ) et pose l'état ouvert/fermé dans le DOM — ajoutée le 2026-09-07 dans `compose_page.py`.
+- **Instance pilote** : `docker exec piqueray-odoo-pilote-odoo-1 odoo -d piqueray_pilote -u piqueray_ds
+  --stop-after-init` puis `docker restart piqueray-odoo-pilote-odoo-1`. Un `odoo shell` exige
+  `--db_host=db --db_user=odoo --db_password=odoo`. Le test d'édition (`edit-*.mts`) lit `.env.example` : passer
+  `PQR_ODOO_PORT=8087 PQR_DB_NAME=piqueray_pilote` ; le rédacteur `editor@example.test` existe déjà ; **remettre le
+  texte d'origine** après le test pour ne pas polluer la page de mesure.
+- **Mesurer une molécule dans un parent encore v1** (gouttière fixe 89) : choisir des viewports qui donnent la
+  largeur témoin **et** restent dans la bande de breakpoint — 520 → 342 (Mobile), 916 → 738 (Tablette), 1266 → 1088
+  (Desktop), 1728 → 1550. `capture-accordion.mts <base> <out> 520 916 1266 1728` puis `mesure-bloc.mjs` par mode.
+- **Ce qu'un seul agent peut faire** : déployer sur le pilote (pas d'autre agent dessus), **jamais** `npm run eval`
+  (deux evals dans le même worktree se faussent), jamais le verrou/digest (`odoo:inputs:check` reste rouge, attendu).
+- `core/samples/*.inline.tsx` périmés (depuis 033) bougent sous `emitters:check` : attendu, à signaler, pas à corriger.
+- Le `trigger` d'une ligne dont le titre se replie ne couvre que la première ligne : limite nommée, à trancher au
+  contrat, pas au canevas.
+
+### Ajouts du 2026-09-07 après-midi (agents TexteSEO et Hero, orchestrateur)
+
+- **`arch_db` est un champ TRADUIT.** Le composeur n'écrivait que `en_US` ; dès que l'éditeur a enregistré une page
+  sous la langue du site (`fr_BE`), la page servie restait celle d'AVANT la recomposition, en silence. Corrigé dans
+  `compose_page.py` (écriture dans toutes les langues installées). Symptôme à reconnaître : « j'ai recomposé, rien ne
+  change à l'écran ».
+- **`-u piqueray_ds` exige les identifiants** : `docker exec <odoo> odoo -d <base> --db_host=db --db_user=odoo
+  --db_password=odoo -u piqueray_ds --stop-after-init`. Sans eux : « no password supplied », et la composition qui
+  suit se fait sur l'ancien gabarit sans le dire.
+- **Rangée → colonne par script** : remettre `layoutSizingVertical = 'HUG'` sur le cadre ET ses enfants (un
+  `colGauche` passé FILL/FILL a mesuré 6988 px). Relever après, dans un appel séparé.
+- **Un port de la plage peut être repris en cours de journée** par un serveur figma-console d'une autre session
+  (repli de port) : le `POST` du dump arrive sur le mauvais process (404) sans erreur côté plugin. Vérifier
+  `/health` juste avant (un figma-console répond `{"status":"ok","version":…}`, un receveur répond `{"instrument":…}`).
+  Repli : `return dumps` par le résultat de `figma_execute` (≈ 20 Ko) et écriture à la main.
+- **Le voile d'un hero se juge sur une photo CLAIRE** (chaque page a la sienne), jamais sur la photo de démo du
+  master. Poser le duel sur la photo de la page de référence, avec ses textes réels.
+- **Un fichier étranger peut apparaître dans le worktree** (`v9.js`, bundle Embla, 2026-09-07 11:07, d'aucun agent
+  de la journée) : le signaler, ne pas le supprimer, ne pas le committer.
+- **L'asset image d'une page Odoo est l'image D'ORIGINE du paint Figma** (`getImageByHash(hash)` → taille native via
+  `getSizeAsync`, export d'un cadre temporaire à cette taille), jamais un cadre exporté : un cadre 1728 recadré puis
+  recadré à nouveau par `object-fit: cover` a donné 11–13 % d'écart pur cadrage ; avec l'original, `cover` centré =
+  FILL centré, 0,9 à 3,5 % de résidu de lissage (Hero, 2026-09-07).

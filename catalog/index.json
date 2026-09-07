@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "d04e7aab",
+    "gitCommit": "16e5b7f3",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -45,6 +45,7 @@
     "nav",
     "opacity",
     "radius",
+    "shadow",
     "size",
     "space",
     "spacing",
@@ -54,7 +55,7 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "stable",
       "category": "molecule",
       "propNames": [
@@ -63,7 +64,7 @@
         "titre",
         "contenu"
       ],
-      "summary": "Piqueray AccordionRow."
+      "summary": "Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner)."
     },
     {
       "id": "ds.avantage",
@@ -104,7 +105,7 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -117,7 +118,7 @@
         "imageAlt",
         "ctaLabel"
       ],
-      "summary": "Piqueray CarteCategorie, responsive."
+      "summary": "2.2.0 (2026-09-05, vague 033) : la carte repond au geste."
     },
     {
       "id": "ds.carte",
@@ -375,7 +376,7 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -390,7 +391,7 @@
         "verifie",
         "lienAvis"
       ],
-      "summary": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006)."
+      "summary": "4.1.0 (2026-09-05, vague 033) : elevation au survol."
     },
     {
       "id": "ds.google-reviews",
@@ -454,17 +455,18 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "backgroundUrl",
         "backgroundAlt",
         "titre",
         "sousTitre",
         "sousTitre2"
       ],
-      "summary": "Piqueray Hero."
+      "summary": "Piqueray Hero (image), responsive."
     },
     {
       "id": "ds.menu-entree",
@@ -512,7 +514,7 @@
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -521,7 +523,7 @@
         "imageUrl",
         "imageAlt"
       ],
-      "summary": "Piqueray ProductCard."
+      "summary": "3.1.0 (2026-09-05, vague 033) : elevation au survol."
     },
     {
       "id": "ds.produits-ecommerce",
@@ -598,14 +600,17 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "titre",
+        "texte",
+        "sousTitre",
         "items"
       ],
-      "summary": "Piqueray TexteSEO."
+      "summary": "Piqueray TexteSEO, v2 (2026-09-07): anchored on the candidate set 2768:20428 (page 031, four variants Presentation=Mobile|Tablette|Desktop|Wide, cloned from the DS master 2108:3123 and reworked with the owner)."
     }
   ]
 }

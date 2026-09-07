@@ -26,9 +26,15 @@ const failures: string[] = [];
 // (24/30 → 40/50 selon l'écran). La porte vérifie donc la propriété du titre et sa
 // couleur, puis soit la taille figée d'origine, soit le jeton responsive attendu.
 const expectations = [
-  ['hero.contract.json', 'Hero', '{color.blanc}', '{font.size.54}', '68px'],
+  // 2026-09-07 (page « Portes de garage », décision owner) : ds.hero 3.0.0 monte le
+  // STYLE H1 aux quatre écrans (32/40 · 32/40 · 40/50 · 54/68), comme HeroVideo —
+  // le 54/68 figé n'était que l'étage Wide de l'ancien master.
+  ['hero.contract.json', 'Hero', '{color.blanc}', '{typography.h1.size}', '{typography.h1.line-height}'],
   ['presentation.contract.json', 'Presentation', '{color.noir-bleute}', '{typography.h2.size}', '{typography.h2.line-height}'],
-  ['texte-seo.contract.json', 'TexteSEO', '{color.noir-bleute}', '{font.size.24}', '30px'],
+  // 2026-09-07 (décision owner « A » sur duel 1:1) : ds.texte-seo 4.0.0 monte le
+  // STYLE H2 (24/30 · 24/30 · 32/40 · 40/50) ; le 24/30 figé était l'étage Wide de
+  // l'ancien master DS.
+  ['texte-seo.contract.json', 'TexteSEO', '{color.noir-bleute}', '{typography.h2.size}', '{typography.h2.line-height}'],
   // Vague 031, round Produits (2026-09-04) : ProduitsECommerce rejoint la même
   // forme. Sa taille figée 32/40 n'était pas un choix, c'était l'unique variante
   // de l'ancien master DS ; le set responsive 2694:21337 monte le STYLE H2 aux

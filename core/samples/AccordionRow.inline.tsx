@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.2.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -26,11 +26,11 @@ const S: Record<string, CSSProperties> = {
     "justifyContent": "space-between",
     "width": "100%",
     "minWidth": 0,
-    "border": 0,
+    "borderStyle": "solid",
     "borderBottomWidth": "1px",
+    "borderColor": "#26282C",
     "gap": "24px",
     "paddingBlock": "16px",
-    "borderColor": "#000000",
     "position": "relative"
   },
   "title": {
@@ -38,43 +38,48 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "center",
     "justifyContent": "space-between",
-    "flex": "1 1 auto",
-    "minWidth": 0,
-    "height": "32px"
+    "width": "100%",
+    "minWidth": 0
   },
   "TitreOuvert": {
+    "flex": "1 1 auto",
+    "minWidth": 0,
     "color": "#26282C",
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "20px",
-    "fontWeight": 600,
-    "height": "32px",
-    "letterSpacing": "0px",
-    "lineHeight": "25px"
+    "fontWeight": 500,
+    "lineHeight": "25px",
+    "letterSpacing": "0px"
   },
   "ChevronUp": {
     "display": "inline-flex",
-    "flexShrink": 0
+    "flexShrink": 0,
+    "color": "#26282C"
   },
   "Contenu": {
+    "width": "100%",
+    "minWidth": 0,
     "color": "#26282C",
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "16px",
     "fontWeight": 400,
-    "letterSpacing": "0px",
-    "lineHeight": "24px"
+    "lineHeight": "24px",
+    "letterSpacing": "0px"
   },
   "Titre": {
+    "flex": "1 1 auto",
+    "minWidth": 0,
     "color": "#26282C",
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "20px",
-    "fontWeight": 600,
-    "height": "32px",
-    "letterSpacing": "0px",
-    "lineHeight": "25px"
+    "fontWeight": 500,
+    "lineHeight": "25px",
+    "letterSpacing": "0px"
   },
   "ChevronDown": {
     "display": "inline-flex",
-    "flexShrink": 0
+    "flexShrink": 0,
+    "color": "#26282C"
   },
   "trigger": {
     "appearance": "none",
@@ -104,9 +109,8 @@ const V: Record<string, CSSProperties> = {
   },
   "taille-petit:TitreOuvert": {
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "height": "24px",
-    "fontWeight": "700",
+    "fontSize": "16px",
+    "fontWeight": 700,
     "lineHeight": "24px"
   },
   "taille-petit:ChevronUp": {
@@ -115,9 +119,8 @@ const V: Record<string, CSSProperties> = {
   },
   "taille-petit:Titre": {
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
-    "height": "24px",
-    "fontWeight": "700",
+    "fontSize": "16px",
+    "fontWeight": 700,
     "lineHeight": "24px"
   },
   "taille-petit:ChevronDown": {
@@ -133,7 +136,7 @@ const V: Record<string, CSSProperties> = {
   "etat-ouvert:root": {
     "display": "flex",
     "flexDirection": "column",
-    "alignItems": "stretch",
+    "alignItems": "flex-start",
     "justifyContent": "flex-start",
     "width": "100%",
     "minWidth": "0"
@@ -150,7 +153,7 @@ export interface AccordionRowProps extends HTMLAttributes<HTMLDivElement> {
   onToggle?: () => void;
 }
 
-/** Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability. */
+/** Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description. */
 export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(function AccordionRow(
   { taille = 'grand', etat: etatProp, titre, contenu, onToggle, style, children, ...rest },
   ref,

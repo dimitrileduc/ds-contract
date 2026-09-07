@@ -34,7 +34,7 @@ colonnes et du copyright sont éditables inline via `t-field` sur des champs
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.14.0",
+    "version": "19.0.1.15.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
@@ -83,6 +83,8 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/menu-mobile.pqr.css",
             "piqueray_ds/static/src/css/responsive/produits-ecommerce.pqr.css",
             "piqueray_ds/static/src/css/responsive/footer.pqr.css",
+            "piqueray_ds/static/src/css/responsive/texte-seo.pqr.css",
+            "piqueray_ds/static/src/css/responsive/hero.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",
             # Dépliage public de la FAQ : bascule pure + Interaction du noyau 19.
