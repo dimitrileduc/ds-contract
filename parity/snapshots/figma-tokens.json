@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788775564575,
+  "extractedAt": 1788795427443,
   "collections": [
     {
       "name": "Primitives",
@@ -3868,6 +3868,111 @@
           "codeSyntax": null,
           "values": {
             "Light": "{color/noir-voile-55}"
+          }
+        },
+        {
+          "name": "color/etat/accordion-row/chevron-survol",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/orange}"
+          }
+        },
+        {
+          "name": "color/etat/accordion-row/anneau-focus",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/noir-bleute}"
+          }
+        },
+        {
+          "name": "typography/etat/default/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-default-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/orange/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-orange-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/blanc/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-blanc-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/outlineBlanc/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-outlineBlanc-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/link/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-link-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/semibold}"
+          }
+        },
+        {
+          "name": "typography/etat/outlineNoir/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-outlineNoir-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/iconOnly/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-iconOnly-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
           }
         }
       ]

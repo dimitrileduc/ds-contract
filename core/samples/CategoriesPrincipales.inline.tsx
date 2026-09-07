@@ -81,8 +81,8 @@ export const CategoriesPrincipales = forwardRef<HTMLElement, CategoriesPrincipal
 ) {
   return (
     <section ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
-      <CarteCategorie style="superpose" afficherDecor={false} titre="Pour portes de garage" texte="SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté." />
-<CarteCategorie style="superpose" afficherDecor={false} titre="Pour portails d'entrée" texte="RotaMatic (Battant) & LineaMatic (Coulissant). Fiabilité absolue et détection d'obstacles pour la sécurité de votre famille." />
+      <CarteCategorie style="superpose" afficherDecor={false} titre="Pour portes de garage" texte={[{ text: "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté." }]} />
+<CarteCategorie style="superpose" afficherDecor={false} titre="Pour portails d'entrée" texte={[{ text: "RotaMatic (Battant) & LineaMatic (Coulissant). Fiabilité absolue et détection d'obstacles pour la sécurité de votre famille." }]} />
     </section>
   );
 });

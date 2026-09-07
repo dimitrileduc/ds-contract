@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788775564575,
+  "extractedAt": 1788795427443,
   "sets": [
     {
       "name": "Input",
@@ -1615,30 +1615,6 @@
       ]
     },
     {
-      "name": "TEST/Reassurances Responsive — Controlled",
-      "nodeId": "2563:5844",
-      "key": "bdc5ccab992225a71b9fe28033886aafeab51ecd",
-      "description": "Sandbox responsive. Axe Viewport test uniquement; aucune variable DS et aucune prop publique React/Odoo.",
-      "variantCount": 3,
-      "properties": {
-        "Viewport": {
-          "type": "VARIANT",
-          "defaultValue": "Desktop",
-          "variantOptions": [
-            "Desktop",
-            "Tablet",
-            "Mobile"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
       "name": "HeroVideo",
       "nodeId": "2689:15832",
       "key": "366023701e65d2e3091332db4de0dfe4de0d33d4",
@@ -1669,7 +1645,7 @@
       "nodeId": "2692:19667",
       "key": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c",
       "description": "",
-      "variantCount": 2,
+      "variantCount": 4,
       "properties": {
         "Titre#2714:5": {
           "type": "TEXT",
@@ -1687,7 +1663,8 @@
           "type": "VARIANT",
           "defaultValue": "Superpose",
           "variantOptions": [
-            "Superpose"
+            "Superpose",
+            "Empile"
           ],
           "preferredValues": null
         },
@@ -2199,7 +2176,7 @@
       "nodeId": "2767:20198",
       "key": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
       "description": "Candidat v2 (2026-09-07) — cloné du set DS 2059:1417. Typo hiérarchisée sur le DS responsive (H4 / body), chevrons = icônes gouvernées, titre repliable, zone de clic étirée. 031 provisoire, non validé.",
-      "variantCount": 4,
+      "variantCount": 8,
       "properties": {
         "Titre#2059:13": {
           "type": "TEXT",
@@ -2228,6 +2205,15 @@
           "variantOptions": [
             "Ferme",
             "Ouvert"
+          ],
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Hover",
+            "Default"
           ],
           "preferredValues": null
         }
@@ -2314,6 +2300,69 @@
       },
       "forwardedProperties": {},
       "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Realisations",
+      "nodeId": "2773:27344",
+      "key": "043a3f9354464eebfbb274d5176a67c571e18f87",
+      "description": "Section Realisations v2 (candidat vague 031). Axe Presentation = Mobile | Tablette | Desktop | Wide ; axe En-tete = Accroche | Presentation. Mosaique : 1 grande tuile sur 2x2 cellules + 8 petites. Colonnes 4 / 4 / 2 / 2 (Wide / Desktop / Tablette / Mobile), decision owner du 2026-09-07 (option B : deux colonnes en mobile). Titre centre en Mobile et Tablette, a gauche en Desktop et Wide.",
+      "variantCount": 8,
+      "properties": {
+        "En-tete": {
+          "type": "VARIANT",
+          "defaultValue": "Accroche",
+          "variantOptions": [
+            "Accroche",
+            "Presentation"
+          ],
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "SectionHeader",
+        "Realisation"
+      ]
+    },
+    {
+      "name": "FAQ",
+      "nodeId": "2773:27504",
+      "key": "6a71ef12dca9523c5019defc7dad5139faf44f62",
+      "description": "candidat v2 — vague 031, option B (en-tête à gauche, rangées Grand, CTA pleine largeur sous 992). Proposition agent 2026-09-07.",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "AccordionRow",
+        "ChevronDown",
+        "ChevronUp",
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
@@ -6186,6 +6235,111 @@
           "codeSyntax": null,
           "values": {
             "Light": "{color/noir-voile-55}"
+          }
+        },
+        {
+          "name": "color/etat/accordion-row/chevron-survol",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/orange}"
+          }
+        },
+        {
+          "name": "color/etat/accordion-row/anneau-focus",
+          "type": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/noir-bleute}"
+          }
+        },
+        {
+          "name": "typography/etat/default/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-default-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/orange/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-orange-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/blanc/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-blanc-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/outlineBlanc/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-outlineBlanc-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/link/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-link-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/semibold}"
+          }
+        },
+        {
+          "name": "typography/etat/outlineNoir/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-outlineNoir-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
+          }
+        },
+        {
+          "name": "typography/etat/iconOnly/graisse-survol",
+          "type": "FLOAT",
+          "scopes": [
+            "FONT_WEIGHT"
+          ],
+          "codeSyntax": "var(--typography-etat-iconOnly-graisse-survol)",
+          "values": {
+            "Light": "{font/weight/medium}"
           }
         }
       ]

@@ -1,5 +1,9 @@
 # Mode d'emploi — porter UN composant v2 (Figma → contrat → Odoo), responsive et mesuré
 
+**Place** : ce document a vécu jusqu'au 2026-09-07 sous `specs/tiny/mode-emploi-section-vers-odoo.md`. Il n'est
+plus une note de spec : c'est **LA référence** de ce type de chantier, citée comme telle dans `CLAUDE.md`.
+Ce qu'un chantier apprend revient ICI — document vivant, pas archive.
+
 **Version** : 2026-09-07 (runbook consolidé après 3 agents seuls sur la recette : AccordionRow, TexteSEO, Hero ; un
 orchestrateur + owner pour la partie Figma). **Pour** : un agent d'exécution qui n'a PAS le contexte de la journée.
 La PARTIE A dit quoi faire, dans l'ordre, avec la commande exacte, ce que tu dois obtenir, et quand t'arrêter.
@@ -166,6 +170,15 @@ npm run odoo:page -- <slug>-test piqueray-odoo-pilote
   nommer (voisin qui déborde, voile hérité, saut de ligne, bouton sous le voile, `@media` non borné, libellé 16 vs 18,
   cadrage photo, contenu différent).
 
+- **Avant d'annoncer un %, REGARDE le triptyque.** Un panneau uni (blanc) = la capture est vide et le % est la
+  couverture d'encre de l'autre côté, pas un résidu. C'est le défaut le plus grave du dépôt (spec 017 : mesurer
+  l'absence de données). Ton outil de capture doit **refuser** une boîte de moins de 10 px et imprimer les boîtes
+  relevées ; ta lecture doit commencer par « les trois panneaux ont-ils du contenu ? ». Modèle :
+  `.page-parity/capture-carte-empile-v2.mts`.
+- **Compare à contenu ÉGAL.** Une planche au contenu du set et une page au contenu réel ne se comparent pas :
+  l'écart de hauteur est du texte, pas du rendu. Soit tu mets le contenu du set dans la page, soit tu exportes une
+  planche au contenu de la page (une instance posée dans une vue le fait).
+
 ### Étape 9 — Le test d'édition (OBLIGATOIRE, jamais sauté)
 - Modèle `.page-parity/edit-accordion.mts` / `edit-hero-image.mts` / `edit-linebreak.mts`. Env :
   `PQR_ODOO_PORT=8087 PQR_DB_NAME=piqueray_pilote` (le script lit `.env.example` sinon). Rédacteur `editor@example.test`.
@@ -178,6 +191,21 @@ npm run odoo:page -- <slug>-test piqueray-odoo-pilote
   code-only, les déviations nommées, « À corriger à la source (Figma) », « Bloqué / à trancher », « Fichiers touchés ».
 - Rapport final (ta réponse) : fichiers touchés, les 4 %, la sonde, l'état exact de chaque porte (vert / rouge et
   pourquoi), et **TOUTES les questions que tu as tranchées seul** — une question tranchée seule et non listée est un défaut.
+
+## A4bis. Relever un set toi-même (quand l'orchestrateur ne t'a pas donné le dump)
+
+- Le dump est produit par `extract/figma/dump.plugin.js`, exécuté DANS Figma. Le serveur de scripts
+  (`specs/016-canvas-vrai/tools/serve-scripts.mjs`, port **9230**, plage 9223-9232 imposée par le manifeste du
+  plugin) est **jailé sur `figma-sync/`** : dépose une copie temporaire du script là, sers-la, **supprime-la après**.
+  Deux sets peuvent porter le même NOM (le master v1 et le candidat v2) — filtre sur le `node.id`, pas sur le nom.
+- Le retour d'un `figma_execute` doit rester petit : range le JSON dans `figma.clientStorage`, puis, dans un
+  second appel, `POST` vers `extract/figma/page-parity/receiver.mjs <dossier> 9230` (`/json?name=…`).
+  Un seul port libre à la fois : arrête le serveur de scripts avant de lancer le receveur.
+- Puis `npm run extract:figma -- <dump.json> --out <dossier>` produit contrat proposé, jetons proposés et
+  `figma-proposals.md`.
+- **Piège d'outil** : dans une sonde Playwright écrite en `.mts`, n'écris **aucune fonction nommée à l'intérieur
+  de `page.evaluate`** — tsx y injecte un helper `__name` que le navigateur ne connaît pas (`ReferenceError`).
+  Passe le corps de la sonde en **chaîne** à `page.evaluate`.
 
 ## A5. Portes à passer avant de rendre (toutes, dans cet ordre)
 ```
@@ -192,6 +220,15 @@ npm run parity           # peut proposer des patchs : N'EN ACCEPTE AUCUN ; un cl
 Jamais `npm run eval` (orchestrateur).
 
 ## A6. Pièges (tous ceux qui ont coûté du temps, du plus fréquent au plus rare)
+- **`justify: space-between` + `gap` ne disent PAS la même chose des deux côtés** (trouvé le 2026-09-07, FAQ v2).
+  Figma IGNORE l'itemSpacing sous space-between ; en CSS le `gap` reste un minimum et se cumule. Un enfant FILL
+  est donc rendu plus étroit en code qu'au canevas — de la valeur exacte du gap — et un texte se replie une ligne
+  plus tôt (mesuré : +25 px de haut en Mobile, +18 en Tablette sur la FAQ). Si ta mesure montre un écart de hauteur
+  ET des retours à la ligne différents, **sonde la largeur du texte des deux côtés avant toute autre hypothèse**.
+  Corrige le contrat (gap → `{space.0}` sur l'état concerné) ET la règle de pont qui reposerait le même gap.
+- **L'en-tête d'une section v2 ne s'instancie pas** : aucune section de la vague n'utilise `SectionHeader` — chacune
+  DESSINE son accroche et son titre avec les rôles responsive (le composant commun n'a aucune dimension par écran
+  et figerait le titre). Modèle à cloner : l'en-tête d'`AvisGoogle`. Modèle de contrat : `ds.google-reviews` 3.1.0.
 - Le parent d'une molécule fixe SA boîte : ne porte pas la hauteur de la molécule, garde un rapport par défaut que la
   section écrase. Une molécule n'a pas d'axe présentation : ce qui change par écran passe par des jetons par écran.
 - Un `<img>` absolu ne s'étire pas par ses insets : `width: 100 %` ; un plan de fond dans le padding →
@@ -204,6 +241,21 @@ Jamais `npm run eval` (orchestrateur).
   QWeb : si « j'ai recomposé, rien ne change à l'écran », vérifie d'abord que `-u` a bien eu ses identifiants.
 - Le bouton en pied sous 992, le `flex: 0 0 auto` d'une colonne, la hauteur → `min-height` : trois lacunes connues du
   contrat/émetteur, à porter en CSS et à nommer, pas à « corriger » ailleurs.
+- **Poser une graisse sur un libellé lié à un style de texte le DÉTACHE de ce style** — donc de la liaison
+  `fontSize → typography/<role>/size` qui le rend responsive, et rien ne le signale. Dans une INSTANCE, la surcharge
+  ne prend même pas : elle est avalée en silence. Si un état demande une autre graisse, crée un **style de texte
+  dédié** et recopie les champs du style source **un par un** — appliquer un style neuf écrase tout, `textCase`
+  compris (un libellé en capitales est tombé de 156 à 130 px pour cette seule raison, 2026-09-07).
+- **Avant de proposer un fait d'état, lis les jetons d'état existants.** `color.etat.<style>.<canal>` et
+  `decoration.etat.<style>.survol` couvrent déjà beaucoup : le « noir pur au survol » demandé le 2026-09-07 était
+  posé depuis la vague 032, la proposition ne contenait donc qu'un seul fait neuf. Un canal d'état neuf se calque
+  sur cette forme : une valeur PAR STYLE, les styles inchangés reprenant explicitement la valeur du repos.
+- **Le canal d'états d'une part NON-RACINE n'accepte que `color`, `background-color`, `border-color`**
+  (`PART_STATE_CHANNELS`). Un zoom, un glissement, un écart qui change au survol sont des faits **code-only**, à
+  écrire dans le CSS Odoo et à nommer dans la `description` de la part — jamais à forcer dans le contrat.
+- **Au survol d'une carte, le pointeur n'est pas sur le bouton** : `.button:hover` ne s'applique pas. Re-porte les
+  canaux du bouton par leurs variables de jeton sous le survol de la carte — précédent : règle (6) de la zone
+  `ODOO-023-FOOTER-BRIDGE`.
 - Le dégradé du voile de navigation d'un hero est celui du HeroVideo par mode : réutilise les entrées de registre
   existantes, ne retape pas 11 arrêts.
 - Un fichier étranger dans le worktree (`v9.js`, autres contrats) : une autre session travaille peut-être ici. Ne touche

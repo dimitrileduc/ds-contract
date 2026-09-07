@@ -1,0 +1,24 @@
+{
+  "url": "/carte-categorie-empile-test",
+  "name": "Carte categorie empilee test",
+  "key": "carte_categorie_empile_test",
+  "header_overlay": false,
+  "_note": "Page de MESURE de ds.carte-categorie 3.0.0, style EMPILÉ (2026-09-07). La section s_pqr_categories_principales est ici un simple PORTEUR : son gabarit pose le style superposé en dur, mais le composeur clone le blueprint dont la clé est VIDE — qui est celui de la carte empilée. Omettre la clé `variant` suffit donc à composer des cartes empilées SANS toucher à la section (fill_list, compose_page.py). L'attribut data-pqr-style=\"superpose\" reste sur la racine de section : aucune règle CSS ni aucun JS ne le lit, c'est un marqueur pour le geste d'éditeur — noté, pas contourné. Contenu réel de la page « Portes de garage résidentielles » : la première phrase de chaque description est en gras (prop rich-text, marque strong).",
+  "sections": [
+    {
+      "component": "s_pqr_categories_principales",
+      "cards": [
+        {
+          "titre": "Porte sectionnelle",
+          "texte": "<strong>La référence confort.</strong> S’ouvre à la verticale pour un gain de place maximal. Isolation thermique supérieure et design moderne.",
+          "image": "cat_garage"
+        },
+        {
+          "titre": "Porte basculante",
+          "texte": "<strong>Le classique intemporel.</strong> La qualité et la sécurité Hörmann au meilleur rapport qualité-prix. Idéale pour les box de garage.",
+          "image": "cat_entree"
+        }
+      ]
+    }
+  ]
+}

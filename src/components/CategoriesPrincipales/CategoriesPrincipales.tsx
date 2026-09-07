@@ -39,7 +39,7 @@ export const CategoriesPrincipales = forwardRef<HTMLElement, CategoriesPrincipal
             style="superpose"
             afficherDecor={false}
             titre={item.titre}
-            texte={item.texte}
+            texte={[{ text: item.texte }]}
           />
         ))}
       </section>

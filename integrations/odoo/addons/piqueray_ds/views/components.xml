@@ -154,7 +154,20 @@
          l'autre, et la divergence resterait invisible jusqu'à ce qu'une section
          pose `link_href`. Seule la BALISE distingue les deux branches. -->
     <t t-set="button_class" t-value="'button button--variant-%s button--iconLeftGlyph-%s button--iconRightGlyph-%s oe_unremovable oe_unmovable' % (variant, glyph_left, glyph_right)"/>
-    <a t-if="link_href" t-att-href="link_href" t-att-class="button_class" data-pqr-part="button-root"><t t-call="piqueray_ds.pqr_button_interieur"/></a>
+    <!-- ODOO-033-CARTE-LIEN — TROISIÈME branche, `inert_host` : le CTA garde son
+         apparence mais n'est NI focusable NI cliquable. Un seul appelant la
+         demande, la carte-catégorie EMPILÉE, et la raison est mécanique : depuis
+         que sa racine est une ancre, un `<a>` (ou un `<button>`) de CTA dedans
+         serait un lien DANS un lien — HTML invalide, et deux cibles pour une
+         seule intention. La branche vit ICI et non dans le gabarit de la carte
+         pour la raison écrite juste au-dessus : la liste de classes se pose une
+         SEULE fois. Le libellé reste éditable (`o_pqr_editable`,
+         `data-pqr-part="button-label"` inchangés) — un span n'a jamais empêché
+         l'éditeur d'entrer dans son texte. Variable absente = branche inactive :
+         QWeb compile un nom inconnu en `values.get(...)`, donc les six autres
+         appels rendent exactement ce qu'ils rendaient. -->
+    <span t-if="inert_host" t-att-class="button_class" data-pqr-part="button-root"><t t-call="piqueray_ds.pqr_button_interieur"/></span>
+    <a t-elif="link_href" t-att-href="link_href" t-att-class="button_class" data-pqr-part="button-root"><t t-call="piqueray_ds.pqr_button_interieur"/></a>
     <button t-else="" type="button" t-att-class="button_class" data-pqr-part="button-root"><t t-call="piqueray_ds.pqr_button_interieur"/></button>
   </template>
 
@@ -562,26 +575,75 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
        fixé par composition, pas un choix rédacteur ». L'image naît SANS src (jamais
        d'image cassée) ; la photo entre au montage (dialogue média, /web/image). -->
   <template id="carte_categorie" name="Piqueray · Carte catégorie (empilée, interne)">
-    <article class="carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable"
-             data-pqr-carte="" data-pqr-part="carte-root"
-             t-attf-data-pqr-carte-marker="carte-#{carte_index}">
-      <img class="carte-categorie__categorieImage o_editable_media" data-pqr-part="carte-image" data-pqr-native-image="1"
-           t-att-src="carte.get('imageUrl') or None" t-att-alt="carte.get('imageAlt', '')"/>
+    <!-- ODOO-033-CARTE-LIEN (2026-09-07) — la racine est une ANCRE, pas un
+         article, exactement comme le style superposé depuis la vague 033. La
+         carte ENTIÈRE est la cible du survol et du clic : c'est ce que dessine
+         la variante `Style=Empile, State=Hover` (2773:26562) du set 2692:19667,
+         où la photo zoome, la flèche glisse et le libellé du CTA change alors
+         que le pointeur n'est nulle part en particulier sur la carte.
+         Le lien reste une ADAPTATION D'HÔTE (matrice de capacité §9 : `<a href>`
+         est HOST-ONLY, aucun contrat ne porte de lien) — `ds.carte-categorie`
+         n'est pas modifié fonctionnellement, sa 3.0.1 ne fait que NOMMER le
+         fait. `data-pqr-part` reste `carte-root` : c'est déjà l'adresse de la
+         carte pour le panneau, les gestes de collection et le composeur, et
+         c'est aussi la cible du réglage « Lien de la carte » (`pqrSetLinkHref`,
+         actionParam `carte-root`), qui servait jusqu'ici le seul superposé et
+         sert désormais les deux styles. L'adresse est vide par défaut (`#`) et
+         se règle AU PANNEAU, par carte : elle appartient au rédacteur Odoo. -->
+    <a class="carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable"
+       href="#"
+       data-pqr-carte="" data-pqr-part="carte-root"
+       t-attf-data-pqr-carte-marker="carte-#{carte_index}">
+      <!-- Le CADRE de la photo — un élément d'HÔTE, pas une part du contrat.
+           Il n'existe que pour CLIPPER le zoom de survol : un `transform:
+           scale(1.1)` sur l'`<img>` déborde de sa boîte (5 % en haut et en bas,
+           soit ~21 px à 1728) et déborderait dans l'écart de 32 qui le sépare du
+           titre — or la planche de survol montre la photo clippée à sa boîte, la
+           carte ne bougeant pas d'un pixel. `overflow: hidden` doit vivre sur un
+           cadre à la TAILLE DE LA PHOTO : le poser sur la racine clipperait aux
+           bords de la CARTE et laisserait la bavure verticale. L'`<img>` garde
+           sa classe, son `data-pqr-part="carte-image"`, son `o_editable_media`
+           et son `data-pqr-native-image` : le panneau, le dialogue média et
+           `repeat_action.js` (`querySelector('[data-pqr-part="carte-image"]')`)
+           ne voient aucune différence. -->
+      <span class="carte-categorie__cadrePhoto" data-pqr-part="carte-image-cadre">
+        <img class="carte-categorie__categorieImage o_editable_media" data-pqr-part="carte-image" data-pqr-native-image="1"
+             t-att-src="carte.get('imageUrl') or None" t-att-alt="carte.get('imageAlt', '')"/>
+      </span>
       <div class="carte-categorie__texteEmpile" data-pqr-part="carte-texte-empile">
         <span class="carte-categorie__TitreCategorie o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></span>
-        <span class="carte-categorie__TexteCategorie o_pqr_editable" data-pqr-part="carte-text" data-pqr-marks=""><t t-esc="carte.get('texte', '')"/></span>
+        <!-- ds.carte-categorie 3.0.0 (2026-09-07) : `texte` est une prop
+             rich-text (règle owner du 2026-09-02, « un texte avec du gras est
+             riche »). `data-pqr-marks="strong"` est ce qui ouvre le Gras dans
+             la toolbar ET ce qui empêche la garde de saisie de DÉPLIER le gras
+             à l'enregistrement — sans lui, la première phrase en gras des
+             usages réels serait perdue au premier « Enregistrer ». -->
+        <span class="carte-categorie__TexteCategorie o_pqr_editable" data-pqr-part="carte-text" data-pqr-marks="strong"><t t-esc="carte.get('texte', '')"/></span>
       </div>
-      <!-- CTA lien (défaut ctaType) : libellé éditable + destination au panneau
-           (Q-C4). Le wrapper carte-cta-lien est un hook d'adressage (dissous au
-           pont, display:contents). L'icône est simplifiée en flèche par le patron
-           pqr_button partagé (glyphes pdf/download non portés en QWeb — limite
-           héritée 019/022, attribuée en parité pixel). -->
+      <!-- CTA lien (défaut ctaType) : libellé éditable. Le wrapper
+           carte-cta-lien est un hook d'adressage (dissous au pont,
+           display:contents). ds.carte-categorie 3.0.0 (2026-09-07) : UNE
+           SEULE icône, la flèche droite. La v1 activait les deux fentes avec les
+           glyphes `pdf` et `download` — défaut de la source Figma, corrigé sur
+           la variante v2 du set, plus une « limite héritée 019/022 ».
+           ODOO-033-CARTE-LIEN (2026-09-07) : le CTA n'est PLUS un lien. Depuis
+           que la racine de la carte est une ancre, un `<a>` ici serait un lien
+           dans un lien — HTML invalide (le contenu interactif est exclu du
+           contenu d'une ancre) et DEUX cibles pour une intention unique, ce que
+           la recommandation d'accessibilité range en doublon de lien. `<button>`
+           n'était pas mieux : lui aussi est du contenu interactif. Le CTA rend
+           donc un `<span>` portant les mêmes classes (branche `inert_host` de
+           `pqr_button`) : apparence identique au pixel, rien à focuser, rien à
+           cliquer, le clic va à la carte. Son libellé reste éditable.
+           Conséquence assumée : le réglage « Lien du CTA » du panneau n'a plus
+           de cible et a été retiré (authoring.xml) — c'est « Lien de la carte »
+           qui porte désormais la destination des DEUX styles. -->
       <div class="carte-categorie__Bouton" data-pqr-part="carte-cta-root">
         <span data-pqr-part="carte-cta-lien" style="display:contents">
-          <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'link'"/><t t-set="label" t-value="carte.get('ctaLabel', 'Contactez-nous')"/><t t-set="icon_left" t-value="True"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'pdf'"/><t t-set="glyph_right" t-value="'download'"/></t>
+          <t t-call="piqueray_ds.pqr_button"><t t-set="inert_host" t-value="True"/><t t-set="variant" t-value="'link'"/><t t-set="label" t-value="carte.get('ctaLabel', 'Contactez-nous')"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
         </span>
       </div>
-    </article>
+    </a>
   </template>
 
   <!-- Carte-catégorie, style SUPERPOSÉ (ds.carte-categorie Style=Superpose) —
@@ -622,7 +684,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         <div class="carte-categorie__inner">
           <div class="carte-categorie__blocTexte">
             <h3 class="carte-categorie__TitreSuperpose o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></h3>
-            <span class="carte-categorie__TexteSuperpose o_pqr_editable" data-pqr-part="carte-text" data-pqr-marks=""><t t-esc="carte.get('texte', '')"/></span>
+            <span class="carte-categorie__TexteSuperpose o_pqr_editable" data-pqr-part="carte-text" data-pqr-marks="strong"><t t-esc="carte.get('texte', '')"/></span>
           </div>
           <span class="carte-categorie__Fleche" aria-hidden="true" data-pqr-part="carte-fleche"><t t-call="piqueray_ds.pqr_categorie_fleche"/></span>
         </div>

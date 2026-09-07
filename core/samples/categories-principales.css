@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.3.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.4.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -166,6 +166,34 @@
   text-decoration-line: var(--decoration-etat-iconOnly-survol);
 }
 
+.button--variant-default:hover:not(:disabled) {
+  font-weight: var(--typography-etat-default-graisse-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  font-weight: var(--typography-etat-orange-graisse-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-blanc-graisse-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineBlanc-graisse-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  font-weight: var(--typography-etat-link-graisse-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineNoir-graisse-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  font-weight: var(--typography-etat-iconOnly-graisse-survol);
+}
+
 .button--variant-default:active:not(:disabled) {
   background-color: var(--color-etat-default-fond-presse);
 }
@@ -291,7 +319,7 @@
   flex-shrink: 0;
 }
 
-/* CarteCategorie — from ds.carte-categorie v2.2.0 (core/emit-html.ts) */
+/* CarteCategorie — from ds.carte-categorie v3.0.1 (core/emit-html.ts) */
 
 .carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
   box-sizing: border-box;
@@ -403,6 +431,10 @@
   line-height: var(--typography-card-desc-line-height);
 }
 
+.carte-categorie__TexteSuperpose > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .carte-categorie__Fleche svg {
   display: block;
   width: 35px;
@@ -426,30 +458,38 @@
 .carte-categorie__texteEmpile {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-16);
 }
 
 .carte-categorie__TitreCategorie {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
-  font-weight: var(--font-weight-medium);
-  line-height: 40px;
+  font-family: var(--typography-h3-family);
+  font-size: var(--typography-h3-size);
+  font-weight: var(--typography-h3-weight);
+  line-height: var(--typography-h3-line-height);
   text-align: left;
   text-transform: uppercase;
 }
 
 .carte-categorie__TexteCategorie {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
+  font-size: var(--typography-card-desc-size);
   font-weight: var(--font-weight-regular);
-  line-height: 27px;
+  line-height: var(--typography-card-desc-line-height);
   text-align: left;
+}
+
+.carte-categorie__TexteCategorie > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .carte-categorie__Bouton {
   display: flex;
   align-items: flex-start;
-  align-self: flex-start;
+  width: 100%;
+  min-width: 0;
 }
 
 /* CategoriesPrincipales — from ds.categories-principales v2.0.0 (core/emit-html.ts) */

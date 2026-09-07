@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.3.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.4.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -94,7 +94,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'octicon-chevron-down12';
 }
 
-/** Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.
+/** 2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse. Nouveau canal `font-weight` sur l'etat hover, sur le meme modele par style que le soulignement : `typography.etat.<style>.graisse-survol`, six styles a font.weight.medium (la graisse du repos, leur survol ne bouge donc pas d'un octet) et link a font.weight.semibold. Decision owner du 2026-09-07, prise sur la carte categorie empilee : le libelle du CTA y est le seul signal de cible cliquable, et l'owner a refuse la couleur orange comme accent. Deux faits mesures avant d'ecrire : la couleur du survol etait DEJA le noir pur (color.etat.link.libelle-survol pointe sur color.noir-pur depuis la vague 032), donc « jouer sur le noir » n'ajoutait rien ; et le decalage horizontal du gras est de 1 px sur le libelle « CONTACTEZ-NOUS » (155 vs 156 px, releve sur le canevas), donc l'argument classique du deplacement de mise en page ne s'applique pas ici. MEME JOUR, ECART DE SOURCE REFERME : le contrat declarait le soulignement du survol link depuis la 2.3.0, la variante Figma `Style=Link, State=Hover` (2749:17111) ne le DESSINAIT pas. Elle porte desormais le style de texte « Libelle bouton survol » (Montserrat SemiBold, casse UPPER, soulignement, fontSize lie a typography/button/size comme le repos). Poser la graisse par surcharge de fontName detachait le libelle de son style de texte et lui faisait perdre la taille responsive : d'ou le style dedie. 449 instances du set Bouton avant le geste, 449 apres.
+
+Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.
 
 The label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).
 

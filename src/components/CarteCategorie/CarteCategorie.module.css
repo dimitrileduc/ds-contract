@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.2.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v3.0.1)
  * Regenerate with: npm run generate
  */
 
@@ -133,6 +133,10 @@
   line-height: var(--typography-card-desc-line-height);
 }
 
+.TexteSuperpose > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .Fleche svg {
   width: 35px;
   height: 35px;
@@ -155,28 +159,36 @@
 .texteEmpile {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-16);
 }
 
 .TitreCategorie {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
-  font-weight: var(--font-weight-medium);
-  line-height: 40px;
+  font-family: var(--typography-h3-family);
+  font-size: var(--typography-h3-size);
+  font-weight: var(--typography-h3-weight);
+  line-height: var(--typography-h3-line-height);
   text-align: left;
   text-transform: uppercase;
 }
 
 .TexteCategorie {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
+  font-size: var(--typography-card-desc-size);
   font-weight: var(--font-weight-regular);
-  line-height: 27px;
+  line-height: var(--typography-card-desc-line-height);
   text-align: left;
+}
+
+.TexteCategorie > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .Bouton {
   display: flex;
   align-items: flex-start;
-  align-self: flex-start;
+  width: 100%;
+  min-width: 0;
 }

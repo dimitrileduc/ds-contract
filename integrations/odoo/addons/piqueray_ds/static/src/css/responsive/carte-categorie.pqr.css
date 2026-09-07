@@ -1,0 +1,208 @@
+/*
+ * responsive/carte-categorie.pqr.css — ZONE MANUELLE (vague 031, 2026-09-07).
+ *
+ * Projection Odoo des DEUX SEULS faits de `ds.carte-categorie` 3.0.0 (style
+ * EMPILÉ) que le contrat ne peut pas dire. Rien d'autre n'a sa place ici :
+ *
+ *   · la TYPOGRAPHIE par écran est déjà portée par les jetons. Depuis la 3.0.0
+ *     le titre monte `typography.h3.*` et la description `typography.card-desc.*`,
+ *     et `generated/tokens.pqr.css` porte leurs blocs @media (768 / 992 / 1400).
+ *     Recopier ici 20/25 · 24/30 · 32/40 serait une valeur tapée à la main.
+ *   · la GÉOMÉTRIE de l'image (rapport 16/9, largeur pleine), l'écart de 32 de
+ *     la racine, l'écart de 16 de la colonne de texte et le fond blanc sont dans
+ *     `generated/components.pqr.css`, émis depuis le contrat.
+ *
+ * Chargé APRÈS `responsive/categories-principales.pqr.css` dans le bundle
+ * (__manifest__.py) : la règle (2) doit battre celle de la section, à
+ * spécificité égale.
+ */
+
+/* ---- (1) Le rapport 16/9 de la RACINE ne vaut que pour le style superposé ---
+ *
+ * FAIT CODE-ONLY, limite de schéma nommée dans la description de `root` :
+ * `layout.aspectRatio` est le SEUL canal du rapport, et il est inconditionnel —
+ * `VariantLayoutSchema` (le canal de `layoutByProp`) ne déclare pas
+ * `aspectRatio`, et ni `LITERAL_CHANNELS` ni `DECLARED_CHANNELS` ne portent le
+ * rapport. Le contrat ne PEUT donc pas dire « 16/9 quand superposé, hauteur au
+ * contenu quand empilé ».
+ *
+ * Or la carte empilée est haute AU CONTENU : 375 · 582 · 482 · 595 sur les
+ * quatre témoins de la variante v2 (2772:24834), pour des largeurs de
+ * 342 · 738 · 512 · 743. Un rapport 16/9 lui donnerait 192 · 415 · 288 · 418 —
+ * la carte serait deux à trois fois trop courte et son contenu déborderait.
+ * (Le rapport 16/9 reste porté par la PHOTO, part `categorieImage`, où il est
+ * juste : c'est elle qui le dessine.)
+ */
+.carte-categorie--style-empile {
+  aspect-ratio: auto;
+}
+
+/* ---- (2) Les deux hauteurs imposées par la section sont du SUPERPOSÉ --------
+ *
+ * FAIT CODE-ONLY, à reprendre par le chantier de la section.
+ * `responsive/categories-principales.pqr.css` pose `height: 418` (Mobile) et
+ * `height: 288` (Tablette) sur TOUTE carte fille — ces deux valeurs sont la
+ * géométrie que la section mesure sur des cartes SUPERPOSÉES (2026-09-02, à une
+ * époque où elle n'en posait pas d'autres). Elles sont fausses pour une carte
+ * empilée, dont la hauteur appartient au contenu.
+ *
+ * La règle ci-dessous est BORNÉE au modificateur `--style-empile` : une carte
+ * superposée dans la même section n'est pas touchée, la home ne peut pas
+ * régresser. Même spécificité (0,3,0) que la règle de la section, chargée
+ * après ; le jour où la section retrouve son canal de style, c'est à elle de
+ * porter ses hauteurs par style et cette règle disparaît.
+ */
+.s_pqr_categories_principales.categories-principales > [data-pqr-carte-list] > .carte-categorie--style-empile,
+.s_pqr_categories_principales.categories-principales > .carte-categorie--style-empile {
+  height: auto;
+}
+
+/* ODOO-033-CARTE-EMPILE-SURVOL BEGIN — le survol du style EMPILÉ (2026-09-07)
+ *
+ * Source : variante `Style=Empile, State=Hover` (2773:26562) du set v2
+ * CarteCategorie `2692:19667`. La carte ENTIÈRE est la cible du survol et du
+ * clic (sa racine est une ancre depuis ce jour, cf. ODOO-033-CARTE-LIEN dans
+ * components.xml), et la variante dessine QUATRE faits :
+ *
+ *   (a) la photo zoome de 10 %, recadrée au centre, la carte ne bougeant pas
+ *       d'un pixel — le zoom est clippé ;
+ *   (b) la flèche du CTA glisse de 4 px vers la droite : sur le canevas,
+ *       l'écart du bouton passe de 10 à 14 ;
+ *   (c) le libellé du CTA passe au noir pur et se souligne ;
+ *   (d) le libellé passe en SemiBold.
+ *
+ * (c) et (d) appartiennent à `ds.button` 2.4.0, style link, état hover : ils
+ * sont portés par SES propres jetons. Ils sont re-portés ici, par leurs
+ * VARIABLES, jamais par une valeur — précédent exact, la règle (6) de la zone
+ * ODOO-023-FOOTER-BRIDGE (vague 032).
+ *
+ * POURQUOI TOUT CELA EST CODE-ONLY — vérifié en lisant le schéma et le référé,
+ * pas supposé (les trois limites sont aussi nommées dans la description du
+ * contrat 3.0.1) :
+ *   · le ZOOM demande `transform` sur `categorieImage`, une part NON-racine.
+ *     Le canal d'états d'une part non-racine n'accepte que de la couleur
+ *     (emit-react PART_STATE_CHANNELS), et `declaredStates` — le seul autre
+ *     canal par état d'une part — est borné au registre DECLARED_CHANNELS, qui
+ *     ne porte pas `transform`. `transform` n'existe qu'en STYLES_WHEN_ALLOWED,
+ *     conditionné à une PROP, jamais à un état.
+ *   · le GLISSEMENT est un changement de `gap` sur l'instance `ds.button`. Une
+ *     part `component` ne porte ni états ni faits déclarés (refus par nom du
+ *     référé), et `gap` n'est de toute façon pas un canal d'état.
+ *   · le REPORT des canaux du bouton : au survol de la CARTE le pointeur n'est
+ *     pas sur le bouton, donc la règle d'état générée ne s'applique pas — et
+ *     aucun canal du schéma ne dit « quand mon ancêtre est survolé, applique
+ *     l'état de mon instance enfant ».
+ *
+ * Les DEUX SEULES valeurs écrites en clair ici sont la durée (250 ms) et le
+ * facteur d'échelle (1.1) : le dépôt n'a AUCUN jeton de mouvement (zéro
+ * `duration`, `easing` ou `scale` dans `tokens/`), et le schéma range déjà le
+ * mouvement en fait DÉCLARÉ code-only (`DECLARED_CHANNELS.transition` : « Motion
+ * runs only in the coded component »). Tout le reste passe par `var(--pqr-…)`.
+ */
+
+/* (3a) Le cadre qui CLIPPE le zoom. Élément d'hôte, pas une part du contrat.
+ * `overflow: hidden` doit vivre sur un cadre à la taille de la PHOTO : posé sur
+ * la racine il clipperait aux bords de la CARTE, et les 5 % de débordement
+ * vertical de l'image (≈ 21 px à 1728) baveraient dans l'écart de 32 qui la
+ * sépare du titre — alors que la planche de survol montre la photo clippée à sa
+ * boîte. La hauteur vient de l'image elle-même (rapport 16/9 du contrat) : le
+ * cadre n'en pose AUCUNE. */
+.carte-categorie--style-empile .carte-categorie__cadrePhoto {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* (3b) Le zoom de 10 %, recadré au centre, en 250 ms. */
+.carte-categorie--style-empile .carte-categorie__categorieImage {
+  transform-origin: 50% 50%;
+  transition: transform 250ms ease-out;
+}
+.carte-categorie--style-empile:hover .carte-categorie__categorieImage {
+  transform: scale(1.1);
+}
+
+/* (3c) La flèche glisse : l'écart du bouton passe de 10 à 14. Le jeton existe,
+ * la valeur n'est pas tapée. Spécificité 0,3,0 contre 0,1,0 pour `.button`. */
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] [data-pqr-part="button-root"] {
+  gap: var(--pqr-space-14);
+}
+
+/* (3d) Les QUATRE canaux de l'état hover de `ds.button`, re-portés au survol de
+ * la CARTE. Le contrat du bouton déclare `background-color`, `color`,
+ * `text-decoration-line` et `font-weight` sur son état hover : les quatre sont
+ * repris, par leurs VARIABLES de jeton et jamais par une valeur. Sur le style
+ * `link` posé par le gabarit, seuls trois se voient (le fond d'état vaut
+ * transparent) — c'est le jeton qui le dit, pas nous.
+ * Les SEPT styles sont couverts bien qu'un seul soit posé aujourd'hui : c'est ce
+ * qui évite qu'un changement de `ctaType` fasse disparaître le fait en silence,
+ * aucune porte ne rendant de page Odoo. Portée par la part CTA du contrat
+ * (`carte-cta-root` = `.carte-categorie__Bouton`), donc les deux formes de CTA
+ * (`lien` et `bouton`) sont servies par la même règle.
+ * Ce n'est pas une règle d'état écrite à la main : c'est le RE-PORT d'un canal
+ * gouverné, exactement comme la règle (6) du pont footer (vague 032). */
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-link {
+  background-color: var(--pqr-color-etat-link-fond-survol);
+  color: var(--pqr-color-etat-link-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-link-survol);
+  font-weight: var(--pqr-typography-etat-link-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-default {
+  background-color: var(--pqr-color-etat-default-fond-survol);
+  color: var(--pqr-color-etat-default-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-default-survol);
+  font-weight: var(--pqr-typography-etat-default-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-orange {
+  background-color: var(--pqr-color-etat-orange-fond-survol);
+  color: var(--pqr-color-etat-orange-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-orange-survol);
+  font-weight: var(--pqr-typography-etat-orange-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-blanc {
+  background-color: var(--pqr-color-etat-blanc-fond-survol);
+  color: var(--pqr-color-etat-blanc-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-blanc-survol);
+  font-weight: var(--pqr-typography-etat-blanc-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-outlineBlanc {
+  background-color: var(--pqr-color-etat-outlineBlanc-fond-survol);
+  color: var(--pqr-color-etat-outlineBlanc-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-outlineBlanc-survol);
+  font-weight: var(--pqr-typography-etat-outlineBlanc-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-outlineNoir {
+  background-color: var(--pqr-color-etat-outlineNoir-fond-survol);
+  color: var(--pqr-color-etat-outlineNoir-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-outlineNoir-survol);
+  font-weight: var(--pqr-typography-etat-outlineNoir-graisse-survol);
+}
+.carte-categorie--style-empile:hover [data-pqr-part="carte-cta-root"] .button--variant-iconOnly {
+  background-color: var(--pqr-color-etat-iconOnly-fond-survol);
+  color: var(--pqr-color-etat-iconOnly-libelle-survol);
+  text-decoration-line: var(--pqr-decoration-etat-iconOnly-survol);
+  font-weight: var(--pqr-typography-etat-iconOnly-graisse-survol);
+}
+
+/* (3e) La carte est devenue la cible : elle doit donc dire au clavier où l'on
+ * est. Mêmes jetons que l'anneau de focus du bouton (largeur border-width.2,
+ * couleur de l'anneau du style link, décalage space.2) — le dépôt n'a pas
+ * d'anneau propre à la carte, et en inventer un aurait été une valeur de design
+ * non gouvernée. LIMITE NOMMÉE : la carte SUPERPOSÉE, ancre depuis la vague 033,
+ * n'a toujours aucun anneau — hors périmètre ici, inscrit au journal. */
+.carte-categorie--style-empile:focus-visible {
+  outline: var(--pqr-border-width-2) solid var(--pqr-color-etat-link-anneau-focus);
+  outline-offset: var(--pqr-space-2);
+}
+
+/* (3f) Mouvement réduit : aucune transition, aucun transform. Le survol garde
+ * ses trois faits de couleur/graisse/écart — ce sont des changements d'état, pas
+ * du mouvement. Même sélecteur que (3b), écrit après : il gagne par l'ordre. */
+@media (prefers-reduced-motion: reduce) {
+  .carte-categorie--style-empile .carte-categorie__categorieImage,
+  .carte-categorie--style-empile:hover .carte-categorie__categorieImage {
+    transition: none;
+    transform: none;
+  }
+}
+/* ODOO-033-CARTE-EMPILE-SURVOL END */

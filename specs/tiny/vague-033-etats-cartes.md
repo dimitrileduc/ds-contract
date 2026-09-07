@@ -104,3 +104,105 @@ vague. Seuls les fichiers de cette vague ont été commités ; `models/website.p
 `footer.authoring.json`, les scénarios QA du footer et `specs/033-*` sont restés intacts. L'entrée
 « Recent Changes » de `CLAUDE.md` n'a **délibérément pas** été écrite, pour ne pas écraser la sienne :
 à poser au merge.
+
+---
+
+# Le survol du lien prend une graisse — et l'écart de source du soulignement est refermé (2026-09-07)
+
+## D'où ça vient
+
+La carte catégorie **empilée** n'avait aucun survol. Son seul signal de cible cliquable est le CTA
+« CONTACTEZ-NOUS ». L'owner a écarté trois pistes successives avant de trancher : pas de soulignement
+du titre (« c'est le texte du CTA qui doit se souligner »), pas de couleur orange sur le libellé, et
+un voile photo jugé « pas assez visible du tout ». Décision finale : **zoom photo 10 %** et
+**graisse sur le libellé**.
+
+## Deux faits mesurés avant d'écrire, et ils ont changé la réponse
+
+**Le noir pur était déjà là.** `color.etat.link.libelle-survol` pointe sur `{color.noir-pur}` depuis
+la vague 032. « Jouer sur le noir » n'ajoutait donc rien : le survol du lien passait déjà de
+`#26282C` à `#000000`. Ce relevé a réduit la question de l'owner à une seule inconnue, la graisse.
+
+**Le décalage du gras est d'1 px, pas d'une mise en page.** L'argument classique (Baymard : changer
+la graisse au survol décale la mise en page) ne s'applique pas ici. Relevé sur le canevas, libellé
+« CONTACTEZ-NOUS » : Medium 155 px, SemiBold 156 px, bouton 189 → 190 px. Ce qui coûte, ce n'est pas
+le pixel, c'est la gouvernance — et c'est le fait suivant.
+
+## Le piège : poser une graisse détache le libellé de son style de texte
+
+Première tentative, `lbl.fontName = SemiBold` sur le libellé : **rien ne se passe, en silence**, quand
+le nœud est dans une instance ; et sur le master, la graisse s'applique **mais détache le nœud du
+style de texte « Libellé bouton »**. Or c'est ce style qui porte la liaison `fontSize →
+typography/button/size` : détaché, le libellé de survol aurait cessé de suivre la taille responsive
+(16 → 18 en Wide) sans que rien ne le signale.
+
+Correctif : un **style de texte dédié**, `Libellé bouton survol` — Montserrat SemiBold, casse UPPER,
+soulignement, `fontSize` lié à la **même** variable responsive que le repos. Le canevas garde donc son
+axe typographique.
+
+**Second piège dans le premier** : appliquer un style de texte neuf écrase **tous** les champs du
+nœud, `textCase` compris. Le libellé est tombé de 156 à 130 px parce que le nouveau style était en
+`ORIGINAL` là où « Libellé bouton » est en `UPPER`. À copier champ par champ depuis le style source,
+jamais à supposer.
+
+## Ce qui est posé
+
+**Jetons** (`tokens/semantic.tokens.json`) : `typography.etat.<style>.graisse-survol`, sept styles,
+même forme que `decoration.etat.<style>.survol` de la vague 032 — six styles reprennent la graisse du
+repos (`font.weight.medium`, leur survol ne bouge pas d'un octet), `link` passe à
+`font.weight.semibold`. La matrice est complète parce qu'un jeton manquant est un refus par nom au
+build.
+
+**Contrat** `ds.button` **2.3.0 → 2.4.0** (MINEUR, additif) : l'état `hover` de la racine gagne
+`font-weight: {typography.etat.{variant}.graisse-survol}`. 264 épingles propagées, `graphDigest`
+global repiné (`cac4ddb8… → 67bb51e9…`) dans `version_guard.js`, `scan-saved-versions.ts`, les 14
+blocs de `components.xml` et la fixture `version-drift/cases.json`.
+
+**Canevas** : la variante `Bouton / Style=Link, State=Hover` (`2749:17111`) **dessine enfin le
+soulignement** que le contrat déclarait depuis la 2.3.0 — écart de source ouvert, refermé ici (§VIII).
+449 instances du set Bouton avant le geste, 449 après.
+
+**Carte** : la variante `Style=Empile, State=Hover` (`2773:26562`) est créée dans le set
+`2692:19667`, qui n'en portait que trois sur quatre. 52 instances avant, 52 après. Quatre témoins de
+survol rangés dans la section `031 · CARTE-CATEGORIE — molécule`, un par écran, alignés sur la rangée
+de repos ; les onze nœuds d'étude des propositions v1 à v3 ont été supprimés.
+
+## Limite nommée
+
+Le zoom de la photo est simulé sur le canevas par un paint `CROP` dont la matrice conserve le cadrage
+`FILL` : Figma n'a pas de `transform`. La projection Odoo, elle, zoome par `transform: scale`. Les
+deux disent le même fait, ils ne l'écrivent pas de la même façon — c'est pourquoi la mesure se fait
+planche contre bloc, et pas par lecture de propriété.
+
+## État des portes au 2026-09-07 17h40, et ce qui reste ouvert
+
+Vertes : `build` · `geometry:gate` (0 invisible) · `odoo:authoring:check` · `odoo:module:check`
+**23/23** · `emitters:check` · `tsc` ×2 · `plugin:check` · `deterministic-roundtrip` ·
+`core-browser-check` · **`parity`** (« No new drift », 19 acquittements inchangés, **aucun ajout à la
+baseline**).
+
+Les 7 jetons de graisse ont été **posés sur le canevas**, en variables FLOAT de la collection
+Semantic aliasant `font/weight/medium|semibold`, à la forme exacte des 26 jetons de graisse déjà
+présents. C'est ce qui rend la parité verte sans acquittement neuf, plutôt que de reconduire une
+dette que la vague 033 s'était engagée à retirer.
+
+**`npm run eval` : 245/248, et les trois rouges sont nommés.**
+
+1. **`golden-generated-output`** — 35 fichiers générés divergent du manifeste. Le nôtre est
+   `Button.module.css` (la règle de graisse au survol), et sa ré-épingle est LÉGITIME. Elle est
+   **bloquée** : le même manifeste contient `src/components/Realisations/`, généré depuis un contrat
+   d'une **autre session** écrit dans ce worktree à 17h17. Lancer `golden:update` épinglerait son
+   travail en cours dans notre changement. À rejouer quand le worktree est calme.
+2. **`figma-text-styles-piqueray`** — le recensement attendait 85 liés / 61 propres / 22 riches, il
+   mesure 97 / 71 / 24. Les **+2 riches sont à nous** : `ds.carte-categorie` 3.0.0 a fait passer
+   `texte` en rich-text ce matin, ses deux parts de texte entrent au compte riche. Le reste vient des
+   contrats `realisation` / `realisations` de l'autre session. Précédent explicite dans le
+   commentaire même de la fixture (2026-09-05, chantier Avis Google) : un chantier concurrent qui
+   déplace le recensement est **nommé**, et **sa clôture re-mesure**.
+3. **`preservation-013-clobber-detected`** — attend 3 écrasements injectés, en trouve 6, sur
+   `ds.footer`, `ds.faq`, `ds.reassurances`. **Aucun contrat de cette vague.**
+
+**Le digest de graphe est disputé.** Deux sessions écrivent des contrats dans ce worktree : il est
+passé de `cac4ddb8` à `67bb51e9` (nous), puis `a290ca83` (elle), puis `4e9098f5` (verrou repiné et
+réaligné sur les 19 emplacements). Il rebougera à sa clôture. **À revérifier au merge**, ce n'est pas
+un chiffre à recopier depuis ce document.

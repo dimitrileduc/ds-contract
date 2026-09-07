@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v2.2.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v3.0.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -110,27 +110,31 @@ const S: Record<string, CSSProperties> = {
   "texteEmpile": {
     "display": "flex",
     "flexDirection": "column",
+    "width": "100%",
+    "minWidth": 0,
     "gap": "16px"
   },
   "TitreCategorie": {
     "color": "#26282C",
-    "fontSize": "32px",
-    "fontWeight": 500,
-    "lineHeight": "40px",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "20px",
+    "fontWeight": 600,
+    "lineHeight": "25px",
     "textAlign": "left",
     "textTransform": "uppercase"
   },
   "TexteCategorie": {
     "color": "#26282C",
-    "fontSize": "18px",
+    "fontSize": "16px",
     "fontWeight": 400,
-    "lineHeight": "27px",
+    "lineHeight": "24px",
     "textAlign": "left"
   },
   "Bouton": {
     "display": "flex",
     "alignItems": "flex-start",
-    "alignSelf": "flex-start"
+    "width": "100%",
+    "minWidth": 0
   }
 };
 
@@ -150,16 +154,16 @@ const V: Record<string, CSSProperties> = {
 };
 
 export interface CarteCategorieProps extends HTMLAttributes<HTMLDivElement> {
-  /**  — 2026-09-02 : le set 031 (2692:19667) ne dessine QUE `superpose` ; `empile` est conservé au contrat sur décision owner (d'autres pages l'utiliseront), sans correction de la source. L'axe VARIANT du set ne déclare donc qu'une valeur : écart de parité acquitté, pas une dérive. */
+  /** Forme de la carte. 2026-09-07 : le set v2 (2692:19667) dessine de nouveau LES DEUX valeurs — la variante `Style=Empile, State=Default` (2772:24834) y a été rangée ce jour-là. L'écart de parité acquitté le 2026-09-02 (« l'axe VARIANT ne déclare qu'une valeur ») est donc résorbé à la source. Le set croise `Style` avec `State = Default | Survol` ; il n'y a PAS de variante `Empile/Survol` : le lien porte l'interaction sur la forme empilée, matrice volontairement incomplète, décision owner du 2026-09-07. */
   style?: 'superpose' | 'empile';
   /** Affiche le filet décoratif du coin haut-droit. Le set 031 le DESSINE sur la carte mais les deux instances de la section le masquent (visible=false, surcharge d’instance brute, 2026-09-02) : la visibilité devient une option gouvernée que le parent passe, plutôt qu’un calque caché — §VIII. Le set n’expose aucune propriété BOOLEAN : liaison NONE, écart nommé, à corriger à la source. */
   afficherDecor?: boolean;
-  /** Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à icônes pdf/download ; `bouton` = ds.button outlineNoir encadré à flèche. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé. */
+  /** Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à UNE SEULE flèche droite ; `bouton` = ds.button outlineNoir encadré à flèche. 2026-09-07 : le `lien` portait jusqu'ici deux icônes, `pdf` à gauche et `download` à droite — un défaut de source de la v1 (nœuds 230:585 et 230:599), sans rapport avec un lien « Contactez-nous », corrigé sur la variante v2. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé. */
   ctaType?: 'lien' | 'bouton';
   /**  Défaut relevé sur le set 031 le 2026-09-02. */
   titre?: string;
-  /** Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique). Défaut relevé sur le set 031 le 2026-09-02. */
-  texte?: string;
+  /** Corps de la carte. Type `rich-text` depuis la 3.0.0 (2026-09-07) — RUPTURE MAJEURE. La 2.2.0 disait ce type impossible : « les champs d'un arrayOf sont plats par le schéma, un texte rich-text ne se transporterait pas par item ». C'était FAUX et vérifié dans le référé : emit-react accepte un champ `arrayOf` de type `text` contre une prop enfant `text` OU `rich-text` (la composition `repeat` de ds.categories-principales continue donc de fonctionner sans y toucher). La raison du passage est la règle owner du 2026-09-02 : un texte avec du gras est riche. Les usages réels de la page « Portes de garage résidentielles » portent une première phrase en gras (« La référence confort. », « Le classique intemporel. ») ; sans ce type le gras est déplié à l'enregistrement Odoo. La marque `strong` est gouvernée par le jeton font.weight.bold (700), la graisse Bold relevée sur les plages fortes de ds.carte. Défaut relevé sur le set 031 le 2026-09-02, porté ici en un segment unique (le défaut du set n'a pas de plage forte). */
+  texte?: Array<{ text: string; strong?: boolean; underline?: boolean }>;
   /** La ROUTE de l'image, jamais ses octets (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md l.91 ; reprise verbatim de ds.carte.imageUrl). Défaut vide et il le reste ; le canevas dessine le lavis technique #D9D9D9, la photo maquette est hors contrat et préservée à la régénération par la passe de sauvetage. */
   imageUrl?: string;
   imageAlt?: string;
@@ -167,7 +171,21 @@ export interface CarteCategorieProps extends HTMLAttributes<HTMLDivElement> {
   ctaLabel?: string;
 }
 
-/** 2.2.0 (2026-09-05, vague 033) : la carte repond au geste. UN seul etat, `hover`, et il ne touche QUE le style superpose : un voile noir a 55 % se compose SOUS le degrade existant du voile (`contenuSuperpose`), qui n'est pas modifie. Le repos est donc inchange a l'octet sur les deux styles.
+/** 3.0.1 (2026-09-07, vague 033 — le SURVOL du style EMPILE, et ce que le contrat ne peut pas en dire) : PATCH de DESCRIPTION SEULE, aucune modification fonctionnelle. Sur le canevas, la variante `Style=Empile, State=Hover` (2773:26562, set 2692:19667) dessine QUATRE faits au survol de la carte ENTIERE (la carte est la cible du survol et du clic, comme le style superpose depuis la vague 033) : (a) la photo zoome de 10 pour cent, recadree au centre, sans que la carte bouge d'un pixel — le zoom est clippe ; (b) la fleche du CTA glisse de 4 px vers la droite (sur le canevas l'ecart du bouton passe de 10 a 14) ; (c) le libelle du CTA passe au noir pur et se souligne ; (d) le libelle passe en SemiBold. Les faits (c) et (d) appartiennent a `ds.button` 2.4.0, style link, etat hover : ils sont portes par SES propres jetons (couleur d'etat, decoration d'etat, graisse d'etat) et le contrat de la carte n'a rien a en dire.
+LIMITES NOMMEES, et elles sont TROIS — verifiees par lecture du schema et du referee, pas supposees :
+(1) le ZOOM de la photo demanderait `transform: scale(...)` sur `categorieImage`, une part NON-racine. Le canal d'etats d'une part non-racine n'accepte que de la couleur (emit-react PART_STATE_CHANNELS : color, background-color, border-color), et le canal `declaredStates` — le seul autre canal par etat d'une part — est borne au registre DECLARED_CHANNELS, qui ne declare NI `transform` NI aucun canal de zoom. `transform` n'existe dans le schema que dans STYLES_WHEN_ALLOWED, c'est-a-dire conditionne a une PROP, jamais a un etat. Le zoom est donc un FAIT CODE-ONLY.
+(2) le GLISSEMENT de la fleche est un changement d'ECART (gap 10 vers 14) sur l'instance `ds.button`. Une part `component` ne porte NI etats NI faits declares (le referee refuse par nom : « component instance — declared facts cannot restyle it »), et `gap` n'est de toute facon pas un canal d'etat. FAIT CODE-ONLY.
+(3) le REPORT des canaux du bouton : au survol de la CARTE, le pointeur n'est pas sur le bouton, donc la regle d'etat generee du bouton ne s'applique pas. Aucun canal du schema ne dit « quand mon ancetre est survole, applique l'etat hover de mon instance enfant ». FAIT CODE-ONLY, re-porte dans la projection Odoo par les VARIABLES DE JETON du bouton (jamais par une valeur litterale), precedent exact : la regle (6) de la zone ODOO-023-FOOTER-BRIDGE, vague 032.
+Ces trois faits vivent donc dans `responsive/carte-categorie.pqr.css` (zone ODOO-033-CARTE-EMPILE-SURVOL), avec le cadre qui clippe le zoom, la transition de 250 ms, la clause `prefers-reduced-motion` et l'anneau de focus clavier de la carte devenue cible. Nommes ici plutot que contournes en silence. La projection Odoo fait aussi de la racine de la carte empilee une ANCRE et rend son CTA NON INTERACTIF (un lien dans un lien est du HTML invalide et un doublon de cible) : le lien est une ADAPTATION D'HOTE, `<a href>` est HOST-ONLY a la matrice de capacite, aucun contrat n'en porte la notion — `ds.button` reste un `<button>` cote React, comme depuis le 2026-08-18.
+
+3.0.0 (2026-09-07, vague 031 — le style EMPILE passe en v2) : la variante `Style=Empile, State=Default` (2772:24834) a ete rangee dans le set v2 CarteCategorie 2692:19667 le 2026-09-07, les ancres ne bougent donc PAS (meme set, meme cle). Ce que la v2 change sur le style empile, et RIEN sur le style superpose :
+(1) le titre et la description montent les ROLES du DS au lieu de jetons figes de la taille de 1728 — `typography.h3.*` (20/25 SemiBold en Mobile, 24/30 Medium en Tablette et Desktop, 32/40 Medium en Wide) et `typography.card-desc.*` (16/24 en Mobile, 18/27 au-dessus). Avant, la carte empilee rendait 32/40 et 18/27 a TOUS les ecrans : la carte de 342 de large en mobile portait un titre de 32. Decision owner « option A » du 2026-09-07 ; a 1728 le rendu est identique a l'octet a celui d'avant.
+(2) le lien « Contactez-nous » retrouve UNE SEULE FLECHE A DROITE. Les deux icones `Pdf` (gauche) et `Download` (droite) de la v1 etaient un defaut de source releve a l'etape 0 (noeuds 230:585 et 230:599, sans aucun rapport avec un lien de contact) : elles disparaissent.
+(3) la prop `texte` passe de `text` a `rich-text` avec `content.marks.strong` — c'est la RUPTURE MAJEURE. Les usages reels de la page « Portes de garage residentielles » portent une premiere phrase en gras (« La reference confort. S'ouvre a la verticale… ») et la regle owner du 2026-09-02 dit qu'un texte avec du gras est riche. Sans ce passage le gras est perdu a la projection Odoo. Consequence FORCEE par le referee (emit-react, « rich-text part must declare content.marks.strong ») : la part `TexteSuperpose` du style superpose recoit elle aussi la marque — c'est la SEULE modification que le style superpose subit, et elle n'ajoute qu'une regle de graisse pour d'eventuelles plages fortes : sans plage forte le rendu est inchange.
+Pas d'axe de survol sur l'empile (decision owner) : le lien porte l'interaction, et une variante Survol identique au Defaut serait refusee par la porte refuse-hollow-state-previews. Le nombre de colonnes appartient a la section, jamais a la carte.
+LIMITE NOMMEE, code-only : le rapport 16/9 de la RACINE ne peut pas etre conditionne par le style. VariantLayoutSchema (le canal `layoutByProp`) ne declare pas `aspectRatio`, et ni LITERAL_CHANNELS ni DECLARED_CHANNELS ne portent le rapport — le seul canal est `layout.aspectRatio`, qui est inconditionnel. La carte empilee a une hauteur AU CONTENU (375 · 582 · 482 · 595 aux quatre temoins), le rapport de la racine est donc neutralise dans la projection Odoo (responsive/carte-categorie.pqr.css) et le fait est nomme ici plutot que contourne en silence.
+
+2.2.0 (2026-09-05, vague 033) : la carte repond au geste. UN seul etat, `hover`, et il ne touche QUE le style superpose : un voile noir a 55 % se compose SOUS le degrade existant du voile (`contenuSuperpose`), qui n'est pas modifie. Le repos est donc inchange a l'octet sur les deux styles.
 
 Deux faits mesures le 2026-09-05, avant d'ecrire.
 (1) Le texte blanc de la carte n'a PAS de probleme de lisibilite au repos : 17,3:1 sur la description et 18,3:1 sur le titre, quand AAA commence a 7:1. Le survol est donc un signal d'INTERACTIVITE, jamais une correction de contraste — l'ecrire ici evite qu'une relecture future le justifie par l'accessibilite.
@@ -182,7 +200,7 @@ Gouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une op
 
 Limites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root. Plan de document : la partie titre porte la balise h3 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
 export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(function CarteCategorie(
-  { style = 'superpose', ctaType = 'lien', afficherDecor = true, titre = 'Portes de garage', texte = 'Une porte de garage pour chaque goût et chaque style de maison.', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', style, children, ...rest },
+  { style = 'superpose', ctaType = 'lien', afficherDecor = true, titre = 'Portes de garage', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"Une porte de garage pour chaque goût et chaque style de maison."}], style, children, ...rest },
   ref,
 ) {
   return (
@@ -195,7 +213,7 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(fu
 <div style={{ ...S.inner }}>
 <div style={{ ...S.blocTexte }}>
 <h3 style={{ ...S.TitreSuperpose }}>{titre}</h3>
-<span style={{ ...S.TexteSuperpose }}>{texte}</span>
+<span style={{ ...S.TexteSuperpose }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 </div>
 <span style={{ ...S.Fleche }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["arrow-right"] }} />
 </div>
@@ -205,10 +223,10 @@ export const CarteCategorie = forwardRef<HTMLDivElement, CarteCategorieProps>(fu
 </img>) : null}
 {style === 'empile' ? (<div style={{ ...S.texteEmpile }}>
 <span style={{ ...S.TitreCategorie }}>{titre}</span>
-<span style={{ ...S.TexteCategorie }}>{texte}</span>
+<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 </div>) : null}
 {style === 'empile' ? (<div style={{ ...S.Bouton }}>
-{ctaType === 'lien' ? (<Button variant="link" iconLeft iconRight iconLeftGlyph="pdf" iconRightGlyph="download">{ctaLabel}</Button>) : null}
+{ctaType === 'lien' ? (<Button variant="link" iconRight iconRightGlyph="arrow-right">{ctaLabel}</Button>) : null}
 {ctaType === 'bouton' ? (<Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">{ctaLabel}</Button>) : null}
 </div>) : null}
     </div>

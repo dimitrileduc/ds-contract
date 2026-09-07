@@ -916,6 +916,51 @@
         "$type": "dimension",
         "$value": "{font.line-height.27}"
       }
+    },
+    "etat": {
+      "$description": "Graisse du libelle au survol, PAR STYLE (vague 033, 2026-09-07). Meme forme que decoration.etat.<style>.survol : le canal d'etats emet UNE regle par valeur d'enumere, donc chaque style porte sa propre valeur et la matrice reste complete (un jeton manquant est un refus par nom au build). Six styles reprennent la graisse du repos (font.weight.medium) : leur survol ne bouge donc pas d'un octet. Seul link passe a font.weight.semibold — decision owner du 2026-09-07 sur la carte categorie empilee, ou le libelle du CTA est le seul signal de cible cliquable. Le canevas porte le meme fait par le style de texte Figma « Libelle bouton survol », lie a la meme variable de taille responsive que le repos.",
+      "default": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      },
+      "orange": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      },
+      "blanc": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      },
+      "outlineBlanc": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      },
+      "link": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.semibold}"
+        }
+      },
+      "outlineNoir": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      },
+      "iconOnly": {
+        "graisse-survol": {
+          "$type": "fontWeight",
+          "$value": "{font.weight.medium}"
+        }
+      }
     }
   },
   "spacing": {

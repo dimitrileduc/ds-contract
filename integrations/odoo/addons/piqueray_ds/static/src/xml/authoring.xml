@@ -413,29 +413,36 @@
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteCategorieImageAlt'"/></span>
     </BuilderRow>
-    <!-- ODOO-033-CARTE-LIEN — la destination de la carte ENTIÈRE, style superposé.
-         Le superposé n'a pas de CTA : la flèche est l'affordance et la carte est
-         la cible, donc c'est sa racine qui porte l'ancre (`a[data-pqr-part=
-         "carte-root"]`), d'où l'action générique `pqrSetLinkHref` — la même que
-         les icônes sociales et le CTA de Hero vidéo, qui portent aussi leur
-         adresse sur l'ancre elle-même. Symétrie avec les deux réglages ci-dessous :
-         cette ligne n'a de cible qu'en superposé, celles du CTA qu'en empilé.
+    <!-- ODOO-033-CARTE-LIEN — la destination de la carte ENTIÈRE, LES DEUX
+         STYLES depuis le 2026-09-07. Le superposé n'a pas de CTA (la flèche est
+         l'affordance) ; l'empilé en a un, mais sa variante de survol
+         (`Style=Empile, State=Hover`, 2773:26562) répond au geste sur la carte
+         entière, pas sur le seul CTA — sa racine est donc une ancre elle aussi.
+         C'est la racine qui porte l'adresse (`a[data-pqr-part="carte-root"]`),
+         d'où l'action générique `pqrSetLinkHref` — la même que les icônes
+         sociales et le CTA de Hero vidéo, qui portent aussi leur adresse sur
+         l'ancre elle-même. Cette ligne a désormais une cible dans les deux cas.
          Aucun contrat n'est modifié : le lien est une adaptation d'hôte, gouvernée
          au registre d'adaptations (ODOO-019-CTA-LIEN-BRIDGE), jamais dans un
          `*.authoring.json` — décision owner du 2026-08-18. -->
     <BuilderRow label.translate="Lien de la carte">
       <span data-pqr-control="carte-lien-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'carte-root'"/></span>
     </BuilderRow>
-    <!-- Le style superposé n'a PAS de CTA (titre + texte + flèche). Les deux
-         réglages disparaissent donc du panneau quand la carte est superposée :
-         un panneau qui offre un réglage sans cible est un mensonge d'interface.
-         La valeur mise de côté sur la carte revient si le style rebascule. -->
+    <!-- Le style superposé n'a PAS de CTA (titre + texte + flèche) : ce réglage
+         n'a de cible qu'en empilé. Un panneau qui offre un réglage sans cible
+         est un mensonge d'interface. -->
     <BuilderRow label.translate="Libellé du CTA">
       <span data-pqr-control="carte-cta-label">Le libellé du CTA se modifie directement dans la carte.</span>
     </BuilderRow>
-    <BuilderRow label.translate="Lien du CTA">
-      <span data-pqr-control="carte-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'carte-cta-lien'"/></span>
-    </BuilderRow>
+    <!-- 2026-09-07 — le réglage « Lien du CTA » est RETIRÉ. Il visait
+         `a[data-pqr-part="button-root"]` sous `carte-cta-lien` ; ce CTA n'est
+         plus une ancre (un lien dans un lien est du HTML invalide) et la
+         destination de la carte se règle une seule fois, à la ligne « Lien de
+         la carte » ci-dessus. Le laisser aurait offert au rédacteur un champ
+         que rien n'écoute : `SetCtaHrefAction.apply` sort sans rien faire quand
+         il ne trouve pas d'ancre — dégradation silencieuse, exactement ce que le
+         commentaire ci-dessus interdit. -->
+
     <BuilderRow label.translate="Ordre">
       <span data-pqr-control="carte-move-up"><BuilderButton action="'pqrMoveCarteCategorieUp'" preview="false">Monter</BuilderButton></span>
       <span data-pqr-control="carte-move-down"><BuilderButton action="'pqrMoveCarteCategorieDown'" preview="false">Descendre</BuilderButton></span>
