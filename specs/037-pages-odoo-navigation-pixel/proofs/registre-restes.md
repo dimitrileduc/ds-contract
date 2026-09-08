@@ -247,6 +247,58 @@ plus courte qu'elle n'est. C'est exactement le piège que `docs/16` nomme.*
 
 ---
 
+## 6sexies. LES RÉALISATIONS — une variante déjà gouvernée, et deux écarts de typographie
+
+*2026-09-08. Le bloc Réalisations pesait 68 % de l'écart de Portes d'entrée.*
+
+### Ce qui était un faux problème
+
+J'ai d'abord conclu que « le bloc ne sait pas afficher son sur-titre ni centrer son en-tête ». **C'était faux.**
+Le contrat `ds.realisations` porte déjà l'axe **`enTete`** à deux valeurs : `presentation` (titre à gauche,
+paragraphe à droite) et `accroche` (sur-titre affiché, titre centré, paragraphe masqué). Le gabarit Odoo l'expose
+par une classe sur la racine, et le composeur sait poser une classe. **La correction a tenu en deux lignes de
+descripteur** — `remove_class` + `add_class` — sans toucher au composant.
+
+Résultat sur Portes d'entrée : **10,39 / 7,25 / 5,19 / 7,68 %** → **9,43 / 1,97 ✔ / 1,38 ✔ / 1,54 ✔**.
+
+### Ce qui reste, et qui est réel
+
+**(a) Le sur-titre des Réalisations est trop gros dans la MAQUETTE, au mobile.** Relevé dans une même vue (Portes
+d'entrée, 390) :
+
+| Bloc | corps / interligne | approche |
+|---|---|---|
+| Réassurances | 14 / 20 | 15 % |
+| FAQ | 14 / 20 | 15 % |
+| **Réalisations** | **20 / 25** | 15 % |
+
+La recette du système est 14/20 au mobile (elle est écrite dans la description du sur-titre de `ds.reassurances`).
+Réalisations est le seul à 20/25 — et son nœud n'est même pas nommé `Accroche` comme ses voisins, mais
+`SectionHeader`. Conséquence : le sur-titre passe sur **deux lignes** dans la maquette et sur une chez nous, d'où
+les 30 px restants. **Écart de source, à corriger côté Figma.**
+
+**(b) Quatre sur-titres n'ont pas d'approche dans nos contrats.** Figma pose **15 %** sur tous les sur-titres.
+Côté dépôt :
+
+| Bloc | approche déclarée |
+|---|---|
+| `ds.coordonnees` | `0.15em` ✔ |
+| `ds.formulaire` | `0.15em` ✔ |
+| `ds.reassurances` | **aucune** |
+| `ds.faq` | **aucune** |
+| `ds.realisations` | **aucune** |
+| `ds.google-reviews` | **aucune** |
+
+Ce n'est pas visible sur la HAUTEUR (le sur-titre tient sur une ligne dans les deux cas), donc aucune mesure ne
+l'avait attrapé : ça se voit sur le SCORE au pixel, dilué dans le bruit. **Défaut de notre côté, réel et
+systématique.**
+
+**Coût du correctif (b)** : quatre contrats à faire évoluer, donc quatre bumps de version, les miroirs Odoo de
+chacun, les re-épingles de `golden.json` et la parité à repasser. C'est une vague à part — cette vague-ci
+s'interdisait de toucher aux contrats (SC-010). **Non fait, nommé.**
+
+---
+
 ## 7. `limite-moteur` — ce qu'Odoo ne sait pas faire, mesuré
 
 | Code | Fait | Conséquence |
