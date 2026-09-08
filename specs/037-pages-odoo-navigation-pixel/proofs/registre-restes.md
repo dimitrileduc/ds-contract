@@ -293,9 +293,20 @@ Ce n'est pas visible sur la HAUTEUR (le sur-titre tient sur une ligne dans les d
 l'avait attrapé : ça se voit sur le SCORE au pixel, dilué dans le bruit. **Défaut de notre côté, réel et
 systématique.**
 
-**Coût du correctif (b)** : quatre contrats à faire évoluer, donc quatre bumps de version, les miroirs Odoo de
-chacun, les re-épingles de `golden.json` et la parité à repasser. C'est une vague à part — cette vague-ci
-s'interdisait de toucher aux contrats (SC-010). **Non fait, nommé.**
+**(a) et (b) sont FAITS le 2026-09-08**, à la demande de l'owner (« go, finis tout ») :
+
+- **(a) corrigé à la SOURCE.** Le nœud fautif vivait dans le master, variante
+  `En-tete=Accroche, Presentation=Mobile` du set `Realisations` — **une seule instance**, donc risque minimal. Il
+  s'appelait `SectionHeader` au lieu d'`Accroche`, portait 20/25 et était le **seul des huit à être resté lié au style
+  de texte** « Accroche » (qui vaut 20/25, la recette WIDE) ; ses sept jumelles sont en valeurs locales. Détaché,
+  passé en **14/20 Regular**, renommé `Accroche`. La section des Réalisations de la vue mobile passe de 1320 à
+  **1290 px — exactement notre page**. Version nommée posée avant.
+- **(b) corrigé dans le DÉPÔT**, en vague à part : `letter-spacing: 0.15em` posé sur les quatre sur-titres, quatre
+  bumps de PATCH, et **cinq** miroirs à suivre — les `*.authoring.json` (295 épingles), `components.xml` (versions de
+  bloc + digest de graphe), `version_guard.js`, `scan-saved-versions.ts`, la fixture `version-drift`, et
+  **`figma-panels.json`**, que j'avais oublié au premier passage : le symptôme l'a dit tout seul — la génération des
+  liens Figma est passée de « 0 indisponible » à « **6** », toutes en `version-mismatch`. Six panneaux d'édition
+  auraient perdu leur lien vers la maquette. Toutes les portes repassées vertes, parité sans dérive neuve.
 
 ---
 

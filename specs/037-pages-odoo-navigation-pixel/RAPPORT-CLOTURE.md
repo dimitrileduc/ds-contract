@@ -129,6 +129,21 @@ Détail complet : `proofs/RAPPORT-MESURE.md`. Ce qui reste : `proofs/registre-re
 
 ---
 
+## 4bis. Ce que la campagne a trouvé, et qui a été corrigé le même jour
+
+L'owner a demandé d'aller au bout. Quatre corrections ont suivi la mesure — trois à la SOURCE, une au dépôt :
+
+| Quoi | Où | Effet mesuré |
+|---|---|---|
+| La copie des Réassurances de l'accueil (arguments des portes industrielles) | canevas, 4 vues, 44 textes | section 1955/2053/1380/829 → 1829/2029/1380/**772** ; trois largeurs tombent au pixel sur la page |
+| L'ordre des seize membres de l'Équipe d'À propos | descripteur | 8,29/6,63/10,92/7,13 % → **3,47/2,07/6,50/1,53 %** |
+| La variante d'en-tête des Réalisations de Portes d'entrée | descripteur, 2 lignes | 10,39/7,25/5,19/7,68 % → **9,43/1,97/1,38/1,54 %** |
+| Le sur-titre des Réalisations en mobile (20/25 au lieu de 14/20, seul des huit resté lié au style de texte) | canevas, master, 1 instance | section 1320 → **1290**, exactement la page |
+| L'approche de 15 % absente de quatre sur-titres | dépôt, 4 contrats + 5 miroirs | invisible sur la hauteur, visible au pixel |
+
+**Aucune de ces cinq n'avait été trouvée par une lecture.** Toutes viennent de la mesure, et trois d'entre elles
+d'avoir REGARDÉ le triptyque plutôt que le tableau de chiffres.
+
 ## 5. Écart au plan, assumé et tracé
 
 Le plan (D8) exportait les 36 vues par la **REST API** avec `FIGMA_TOKEN`. Le jeton n'existe pas sur ce poste ;

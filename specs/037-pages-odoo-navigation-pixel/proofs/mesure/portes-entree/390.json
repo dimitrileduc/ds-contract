@@ -1,30 +1,30 @@
 {
   "cause": "la section Réalisations rend plus court qu'en vue sur Portes d'entrée",
-  "date": "2026-09-08T16:18:06.971Z",
-  "diffPixels": 343095,
-  "ecartHauteurPx": -20,
+  "date": "2026-09-08T16:38:43.943Z",
+  "diffPixels": 133728,
+  "ecartHauteurPx": 10,
   "ecartsContenu": [
     "Le titre des Réassurances de cette vue dit « nos portes de garage industrielles » — copie recopiée d'une autre page. Porté tel quel, à corriger à la source.",
     "Le paragraphe des Réalisations est masqué dans la vue ; la page suit la vue."
   ],
   "figma": {
-    "hauteur": 9347,
+    "hauteur": 9317,
     "nodeId": "2778:32308",
-    "sha256": "527ae1b5646cf67664565a1c42d7c99feb4f2b9a4165957ad452bbeb6c8c109a"
+    "sha256": "59ec1bc2aaa56c053f5c48a67f8db6c4d23910603eb084692fad7b1e68076e83"
   },
-  "hauteurCommune": 9327,
+  "hauteurCommune": 9317,
   "instance": "piqueray-odoo-037",
   "justification": "Cette page est la seule dont la vue MONTRE le sur-titre des Réalisations et MASQUE le paragraphe — l'inverse des deux autres pages qui portent le bloc. La composition suit la vue ; l'écart restant est dans le bloc, pas dans le contenu.",
   "largeur": 390,
   "odoo": {
     "hauteur": 9327,
-    "sha256": "7ac8c2ab2f74279a32715b13d84343c24a36102ba91778bccd2240afce99230a"
+    "sha256": "b381d46e8fb4a1927ff83112fc17949472d7b7803ce712ed6f66b758292a9f8a"
   },
   "page": "portes-entree",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 9.43,
-  "sectionOrigineDecalage": "s_pqr_realisations",
+  "scorePct": 3.68,
+  "sectionOrigineDecalage": null,
   "sections": [
     {
       "ecartH": 0,
@@ -79,10 +79,10 @@
       }
     },
     {
-      "ecartH": -30,
-      "ecartYCumule": -30,
+      "ecartH": 0,
+      "ecartYCumule": 0,
       "figma": {
-        "h": 1320,
+        "h": 1290,
         "y": 3889
       },
       "nom": "s_pqr_realisations",
@@ -93,10 +93,10 @@
     },
     {
       "ecartH": 0,
-      "ecartYCumule": -30,
+      "ecartYCumule": 0,
       "figma": {
         "h": 519,
-        "y": 5289
+        "y": 5259
       },
       "nom": "s_pqr_faq",
       "odoo": {
@@ -106,10 +106,10 @@
     },
     {
       "ecartH": 10,
-      "ecartYCumule": -20,
+      "ecartYCumule": 10,
       "figma": {
         "h": 1755,
-        "y": 5888
+        "y": 5858
       },
       "nom": "s_pqr_google_reviews_section",
       "odoo": {
@@ -119,10 +119,10 @@
     },
     {
       "ecartH": 0,
-      "ecartYCumule": -20,
+      "ecartYCumule": 10,
       "figma": {
         "h": 675,
-        "y": 7723
+        "y": 7693
       },
       "nom": "s_pqr_texte_seo",
       "odoo": {
@@ -137,10 +137,10 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/portes-entree/390.png",
-    "sha256": "33e511d14d8bbc34730c0cffd9df4d0b0d36d2a8037e666d173439351a6af90b"
+    "sha256": "8a6598ff3187d3b9eff0e87f523eafef051ad1a664f75f1f0e9cf3f64af654ce"
   },
   "url": "/portes-entree",
-  "verdictHauteur": "rouge",
-  "verdictPage": "rouge",
-  "verdictPixel": "rouge"
+  "verdictHauteur": "bruit",
+  "verdictPage": "vert",
+  "verdictPixel": "vert"
 }
