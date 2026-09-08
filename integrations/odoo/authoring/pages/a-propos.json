@@ -1,0 +1,237 @@
+{
+  "url": "/a-propos",
+  "name": "À propos",
+  "key": "a_propos",
+  "header_overlay": true,
+  "meta_title": "Piqueray, entreprise familiale et distributeur Hörmann depuis 50 ans | Piqueray",
+  "_note": "Contenu relevé sur la vue Figma wide 2782:41185. Réassurances SURCHARGÉES (titre propre + 4 cartes) — l'exemple canonique de la surcharge par champ (FR-003) ; Devis et Avis Google repris du commun. La section Équipe reprend le contenu et les portraits déjà posés par la vague 035 (`equipe-test.json`, 16 membres). ÉCARTS DE SOURCE au registre : (1) le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold ; (2) les 16 photos de SURVOL de la vue À Propos sont DISTINCTES alors que celles du set l'étaient toutes identiques (défaut nommé en 035) — les portraits de survol livrés ici restent ceux de 035, à reprendre.",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "<strong>Piqueray</strong>, vos experts à votre service",
+        "hero-subtitle": "Proximité, expertise et service. Fondée il y a un demi-siècle, la société Piqueray est devenue <strong>une référence incontournable</strong> en Province de Liège."
+      },
+      "set_button": {
+        "hero-cta": "En savoir plus"
+      },
+      "images": {
+        "hero-background": "hero_a_propos"
+      },
+      "links": {
+        "hero-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_presentation",
+      "set_html": {
+        "presentation-title": "<strong>Piqueray, une histoire de famille</strong>",
+        "presentation-text": "<strong>Depuis plus de 50 ans,</strong> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de <strong>proximité et d'excellence technique</strong>. Dépositaire officiel <strong>Hörmann</strong>, nous allions la force d'un leader mondial à <strong>la souplesse d'une PME locale</strong>."
+      },
+      "set_button": {
+        "button-root": "En savoir plus"
+      },
+      "links": {
+        "presentation-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_equipe",
+      "cards": [
+        {
+          "nom": "Cécilia Piqueray",
+          "poste": "Gérante",
+          "images": {
+            "member-picture-normal": "equipe_01",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Florian Piqueray",
+          "poste": "Gérant",
+          "images": {
+            "member-picture-normal": "equipe_02",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Sandra Magermans",
+          "poste": "Collaboratrice admin & comptabilité",
+          "images": {
+            "member-picture-normal": "equipe_03",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Arnaud Dahmen",
+          "poste": "Collaborateur admin & gestion SAV",
+          "images": {
+            "member-picture-normal": "equipe_04",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Ricardo",
+          "poste": "Peintre",
+          "images": {
+            "member-picture-normal": "equipe_05",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Quentin",
+          "poste": "Préparateur",
+          "images": {
+            "member-picture-normal": "equipe_06",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Marc",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_07",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "André",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_08",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Grégory",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_09",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Laurent",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_10",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Jordan",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_11",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Florian",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_12",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Hervé",
+          "poste": "Dépanneur",
+          "images": {
+            "member-picture-normal": "equipe_13",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_14",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_15",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_16",
+            "member-picture-underlay": "equipe_survol"
+          }
+        }
+      ]
+    },
+    {
+      "commun": "devis"
+    },
+    {
+      "commun": "reassurances",
+      "surcharge": {
+        "disposition": "4Cartes",
+        "set_html": {
+          "reassurances-title": "Pourquoi choisir Piqueray ?"
+        },
+        "cards": [
+          {
+            "titre": "Conseils personnalisés",
+            "body": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+            "image": "rea_apropos_1"
+          },
+          {
+            "titre": "Produits de qualité",
+            "body": "Marque Hormann renommée, qualité allemande",
+            "image": "rea_apropos_2"
+          },
+          {
+            "titre": "Service après-vente",
+            "body": "Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais",
+            "image": "rea_apropos_3"
+          },
+          {
+            "titre": "Expérience",
+            "body": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
+            "image": "rea_apropos_4"
+          }
+        ],
+        "links": {
+          "reassurances-cta": "/contactez-nous"
+        }
+      }
+    },
+    {
+      "commun": "avis-google"
+    },
+    {
+      "component": "s_pqr_texte_seo",
+      "set_html": {
+        "texte-seo-title": "<strong>Piqueray : une entreprise familiale au service de votre habitat</strong>",
+        "texte-seo-text": "Depuis sa création, la société Piqueray a su évoluer tout en restant fidèle à ses racines à Pepinster, au cœur de la Province de Liège. Notre force réside dans la stabilité de notre équipe et notre partenariat historique en tant que distributeur officiel Hörmann. Nous ne sommes pas de simples vendeurs : nous sommes des techniciens passionnés qui connaissent chaque boulon de vos futures installations. Choisir Piqueray, c'est choisir la proximité d'une PME locale alliée à la puissance d'une marque allemande de renommée mondiale.",
+        "texte-seo-subtitle": "Nos engagements"
+      },
+      "rows": [
+        {
+          "titre": "<strong>Formation continue des équipes</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "<strong>Respect des délais et du chantier</strong>",
+          "contenu": "Nous mettons un point d'honneur à respecter le planning annoncé et à laisser un chantier propre après chaque installation de porte de garage ou de porte d'entrée.",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "<strong>Un service client à visage humain</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ import { fileURLToPath } from 'node:url';
 import { launchBrowser } from '../figma/visual-parity/render.js';
 import { capturerPage } from './capture.js';
 import { comparer } from './compare.js';
-import { MesureImpossible, exporterVue, jetonFigma } from './figma-views.js';
+import { MesureImpossible, exporterVue, jetonFigma, lireVueDuCache } from './figma-views.js';
 import { ecrireRapport, rapportImpossible, rapportMesure, reprendreAnnotations } from './report.js';
 import { diagnostiquer } from './sections.js';
 import type { Manifeste, Rapport } from './types.js';
@@ -41,7 +41,7 @@ const sha = (b: Buffer): string => createHash('sha256').update(b).digest('hex');
 
 /** Les drapeaux qui consomment la valeur suivante — pour ne pas prendre celle-ci
  *  pour le nom de la page. */
-const DRAPEAUX_A_VALEUR = new Set(['--base', '--out', '--instance', '--png']);
+const DRAPEAUX_A_VALEUR = new Set(['--base', '--out', '--instance', '--png', '--vues']);
 
 const positionnel = (argv: readonly string[]): string | null => {
   for (let i = 0; i < argv.length; i++) {
@@ -76,6 +76,11 @@ async function mesurer(argv: string[]): Promise<number> {
   // dizaines de mégaoctets et leur `sha256` suffit à la preuve. `--png` permet
   // de ranger une campagne à part — c'est ce que fait la capture de l'AVANT (§X).
   const triptyques = path.resolve(arg(argv, '--png', path.join(REPO, '.page-parity', '037', page)));
+  // Les vues viennent du CACHE DU PONT quand il existe (décision owner
+  // 2026-09-08 : pas de `FIGMA_TOKEN` sur ce poste), sinon de la REST. Le choix
+  // est écrit ici, jamais deviné en silence : une campagne doit pouvoir dire
+  // d'où venait sa référence.
+  const cacheVues = path.resolve(arg(argv, '--vues', path.join(REPO, '.page-parity', '037', 'vues')));
   const seulOdoo = argv.includes('--only-odoo');
   const seulFigma = argv.includes('--only-figma');
   const date = new Date().toISOString();
@@ -105,7 +110,9 @@ async function mesurer(argv: string[]): Promise<number> {
           console.log(`  ✔ ${page} ${String(largeur).padStart(4)} px · capture ${odoo!.largeur}×${odoo!.hauteur} · sha256 ${odoo!.sha256.slice(0, 12)} · ${path.relative(REPO, png)}`);
           continue;
         }
-        const figma = await exporterVue(manifeste.fileKey, vue.nodeId, largeur, jetonFigma());
+        const figma = process.env.FIGMA_TOKEN
+          ? await exporterVue(manifeste.fileKey, vue.nodeId, largeur, jetonFigma())
+          : lireVueDuCache(cacheVues, page, largeur);
         if (seulFigma) {
           mkdirSync(triptyques, { recursive: true });
           const png = path.join(triptyques, `${largeur}.figma.png`);

@@ -1,0 +1,73 @@
+{
+  "url": "/contactez-nous",
+  "name": "Contactez-nous",
+  "key": "contactez_nous",
+  "header_overlay": true,
+  "meta_title": "Contactez Piqueray — devis, dépannage et conseils en Province de Liège | Piqueray",
+  "_note": "Contenu relevé sur la vue Figma wide 2782:48534 — section « 4 vues » MONTÉE EN SESSION le 2026-09-08 à la demande de l'owner (journal specs/tiny/vague-031/page-contactez-nous.md), puis validée. Avis Google repris du commun. HORS PÉRIMÈTRE : l'envoi du formulaire (l'instance jetable n'a pas de SMTP). ÉCART DE SOURCE au registre (D13) : le formulaire v2 n'a ni champ Adresse ni champ Sujet, ni les deux boutons « Appeler pour une urgence » / « Voir la FAQ » que porte la base v1 — vague composant, pas reprise de page. Le CTA du hero n'a PAS de destination : la vue ne dit pas où il mène et le module n'a aucune ancre `#formulaire` — href=\"#\" conservé, ligne au registre des restes (jamais inventée).",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "<strong>Discutons de votre projet</strong>",
+        "hero-subtitle": "Nous intervenons pour l'installation et le dépannage <strong>dans toute la province de Liège</strong> : Verviers, Liège, Eupen, Spa, Malmedy, Huy, Waremme..."
+      },
+      "set_button": {
+        "hero-cta": "Contactez-nous"
+      },
+      "images": {
+        "hero-background": "hero_contactez_nous"
+      }
+    },
+    {
+      "component": "s_pqr_formulaire",
+      "set_html": {
+        "formulaire-eyebrow": "Une demande de devis ? Une réparation ?",
+        "formulaire-title": "<strong>Prenez contact avec nous dès maintenant !</strong>",
+        "formulaire-consent": "En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité."
+      }
+    },
+    {
+      "component": "s_pqr_coordonnees",
+      "images": {
+        "coordonnees-map": "coordonnees_plan_v2"
+      },
+      "set_html": {
+        "coordonnees-eyebrow": "Contact",
+        "coordonnees-title": "<strong>Nos coordonnées</strong>",
+        "coordonnees-address-label": "Adresse",
+        "coordonnees-hours-label": "Horaires",
+        "coordonnees-contact-label": "Contact",
+        "coordonnees-social-label": "Suivez-nous"
+      }
+    },
+    {
+      "commun": "avis-google"
+    },
+    {
+      "component": "s_pqr_texte_seo",
+      "set_html": {
+        "texte-seo-title": "<strong>Visitez notre showroom à Pepinster ou contactez-nous</strong>",
+        "texte-seo-text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre <strong>showroom</strong> situé rue Alfred Drèze à <strong>Pepinster</strong> (proche de <strong>Verviers</strong>) vous permet de découvrir en taille réelle nos<strong> portes de garage, motorisations </strong>et<strong> portes d'entrée</strong>. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits <strong>Hörmann</strong>. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+        "texte-seo-subtitle": "Infos pratiques"
+      },
+      "rows": [
+        {
+          "titre": "<strong>Accès et parking</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "<strong>Faut-il prendre rendez-vous ?</strong>",
+          "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la <strong>prise de rendez-vous</strong> est conseillée.",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "<strong>Zones de déplacement pour devis</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

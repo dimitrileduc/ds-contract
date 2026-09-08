@@ -1,0 +1,102 @@
+{
+  "url": "/depannage-sav",
+  "name": "Dépannage / SAV",
+  "key": "depannage_sav",
+  "header_overlay": true,
+  "meta_title": "Dépannage et SAV portes de garage Hörmann en Province de Liège | Piqueray",
+  "_note": "Contenu relevé sur la vue Figma wide 2782:37669. Ordre de la vue : Hero › FAQ › Catégories › Devis › Avis Google › Texte SEO. Devis et Avis Google repris du commun. La 3ᵉ carte de Catégories est masquée dans la vue : la page suit la vue.",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "Besoin d'un <strong>dépannage ?</strong>",
+        "hero-subtitle": "Notre équipe technique intervient partout en Province de Liège pour vos réparations."
+      },
+      "set_button": {
+        "hero-cta": "Demander de l’aide"
+      },
+      "images": {
+        "hero-background": "hero_depannage_sav"
+      },
+      "links": {
+        "hero-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_faq",
+      "set_html": {
+        "accroche": "Avant de nous appeler",
+        "faq-title": "<strong>Nous pouvons peut-être déjà vous aider !</strong>"
+      },
+      "rows": [
+        {
+          "titre": "Votre porte ne se ferme plus ?",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "Votre porte est bloquée par une panne de courant ?",
+          "contenu": "Utilisez le débrayage de secours manuel (cordon intérieur).",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "Votre télécommande ne semble plus fonctionner ?",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ],
+      "links": {
+        "faq-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_categories_principales",
+      "cards": [
+        {
+          "titre": "Intervention rapide",
+          "texte": "<strong>Un problème persistant ?</strong> Nos techniciens experts Hörmann sont là pour vous. Pour une prise en charge rapide, munissez-vous du numéro de série de votre porte (sur le panneau intérieur).",
+          "image": "cat_sav_1",
+          "lien": "/contactez-nous"
+        },
+        {
+          "titre": "Maintenance",
+          "texte": "<strong>Mieux vaut prévenir que guérir !</strong> Une porte de garage comporte des pièces d'usure (ressorts, câbles). Pensez à l'entretien annuel pour éviter la casse inopinée.",
+          "ctaLabel": "Prendre rendez-vous",
+          "image": "cat_sav_2",
+          "lien": "/contactez-nous"
+        }
+      ]
+    },
+    {
+      "commun": "devis"
+    },
+    {
+      "commun": "avis-google"
+    },
+    {
+      "component": "s_pqr_texte_seo",
+      "set_html": {
+        "texte-seo-title": "<strong>Un service après-vente réactif pour vos portes et motorisations</strong>",
+        "texte-seo-text": "Une porte de garage bloquée ou une motorisation en panne ne prévient pas. Basée à Pepinster, l'équipe technique de Piqueray intervient rapidement dans toute la province de Liège. Nous disposons d'un stock de pièces détachées d'origine Hörmann (ressorts, câbles, roulettes) pour assurer des réparations durables. Nous effectuons également les entretiens nécessaires pour garantir la longévité de vos installations.",
+        "texte-seo-subtitle": "Assistance technique"
+      },
+      "rows": [
+        {
+          "titre": "<strong>Marques prises en charge</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "<strong>Préparer l'intervention (N° Série)</strong>",
+          "contenu": "Pour un dépannage efficace, munissez-vous du numéro de série de votre porte (indiqué sur l'étiquette signalétique à l'intérieur du panneau).",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "<strong>Fréquence d'entretien recommandée</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

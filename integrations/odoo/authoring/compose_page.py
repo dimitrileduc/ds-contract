@@ -40,6 +40,13 @@ KEY_TO_PARTS = {
     # contrat de DOM. Aucune branche : ses parts sont simplement couvertes ici.
     "nom": ("member-name",),
     "poste": ("member-role",),
+    # 2026-09-08 (spec 037, T031) : le libelle du CTA d une carte-categorie. Le
+    # gabarit lit deja `carte.ctaLabel` cote QWeb, mais `fill_list` clone le
+    # blueprint DEJA rendu : sans cette entree, les trois cartes de la page
+    # Motorisation sortaient toutes avec « Contactez-nous » au lieu de leurs
+    # trois libelles de brochure. Aucune branche neuve : ses parts sont
+    # simplement couvertes ici, comme les autres.
+    "ctaLabel": ("button-label",),
 }
 
 # Les dispositions de section restent des choix de COMPOSITION, jamais un

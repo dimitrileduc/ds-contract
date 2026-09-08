@@ -1,0 +1,186 @@
+{
+  "url": "/portes-industrielles",
+  "name": "Portes de garage industrielles",
+  "key": "portes_industrielles",
+  "header_overlay": true,
+  "meta_title": "Portes de garage industrielles Hörmann en Province de Liège | Piqueray",
+  "_note": "Contenu relevé sur la vue Figma wide 2782:44768 (textes, plages de gras, photos d'origine). Devis SURCHARGÉ (titre « dans vos locaux » + fond propre à la page), Réassurances surchargées (4 cartes — la 5ᵉ est MASQUÉE dans la vue), Avis Google repris du commun. La 3ᵉ carte de Catégories est masquée dans la vue : la page suit la vue. Écart de source au registre : les plages de gras du paragraphe Texte SEO sont INVERSÉES dans la vue (le liant est en gras, les termes clés ne le sont pas) — porté tel quel, à trancher à la source.",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "<strong>Portes de garage</strong> industrielles",
+        "hero-subtitle": "La <strong>performance</strong> sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons<strong> la solution idéale</strong>."
+      },
+      "set_button": {
+        "hero-cta": "Demander un devis gratuit"
+      },
+      "images": {
+        "hero-background": "hero_portes_industrielles"
+      },
+      "links": {
+        "hero-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_categories_principales",
+      "cards": [
+        {
+          "titre": "PORTES INDUSTRIELLES SUR MESURE",
+          "texte": "<strong>Une fiabilité exceptionnelle </strong>et une grande longévité. Conçues pour <strong>une utilisation intensive</strong>, adaptées à toutes les dimensions, avec des solutions bardées ou vitrées selon vos besoins.",
+          "ctaLabel": "Découvrir nos solutions",
+          "image": "cat_ind_surmesure",
+          "lien": "/contactez-nous"
+        },
+        {
+          "titre": "PORTES AVEC PORTILLON INTÉGRÉ",
+          "texte": "<strong>Alliez praticité, sécurité et conformité. </strong>Facilitez les passages fréquents<strong> avec un portillon intégré, idéal pour le confort quotidien dans vos ateliers et bâtiments industriels.</strong>",
+          "ctaLabel": "Voir les configurations",
+          "image": "cat_ind_portillon",
+          "lien": "/contactez-nous"
+        }
+      ]
+    },
+    {
+      "commun": "devis",
+      "surcharge": {
+        "set_html": {
+          "devis-title": "Prenez rendez-vous pour un devis gratuit,<br/>nous nous déplaçons dans vos locaux"
+        },
+        "images": {
+          "devis-background": "devis_industriel"
+        }
+      }
+    },
+    {
+      "commun": "reassurances",
+      "surcharge": {
+        "disposition": "4Cartes",
+        "set_html": {
+          "reassurances-title": "Pourquoi choisir nos portes de garage industrielles ?"
+        },
+        "cards": [
+          {
+            "titre": "Sécurité et conformité",
+            "body": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+            "image": "rea_ind_1"
+          },
+          {
+            "titre": "Intégration parfaite",
+            "body": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+            "image": "rea_ind_2"
+          },
+          {
+            "titre": "Moteur performant",
+            "body": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+            "image": "rea_ind_3"
+          },
+          {
+            "titre": "SAV & maintenance dédiés",
+            "body": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+            "image": "rea_ind_4"
+          }
+        ],
+        "links": {
+          "reassurances-cta": "/contactez-nous"
+        }
+      }
+    },
+    {
+      "component": "s_pqr_realisations",
+      "set_html": {
+        "realisations-title": "Nos réalisations <strong>industrielles et installations</strong> de qualité",
+        "realisations-body": "Personnalisez votre porte industrielle grâce à <strong>nos solutions sur mesure</strong>, parfaitement intégrées à votre façade. Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit) ou des sections vitrées, nos portes garantissent <strong>une robustesse exceptionnelle et une très longue durée de vie.</strong>"
+      },
+      "set_empty": [
+        "realisations-eyebrow"
+      ],
+      "cards": [
+        {
+          "image": "rlz_ind_1"
+        },
+        {
+          "image": "rlz_ind_2"
+        },
+        {
+          "image": "rlz_ind_3"
+        },
+        {
+          "image": "rlz_ind_4"
+        },
+        {
+          "image": "rlz_ind_5"
+        },
+        {
+          "image": "rlz_ind_6"
+        },
+        {
+          "image": "rlz_ind_7"
+        },
+        {
+          "image": "rlz_ind_8"
+        },
+        {
+          "image": "rlz_ind_9"
+        }
+      ]
+    },
+    {
+      "component": "s_pqr_faq",
+      "set_html": {
+        "faq-title": "<strong>Questions fréquentes</strong>"
+      },
+      "set_empty": [
+        "accroche"
+      ],
+      "rows": [
+        {
+          "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "Quels types de bardages peuvent être intégrés sur les portes ?",
+          "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "Assurez-vous la maintenance après l'installation ?",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ],
+      "links": {
+        "faq-cta": "/contactez-nous"
+      }
+    },
+    {
+      "commun": "avis-google"
+    },
+    {
+      "component": "s_pqr_texte_seo",
+      "set_html": {
+        "texte-seo-title": "<strong>Une solution robuste, performante et durable pour vos bâtiments</strong>",
+        "texte-seo-text": "Les portes Hörmann<strong> sont spécialement conçues pour répondre aux exigences d’une </strong>utilisation intensive<strong>, tout en garantissant un </strong>confort d’utilisation<strong> optimal ainsi que le respect des normes en vigueur pour les bâtiments publics et les réglementations pompiers. Elles garantissent ainsi </strong>sécurité, conformité et sérénité au quotidien.<br/><strong>Reconnues pour leur robustesse et leur </strong>longue durée de vie<strong>, nos installations offrent une </strong>motorisation haute performance<strong> où l’ouverture et la fermeture sont rapides, fluides et silencieuses.</strong><br/><strong>Nous vous accompagnons bien au-delà de l’installation. Service après-vente, assistance et maintenance sont assurés par nos équipes dédiées. Avec </strong>un stock important de pièces détachées,<strong> nous vous garantissons une réactivité maximale et un service fiable pour </strong>une tranquillité d'esprit totale.",
+        "texte-seo-subtitle": "Bien configurer votre porte industrielle"
+      },
+      "rows": [
+        {
+          "titre": "<strong>Les types de portes</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "<strong>Atelier, bâtiment industriel, public ou résidence</strong>",
+          "contenu": "Chaque application demande<strong> une configuration spécifique.</strong> Nos portes sur mesure s'adaptent à toutes les dimensions et se déclinent en solutions bardées ou vitrées selon vos besoins architecturaux.<br/>Pour faciliter vos flux de circulation, vous pouvez opter pour l'ajout d'<strong>un portillon intégré</strong>, offrant plus de praticité au quotidien. Enfin, pour<strong> les passages intensifs</strong>, nous proposons une motorisation silencieuse et ultra-rapide (jusqu’à 1 m/s), vous assurant <strong>une solution robuste, performante et durable.</strong>",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "<strong>Performance et Isolation thermique</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

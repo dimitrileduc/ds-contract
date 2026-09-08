@@ -1,0 +1,116 @@
+{
+  "url": "/motorisation",
+  "name": "Motorisation",
+  "key": "motorisation",
+  "header_overlay": true,
+  "meta_title": "Motorisations Hörmann pour portes et portails | Piqueray",
+  "_note": "Contenu relevé sur la vue Figma wide 2777:32059. Devis repris du commun. Les trois cartes de Catégories portent CHACUNE son libellé de CTA (clé `ctaLabel`, couverte dans le composeur par cette vague — T031). Produits e-commerce : 5 cartes dans la vue, la 5ᵉ répétant la 1ʳᵉ ; le second bouton « Voir les produits » (conteneur bas) est masqué dans la vue. ÉCART DE SOURCE au registre (D9) : le titre du hero de cette vue est en graisse Regular alors que le contrat `typography.h1.weight` est SemiBold — la page rend le contrat, la mesure montrera l'écart.",
+  "sections": [
+    {
+      "component": "s_pqr_hero",
+      "set_html": {
+        "hero-title": "<strong>Motorisations</strong> intelligentes et sécurisées",
+        "hero-subtitle": "Le confort de ne plus descendre de voiture,<strong> la sécurité Hörmann</strong> en plus."
+      },
+      "set_button": {
+        "hero-cta": "Demander un devis gratuit"
+      },
+      "images": {
+        "hero-background": "hero_motorisation"
+      },
+      "links": {
+        "hero-cta": "/contactez-nous"
+      }
+    },
+    {
+      "component": "s_pqr_categories_principales",
+      "cards": [
+        {
+          "titre": "Pour portes de garage",
+          "texte": "<strong>SupraMatic &amp; ProMatic. </strong>Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "ctaLabel": "Brochure portes de garage",
+          "image": "cat_mot_1",
+          "lien": "/contactez-nous"
+        },
+        {
+          "titre": "Pour portails d'entrée",
+          "texte": "<strong>RotaMatic (Battant) &amp; LineaMatic (Coulissant). </strong>Fiabilité absolue et détection d'obstacles pour la sécurité de votre famille.",
+          "ctaLabel": "Brochure portails d’entrée",
+          "image": "cat_mot_2",
+          "lien": "/contactez-nous"
+        },
+        {
+          "titre": "Pilotez à distance",
+          "texte": "Vérifiez si votre porte est fermée depuis votre lieu de vacances. Le système radio BiSecur utilise un cryptage de niveau bancaire pour une sécurité totale.",
+          "ctaLabel": "Brochure Smart Home",
+          "image": "cat_mot_3",
+          "lien": "/contactez-nous"
+        }
+      ]
+    },
+    {
+      "commun": "devis"
+    },
+    {
+      "component": "s_pqr_produits_ecommerce",
+      "set_html": {
+        "produits-ecommerce-title": "<strong>Découvrez nos produits disponibles en ligne</strong>"
+      },
+      "set_button": {
+        "root-entete-bouton": "Voir les produits"
+      },
+      "cards": [
+        {
+          "titre": "Télécommande Hörmann HSE4-868BS",
+          "prix": "74,99€",
+          "image": "prod_mot_1"
+        },
+        {
+          "titre": "Clavier à code Hörmann FCT3-1BS",
+          "prix": "139,99€",
+          "image": "prod_mot_2"
+        },
+        {
+          "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
+          "prix": "89,99€",
+          "image": "prod_mot_3"
+        },
+        {
+          "titre": "Passerelle BiSecure Hörmann",
+          "prix": "74,99€",
+          "image": "prod_mot_4"
+        },
+        {
+          "titre": "Télécommande Hörmann HSE4-868BS",
+          "prix": "74,99€",
+          "image": "prod_mot_1"
+        }
+      ]
+    },
+    {
+      "component": "s_pqr_texte_seo",
+      "set_html": {
+        "texte-seo-title": "<strong>Automatisez vos accès : confort, rapidité et sécurité Hörmann</strong>",
+        "texte-seo-text": "Fini de descendre de voiture sous la pluie. Piqueray vous propose les motorisations Hörmann de dernière génération (SupraMatic, ProMatic, RotaMatic). Au-delà du confort, c'est un gain de sécurité : le système de verrouillage mécanique breveté empêche le relevage forcé de la porte, même en cas de coupure de courant. De plus, grâce au système radio BiSecur, le signal de votre télécommande est crypté et inviolable.",
+        "texte-seo-subtitle": "Compatibilité et fonctionnement"
+      },
+      "rows": [
+        {
+          "titre": "<strong>Motorisation sur porte existante</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        },
+        {
+          "titre": "<strong>Maison connectée et smartphone</strong>",
+          "contenu": "Via la passerelle Hörmann BiSecur et l'application dédiée, contrôlez l'état de votre porte et actionnez-la à distance depuis votre smartphone.",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "<strong>Sécurité en cas de coupure de courant</strong>",
+          "contenu": "",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

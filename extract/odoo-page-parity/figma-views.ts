@@ -13,6 +13,8 @@
  * `impossible` NOMMÉ (FR-017) : la campagne préfère un trou qui se voit à un
  * chiffre qui rassure.
  */
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { PNG } from 'pngjs';
 import { figmaRestGet } from '../figma/rest/fetch.js';
 import type { Boite } from './types.js';
@@ -95,4 +97,43 @@ export async function exporterVue(
     );
   }
   return { png, octets, largeur: png.width, hauteur: png.height, enfants };
+}
+
+// ---------------------------------------------------------------------------
+// La voie du PONT — décision owner 2026-09-08
+// ---------------------------------------------------------------------------
+
+/**
+ * Lit une vue déjà exportée par le PONT figma-console dans le cache.
+ *
+ * L'owner a tranché le 2026-09-08 : ce poste n'a pas de `FIGMA_TOKEN`, les vues
+ * passent donc par le pont (`bridge/export-vues.js` → `receiver.mjs` → cache).
+ * L'instrument, lui, ne change pas de règles : il exige toujours la BONNE
+ * largeur, et il refuse toujours en nommant.
+ *
+ * Écart au plan assumé, et gardé : l'export par le pont a un piège daté (le
+ * 2026-09-04, `exportAsync` sur un nœud IMAGE a rendu 149 octets). Trois portes
+ * le ferment — la magie PNG au receveur, le refus « export minuscule » dans le
+ * bac à sable, et le contrôle de largeur ci-dessous.
+ */
+export function lireVueDuCache(
+  dir: string, page: string, largeur: number,
+): VueExportee {
+  const base = path.join(dir, `${page}-${largeur}`);
+  if (!existsSync(`${base}.png`) || !existsSync(`${base}.json`)) {
+    throw new MesureImpossible(
+      `vue non exportée — ${path.basename(base)}.png/.json absents du cache du pont (relancer l'export de cette page)`,
+    );
+  }
+  const octets = readFileSync(`${base}.png`);
+  const png = PNG.sync.read(octets);
+  if (png.width !== largeur) {
+    throw new MesureImpossible(
+      `vue de mauvaise largeur — ${png.width} px exportés, ${largeur} attendus`,
+    );
+  }
+  const meta = JSON.parse(readFileSync(`${base}.json`, 'utf8')) as {
+    nodeId: string; enfants: Boite[];
+  };
+  return { png, octets, largeur: png.width, hauteur: png.height, enfants: meta.enfants ?? [] };
 }
