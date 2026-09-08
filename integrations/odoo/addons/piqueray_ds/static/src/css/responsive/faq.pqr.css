@@ -1,0 +1,98 @@
+/*
+ * responsive/faq.pqr.css — ZONE MANUELLE (vague 031, section FAQ, 2026-09-07).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.faq 2.0.0 (tokensByProp sur l'axe
+ * `presentation`, set candidat 2773:27504), réécrites en @media sur les breakpoints
+ * des jetons :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.faq`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
+ * `.faq--presentation-<mode>` (qu'aucun QWeb ne pose) — même source, même vocabulaire.
+ *
+ * TROIS faits code-only, chacun parce que le contrat NE PEUT PAS les dire :
+ *   (1) le CTA est pleine largeur sous 992 — relevé sur le set (layoutSizingHorizontal
+ *       FILL en Mobile et Tablette, HUG en Desktop et Wide). Une part `component` refuse
+ *       layoutByProp et les littéraux (validateContract) : la règle ne peut vivre
+ *       qu'ici. Nommée dans la description de la part Bouton du contrat.
+ *   (2) l'anneau de focus clavier de la zone cliquable d'une rangée. La zone est le seul
+ *       nœud focusable, mais tout état de part est ancré à la RACINE dans le vocabulaire
+ *       (`.root:hover .part`, core/emit-react.ts) : un `.trigger:focus-visible` n'a pas
+ *       d'orthographe contractuelle. Le jeton, lui, est gouverné
+ *       (color.etat.accordion-row.anneau-focus). Nommé dans la description de la part
+ *       trigger de ds.accordion-row 2.1.0.
+ *   (3) le `text-align: center` de l'accroche et du titre au-delà de 992 — le canal
+ *       `declared` du contrat ne varie pas par mode (même orthographe et même limite que
+ *       ds.google-reviews 3.1.0). Les DEUX autres moitiés du centrage, elles, viennent
+ *       bien du contrat (root et SectionHeader `layoutByProp` align center). Décision
+ *       owner du 2026-09-08.
+ * Le SURVOL de la rangée (chevron orange) n'est PAS ici : il est généré depuis
+ * ds.accordion-row 2.1.0 (`.accordion-row:hover:not(:disabled) .accordion-row__Chevron*`).
+ * La typographie par écran n'est pas ici non plus : tokens.pqr.css porte ses @media.
+ * La page n'a plus de gouttière depuis la vague 031 : la section est pleine largeur et
+ * porte la sienne — pas de `s_pqr_bleed`, pas de `.container`.
+ */
+
+/* ---- ds.faq 2.0.0 ---------------------------------------------------------- */
+
+/* Base = Mobile : padding-inline 24, gap 32, en-tête gap 8 — déjà dans components.pqr.css. */
+
+/* (1) code-only — CTA pleine largeur sous 992. */
+/* (le wrapper .faq__cta est en `display: contents` — pont ODOO-019 : la règle
+   porte donc sur le bouton lui-même, jamais sur le wrapper) */
+.s_pqr_faq.faq .faq__cta .button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* (2) code-only — anneau de focus clavier de la zone cliquable d'une rangée. */
+.s_pqr_faq.faq .accordion-row__trigger:focus-visible {
+  outline: var(--pqr-border-width-2) solid var(--pqr-color-etat-accordion-row-anneau-focus);
+  outline-offset: 2px;
+}
+
+/* Tablette ≥ 768 : padding-inline 48 (canvas : 738 de contenu sur 834). */
+@media (min-width: 768px) {
+  .s_pqr_faq.faq {
+    padding-inline: var(--pqr-space-48);
+  }
+}
+
+/* Desktop ≥ 992 : padding-inline 56, gap 48, en-tête gap 16 (canvas : 1088 sur 1200) ;
+   le CTA reprend sa largeur de contenu. */
+@media (min-width: 992px) {
+  .s_pqr_faq.faq {
+    padding-inline: var(--pqr-space-56);
+    gap: var(--pqr-space-48);
+  }
+
+  .s_pqr_faq.faq .faq__SectionHeader {
+    gap: var(--pqr-space-16);
+  }
+
+  .s_pqr_faq.faq .faq__cta .button {
+    width: auto;
+  }
+
+  /* En-tête centré et CTA centré à partir du bureau — décision owner du 2026-09-08,
+     qui revient sur l'option B du 2026-09-07 (gauche aux quatre largeurs) et aligne la
+     FAQ sur AvisGoogle et Reassurances. Trois déclarations, trois origines :
+       · la racine `align-items: center` EST dans le contrat (root layoutByProp) — elle
+         centre le seul enfant qui ne s'étire pas, le CTA (le wrapper .faq__cta est en
+         `display: contents`, le bouton est donc l'enfant direct) ;
+       · l'en-tête `align-items: center` EST dans le contrat (SectionHeader layoutByProp) ;
+       · le `text-align: center` est le FAIT CODE-ONLY : le canal `declared` ne varie pas
+         par mode, exactement comme ds.google-reviews 3.1.0 le dit et le fait. */
+  .s_pqr_faq.faq { align-items: center; }
+  .s_pqr_faq.faq .faq__SectionHeader { align-items: center; }
+  .s_pqr_faq.faq .faq__Accroche,
+  .s_pqr_faq.faq .faq__Titre { text-align: center; }
+}
+
+/* Wide ≥ 1400 : padding-inline 89 (canvas : 1550 sur 1728). */
+@media (min-width: 1400px) {
+  .s_pqr_faq.faq {
+    padding-inline: var(--pqr-space-89);
+  }
+}

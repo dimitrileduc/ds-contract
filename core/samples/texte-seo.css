@@ -1,4 +1,4 @@
-/* AccordionRow — from ds.accordion-row v2.0.0 (core/emit-html.ts) */
+/* AccordionRow — from ds.accordion-row v2.1.0 (core/emit-html.ts) */
 
 .accordion-row, .accordion-row *, .accordion-row *::before, .accordion-row *::after {
   box-sizing: border-box;
@@ -27,7 +27,7 @@
 }
 
 .accordion-row--etat-ferme {
-  gap: var(--space-24);
+  gap: var(--space-0);
 }
 
 .accordion-row--etat-ouvert {
@@ -85,6 +85,10 @@
   height: var(--size-accordion-row-chevron-up-petit);
 }
 
+.accordion-row:hover:not(:disabled) .accordion-row__ChevronUp {
+  color: var(--color-etat-accordion-row-chevron-survol);
+}
+
 .accordion-row__Contenu {
   width: 100%;
   min-width: 0;
@@ -136,6 +140,10 @@
   height: var(--size-accordion-row-chevron-down-petit);
 }
 
+.accordion-row:hover:not(:disabled) .accordion-row__ChevronDown {
+  color: var(--color-etat-accordion-row-chevron-survol);
+}
+
 .accordion-row__trigger {
   appearance: none;
   background: none;
@@ -146,7 +154,6 @@
   color: inherit;
   text-align: inherit;
   cursor: pointer;
-  height: var(--size-accordion-row-trigger);
   padding-inline: var(--space-0);
   padding-block: var(--space-0);
   border-style: solid;
@@ -155,20 +162,18 @@
   position: absolute;
 }
 
-.accordion-row--taille-petit .accordion-row__trigger {
-  height: var(--size-accordion-row-trigger-petit);
-}
-
 .accordion-row--taille-grand .accordion-row__trigger {
   left: 0px;
   right: 0px;
   top: 0px;
+  bottom: 0px;
 }
 
 .accordion-row--taille-petit .accordion-row__trigger {
   left: 0px;
   right: 0px;
   top: 0px;
+  bottom: 0px;
 }
 
 /* TexteSEO — from ds.texte-seo v4.0.0 (core/emit-html.ts) */

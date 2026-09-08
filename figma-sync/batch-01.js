@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "AccordionRow",
     "contractId": "ds.accordion-row",
     "anchorKey": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
-    "description": "AccordionRow — generated from contract ds.accordion-row v2.0.0 †",
+    "description": "AccordionRow — generated from contract ds.accordion-row v2.1.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -31,7 +31,7 @@ const COMPONENTS = [
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1",
-            "itemSpacing": "space/24",
+            "itemSpacing": "space/0",
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
           },
@@ -75,11 +75,6 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "insetPartialV": true,
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/trigger"
-              },
               "bindings": {
                 "paddingLeft": "space/0",
                 "paddingRight": "space/0",
@@ -179,11 +174,6 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "insetPartialV": true,
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/trigger"
-              },
               "bindings": {
                 "paddingLeft": "space/0",
                 "paddingRight": "space/0",
@@ -214,7 +204,7 @@ const COMPONENTS = [
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1",
-            "itemSpacing": "space/24",
+            "itemSpacing": "space/0",
             "paddingTop": "space/8",
             "paddingBottom": "space/8"
           },
@@ -263,11 +253,6 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "insetPartialV": true,
-              "fixedHeight": {
-                "px": 24,
-                "varName": "size/accordion-row/trigger-petit"
-              },
               "bindings": {
                 "paddingLeft": "space/0",
                 "paddingRight": "space/0",
@@ -372,11 +357,161 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "insetPartialV": true,
-              "fixedHeight": {
-                "px": 24,
-                "varName": "size/accordion-row/trigger-petit"
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
               },
+              "lits": {
+                "fillClear": true,
+                "strokeWeight": 0,
+                "width": 1550
+              },
+              "children": []
+            }
+          ]
+        }
+      }
+    ],
+    "stateVariants": [
+      {
+        "name": "Taille=Grand, Etat=Ferme, State=Hover",
+        "row": 0,
+        "col": 2,
+        "spec": {
+          "type": "root",
+          "name": "Taille=Grand, Etat=Ferme, State=Hover",
+          "layout": {
+            "mode": "HORIZONTAL",
+            "primary": "SPACE_BETWEEN",
+            "counter": "CENTER"
+          },
+          "bindings": {
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/0",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
+          "stroke": "color/noir-bleute",
+          "lits": {
+            "strokeSides": {
+              "top": 0,
+              "right": 0,
+              "left": 0
+            },
+            "width": 1550
+          },
+          "fillWidth": true,
+          "children": [
+            {
+              "type": "text",
+              "name": "Titre",
+              "characters": "Question",
+              "fontSize": 20,
+              "fontStyle": "Medium",
+              "textStyle": "H4",
+              "textFill": "color/noir-bleute",
+              "lineHeight": 25,
+              "letterSpacing": 0,
+              "fontFamily": "Montserrat",
+              "contentProp": "Titre"
+            },
+            {
+              "type": "svg",
+              "name": "ChevronDown",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#F98A0B\"/>\n</svg>",
+              "svgPaintVar": "color/etat/accordion-row/chevron-survol",
+              "iconSize": 32
+            },
+            {
+              "type": "frame",
+              "name": "trigger",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "insetOverlay": true,
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
+              "lits": {
+                "fillClear": true,
+                "strokeWeight": 0,
+                "width": 1550
+              },
+              "children": []
+            }
+          ]
+        }
+      },
+      {
+        "name": "Taille=Petit, Etat=Ferme, State=Hover",
+        "row": 1,
+        "col": 2,
+        "spec": {
+          "type": "root",
+          "name": "Taille=Petit, Etat=Ferme, State=Hover",
+          "layout": {
+            "mode": "HORIZONTAL",
+            "primary": "SPACE_BETWEEN",
+            "counter": "CENTER"
+          },
+          "bindings": {
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/0",
+            "paddingTop": "space/8",
+            "paddingBottom": "space/8"
+          },
+          "stroke": "color/noir-bleute",
+          "lits": {
+            "strokeColor": {
+              "r": 0.14901960784313725,
+              "g": 0.1568627450980392,
+              "b": 0.17254901960784313,
+              "a": 0.3215686274509804
+            },
+            "strokeSides": {
+              "top": 0,
+              "right": 0,
+              "left": 0
+            },
+            "width": 1550
+          },
+          "fillWidth": true,
+          "children": [
+            {
+              "type": "text",
+              "name": "Titre",
+              "characters": "Question",
+              "fontSize": 16,
+              "fontStyle": "Bold",
+              "textFill": "color/noir-bleute",
+              "lineHeight": 24,
+              "letterSpacing": 0,
+              "fontFamily": "Montserrat",
+              "contentProp": "Titre"
+            },
+            {
+              "type": "svg",
+              "name": "ChevronDown",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#F98A0B\"/>\n</svg>",
+              "svgPaintVar": "color/etat/accordion-row/chevron-survol",
+              "iconSize": 24
+            },
+            {
+              "type": "frame",
+              "name": "trigger",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "insetOverlay": true,
               "bindings": {
                 "paddingLeft": "space/0",
                 "paddingRight": "space/0",
@@ -494,7 +629,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v2.3.0 †",
+    "description": "Button — generated from contract ds.button v2.4.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -761,7 +896,8 @@ const COMPONENTS = [
       }
     ],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -1548,8 +1684,7 @@ const COMPONENTS = [
               "name": "label",
               "characters": "Contactez-nous",
               "fontSize": 16,
-              "fontStyle": "Medium",
-              "textStyle": "Libellé bouton",
+              "fontStyle": "Semi Bold",
               "textFill": "color/etat/link/libelle-survol",
               "lineHeight": 22,
               "textCase": "UPPER",

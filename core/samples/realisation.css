@@ -1,26 +1,24 @@
-/* Realisation — from ds.realisation v1.1.0 (core/emit-html.ts) */
+/* Realisation — from ds.realisation v2.0.0 (core/emit-html.ts) */
 
 .realisation, .realisation *, .realisation *::before, .realisation *::after {
   box-sizing: border-box;
 }
 
 .realisation {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
   border: 0;
   font-family: var(--font-family-montserrat);
 }
 
 .realisation__Image {
-  width: var(--size-realisation-image);
-  height: var(--size-realisation-image);
+  display: flex;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
   object-fit: cover;
-}
-
-.realisation--taille-petit .realisation__Image {
-  width: var(--size-realisation-image-petit);
-  height: var(--size-realisation-image-petit);
 }
 
 /* showcase chrome */

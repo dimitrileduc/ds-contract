@@ -39,8 +39,11 @@ export const FIGMA_AUTHORING_SOURCE = repoPath('integrations', 'odoo', 'addons',
  *  tire `ds.carte-categorie` en plus (répétée par la section), `ds.button` étant
  *  déjà présent (composé sous la carte empilée). Spec 025 ajoute `ds.hero-video`
  *  (le hero de l'Accueil, master `2151:5552`) : 11 → 12 racines. Sa fermeture
- *  tire `ds.button` en plus (composé sous le CTA), déjà présent par ailleurs. */
-export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances', 'ds.categories-principales', 'ds.hero-video', 'ds.produits-ecommerce'] as const;
+ *  tire `ds.button` en plus (composé sous le CTA), déjà présent par ailleurs.
+ *  Vague 035 (2026-09-07) ajoute `ds.realisations` (la mosaïque de chantiers,
+ *  set candidat `2773:27344`) : 13 → 14 racines. Sa fermeture tire
+ *  `ds.realisation` en plus — la tuile, répétée neuf fois par la section. */
+export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances', 'ds.categories-principales', 'ds.hero-video', 'ds.produits-ecommerce', 'ds.realisations'] as const;
 
 /** Préfixe de sélecteur imposé par racine. Un sélecteur non préfixé fuirait
  *  d'une instance à l'autre : deux Présentations sur la même page partageraient
@@ -66,6 +69,7 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.categories-principales': '.s_pqr_categories_principales',
   'ds.hero-video': '.s_pqr_hero_video',
   'ds.produits-ecommerce': '.s_pqr_produits_ecommerce',
+  'ds.realisations': '.s_pqr_realisations',
   // Racine SHELL (spec 022) : le header n'est pas un snippet `.s_pqr_*` mais un
   // gabarit système. Son préfixe est la classe BEM de `emit-html` (`.header`),
   // celle que la CSS générée et le gabarit posent — le même adressage réel que

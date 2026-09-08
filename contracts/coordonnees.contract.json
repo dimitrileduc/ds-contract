@@ -2,18 +2,46 @@
   "$schema": "./contract.schema.json",
   "id": "ds.coordonnees",
   "name": "Coordonnees",
-  "version": "2.2.0",
-  "description": "Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "3.0.0",
+  "description": "Piqueray section « Nos coordonnées », responsive. 3.0.0 (2026-09-07, vague 031) : MAJEUR parce que les ancres changent de set — le contrat quittait l'ancien master 2104:2904 (page DS · Organisms) pour le set candidat 2778:34448 (page « 031 · Planches de validation », section « 031 · 20 · COORDONNEES »), quatre variantes sur le seul axe Presentation = Mobile | Tablette | Desktop | Wide.\n\nCe que la version 3 change, dans l'ordre où cela se voit. (1) L'en-tête cesse d'être une instance de ds.section-header : il est DESSINÉ À PLAT dans la section, exactement comme ds.reassurances 2.0.0 l'a fait dans la même vague. L'ancienne composition figeait le titre à 40 px sur les quatre écrans ; à plat, l'accroche monte le rôle overline (14/20 Regular · 14/20 Regular · 16/20 Medium · 20/25 Medium) et le titre le rôle H2 (24/30 · 24/30 · 32/40 · 40/50 SemiBold). (2) La mise en page devient responsive : EMPILÉE en Mobile et Tablette — le plan pleine largeur au rapport 16/9, le panneau dessous — et CÔTE À CÔTE en Desktop et Wide, le panneau à largeur fixe d'un tiers (400 puis 576) et le plan en remplissage sur les deux tiers restants, étiré sur la hauteur de la rangée que le panneau décide. (3) Les quatre étiquettes montent le rôle H4 (20/25 · 20/25 · 24/30 · 24/30 Medium) et les quatre valeurs le rôle body (16/24 Regular · 16/24 Regular · 18/27 Medium · 18/27 Medium) : elles étaient du texte libre sans style du DS et ne suivaient aucun écran. (4) Les informations passent à DEUX colonnes en Tablette et là seulement, parce que c'est le seul écran où le panneau est pleine largeur (738 de contenu) alors qu'il n'occupe qu'un tiers ailleurs (342 · 738 · 304 · 480 ; règle : deux colonnes au-delà de 600).\n\nCe que le set candidat NE dessine PLUS et que la version 2 portait : les valeurs Adresse et Contact étaient soulignées (declared text-decoration-line et textSegments underline). Le candidat ne souligne rien — vérifié au pixel sur la planche Wide (profil d'encre par ligne, aucune rangée dense sous la ligne de base, les 4 à 6 pixels résiduels étant les jambages de « info@piqueray.be »). Les soulignements sont retirés ici ; côté Odoo l'affordance de lien est reportée au survol et au focus, fait code-only nommé dans la description de la part Contact.\n\nCINQ DÉFAUTS DE SOURCE relevés à l'étape 0 et NON contournés en silence — chacun est écrit ici et dans le journal de section (specs/tiny/vague-031/coordonnees.md, « À corriger à la source ») : (a) l'en-tête de l'ancien master était une instance de SectionHeader large de 1550 px posée dans un panneau de 480 — elle débordait ; l'aplatissement la corrige ; (b) les quatre étiquettes et les quatre valeurs étaient du texte libre, sans style du design system, donc immobiles d'un écran à l'autre ; (c) la valeur Contact porte un vrai saut de ligne (téléphone puis e-mail) — et le relevé de la planche montre que les valeurs Adresse (deux lignes) et Horaires (trois lignes) en portent aussi, sur les quatre écrans, alors que rien ne les y forcerait : la plus longue ligne mesure 220 px pour 480 px de contenu disponible en Wide ; les trois parts déclarent donc white-space pre-line ; (d) l'instance SectionHeader portait un blanc non lié à aucune variable, posé sur le fond bleu clair de la section ; (e) les deux icônes sociales sont en noir pur brut (#000000), non liées — le contrat les porte par le registre d'icônes, la couleur reste celle du glyphe.\n\nHistorique avant 3.0.0 :\nPiqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
     {
+      "name": "presentation",
+      "description": "Présentation par écran, miroir de l'axe Presentation du set candidat 2778:34448. Défaut = mobile, première variante du set et base mobile-first du CSS livré ; dans le CSS livré c'est la fenêtre qui choisit, par les jetons de rupture, jamais un consommateur.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
       "name": "mapUrl",
       "type": "text",
       "default": "",
-      "description": "URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image.",
+      "description": "URL fournie par le code pour le paint IMAGE du plan Google — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ici. Le défaut vide est intentionnel et ne substitue aucune image. Le paint de l'ancien master (2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) n'est plus l'ancre ; le set candidat dessine un cadrage DIFFÉRENT par variante (relevé : entre la planche 390 et la planche 1728 le rapport d'échelle des repères vaut 3,45 alors qu'un même original recouvert donnerait 2,95 ou 3,11 selon l'axe), ce qu'aucune règle CSS d'object-fit ne reproduit depuis une source unique : écart nommé, jamais contourné.",
       "bindings": {
         "figma": {
           "kind": "NONE"
@@ -41,7 +69,7 @@
       "name": "accroche",
       "type": "text",
       "default": "Contact",
-      "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass).",
+      "description": "Sur-titre de la section, dessiné à plat depuis 3.0.0. La liaison TEXT « Accroche » est celle que portait la version 2 ; elle n'a PAS pu être revérifiée contre le set candidat 2778:34448 (aucun dump n'a été fourni à l'agent et le canevas ne lui est pas ouvert) — la question est ouverte au journal de section sous « Bloqué / à trancher ». Sur l'ancien master la propriété existait mais n'avait AUCUN effet (0 componentPropertyReferences mesuré), l'instance SectionHeader routant la valeur.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -60,7 +88,7 @@
           "text": "Nos coordonnées"
         }
       ],
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: \"{titre}\"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment.",
+      "description": "Titre de la section, dessiné à plat depuis 3.0.0 (il passait auparavant par l'instance ds.section-header). Reste rich-text : le titre observé est UNIFORME (un seul segment) mais le type ouvre la voie aux graisses par plage sans nouveau MAJEUR. Même réserve que l'accroche sur la liaison TEXT « Titre », non revérifiée contre le set candidat.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -75,214 +103,320 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Racine de la section. EMPILÉE en Mobile et Tablette (colonne : le plan, puis le panneau), CÔTE À CÔTE en Desktop et Wide (rangée : le plan à gauche, le panneau à droite, les deux étirés sur la hauteur de la rangée). Aucune gouttière de section : le plan est à fond perdu sur les quatre écrans et c'est le panneau qui porte ses marges intérieures (24 en Mobile, 48 aux trois autres) — relevé sur les planches d'instance, le fond du panneau atteint x=0 en Mobile et Tablette. Écart nul entre le plan et le panneau (planche 390 : le plan finit à y=218, la première ligne de texte commence à y=243, soit 219 + 24 de marge intérieure). Les largeurs dessinées 390 / 834 / 1200 / 1728 sont des témoins : la section remplit son parent.",
       "layout": {
         "display": "flex",
-        "direction": "row"
+        "direction": "column",
+        "justify": "start",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
       },
-      "parts": {
-        "googleMap": {
-          "description": "Plan Google de la section (RECTANGLE Figma 2104:2899, 1152×597 FIXED/FIXED, layoutGrow 0). Son fills[0] est un paint IMAGE de scaleMode STRETCH porteur d'un imageTransform [[1,0,0],[0,0.9913,0.00434]] : un recadrage centré à ratio conservé de la source 1142×597 vers la boîte 1152×597 — object-fit: cover en est l'orthographe CSS exacte (même facteur 1.00875, mêmes 2,6 px rognés en haut et en bas). PREMIÈRE part du root : plan à GAUCHE en x=40, wrapper à DROITE en x=1192. B013-5 clos (spec 016, canvas corrigé le 2026-08-06) : les calques du master — rangés par l'auteur wrapper-puis-plan, à l'inverse du visuel (vif 2026-08-05) — ont été remis dans l'ordre normal google-map puis wrapper à rendu strictement identique ; l'ordre des parts suit l'ordre RÉEL des calques, qui coïncide désormais avec l'ordre visuel, et l'ancienne justification « l'ordre d'auteur du calque est un artefact sans portée » est retirée. min-width porte le FIXED de Figma : sans lui l'img flex-shrink:1 se laisse rétrécir par le wrapper et le plan perd 61 px.",
-          "element": "img",
-          "attrs": {
-            "src": "{mapUrl}",
-            "alt": "{mapAlt}"
-          },
-          "tokens": {
-            "width": "{size.coordonnees.google-map-w}",
-            "min-width": "{size.coordonnees.google-map-w}",
-            "height": "{size.coordonnees.google-map-h}"
-          },
-          "declared": {
-            "object-fit": "cover"
-          }
-        },
-        "wrapper": {
-          "layout": {
-            "direction": "column",
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "direction": "row",
             "align": "stretch"
           },
-          "parts": {
-            "SectionHeader": {
-              "description": "Instance SectionHeader (Figma 2169:6216). `titre`/`accroche` sont ROUTÉS depuis les props publiques du root (motif vivant : ds.carte props.children = \"{ctaLabel}\") au lieu de reconduire le littéral de l'override d'instance : sans ce routage les propriétés TEXT racines Titre#2104:58 et Accroche#2104:57 n'ont aucun effet côté code, exactement comme elles n'en ont aucun côté canvas (0 componentPropertyReferences mesuré). Les valeurs rendues par défaut sont inchangées — ce sont les defaults des props.",
-              "component": {
-                "id": "ds.section-header",
-                "props": {
-                  "titre": "{titre}",
-                  "accroche": "{accroche}",
-                  "alignement": "gauche"
-                }
-              }
-            },
-            "Adresse": {
-              "layout": {
-                "direction": "column"
-              },
-              "parts": {
-                "AdresseEtiquette": {
-                  "text": "Adresse",
-                  "tokens": {
-                    "color": "{color.orange}",
-                    "font-size": "{font.size.24}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.30}"
-                  }
-                },
-                "AdresseValeur": {
-                  "text": "Rue Alfred Drèze 7, 4860 Pepinster",
-                  "tokens": {
-                    "color": "{color.noir-bleute}",
-                    "font-size": "{font.size.18}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.27}"
-                  },
-                  "declared": {
-                    "white-space": "pre-line",
-                    "text-decoration-line": "underline"
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.8}"
-              }
-            },
-            "Horaires": {
-              "layout": {
-                "direction": "column"
-              },
-              "parts": {
-                "HorairesEtiquette": {
-                  "text": "Horaires",
-                  "tokens": {
-                    "color": "{color.orange}",
-                    "font-size": "{font.size.24}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.30}"
-                  }
-                },
-                "HorairesValeur": {
-                  "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
-                  "tokens": {
-                    "color": "{color.noir-bleute}",
-                    "font-size": "{font.size.18}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.27}"
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.8}"
-              }
-            },
-            "Contact": {
-              "layout": {
-                "direction": "column"
-              },
-              "parts": {
-                "ContactEtiquette": {
-                  "text": "Contact",
-                  "tokens": {
-                    "color": "{color.orange}",
-                    "font-size": "{font.size.24}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.30}"
-                  }
-                },
-                "tl32087463266EmailInfopi": {
-                  "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
-                  "tokens": {
-                    "color": "{color.noir-bleute}",
-                    "font-size": "{font.size.18}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.27}"
-                  },
-                  "textSegments": [
-                    {
-                      "text": "Tél : "
-                    },
-                    {
-                      "text": "+32 (0)87 46 32 66\r",
-                      "underline": true
-                    },
-                    {
-                      "text": " Email: "
-                    },
-                    {
-                      "text": "info@piqueray.be",
-                      "underline": true
-                    }
-                  ],
-                  "declared": {
-                    "white-space": "pre-line"
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.8}"
-              }
-            },
-            "suivezNous": {
-              "layout": {
-                "direction": "column"
-              },
-              "parts": {
-                "SuivezNousEtiquette": {
-                  "text": "Suivez-nous",
-                  "tokens": {
-                    "color": "{color.orange}",
-                    "font-size": "{font.size.24}",
-                    "font-weight": "{font.weight.regular}",
-                    "line-height": "{font.line-height.30}"
-                  }
-                },
-                "rseauxSociaux": {
-                  "layout": {
-                    "direction": "row",
-                    "align": "center"
-                  },
-                  "parts": {
-                    "Facebook": {
-                      "icon": {
-                        "asset": "facebook",
-                        "size": 32
-                      }
-                    },
-                    "Instagram": {
-                      "icon": {
-                        "asset": "instagram",
-                        "size": 32
-                      }
-                    }
-                  },
-                  "tokens": {
-                    "gap": "{space.16}"
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.8}"
-              }
-            }
-          },
-          "tokens": {
-            "gap": "{space.16}",
-            "padding-block": "{space.48}",
-            "padding-inline": "{space.48}",
-            "width": "{size.coordonnees.wrapper}"
+          "wide": {
+            "direction": "row",
+            "align": "stretch"
           }
         }
       },
       "tokens": {
         "background-color": "{color.bleu-clair}",
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.0}",
+        "padding-inline": "{space.0}",
+        "padding-block": "{space.0}"
+      },
+      "parts": {
+        "googleMap": {
+          "description": "Plan Google de la section, PREMIÈRE part du root : au-dessus du panneau en Mobile et Tablette, à sa gauche en Desktop et Wide. Le rapport 16/9 est le fait des deux écrans empilés (planches : 390×219 et 834×469, soit 1,7808 et 1,7783 — 16/9 vaut 1,7778) ; il est porté par le canal declared aspect-ratio, dont docs/FIGMA-CAPABILITY-MATRIX.md ligne 54 dit CARRY-WITH-NAMED-LIMIT (le canevas redimensionne puis verrouille le rapport, targetAspectRatio étant en lecture seule) — la limite est nommée ici. En Desktop et Wide le plan n'a plus de rapport propre : il s'étire sur la hauteur de la rangée, que le PANNEAU décide (planches : 665 et 680 de haut, exactement la hauteur du contenu du panneau plus ses marges). DEUX FAITS CODE-ONLY, parce que le contrat n'a pas de canal aspect-ratio par mode (declared n'accepte aucun stylesWhen et le rapport n'est pas dans la liste blanche de stylesWhen) : (1) au-delà du seuil bureau la feuille Odoo pose aspect-ratio auto et une hauteur de 100 %, (2) le partage deux tiers / un tiers n'est PAS écrit ici en pourcentage — flex-basis et flex-shrink sont CARRY-CODE-ONLY (matrice ligne 50, le modèle de dimensionnement natif ne connaît que FIXED / HUG / FILL) : le panneau porte sa largeur FIXE par mode et le plan est en REMPLISSAGE, ce qui donne 800 pour 400 en Desktop et 1152 pour 576 en Wide, les deux tiers exacts des planches. object-fit cover est l'orthographe CSS du paint FILL du canevas. ADAPTATION D'HOTE, nommee (2026-09-08) : la projection Odoo ne rend PAS une image mais un IFRAME d'embed Google, sans clef d'API — la meme route que le bloc `s_map` d'Odoo lui-meme (`maps.google.com/maps?q=…&output=embed`). Le visiteur peut zoomer, se deplacer, passer en satellite et demander un itineraire, et la fiche affiche la note Google VIVANTE des lors que la requete porte le NOM de l'etablissement et pas seulement la rue (verifie le 2026-09-08 : 4,7 etoiles / 112 avis, la ou la maquette est figee a 4,6 / 94). Un `iframe` est HOST-ONLY : aucun contrat ne porte d'embed, exactement comme `ds.button` reste un `button` cote React et se projette en `a` cote Odoo. La BOITE ne change pas — meme rapport 16/9 sous le seuil bureau, meme pleine hauteur au-dessus — seul son CONTENU change, et les props `mapUrl` / `mapAlt` gardent leur sens pour la surface React. L'adresse vit sur `data-pqr-map-address` et se regle au panneau ; l'action reecrit la `src` au meme moment, donc le HTML enregistre porte deja la bonne carte et aucun JavaScript n'est requis cote visiteur.",
+          "element": "img",
+          "attrs": {
+            "src": "{mapUrl}",
+            "alt": "{mapAlt}"
+          },
+          "layout": {
+            "width": "fill",
+            "grow": true
+          },
+          "declared": {
+            "aspect-ratio": "16 / 9",
+            "object-fit": "cover"
+          }
+        },
+        "wrapper": {
+          "description": "Panneau d'informations. Pleine largeur sous le seuil bureau, largeur FIXE d'un tiers au-dessus (400 en Desktop par size.coordonnees.panneau-desktop, 576 en Wide par size.coordonnees.wrapper) : c'est lui qui ne fléchit pas et le plan qui absorbe le reste, seule façon d'écrire le partage deux tiers / un tiers dans un modèle FIXED / HUG / FILL. Marges intérieures 24 en Mobile, 48 aux trois autres écrans, sur les quatre côtés. Écart 32 entre l'en-tête et le bloc d'informations — le même que l'écart entre deux groupes d'informations, relevé au pixel sur les quatre planches.",
+          "layout": {
+            "direction": "column",
+            "justify": "start",
+            "align": "stretch",
+            "width": "fill"
+          },
+          "tokens": {
+            "gap": "{space.32}",
+            "padding-inline": "{space.24}",
+            "padding-block": "{space.24}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.48}"
+              },
+              "desktop": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.48}",
+                "width": "{size.coordonnees.panneau-desktop}"
+              },
+              "wide": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.48}",
+                "width": "{size.coordonnees.wrapper}"
+              }
+            }
+          },
+          "parts": {
+            "SectionHeader": {
+              "description": "En-tête de section, DESSINÉ À PLAT dans la section depuis 3.0.0 (défaut de source a : l'instance ds.section-header de l'ancien master mesurait 1550 px de large dans un panneau de 480 et débordait ; elle figeait de surcroît le titre à 40 px sur les quatre écrans). Modèle : ds.reassurances 2.0.0, même vague. Écart 8 entre l'accroche et le titre sur les QUATRE écrans — relevé : planche 390, boîte d'accroche 243..262 puis boîte de titre à 271 ; planche 1728, 48..72 puis 81. Aligné à gauche partout (la section n'a pas de version centrée, contrairement à Réassurances).",
+              "layout": {
+                "direction": "column",
+                "justify": "start",
+                "align": "start",
+                "width": "fill"
+              },
+              "tokens": {
+                "gap": "{space.8}"
+              },
+              "parts": {
+                "Accroche": {
+                  "description": "Sur-titre. Monte la recette responsive du rôle overline : 14/20 Regular en Mobile et Tablette, 16/20 Medium en Desktop, 20/25 Medium en Wide (tokens/modes/viewport.*). Capitales et interlettrage relevés sur la source. L'interlettrage vaut 15 % de la taille de police, décision owner : il est écrit en em et non en pixels parce que la même valeur sert les quatre corps (14, 14, 16, 20) — la matrice de capacité (ligne 125) donne letter-spacing en PIXELS ou en POURCENT côté Figma, CARRY-BOTH, et em est l'orthographe CSS du POURCENT. Vérification au pixel sur les planches : l'encre de « CONTACT » mesure 81 px à 14, 93 à 16 et 115 à 20, soit 5,79 / 5,81 / 5,75 fois le corps — un interlettrage proportionnel, jamais une valeur fixe. Le canal letter-spacing est hors de la population de npm run geometry:gate (canal typographique, contracts/geometry-gate.interface.md paragraphe 2) : il ne demande donc aucune entrée au registre des littéraux nommés, exactement comme le 3px de ds.section-header.",
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "content": {
+                    "prop": "accroche"
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{typography.overline.size}",
+                    "font-weight": "{typography.overline.weight}",
+                    "line-height": "{typography.overline.line-height}"
+                  },
+                  "literals": {
+                    "letter-spacing": "0.15em"
+                  },
+                  "declared": {
+                    "text-align": "left",
+                    "text-transform": "uppercase"
+                  }
+                },
+                "Titre": {
+                  "element": "h2",
+                  "description": "Titre. Monte le style de texte responsive H2 : 24/30 en Mobile et Tablette, 32/40 en Desktop, 40/50 en Wide (tokens/modes/viewport.*). Avant 3.0.0 il passait par l'instance ds.section-header et restait à 40 px sur les quatre écrans. Plan de document : la balise h2, comme sur les autres sections de la home (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotée par les jetons typography, axe indépendant du niveau.",
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "content": {
+                    "prop": "titre",
+                    "marks": {
+                      "strong": "{font.weight.bold}"
+                    }
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-family": "{typography.h2.family}",
+                    "font-size": "{typography.h2.size}",
+                    "font-weight": "{typography.h2.weight}",
+                    "line-height": "{typography.h2.line-height}"
+                  },
+                  "declared": {
+                    "text-align": "left"
+                  }
+                }
+              }
+            },
+            "infos": {
+              "description": "Bloc des quatre groupes d'informations. UNE colonne en Mobile, Desktop et Wide ; DEUX colonnes en Tablette, et là seulement — c'est le seul écran où le panneau est pleine largeur (contenu 738) alors qu'il n'occupe qu'un tiers ailleurs (342 · 738 · 304 · 480). La règle est « deux colonnes au-delà de 600 de contenu » (décision owner). Vérification au pixel sur la planche 834 : 353 × 2 + 32 d'écart = 738, et la colonne de droite commence bien à x=433. Écart 32 en colonne comme en rangée, identique à l'écart en-tête ↔ informations.",
+              "layout": {
+                "display": "grid",
+                "columns": 1,
+                "width": "fill"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "columns": 2
+                  }
+                }
+              },
+              "tokens": {
+                "gap": "{space.32}"
+              },
+              "parts": {
+                "Adresse": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "AdresseEtiquette": {
+                      "description": "Étiquette. Monte le rôle responsive H4 : 20/25 en Mobile et Tablette, 24/30 en Desktop et Wide, Medium partout (tokens/modes/viewport.*). Avant 3.0.0 : 24/30 Regular figé sur les quatre écrans, sans style du design system (défaut de source b). Orange lié sur la source.",
+                      "text": "Adresse",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{typography.h4.size}",
+                        "font-weight": "{typography.h4.weight}",
+                        "line-height": "{typography.h4.line-height}"
+                      }
+                    },
+                    "AdresseValeur": {
+                      "description": "Valeur. Monte le rôle responsive body : 16/24 Regular en Mobile et Tablette, 18/27 Medium en Desktop et Wide (typography.body.weight varie par écran, exactement ce que la source dessine). Porte un VRAI saut de ligne après la virgule — défaut de source c, étendu : la planche Wide laisse 480 px de contenu et la ligne la plus longue de la section en mesure 220, donc rien ne forcerait ce retour ; c'est un saut typé à la main dans le nœud. white-space pre-line le rend. 3.0.0 RETIRE le soulignement que portait la version 2 : le set candidat ne souligne pas (profil d'encre par ligne sur la planche Wide, aucune rangée dense sous la ligne de base). Côté Odoo la valeur reste un lien vers Google Maps, dont l'affordance passe au survol et au focus — fait code-only nommé dans la feuille par écran.",
+                      "text": "Rue Alfred Drèze 7,\n4860 Pepinster",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{typography.body.size}",
+                        "font-weight": "{typography.body.weight}",
+                        "line-height": "{typography.body.line-height}"
+                      },
+                      "declared": {
+                        "white-space": "pre-line"
+                      }
+                    }
+                  }
+                },
+                "Horaires": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "HorairesEtiquette": {
+                      "description": "Étiquette, rôle responsive H4 (voir AdresseEtiquette).",
+                      "text": "Horaires",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{typography.h4.size}",
+                        "font-weight": "{typography.h4.weight}",
+                        "line-height": "{typography.h4.line-height}"
+                      }
+                    },
+                    "HorairesValeur": {
+                      "description": "Valeur, rôle responsive body. DEUX vrais sauts de ligne (trois lignes sur les quatre écrans) — même constat que l'adresse : à 480 px de contenu en Wide, les trois lignes mesurent 190, 173 et 153 px d'encre, aucune ne serait repliée par la largeur. Défaut de source c étendu ; white-space pre-line.",
+                      "text": "Du lundi au vendredi\nde 8h00 à 12h00 et\nde 13h30 à 17h00",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{typography.body.size}",
+                        "font-weight": "{typography.body.weight}",
+                        "line-height": "{typography.body.line-height}"
+                      },
+                      "declared": {
+                        "white-space": "pre-line"
+                      }
+                    }
+                  }
+                },
+                "Contact": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "ContactEtiquette": {
+                      "description": "Étiquette, rôle responsive H4 (voir AdresseEtiquette).",
+                      "text": "Contact",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{typography.h4.size}",
+                        "font-weight": "{typography.h4.weight}",
+                        "line-height": "{typography.h4.line-height}"
+                      }
+                    },
+                    "tl32087463266EmailInfopi": {
+                      "description": "Valeur Contact, rôle responsive body. Le vrai saut de ligne entre le téléphone et l'e-mail est le défaut de source c tel que le brief le nomme ; white-space pre-line le rend. 3.0.0 RETIRE les deux plages soulignées (textSegments underline de la version 2) : le set candidat ne souligne pas. FAIT CODE-ONLY : côté Odoo le téléphone et l'e-mail restent de vrais liens tel: et mailto: (décision Q-C1, 2026-08-20) ; comme le repos n'a plus de soulignement, l'affordance de lien est reportée au survol et au focus visible dans la feuille par écran — un lien sans aucun signe distinctif au repos serait une régression d'usage, et le contrat n'a pas de canal d'état sur une part non racine autre que color / background-color / border-color.",
+                      "text": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{typography.body.size}",
+                        "font-weight": "{typography.body.weight}",
+                        "line-height": "{typography.body.line-height}"
+                      },
+                      "declared": {
+                        "white-space": "pre-line"
+                      }
+                    }
+                  }
+                },
+                "suivezNous": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "SuivezNousEtiquette": {
+                      "description": "Étiquette, rôle responsive H4 (voir AdresseEtiquette).",
+                      "text": "Suivez-nous",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{typography.h4.size}",
+                        "font-weight": "{typography.h4.weight}",
+                        "line-height": "{typography.h4.line-height}"
+                      }
+                    },
+                    "rseauxSociaux": {
+                      "description": "Rangée d'icônes sociales. 32 × 32 et écart 16 sur les QUATRE écrans — relevé identique sur les quatre planches (bandes de 32 rangées, intervalle de 16 px), et c'est exactement ce que fait le pied de page v2 : elles ne sont PAS responsive, décision owner. FAIT CODE-ONLY nommé : le dessin de 32 px satisfait le critère AA de WCAG 2.2 (2.5.8, cible d'au moins 24 × 24) mais pas le AAA (2.5.5, 44 × 44) ; le dessin n'est pas agrandi — la feuille Odoo élargit la ZONE CLIQUABLE de l'ancre à 44 par une marge intérieure, sans toucher au glyphe ni à l'écart visible. Défaut de source e : les deux glyphes sont en noir pur brut (#000000) sur le canevas, non liés à une variable.",
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "tokens": {
+                        "gap": "{space.16}"
+                      },
+                      "parts": {
+                        "Facebook": {
+                          "icon": {
+                            "asset": "facebook",
+                            "size": 32
+                          }
+                        },
+                        "Instagram": {
+                          "icon": {
+                            "asset": "instagram",
+                            "size": 32
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
-      "nodeId": "2104:2904",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "82e06103d9170e82bbdc02fff2d6468686f6a0f7",
+      "nodeId": "2778:34448",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/Coordonnees",

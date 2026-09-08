@@ -51,15 +51,21 @@
 .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
   width: max-content;
   min-width: max-content;
-  padding-right: var(--pqr-space-24);
+  padding-right: var(--pqr-gouttiere-carrousel);
 }
 /* Le cadre est le conteneur de défilement (overflow-x auto : contrat). Snap au
  * début de chaque carte, décalé de la gouttière du mode ; barre masquée (les
  * boutons et le débordement visible restent l'affordance). */
+/* La gouttière du mode est nommée UNE fois par palier, sur le cadre — quatre
+ * déclarations la portent (marge gauche du cadre, les deux marges de snap, marge
+ * de fin de piste) et elles doivent rester ÉGALES par définition : c'est ce que
+ * le banc mesure (qa/scenarios/produits-ecommerce-carrousel.spec.mts). Écrites
+ * quatre fois, une seule oubliée décalait la dernière carte sans rien casser
+ * ailleurs. La piste est un enfant du cadre : elle en hérite la variable. */
 .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
+  --pqr-gouttiere-carrousel: var(--pqr-space-24);
   scroll-snap-type: x proximity;
-  scroll-padding-left: var(--pqr-space-24);
-  scroll-padding-right: var(--pqr-space-24);
+  scroll-padding-inline: var(--pqr-gouttiere-carrousel);
   scrollbar-width: none;
   overscroll-behavior-x: contain;
 }
@@ -98,12 +104,8 @@
     padding-inline: var(--pqr-space-48);
   }
   .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
-    padding-left: var(--pqr-space-48);
-    scroll-padding-left: var(--pqr-space-48);
-    scroll-padding-right: var(--pqr-space-48);
-  }
-  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
-    padding-right: var(--pqr-space-48);
+    --pqr-gouttiere-carrousel: var(--pqr-space-48);
+    padding-left: var(--pqr-gouttiere-carrousel);
   }
 }
 
@@ -141,12 +143,8 @@
     padding-inline: var(--pqr-space-89);
   }
   .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
-    padding-left: var(--pqr-space-89);
-    scroll-padding-left: var(--pqr-space-89);
-    scroll-padding-right: var(--pqr-space-89);
-  }
-  .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
-    padding-right: var(--pqr-space-89);
+    --pqr-gouttiere-carrousel: var(--pqr-space-89);
+    padding-left: var(--pqr-gouttiere-carrousel);
   }
 
   /* Le canvas aligne l'en-tête AU DÉBUT ici : c'est le titre qui remplit

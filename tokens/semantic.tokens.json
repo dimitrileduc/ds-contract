@@ -162,6 +162,18 @@
           "$value": "{color.noir-voile-55}",
           "$description": "Le voile de survol de la CarteCategorie, cote SEMANTIQUE parce que c'est un ALIAS : seules les boucles BRAND et SEMANTIC du script de sync resolvent un alias en VARIABLE_ALIAS, la boucle PRIMITIVES le passerait a hexToRgb et peindrait une variable NaN, en silence (piege de la vague 032, verifie dans le bac a sable Figma)."
         }
+      },
+      "accordion-row": {
+        "chevron-survol": {
+          "$type": "color",
+          "$value": "{color.orange}",
+          "$description": "Le chevron de la rangee d'accordeon au survol — option S4 retenue par l'owner le 2026-09-07 (les deux noirs de S1 ne se distinguaient pas a l'oeil). Cote SEMANTIQUE parce que c'est un ALIAS : seules les boucles BRAND et SEMANTIC du script de sync resolvent un alias en VARIABLE_ALIAS (piege de la vague 032)."
+        },
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}",
+          "$description": "Anneau de focus clavier de la zone cliquable de la rangee d'accordeon — meme geste que le bouton outlineNoir. FAIT CODE-ONLY : le vocabulaire n'a pas de canal d'etat PROPRE pour une part interactive imbriquee (les etats de part sont ancres a la racine, core/emit-react.ts), la regle vit donc dans la feuille Odoo et est nommee dans la description de la part trigger."
+        }
       }
     }
   },

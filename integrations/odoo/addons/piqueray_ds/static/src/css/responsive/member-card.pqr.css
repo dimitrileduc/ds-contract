@@ -1,0 +1,46 @@
+/* Piqueray · MemberCard — faits code-only de la projection Odoo
+ * Source de gouvernance : contrats ds.member-card 2.0.0 et ds.member-picture 1.3.0.
+ *
+ * AUCUNE règle par écran ici, et c'est voulu : la seule chose qui varie par
+ * écran sur cette molécule est la typographie, et `tokens.pqr.css` porte déjà
+ * ses blocs `@media` pour --pqr-typography-h3-* et --pqr-typography-overline-*.
+ * Recopier une taille de police ici serait une seconde source. Règle A4 étape 4
+ * du mode d'emploi (docs/16), cas AccordionRow.
+ */
+
+/* ODOO-EQUIPE-V2-MEMBER-SURVOL BEGIN — le déclencheur du survol (2026-09-07)
+ *
+ * Source : variante `Etat=Survol` du set candidat MemberCard `2777:31008`
+ * (clé 758a8b0182f344cbb005b184713fb2dc0785b728), relevé dump v1.8 du
+ * 2026-09-07. La variante épingle son instance MemberPicture sur `Etat=Survol`,
+ * et cette variante-là fait passer le plan `normal` en opacité 0, découvrant le
+ * plan `funIa` posé dessous.
+ *
+ * CE QUI EST CODE-ONLY ICI, ET RIEN D'AUTRE : le DÉCLENCHEUR.
+ * Le contrat sait parfaitement dire CE QUI CHANGE (il porte les deux états, et
+ * `components.pqr.css` émet déjà la règle `.member-picture--etat-survol
+ * .member-picture__normal { opacity: 0 }`). Ce qu'aucun canal du schéma ne sait
+ * dire, c'est QUAND : sur une page, le pointeur de la personne qui visite est
+ * sur la CARTE, pas sur la photo, et aucun canal ne dit « quand mon ancêtre est
+ * survolé, applique telle valeur de prop à mon instance enfant ». Vérifié en
+ * lisant le schéma et le référé, pas supposé :
+ *   · le canal d'états d'une part NON-racine n'accepte que de la couleur
+ *     (emit-react PART_STATE_CHANNELS : color, background-color, border-color) —
+ *     l'opacité en est exclue ;
+ *   · une part `component` ne porte NI états NI faits déclarés (refus par nom du
+ *     référé) — la part `MemberPicture` de la carte ne peut donc rien restyler.
+ * Précédent exact de ce report : la règle (6) de la zone ODOO-023-FOOTER-BRIDGE
+ * (vague 032), qui re-porte les canaux d'état d'un bouton sous le survol de son
+ * ancêtre.
+ *
+ * AUCUNE VALEUR N'EST INVENTÉE : la seule déclaration posée est l'opacité 0, qui
+ * est celle que le contrat dessine pour l'état survol. La transition de 300 ms
+ * vient du contrat (`declared.transition` de la part `normal`) et est déjà servie
+ * par `components.pqr.css` : elle n'est ni recopiée ni modifiée ici.
+ */
+
+.s_pqr_equipe [data-pqr-member-card]:hover .member-picture__normal {
+  opacity: 0;
+}
+
+/* ODOO-EQUIPE-V2-MEMBER-SURVOL END */

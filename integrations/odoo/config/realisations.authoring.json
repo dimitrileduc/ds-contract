@@ -1,0 +1,455 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-realisations-authoring",
+  "authoringVersion": "3.1.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
+  ],
+  "rootContract": {
+    "id": "ds.realisations",
+    "version": "1.0.0"
+  },
+  "controls": [
+    {
+      "decisionId": "realisations-ctl-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "realisations-ctl-en-tete",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "enTete"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "realisations-ctl-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "accroche"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"realisations-eyebrow\"]",
+      "label": "Sur-titre"
+    },
+    {
+      "decisionId": "realisations-ctl-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"realisations-title\"]",
+      "label": "Titre de section"
+    },
+    {
+      "decisionId": "realisations-ctl-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"realisations-body\"]",
+      "label": "Paragraphe"
+    },
+    {
+      "decisionId": "realisations-ctl-photos",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "photos"
+      },
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"root-grille\"]",
+      "label": "Photos de réalisations"
+    },
+    {
+      "decisionId": "realisations-tuile-ctl-taille",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.realisation",
+              "version": "2.0.0"
+            },
+            "viaPart": "Tuile",
+            "repeat": true
+          }
+        ],
+        "prop": "taille"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "realisations-tuile-ctl-image-url",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.realisation",
+              "version": "2.0.0"
+            },
+            "viaPart": "Tuile",
+            "repeat": true
+          }
+        ],
+        "prop": "imageUrl"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"tuile-image\"]",
+      "label": "Photo de la réalisation"
+    },
+    {
+      "decisionId": "realisations-tuile-ctl-image-alt",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.realisation",
+              "version": "2.0.0"
+            },
+            "viaPart": "Tuile",
+            "repeat": true
+          }
+        ],
+        "prop": "imageAlt"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".s_pqr_realisations [data-pqr-part=\"tuile-image\"]",
+      "label": "Texte alternatif de la photo"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "realisations-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-part-root-en-tete",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "EnTete"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"root-entete\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-part-root-en-tete-section-header",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "EnTete",
+          "SectionHeader"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"root-section-header\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-part-root-en-tete-section-header-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "EnTete",
+          "SectionHeader",
+          "Accroche"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"realisations-eyebrow\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-part-root-en-tete-section-header-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "EnTete",
+          "SectionHeader",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"realisations-title\"]",
+      "allowedMarks": [
+        "strong"
+      ]
+    },
+    {
+      "decisionId": "realisations-part-root-en-tete-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "EnTete",
+          "Texte"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"realisations-body\"]",
+      "allowedMarks": [
+        "strong"
+      ]
+    },
+    {
+      "decisionId": "realisations-part-root-grille",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Grille"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"root-grille\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-part-root-grille-tuile",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Grille",
+          "Tuile"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"root-tuile\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-tuile-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.realisation",
+              "version": "2.0.0"
+            },
+            "viaPart": "Tuile",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"tuile-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "realisations-tuile-part-root-image",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.realisations",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.realisation",
+              "version": "2.0.0"
+            },
+            "viaPart": "Tuile",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Image"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_realisations [data-pqr-part=\"tuile-image\"]",
+      "allowedMarks": []
+    }
+  ]
+}

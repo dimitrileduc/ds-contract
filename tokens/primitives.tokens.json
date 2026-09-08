@@ -457,8 +457,13 @@
       },
       "wrapper": {
         "$type": "dimension",
-        "$description": "Authored from ds.coordonnees's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$description": "Authored from ds.coordonnees's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. Vague 031 (3.0.0) : c'est desormais la largeur du panneau en WIDE seulement ; son homologue Desktop est size.coordonnees.panneau-desktop.",
         "$value": "576px"
+      },
+      "panneau-desktop": {
+        "$type": "dimension",
+        "$description": "Largeur du panneau d'informations en DESKTOP. Minté from-source le 2026-09-07 (vague 031, set candidat Coordonnees 2778:34448, variante Presentation=Desktop) : relevé sur la planche d'instance coordonnees-1200.png — le fond du panneau commence exactement à x=800 et court jusqu'à 1199, soit 400 px, mesuré à trois hauteurs (y=5, 300, 600). Un tiers de la largeur de section, comme size.coordonnees.wrapper l'est de 1728. NOT a Figma variable — le set 031 ne lie aucune largeur ; minté from-dump pour que l'anatomie référence un jeton et non un littéral.",
+        "$value": "400px"
       }
     },
     "devis": {

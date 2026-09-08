@@ -71,14 +71,23 @@ export function nommerLaRegion(root, cadre) {
     if (titre) cadre.setAttribute("aria-label", titre);
 }
 
+/** Pose un attribut SEULEMENT s'il change. Appelé une fois par trame pendant tout
+ *  un glissement : écrire la même valeur salit quand même le nœud pour le moteur,
+ *  et la lecture de `scrollWidth` de la trame suivante doit alors purger style et
+ *  layout — une boucle de reflow que ce carrousel s'infligeait à lui-même, à ~60 Hz,
+ *  pour deux transitions de bout de piste par parcours. */
+function poserSiChange(el, nom, valeur) {
+    if (el && el.getAttribute(nom) !== valeur) el.setAttribute(nom, valeur);
+}
+
 /** Reflète les deux bouts de piste sur les boutons. Tolérance d'un pixel : un
  *  défilement lisse peut s'arrêter à une fraction. */
-export function refleterLesBouts(root, cadre) {
+export function refleterLesBouts(root, cadre, prev = root.querySelector(PREV), next = root.querySelector(NEXT)) {
     const max = Math.max(0, cadre.scrollWidth - cadre.clientWidth);
     const auDebut = cadre.scrollLeft <= 1;
     const enButee = cadre.scrollLeft >= max - 1;
-    root.querySelector(PREV)?.setAttribute("aria-disabled", auDebut ? "true" : "false");
-    root.querySelector(NEXT)?.setAttribute("aria-disabled", enButee ? "true" : "false");
+    poserSiChange(prev, "aria-disabled", auDebut ? "true" : "false");
+    poserSiChange(next, "aria-disabled", enButee ? "true" : "false");
 }
 
 export class PiquerayProduitsCarrousel extends Interaction {
@@ -98,19 +107,25 @@ export class PiquerayProduitsCarrousel extends Interaction {
         },
     };
 
+    /** Cadre et boutons sont résolus UNE fois : ils ne bougent pas de la vie de
+     *  l'Interaction (aucune variante `.edit`, donc un DOM public figé), et les
+     *  rechercher par trame ajoutait trois `querySelector` au chemin chaud du
+     *  glissement. */
     start() {
-        const cadre = this.el.querySelector(CADRE);
-        if (!cadre) return;
-        nommerLesDiapositives(cadre);
-        nommerLaRegion(this.el, cadre);
-        refleterLesBouts(this.el, cadre);
+        this._cadre = this.el.querySelector(CADRE);
+        this._prev = this.el.querySelector(PREV);
+        this._next = this.el.querySelector(NEXT);
+        if (!this._cadre) return;
+        nommerLesDiapositives(this._cadre);
+        nommerLaRegion(this.el, this._cadre);
+        refleterLesBouts(this.el, this._cadre, this._prev, this._next);
     }
 
     /** @param {MouseEvent} ev */
     onClick(ev) {
         const bouton = ev.target.closest?.(`${PREV}, ${NEXT}`);
         if (!bouton || !this.el.contains(bouton)) return;
-        const cadre = this.el.querySelector(CADRE);
+        const cadre = this._cadre;
         if (!cadre) return;
         ev.preventDefault();
         const sens = bouton.matches(NEXT) ? 1 : -1;
@@ -136,8 +151,7 @@ export class PiquerayProduitsCarrousel extends Interaction {
         if (this._raf) return;
         this._raf = requestAnimationFrame(() => {
             this._raf = null;
-            const cadre = this.el.querySelector(CADRE);
-            if (cadre) refleterLesBouts(this.el, cadre);
+            if (this._cadre) refleterLesBouts(this.el, this._cadre, this._prev, this._next);
         });
     }
 
@@ -149,8 +163,13 @@ export class PiquerayProduitsCarrousel extends Interaction {
         if (this._raf) cancelAnimationFrame(this._raf);
         this._raf = null;
         for (const carte of this.el.querySelectorAll(CARTE)) carte.removeAttribute("aria-label");
-        this.el.querySelector(NEXT)?.removeAttribute("aria-disabled");
-        this.el.querySelector(PREV)?.setAttribute("aria-disabled", "true");
+        this._next?.removeAttribute("aria-disabled");
+        this._prev?.setAttribute("aria-disabled", "true");
+        // Les trois références sont relâchées : l'éditeur détruit puis recrée les
+        // Interactions publiques, et un nœud retenu ici survivrait à son DOM.
+        this._cadre = null;
+        this._prev = null;
+        this._next = null;
     }
 }
 

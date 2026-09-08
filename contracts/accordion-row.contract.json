@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.accordion-row",
   "name": "AccordionRow",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "status": "stable",
   "description": "Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description.",
   "semantics": {
@@ -108,10 +108,13 @@
       }
     }
   ],
-  "states": [],
+  "states": [
+    "hover"
+  ],
+  "figmaStatePreviews": true,
   "anatomy": {
     "root": {
-      "description": "Row 1550 wide on the set (FIXED width bound to size.accordion-row.root) — a set member cannot be FILL, so 1550 is a witness: the root is width fill with referenceWidth 1550, the max-width the extraction proposed is dropped. Bottom rule border-width.1; Grand rule bound to color.noir-bleute (dump: stroke var color/noir-bleute), Petit rule stays the raw #26282c at 32 % the set draws (owner decision 2026-09-07: no opacity variable exists, governed literal as in 1.2.0 — the extraction reports it UNBOUND, expected). Padding-block space.16 (Grand) / space.8 (Petit); gap space.24 everywhere except Petit+Ouvert = space.8, as drawn. Dump v1.8 does not record layoutPositioning: the trigger is carried as the absolute overlay it is on the canvas (constraints STRETCH), see its description.",
+      "description": "Row 1550 wide on the set (FIXED width bound to size.accordion-row.root) — a set member cannot be FILL, so 1550 is a witness: the root is width fill with referenceWidth 1550, the max-width the extraction proposed is dropped. Bottom rule border-width.1; Grand rule bound to color.noir-bleute (dump: stroke var color/noir-bleute), Petit rule stays the raw #26282c at 32 % the set draws (owner decision 2026-09-07: no opacity variable exists, governed literal as in 1.2.0 — the extraction reports it UNBOUND, expected). Padding-block space.16 (Grand) / space.8 (Petit); gap space.24 everywhere except Petit+Ouvert = space.8, as drawn. Dump v1.8 does not record layoutPositioning: the trigger is carried as the absolute overlay it is on the canvas (constraints STRETCH), see its description. ÉCART MESURÉ ET CORRIGÉ le 2026-09-07 (FAQ v2, vague 031) : la rangée FERMÉE est un `justify: space-between`, et Figma IGNORE l'itemSpacing sous space-between — le titre y occupe 310 px sur une rangée de 342, pas 286. En CSS le `gap` reste un minimum et se cumule : le titre était rendu 24 px plus étroit et se repliait une ligne plus tôt (mesuré : bloc Odoo 640 de haut contre 615 à la planche en Mobile, 482 contre 464 en Tablette). Le gap de l'état FERMÉ passe donc à space.0 — l'espacement est produit par space-between, exactement comme au canevas. L'état OUVERT (colonne) garde son gap : là, Figma l'applique.",
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -175,7 +178,7 @@
               }
             },
             "ChevronUp": {
-              "description": "Governed icon chevron-up (registry identity, instance of ChevronUp 226:374 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-up-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here).",
+              "description": "Governed icon chevron-up (registry identity, instance of ChevronUp 226:374 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-up-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here). ÉTAT (2.1.0, vague 031) : au survol de la RANGÉE le chevron passe en {color.etat.accordion-row.chevron-survol} — option S4 tranchée par l'owner le 2026-09-07. Le sélecteur émis est ancré à la racine (.root:hover .ChevronUp), c'est bien le survol de la ligne entière, pas celui du chevron seul.",
               "icon": {
                 "asset": "chevron-up",
                 "size": 32
@@ -195,6 +198,11 @@
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
+              },
+              "states": {
+                "hover": {
+                  "color": "{color.etat.accordion-row.chevron-survol}"
+                }
               }
             }
           },
@@ -261,7 +269,7 @@
           }
         },
         "ChevronDown": {
-          "description": "Governed icon chevron-down (registry identity, instance of ChevronDown 226:373 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-down-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here).",
+          "description": "Governed icon chevron-down (registry identity, instance of ChevronDown 226:373 on the candidate — no more raw vector). 32 in Grand, 24 in Petit (size.accordion-row.chevron-down-petit). Painted color.noir-bleute (owner decision 2026-09-07; the dump does not carry the instance's fill, the binding is stated here). ÉTAT (2.1.0, vague 031) : au survol de la RANGÉE le chevron passe en {color.etat.accordion-row.chevron-survol} — option S4 tranchée par l'owner le 2026-09-07. Le sélecteur émis est ancré à la racine (.root:hover .ChevronDown), c'est bien le survol de la ligne entière, pas celui du chevron seul.",
           "icon": {
             "asset": "chevron-down",
             "size": 32
@@ -281,16 +289,20 @@
           "visibleWhen": {
             "prop": "etat",
             "equals": "ferme"
+          },
+          "states": {
+            "hover": {
+              "color": "{color.etat.accordion-row.chevron-survol}"
+            }
           }
         },
         "trigger": {
-          "description": "Code-only native disclosure trigger; absolutely overlaid so it contributes no Figma layout geometry (on the candidate: absolute, constraints STRETCH so it follows the row width — the 1550 the extraction proposed as a token is the set witness, dropped). Height size.accordion-row.trigger (32) / trigger-petit (24), unchanged from 1.2.0. KNOWN LIMIT (named 2026-09-07): now that the title wraps, this fixed-height overlay only covers the FIRST line of a wrapped title; the rest of the title is not a hit area. Deciding whether the trigger should cover the whole title row belongs to the contract (not the canvas) and is left to the owner.",
+          "description": "Code-only native disclosure trigger; absolutely overlaid so it contributes no Figma layout geometry (on the candidate: absolute, constraints STRETCH so it follows the row width — the 1550 the extraction proposed as a token is the set witness, dropped). ZONE DE CLIC — décision owner du 2026-09-07, la limite nommée le matin même est LEVÉE : l'overlay couvre désormais TOUTE la rangée (inset 0 des quatre côtés), plus une bande de 32/24 px collée en haut. Motif : la bande ne couvrait ni les marges hautes et basses, ni les lignes suivantes d'un titre replié, ni la réponse d'une rangée ouverte — cliquer un peu trop haut ou trop bas ne faisait rien, et l'affordance se lisait comme « seule la flèche réagit ». Les jetons size.accordion-row.trigger / trigger-petit ne sont plus référencés (ils restent au dépôt et au canevas). CONSÉQUENCE ASSUMÉE : la réponse d'une rangée ouverte est sous l'overlay — un clic dessus referme la rangée, et son texte ne se sélectionne pas à la souris sur la page publique. En ÉDITION Odoo l'overlay est déjà neutralisé (pointer-events: none, zone ODOO-019). Le SURVOL ne change pas : il reste le chevron orange, et rien d'autre. FOCUS CLAVIER — FAIT CODE-ONLY nommé (2.1.0) : la zone cliquable est le seul nœud focusable, mais le vocabulaire ancre tout état de part à la racine ; un anneau .trigger:focus-visible ne peut donc pas être porté par le contrat. La règle vit dans la feuille Odoo (jeton color.etat.accordion-row.anneau-focus).",
           "element": "button",
           "attrs": {
             "aria-label": "{titre}"
           },
           "tokens": {
-            "height": "{size.accordion-row.trigger}",
             "padding-inline": "{space.0}",
             "padding-block": "{space.0}"
           },
@@ -308,7 +320,8 @@
               "styles": {
                 "left": "0px",
                 "right": "0px",
-                "top": "0px"
+                "top": "0px",
+                "bottom": "0px"
               }
             },
             {
@@ -317,18 +330,11 @@
               "styles": {
                 "left": "0px",
                 "right": "0px",
-                "top": "0px"
+                "top": "0px",
+                "bottom": "0px"
               }
             }
-          ],
-          "tokensByProp": {
-            "prop": "taille",
-            "map": {
-              "petit": {
-                "height": "{size.accordion-row.trigger-petit}"
-              }
-            }
-          }
+          ]
         }
       },
       "tokens": {
@@ -364,7 +370,7 @@
           "prop": "etat",
           "map": {
             "ferme": {
-              "gap": "{space.24}"
+              "gap": "{space.0}"
             }
           }
         }

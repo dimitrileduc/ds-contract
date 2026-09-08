@@ -1,0 +1,100 @@
+/*
+ * responsive/equipe.pqr.css — ZONE MANUELLE (portage « Équipe v2 », passe 2, 2026-09-07).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.equipe 2.0.0 (axe `presentation`),
+ * réécrites en @media sur les seuils des jetons de rupture :
+ *   Mobile   = base (components.pqr.css, classe `.equipe`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *
+ * POURQUOI CETTE FEUILLE EXISTE — le seul fait code-only de cette section, et il n'a
+ * qu'une cause. Le contrat DIT tout ce qui change par écran (gouttière en tokensByProp,
+ * nombre de colonnes en layoutByProp) et le générateur l'émet correctement : les règles
+ * `.equipe--presentation-tablette`, `-desktop` et `-wide` existent déjà dans
+ * `components.pqr.css`. Mais AUCUN gabarit QWeb ne pose ces classes sur le DOM Odoo —
+ * un bloc déposé est une copie HTML figée, il n'a pas de « mode » à écrire. Les mêmes
+ * valeurs sont donc RECOPIÉES ici sous des @media, à l'identique du contrat, jamais
+ * inventées. Précédent exact et forme reprise : responsive/reassurances.pqr.css (031).
+ *
+ * LA TYPOGRAPHIE N'EST PAS ICI, et c'est voulu : `tokens.pqr.css` porte déjà ses blocs
+ * @media pour --pqr-typography-h3-* (le Nom) et --pqr-typography-overline-* (le Poste),
+ * et la carte les monte par ses jetons (ds.member-card 2.1.0). Recopier une taille de
+ * police ici serait une seconde source. Règle A4 étape 4 du mode d'emploi (docs/16).
+ *
+ * LE DÉCLENCHEUR DU SURVOL n'est pas ici non plus : il vit dans
+ * responsive/member-card.pqr.css, zone ODOO-EQUIPE-V2-MEMBER-SURVOL (passe 1).
+ *
+ * VÉRIFICATION DE LA GRILLE, au pixel, depuis le dump v1.8 du set 2777:30992 :
+ *   Mobile   342 de contenu, 2 colonnes : (342 − 32) / 2 = 155,00
+ *   Tablette 738 de contenu, 3 colonnes : (738 − 64) / 3 = 224,67
+ *   Desktop 1088 de contenu, 3 colonnes : (1088 − 64) / 3 = 341,33
+ *   Wide    1550 de contenu, 4 colonnes : (1550 − 96) / 4 = 363,50
+ * — exactement les quatre largeurs de carte relevées sur les instances du canevas.
+ */
+
+/* ODOO-EQUIPE-V2-GRILLE BEGIN */
+
+/* ODOO-EQUIPE-V2-CELLULE-CENTREE — fait CODE-ONLY, mesuré puis nommé (2026-09-07).
+ *
+ * Figma CENTRE une carte dans sa cellule de grille ; CSS l'ÉTIRE. Le dump du set
+ * 2777:30992 donne, sur la part `grid`, `layout.counter = "CENTER"` (et
+ * `primary = "CENTER"`) : une carte plus courte que sa rangée est posée au MILIEU
+ * de la rangée. La valeur initiale de `align-items` en grille CSS est `stretch` :
+ * la carte est tirée sur toute la hauteur de la rangée et son contenu, en colonne
+ * flex sans justification, retombe EN HAUT.
+ *
+ * Pourquoi ce n'est pas dans le contrat, et ce n'est pas un oubli : le schéma
+ * REFUSE `align` sur une part `display: "grid"`, par nom — « display:"grid" does
+ * not support align in the bounded fixed-track subset »
+ * (packages/schema/src/contract-schema.ts, superRefine de LayoutSchema). Le fait
+ * ne peut donc pas être porté ; il est écrit ici et nommé dans la description de
+ * la part `grid` du contrat.
+ *
+ * CE QUE ÇA COÛTAIT, mesuré avant/après sur les quatre planches : les rangées dont
+ * les cartes n'ont pas toutes la même hauteur décalaient la carte courte vers le
+ * haut — 12,5 px en Wide sur la première rangée (cartes de 452,5 dans une rangée
+ * de 477,5). Écart bloc contre planche AVANT : 390 → 0,52 % · 834 → 4,74 % ·
+ * 1200 → 0,45 % · 1728 → 2,93 %. Les deux largeurs saines sont précisément les
+ * deux où toutes les cartes d'une rangée ont la même hauteur (1200 : 415,33
+ * partout ; 390 : les deux cartes de chaque rangée se replient pareil) — ce qui
+ * est la preuve de la cause, pas une coïncidence.
+ */
+.s_pqr_equipe.equipe .equipe__grid {
+  align-items: center;
+}
+
+/* Tablette ≥ 768 : gouttière 48, la grille passe de 2 à 3 colonnes. */
+@media (min-width: 768px) {
+  .s_pqr_equipe.equipe {
+    padding-inline: var(--pqr-space-48);
+  }
+  .s_pqr_equipe.equipe .equipe__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Desktop ≥ 992 : gouttière 56. Le nombre de colonnes NE CHANGE PAS (3, comme en
+ * tablette) — le contrat porte bien `desktop: { columns: 3 }`, et la règle est
+ * répétée ici plutôt que sous-entendue, pour que la feuille se lise sans avoir à
+ * savoir laquelle des trois requêtes précédentes est encore active. */
+@media (min-width: 992px) {
+  .s_pqr_equipe.equipe {
+    padding-inline: var(--pqr-space-56);
+  }
+  .s_pqr_equipe.equipe .equipe__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Wide ≥ 1400 : gouttière 89, la grille passe à 4 colonnes. */
+@media (min-width: 1400px) {
+  .s_pqr_equipe.equipe {
+    padding-inline: var(--pqr-space-89);
+  }
+  .s_pqr_equipe.equipe .equipe__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ODOO-EQUIPE-V2-GRILLE END */

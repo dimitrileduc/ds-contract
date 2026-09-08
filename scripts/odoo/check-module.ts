@@ -376,6 +376,21 @@ function testVersions() {
     if (!version) fautes.push(`${source} : version module illisible`);
     else if (manifestVersion && version !== manifestVersion) fautes.push(`${source} : module ${version} ≠ manifeste ${manifestVersion}`);
   };
+  /** Le SENS MANQUANT. `compare` part des entrées PRÉSENTES dans la transcription :
+   *  une racine absente des deux tables n'y était comparée à rien et passait au
+   *  vert. Reçu du 2026-09-08 : `ds.realisations` (vague 035) était entrée dans
+   *  `ROOT_CONTRACT_IDS` et dans `components.xml` sans entrer dans les deux
+   *  `CONTRACT_VERSIONS` — `classifySavedRoot` rendait `unknown` sur chaque bloc
+   *  Réalisations posé, définitivement, et aucune porte ne le disait. La liste
+   *  des racines a un seul propriétaire (`repo-data.ts`) : la couverture se
+   *  vérifie contre lui, pas contre le lock entier (qui porte aussi les
+   *  composants internes et les coquilles, absents de ces tables par dessein). */
+  const compareCouverture = (source: string, transcrits: Set<string>) => {
+    const manquants = ROOT_CONTRACT_IDS.filter((id) => !transcrits.has(id));
+    if (manquants.length > 0) fautes.push(`${source} : racine(s) gouvernée(s) absente(s) de la transcription — ${manquants.join(', ')}`);
+    const intrus = [...transcrits].filter((id) => !(ROOT_CONTRACT_IDS as readonly string[]).includes(id));
+    if (intrus.length > 0) fautes.push(`${source} : ${intrus.join(', ')} transcrit(s) mais absent(s) de ROOT_CONTRACT_IDS`);
+  };
 
   const guardSrc = readFileSync(path.join(ADDON, 'static', 'src', 'js', 'version_guard.js'), 'utf8');
   const guardDigest = guardSrc.match(/CURRENT_GRAPH_DIGEST = "([0-9a-f]{64})"/)?.[1];
@@ -385,7 +400,14 @@ function testVersions() {
   if (!authoringVersion) fautes.push('version_guard.js : CURRENT_AUTHORING_VERSION illisible');
   const guardMap = guardSrc.match(/const CONTRACT_VERSIONS = (\{[^}]*\})/)?.[1];
   if (!guardMap) fautes.push('version_guard.js : CONTRACT_VERSIONS illisible');
-  else for (const [, id, version] of guardMap.matchAll(/"(ds\.[a-z0-9-]+)":\s*"([^"]+)"/g)) compare('version_guard.js', id, version);
+  else {
+    const transcrits = new Set<string>();
+    for (const [, id, version] of guardMap.matchAll(/"(ds\.[a-z0-9-]+)":\s*"([^"]+)"/g)) {
+      compare('version_guard.js', id, version);
+      transcrits.add(id);
+    }
+    compareCouverture('version_guard.js', transcrits);
+  }
 
   const scanSrc = readFileSync(repoPath('scripts', 'odoo', 'scan-saved-versions.ts'), 'utf8');
   const scanDigest = scanSrc.match(/EXPECTED_GRAPH = '([0-9a-f]{64})'/)?.[1];
@@ -398,7 +420,14 @@ function testVersions() {
   }
   const scanMap = scanSrc.match(/const CONTRACTS: Record<string, string> = (\{[^}]*\})/)?.[1];
   if (!scanMap) fautes.push('scan-saved-versions.ts : CONTRACTS illisible');
-  else for (const [, id, version] of scanMap.matchAll(/'(ds\.[a-z0-9-]+)':\s*'([^']+)'/g)) compare('scan-saved-versions.ts', id, version);
+  else {
+    const transcrits = new Set<string>();
+    for (const [, id, version] of scanMap.matchAll(/'(ds\.[a-z0-9-]+)':\s*'([^']+)'/g)) {
+      compare('scan-saved-versions.ts', id, version);
+      transcrits.add(id);
+    }
+    compareCouverture('scan-saved-versions.ts', transcrits);
+  }
 
   const componentsPath = path.join(ADDON, 'views', 'components.xml');
   if (!existsSync(componentsPath)) {

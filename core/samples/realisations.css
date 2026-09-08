@@ -1,0 +1,182 @@
+/* Realisation — from ds.realisation v2.0.0 (core/emit-html.ts) */
+
+.realisation, .realisation *, .realisation *::before, .realisation *::after {
+  box-sizing: border-box;
+}
+
+.realisation {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.realisation__Image {
+  display: flex;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
+  object-fit: cover;
+}
+
+/* Realisations — from ds.realisations v1.0.0 (core/emit-html.ts) */
+
+.realisations, .realisations *, .realisations *::before, .realisations *::after {
+  box-sizing: border-box;
+}
+
+.realisations {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background-color: var(--color-bleu-clair);
+  padding-inline: var(--space-24);
+  gap: var(--space-48);
+  padding-block: var(--space-48);
+}
+
+.realisations--presentation-tablette {
+  padding-inline: var(--space-48);
+  padding-block: var(--space-64);
+}
+
+.realisations--presentation-desktop {
+  padding-inline: var(--space-56);
+  padding-block: var(--space-89);
+}
+
+.realisations--presentation-wide {
+  padding-inline: var(--space-89);
+  padding-block: var(--space-128);
+}
+
+.realisations__EnTete {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-16);
+}
+
+.realisations--presentation-desktop .realisations__EnTete {
+  gap: var(--space-64);
+}
+
+.realisations--presentation-wide .realisations__EnTete {
+  gap: var(--space-64);
+}
+
+.realisations--presentation-desktop .realisations__EnTete {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.realisations--presentation-wide .realisations__EnTete {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.realisations__SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.realisations__Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.realisations__Titre {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: center;
+}
+
+.realisations__Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.realisations--presentation-desktop .realisations__Titre {
+  text-align: left;
+}
+
+.realisations--presentation-wide .realisations__Titre {
+  text-align: left;
+}
+
+.realisations--enTete-accroche .realisations__Titre {
+  text-align: center;
+}
+
+.realisations__Texte {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir);
+  font-family: var(--typography-paragraphe-family);
+  font-size: var(--typography-paragraphe-size);
+  font-weight: var(--typography-paragraphe-weight);
+  line-height: var(--typography-paragraphe-line-height);
+  text-align: left;
+}
+
+.realisations__Texte > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.realisations__Grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-16);
+}
+
+.realisations--presentation-tablette .realisations__Grille {
+  gap: var(--space-64);
+}
+
+.realisations--presentation-desktop .realisations__Grille {
+  gap: var(--space-64);
+}
+
+.realisations--presentation-wide .realisations__Grille {
+  gap: var(--space-64);
+}
+
+.realisations--presentation-desktop .realisations__Grille {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.realisations--presentation-wide .realisations__Grille {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

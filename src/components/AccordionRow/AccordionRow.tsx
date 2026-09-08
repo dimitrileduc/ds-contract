@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.0.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef, useState, useId } from 'react';

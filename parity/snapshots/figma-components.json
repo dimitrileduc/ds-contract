@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788798542702,
+  "extractedAt": 1788814944948,
   "sets": [
     {
       "name": "Input",
@@ -777,21 +777,30 @@
     },
     {
       "name": "MemberCard",
-      "nodeId": "2074:2072",
-      "key": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-      "description": "MemberCard — generated from contract ds.member-card v1.3.0",
-      "variantCount": 1,
+      "nodeId": "2777:31008",
+      "key": "758a8b0182f344cbb005b184713fb2dc0785b728",
+      "description": "Carte membre Piqueray. Axe Etat=Defaut|Survol : au survol, le plan photo « normal » passe en opacite 0 et laisse voir le plan « funIa » dessous (transition 300 ms), fait porte par l'atome MemberPicture.",
+      "variantCount": 2,
       "properties": {
-        "Nom#2074:36": {
+        "Nom#2777:210": {
           "type": "TEXT",
           "defaultValue": "Cécilia Piqueray",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Poste#2074:37": {
+        "Poste#2777:211": {
           "type": "TEXT",
           "defaultValue": "Gérante",
           "variantOptions": null,
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Defaut",
+          "variantOptions": [
+            "Defaut",
+            "Survol"
+          ],
           "preferredValues": null
         }
       },
@@ -2361,6 +2370,65 @@
       "description": "",
       "variantCount": 4,
       "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Equipe",
+      "nodeId": "2777:30992",
+      "key": "e5563df1e3d6a5e6d023174576ec6d16f54f997b",
+      "description": "Section Equipe Piqueray, v2 responsive. Axe Presentation=Mobile|Tablette|Desktop|Wide (390/834/1200/1728). La gouttiere vit dans la racine et est liee aux variables space 24/48/56/89 ; grille native 1/2/3/4 colonnes, ecarts lies a space 32. Carte en remplissage de piste : 342 / 353 / 341,33 / 363,5. Candidat adopte le 2026-09-07 ; le master v1 Equipe reste en place tant que le contrat n'est pas bascule.",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "MemberCard",
+        "MemberPicture"
+      ]
+    },
+    {
+      "name": "Coordonnees",
+      "nodeId": "2778:34448",
+      "key": "82e06103d9170e82bbdc02fff2d6468686f6a0f7",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Accroche#2778:212": {
+          "type": "TEXT",
+          "defaultValue": "Contact",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2778:217": {
+          "type": "TEXT",
+          "defaultValue": "Nos coordonnées",
+          "variantOptions": null,
+          "preferredValues": null
+        },
         "Presentation": {
           "type": "VARIANT",
           "defaultValue": "Mobile",
@@ -4890,6 +4958,17 @@
           "codeSyntax": null,
           "values": {
             "Value": "0 12px 32px rgba(0,0,0,0.20)"
+          }
+        },
+        {
+          "name": "size/coordonnees/panneau-desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": "var(--size-coordonnees-panneau-desktop)",
+          "values": {
+            "Value": 400
           }
         }
       ]

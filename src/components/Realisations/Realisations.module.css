@@ -1,0 +1,161 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/realisations.contract.json (ds.realisations v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background-color: var(--color-bleu-clair);
+  padding-inline: var(--space-24);
+  gap: var(--space-48);
+  padding-block: var(--space-48);
+}
+
+.presentation-tablette {
+  padding-inline: var(--space-48);
+  padding-block: var(--space-64);
+}
+
+.presentation-desktop {
+  padding-inline: var(--space-56);
+  padding-block: var(--space-89);
+}
+
+.presentation-wide {
+  padding-inline: var(--space-89);
+  padding-block: var(--space-128);
+}
+
+.EnTete {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-16);
+}
+
+.presentation-desktop .EnTete {
+  gap: var(--space-64);
+}
+
+.presentation-wide .EnTete {
+  gap: var(--space-64);
+}
+
+.presentation-desktop .EnTete {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.presentation-wide .EnTete {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: center;
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.presentation-desktop .Titre {
+  text-align: left;
+}
+
+.presentation-wide .Titre {
+  text-align: left;
+}
+
+.enTete-accroche .Titre {
+  text-align: center;
+}
+
+.Texte {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir);
+  font-family: var(--typography-paragraphe-family);
+  font-size: var(--typography-paragraphe-size);
+  font-weight: var(--typography-paragraphe-weight);
+  line-height: var(--typography-paragraphe-line-height);
+  text-align: left;
+}
+
+.Texte > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.Grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-16);
+}
+
+.presentation-tablette .Grille {
+  gap: var(--space-64);
+}
+
+.presentation-desktop .Grille {
+  gap: var(--space-64);
+}
+
+.presentation-wide .Grille {
+  gap: var(--space-64);
+}
+
+.presentation-desktop .Grille {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.presentation-wide .Grille {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}

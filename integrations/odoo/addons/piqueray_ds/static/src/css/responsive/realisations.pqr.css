@@ -1,0 +1,46 @@
+/* ds.realisations — faits CODE-ONLY, un par règle, chacun commenté.
+ *
+ * Base = Mobile : déjà émise dans generated/components.pqr.css.
+ * Cette feuille porte (1) ce que le contrat dit par variante mais qu aucun QWeb ne pose,
+ * et (2) les deux faits que le contrat ne PEUT pas dire. Rien d autre : aucune valeur de
+ * typographie recopiée (tokens.pqr.css porte ses @media), aucune géométrie inventée.
+ * Chargée après generated/components.pqr.css, à spécificité égale (0,2,0 au plus). */
+
+/* (1) FAIT CODE-ONLY — l axe `enTete`. Le contrat le dit par `visibleWhen`, mais
+ *     `emit-html` ne projette pas la visibilité conditionnelle : les deux formes vivent
+ *     dans le DOM (toujours rendues) et la classe de composition en masque une. */
+.realisations--enTete-presentation .realisations__Accroche { display: none; }
+.realisations--enTete-accroche .realisations__Texte { display: none; }
+
+/* (2) FAIT CODE-ONLY — la grande tuile occupe 2×2 cellules.
+ *     `layout.columns` ne gouverne que des pistes ÉGALES ; les zones, spans et
+ *     chevauchements sont un CARRY-CODE-ONLY déclaré (docs/FIGMA-CAPABILITY-MATRIX.md,
+ *     ligne 62). La règle est bornée à la PREMIÈRE tuile — aucune autre n est touchée. */
+.realisations__Grille > .realisation:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* (3) L axe `presentation` du contrat, posé par viewport : aucun QWeb ne pose
+ *     `.realisations--presentation-<mode>`, donc les valeurs par variante sont
+ *     re-portées ici PAR LEUR VARIABLE DE JETON, jamais par un chiffre. */
+
+@media (min-width: 768px) { /* Tablette */
+  .realisations { padding-inline: var(--pqr-space-48); padding-block: var(--pqr-space-64); }
+  .realisations__Grille { gap: var(--pqr-space-64); }
+}
+
+@media (min-width: 992px) { /* Desktop */
+  .realisations { padding-inline: var(--pqr-space-56); padding-block: var(--pqr-space-89); }
+  .realisations__EnTete { flex-direction: row; align-items: flex-end; gap: var(--pqr-space-64); }
+  .realisations__Titre { text-align: left; }
+  .realisations__Grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* La forme `accroche` reprend le centre à toutes les largeurs — mêmes règle et même
+     ordre que la CSS générée, où `.realisations--enTete-accroche .realisations__Titre`
+     est posée APRÈS les deux règles de présentation et les gagne à spécificité égale. */
+  .realisations--enTete-accroche .realisations__Titre { text-align: center; }
+}
+
+@media (min-width: 1400px) { /* Wide */
+  .realisations { padding-inline: var(--pqr-space-89); padding-block: var(--pqr-space-128); }
+}

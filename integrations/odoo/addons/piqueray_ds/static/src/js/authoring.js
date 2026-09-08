@@ -486,8 +486,10 @@ export class PiquerayTexteSeoRowOption extends BaseOptionComponent {
 }
 
 // ODOO-022 (US1) — panneau Coordonnées. Le texte se modifie en ligne ; le
-// panneau ne porte que les liens réseaux sociaux (Q-C2). Aucune action média :
-// le plan Google est un placeholder jusqu'à l'API custom (décision gate).
+// panneau porte les liens réseaux sociaux (Q-C2) et, depuis le 2026-09-08,
+// l'adresse du plan d'accès. La phrase qui tenait ici — « aucune action média :
+// le plan Google est un placeholder jusqu'à l'API custom » — est LEVÉE : sa
+// prémisse était fausse, l'embed n'a jamais demandé de clé (voir SetMapAddressAction).
 export class PiquerayCoordonneesOption extends BaseOptionComponent {
     static template = "piqueray_ds.CoordonneesOption";
     static selector = ".s_pqr_coordonnees";
@@ -661,6 +663,84 @@ export class SetLinkHrefAction extends BuilderAction {
     }
 }
 
+/** ODOO-035 — l'adresse du plan d'accès. Le plan est un embed Google SANS CLÉ
+ * (`maps.google.com/maps?q=…&output=embed`, la route qu'utilise le bloc `s_map`
+ * d'Odoo lui-même).
+ *
+ * TROIS PIÈGES PAYÉS EN REVUE, chacun corrigé ici :
+ *
+ * (1) ATOMICITÉ. La première version écrivait `data-pqr-map-address` AVANT de
+ *     résoudre l'iframe. Or une page Odoo est du HTML FIGÉ : toute page composée
+ *     avant le 2026-09-08 porte encore l'ancienne `<img>` sous le MÊME
+ *     `data-pqr-part`. L'attribut partait, l'iframe n'existait pas, la fonction
+ *     sortait en silence — et `getValue` relisait l'attribut, donc le panneau
+ *     affichait la nouvelle adresse pendant que l'écran gardait l'ancienne carte.
+ *     Le cadre est désormais résolu d'abord, et une page restée à l'ancienne
+ *     `<img>` est REMISE À NIVEAU sur place plutôt qu'ignorée.
+ *     LIMITE NOMMÉE : une page jamais rouverte ni recomposée garde son image fixe.
+ *
+ * (2) UNE REQUÊTE GOOGLE PAR FRAPPE. `BuilderTextInput` appelle l'action en
+ *     APERÇU à chaque touche. Réécrire la `src` à chaque fois, c'est ~46
+ *     rechargements de carte pour taper l'adresse : scintillement dans l'éditeur
+ *     et un embed sans clé exposé au throttling de Google. En aperçu on ne touche
+ *     donc QUE l'attribut ; la carte se recharge à la validation.
+ *
+ * (3) UNE URL COLLÉE N'EST PAS UNE ADRESSE. Le geste le plus probable est de
+ *     coller le lien « Partager » de Google Maps ou le bloc `<iframe>` de
+ *     « Intégrer une carte ». Encodé tel quel, `q=` ne désigne aucun lieu : carte
+ *     vide, aucun message. Refusé sans casser l'état courant, même grammaire que
+ *     `SetCtaHrefAction`.
+ *
+ * Interroger sur le NOM DE L'ÉTABLISSEMENT et pas seulement la rue : c'est ce qui
+ * fait apparaître la fiche avec la note Google. Le conseil est dans le panneau. */
+export class SetMapAddressAction extends BuilderAction {
+    static id = "pqrSetMapAddress";
+    plan(editingElement) {
+        return editingElement.matches?.('[data-pqr-part="coordonnees-map"]')
+            ? editingElement
+            : editingElement.querySelector('[data-pqr-part="coordonnees-map"]');
+    }
+    /** Remet à niveau une page figée d'avant le 2026-09-08 : l'ancienne `<img>`
+     *  devient le conteneur + son iframe, avec les mêmes classes et le même
+     *  `data-pqr-part`, donc la même boîte et la même adresse de panneau. */
+    cadre(plan) {
+        const existant = plan.querySelector("iframe.coordonnees__mapEmbed");
+        if (existant) return { plan, cadre: existant };
+        if (plan.tagName !== "IMG") return { plan, cadre: null };
+        const conteneur = plan.ownerDocument.createElement("div");
+        conteneur.className = plan.className;
+        conteneur.classList.add("o_not_editable");
+        conteneur.setAttribute("data-pqr-part", "coordonnees-map");
+        const cadre = plan.ownerDocument.createElement("iframe");
+        cadre.className = "coordonnees__mapEmbed";
+        cadre.setAttribute("loading", "lazy");
+        cadre.setAttribute("referrerpolicy", "no-referrer");
+        conteneur.appendChild(cadre);
+        plan.replaceWith(conteneur);
+        return { plan: conteneur, cadre };
+    }
+    getValue({ editingElement }) {
+        return this.plan(editingElement)?.dataset?.pqrMapAddress || "";
+    }
+    apply({ editingElement, value, isPreviewing }) {
+        const trouve = this.plan(editingElement);
+        if (!trouve) return;
+        const adresse = String(value ?? "").trim();
+        // Champ vidé, ou URL / balise collée : on refuse la valeur sans toucher au DOM.
+        if (!adresse || /^https?:\/\//i.test(adresse) || adresse.startsWith("<")) return;
+        if (isPreviewing) {
+            trouve.dataset.pqrMapAddress = adresse;
+            return;
+        }
+        const { plan, cadre } = this.cadre(trouve);
+        if (!cadre) return;
+        const q = encodeURIComponent(adresse);
+        plan.dataset.pqrMapAddress = adresse;
+        cadre.setAttribute("src", `https://maps.google.com/maps?q=${q}&t=m&z=15&ie=UTF8&iwloc=B&output=embed`);
+        cadre.setAttribute("title", `Plan d’accès — ${adresse}`);
+    }
+}
+
 /** ODOO-023 — sélecteur de colonnes {2,3} de la section Catégories. C'est le
  * PREMIER enum RÉDACTEUR de la couche Odoo (les variantes des autres sections
  * sont fixées au poser). Mécanique : la valeur bascule la classe modificatrice
@@ -803,6 +883,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
             SetLinkHrefAction,
             SetPartTextAction,
             SetSummaryStarsAction,
+            SetMapAddressAction,
             // SetColonnesAction retirée le 2026-09-02 (vague 031) : plus de réglage Colonnes.
             SetFooterCtaHrefAction,
             AddCarteAction,

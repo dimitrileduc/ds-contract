@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "c6789471",
+    "gitCommit": "640ea7e0",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -55,7 +55,7 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "stable",
       "category": "molecule",
       "propNames": [
@@ -81,7 +81,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -91,7 +91,7 @@
         "iconLeftGlyph",
         "iconRightGlyph"
       ],
-      "summary": "Piqueray button."
+      "summary": "2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse."
     },
     {
       "id": "ds.carousel-controls",
@@ -105,7 +105,7 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "2.2.0",
+      "version": "3.0.1",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -118,7 +118,7 @@
         "imageAlt",
         "ctaLabel"
       ],
-      "summary": "2.2.0 (2026-09-05, vague 033) : la carte repond au geste."
+      "summary": "3.0.1 (2026-09-07, vague 033 — le SURVOL du style EMPILE, et ce que le contrat ne peut pas en dire) : PATCH de DESCRIPTION SEULE, aucune modification fonctionnelle."
     },
     {
       "id": "ds.carte",
@@ -142,14 +142,15 @@
     {
       "id": "ds.categories-principales",
       "name": "CategoriesPrincipales",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "section",
       "propNames": [
         "presentation",
+        "style",
         "cartes"
       ],
-      "summary": "Piqueray section « Catégories principales », responsive."
+      "summary": "2.1.0 (2026-09-07, vague 031) : le reglage `style` REVIENT, en MINEUR additif, et il revient parce qu'une page reelle le demande."
     },
     {
       "id": "ds.checkbox",
@@ -163,32 +164,19 @@
       "summary": "Piqueray checkbox."
     },
     {
-      "id": "ds.section-header",
-      "name": "SectionHeader",
-      "version": "3.0.0",
-      "status": "draft",
-      "category": "molecule",
-      "propNames": [
-        "titre",
-        "accroche",
-        "afficherAccroche",
-        "alignement"
-      ],
-      "summary": "Piqueray SectionHeader v3."
-    },
-    {
       "id": "ds.coordonnees",
       "name": "Coordonnees",
-      "version": "2.2.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "mapUrl",
         "mapAlt",
         "accroche",
         "titre"
       ],
-      "summary": "Piqueray Coordonnees."
+      "summary": "Piqueray section « Nos coordonnées », responsive."
     },
     {
       "id": "ds.copyright",
@@ -219,53 +207,59 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
         "etat",
         "taille",
         "src",
-        "alt"
+        "alt",
+        "srcSurvol",
+        "altSurvol"
       ],
       "summary": "Piqueray member picture."
     },
     {
       "id": "ds.member-card",
       "name": "MemberCard",
-      "version": "1.4.0",
+      "version": "2.1.1",
       "status": "draft",
       "category": "molecule",
       "propNames": [
+        "etat",
         "nom",
         "poste",
         "imageUrl",
-        "imageAlt"
+        "imageAlt",
+        "imageSurvolUrl",
+        "imageSurvolAlt"
       ],
-      "summary": "Piqueray MemberCard."
+      "summary": "Piqueray MemberCard, version 2 (2026-09-07, passe 1 du portage « Équipe v2 »)."
     },
     {
       "id": "ds.equipe",
       "name": "Equipe",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "presentation",
         "items"
       ],
-      "summary": "Piqueray Equipe."
+      "summary": "Piqueray Equipe, version 2 (2026-09-07, passe 2 du portage « Equipe v2 »)."
     },
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "1.3.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
-        "items",
-        "ligne3"
+        "presentation",
+        "items"
       ],
-      "summary": "Piqueray FAQ."
+      "summary": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide)."
     },
     {
       "id": "ds.input",
@@ -347,6 +341,20 @@
         "items"
       ],
       "summary": "Piqueray Footer, responsive."
+    },
+    {
+      "id": "ds.section-header",
+      "name": "SectionHeader",
+      "version": "3.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "propNames": [
+        "titre",
+        "accroche",
+        "afficherAccroche",
+        "alignement"
+      ],
+      "summary": "Piqueray SectionHeader v3."
     },
     {
       "id": "ds.formulaire",
@@ -541,7 +549,7 @@
     {
       "id": "ds.realisation",
       "name": "Realisation",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -549,12 +557,28 @@
         "imageUrl",
         "imageAlt"
       ],
-      "summary": "Piqueray Realisation."
+      "summary": "Piqueray Realisation — la tuile photo de la section Realisations."
+    },
+    {
+      "id": "ds.realisations",
+      "name": "Realisations",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "propNames": [
+        "presentation",
+        "enTete",
+        "accroche",
+        "titre",
+        "texte",
+        "photos"
+      ],
+      "summary": "Section Realisations — la mosaïque de photos de chantiers."
     },
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -564,7 +588,7 @@
         "titre",
         "items"
       ],
-      "summary": "Piqueray section « Réassurances », responsive."
+      "summary": "2.1.1 (2026-09-07) : en WIDE, la rangee de cartes cesse d'etre une grille a nombre de colonnes FIXE pour devenir une simple ligne."
     },
     {
       "id": "ds.sav",

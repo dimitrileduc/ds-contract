@@ -2,13 +2,37 @@
   "$schema": "./contract.schema.json",
   "id": "ds.member-card",
   "name": "MemberCard",
-  "version": "1.4.0",
-  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
+  "version": "2.1.1",
+  "description": "Piqueray MemberCard, version 2 (2026-09-07, passe 1 du portage « Équipe v2 »). Extraite du COMPONENT_SET candidat 2777:31008 (clé 758a8b0182f344cbb005b184713fb2dc0785b728), relevé dump v1.8 du 2026-09-07 — relue et adoptée, pas écrite.\n\nCE QUI CHANGE PAR RAPPORT À 1.4.0, ET POURQUOI LA VERSION EST MAJEURE.\n(1) ANCRES : la source n'est plus le COMPONENT 2074:2072 du set 0b23b8d87dfa08866cc767b34c18fedddf39a4d8, mais un COMPONENT_SET neuf, de clé neuve. La règle A3-9 du mode d'emploi (docs/16) rend le bump MAJEUR dès que les ancres changent de set : c'est le seul motif de rupture, aucune prop ne disparaît et aucune valeur d'enum ne se resserre.\n(2) AXE D'ÉTAT : le set porte désormais un axe VARIANT « Etat » à deux valeurs (Defaut, Survol). La prop `etat` est ajoutée et THREADÉE jusqu'à l'instance ds.member-picture, qui possédait déjà le même axe depuis 1.3.0 mais recevait la valeur figée defaut. Le survol de la carte fait donc apparaître le plan funIa sous le plan normal, exactement comme la variante Survol du canevas l'épingle.\n(3) TYPOGRAPHIE RESPONSIVE : le nom et le poste montent les RÔLES du design system au lieu des valeurs figées de l'écran 1728. Avant, le nom rendait 32/40 et le poste 16/20 sur les QUATRE écrans — une carte de 342 de large en mobile portait un nom de 32. Deux styles de texte dédiés (« Nom membre », « Poste membre »), liés à des variables existantes, ont été créés sur le canevas le 2026-09-07 (décision owner sur planche comparative, aucune variable créée). Le nom prend le rôle h3 : 20/25 en Mobile, 24/30 en Tablette et Desktop, 32/40 en Wide. Le poste prend le rôle overline : 14/20 en Mobile et Tablette, 16/20 en Desktop, 20/25 en Wide.\n(4) LARGEUR REMPLIE : le cadre `text` et ses deux textes passent en largeur REMPLIE (fillWidth au dump). Ils se replient donc quand la carte rétrécit, au lieu de pousser la boîte. Une surcharge « min-width: 200 » a été retirée de 64 instances côté canevas le 2026-09-07.\n\nDEUX DÉVIATIONS NOMMÉES SUR LA GRAISSE, et ce sont les seules.\n· Le rôle h3 fait VARIER sa graisse (SemiBold en Mobile, Medium au-dessus) ; le nom est dessiné Montserrat Regular sur les deux variantes du set. La part porte donc la graisse font.weight.regular, FIXE, et non le canal de graisse du rôle. Écart assumé : la taille et l'interligne suivent le rôle, la graisse ne le suit pas.\n· Le rôle overline fait VARIER sa graisse (Regular en Mobile et Tablette, Medium au-dessus) ; le poste est dessiné Montserrat SemiBold sur les deux variantes. La part porte donc font.weight.semibold, FIXE. Même écart, même raison.\n\nFAIT CODE-ONLY, nommé ici et dans la description de la part MemberPicture. Sur une page, le pointeur de la personne qui visite est sur la CARTE, jamais sur la photo : rien dans le schéma ne dit « quand mon ancêtre est survolé, applique telle valeur de prop à mon instance enfant ». Le déclencheur du survol vit donc dans la projection Odoo (zone ODOO-EQUIPE-V2-MEMBER-SURVOL de responsive/member-card.pqr.css), qui re-pose sous le survol de la carte le canal d'opacité que la variante Survol du contrat décrit déjà. Précédent exact : la règle (6) de la zone ODOO-023-FOOTER-BRIDGE, vague 032.\n\nPOURQUOI UN AXE DE PROP ET NON LE CANAL `states`, vérifié en lisant le schéma et le référé plutôt que supposé. Les trois molécules voisines qui portent un état (ds.product-card, ds.review-card, ds.carte-categorie) déclarent states hover parce que leur survol est une ombre ou une couleur. Ici le survol est un changement d'OPACITÉ, et il porte sur une part non-racine d'un composant IMBRIQUÉ. Deux refus, chacun par nom : le canal d'états d'une part non-racine n'accepte que color, background-color et border-color (emit-react PART_STATE_CHANNELS), et une part `component` ne porte de toute façon ni états ni faits déclarés. L'axe VARIANT du canevas est donc la seule traduction fidèle — et c'est aussi celle qui rend les deux états visibles sur les deux surfaces.\n\nLes surcharges IMAGE du portrait restent des données photo explicites, code-only, propagées à la ds.member-picture composée sans aplatir son anatomie d'image.\n\nVERSION 2.1.0 (2026-09-07, passe 2) — LA PHOTO DE SURVOL A ENFIN UNE ROUTE. Ajout MINEUR et purement additif de deux props, imageSurvolUrl et imageSurvolAlt, threadees telles quelles vers srcSurvol et altSurvol de l'instance ds.member-picture (1.4.0). Motif, releve et non suppose : le master empile DEUX photos, mais le plan du dessous n'avait aucun canal — le gabarit Odoo le rendait sans src, et le survol effacait le visage au lieu d'en decouvrir un second (trou nomme par la passe 1, journal specs/tiny/equipe-v2/member-card.md section 7 point 3). Rien d'autre ne change : ni anatomie, ni jetons, ni typographie, ni ancres.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "etat",
+      "description": "État visuel de la carte : repos ou survol. Extrait de la propriété VARIANT « Etat » du set candidat 2777:31008 (2026-09-07). La valeur est threadée telle quelle à l'instance ds.member-picture composée : au survol, le plan normal passe en opacité 0 et laisse voir le plan funIa. Le DÉCLENCHEUR du survol est code-only (le pointeur est sur la carte, pas sur la photo) — voir la description du contrat.",
+      "type": {
+        "enum": [
+          "defaut",
+          "survol"
+        ]
+      },
+      "default": "defaut",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "defaut": "Defaut",
+            "survol": "Survol"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
     {
       "name": "nom",
       "type": "text",
@@ -63,11 +87,40 @@
           "prop": "imageAlt"
         }
       }
+    },
+    {
+      "name": "imageSurvolUrl",
+      "description": "La ROUTE du portrait de SURVOL, jamais ses octets — meme convention que imageUrl, meme trou A5. Elle est threadee a la prop srcSurvol de l'instance ds.member-picture composee, qui la pose sur son plan funIa. Ouverte en 2.1.0 : avant, ce plan etait rendu sans src et le survol montrait le lavis technique a la place d'un second visage. Defaut vide.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageSurvolUrl"
+        }
+      }
+    },
+    {
+      "name": "imageSurvolAlt",
+      "description": "Alternative textuelle du portrait de survol, threadee a altSurvol de l'instance ds.member-picture. Vide par defaut.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageSurvolAlt"
+        }
+      }
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Racine de la carte : colonne centrée, photo puis bloc de texte, ecart de 16 (jeton space.16, lie a la variable space/16 au dump). La largeur dessinee 364 est un TEMOIN (variable size/member-card/root) : la boite appartient a la section qui compose la carte, la racine reste en largeur remplie avec 364 pour largeur de reference.",
       "layout": {
         "display": "flex",
         "direction": "column",
@@ -77,7 +130,7 @@
       },
       "geometryJustification": {
         "cause": "typographic-subpixel-rounding",
-        "reason": "The text group remains true HUG content. Figma and Chromium measure the same Montserrat strings with subpixel advance differences below 0.8 CSS px; no fixed width, letter-spacing, or transform compensation is introduced.",
+        "reason": "Version 2 (2026-09-07) : le groupe de texte n'est plus HUG, il est en largeur REMPLIE — sa largeur est celle de la carte et ne depend plus de la mesure des chaines. Le recu reste declare, avec ses bornes a zero : aucune largeur fixe, aucun letter-spacing, aucune transformation de compensation n'est introduite, ni ici ni ailleurs.",
         "bounds": {
           "root": {
             "x": 0,
@@ -97,6 +150,7 @@
       },
       "parts": {
         "MemberPicture": {
+          "description": "Portrait circulaire, instance de ds.member-picture. La prop etat de la carte lui est threadee : au repos le plan normal est opaque, au survol il passe en opacite 0 et decouvre le plan funIa. FAIT CODE-ONLY, nomme : sur une page le pointeur est sur la CARTE et non sur la photo, et aucun canal du schema ne dit « quand mon ancetre est survole, applique telle valeur de prop a mon instance enfant ». Le declencheur est donc re-pose dans la projection Odoo (zone ODOO-EQUIPE-V2-MEMBER-SURVOL), par le canal que cette variante decrit deja, jamais par une valeur inventee. Precedent : regle (6) de la zone ODOO-023-FOOTER-BRIDGE.",
           "layout": {
             "width": "fill",
             "aspectRatio": 1
@@ -104,49 +158,57 @@
           "component": {
             "id": "ds.member-picture",
             "props": {
-              "etat": "defaut",
+              "etat": "{etat}",
               "taille": "member-card",
               "src": "{imageUrl}",
-              "alt": "{imageAlt}"
+              "alt": "{imageAlt}",
+              "srcSurvol": "{imageSurvolUrl}",
+              "altSurvol": "{imageSurvolAlt}"
             }
           }
         },
         "text": {
+          "description": "Bloc de texte : colonne centree, ecart de 8 (jeton space.8, lie a la variable space/8 au dump). Version 2 : largeur REMPLIE (fillWidth au dump du 2026-09-07) — le bloc suit la largeur de la carte et laisse ses deux textes se replier, au lieu de pousser la boite. Une surcharge « min-width: 200 » a ete retiree de 64 instances cote canevas le meme jour.",
           "layout": {
             "direction": "column",
-            "align": "center"
+            "align": "center",
+            "width": "fill"
           },
           "tokens": {
             "gap": "{space.8}"
           },
           "parts": {
             "Nom": {
+              "description": "Nom du membre. Version 2 : monte le role responsive h4 du design system (taille et interligne) — 20/25 en Mobile et Tablette, 24/30 en Desktop et Wide. Style de texte Figma « Nom membre », cree le 2026-09-07 et lie aux variables typography/h4 existantes. CHOIX MESURE (2026-09-07, decision owner) : le role h3 (20/24/24/32) avait ete pose d'abord ; sonde du navigateur sur la page reelle, le nom le plus long (« Sandra Magermans ») se repliait sur deux lignes entre 1400 et 1550 px en bande quatre colonnes et entre 768 et 900 px en bande trois colonnes — le nom repliant poussait le poste et desalignait la rangee. h4 est le seul role EXISTANT dont les valeurs ne replient aucun nom a aucune largeur (hors mobile, ou tous se replient ensemble et restent donc alignes) : aucune variable neuve, aucune valeur inventee. DEVIATION NOMMEE : le role h4 est dessine Medium alors que le nom est Montserrat Regular sur les deux variantes du set — la part porte donc la graisse reguliere, FIXE, et non le canal de graisse du role. Largeur remplie, centre. Le letter-spacing releve est 0 : valeur par defaut, non portee.",
+              "layout": {
+                "width": "fill"
+              },
               "content": {
                 "prop": "nom"
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.32}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "40px"
+                "font-size": "{typography.h4.size}",
+                "font-weight": "{font.weight.regular}",
+                "line-height": "{typography.h4.line-height}"
               },
               "declared": {
                 "text-align": "center"
               }
             },
             "Poste": {
+              "description": "Poste du membre. Version 2 : monte le role responsive overline du design system (taille et interligne) — 14/20 en Mobile et Tablette, 16/20 en Desktop, 20/25 en Wide. Style de texte Figma « Poste membre », cree le 2026-09-07 et lie aux variables typography/overline existantes ; couleur inchangee (orange, liee). DEVIATION NOMMEE : le role overline fait varier sa graisse (Regular en Mobile et Tablette, Medium au-dessus) alors que le poste est dessine Montserrat SemiBold sur les deux variantes du set — la part porte donc la graisse semibold, FIXE. Avant la version 2, la part portait 16 et un interligne litteral de 20, la valeur de l'ecran 1728 servie aux quatre ecrans. Largeur remplie, centre. Le letter-spacing releve est 0 : valeur par defaut, non portee.",
+              "layout": {
+                "width": "fill"
+              },
               "content": {
                 "prop": "poste"
               },
               "tokens": {
                 "color": "{color.orange}",
-                "font-size": "{font.size.16}",
-                "font-weight": "{font.weight.semibold}"
-              },
-              "literals": {
-                "line-height": "20px"
+                "font-size": "{typography.overline.size}",
+                "font-weight": "{font.weight.semibold}",
+                "line-height": "{typography.overline.line-height}"
               },
               "declared": {
                 "text-align": "center"
@@ -164,9 +226,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-      "nodeId": "2074:2072",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "758a8b0182f344cbb005b184713fb2dc0785b728",
+      "nodeId": "2777:31008",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/MemberCard",

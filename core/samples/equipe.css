@@ -1,4 +1,4 @@
-/* MemberPicture — from ds.member-picture v1.3.0 (core/emit-html.ts) */
+/* MemberPicture — from ds.member-picture v1.4.0 (core/emit-html.ts) */
 
 .member-picture, .member-picture *, .member-picture *::before, .member-picture *::after {
   box-sizing: border-box;
@@ -69,7 +69,7 @@
   opacity: 0;
 }
 
-/* MemberCard — from ds.member-card v1.4.0 (core/emit-html.ts) */
+/* MemberCard — from ds.member-card v2.1.1 (core/emit-html.ts) */
 
 .member-card, .member-card *, .member-card *::before, .member-card *::after {
   box-sizing: border-box;
@@ -90,26 +90,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-8);
 }
 
 .member-card__Nom {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
+  font-size: var(--typography-h4-size);
   font-weight: var(--font-weight-regular);
-  line-height: 40px;
+  line-height: var(--typography-h4-line-height);
   text-align: center;
 }
 
 .member-card__Poste {
+  width: 100%;
+  min-width: 0;
   color: var(--color-orange);
-  font-size: var(--font-size-16);
+  font-size: var(--typography-overline-size);
   font-weight: var(--font-weight-semibold);
-  line-height: 20px;
+  line-height: var(--typography-overline-line-height);
   text-align: center;
 }
 
-/* Equipe — from ds.equipe v1.2.0 (core/emit-html.ts) */
+/* Equipe — from ds.equipe v2.0.0 (core/emit-html.ts) */
 
 .equipe, .equipe *, .equipe *::before, .equipe *::after {
   box-sizing: border-box;
@@ -118,20 +124,48 @@
 .equipe {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
+  gap: var(--space-0);
+}
+
+.equipe--presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.equipe--presentation-desktop {
+  padding-inline: var(--space-56);
+}
+
+.equipe--presentation-wide {
+  padding-inline: var(--space-89);
 }
 
 .equipe__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   width: 100%;
   min-width: 0;
   gap: var(--size-equipe-gap-colonnes);
   row-gap: var(--size-equipe-gap-rangees);
+}
+
+.equipe--presentation-tablette .equipe__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.equipe--presentation-desktop .equipe__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.equipe--presentation-wide .equipe__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /* showcase chrome */

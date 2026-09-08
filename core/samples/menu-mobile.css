@@ -173,7 +173,7 @@
   line-height: var(--typography-menu-sous-entree-line-height);
 }
 
-/* Button — from ds.button v2.3.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.4.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -339,6 +339,34 @@
 
 .button--variant-iconOnly:hover:not(:disabled) {
   text-decoration-line: var(--decoration-etat-iconOnly-survol);
+}
+
+.button--variant-default:hover:not(:disabled) {
+  font-weight: var(--typography-etat-default-graisse-survol);
+}
+
+.button--variant-orange:hover:not(:disabled) {
+  font-weight: var(--typography-etat-orange-graisse-survol);
+}
+
+.button--variant-blanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-blanc-graisse-survol);
+}
+
+.button--variant-outlineBlanc:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineBlanc-graisse-survol);
+}
+
+.button--variant-link:hover:not(:disabled) {
+  font-weight: var(--typography-etat-link-graisse-survol);
+}
+
+.button--variant-outlineNoir:hover:not(:disabled) {
+  font-weight: var(--typography-etat-outlineNoir-graisse-survol);
+}
+
+.button--variant-iconOnly:hover:not(:disabled) {
+  font-weight: var(--typography-etat-iconOnly-graisse-survol);
 }
 
 .button--variant-default:active:not(:disabled) {

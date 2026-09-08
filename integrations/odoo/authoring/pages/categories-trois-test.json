@@ -1,0 +1,29 @@
+{
+  "url": "/categories-trois-test",
+  "name": "Categories — trois cartes (essai)",
+  "key": "categories_trois_test",
+  "header_overlay": false,
+  "_note": "Page de PREUVE (2026-09-07) : la section Categories avec TROIS cartes empilees, contenu de la maquette « Motorisation ». Elle demontre que le nombre de colonnes suit le nombre de cartes sans aucun reglage — la racine est deja une ligne flex en Desktop et Wide, et les cartes sont en `width: fill, grow`. Attendu en Wide : 3 colonnes de 474, la largeur meme que la maquette dessine (categorieImage 474x267).",
+  "sections": [
+    {
+      "component": "s_pqr_categories_principales",
+      "cards": [
+        {
+          "titre": "Pour portes de garage",
+          "body": "<strong>SupraMatic &amp; ProMatic.</strong> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "image": "cat_planche_empile"
+        },
+        {
+          "titre": "Pour portails d'entrée",
+          "body": "<strong>RotaMatic (Battant) &amp; LineaMatic (Coulissant).</strong> Fiabilité absolue et détection d’obstacles pour la sécurité de votre famille.",
+          "image": "cat_planche_empile"
+        },
+        {
+          "titre": "Pilotez à distance",
+          "body": "Vérifiez si votre porte est fermée depuis votre lieu de vacances. Le système radio BiSecur utilise un cryptage de niveau bancaire pour une sécurité totale.",
+          "image": "cat_planche_empile"
+        }
+      ]
+    }
+  ]
+}

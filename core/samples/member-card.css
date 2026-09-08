@@ -1,4 +1,4 @@
-/* MemberPicture — from ds.member-picture v1.3.0 (core/emit-html.ts) */
+/* MemberPicture — from ds.member-picture v1.4.0 (core/emit-html.ts) */
 
 .member-picture, .member-picture *, .member-picture *::before, .member-picture *::after {
   box-sizing: border-box;
@@ -69,7 +69,7 @@
   opacity: 0;
 }
 
-/* MemberCard — from ds.member-card v1.4.0 (core/emit-html.ts) */
+/* MemberCard — from ds.member-card v2.1.1 (core/emit-html.ts) */
 
 .member-card, .member-card *, .member-card *::before, .member-card *::after {
   box-sizing: border-box;
@@ -90,22 +90,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-8);
 }
 
 .member-card__Nom {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
+  font-size: var(--typography-h4-size);
   font-weight: var(--font-weight-regular);
-  line-height: 40px;
+  line-height: var(--typography-h4-line-height);
   text-align: center;
 }
 
 .member-card__Poste {
+  width: 100%;
+  min-width: 0;
   color: var(--color-orange);
-  font-size: var(--font-size-16);
+  font-size: var(--typography-overline-size);
   font-weight: var(--font-weight-semibold);
-  line-height: 20px;
+  line-height: var(--typography-overline-line-height);
   text-align: center;
 }
 

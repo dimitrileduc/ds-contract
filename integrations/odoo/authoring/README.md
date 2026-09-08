@@ -103,8 +103,8 @@ Les plus utiles : `hero-title`, `hero-cta`, `hero-background`, `sav-background`,
 ### Les blocs disponibles
 `s_pqr_hero`, `s_pqr_categories_principales`, `s_pqr_presentation`, `s_pqr_sav`,
 `s_pqr_devis`, `s_pqr_reassurances`, `s_pqr_google_reviews`, `s_pqr_equipe`,
-`s_pqr_faq`, `s_pqr_coordonnees`, `s_pqr_texte_seo`, plus `pqr_section_header`
-(un en-tête de section à composer, ex. au-dessus des avis).
+`s_pqr_faq`, `s_pqr_coordonnees`, `s_pqr_texte_seo`, `s_pqr_realisations`.
+(`pqr_section_header` a disparu le 2026-09-08 : chaque section porte son en-tête.)
 
 ## Layout de page (gutter, gap, pleine largeur) — À LIRE avant tout html→odoo
 

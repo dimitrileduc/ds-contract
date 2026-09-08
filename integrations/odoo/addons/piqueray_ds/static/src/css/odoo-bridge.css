@@ -101,13 +101,20 @@
   display: contents;
 }
 
-/* Le plan unifié fermé/ouvert garde le groupe de titre dans les deux états ;
- * en état fermé, la référence porte `gap` sur la rangée elle-même
- * (space-between + gap {space.24}) — le groupe reprend le même jeton pour que
- * l'écart minimal titre/chevron survive au wrapper. */
-.s_pqr_faq .accordion-row__title {
-  gap: var(--pqr-space-24);
-}
+/* Le plan unifié fermé/ouvert garde le groupe de titre dans les deux états, et
+ * ce pont n'a RIEN à y poser. Reçu, parce que la correction s'est faite en deux
+ * temps : une règle `gap: 24` a vécu ici, reprise à tort du groupe parent ; elle
+ * rendait le titre 24 px plus étroit qu'à la référence et le repliait une ligne
+ * plus tôt (+25 px de haut en Mobile, +18 en Tablette). Mesure du 2026-09-07
+ * (FAQ v2, vague 031) : la rangée fermée est un `justify: space-between`, et
+ * Figma IGNORE l'itemSpacing sous space-between (titre 310 px sur une rangée de
+ * 342, pas 286). Le 2026-09-07 la règle est passée à `gap: 0` — juste, mais
+ * inutile : `.accordion-row__title` ne reçoit AUCUN gap de components.pqr.css
+ * (vérifié le 2026-09-08 : les gaps du composant vivent sur `.accordion-row` et
+ * `.accordion-row__trigger`), donc la valeur utilisée était déjà 0. La règle a
+ * donc été retirée. L'écart minimal titre/chevron est produit par space-between,
+ * comme au canevas ; ds.accordion-row 2.1.0 porte le même fait
+ * (etat=ferme → gap space.0). */
 /* ODOO-019-FAQ-MECHANICS END */
 
 /* ODOO-019-CTA-LIEN-BRIDGE BEGIN
@@ -206,32 +213,38 @@
 
 /* ODOO-022-COORDONNEES-BRIDGE BEGIN
  * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
- * La racine porte des largeurs FIXES fidèles à Figma (plan 1152 + wrapper 576 =
- * 1728) ; sans pont, le `min-width` du plan déborderait sur une page plus
- * étroite. Précédent exact : ODOO-019-GOOGLE-REVIEWS-BRIDGE (width:100%;
- * min-width:0 sur l'enfant répété). Le contrat n'est pas modifié. */
+ * 2026-09-07 (contrat 3.0.0, vague 031) : le plan n'a plus de largeur fixe ni de
+ * min-width — il est en REMPLISSAGE et c'est le panneau qui porte sa largeur par
+ * écran (400 puis 576, feuille responsive/coordonnees.pqr.css). Ce qui reste ici
+ * est le seul fait d'hôte : la section remplit son conteneur Website, et le
+ * panneau ne participe pas au rétrécissement flex — sans quoi le partage
+ * deux tiers / un tiers se ferait au prorata au lieu de laisser le plan absorber
+ * la différence. Le contrat n'est pas modifié. */
 .s_pqr_coordonnees.coordonnees {
   width: 100%;
   max-width: 100%;
 }
-/* Le plan fléchit : son min-width de contrat est neutralisé, il absorbe tout le
- * rétrécissement. */
+/* Le plan absorbe tout le rétrécissement. */
 .s_pqr_coordonnees .coordonnees__googleMap {
   min-width: 0;
 }
-/* Le wrapper garde ses 576px (ne participe pas au rétrécissement flex). */
+/* Le panneau garde sa largeur par écran (ne participe pas au rétrécissement). */
 .s_pqr_coordonnees .coordonnees__wrapper {
   flex-shrink: 0;
 }
 
-/* Liens de contenu de Coordonnées — soulignés, à la couleur d'hôte (neutralisation
- * UA seulement ; le contrat ne porte aucun canal text-decoration/color de lien).
- * Bloc contact (tel:/mailto:, Q-C1) ET valeur adresse (lien Google Maps, décision
- * owner 2026-08-20) : l'adresse devient cliquable, destination éditable au popover. */
+/* Liens de contenu de Coordonnées — à la couleur d'hôte (neutralisation UA
+ * seulement ; le contrat ne porte aucun canal color de lien). Bloc contact
+ * (tel:/mailto:, Q-C1) ET valeur adresse (lien Google Maps, décision owner
+ * 2026-08-20) : l'adresse est cliquable, destination éditable au popover.
+ * 2026-09-07 : le SOULIGNEMENT AU REPOS est retiré — le set candidat 2778:34448
+ * n'en dessine aucun (profil d'encre par ligne sur la planche 1728 : aucune
+ * rangée dense sous la ligne de base). L'affordance de lien passe au survol et au
+ * focus, dans responsive/coordonnees.pqr.css, fait code-only nommé. */
 .s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a,
 .s_pqr_coordonnees [data-pqr-part="coordonnees-address-value"] a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Q-C2 = Option A : icône sociale cliquable, sans surface visuelle ajoutée. */

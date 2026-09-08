@@ -17,7 +17,6 @@
 
 import json, base64, os, copy, mimetypes
 from lxml import html as LH
-from markupsafe import Markup
 
 DESC = json.load(open(os.environ.get("PQR_DESCRIPTOR", "/tmp/pqr_compose/descriptor.json"), encoding="utf-8"))
 IMG_DIR = os.environ.get("PQR_IMG_DIR", "/tmp/pqr_imgs")
@@ -35,6 +34,10 @@ KEY_TO_PARTS = {
     "initiale": ("initiale",),
     # 2026-09-04 : la collection de produits rejoint le contrat de DOM commun.
     "prix": ("produit-prix",),
+    # 2026-09-07 (Equipe v2, passe 2) : la collection de membres rejoint le meme
+    # contrat de DOM. Aucune branche : ses parts sont simplement couvertes ici.
+    "nom": ("member-name",),
+    "poste": ("member-role",),
 }
 
 # Les dispositions de section restent des choix de COMPOSITION, jamais un
@@ -122,12 +125,13 @@ def fill_list(root, items, variant=""):
     de plafond, pas de troncature silencieuse — et supprime tout nom de template
     ou de composant codé en dur.
     """
-    lst = next(iter(root.xpath(".//*[@data-pqr-carte-list or @data-pqr-review-list]")), None)
+    lst = next(iter(root.xpath(".//*[@data-pqr-carte-list or @data-pqr-review-list or @data-pqr-member-list]")), None)
     if lst is None:
         return
-    blueprints = root.xpath(".//template[@data-pqr-carte-blueprint or @data-pqr-review-blueprint]")
+    blueprints = root.xpath(".//template[@data-pqr-carte-blueprint or @data-pqr-review-blueprint or @data-pqr-member-blueprint]")
+    BP_ATTRS = ("data-pqr-carte-blueprint", "data-pqr-review-blueprint", "data-pqr-member-blueprint")
     def bp_key(bp):
-        return bp.get("data-pqr-carte-blueprint", bp.get("data-pqr-review-blueprint", "")) or ""
+        return next((bp.get(a) for a in BP_ATTRS if bp.get(a) is not None), "") or ""
     blueprint = next((bp for bp in blueprints if bp_key(bp) == variant), None) or next(iter(blueprints), None)
     model = blueprint.find("*") if blueprint is not None else None
     if model is None:
@@ -153,6 +157,13 @@ def fill_list(root, items, variant=""):
             im = next(iter(card.xpath(".//img")), None)
             if im is not None:
                 im.set("src", img_url(item["image"]))
+        # 2026-09-07 (Equipe v2, passe 2) : une carte peut porter PLUSIEURS plans
+        # photo — la carte membre en empile deux, le portrait de repos et celui que
+        # le survol decouvre. La cle `image` (une seule image, la premiere du DOM)
+        # reste inchangee ; `images` adresse chaque plan par son `data-pqr-part`,
+        # exactement comme la cle `images` d'une section.
+        for pt, name in (item.get("images") or {}).items():
+            set_img(card, pt, img_url(name))
         lst.append(card)
 
 ROW_TEMPLATES = {
@@ -168,9 +179,9 @@ def fill_rows(root, rows):
     `faq_accordion_row`), exactement comme au rendu de référence : classe d'état,
     plans `hidden`, aria-expanded et aria-label sont calculés par le gabarit, une
     seule fois dans le dépôt (le JS ne fait que basculer). Index 0-based comme le
-    `t-foreach` du bloc. Limite nommée : `faq_accordion_row` ne lit pas `etat`
-    (rangée toujours fermée) — le jour où une page FAQ ouvre une rangée, c'est
-    le gabarit qu'il faut étendre, pas ce composeur.
+    `t-foreach` du bloc. Depuis le 2026-09-07 (FAQ v2, vague 031) `faq_accordion_row`
+    lit `etat` comme `texte_seo_row` : une page FAQ peut ouvrir une rangée, et
+    c'est bien le GABARIT qui a été étendu, pas ce composeur.
     """
     for attr, (xmlid, item_name, index_name) in ROW_TEMPLATES.items():
         lst = next(iter(root.xpath(".//*[@%s]" % attr)), None)
@@ -221,12 +232,6 @@ def build():
     for sec in DESC["sections"]:
         comp = sec["component"]
 
-        # section-header composé (ex: en-tête Avis Google) : rendu paramétré, pas une liste
-        if comp == "pqr_section_header":
-            p = {k: (Markup(v) if k in ("title_html", "eyebrow") and isinstance(v, str) else v)
-                 for k, v in sec.get("params", {}).items()}
-            out.append(render("pqr_section_header", p))
-            continue
 
         root = parse(render(comp))
 

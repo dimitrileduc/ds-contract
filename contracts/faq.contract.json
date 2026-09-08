@@ -2,13 +2,41 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "1.3.0",
-  "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
+  "version": "2.1.0",
+  "description": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné à gauche —, CORRIGÉE le 2026-09-08 : l'en-tête et le CTA sont CENTRÉS en Desktop et Wide, à gauche en Mobile et Tablette, comme AvisGoogle et Reassurances (l'écart assumé de la veille est levé ; le set 2773:27504 porte le geste, 14 instances avant, 14 après), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
   "semantics": {
-    "element": "div",
+    "element": "section",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "presentation",
+      "description": "L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1400.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
     {
       "name": "items",
       "type": {
@@ -26,55 +54,113 @@
           "prop": "items"
         }
       }
-    },
-    {
-      "name": "ligne3",
-      "type": "boolean",
-      "default": true,
-      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). Côté Figma cette propriété pilote la visibilité de la SEULE 3e instance, et la géométrie recalcule 448 ↔ 384px. LIMITE LEVÉE en 1.3.0 (016, journal decisions.md O-15) : un item de `repeat` ne peut toujours pas porter de visibleWhen individuel (le vocabulaire n'a pas de visibilité par index — poser `visibleWhen` sur la part répétée ferait disparaître les trois lignes là où Figma en garde deux), mais la 3e rangée est sortie du repeat en part composée séparée `AccordionRow3`, qui porte `visibleWhen: { prop: \"ligne3\" }` : le fait est désormais PROJETÉ (mesuré au canvas, O-15 : portes-entrée 481→409, la prop agit).",
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Ligne 3"
-        },
-        "code": {
-          "prop": "ligne3"
-        }
-      }
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte TOTALE (border-box) : 1728px, exactement l'absoluteBoundingBox du master — Figma inclut déjà le padding dans la largeur d'un frame auto-layout. CORRIGÉ le 2026-08-05 (revue de Phase 7, cause box-model-unification) : jusque-là ce contrat portait 1550px, la boîte de CONTENU (1728 − 89 − 89), avec la mention « la feuille générée ne déclare pas box-sizing: border-box » — vraie à l'époque du census 013, fausse depuis T013 (Phase 3, 015) qui déclare border-box sur toutes les racines générées. La soustraction rendait donc 178px trop étroit. Même défaut et même correction que ds.footer (T058, 1550→1728) et ds.sav (wrapper/imgGroup, §6). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
+      "description": "COMPONENT_SET « FAQ » 2773:27504, 4 variantes VERTICAL, layoutSizingHorizontal FIXED (témoin de set) / Vertical HUG, counterAxisAlignItems MIN. Relevé (dump v1.8, 2026-09-07) : padding-inline 24 / 48 / 56 / 89 et gap 32 / 32 / 48 / 48 ; largeurs 390 / 834 / 1200 / 1728 portées comme TÉMOINS, jamais comme jetons — la racine est `width: fill` avec referenceWidth 1728, comme toutes les sections de la vague. Le fond blanc du set est porté par jeton (color.blanc) ; l'extraction l'avait minté en imported.faq.root.background-color.",
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center",
+        "align": "start",
         "width": "fill",
         "referenceWidth": 1728
       },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.0}",
+        "gap": "{space.32}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "gap": "{space.48}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "gap": "{space.48}"
+          }
+        }
+      },
       "parts": {
         "SectionHeader": {
-          "description": "Instance 2104:2907 de ds.section-header, REDIMENSIONNÉE par le master : layoutSizingVertical FIXED à 50px alors que son contenu en demande 83 (Accroche 25 + itemSpacing 8 + Titre 50) — clipsContent=false, le Titre déborde donc de 33px dans le gap de 48. LIMITE NOMMÉE / TRAVAIL REPORTÉ : une part qui est une instance de composant ne peut pas être restylée par son parent (validateContract refuse literals sur une part `component`), la hauteur devrait vivre sur le root de ds.section-header, contrat partagé avec presentation/equipe/realisation/google-reviews — non touché ici. Conséquence mesurable : tout ce qui suit le SectionHeader descend de 33px dans le rendu généré. Le titre est épelé en segments parce que ds.section-header.titre est un prop rich-text ; le schéma refuse la chaîne nue par nom, et c'est la seule orthographe possible du fait.",
-          "component": {
-            "id": "ds.section-header",
-            "props": {
-              "titre": [
-                {
-                  "text": "Questions fréquentes"
-                }
-              ],
-              "accroche": "FAQ",
-              "afficherAccroche": true
+          "description": "En-tête dessiné (FRAME « SectionHeader »), pas une instance de ds.section-header — convention de la vague 031, relevée sur les quatre sections v2 qui portent un en-tête (AvisGoogle, Reassurances, SAV, ProduitsECommerce). Gap 8 en Mobile/Tablette, 16 en Desktop/Wide (relevé). Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — décision owner du 2026-09-08, qui REVIENT sur l'option B du 2026-09-07 (gauche aux quatre largeurs) et aligne la FAQ sur AvisGoogle et Reassurances, qui centraient déjà. Le set 2773:27504 porte le geste (Desktop et Wide : en-tête CENTER, textes CENTER, racine CENTER pour le CTA) — 14 instances avant, 14 après.",
+          "layout": {
+            "direction": "column",
+            "align": "start",
+            "width": "fill"
+          },
+          "tokens": {
+            "gap": "{space.8}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.16}"
+              },
+              "wide": {
+                "gap": "{space.16}"
+              }
+            }
+          },
+          "parts": {
+            "Accroche": {
+              "description": "Accroche « FAQ » — rôle typographique overline (14 / 14 / 16 / 20 relevés, graisse Regular → Medium à 992, interligne 20 / 20 / 20 / 25 : exactement la définition responsive du rôle, l'extraction avait minté quatre imported.* par canal). LIMITE DE DUMP nommée : la casse UPPER et l'interlettrage 15 % du style Figma ne sont portés par aucun canal du dump v1 — ils vivent dans le style de texte, la feuille Odoo les repose (declared text-transform). Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — le canal `declared` ne varie pas par mode, le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section.",
+              "text": "FAQ",
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.overline.size}",
+                "font-weight": "{typography.overline.weight}",
+                "line-height": "{typography.overline.line-height}"
+              },
+              "declared": {
+                "text-align": "left",
+                "text-transform": "uppercase"
+              }
+            },
+            "Titre": {
+              "description": "Titre « Questions fréquentes » — rôle h2 (24 / 24 / 32 / 40, interligne 30 / 30 / 40 / 50, SemiBold), la même orthographe que ds.google-reviews 3.1.0. Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — le canal `declared` ne varie pas par mode, le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section.",
+              "element": "h2",
+              "text": "Questions fréquentes",
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{typography.h2.size}",
+                "font-weight": "{font.weight.semibold}",
+                "letter-spacing": "{space.0}",
+                "line-height": "{typography.h2.line-height}"
+              },
+              "declared": {
+                "text-align": "left"
+              }
+            }
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "align": "center"
+              },
+              "wide": {
+                "align": "center"
+              }
             }
           }
         },
         "accordion": {
-          "description": "FRAME 2104:2908, 1550×248, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing absent (0), layoutSizingHorizontal FILL (layoutAlign STRETCH, layoutGrow 0). Le FILL est ici sur l'axe TRANSVERSE d'un parent vertical : la ligne de matrice pour ce canal est layout.grow, portée ci-dessous, mais l'équivalent CSS exact est align-self: stretch — les deux sont déclarés, le second est celui qui produit réellement les 1550px face au align-items: center du root.",
+          "description": "FRAME « accordion » : colonne sans gap (les rangées portent leur propre padding-block et leur trait bas), largeur FILL sur l'axe transverse du parent en colonne — d'où layout.grow ET declared align-self: stretch, la seule des deux qui produit vraiment la pleine largeur face au align: start de la racine.",
           "layout": {
             "direction": "column",
-            "align": "center",
             "grow": true
           },
           "declared": {
@@ -82,7 +168,7 @@
           },
           "parts": {
             "AccordionRow": {
-              "description": "Les trois instances du census (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme) naissent de ce `repeat`. DEUX LIMITES NOMMÉES. (1) largeur : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL du root) ; une part `component` refuse literals, et ds.accordion-row gèle déjà literals.width = \"1550px\" sur son propre root — le chiffre coïncide, la nature du fait non, et le canal n'a pas d'orthographe « FILL » dans la grammaire des littéraux. (2) état : le motif du canevas est Fermé → Ouvert → Fermé. Le porter comme prop fixe sur l'instance composée ouvrirait les TROIS lignes ; le porter par item exigerait un champ `etat` dans arrayOf ET dans le sample, ce qui contredirait le sample relevé (deux champs, contenu + titre). Aucune des deux orthographes n'est fidèle : le fait est nommé, la 2e ligne est rendue fermée, l'accordéon mesure 3×64 au lieu de 64+120+64.",
+              "description": "Les trois rangées du set naissent de ce `repeat` sur ds.accordion-row 2.1.0 (Taille=Grand). DEUX LIMITES NOMMÉES, inchangées depuis la v1 : (1) la largeur des rangées est RÉSOLUE (FILL de accordion, lui-même FILL de la racine) — une part `component` refuse les littéraux ; (2) l'état ouvert/fermé du motif dessiné (Fermé → Ouvert → Fermé) ne peut pas être porté par item : le vocabulaire de `repeat` n'a pas de visibilité ni d'état par index. Le canevas rend l'échantillon, le code rend la liste vive, et la bascule ouvert/fermé est vivante côté Odoo (JS, faq_toggle). Le SURVOL, lui, est désormais porté par le contrat enfant (ds.accordion-row 2.1.0, chevron orange).",
               "component": {
                 "id": "ds.accordion-row",
                 "props": {
@@ -94,33 +180,23 @@
                 "sample": [
                   {
                     "contenu": "Réponse",
-                    "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+                    "titre": "Quelle est la différence entre une porte sectionnelle et basculante ?"
                   },
                   {
-                    "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
-                    "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+                    "contenu": "Oui, nos moteurs Hörmann s'adaptent à la plupart des portes existantes. Des solutions d'ouverture intelligentes et sécurisées : Wi-Fi, application, clavier à code et télécommandes, pour un confort optimal.",
+                    "titre": "Peut-on motoriser une ancienne porte ?"
+                  },
+                  {
+                    "contenu": "Réponse",
+                    "titre": "Assurez-vous la maintenance après l'installation ?"
                   }
                 ]
-              }
-            },
-            "AccordionRow3": {
-              "description": "Troisième rangée sortie du repeat (016) : un item de repeat ne peut pas porter de visibleWhen individuel — la prop ligne3 déclarée au contrat n'était reliée à AUCUNE part (mesuré : refs [] sur les rangées du master, Ligne 3=false sans effet, pages +64). Part composée séparée, toggleable.",
-              "component": {
-                "id": "ds.accordion-row",
-                "props": {
-                  "taille": "grand",
-                  "titre": "Assurez-vous la maintenance après l'installation ?",
-                  "contenu": "Réponse"
-                }
-              },
-              "visibleWhen": {
-                "prop": "ligne3"
               }
             }
           }
         },
         "Bouton": {
-          "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outlineNoir\"), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
+          "description": "Instance de ds.button, Style « Outline noir », libellé « Contactez-nous », icône droite ArrowRight. FAIT CODE-ONLY nommé : le bouton est PLEINE LARGEUR sous 992 (relevé : layoutSizingHorizontal FILL en Mobile et Tablette, HUG en Desktop et Wide) — une part `component` ne peut porter ni layoutByProp ni littéral, la règle vit donc dans la feuille Odoo de la section et nulle part ailleurs. Au-delà de 992 il est CENTRÉ, et ça, la racine le dit : layoutByProp align center en Desktop et Wide centre le seul enfant qui ne s'étire pas — décision owner du 2026-09-08, relevée sur le set (x 476 sur 1200, x 730 sur 1728).",
           "component": {
             "id": "ds.button",
             "text": "Contactez-nous",
@@ -131,20 +207,25 @@
           }
         }
       },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "padding-left": "{space.89}",
-        "padding-right": "{space.89}",
-        "gap": "{space.48}"
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "align": "center"
+          },
+          "wide": {
+            "align": "center"
+          }
+        }
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-      "nodeId": "2104:2914",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "6a71ef12dca9523c5019defc7dad5139faf44f62",
+      "nodeId": "2773:27504",
+      "dumpedAt": "2026-09-07"
     },
     "code": {
       "importPath": "src/components/FAQ",

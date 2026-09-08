@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v1.3.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,36 +14,38 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
+          "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné À GAUCHE aux quatre largeurs (les autres sections de la vague centrent au-delà de 992 ; ici l'écart est voulu et nommé), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
       },
     },
   },
   render: (args) => <FAQ key={JSON.stringify(args)} {...args} />,
   argTypes: {
+    presentation: {
+      control: 'select',
+      options: ['mobile', 'tablette', 'desktop', 'wide'],
+      description:
+        "L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1400.",
+    },
     items: {
       control: false,
       description:
         "Les lignes de la FAQ. LIMITE NOMMÉE (inchangée depuis 010) : Figma n'a pas de propriété de composant de type tableau — la répétition n'existe sur le canevas que comme N instances sœurs compilées, d'où bindings.figma.kind NONE. Le schéma refuse aussi un default sur un prop arrayOf (« an optional array — undefined means \"not provided\", never a silent [] ») : le master rend trois lignes par défaut, le composant généré n'en rend aucune sans données. C'est pourquoi le cas d'audit alimente items par un override, comme ds.footer.",
     },
-    ligne3: {
-      control: 'boolean',
-      description:
-        'Extracted from Figma "Ligne 3" BOOLEAN property (added by sync pass). Côté Figma cette propriété pilote la visibilité de la SEULE 3e instance, et la géométrie recalcule 448 ↔ 384px. LIMITE LEVÉE en 1.3.0 (016, journal decisions.md O-15) : un item de `repeat` ne peut toujours pas porter de visibleWhen individuel (le vocabulaire n\'a pas de visibilité par index — poser `visibleWhen` sur la part répétée ferait disparaître les trois lignes là où Figma en garde deux), mais la 3e rangée est sortie du repeat en part composée séparée `AccordionRow3`, qui porte `visibleWhen: { prop: "ligne3" }` : le fait est désormais PROJETÉ (mesuré au canvas, O-15 : portes-entrée 481→409, la prop agit).',
-    },
   },
   args: {
+    presentation: 'mobile',
     items: [
       {
         contenu: 'Réponse',
-        titre: 'Nos portes répondent-elles aux normes des bâtiments publics ?',
+        titre: 'Quelle est la différence entre une porte sectionnelle et basculante ?',
       },
       {
         contenu:
-          'Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.',
-        titre: 'Quels types de bardages peuvent être intégrés sur les portes ?',
+          "Oui, nos moteurs Hörmann s'adaptent à la plupart des portes existantes. Des solutions d'ouverture intelligentes et sécurisées : Wi-Fi, application, clavier à code et télécommandes, pour un confort optimal.",
+        titre: 'Peut-on motoriser une ancienne porte ?',
       },
+      { contenu: 'Réponse', titre: "Assurez-vous la maintenance après l'installation ?" },
     ],
-    ligne3: true,
   },
 } satisfies Meta<typeof FAQ>;
 
@@ -51,3 +53,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
+
+export const Mobile: Story = {
+  args: { presentation: 'mobile' },
+};
+
+export const Tablette: Story = {
+  args: { presentation: 'tablette' },
+};
+
+export const Desktop: Story = {
+  args: { presentation: 'desktop' },
+};
+
+export const Wide: Story = {
+  args: { presentation: 'wide' },
+};
+/** Every legal combination the contract defines. */
+export const Matrix: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'grid',
+        gap: 16,
+        gridTemplateColumns: 'repeat(1, max-content)',
+        alignItems: 'center',
+        justifyItems: 'start',
+      }}
+    >
+      <FAQ presentation="mobile" />
+      <FAQ presentation="tablette" />
+      <FAQ presentation="desktop" />
+      <FAQ presentation="wide" />
+    </div>
+  ),
+};

@@ -36,8 +36,17 @@
   "states": [],
   "anatomy": {
     "root": {
+      "parts": {
+        "Image": {
+          "layout": {
+            "grow": true
+          }
+        }
+      },
       "tokens": {
-        "background-color": "{color.gris-clair}"
+        "background-color": "{color.gris-clair}",
+        "width": "{imported.realisation.root.width.{taille}}",
+        "height": "{imported.realisation.root.height.{taille}}"
       }
     }
   },

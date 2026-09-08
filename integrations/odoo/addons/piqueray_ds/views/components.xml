@@ -81,7 +81,7 @@
     <div class="s_pqr_google_reviews google-reviews__avisGoogle" data-name="Piqueray · Google Reviews"
              data-ds-contract="ds.google-reviews" data-ds-contract-version="3.1.0" data-ds-authoring-version="3.1.0"
              data-montrer-controles=""
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="avis-google">
       <div class="google-reviews__resume" data-pqr-part="resume">
@@ -107,7 +107,7 @@
   <template id="s_pqr_google_reviews_section" name="Piqueray · Section Avis Google">
     <section class="s_pqr_google_reviews_section google-reviews" data-snippet="s_pqr_google_reviews_section" data-name="Piqueray · Section Avis Google"
              data-ds-contract="ds.google-reviews" data-ds-contract-version="3.1.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-section-default" data-pqr-part="root">
       <!-- L'en-tête est décrit DANS la section (contrat ds.google-reviews 3.0.0) et non plus
            composé depuis ds.section-header : le composant commun n'a aucune dimension par écran
@@ -171,17 +171,20 @@
     <button t-else="" type="button" t-att-class="button_class" data-pqr-part="button-root"><t t-call="piqueray_ds.pqr_button_interieur"/></button>
   </template>
 
-  <template id="pqr_section_header" name="Piqueray · SectionHeader">
-    <div t-attf-class="section-header section-header--alignement-#{alignement} oe_unremovable oe_unmovable" data-pqr-part="section-header-root">
-      <span t-if="show_eyebrow" class="section-header__Accroche" data-pqr-part="section-header-eyebrow"><t t-esc="eyebrow"/></span>
-      <span class="section-header__Titre o_pqr_editable" t-att-data-pqr-part="title_part" data-pqr-marks="strong"><t t-out="title_html"/></span>
-    </div>
-  </template>
+  <!-- `pqr_section_header` a été retiré le 2026-09-08 : plus AUCUN `t-call` ne le
+       visait. Les vagues 031 et 035 ont ramené l'en-tête DANS chaque section (le
+       gabarit partagé imposait les classes `section-header__*` et figeait le titre),
+       et les deux derniers appels — FAQ et Coordonnées — sont tombés avec elles.
+       Six sections écrivent désormais la même forme à la main (google-reviews, faq,
+       sav, coordonnees, reassurances, realisations) et leurs listes de classes ont
+       déjà divergé : les réunir sous un gabarit PARAMÉTRÉ (prefix, parts, textes)
+       reste à faire, et se fera depuis les six copies vivantes, pas depuis
+       celui-ci, qui ne décrivait plus aucune d'elles. -->
 
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
              data-ds-contract="ds.presentation" data-ds-contract-version="4.2.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
@@ -201,7 +204,7 @@
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero pqr-soustitre-on" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
              data-ds-contract="ds.hero" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
@@ -225,7 +228,7 @@
   <template id="s_pqr_hero_video" name="Piqueray · Hero vidéo">
     <section class="s_pqr_hero_video hero-video" data-snippet="s_pqr_hero_video" data-name="Piqueray · Hero vidéo"
              data-ds-contract="ds.hero-video" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-video-default" data-pqr-part="root">
       <img class="hero-video__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-video-poster" alt=""/>
@@ -244,7 +247,10 @@
   <template id="member_picture" name="Piqueray · MemberPicture">
     <div class="member-picture member-picture--etat-defaut member-picture--taille-member-card"
          data-pqr-part="member-picture-root">
-      <img class="member-picture__funIa" alt="" data-pqr-part="member-picture-underlay"/>
+      <img class="member-picture__funIa"
+           t-att-src="member.get('imageSurvolUrl') or None"
+           t-att-alt="member.get('imageSurvolAlt', '')"
+           data-pqr-part="member-picture-underlay"/>
       <img class="member-picture__normal o_editable_media"
            t-att-src="member.get('imageUrl') or None"
            t-att-alt="member.get('imageAlt', '')"
@@ -285,8 +291,8 @@
       {'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
-             data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-contract="ds.equipe" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
       <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
@@ -310,16 +316,17 @@
        grand, corps de texte en petit — ds.accordion-row 2.0.0, 2026-09-07) et
        une hauteur libre (le titre se replie). -->
   <template id="faq_accordion_row" name="Piqueray · AccordionRow">
-    <div class="accordion-row accordion-row--taille-grand accordion-row--etat-ferme oe_unremovable oe_unmovable"
+    <t t-set="ouvert" t-value="question.get('etat') == 'ouvert'"/>
+    <div t-attf-class="accordion-row accordion-row--taille-grand accordion-row--etat-#{'ouvert' if ouvert else 'ferme'} oe_unremovable oe_unmovable"
          data-pqr-faq-row="" data-pqr-part="accordion-row-root"
          t-attf-data-pqr-faq-marker="faq-#{question_index}">
       <div class="accordion-row__title" data-pqr-part="title-group">
         <span class="accordion-row__Titre o_pqr_editable" data-pqr-part="titre" data-pqr-marks=""><t t-esc="question.get('titre', 'Question')"/></span>
-        <span class="accordion-row__ChevronDown" aria-hidden="true" data-pqr-part="chevron-down"><t t-call="piqueray_ds.pqr_chevron_down_32"/></span>
-        <span class="accordion-row__ChevronUp" aria-hidden="true" data-pqr-part="chevron-up" hidden="hidden"><t t-call="piqueray_ds.pqr_chevron_up_32"/></span>
+        <span class="accordion-row__ChevronDown" aria-hidden="true" data-pqr-part="chevron-down" t-att-hidden="'hidden' if ouvert else None"><t t-call="piqueray_ds.pqr_chevron_down_32"/></span>
+        <span class="accordion-row__ChevronUp" aria-hidden="true" data-pqr-part="chevron-up" t-att-hidden="None if ouvert else 'hidden'"><t t-call="piqueray_ds.pqr_chevron_up_32"/></span>
       </div>
-      <span class="accordion-row__Contenu o_pqr_editable" data-pqr-part="contenu" data-pqr-marks="strong" hidden="hidden"><t t-esc="question.get('contenu', 'Réponse')"/></span>
-      <button type="button" class="accordion-row__trigger" data-pqr-part="trigger" aria-expanded="false" t-att-aria-label="question.get('titre', 'Question')"></button>
+      <span class="accordion-row__Contenu o_pqr_editable" data-pqr-part="contenu" data-pqr-marks="strong" t-att-hidden="None if ouvert else 'hidden'"><t t-esc="question.get('contenu', 'Réponse')"/></span>
+      <button type="button" class="accordion-row__trigger" data-pqr-part="trigger" t-att-aria-expanded="'true' if ouvert else 'false'" t-att-aria-label="question.get('titre', 'Question')"></button>
     </div>
   </template>
 
@@ -330,11 +337,18 @@
       {'titre': 'Assurez-vous la maintenance après l\'installation ?', 'contenu': 'Réponse'}
     ]"/>
     <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
-             data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-contract="ds.faq" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
-      <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
+      <!-- v2 (031) : l'en-tête est décrit DANS la section (contrat ds.faq 2.0.0) et non plus
+           composé depuis ds.section-header — le composant commun n'a aucune dimension par écran
+           et figerait le titre. Même traitement que ds.google-reviews, ds.sav et ds.reassurances.
+           Alignement à GAUCHE aux quatre largeurs : option B tranchée par l'owner le 2026-09-07. -->
+      <div class="faq__SectionHeader section-header oe_unremovable oe_unmovable" data-pqr-part="section-header">
+        <span class="faq__Accroche section-header__Accroche" data-pqr-part="accroche" data-pqr-marks="">FAQ</span>
+        <h2 class="faq__Titre section-header__Titre o_pqr_editable" data-pqr-part="faq-title" data-pqr-marks="strong"><span>Questions fréquentes</span></h2>
+      </div>
       <div class="faq__accordion" data-pqr-faq-list="" data-pqr-part="accordion">
         <t t-foreach="questions" t-as="question"><t t-call="piqueray_ds.faq_accordion_row"><t t-set="question" t-value="question"/><t t-set="question_index" t-value="question_index"/></t></t>
       </div>
@@ -349,7 +363,7 @@
   <template id="s_pqr_devis" name="Piqueray · Devis">
     <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
              data-ds-contract="ds.devis" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
              data-fond="">
@@ -370,7 +384,7 @@
          Ordre mobile (image AU-DESSUS du texte) ; Desktop/Wide = row-reverse (responsive/sav.pqr.css). -->
     <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
              data-ds-contract="ds.sav" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
       <img class="sav__background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="sav-background" data-pqr-native-image="1" alt=""/>
@@ -425,7 +439,7 @@
     ]"/>
     <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
              data-ds-contract="ds.texte-seo" data-ds-contract-version="4.0.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
       <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
@@ -460,31 +474,78 @@
 
   <template id="s_pqr_coordonnees" name="Piqueray · Coordonnées">
     <section class="s_pqr_coordonnees coordonnees" data-snippet="s_pqr_coordonnees" data-name="Piqueray · Coordonnées"
-             data-ds-contract="ds.coordonnees" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-contract="ds.coordonnees" data-ds-contract-version="3.0.0" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="coordonnees-default" data-pqr-part="root">
       <!-- Plan Google : PLACEHOLDER sans src (décision gate 2026-08-19). Alimenté
            plus tard via une API custom, hors vague 022 : aucune action média au
            panneau, jamais d'image cassée, identique des deux côtés de la mesure. -->
-      <img class="coordonnees__googleMap oe_unremovable oe_unmovable" data-pqr-part="coordonnees-map" alt=""/>
+      <!-- Plan interactif (2026-09-08) — DANS la zone ODOO-022-COORDONNEES-QWEB,
+           pas une zone à part : le scanner de dérivation refuse les zones imbriquées,
+           et cette adaptation étend le gabarit des Coordonnées, elle ne le double pas.
+           Le plan devient un EMBED INTERACTIF, et il
+           n'a besoin d'AUCUNE clé d'API. C'est la même route que le bloc `s_map`
+           d'Odoo lui-même : `maps.google.com/maps?q=…&amp;output=embed`. Le visiteur
+           peut zoomer, se déplacer, passer en satellite et demander l'itinéraire.
+           Interroger sur le NOM DE L'ENTREPRISE et pas seulement sur la rue : c'est
+           ce qui fait apparaître la fiche Piqueray avec sa note Google VIVANTE
+           (vérifié le 2026-09-08 : 4,7 ★ / 112 avis, là où la maquette est figée à
+           4,6 / 94). Avec l'adresse seule on n'obtient qu'un repère anonyme.
+           ADAPTATION D'HÔTE, nommée : `iframe` est HOST-ONLY (matrice de capacité),
+           aucun contrat ne porte un embed — exactement comme `ds.button` reste un
+           `button` côté React et se projette en `a` ici. Le contrat continue de
+           décrire une part image ; la boîte, elle, est identique.
+           L'adresse vit sur `data-pqr-map-address` et se règle AU PANNEAU. La `src`
+           est réécrite au même moment, donc le HTML enregistré porte déjà la bonne
+           carte : aucun JavaScript n'est nécessaire côté visiteur. -->
+      <div class="coordonnees__googleMap oe_unremovable oe_unmovable o_not_editable"
+           data-pqr-part="coordonnees-map"
+           data-pqr-map-address="Piqueray SRL, Rue Alfred Drèze 7, 4860 Pepinster">
+        <iframe class="coordonnees__mapEmbed" title="Plan d’accès — Piqueray SRL, Rue Alfred Drèze 7, 4860 Pepinster"
+                loading="lazy" referrerpolicy="no-referrer"
+                src="https://maps.google.com/maps?q=Piqueray%20SRL%2C%20Rue%20Alfred%20Dr%C3%A8ze%207%2C%204860%20Pepinster&amp;t=m&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"/>
+      </div>
       <div class="coordonnees__wrapper oe_unremovable oe_unmovable" data-pqr-part="coordonnees-wrapper">
-        <t t-call="piqueray_ds.pqr_section_header"><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Contact'"/><t t-set="title_part" t-value="'coordonnees-title'"/><t t-set="title_html"><span>Pourquoi choisir Piqueray ?</span></t></t>
+        <!-- ds.coordonnees 3.0.0 (vague 031) : en-tête MODÉLISÉ DANS LA SECTION.
+             Le set candidat 2778:34448 le dessine à plat ; l ancienne composition
+             ds.section-header figeait le titre à 40 px sur les quatre écrans et
+             posait dans un panneau de 480 une instance large de 1550 (défaut de
+             source a). Sur-titre et titre montent désormais leurs jetons par
+             écran (overline, H2). Même forme que ds.reassurances 2.0.0. -->
+        <div class="coordonnees__SectionHeader oe_unremovable oe_unmovable" data-pqr-part="coordonnees-header">
+          <span class="coordonnees__Accroche" data-pqr-part="coordonnees-eyebrow" data-pqr-marks="">Contact</span>
+          <h2 class="coordonnees__Titre o_pqr_editable" data-pqr-part="coordonnees-title" data-pqr-marks="strong">Nos coordonnées</h2>
+        </div>
+        <!-- Grille des quatre groupes d informations : UNE colonne, DEUX en
+             tablette (feuille responsive/coordonnees.pqr.css). Toujours rendue,
+             jamais conditionnelle : c est le @media qui décide du colonnage. -->
+        <div class="coordonnees__infos oe_unremovable oe_unmovable" data-pqr-part="coordonnees-infos">
         <div class="coordonnees__Adresse oe_unremovable oe_unmovable" data-pqr-part="coordonnees-address">
           <span class="coordonnees__AdresseEtiquette" data-pqr-part="coordonnees-address-label">Adresse</span>
-          <span class="coordonnees__AdresseValeur o_pqr_editable" data-pqr-part="coordonnees-address-value" data-pqr-marks="link"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rue+Alfred+Dr%C3%A8ze+7%2C+4860+Pepinster" target="_blank" rel="noopener noreferrer">Rue Alfred Drèze 7, 4860 Pepinster</a></span>
+          <!-- 3.0.0 : la valeur porte le VRAI saut de ligne du set candidat
+               (rendu par white-space: pre-line du contrat) ; il n est pas dû à la
+               largeur — la ligne la plus longue mesure 220 px pour 480 disponibles
+               en Wide. Le lien Google Maps reste (décision owner 2026-08-20) ; son
+               soulignement au repos est retiré, le candidat n en dessine pas. -->
+          <span class="coordonnees__AdresseValeur o_pqr_editable" data-pqr-part="coordonnees-address-value" data-pqr-marks="link,line-break"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rue+Alfred+Dr%C3%A8ze+7%2C+4860+Pepinster" target="_blank" rel="noopener noreferrer">Rue Alfred Drèze 7,
+4860 Pepinster</a></span>
         </div>
         <div class="coordonnees__Horaires oe_unremovable oe_unmovable" data-pqr-part="coordonnees-hours">
           <span class="coordonnees__HorairesEtiquette" data-pqr-part="coordonnees-hours-label">Horaires</span>
-          <span class="coordonnees__HorairesValeur o_pqr_editable" data-pqr-part="coordonnees-hours-value" data-pqr-marks="line-break">Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00</span>
+          <span class="coordonnees__HorairesValeur o_pqr_editable" data-pqr-part="coordonnees-hours-value" data-pqr-marks="line-break">Du lundi au vendredi
+de 8h00 à 12h00 et
+de 13h30 à 17h00</span>
         </div>
         <div class="coordonnees__Contact oe_unremovable oe_unmovable" data-pqr-part="coordonnees-contact">
           <span class="coordonnees__ContactEtiquette" data-pqr-part="coordonnees-contact-label">Contact</span>
           <!-- Q-C1 = Option A : tél/email en vrais liens tel:/mailto: (marque
                link) ; le saut de ligne du contrat est un `\n` rendu par
                white-space: pre-line (marque line-break). rich_text_guard garde A
-               et BR, déplie le reste, refuse javascript:. Le soulignement + la
-               couleur d'hôte viennent du pont ODOO-022-COORDONNEES-BRIDGE. -->
+               et BR, déplie le reste, refuse javascript:. 3.0.0 : le soulignement
+               au repos disparaît (le set candidat n en dessine aucun, vérifié au
+               profil d encre) — l affordance passe au survol et au focus, dans la
+               feuille par écran. -->
           <span class="coordonnees__tl32087463266EmailInfopi o_pqr_editable" data-pqr-part="coordonnees-contact-block" data-pqr-marks="link,line-break">Tél : <a href="tel:+3287463266">+32 (0)87 46 32 66</a>
 Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         </div>
@@ -493,10 +554,14 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
           <div class="coordonnees__rseauxSociaux oe_unremovable oe_unmovable" data-pqr-part="coordonnees-social-icons">
             <!-- Q-C2 = Option A : icônes cliquables, URL réglée au panneau
                  (SetLinkHrefAction, même grammaire CTA-href). L'icône elle-même
-                 n'est jamais remplaçable ; l'ancre est inerte en édition (pont). -->
+                 n'est jamais remplaçable ; l'ancre est inerte en édition (pont).
+                 Le dessin reste à 32 (identique sur les quatre écrans, comme le
+                 pied de page v2) ; c est la ZONE CLIQUABLE de l ancre que la
+                 feuille par écran porte à 44 — fait code-only WCAG 2.2 AAA. -->
             <span class="coordonnees__Facebook oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-facebook"><a href="#" data-pqr-part="coordonnees-facebook-link" target="_blank" rel="noopener noreferrer"><t t-call="piqueray_ds.pqr_facebook"/></a></span>
             <span class="coordonnees__Instagram oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-instagram"><a href="#" data-pqr-part="coordonnees-instagram-link" target="_blank" rel="noopener noreferrer"><t t-call="piqueray_ds.pqr_instagram"/></a></span>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -533,8 +598,8 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'Expérience', 'imageUrl': '', 'imageAlt': ''}
     ]"/>
     <section class="s_pqr_reassurances reassurances reassurances--disposition-5Cartes" data-snippet="s_pqr_reassurances" data-name="Piqueray · Réassurances"
-             data-ds-contract="ds.reassurances" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-contract="ds.reassurances" data-ds-contract-version="2.1.1" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="reassurances-default" data-pqr-part="root">
       <!-- ds.reassurances 2.0.0 (vague 031) : en-tête MODÉLISÉ DANS LA SECTION.
@@ -700,8 +765,8 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       {'titre': 'Pour l’automatisation', 'texte': 'Motorisations et accessoires. Confort et pilotage à distance de tous vos accès.', 'imageUrl': '', 'imageAlt': '', 'afficherDecor': False}
     ]"/>
     <section class="s_pqr_categories_principales categories-principales" data-snippet="s_pqr_categories_principales" data-name="Piqueray · Catégories principales"
-             data-ds-contract="ds.categories-principales" data-ds-contract-version="2.0.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e"
+             data-ds-contract="ds.categories-principales" data-ds-contract-version="2.1.0" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
              data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-style="superpose"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="categories-principales-default" data-pqr-part="root">
@@ -744,7 +809,7 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     ]"/>
     <section class="s_pqr_produits_ecommerce produits-ecommerce" data-snippet="s_pqr_produits_ecommerce" data-name="Piqueray · Produits e-commerce"
              data-ds-contract="ds.produits-ecommerce" data-ds-contract-version="2.2.0" data-ds-authoring-version="3.1.0"
-             data-ds-graph-digest="cac4ddb8f0a0ec189a7defa58d00efa44df15d9830d320a2fb71a4066e6c0c8e" data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2" data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="produits-ecommerce-default" data-pqr-part="root">
       <div class="produits-ecommerce__enTete" data-pqr-part="root-entete">
         <h2 class="produits-ecommerce__Titre o_pqr_editable" data-pqr-part="produits-ecommerce-title" data-pqr-marks="strong">Découvrez nos produits disponibles en ligne</h2>
@@ -799,4 +864,54 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     </section>
   </template>
   <!-- ODOO-026-PRODUITS-ECOMMERCE-QWEB END -->
+
+  <template id="realisation" name="Piqueray · Réalisation (tuile)">
+    <!-- ds.realisation 2.0.0 (vague 035) : la tuile ne porte plus sa taille — elle
+         remplit sa cellule de grille et reste carrée (rapport 1:1). L axe Taille reste
+         celui du set Figma mais n a plus d effet géométrique : il est posé à sa valeur
+         par défaut et nommé inerte au contrat. -->
+    <div class="realisation realisation--taille-grand oe_unremovable oe_unmovable"
+         data-pqr-carte="" data-pqr-part="tuile-root"
+         t-attf-data-pqr-carte-marker="photo-#{photo_index}">
+      <img class="realisation__Image o_editable_media" data-pqr-part="tuile-image" data-pqr-native-image="1"
+           t-att-src="photo.get('imageUrl') or None" t-att-alt="photo.get('imageAlt', '')"/>
+    </div>
+  </template>
+
+  <template id="s_pqr_realisations" name="Piqueray · Réalisations">
+    <t t-set="photos" t-value="[
+      {'imageUrl': '', 'imageAlt': 'Porte de garage sectionnelle bois sur maison à bardage gris'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage sectionnelle noire sur façade en briques claires'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage sectionnelle bois sur longère en pierre'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage sectionnelle noire à hublots sur mur de briques grises'},
+      {'imageUrl': '', 'imageAlt': 'Portail industriel noir le long d\'une allée'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage anthracite sur maison de briques rouges'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage anthracite sur façade de briques rouges et blanches'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage bois sur bâtiment en rénovation'},
+      {'imageUrl': '', 'imageAlt': 'Porte de garage verte sur maison de caractère en pierre'}
+    ]"/>
+    <section class="s_pqr_realisations realisations realisations--enTete-presentation" data-snippet="s_pqr_realisations" data-name="Piqueray · Réalisations"
+             data-ds-contract="ds.realisations" data-ds-contract-version="1.0.0" data-ds-authoring-version="3.1.0"
+             data-ds-graph-digest="414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2"
+             data-vcss="19.0.1.15.0" data-vxml="19.0.1.15.0" data-vjs="19.0.1.15.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="realisations-default" data-pqr-part="root">
+      <!-- ds.realisations 1.0.0 (vague 035) : en-tête MODÉLISÉ DANS LA SECTION, comme
+           Réassurances et SAV — le rédacteur doit pouvoir éditer sur-titre et titre.
+           L axe En-tete choisit la forme : `accroche` montre le sur-titre et cache le
+           paragraphe, `presentation` fait l inverse. Le choix est posé par la
+           composition (classe sur la racine), jamais offert au rédacteur. -->
+      <div class="realisations__EnTete oe_unremovable oe_unmovable" data-pqr-part="root-entete">
+        <div class="realisations__SectionHeader" data-pqr-part="root-section-header">
+          <span class="realisations__Accroche o_pqr_editable" data-pqr-part="realisations-eyebrow" data-pqr-marks="">Des installations de qualité</span>
+          <h2 class="realisations__Titre o_pqr_editable" data-pqr-part="realisations-title" data-pqr-marks="strong"><span>Nos réalisations </span><strong>industrielles et installations</strong><span> de qualité</span></h2>
+        </div>
+        <span class="realisations__Texte o_pqr_editable" data-pqr-part="realisations-body" data-pqr-marks="strong"><span>Personnalisez votre porte grâce à </span><strong>un choix illimité de teintes RAL</strong><span>, parfaitement harmonisées avec la couleur de vos châssis. Appliquée dans notre cabine de peinture, la finition bi-composants garantit une excellente tenue dans le temps, avec </span><strong>10 ans de garantie sur les panneaux</strong><span>.</span></span>
+      </div>
+      <div class="realisations__Grille" data-pqr-carte-list="" data-pqr-part="root-grille">
+        <t t-foreach="photos" t-as="photo"><t t-call="piqueray_ds.realisation"><t t-set="photo" t-value="photo"/><t t-set="photo_index" t-value="photo_index"/></t></t>
+      </div>
+      <template data-pqr-carte-blueprint=""><t t-call="piqueray_ds.realisation"><t t-set="photo" t-value="{'imageUrl': '', 'imageAlt': 'Nouvelle réalisation'}"/><t t-set="photo_index" t-value="'blueprint'"/></t></template>
+    </section>
+  </template>
+
 </odoo>

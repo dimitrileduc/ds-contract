@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v2.2.0)
+ * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -12,16 +12,35 @@
 
 .root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
   border: 0;
   background-color: var(--color-bleu-clair);
   font-family: var(--font-family-montserrat);
+  gap: var(--space-0);
+  padding-inline: var(--space-0);
+  padding-block: var(--space-0);
+}
+
+.presentation-desktop {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.presentation-wide {
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .googleMap {
-  width: var(--size-coordonnees-google-map-w);
-  min-width: var(--size-coordonnees-google-map-w);
-  height: var(--size-coordonnees-google-map-h);
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -29,10 +48,95 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--space-16);
-  padding-block: var(--space-48);
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-32);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-24);
+}
+
+.presentation-tablette .wrapper {
   padding-inline: var(--space-48);
+}
+
+.presentation-tablette .wrapper {
+  padding-block: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  padding-block: var(--space-48);
+}
+
+.presentation-desktop .wrapper {
+  width: var(--size-coordonnees-panneau-desktop);
+}
+
+.presentation-wide .wrapper {
+  padding-inline: var(--space-48);
+}
+
+.presentation-wide .wrapper {
+  padding-block: var(--space-48);
+}
+
+.presentation-wide .wrapper {
   width: var(--size-coordonnees-wrapper);
+}
+
+.SectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  letter-spacing: 0.15em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+  text-align: left;
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.infos {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-32);
+}
+
+.presentation-tablette .infos {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .Adresse {
@@ -43,18 +147,17 @@
 
 .AdresseEtiquette {
   color: var(--color-orange);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-30);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
 }
 
 .AdresseValeur {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-27);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
   white-space: pre-line;
-  text-decoration-line: underline;
 }
 
 .Horaires {
@@ -65,16 +168,17 @@
 
 .HorairesEtiquette {
   color: var(--color-orange);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-30);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
 }
 
 .HorairesValeur {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-27);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  white-space: pre-line;
 }
 
 .Contact {
@@ -85,21 +189,17 @@
 
 .ContactEtiquette {
   color: var(--color-orange);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-30);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
 }
 
 .tl32087463266EmailInfopi {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-27);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
   white-space: pre-line;
-}
-
-.tl32087463266EmailInfopi u {
-  text-decoration-line: underline;
 }
 
 .suivezNous {
@@ -110,9 +210,9 @@
 
 .SuivezNousEtiquette {
   color: var(--color-orange);
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-30);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
 }
 
 .rseauxSociaux {

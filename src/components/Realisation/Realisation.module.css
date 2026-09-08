@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/realisation.contract.json (ds.realisation v1.1.0)
+ * Source of truth: contracts/realisation.contract.json (ds.realisation v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -11,23 +11,18 @@
 }
 
 .root {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
   border: 0;
   font-family: var(--font-family-montserrat);
 }
 
 .Image {
-  width: var(--size-realisation-image);
-  height: var(--size-realisation-image);
+  display: flex;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
   object-fit: cover;
-}
-
-.taille-petit .Image {
-  width: var(--size-realisation-image-petit);
-}
-
-.taille-petit .Image {
-  height: var(--size-realisation-image-petit);
 }

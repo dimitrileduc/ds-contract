@@ -1,0 +1,33 @@
+{
+  "url": "/faq-test",
+  "name": "FAQ test",
+  "key": "faq_test",
+  "header_overlay": false,
+  "_note": "Page de la section FAQ v2 (ds.faq 2.0.0, set candidat 2773:27504, 2026-09-07) : le bloc seul, pleine largeur (gouttière dans le contrat, pas de s_pqr_bleed). Contenu IDENTIQUE aux planches du set — c'est la condition d'une mesure honnête (comparer à contenu égal). Rangée 2 ouverte comme sur le set et comme sur la page « Portes de garage résidentielles » de référence. Contenu SANS gras : la mesure se fait à contenu égal avec la planche. Pour rejouer le volet « gras » du test d'édition (.page-parity/edit-faq.mts), mettre <strong>Hörmann</strong> dans la réponse de la rangée 2, recomposer, jouer le test, puis remettre ce fichier tel quel et recomposer.",
+  "sections": [
+    {
+      "component": "s_pqr_faq",
+      "set_html": {
+        "faq-title": "<span>Questions fréquentes</span>",
+        "accroche": "FAQ"
+      },
+      "rows": [
+        {
+          "titre": "Quelle est la différence entre une porte sectionnelle et basculante ?",
+          "contenu": "Réponse",
+          "etat": "ferme"
+        },
+        {
+          "titre": "Peut-on motoriser une ancienne porte ?",
+          "contenu": "Oui, nos moteurs Hörmann s'adaptent à la plupart des portes existantes. Des solutions d'ouverture intelligentes et sécurisées : Wi-Fi, application, clavier à code et télécommandes, pour un confort optimal.",
+          "etat": "ouvert"
+        },
+        {
+          "titre": "Assurez-vous la maintenance après l'installation ?",
+          "contenu": "Réponse",
+          "etat": "ferme"
+        }
+      ]
+    }
+  ]
+}

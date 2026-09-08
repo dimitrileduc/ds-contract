@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.0.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -91,7 +91,6 @@ const S: Record<string, CSSProperties> = {
     "color": "inherit",
     "textAlign": "inherit",
     "cursor": "pointer",
-    "height": "32px",
     "paddingInline": "0px",
     "paddingBlock": "0px",
     "backgroundColor": "transparent",
@@ -127,11 +126,8 @@ const V: Record<string, CSSProperties> = {
     "width": "24px",
     "height": "24px"
   },
-  "taille-petit:trigger": {
-    "height": "24px"
-  },
   "etat-ferme:root": {
-    "gap": "24px"
+    "gap": "0px"
   },
   "etat-ouvert:root": {
     "display": "flex",
@@ -170,7 +166,7 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
 {etat === 'ouvert' ? (<span style={{ ...S.Contenu }}>{contenu}</span>) : null}
 {etat === 'ferme' ? (<span style={{ ...S.Titre, ...(V[`taille-${taille}:Titre`] ?? {}) }}>{titre}</span>) : null}
 {etat === 'ferme' ? (<span style={{ ...S.ChevronDown, ...(V[`taille-${taille}:ChevronDown`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-down"] }} />) : null}
-<button style={{ ...S.trigger, ...(V[`taille-${taille}:trigger`] ?? {}), ...(taille === 'grand' ? {"left":"0px","right":"0px","top":"0px"} : {}), ...(taille === 'petit' ? {"left":"0px","right":"0px","top":"0px"} : {}) }} aria-label={String(titre)} type="button" onClick={handleToggle} aria-expanded={etat === 'ouvert'}>
+<button style={{ ...S.trigger, ...(taille === 'grand' ? {"left":"0px","right":"0px","top":"0px","bottom":"0px"} : {}), ...(taille === 'petit' ? {"left":"0px","right":"0px","top":"0px","bottom":"0px"} : {}) }} aria-label={String(titre)} type="button" onClick={handleToggle} aria-expanded={etat === 'ouvert'}>
 
 </button>
     </div>

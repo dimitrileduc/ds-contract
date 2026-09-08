@@ -31,6 +31,33 @@
           "prop": "enTete"
         }
       }
+    },
+    {
+      "name": "presentation",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
     }
   ],
   "states": [],
@@ -43,20 +70,47 @@
       },
       "parts": {
         "blocEnTte": {
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.64}"
+              },
+              "wide": {
+                "gap": "{space.64}"
+              }
+            }
+          },
           "layout": {
-            "direction": "row",
+            "direction": "column",
             "justify": "center",
-            "align": "end"
+            "align": "stretch"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "direction": "row",
+                "align": "end"
+              },
+              "wide": {
+                "direction": "row",
+                "align": "end"
+              }
+            }
+          },
+          "tokens": {
+            "gap": "{space.16}"
           },
           "parts": {
             "SectionHeader": {
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "accroche2": false,
+                  "afficherAccroche": false,
                   "titre": "Nos réalisations industrielles et installations de qualité ",
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "alignement": "centre"
                 }
               },
               "visibleWhen": {
@@ -73,7 +127,11 @@
                 "Texte": {
                   "text": "Personnalisez votre porte industrielle grâce à nos solutions sur mesure, parfaitement intégrées à votre façade. Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit) ou des sections vitrées, nos portes garantissent une robustesse exceptionnelle et une très longue durée de vie.",
                   "tokens": {
-                    "color": "{color.noir}"
+                    "color": "{color.noir}",
+                    "font-size": "{typography.paragraphe.size}",
+                    "font-weight": "{typography.paragraphe.weight}",
+                    "letter-spacing": "{imported.realisations.bloc-en-t-te-wrapper-texte.letter-spacing}",
+                    "line-height": "{imported.realisations.bloc-en-t-te-wrapper-texte.line-height}"
                   },
                   "visibleWhen": {
                     "prop": "enTete",
@@ -96,10 +154,10 @@
           "component": {
             "id": "ds.section-header",
             "props": {
-              "accroche2": true,
+              "afficherAccroche": true,
               "titre": "Quelques réalisations Piqueray",
               "accroche": "Des installations de qualité",
-              "disposition": "standard"
+              "alignement": "centre"
             }
           },
           "visibleWhen": {
@@ -184,19 +242,39 @@
                 }
               }
             }
+          },
+          "tokens": {
+            "height": "{imported.realisations.grid.height.{presentation}}"
+          }
+        }
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}"
           }
         }
       },
       "tokens": {
-        "background-color": "{color.bleu-clair}"
+        "background-color": "{color.bleu-clair}",
+        "padding-inline": "{space.24}",
+        "gap": "{space.48}",
+        "width": "{imported.realisations.root.width.{presentation}}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "4a89264afa90d95c324efcdace47f1caf5617e62",
-      "nodeId": "2117:4691"
+      "componentSetKey": "043a3f9354464eebfbb274d5176a67c571e18f87",
+      "nodeId": "2773:27344"
     },
     "code": {
       "importPath": "src/components/Realisations",

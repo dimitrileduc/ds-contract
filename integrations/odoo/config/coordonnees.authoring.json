@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.coordonnees",
-    "version": "2.2.0"
+    "version": "3.0.0"
   },
   "rootActions": [
     {
@@ -35,13 +35,29 @@
   ],
   "controls": [
     {
+      "decisionId": "coordonnees-ctl-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
       "decisionId": "coordonnees-ctl-coordonnees-ma-rl",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -57,7 +73,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -73,7 +89,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -89,7 +105,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -99,102 +115,6 @@
       "mechanism": "rich-text",
       "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]",
       "label": "titre"
-    },
-    {
-      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]",
-      "label": "titre"
-    },
-    {
-      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-eyebrow\"]",
-      "label": "accroche"
-    },
-    {
-      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-affiche-ccroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "afficherAccroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "coordonnees-ctl-coordonnees-sectio-eader-section-header-alignement",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "alignement"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
     }
   ],
   "parts": [
@@ -205,7 +125,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -225,7 +145,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -236,7 +156,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-googl-ap\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-map\"]",
       "allowedMarks": []
     },
     {
@@ -246,7 +166,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -257,211 +177,7 @@
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Adresse"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse-adress-tiquette",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Adresse",
-          "AdresseEtiquette"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse-adress-tiquette\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-adresse-adress-aleur",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Adresse",
-          "AdresseValeur"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-adresse-adress-aleur\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Contact"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact-contac-tiquette",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Contact",
-          "ContactEtiquette"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact-contac-tiquette\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-contact-tl32087463266emai-nfopi",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Contact",
-          "tl32087463266EmailInfopi"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-contact-tl32087463266emai-nfopi\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires-horaire-tiquette",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires",
-          "HorairesEtiquette"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires-horaire-tiquette\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-horaires-horaire-aleur",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "Horaires",
-          "HorairesValeur"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-horaires-horaire-aleur\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-wrapper\"]",
       "allowedMarks": []
     },
     {
@@ -471,7 +187,7 @@
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
+              "version": "3.0.0"
             }
           }
         ],
@@ -482,201 +198,48 @@
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-sectio-eader\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "suivezNous"
-        ]
-      },
-      "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-header\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-suive-ou-tiquette",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-sectio-eader-accroche",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "suivezNous",
-          "SuivezNousEtiquette"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-suive-ou-tiquette\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "suivezNous",
-          "rseauxSociaux"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux-facebook",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "suivezNous",
-          "rseauxSociaux",
-          "Facebook"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux-facebook\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-root-wrapper-suive-ous-rseau-ociaux-instagram",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "wrapper",
-          "suivezNous",
-          "rseauxSociaux",
-          "Instagram"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-wrapper-suive-ous-rseau-ociaux-instagram\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
               "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.coordonnees",
-              "version": "2.2.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
           }
         ],
         "partPath": [
           "root",
+          "wrapper",
+          "SectionHeader",
           "Accroche"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_coordonnees [data-pqr-part=\"root-accroche\"]",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-eyebrow\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "coordonnees-part-coordonnees-sectio-eader-section-header-root-titre",
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-sectio-eader-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.coordonnees",
-              "version": "2.2.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
               "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
+            }
           }
         ],
         "partPath": [
           "root",
+          "wrapper",
+          "SectionHeader",
           "Titre"
         ]
       },
@@ -686,6 +249,362 @@
       "allowedMarks": [
         "strong"
       ]
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-infos\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-adresse",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Adresse"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-adresse-adress-tiquette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Adresse",
+          "AdresseEtiquette"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-adresse-adress-aleur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Adresse",
+          "AdresseValeur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-value\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-horaires",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Horaires"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-horaires-horaire-tiquette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Horaires",
+          "HorairesEtiquette"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-horaires-horaire-aleur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Horaires",
+          "HorairesValeur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-value\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-contact",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Contact"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-contact-contac-tiquette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Contact",
+          "ContactEtiquette"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-contact-tl32087463266emai-nfopi",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "Contact",
+          "tl32087463266EmailInfopi"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-block\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-suive-ous",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "suivezNous"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-suive-ous-suive-ou-tiquette",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "suivezNous",
+          "SuivezNousEtiquette"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-suive-ous-rseau-ociaux",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "suivezNous",
+          "rseauxSociaux"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-icons\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-suive-ous-rseau-ociaux-facebook",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "suivezNous",
+          "rseauxSociaux",
+          "Facebook"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-facebook\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-coordonnees-root-wrapper-infos-suive-ous-rseau-ociaux-instagram",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.coordonnees",
+              "version": "3.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "wrapper",
+          "infos",
+          "suivezNous",
+          "rseauxSociaux",
+          "Instagram"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-instagram\"]",
+      "allowedMarks": []
     }
   ]
 }

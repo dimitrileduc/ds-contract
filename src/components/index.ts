@@ -31,6 +31,7 @@ export * from './Presentation';
 export * from './ProductCard';
 export * from './ProduitsECommerce';
 export * from './Realisation';
+export * from './Realisations';
 export * from './Reassurances';
 export * from './ReviewCard';
 export * from './SAV';

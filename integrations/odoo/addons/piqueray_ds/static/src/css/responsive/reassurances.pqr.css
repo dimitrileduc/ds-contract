@@ -115,11 +115,14 @@
    * donc leur base de flex est egale, donc le retrait se fait au prorata et les
    * colonnes sortent EXACTEMENT egales — 284,4 a cinq cartes, 363,5 a quatre
    * (mesure). Le nombre de cartes fait le nombre de colonnes, sans qu'aucun compte
-   * ne soit declare. Il faut aussi neutraliser `grid-auto-rows` du bloc Desktop,
-   * qui reste actif a cette largeur et n'a plus de sens hors grille. */
+   * ne soit declare.
+   * Le `grid-auto-rows: 1fr` du bloc Desktop n'a PAS besoin d'etre neutralise :
+   * la propriete ne s'applique qu'a un conteneur de grille, et ce bloc pose
+   * `display: flex`. Une neutralisation a bien ete ecrite ici le 2026-09-07 puis
+   * retiree — elle ne faisait rien, et son absence sur `grid-template-columns`
+   * (inerte pour la meme raison) montrait deja que le raisonnement etait faux. */
   .s_pqr_reassurances.reassurances .reassurances__items {
     display: flex;
     flex-direction: row;
-    grid-auto-rows: auto;
   }
 }

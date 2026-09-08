@@ -5,7 +5,7 @@
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.faq",
-    "version": "1.3.0"
+    "version": "2.1.0"
   },
   "rootActions": [
     {
@@ -35,33 +35,35 @@
   ],
   "controls": [
     {
+      "decisionId": "faq-ctl-faq-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.faq",
+              "version": "2.1.0"
+            }
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "targetSelector": ".s_pqr_faq",
+      "label": "presentation"
+    },
+    {
       "decisionId": "faq-ctl-faq-items",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
         "prop": "items"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "faq-ctl-faq-ligne3",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          }
-        ],
-        "prop": "ligne3"
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
@@ -73,13 +75,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -96,13 +98,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -119,13 +121,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -142,13 +144,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -165,13 +167,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -188,114 +190,18 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
         ],
         "prop": "iconRightGlyph"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "faq-ctl-faq-sectio-eader-section-header-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "controlled",
-      "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_faq [data-pqr-part=\"faq-title\"]",
-      "label": "titre"
-    },
-    {
-      "decisionId": "faq-ctl-faq-sectio-eader-section-header-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "accroche"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_faq [data-pqr-part=\"section-header-eyebrow\"]",
-      "label": "accroche"
-    },
-    {
-      "decisionId": "faq-ctl-faq-sectio-eader-section-header-affiche-ccroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "afficherAccroche"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "faq-ctl-faq-sectio-eader-section-header-alignement",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "prop": "alignement"
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
@@ -307,13 +213,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -331,13 +237,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -355,13 +261,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -379,108 +285,16 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
-          }
-        ],
-        "prop": "contenu"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
-    },
-    {
-      "decisionId": "faq-ctl-faq-accordio-ow3-accordion-row-taille",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "prop": "taille"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "faq-ctl-faq-accordio-ow3-accordion-row-etat",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "prop": "etat"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "faq-ctl-faq-accordio-ow3-accordion-row-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "prop": "titre"
-      },
-      "verdict": "fixed-by-composition",
-      "mechanism": "plain-text"
-    },
-    {
-      "decisionId": "faq-ctl-faq-accordio-ow3-accordion-row-contenu",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
           }
         ],
         "prop": "contenu"
@@ -497,7 +311,7 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -517,7 +331,7 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -538,7 +352,7 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -548,8 +362,8 @@
         ]
       },
       "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-sectio-eader\"]",
+      "contentKind": "structural",
+      "selector": ".s_pqr_faq [data-pqr-part=\"section-header\"]",
       "allowedMarks": []
     },
     {
@@ -559,7 +373,7 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -580,7 +394,7 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           }
         ],
@@ -596,41 +410,19 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "faq-part-faq-root-accordion-accordio-ow3",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "accordion",
-          "AccordionRow3"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-accordion-accordio-ow3\"]",
-      "allowedMarks": []
-    },
-    {
       "decisionId": "faq-part-faq-bouton-button-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -651,13 +443,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -679,13 +471,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -707,13 +499,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -735,13 +527,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.button",
-              "version": "2.3.0"
+              "version": "2.4.0"
             },
             "viaPart": "Bouton"
           }
@@ -757,104 +549,19 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "faq-part-faq-sectio-eader-section-header-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-sectio-eader-section-header-root-accroche",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Accroche"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-accroche\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-sectio-eader-section-header-root-titre",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.section-header",
-              "version": "3.0.0"
-            },
-            "viaPart": "SectionHeader"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Titre"
-        ]
-      },
-      "verdict": "directly-editable",
-      "contentKind": "rich-text",
-      "selector": ".s_pqr_faq [data-pqr-part=\"faq-title\"]",
-      "allowedMarks": [
-        "strong"
-      ]
-    },
-    {
       "decisionId": "faq-part-faq-accordio-ow-accordion-row-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -876,13 +583,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -905,13 +612,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -934,13 +641,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -963,13 +670,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -992,13 +699,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -1022,13 +729,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -1052,13 +759,13 @@
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
           },
           {
             "contract": {
               "id": "ds.accordion-row",
-              "version": "2.0.0"
+              "version": "2.1.0"
             },
             "viaPart": "AccordionRow",
             "repeat": true
@@ -1075,229 +782,50 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root",
+      "decisionId": "faq-part-faq-root-sectio-eader-accroche",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-chevro-own",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
           }
         ],
         "partPath": [
           "root",
-          "ChevronDown"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-chevro-own\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-contenu",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root",
-          "Contenu"
+          "SectionHeader",
+          "Accroche"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-contenu\"]",
+      "selector": ".s_pqr_faq [data-pqr-part=\"accroche\"]",
       "allowedMarks": []
     },
     {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-titre",
+      "decisionId": "faq-part-faq-root-sectio-eader-titre",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.faq",
-              "version": "1.3.0"
+              "version": "2.1.0"
             }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
           }
         ],
         "partPath": [
           "root",
+          "SectionHeader",
           "Titre"
         ]
       },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-titre\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-title",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root",
-          "title"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-title\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-title-chevro-p",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root",
-          "title",
-          "ChevronUp"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-title-chevro-p\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-title-titr-uvert",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root",
-          "title",
-          "TitreOuvert"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-title-titr-uvert\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "faq-part-faq-accordio-ow3-accordion-row-root-trigger",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.faq",
-              "version": "1.3.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.accordion-row",
-              "version": "2.0.0"
-            },
-            "viaPart": "AccordionRow3"
-          }
-        ],
-        "partPath": [
-          "root",
-          "trigger"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".s_pqr_faq [data-pqr-part=\"root-trigger\"]",
-      "allowedMarks": []
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_faq [data-pqr-part=\"faq-title\"]",
+      "allowedMarks": [
+        "strong"
+      ]
     }
   ]
 }

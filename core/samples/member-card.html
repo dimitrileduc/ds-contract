@@ -1,5 +1,5 @@
 <!--
-  MemberCard — static HTML+CSS emitted from contract ds.member-card v1.4.0 by core/emit-html.ts.
+  MemberCard — static HTML+CSS emitted from contract ds.member-card v2.1.1 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,9 +9,22 @@
 <section class="showcase showcase--member-card">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="member-card" data-part="root">
+    <div class="member-card member-card--etat-defaut" data-part="root">
       <div class="member-picture member-picture--etat-defaut member-picture--taille-member-card" data-part="MemberPicture">
-        <img class="member-picture__funIa" alt="" data-part="funIa"></img>
+        <img class="member-picture__funIa" src="" alt="" data-part="funIa"></img>
+        <img class="member-picture__normal" src="" alt="" data-part="normal"></img>
+      </div>
+      <div class="member-card__text" data-part="text">
+        <span class="member-card__Nom" data-part="Nom">Cécilia Piqueray</span>
+        <span class="member-card__Poste" data-part="Poste">Gérante</span>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">etat=survol</p>
+    <div class="member-card member-card--etat-survol" data-part="root">
+      <div class="member-picture member-picture--etat-survol member-picture--taille-member-card" data-part="MemberPicture">
+        <img class="member-picture__funIa" src="" alt="" data-part="funIa"></img>
         <img class="member-picture__normal" src="" alt="" data-part="normal"></img>
       </div>
       <div class="member-card__text" data-part="text">

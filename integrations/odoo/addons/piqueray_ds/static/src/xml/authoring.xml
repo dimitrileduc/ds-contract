@@ -312,10 +312,24 @@
     <BuilderRow label.translate="Piqueray · Coordonnées">
       <span data-pqr-control="coordonnees-title"><span data-pqr-control="coordonnees-eyebrow"><span data-pqr-control="coordonnees-address"><span data-pqr-control="coordonnees-hours"><span data-pqr-control="coordonnees-contact"><span data-pqr-control="coordonnees-social-label">Le titre, l’accroche, les étiquettes/valeurs et les liens Tél/Email (dans le bloc contact) se modifient directement dans le bloc.</span></span></span></span></span></span>
     </BuilderRow>
+    <!-- ODOO-035 (2026-09-08) : le plan d'accès devient un EMBED INTERACTIF sans
+         clé d'API, et le rédacteur en règle l'adresse ici. Le commentaire qui
+         suivait — « Le plan Google n'a AUCUNE action média : placeholder jusqu'à
+         l'API custom, décision gate 2026-08-19 » — est LEVÉ : il n'y a jamais eu
+         besoin d'une clé, la route `maps.google.com/maps?q=…&amp;output=embed` est
+         celle qu'Odoo emploie lui-même dans son bloc `s_map`.
+         Le libellé d'aide n'est pas décoratif : interroger sur le NOM DE
+         L'ENTREPRISE fait apparaître la fiche Piqueray avec sa note Google vivante,
+         une adresse seule ne donne qu'un repère anonyme. -->
+    <BuilderRow label.translate="Adresse du plan">
+      <span data-pqr-control="coordonnees-map-address"><BuilderTextInput action="'pqrSetMapAddress'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Plan — comment le renseigner">
+      <span data-pqr-control="coordonnees-map-help">Mettez le nom de l’établissement ET l’adresse, par exemple « Piqueray SRL, Rue Alfred Drèze 7, 4860 Pepinster ». Avec l’adresse seule, la fiche et la note Google n’apparaissent pas.</span>
+    </BuilderRow>
     <!-- Q-C2 = Option A : icônes sociales cliquables, URL réglée au panneau
          (SetLinkHrefAction, grammaire same-origin/https/mailto/tel, javascript:
-         refusé). Le plan Google n'a AUCUNE action média : placeholder jusqu'à
-         l'API custom (décision gate 2026-08-19). -->
+         refusé). -->
     <BuilderRow label.translate="Lien Facebook">
       <span data-pqr-control="coordonnees-facebook-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'coordonnees-facebook-link'"/></span>
     </BuilderRow>

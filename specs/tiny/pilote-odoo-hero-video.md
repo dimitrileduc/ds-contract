@@ -309,5 +309,5 @@ Le pilote a servi de patron à cinq composants de plus, chacun avec son journal 
 **SAV** 2.0.0, **CarteCategorie** 2.0.0 + **CategoriesPrincipales** 2.0.0, **ds.carte** 3.0.0 (réassurance) +
 **Reassurances** 2.0.0. Un second agent a porté **Presentation** 4.0.1 et **Devis** 2.0.0 en parallèle.
 
-Le mode d'emploi (`specs/tiny/mode-emploi-section-vers-odoo.md`) a reçu treize leçons nouvelles ce soir-là ;
+Le mode d'emploi (`specs/tiny/mode-emploi-section-vers-odoo.md`, déplacé le 2026-09-07 → `docs/16-mode-emploi-composant-vers-odoo.md`) a reçu treize leçons nouvelles ce soir-là ;
 elles sont toutes datées et adossées à une mesure.

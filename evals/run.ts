@@ -3838,6 +3838,38 @@ const cases: Case[] = [
     // contenu pour devenir une fonction de l'écran — 1 sous le seuil bureau, 3 en
     // Desktop, 5 en Wide, exactement ce que dessine le set 2700:26297. La porte
     // vérifie que la largeur reste celle du conteneur et que la carte remplit sa piste.
+    //
+    // AMENDÉ le 2026-09-07, décision owner. En WIDE, la rangée cesse d'être une
+    // grille à nombre de pistes FIXE : `columns: 5` était calculé pour le cas à cinq
+    // cartes, donc quatre cartes laissaient une piste vide et le bloc ne remplissait
+    // plus la largeur. Le nombre de cartes est du CONTENU (la collection `items`,
+    // clonée par item au montage Odoo, sans plafond), et aucun composant du système
+    // ne compte ses items par un axe. La rangée devient donc une LIGNE : les cartes
+    // portent déjà `width: 100 %`, leur base de flex est égale, le retrait se fait au
+    // prorata et les colonnes sortent EXACTEMENT égales — 284,4 à cinq cartes et
+    // 363,5 à quatre, mesuré au dixième dans le navigateur, identique à ce que rendait
+    // la grille. CARRY-BOTH : le canevas dit la même chose avec un auto-layout
+    // HORIZONTAL à enfants Fill, qui répartit lui aussi à parts égales.
+    // Le DESKTOP ne change pas : il garde sa grille de trois pistes en toutes
+    // circonstances, quatre cartes s'y rangent en 3 + 1. Ce que cette porte protège
+    // reste donc le même : le colonnage n'est JAMAIS un choix de contenu déclaré.
+    //
+    // UNE BORNE PERDUE, NOMMÉE PLUTÔT QUE COMBLÉE (revue du 2026-09-08).
+    // `repeat(5, minmax(0,1fr))` faisait passer à la ligne à partir de six cartes.
+    // Une ligne flex sans `flex-wrap` ne passe jamais à la ligne, et le `min-width: 0`
+    // de la carte la laisse se comprimer sans plancher : huit cartes tiendraient sur
+    // une seule ligne d'environ 150 px en Wide. Le défaut de la piste vide a donc été
+    // échangé contre un défaut d'écrasement, et AUCUNE assertion ne le voit.
+    // Le repli a été explicitement écarté par l'owner le 2026-09-07 (« j'oublie le
+    // repli ») : le contenu réel ne dépasse jamais cinq cartes, et la borne serait un
+    // garde-fou pour un cas qui n'existe pas. C'est donc une LIMITE ACCEPTÉE, écrite
+    // ici parce que ce commentaire est le seul endroit où le sujet est traité. Si un
+    // jour une page dépasse cinq, c'est `flex-wrap: wrap` plus une base minimale de
+    // carte qu'il faut ajouter — et cette porte devra l'exiger.
+    //
+    // Pourquoi l'argument « le colonnage n'est pas du contenu » s'arrête à 992 px :
+    // en Desktop la largeur utile ne permet pas plus de trois cartes lisibles, donc
+    // le repli en deux rangées est un choix de DESIGN, pas une déduction du contenu.
     id: 'reassurances-grid-variant-isolation',
     claim: 'C1-determinism',
     run: () => {
@@ -3850,8 +3882,8 @@ const cases: Case[] = [
       }
       const tracks = items.layoutByProp;
       if (Array.isArray(tracks) || !tracks || tracks.prop !== 'presentation' ||
-          JSON.stringify(tracks.map) !== JSON.stringify({ desktop: { columns: 3 }, wide: { columns: 5 } })) {
-        throw new Error('Reassurances: le nombre de colonnes est une fonction de l ECRAN (1/1/3/5), jamais du contenu');
+          JSON.stringify(tracks.map) !== JSON.stringify({ desktop: { columns: 3 }, wide: { display: 'flex', direction: 'row' } })) {
+        throw new Error('Reassurances: Desktop garde ses TROIS pistes de grille ; le Wide est une LIGNE flex, jamais un nombre de colonnes figé');
       }
       const carteRoot = carte.anatomy.root;
       if (carteRoot.layout?.width !== 'fill') {
@@ -3861,8 +3893,8 @@ const cases: Case[] = [
       const css = readFileSync(path.join(ROOT, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
       if (!/\.items\s*\{[\s\S]*?grid-template-columns: repeat\(1, minmax\(0, 1fr\)\);[\s\S]*?width: 100%;/.test(css) ||
           !/\.presentation-desktop \.items\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/.test(css) ||
-          !/\.presentation-wide \.items\s*\{\s*grid-template-columns: repeat\(5, minmax\(0, 1fr\)\);/.test(css)) {
-        throw new Error('React: les pistes 1/3/5 par écran ou le Fill généré sont divergents');
+          !/\.presentation-wide \.items\s*\{\s*display: flex;\s*flex-direction: row;/.test(css)) {
+        throw new Error('React: la base à une piste, les trois pistes du Desktop, la ligne flex du Wide ou le Fill généré sont divergents');
       }
       // The component script index follows dependency order. It changes when
       // another governed component is introduced, so locate Reassurances by
@@ -3871,15 +3903,20 @@ const cases: Case[] = [
       if (!figmaFile) throw new Error('Figma: script Reassurances généré absent');
       const figma = parseSyncComponent(readFileSync(path.join(ROOT, 'figma-sync', figmaFile), 'utf8'));
       // Vague 031 : le nombre de colonnes suit l'ÉCRAN. Chaque variante porte donc
-      // deux axes (Presentation × Disposition) et sa grille vaut 1 / 1 / 3 / 5.
-      for (const [presentation, columns] of [['Mobile', 1], ['Tablette', 1], ['Desktop', 3], ['Wide', 5]] as const) {
+      // deux axes (Presentation × Disposition). 2026-09-07 : la grille vaut 1 / 1 / 3
+      // et le Wide devient une LIGNE. Le mode est DIT, pas déduit d'une sentinelle :
+      // le Wide n'a pas de nombre de colonnes, et `undefined` se compare tel quel.
+      for (const [presentation, mode, columns] of [
+        ['Mobile', 'GRID', 1], ['Tablette', 'GRID', 1], ['Desktop', 'GRID', 3], ['Wide', 'HORIZONTAL', undefined],
+      ] as const) {
         const variantes = figma.variants.filter((item: { name: string }) => item.name.startsWith(`Presentation=${presentation},`));
         if (variantes.length === 0) throw new Error(`Figma: aucune variante Presentation=${presentation}`);
         for (const variante of variantes) {
           const spec = variante.spec;
           const itemsSpec = spec?.children?.find((child: { name: string }) => child.name === 'items');
-          if (spec?.fillWidth !== true || itemsSpec?.fillWidth !== true || itemsSpec?.layout?.mode !== 'GRID' || itemsSpec?.layout?.columns !== columns) {
-            throw new Error(`Figma: ${variante.name} doit garder son root et sa grille en Fill à ${columns} colonnes`);
+          if (spec?.fillWidth !== true || itemsSpec?.fillWidth !== true ||
+              itemsSpec?.layout?.mode !== mode || itemsSpec?.layout?.columns !== columns) {
+            throw new Error(`Figma: ${variante.name} doit garder son root et sa rangée en Fill, ${columns === undefined ? 'en LIGNE sans nombre de colonnes' : `en grille à ${columns} colonnes`}`);
           }
         }
       }

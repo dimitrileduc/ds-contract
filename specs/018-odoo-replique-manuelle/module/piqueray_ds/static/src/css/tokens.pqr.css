@@ -124,6 +124,7 @@
   --pqr-size-coordonnees-google-map-w: 1152px;
   --pqr-size-coordonnees-google-map-h: 597px;
   --pqr-size-coordonnees-wrapper: 576px;
+  --pqr-size-coordonnees-panneau-desktop: 400px;
   --pqr-size-devis-titre: 900px;
   --pqr-size-devis-root: 1728px;
   --pqr-size-devis-root-h-mobile: 496px;
@@ -275,6 +276,8 @@
   --pqr-color-etat-iconOnly-libelle-presse: var(--pqr-color-blanc);
   --pqr-color-etat-iconOnly-anneau-focus: var(--pqr-color-noir-bleute);
   --pqr-color-etat-carte-categorie-voile-survol: var(--pqr-color-noir-voile-55);
+  --pqr-color-etat-accordion-row-chevron-survol: var(--pqr-color-orange);
+  --pqr-color-etat-accordion-row-anneau-focus: var(--pqr-color-noir-bleute);
   --pqr-typography-titre-1-family: var(--pqr-font-family-montserrat);
   --pqr-typography-titre-1-size: var(--pqr-font-size-48);
   --pqr-typography-titre-1-weight: var(--pqr-font-weight-medium);
@@ -395,6 +398,13 @@
   --pqr-typography-menu-sous-entree-size: var(--pqr-font-size-18);
   --pqr-typography-menu-sous-entree-weight: var(--pqr-font-weight-regular);
   --pqr-typography-menu-sous-entree-line-height: var(--pqr-font-line-height-27);
+  --pqr-typography-etat-default-graisse-survol: var(--pqr-font-weight-medium);
+  --pqr-typography-etat-orange-graisse-survol: var(--pqr-font-weight-medium);
+  --pqr-typography-etat-blanc-graisse-survol: var(--pqr-font-weight-medium);
+  --pqr-typography-etat-outlineBlanc-graisse-survol: var(--pqr-font-weight-medium);
+  --pqr-typography-etat-link-graisse-survol: var(--pqr-font-weight-semibold);
+  --pqr-typography-etat-outlineNoir-graisse-survol: var(--pqr-font-weight-medium);
+  --pqr-typography-etat-iconOnly-graisse-survol: var(--pqr-font-weight-medium);
   --pqr-spacing-card-categorie-pad-h: var(--pqr-space-24);
   --pqr-spacing-carte-reassurance-gap: var(--pqr-space-16);
   --pqr-spacing-carte-reassurance-pad-bas: var(--pqr-space-16);

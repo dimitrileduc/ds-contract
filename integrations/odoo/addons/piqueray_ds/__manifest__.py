@@ -88,6 +88,11 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             # Après categories-principales : la carte empilée doit battre les
             # deux hauteurs superposées que la section pose (ds.carte-categorie 3.0.0).
             "piqueray_ds/static/src/css/responsive/carte-categorie.pqr.css",
+            "piqueray_ds/static/src/css/responsive/faq.pqr.css",
+            "piqueray_ds/static/src/css/responsive/realisations.pqr.css",
+            "piqueray_ds/static/src/css/responsive/member-card.pqr.css",
+            "piqueray_ds/static/src/css/responsive/equipe.pqr.css",
+            "piqueray_ds/static/src/css/responsive/coordonnees.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",
             # Dépliage public de la FAQ : bascule pure + Interaction du noyau 19.

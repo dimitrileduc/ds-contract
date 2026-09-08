@@ -1,7 +1,7 @@
 # Journal de section — `ds.devis` → Odoo (vague 031)
 
 **Agent** : session Claude, worktree `oceanic-oak`. **Ouvert le** 2026-09-02.
-Recette : `specs/tiny/mode-emploi-section-vers-odoo.md`.
+Recette : `specs/tiny/mode-emploi-section-vers-odoo.md` (déplacé le 2026-09-07 → `docs/16-mode-emploi-composant-vers-odoo.md`).
 
 ## Entrées reçues
 

@@ -2039,7 +2039,7 @@ const COMPONENTS = [
     "setName": "Realisation",
     "contractId": "ds.realisation",
     "anchorKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
-    "description": "Realisation — generated from contract ds.realisation v1.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Realisation — generated from contract ds.realisation v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -2058,9 +2058,12 @@ const COMPONENTS = [
           "name": "Taille=Grand",
           "layout": {
             "mode": "HORIZONTAL",
-            "primary": "CENTER",
-            "counter": "CENTER"
+            "primary": "MIN",
+            "counter": "MIN",
+            "stretchChildren": true
           },
+          "fillWidth": true,
+          "aspectRatio": 1,
           "children": [
             {
               "type": "frame",
@@ -2068,15 +2071,8 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN"
-              },
-              "fixedWidth": {
-                "px": 743,
-                "varName": "size/realisation/image"
-              },
-              "fixedHeight": {
-                "px": 743,
-                "varName": "size/realisation/image"
+                "counter": "MIN",
+                "stretchChildren": true
               },
               "imgPlaceholder": true,
               "lits": {
@@ -2086,7 +2082,9 @@ const COMPONENTS = [
                   "b": 0.8509803921568627
                 }
               },
-              "children": []
+              "children": [],
+              "fillWidth": true,
+              "aspectRatio": 1
             }
           ]
         }
@@ -2100,9 +2098,12 @@ const COMPONENTS = [
           "name": "Taille=Petit",
           "layout": {
             "mode": "HORIZONTAL",
-            "primary": "CENTER",
-            "counter": "CENTER"
+            "primary": "MIN",
+            "counter": "MIN",
+            "stretchChildren": true
           },
+          "fillWidth": true,
+          "aspectRatio": 1,
           "children": [
             {
               "type": "frame",
@@ -2110,15 +2111,8 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN"
-              },
-              "fixedWidth": {
-                "px": 339.5,
-                "varName": "size/realisation/image-petit"
-              },
-              "fixedHeight": {
-                "px": 339.5,
-                "varName": "size/realisation/image-petit"
+                "counter": "MIN",
+                "stretchChildren": true
               },
               "imgPlaceholder": true,
               "lits": {
@@ -2128,7 +2122,9 @@ const COMPONENTS = [
                   "b": 0.8509803921568627
                 }
               },
-              "children": []
+              "children": [],
+              "fillWidth": true,
+              "aspectRatio": 1
             }
           ]
         }
@@ -2794,6 +2790,13 @@ function applyInsetOverlay(parent, childNode, childSpec) {
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
+function applyAspectRatio(node, spec) {
+  if (!(spec.aspectRatio > 0)) return;
+  try {
+    if (typeof node.lockAspectRatio === 'function') node.lockAspectRatio();
+    else if ('constrainProportions' in node) node.constrainProportions = true;
+  } catch (e) { /* node kind or older API does not expose ratio locking */ }
+}
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -2979,6 +2982,7 @@ async function buildNode(spec, registry) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
 
+    applyAspectRatio(childNode, child);
 
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
@@ -3572,6 +3576,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
 
+    applyAspectRatio(childNode, childSpec);
 
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
@@ -3678,6 +3683,7 @@ async function amendComponent(comp, C) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
 
+    applyAspectRatio(childNode, childSpec);
 
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.

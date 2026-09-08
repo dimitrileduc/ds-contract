@@ -1,0 +1,445 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.realisations",
+  "name": "Realisations",
+  "version": "1.0.0",
+  "description": "Section Realisations — la mosaïque de photos de chantiers. Contrat NEUF (vague 035, 2026-09-07) : la section n'existait ni en contrat ni en bloc Odoo, seule la tuile ds.realisation était gouvernée. Extrait du set candidat v2 de la page « 031 · Planches de validation », posé le même jour à partir du set v1 2117:4691 après nettoyage de la source (8 défauts relevés, dont l'aplat gris opaque qui cachait les 27 photos vivantes du fichier). Mosaïque : une grande tuile sur 2×2 cellules puis huit petites, 4 colonnes en Desktop et Wide, 2 en Tablette et Mobile — décision owner du 2026-09-07 (option B : deux colonnes en mobile plutôt qu'une, qui donnait 3638 px de défilement pour un seul bloc). Le rythme vertical appartient à la page (padding vertical 0), la gouttière au contrat, comme toutes les sections depuis la vague 031.",
+  "semantics": {
+    "element": "section",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "presentation",
+      "description": "Axe de présentation responsive du DS. Pose la gouttière (24 · 48 · 56 · 89), l'écart de l'en-tête, le nombre de colonnes de la mosaïque et l'écart de grille. Fixé par la composition côté Odoo, jamais offert au rédacteur.",
+      "type": {
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
+      },
+      "default": "mobile",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
+        },
+        "code": {
+          "prop": "presentation"
+        }
+      }
+    },
+    {
+      "name": "enTete",
+      "description": "Forme de l'en-tête, axe VARIANT Figma `En-tete`. `accroche` : le sur-titre et le titre seuls, centrés (page « Portes d'entrée »). `presentation` : le titre à gauche et un paragraphe à droite au-dessus de 992 (pages « Portes de garage » industrielles et résidentielles).",
+      "type": {
+        "enum": [
+          "accroche",
+          "presentation"
+        ]
+      },
+      "default": "accroche",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "En-tete",
+          "values": {
+            "accroche": "Accroche",
+            "presentation": "Presentation"
+          }
+        },
+        "code": {
+          "prop": "enTete"
+        }
+      }
+    },
+    {
+      "name": "accroche",
+      "description": "Sur-titre en capitales, visible dans la seule forme `accroche` (la forme `presentation` masque l'accroche du SectionHeader sur le canevas). Aucune propriété Figma ne le porte au niveau de la section : la liaison est NONE, le texte vit dans l'instance de SectionHeader.",
+      "type": "text",
+      "default": "Des installations de qualité",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "description": "Titre de section. TEXTE RICHE : la source porte une plage en gras (« industrielles et installations »), et la règle owner du 2026-09-02 dit qu'un texte avec du gras est riche. Trouvé par le TEST D'ÉDITION du 2026-09-07, pas par lecture : déclaré en texte plat, le gras était déplié au premier « Enregistrer » du rédacteur — la garde de saisie faisait exactement son travail sur un type faux. Aligné au centre en Mobile et Tablette, à gauche en Desktop et Wide dans la forme `presentation` — décision owner du 2026-09-07. La forme `accroche` reste centrée à toutes les largeurs, comme la source.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Nos réalisations "
+        },
+        {
+          "text": "industrielles et installations",
+          "strong": true
+        },
+        {
+          "text": " de qualité"
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "description": "Paragraphe de la forme `presentation`, à droite du titre au-dessus de 992. TEXTE RICHE : la source porte deux plages en gras (Montserrat Bold), et la règle owner du 2026-09-02 dit qu'un texte avec du gras est riche. La marque strong est gouvernée par le jeton font.weight.bold. Sans ce type le gras serait déplié au premier enregistrement côté Odoo.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Personnalisez votre porte industrielle grâce à "
+        },
+        {
+          "text": "nos solutions sur mesure",
+          "strong": true
+        },
+        {
+          "text": ", parfaitement intégrées à votre façade. Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit) ou des sections vitrées, nos portes garantissent "
+        },
+        {
+          "text": "une robustesse exceptionnelle et une très longue durée de vie",
+          "strong": true
+        },
+        {
+          "text": "."
+        }
+      ],
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    },
+    {
+      "name": "photos",
+      "description": "La collection de photos de la mosaïque, un item par tuile. Neuf items sur les trois usages relevés ; la première occupe 2×2 cellules. Figma stocke les photos comme surcharges de fill d'instance, jamais comme propriété de composant : la liaison est NONE et l'URL vide par défaut ne substitue aucune image (limite déclarée, héritée de ds.realisation).",
+      "type": {
+        "arrayOf": {
+          "imageUrl": "text",
+          "imageAlt": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "photos"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "description": "Racine de section. Largeur possédée par la page (`fill`), 1728 n'est que la largeur d'auteur du canevas. PADDING VERTICAL PORTÉ PAR LA SECTION, et c'est une exception assumée à la règle de la vague 031 : cette section PEINT UNE BANDE (fond bleu clair) différente du fond de page, donc la respiration verticale doit vivre DEDANS — sinon le titre colle au bord haut et la dernière rangée de photos au bord bas. Même traitement que ds.coordonnees, la seule autre section à fond bleu clair, qui porte 48 de padding vertical sur son wrapper. Les sections à padding-block 0 (categories-principales, presentation, reassurances, texte-seo) ne peignent aucune bande : là, le rythme appartient au conteneur de page. Valeurs : 48 · 64 · 89 · 128 par écran — SEUL le 128 de Wide a un témoin (le master v1 porte 128 en haut et en bas) ; les trois autres suivent l'échelle du dépôt, décision owner du 2026-09-07, réversible d'un mot. Fond bleu clair, gouttière par écran.",
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "start",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
+      },
+      "tokens": {
+        "background-color": "{color.bleu-clair}",
+        "padding-inline": "{space.24}",
+        "gap": "{space.48}",
+        "padding-block": "{space.48}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}",
+            "padding-block": "{space.64}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "padding-block": "{space.89}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "padding-block": "{space.128}"
+          }
+        }
+      },
+      "parts": {
+        "EnTete": {
+          "description": "Bloc d'en-tête. En colonne sous 992 (titre puis paragraphe), en ligne au-dessus, alignés sur la ligne de base basse comme la source. L'écart passe de 16 à 64 au-dessus de 992.",
+          "layout": {
+            "direction": "column",
+            "justify": "start",
+            "align": "start",
+            "width": "fill"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "direction": "row",
+                "align": "end"
+              },
+              "wide": {
+                "direction": "row",
+                "align": "end"
+              }
+            }
+          },
+          "tokens": {
+            "gap": "{space.16}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "gap": "{space.64}"
+              },
+              "wide": {
+                "gap": "{space.64}"
+              }
+            }
+          },
+          "parts": {
+            "SectionHeader": {
+              "description": "Le set dessine l'en-tête par une instance de SectionHeader ; il est modélisé À PLAT ici, comme sur ds.reassurances et ds.sav, pour que le rédacteur Odoo puisse éditer le sur-titre et le titre.",
+              "layout": {
+                "direction": "column",
+                "justify": "start",
+                "align": "start",
+                "width": "fill"
+              },
+              "tokens": {
+                "gap": "{space.8}"
+              },
+              "parts": {
+                "Accroche": {
+                  "description": "Sur-titre en capitales. Visible dans la seule forme `accroche` : la forme `presentation` pose afficherAccroche=false sur le canevas.",
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "content": {
+                    "prop": "accroche"
+                  },
+                  "visibleWhen": {
+                    "prop": "enTete",
+                    "equals": "accroche"
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{typography.overline.size}",
+                    "font-weight": "{typography.overline.weight}",
+                    "line-height": "{typography.overline.line-height}"
+                  },
+                  "declared": {
+                    "text-align": "center",
+                    "text-transform": "uppercase"
+                  }
+                },
+                "Titre": {
+                  "element": "h2",
+                  "description": "Titre de section, rôle responsive H2 du DS. Centré en Mobile et Tablette, à gauche en Desktop et Wide (décision owner du 2026-09-07) ; la forme `accroche` reprend le centre à toutes les largeurs par une règle d'état posée APRÈS les deux règles de présentation, qui la gagnent donc à spécificité égale.",
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "content": {
+                    "prop": "titre",
+                    "marks": {
+                      "strong": "{font.weight.bold}"
+                    }
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-family": "{typography.h2.family}",
+                    "font-size": "{typography.h2.size}",
+                    "font-weight": "{typography.h2.weight}",
+                    "line-height": "{typography.h2.line-height}"
+                  },
+                  "declared": {
+                    "text-align": "center"
+                  },
+                  "stylesWhen": [
+                    {
+                      "prop": "presentation",
+                      "equals": "desktop",
+                      "styles": {
+                        "text-align": "left"
+                      }
+                    },
+                    {
+                      "prop": "presentation",
+                      "equals": "wide",
+                      "styles": {
+                        "text-align": "left"
+                      }
+                    },
+                    {
+                      "prop": "enTete",
+                      "equals": "accroche",
+                      "styles": {
+                        "text-align": "center"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "Texte": {
+              "description": "Paragraphe de la forme `presentation`. Rôle Paragraphe du DS (14/24 Regular) ; la source portait un letter-spacing de 0, non porté (valeur neutre, écart nommé). Le gras des deux plages est gouverné par font.weight.bold.",
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "texte",
+                "marks": {
+                  "strong": "{font.weight.bold}"
+                }
+              },
+              "visibleWhen": {
+                "prop": "enTete",
+                "equals": "presentation"
+              },
+              "tokens": {
+                "color": "{color.noir}",
+                "font-family": "{typography.paragraphe.family}",
+                "font-size": "{typography.paragraphe.size}",
+                "font-weight": "{typography.paragraphe.weight}",
+                "line-height": "{typography.paragraphe.line-height}"
+              },
+              "declared": {
+                "text-align": "left"
+              }
+            }
+          }
+        },
+        "Grille": {
+          "description": "La mosaïque. Deux colonnes sous 992, quatre au-dessus ; écart 16 en Mobile, 64 partout ailleurs. La hauteur n'est PAS portée : elle suit le contenu (les tuiles sont carrées et suivent la colonne). LIMITE NOMMÉE : la première tuile occupe 2×2 cellules, ce que le schéma ne sait pas dire — `layout.columns` ne gouverne que des pistes égales, et les zones et chevauchements sont un CARRY-CODE-ONLY déclaré (docs/FIGMA-CAPABILITY-MATRIX.md, ligne 62). Le chevauchement est donc porté par une règle CSS bornée à la première tuile, et nommé au journal.",
+          "layout": {
+            "display": "grid",
+            "columns": 2,
+            "width": "fill"
+          },
+          "layoutByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "columns": 4
+              },
+              "wide": {
+                "columns": 4
+              }
+            }
+          },
+          "tokens": {
+            "gap": "{space.16}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "gap": "{space.64}"
+              },
+              "desktop": {
+                "gap": "{space.64}"
+              },
+              "wide": {
+                "gap": "{space.64}"
+              }
+            }
+          },
+          "parts": {
+            "Tuile": {
+              "description": "Une tuile par photo. Composition `repeat` + `component` : les champs imageUrl et imageAlt de chaque item alimentent les props de même nom de ds.realisation. L'axe Taille de la tuile est laissé à sa valeur par défaut — il n'a plus d'effet géométrique depuis ds.realisation 2.0.0.",
+              "repeat": {
+                "itemsProp": "photos",
+                "sample": [
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage sectionnelle bois sur maison à bardage gris"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage sectionnelle noire sur façade en briques claires"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage sectionnelle bois sur longère en pierre"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage sectionnelle noire à hublots sur mur de briques grises"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Portail industriel noir le long d'une allée"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage anthracite sur maison de briques rouges"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage anthracite sur façade de briques rouges et blanches"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage bois sur bâtiment en rénovation"
+                  },
+                  {
+                    "imageUrl": "",
+                    "imageAlt": "Porte de garage verte sur maison de caractère en pierre"
+                  }
+                ]
+              },
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "grand"
+                }
+              },
+              "layout": {
+                "width": "fill"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "043a3f9354464eebfbb274d5176a67c571e18f87",
+      "nodeId": "2773:27344",
+      "dumpedAt": "2026-09-07"
+    },
+    "code": {
+      "importPath": "src/components/Realisations",
+      "export": "Realisations"
+    }
+  },
+  "category": "section"
+}

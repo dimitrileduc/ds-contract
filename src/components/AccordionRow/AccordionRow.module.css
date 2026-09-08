@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.0.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -34,7 +34,7 @@
 }
 
 .etat-ferme {
-  gap: var(--space-24);
+  gap: var(--space-0);
 }
 
 .etat-ouvert {
@@ -106,6 +106,10 @@
   height: var(--size-accordion-row-chevron-up-petit);
 }
 
+.root:hover:not(:disabled) .ChevronUp {
+  color: var(--color-etat-accordion-row-chevron-survol);
+}
+
 .Contenu {
   width: 100%;
   min-width: 0;
@@ -171,6 +175,10 @@
   height: var(--size-accordion-row-chevron-down-petit);
 }
 
+.root:hover:not(:disabled) .ChevronDown {
+  color: var(--color-etat-accordion-row-chevron-survol);
+}
+
 .trigger {
   appearance: none;
   background: none;
@@ -181,7 +189,6 @@
   color: inherit;
   text-align: inherit;
   cursor: pointer;
-  height: var(--size-accordion-row-trigger);
   padding-inline: var(--space-0);
   padding-block: var(--space-0);
   border-style: solid;
@@ -190,18 +197,16 @@
   position: absolute;
 }
 
-.taille-petit .trigger {
-  height: var(--size-accordion-row-trigger-petit);
-}
-
 .taille-grand .trigger {
   left: 0px;
   right: 0px;
   top: 0px;
+  bottom: 0px;
 }
 
 .taille-petit .trigger {
   left: 0px;
   right: 0px;
   top: 0px;
+  bottom: 0px;
 }

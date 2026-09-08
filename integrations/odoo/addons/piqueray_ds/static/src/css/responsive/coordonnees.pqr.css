@@ -1,0 +1,165 @@
+/*
+ * responsive/coordonnees.pqr.css — ZONE MANUELLE (vague 031, 2026-09-07).
+ *
+ * Projection Odoo des règles PAR MODE du contrat ds.coordonnees 3.0.0
+ * (layoutByProp / tokensByProp sur l'axe `presentation`), réécrites en @media sur
+ * les breakpoints des jetons :
+ *   Mobile   = base (components.pqr.css — mobile-first, classe `.coordonnees`)
+ *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
+ *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
+ *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ * Le générateur émet déjà ces mêmes déclarations sous les classes
+ * `.coordonnees--presentation-<mode>` — mais AUCUN QWeb ne pose ces classes sur le
+ * DOM Odoo (Odoo n'a aucun moyen d'appliquer une classe selon la fenêtre) : cette
+ * feuille les traduit en @media, à l'identique du contrat, jamais inventées.
+ *
+ * La typographie n'est PAS ici : tokens.pqr.css porte déjà ses blocs @media pour
+ * --pqr-typography-overline-*, -h2-*, -h4-* et -body-*, et components.pqr.css les
+ * référence. L'accroche, le titre, les quatre étiquettes et les quatre valeurs
+ * changent donc de corps tout seuls.
+ *
+ * TROIS FAITS CODE-ONLY, chacun avec sa raison (le contrat ne peut pas le dire) :
+ *   (1) le rapport 16/9 du plan disparaît au-delà du seuil bureau — `declared`
+ *       n'a aucun canal par mode et `aspect-ratio` n'est pas dans la liste
+ *       blanche de `stylesWhen` ;
+ *   (2) l'affordance de lien de l'adresse et du bloc contact passe au survol et
+ *       au focus — le set candidat ne souligne rien au repos, et le canal d'états
+ *       d'une part NON-RACINE n'accepte que color / background-color /
+ *       border-color (PART_STATE_CHANNELS) : un text-decoration d'état ne peut
+ *       pas vivre au contrat ;
+ *   (3) la zone cliquable des icônes sociales est portée à 44 × 44 — le DESSIN
+ *       reste à 32 (identique sur les quatre écrans, décision owner) ; le contrat
+ *       porte le dessin, jamais la surface de pointage.
+ *
+ * Écrit à la main depuis le contrat et les planches d'instance de la vague 031.
+ */
+
+/* ---- ds.coordonnees 3.0.0 ------------------------------------------------- */
+
+/* ---- Base = Mobile ------------------------------------------------------- */
+/* Rien à écrire pour la mise en page : components.pqr.css porte déjà la colonne,
+ * le plan à 16/9 pleine largeur, le panneau à marge 24 et la grille à une colonne. */
+
+/* (2) Affordance de lien — CODE-ONLY. Le set candidat 2778:34448 ne souligne NI
+ * l'adresse NI le bloc contact (vérifié au profil d'encre par ligne sur la planche
+ * 1728 : aucune rangée dense sous la ligne de base, les 4 à 6 pixels résiduels
+ * étant les jambages de « info@piqueray.be »). La version 2.2.0 du contrat portait
+ * ces soulignements ; 3.0.0 les retire pour suivre la source. Mais l'adresse et le
+ * contact RESTENT de vrais liens (Google Maps, tel:, mailto: — décisions Q-C1 et
+ * owner 2026-08-20) : un lien sans aucun signe distinctif n'est plus repérable.
+ * L'affordance est donc reportée sur le survol et sur le focus clavier, où elle ne
+ * coûte rien à la mesure au repos. Elle ne peut pas vivre au contrat : le canal
+ * d'états d'une part non-racine n'accepte que color / background-color /
+ * border-color. Remplace la règle de repos de ODOO-022-COORDONNEES-BRIDGE. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-address-value"] a:hover,
+.s_pqr_coordonnees [data-pqr-part="coordonnees-address-value"] a:focus-visible,
+.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a:hover,
+.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a:focus-visible {
+  text-decoration: underline;
+}
+
+/* (3) Zone cliquable des icônes sociales — CODE-ONLY, sur les quatre écrans.
+ * Le dessin fait 32 × 32 avec un écart de 16 : conforme au critère AA de WCAG 2.2
+ * (2.5.8, cible d'au moins 24 × 24) mais pas au AAA (2.5.5, 44 × 44). Le dessin
+ * n'est PAS agrandi — il est relevé identique sur les quatre planches, et le pied
+ * de page v2 pose exactement le même. C'est l'ANCRE qui grandit : 6 px de marge
+ * intérieure sur les quatre côtés portent sa boîte à 44, et 6 px de marge NÉGATIVE
+ * ramènent sa boîte de marge à 32 — la seule que le flex mesure. Résultat, au
+ * pixel : le glyphe reste à x = 24 et l'écart visible reste 16, exactement les
+ * valeurs de la planche (bandes d'encre 24-55 | 72-103 à 390). Les deux boîtes
+ * cliquables ne se recouvrent pas : elles occupent 18..61 et 66..109, soit 4 px
+ * d'intervalle. Le contrat porte le dessin (icon.size 32), jamais la surface de
+ * pointage — c'est une propriété du support, pas du composant. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-social-icons"] a {
+  padding: 6px;
+  margin: -6px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Tablette ≥ 768 ------------------------------------------------------- */
+/* Le panneau passe à 48 de marge intérieure et les informations à DEUX colonnes.
+ * C'est le SEUL écran à deux colonnes, parce que c'est le seul où le panneau est
+ * pleine largeur (contenu 738) alors qu'il n'occupe qu'un tiers ailleurs
+ * (342 · 738 · 304 · 480) ; règle owner : deux colonnes au-delà de 600.
+ * Vérification au pixel sur la planche 834 : 353 × 2 + 32 = 738, colonne de droite
+ * à x = 433. Le plan reste à 16/9, pleine largeur (834 × 469). */
+@media (min-width: 768px) {
+  .s_pqr_coordonnees .coordonnees__wrapper {
+    padding-inline: var(--pqr-space-48);
+    padding-block: var(--pqr-space-48);
+  }
+  .s_pqr_coordonnees .coordonnees__infos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- Desktop ≥ 992 -------------------------------------------------------- */
+/* La section passe CÔTE À CÔTE : le plan à gauche, le panneau à droite, tous deux
+ * étirés sur la hauteur de la rangée que le PANNEAU décide. Le panneau prend sa
+ * largeur fixe (400 = size.coordonnees.panneau-desktop) et ne fléchit pas ; le
+ * plan, en remplissage, absorbe les 800 restants — les deux tiers exacts de la
+ * planche 1200. Les informations reviennent à UNE colonne (contenu 304). */
+@media (min-width: 992px) {
+  .s_pqr_coordonnees.coordonnees {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .s_pqr_coordonnees .coordonnees__wrapper {
+    width: var(--pqr-size-coordonnees-panneau-desktop);
+    flex: 0 0 var(--pqr-size-coordonnees-panneau-desktop);
+  }
+  .s_pqr_coordonnees .coordonnees__infos {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  /* (1) CODE-ONLY : le rapport 16/9 n'est le fait QUE des deux écrans empilés
+   * (planches 390 × 219 et 834 × 469). Côte à côte, le plan n'a plus de rapport
+   * propre : il s'étire sur la hauteur de la rangée (planches : 665 puis 680, soit
+   * exactement le contenu du panneau plus ses marges). Le contrat ne peut pas le
+   * dire — `declared` n'a pas de canal par mode et `aspect-ratio` n'est pas dans
+   * la liste blanche de `stylesWhen` (position, insets, display, text-align…).
+   * `height: 100 %` plutôt que `align-self` seul : une hauteur en pourcentage ne
+   * participe pas au dimensionnement intrinsèque, donc une photo plus haute que le
+   * panneau ne pourrait pas tirer la rangée — c'est bien le panneau qui décide. */
+  .s_pqr_coordonnees .coordonnees__googleMap {
+    aspect-ratio: auto;
+    align-self: stretch;
+    height: 100%;
+  }
+}
+
+/* ---- Wide ≥ 1400 --------------------------------------------------------- */
+/* Le panneau passe à 576 (size.coordonnees.wrapper) ; le plan garde le reste,
+ * 1152 sur la planche 1728 — le même partage deux tiers / un tiers. Les marges
+ * intérieures du panneau restent à 48, la grille à une colonne (contenu 480). */
+@media (min-width: 1400px) {
+  .s_pqr_coordonnees .coordonnees__wrapper {
+    width: var(--pqr-size-coordonnees-wrapper);
+    flex: 0 0 var(--pqr-size-coordonnees-wrapper);
+  }
+}
+
+/* ---- ODOO-035-COORDONNEES-MAP (2026-09-08) --------------------------------
+ * Le plan est un embed interactif, plus une image. La BOÎTE ne change pas : elle
+ * garde le rapport 16/9 sous le seuil bureau et la pleine hauteur au-dessus, tels
+ * que le contrat les déclare — c'est le CONTENU de la boîte qui devient un iframe.
+ * Trois faits code-only, et aucun n'est décoratif :
+ *   · `overflow: hidden` — l'embed dessine ses propres commandes jusqu'au bord ;
+ *     sans ça elles débordent du coin arrondi de la section ;
+ *   · `border: 0` — un iframe porte une bordure par défaut dans tous les moteurs ;
+ *   · `flex: 1 1 auto` — la boîte est en `display: flex` (émis par le contrat),
+ *     l'iframe est donc un enfant de flex et ne prendrait sinon que sa largeur
+ *     intrinsèque de 300 px, valeur par défaut du HTML pour un cadre.
+ * `object-fit: cover`, émis par le contrat pour l'ancienne image, reste inerte sur
+ * un conteneur : laissé tel quel plutôt que neutralisé, il ne fait rien. */
+.s_pqr_coordonnees .coordonnees__googleMap {
+  overflow: hidden;
+}
+.s_pqr_coordonnees .coordonnees__mapEmbed {
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+}
