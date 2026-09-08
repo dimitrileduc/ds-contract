@@ -126,7 +126,7 @@ La PARTIE B (plus bas) est l'historique daté : les leçons y sont, la PARTIE A 
   base = Mobile (déjà dans components.pqr.css)
   @media (min-width: 768px)  { … Tablette … }
   @media (min-width: 992px)  { … Desktop … }
-  @media (min-width: 1400px) { … Wide … }
+  @media (min-width: 1600px) { … Wide … }
   ```
   Vocabulaire `var(--pqr-…)` uniquement. Chaque fait code-only commenté (pourquoi le contrat ne peut pas le dire).
   Un bloc borné `(min-width: 768px) and (max-width: 991.98px)` pour ce qui ne vit qu'en tablette. Jamais les classes
@@ -383,7 +383,7 @@ Dans `.page-parity/vague-031/` (dossier de travail, ignoré par git) :
   base = Mobile (déjà dans components.pqr.css)
   @media (min-width: 768px)  { … Tablette … }
   @media (min-width: 992px)  { … Desktop … }
-  @media (min-width: 1400px) { … Wide … }
+  @media (min-width: 1600px) { … Wide … }
   ```
   Chaque bloc recopie les déclarations que `components.pqr.css` émet pour la classe
   `.<bloc>--presentation-<mode>` (racine et parts). Même vocabulaire (`var(--pqr-…)`), rien d'autre.

@@ -40,8 +40,17 @@ vertes.
 
 **Nos cartes sont justes** : polices chargées, nos cinq blocs de texte mesurent 54/81/81/54/81 px — exactement comme
 la maquette, au même endroit de coupure, avec la même police, le même corps, le même interligne et la même approche.
-Reproduire la maquette voudrait dire figer 561 px de rangée dans le CSS, ce qui casserait au premier texte modifié.
-**La correction appartient à la source.**
+
+**Et le 561 en dur n'est pas un défaut : c'est une LIMITE DE FIGMA** (essayé sur le canevas, doc à l'appui —
+registre §6quinquies). Rangée en `hug` + cartes en `fill` : impossible, un enfant en *Fill container* empêche le
+parent de *hug*. Rangée en `hug` + cartes en `hug` : les cartes d'une même ligne cessent d'être égales (504, 531,
+504, 504, 561). Étirer la carte dans sa cellule : `gridChildVerticalAlign` n'a pas de `STRETCH`, et la propriété
+n'est pas surchargeable sur une instance. **Écrire 561 est donc le seul moyen, dans Figma, d'obtenir cinq cartes de
+même hauteur** — ce qu'une grille CSS fait nativement, sans valeur écrite.
+
+**Décision : écart ACCEPTÉ.** Ni la maquette ni la page n'ont tort ; elles ne peuvent pas coïncider quand le contenu
+est plus court que la valeur figée. Trois mesures (Accueil, Portes de garage, À propos au 1200) restent rouges pour
+cette raison-là, et pour aucune autre.
 
 Les deux lectures fausses sont conservées au registre (§6quater) plutôt qu'effacées : la première déduisait la cause
 du tableau des sections, la seconde d'une image. Seule la troisième a mesuré. Et la première mesure de nos cartes a

@@ -29,6 +29,14 @@ function invariantErrors(document: JsonValue): ValidationIssue[] {
   if (!isRecord(document)) return errors;
 
   const profile = valueAt(document, 'profile');
+  // NOTE DATEE (2026-09-08) — ce validateur garde les documents de decision de la
+  // spec 027, qui sont DATES : ils pinent le profil tel qu'il etait a leur signature
+  // (992/1400). Le seuil `wide` LIVRE est passe a 1600 le 2026-09-08 (voir
+  // tokens/primitives.tokens.json > breakpoint.$description et docs/03-token-pipeline.md).
+  // Exiger encore 1400 ici est donc CORRECT pour le perimetre de 027 — mais toute
+  // NOUVELLE decision responsive ecrite avec le profil courant serait refusee par ce
+  // controle tant que la liste des profils acceptes n'est pas ouverte. Limite nommee,
+  // pas un oubli.
   if (!isRecord(profile) || profile.id !== 'piqueray-odoo19-992-1400' || profile.basis !== 'viewport-width' || profile.source !== 'odoo-bootstrap-19-subset') {
     push(errors, '$.profile', 'must pin the Piqueray Odoo 19 viewport profile (992/1400)');
   }

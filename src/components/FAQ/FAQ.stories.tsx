@@ -24,7 +24,7 @@ const meta = {
       control: 'select',
       options: ['mobile', 'tablette', 'desktop', 'wide'],
       description:
-        "L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1400.",
+        "L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1600.",
     },
     items: {
       control: false,

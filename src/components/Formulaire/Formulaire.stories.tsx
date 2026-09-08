@@ -24,7 +24,7 @@ const meta = {
       control: 'select',
       options: ['mobile', 'tablette', 'desktop', 'wide'],
       description:
-        'Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1400 de tokens/modes/viewport.*.',
+        'Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1600 de tokens/modes/viewport.*.',
     },
     accroche: { control: 'text' },
     titre: {

@@ -13,7 +13,7 @@ import { Button } from '../Button';
 import styles from './Formulaire.module.css';
 
 export interface FormulaireProps extends HTMLAttributes<HTMLDivElement> {
-  /** Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1400 de tokens/modes/viewport.*. */
+  /** Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1600 de tokens/modes/viewport.*. */
   presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   accroche?: string;
   /** Titre riche (gras gouverné possible), rendu à plat dans la section. */

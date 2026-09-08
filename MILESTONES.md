@@ -41,6 +41,15 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   c'est mesuré.
 - **Re-pin ZÉRO vérifié sur sept chemins** (`golden.json`, `engine.receipt.json`,
   `examples/polaris/`, `src/`, `contracts/`, `tokens/`, `catalog/`).
+- **Deux corrections posées À LA SOURCE, sur le canevas** : la copie des Réassurances
+  des 4 vues de l'accueil (44 textes, elles portaient les arguments des portes
+  industrielles) ; et l'ordre des seize membres de l'Équipe d'À propos, côté page.
+- **Une limite de Figma nommée après essai** : au desktop, la hauteur de rangée des
+  Réassurances est écrite en dur (561 px) parce que c'est le SEUL moyen d'y obtenir
+  cinq cartes de même hauteur. Rangée en `hug` + cartes en `fill` est impossible (un
+  enfant *Fill* empêche le parent de *hug*) ; en `hug`+`hug` les cartes cessent d'être
+  égales ; et l'équivalent d'`align-items: stretch` n'existe pas dans la grille Figma.
+  Une grille CSS le fait nativement. **Écart accepté, des deux côtés.**
 - **La lecture des triptyques a corrigé deux diagnostics faits sans regarder les images.**
   Sur l'accueil, c'est la VUE qui porte la copie des portes industrielles — la page est
   juste, l'écart est du texte. Sur À propos, l'Équipe ne suivait pas l'ordre de la vue :

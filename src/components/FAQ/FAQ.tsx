@@ -10,7 +10,7 @@ import { Button } from '../Button';
 import styles from './FAQ.module.css';
 
 export interface FAQProps extends HTMLAttributes<HTMLElement> {
-  /** L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1400. */
+  /** L'axe de la vague 031 : la variante de mise en page relevée sur le set. Les quatre valeurs correspondent aux quatre variantes dessinées (390 / 834 / 1200 / 1728) ; en CSS elles deviennent les paliers 768 / 992 / 1600. */
   presentation?: 'mobile' | 'tablette' | 'desktop' | 'wide';
   /** Les lignes de la FAQ. LIMITE NOMMÉE (inchangée depuis 010) : Figma n'a pas de propriété de composant de type tableau — la répétition n'existe sur le canevas que comme N instances sœurs compilées, d'où bindings.figma.kind NONE. Le schéma refuse aussi un default sur un prop arrayOf (« an optional array — undefined means "not provided", never a silent [] ») : le master rend trois lignes par défaut, le composant généré n'en rend aucune sans données. C'est pourquoi le cas d'audit alimente items par un override, comme ds.footer. */
   items?: Array<{ contenu: string; titre: string }>;

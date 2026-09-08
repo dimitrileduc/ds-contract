@@ -1,5 +1,5 @@
 {
-  "passed": 249,
+  "passed": 248,
   "total": 252,
   "quarantined": 46,
   "results": [
@@ -802,7 +802,8 @@
     {
       "id": "golden-generated-output",
       "claim": "C1-determinism",
-      "pass": true
+      "pass": false,
+      "error": "Error: Generated output diverges from golden manifest (12 file[s]): src/components/Equipe/Equipe.stories.tsx, src/components/Equipe/Equipe.tsx, src/components/FAQ/FAQ.stories.tsx, src/components/FAQ/FAQ.tsx, src/components/Formulaire/Formulaire.stories.tsx — if intentional, npm run golden:update in a reviewed change"
     },
     {
       "id": "detect-snapshot-provenance-mismatch",

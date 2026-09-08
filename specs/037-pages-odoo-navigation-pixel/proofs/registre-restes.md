@@ -150,7 +150,61 @@ toutes les pages qui portent le bloc. Ce qui était faux, c'est d'en faire la ca
 
 ---
 
-## 6quater. LA CAUSE DES ROUGES DE 1200 — trois lectures successives, la troisième est la bonne
+## 6quinquies. LES 30 px DE LA RANGÉE DESKTOP — c'est une LIMITE DE FIGMA, pas un défaut
+
+*Écrit le 2026-09-08, après essai sur le canevas et lecture de la documentation Figma. Quatrième et dernière lecture.*
+
+### Le fait
+
+Au format **desktop (1200) uniquement**, la grille des Réassurances porte une hauteur de rangée **écrite en dur :
+561 px**, sur les six vues qui la portent. Aux trois autres formats il n'y a **pas de grille du tout** — mobile est
+une ligne flex, tablette une colonne flex, wide une ligne flex — donc pas de notion de hauteur de rangée. C'est
+pour cela que l'écart n'apparaît qu'à desktop.
+
+### Pourquoi 561, et pourquoi c'est légitime
+
+Sur **Portes industrielles** et **Portes d'entrée**, une carte a réellement besoin de 561 px. Sur les quatre autres
+pages le contenu ne demande que 531 : le 561 y a été repris tel quel.
+
+**Et il ne pouvait pas en être autrement.** Trois combinaisons ont été essayées sur le canevas :
+
+| Essai | Résultat |
+|---|---|
+| rangée `HUG` + cartes `FILL` | **impossible** — la doc Figma le dit : un enfant en *Fill container* empêche le parent de *hug* |
+| rangée `HUG` + cartes `HUG` | chaque carte prend sa propre hauteur : **504, 531, 504, 504, 561** — les cartes d'une même ligne ne sont plus égales |
+| étirer la carte dans sa cellule | **n'existe pas** : `gridChildVerticalAlign` n'accepte que `MIN`/`CENTER`/`MAX`/`AUTO`, jamais un `STRETCH`. Et sur une instance, la propriété n'est même pas surchargeable (`This property cannot be overridden in an instance`) |
+
+**Conclusion : le 561 en dur est le SEUL moyen, dans Figma, d'obtenir cinq cartes de même hauteur.** Ce n'est pas un
+reste de mise en page. Notre page, elle, obtient le même résultat nativement — une grille CSS étire ses cellules sur
+la plus haute, sans qu'aucune valeur ne soit écrite.
+
+### La décision
+
+**Écart ACCEPTÉ, cause connue.** Ni la maquette ni la page n'ont tort : elles ne peuvent simplement pas coïncider
+quand le contenu est plus court que la valeur figée. Corriger côté site voudrait dire figer 561 px dans le CSS —
+brittle, et faux le jour où un texte change. Les trois mesures concernées (Accueil, Portes de garage, À propos au
+1200) restent rouges **pour cette raison-là et pas une autre**.
+
+### Ce qui a été touché au canevas, et remis
+
+Les six vues ont été passées en `HUG` puis **remises à `FIXED 561`**. Hauteurs vérifiées après remise, identiques à
+l'origine au pixel : Accueil 6233, Portes de garage 5209, Résidentielles 6884, Industrielles 7185, Entrée 6851,
+À propos 7573.
+
+**Une différence résiduelle, nommée** : sur À propos, la 5ᵉ carte refuse de revenir sur `FILL` — elle est restée sur
+`FIXED 561`. Hauteur et rendu identiques ; seule la propriété diffère de l'état d'origine. Version nommée disponible :
+*« 037 — AVANT passage des rangées Réassurances desktop en hauteur AUTO (6 vues, 2026-09-08) »*.
+
+### Trois lectures fausses avant celle-ci — conservées, pas effacées
+
+1. « la carte rend 30 px plus court » — vrai comme constat, muet sur la cause ;
+2. « il manque 30 px de blanc sous le texte » — déduit d'une image, jamais mesuré ;
+3. « la maquette fige une rangée, c'est un reste à enlever » — mesuré, mais la conclusion était fausse : ce n'est pas
+   un reste, c'est le seul moyen disponible.
+
+---
+
+## 6quater. LA CAUSE DES ROUGES DE 1200 (lecture n° 3, dépassée par le §6quinquies ci-dessus) — trois lectures successives, la troisième est la bonne
 
 | Lecture | Ce qui était dit | Pourquoi c'était faux |
 |---|---|---|
@@ -186,7 +240,8 @@ plus courte qu'elle n'est. C'est exactement le piège que `docs/16` nomme.*
 
 | Sujet | Décision |
 |---|---|
-| Carte Réassurances 30 px plus courte | Décision prise **sur une explication fausse** (« il manque 30 px de blanc sous le texte »). La mesure au pont montre que c'est la MAQUETTE qui fige la rangée à 561 px au 1200, au-dessus de son propre contenu. **À re-trancher** : la correction appartient à la source, pas au composant. |
+| Carte Réassurances 30 px plus courte | **TRANCHÉ le 2026-09-08 : écart accepté.** C'est une limite de Figma, pas un défaut — le 561 en dur est le seul moyen d'y obtenir cinq cartes de même hauteur (§6quinquies). Rien à corriger, ni au canevas ni au site. |
+| Copie des Réassurances de l'accueil | **CORRIGÉE À LA SOURCE le 2026-09-08** : les 4 vues de l'accueil portaient les arguments des portes industrielles. 44 textes réécrits, version nommée posée avant. Trois largeurs sur quatre tombent désormais au pixel sur notre page. |
 | Ordre de l'Équipe d'À propos | Repris depuis la vue. **Fait.** |
 | Photos de survol de l'Équipe | Les seize de la vue sont distinctes et n'ont pas pu être exportées : **les dix ports que le plugin autorise étaient tous pris**, dont un par une autre session travaillant précisément sur les photos de survol. À reprendre quand un port se libère. |
 
