@@ -1,9 +1,11 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:53:22.668Z",
-  "diffPixels": 805690,
+  "cause": "les trois cartes de Catégories rendent 51 px plus court qu'en vue à 1200",
+  "date": "2026-09-08T13:01:57.713Z",
+  "diffPixels": 805883,
   "ecartHauteurPx": -52,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre du hero de cette vue est en graisse Regular alors que le contrat `typography.h1.weight` est SemiBold. La page rend le CONTRAT ; l'écart est du côté de la source."
+  ],
   "figma": {
     "hauteur": 3565,
     "nodeId": "2777:31818",
@@ -11,16 +13,16 @@
   },
   "hauteurCommune": 3513,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Motorisation est la seule page à trois cartes. À 1200 la rangée rend 458 px contre 509 px en vue ; aux trois autres largeurs la section est au pixel (écart 0). L'écart est donc propre au point de rupture 1200 du bloc Catégories.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 3513,
-    "sha256": "afb43abf604341a3d57dccfa545f2d4166c94c5b6567b2f8dc5c014f6365e484"
+    "sha256": "35b41aae5dc4c9439d78e744f0cb5ee4cabcf2599bbb6fa7d3f23152643f8ed3"
   },
   "page": "motorisation",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 19.11,
+  "scorePct": 19.12,
   "sectionOrigineDecalage": "s_pqr_categories_principales",
   "sections": [
     {
@@ -95,7 +97,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/motorisation/1200.png",
-    "sha256": "af5e97c6135aa108bd6adda1886f4181129c46c6e1f7ecd82f05b3b06dfa910a"
+    "sha256": "a720ae3c190f00cf15160269f868ac5bd92ef2bd9e3ea529abd8df7070a4c64b"
   },
   "url": "/motorisation",
   "verdictHauteur": "rouge",

@@ -1,21 +1,24 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:32:10.446Z",
-  "diffPixels": 582374,
+  "cause": "le sur-titre VIDE de la FAQ coûte quand même son écart de 16 px",
+  "date": "2026-09-08T13:01:18.386Z",
+  "diffPixels": 582205,
   "ecartHauteurPx": 9,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Les plages de gras du paragraphe Texte SEO sont INVERSÉES dans la vue (le liant est en gras, les termes clés ne le sont pas) — portées telles quelles.",
+    "La 5ᵉ carte de Réassurances et la 3ᵉ carte de Catégories sont masquées dans la vue ; la page suit la vue."
+  ],
   "figma": {
     "hauteur": 7186,
     "nodeId": "2782:44757",
-    "sha256": "34916abea0a02802fe0c2d862f997a738805bc78e585f158ad4244fd77e8aa5f"
+    "sha256": "5ee2f61860b34c3ef2ef0f2587529d14fa42f62481a3a4f657ff08dd2e534140"
   },
   "hauteurCommune": 7186,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "La vue MASQUE le sur-titre (`Accroche`), et l'auto-layout Figma ne compte pas un enfant masqué. Côté Odoo le `<span>` existe toujours — vidé, il mesure 0 px, mais l'écart de 16 px de l'en-tête reste. Le bloc n'a pas d'option « sans sur-titre » : c'est une limite de `ds.faq`, nommée ici, pas contournée dans la page.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 7195,
-    "sha256": "9ef380d8e9f9fab46c7bc19a3e0868e7cdc3b81abb9ce72baddc94869f7c0eb5"
+    "sha256": "27a6a483467304af0684fe36fbe7c47c3905b518c4403b7d1c079d5d724e6ca1"
   },
   "page": "portes-industrielles",
   "raisonImpossible": null,
@@ -134,7 +137,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/portes-industrielles/1200.png",
-    "sha256": "1774259465fb213c78d69ad38673874e22ad8426d7dc79ecbbc4f58528414d18"
+    "sha256": "936243e80ee6140098eafbb181fff1ee1e0d80e1f0f9cf7dd69a5fe95c07ab4e"
   },
   "url": "/portes-industrielles",
   "verdictHauteur": "bruit",

@@ -95,6 +95,10 @@ nomme un **bloc** (`component`) et son **contenu**. Extraits réels de `pages/ho
 | `remove_class` | retire une classe du bloc (ex : `pqr-soustitre-on` pour masquer un sous-titre) |
 | `add_class` | ajoute une classe de composition au bloc (ex : `s_pqr_bleed` pour la pleine largeur — voir « Layout de page ») |
 | `set_empty` | vide un texte |
+| `links` | `{ "<part>": "<destination>" }` — **l'adresse d'un bouton** (spec 037, voir plus bas) |
+
+Une carte peut porter `lien` (catégories, produits) et un avis `lienAvis` — même
+grammaire de destination que `links`.
 
 Le `<part>` est l'étiquette d'un morceau du bloc (`data-pqr-part="…"` dans le template).
 Les plus utiles : `hero-title`, `hero-cta`, `hero-background`, `sav-background`,
@@ -105,6 +109,76 @@ Les plus utiles : `hero-title`, `hero-cta`, `hero-background`, `sav-background`,
 `s_pqr_devis`, `s_pqr_reassurances`, `s_pqr_google_reviews`, `s_pqr_equipe`,
 `s_pqr_faq`, `s_pqr_coordonnees`, `s_pqr_texte_seo`, `s_pqr_realisations`, `s_pqr_formulaire`.
 (`pqr_section_header` a disparu le 2026-09-08 : chaque section porte son en-tête.)
+
+## Le contenu COMMUN — écrit une fois, repris par référence (spec 037)
+
+Trois blocs sont **les mêmes sur toutes les pages** : le Devis, les Réassurances et
+les Avis Google. Ils ne se recopient plus dans chaque fichier de page — ils vivent
+dans `commun/` :
+
+```text
+commun/devis.json  ·  commun/reassurances.json  ·  commun/avis-google.json
+```
+
+Dans une page, ça s'écrit en une ligne :
+
+```jsonc
+{ "commun": "devis" }
+```
+
+**Corriger le commun corrige toutes les pages qui le reprennent.** (Reconstruire
+chaque page : Odoo ne propage rien — voir « Et si un bloc change ? ».)
+
+### La surcharge — champ par champ, jamais le bloc entier
+
+Une page qui a besoin d'une variante ne recopie pas le bloc : elle **surcharge** les
+champs qui changent, et suit le commun pour tout le reste.
+
+```jsonc
+{ "commun": "reassurances",
+  "surcharge": {
+    "disposition": "4Cartes",
+    "set_html": { "reassurances-title": "Pourquoi choisir nos portes résidentielles ?" },
+    "cards": [ … les 4 cartes … ]
+  } }
+```
+
+Les règles de fusion, une fois pour toutes :
+
+| Ce que tu surcharges | Ce qui se passe |
+|---|---|
+| un scalaire (`variant`, `disposition`) | il remplace celui du commun |
+| une **liste** (`cards`, `reviews`, `rows`) | elle remplace la liste **entière** |
+| un **dictionnaire par part** (`set_html`, `set_button`, `images`, `links`) | fusion **par part** : seule la part nommée change, les autres suivent le commun |
+| une liste de classes (`remove_class`, `add_class`, `set_empty`) | union avec celle du commun |
+
+Une liste se surcharge entière parce qu'une fusion par index inventerait une identité
+de carte que le DOM n'a pas : cinq cartes du commun plus quatre de la page rendraient
+cinq cartes, en silence.
+
+**Écrire un bloc commun en clair dans une page est REFUSÉ** (`component: "s_pqr_devis"`) :
+le refus nomme le fichier, la section et le remplacement à écrire.
+
+## Les destinations — grammaire fermée, refus nommé
+
+`links` pose l'adresse d'un bouton, exactement là où le panneau d'édition l'écrirait.
+La grammaire est **fermée**, et plus stricte que celle du panneau :
+
+| Forme | Acceptée si |
+|---|---|
+| `#…` | toujours (ancre) |
+| `/` ou `/<slug>` | c'est l'URL d'une **page du site** (`scripts/odoo/lib/pages.ts`) |
+| `tel:` · `mailto:` | toujours |
+| `https://…` | l'adresse figure dans `commun/destinations-externes.json` (liste fermée) |
+| `javascript:` · `data:` · `//hôte` · `http://` · chemin inconnu · vide | **refusé, par son nom** |
+
+Une destination **absente** n'est pas une faute : le bouton garde `href="#"` et part au
+**registre des restes**. On n'invente jamais une adresse.
+
+```bash
+npm run odoo:pages:check            # résout les 9 pages, refuse, imprime le registre
+npm run odoo:pages:check -- --json  # le même, en JSON
+```
 
 ## Layout de page (gutter, gap, pleine largeur) — À LIRE avant tout html→odoo
 

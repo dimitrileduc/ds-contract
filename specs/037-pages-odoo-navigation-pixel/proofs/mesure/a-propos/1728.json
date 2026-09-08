@@ -1,21 +1,25 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:36:30.351Z",
-  "diffPixels": 831799,
+  "cause": "la section Avis Google rend 8 à 10 px plus haut qu'en vue",
+  "date": "2026-09-08T13:17:52.005Z",
+  "diffPixels": 831755,
   "ecartHauteurPx": 8,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold.",
+    "Les 16 photos de SURVOL de cette vue sont DISTINCTES, alors que celles du set l'étaient toutes identiques (défaut nommé en 035). Les portraits livrés ici restent ceux de 035 : à reprendre.",
+    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035)."
+  ],
   "figma": {
     "hauteur": 6750,
     "nodeId": "2782:41185",
-    "sha256": "b18ea4b8c1f41d2b541e73ffb832b88df415a25eac271fe7475a71cf9a8c4fc4"
+    "sha256": "675b7580bd970a76e071be24ca667beb8bcd22b4d518cc5b6bb807dc1f310fa7"
   },
   "hauteurCommune": 6750,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Écart constant sur toutes les pages qui la portent, aux quatre largeurs, à contenu égal. Sous la tolérance de hauteur pris isolément ; il s'additionne au reste quand une autre section a déjà décalé la page.",
   "largeur": 1728,
   "odoo": {
     "hauteur": 6758,
-    "sha256": "a330b1458fefeff13d51629e64d8215868cfaa83becc7eed164d1e8d17f0be9a"
+    "sha256": "d29b563dd36f0311be88920297cd5493fb5b5793c3ea1e6845eee57c1425e129"
   },
   "page": "a-propos",
   "raisonImpossible": null,
@@ -121,7 +125,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/a-propos/1728.png",
-    "sha256": "b59817f6eb253a224f0180b966393e8c7b6c8e9e4915382b170260918fa9955a"
+    "sha256": "f5703c18feef75df2fe4bee6c7165c8917beb69834d4497d81d0f69090d1a3e4"
   },
   "url": "/a-propos",
   "verdictHauteur": "bruit",

@@ -1,26 +1,30 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:36:30.351Z",
-  "diffPixels": 294170,
+  "cause": "la section Avis Google rend 8 à 10 px plus haut qu'en vue",
+  "date": "2026-09-08T13:17:52.005Z",
+  "diffPixels": 294160,
   "ecartHauteurPx": 4,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold.",
+    "Les 16 photos de SURVOL de cette vue sont DISTINCTES, alors que celles du set l'étaient toutes identiques (défaut nommé en 035). Les portraits livrés ici restent ceux de 035 : à reprendre.",
+    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035)."
+  ],
   "figma": {
     "hauteur": 9093,
     "nodeId": "2782:39569",
-    "sha256": "3d4b57707efa0108ad52fba73b8ec84c6b25978d0b66c70096f130ab385be19a"
+    "sha256": "fb1bb85243ddb25640b3eec2ef2a585faa1adb29c0c1f100069302befd578bce"
   },
   "hauteurCommune": 9093,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Écart constant sur toutes les pages qui la portent, aux quatre largeurs, à contenu égal. Sous la tolérance de hauteur pris isolément ; il s'additionne au reste quand une autre section a déjà décalé la page.",
   "largeur": 390,
   "odoo": {
     "hauteur": 9097,
-    "sha256": "07c869fe53b3e169806adfde73d7848253a24213a958a4e50f42affca7665e53"
+    "sha256": "5493364218b36d1f958e6dcf49a48067137504d78db0477afd666a08842a200b"
   },
   "page": "a-propos",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 8.3,
+  "scorePct": 8.29,
   "sectionOrigineDecalage": null,
   "sections": [
     {
@@ -121,7 +125,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/a-propos/390.png",
-    "sha256": "49cf61019aa2577ed22491024f48fbda7f37f7906b10863fc5331e1d70477d78"
+    "sha256": "b869eece96117acd258f6e3eab4e413c6c98a2bc4b25a958f262956de26d17e1"
   },
   "url": "/a-propos",
   "verdictHauteur": "bruit",

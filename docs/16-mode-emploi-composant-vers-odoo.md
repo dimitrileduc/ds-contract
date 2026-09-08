@@ -179,6 +179,36 @@ npm run odoo:page -- <slug>-test piqueray-odoo-pilote
   l'écart de hauteur est du texte, pas du rendu. Soit tu mets le contenu du set dans la page, soit tu exportes une
   planche au contenu de la page (une instance posée dans une vue le fait).
 
+### Étape 8bis — La mesure de PAGE ENTIÈRE (spec 037)
+
+L'étape 8 mesure **un bloc contre sa planche**. Depuis le 2026-09-08 il existe l'instrument de l'étage au-dessus :
+**une page Odoo livrée contre sa vue Figma v2**, aux quatre largeurs.
+
+```bash
+npm run odoo:pages:selftest                        # la preuve HORS LIGNE que l'instrument voit
+npm run odoo:pages:measure -- <page> [--base URL]  # 4 rapports + 4 triptyques 1:1
+```
+
+Ce qu'il faut savoir avant de lire un chiffre :
+
+- **Deux verdicts, jamais un seul.** Le score au pixel est calculé sur la **hauteur commune**, les deux images
+  **alignées en haut** ; l'écart de hauteur (`ecartHauteurPx`) est rapporté **à côté**, avec sa propre tolérance.
+  Compléter la plus courte en blanc — ce que faisait la mesure manuelle — compte le bas manquant comme une
+  différence et mélange « ça ne se dessine pas pareil » avec « ça ne fait pas la même hauteur ».
+- **Seuil 5 %, tolérance de hauteur 10 px** (owner, 2026-09-08). Ils vivent dans `extract/odoo-page-parity/views.json`
+  avec leur date et leur raison. **Aucun drapeau de la ligne de commande ne les change** — sinon on pourrait les
+  choisir après avoir lu les scores.
+- **Trois codes de sortie, jamais confondus** : `0` vert, `1` rouge, `2` impossible. « Je n'ai pas pu voir » n'est pas
+  « je n'ai rien vu ».
+- **Le Header et le Footer sont retirés du côté Figma** avant l'appariement des sections : le `#wrap` d'Odoo ne
+  contient ni l'un ni l'autre, les vues v2 les portent comme enfants. Sans ce retrait, chaque page sort un faux
+  « 8 vs 10 sections ».
+- **Un enfant MASQUÉ dans la vue coûte sa hauteur si tu le composes quand même.** Relevé le 2026-09-08 : une rangée
+  de FAQ masquée et un sur-titre masqué valaient +80 px sur une page par ailleurs juste. La page suit la vue.
+- **`scorePct` et `ecartHauteurPx` sont déterministes ; le compte brut de pixels ne l'est pas** (12 à 19 unités sur
+  1,9 million entre deux lancements de navigateur). L'empreinte d'une capture porte sur les **pixels décodés**, pas
+  sur les octets du PNG — l'encodeur de Chromium ne rend pas deux fois le même flux.
+
 ### Étape 9 — Le test d'édition (OBLIGATOIRE, jamais sauté)
 - Modèle `.page-parity/edit-accordion.mts` / `edit-hero-image.mts` / `edit-linebreak.mts`. Env :
   `PQR_ODOO_PORT=8087 PQR_DB_NAME=piqueray_pilote` (le script lit `.env.example` sinon). Rédacteur `editor@example.test`.

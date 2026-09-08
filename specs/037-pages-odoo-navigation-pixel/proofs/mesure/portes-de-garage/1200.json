@@ -1,21 +1,24 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:17:33.906Z",
-  "diffPixels": 412242,
+  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "date": "2026-09-08T13:00:42.713Z",
+  "diffPixels": 412405,
   "ecartHauteurPx": -58,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Double espace dans le titre du hero (« Hörmann :  l'alliance ») — présent dans la source, porté tel quel.",
+    "Le titre du Devis porte un U+2028 dans la vue v2."
+  ],
   "figma": {
     "hauteur": 5209,
     "nodeId": "2770:22591",
-    "sha256": "9734d77973f082aedec112f0ca10a1fa85caaed37ed69ed01411de5af092d5be"
+    "sha256": "73a92c778fcbc739986d4c990a4affa8cde76970f134ef603123a3ad66fa6112"
   },
   "hauteurCommune": 5151,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Mesuré au 1200 sur l'accueil : la grille `reassurances-items` fait 1094 px côté Odoo contre 1154 px en vue, à structure identique (3 colonnes, écart 32, 2 rangées). Soit une carte de 531 px contre 561 px — 30 px par carte, 60 px sur deux rangées. Le reste de la section est au pixel : en-tête 76 = 76, écarts 48 = 48, bouton 54 = 54. C'est un écart de BLOC (`ds.reassurances` / carte), pas de page : le corriger sortirait du périmètre de cette vague (SC-010).",
   "largeur": 1200,
   "odoo": {
     "hauteur": 5151,
-    "sha256": "338ea84a5677e8bba45bad851bd0e5883b9768700c0abf2b8a304b478480537d"
+    "sha256": "00d5bcb4b6aacec06358899a57851388af641b0a2aa69efa8fb54a5602576c6f"
   },
   "page": "portes-de-garage",
   "raisonImpossible": null,
@@ -121,7 +124,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/portes-de-garage/1200.png",
-    "sha256": "6500d75b7acf34272a4daac6eb970d2240ab3856c56b5a0ba6217db11fda4458"
+    "sha256": "2cf8e18396139be10c8736223658a2a2adcb89893b0691f64979913c2a27ecce"
   },
   "url": "/portes-de-garage",
   "verdictHauteur": "rouge",

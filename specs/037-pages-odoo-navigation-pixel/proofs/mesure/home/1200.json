@@ -1,26 +1,28 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:18:26.851Z",
-  "diffPixels": 532272,
+  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "date": "2026-09-08T13:00:24.301Z",
+  "diffPixels": 532424,
   "ecartHauteurPx": -58,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma."
+  ],
   "figma": {
     "hauteur": 6233,
     "nodeId": "2647:6734",
-    "sha256": "9f19187f80ca1d973a8b129eb48e83472d51c060c692e5ad29aba81a3396b34a"
+    "sha256": "e351c9fa0e882451aa6ef3b9fbb0d811a59fe7d04b9149314e9862fbd33d12fc"
   },
   "hauteurCommune": 6175,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Mesuré au 1200 sur l'accueil : la grille `reassurances-items` fait 1094 px côté Odoo contre 1154 px en vue, à structure identique (3 colonnes, écart 32, 2 rangées). Soit une carte de 531 px contre 561 px — 30 px par carte, 60 px sur deux rangées. Le reste de la section est au pixel : en-tête 76 = 76, écarts 48 = 48, bouton 54 = 54. C'est un écart de BLOC (`ds.reassurances` / carte), pas de page : le corriger sortirait du périmètre de cette vague (SC-010).",
   "largeur": 1200,
   "odoo": {
     "hauteur": 6175,
-    "sha256": "7188f78b6344144f90c705dd30618d2eece8b49e39ec7fdd72109278a8226d91"
+    "sha256": "46ccb482a087d69bfb30b3d852ebc3bb2ee63580d8b9b883d6fb819db1ee5761"
   },
   "page": "home",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 7.18,
+  "scorePct": 7.19,
   "sectionOrigineDecalage": "s_pqr_reassurances",
   "sections": [
     {
@@ -134,7 +136,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/home/1200.png",
-    "sha256": "a1dae2c39cb64f242649615abc9cb21be9145f5febf77dd83206db1250674935"
+    "sha256": "8d6d66a841e1eae626a1d5d8a57c2c13ddebf10d03f40d6d29ffd97f6d95063d"
   },
   "url": "/",
   "verdictHauteur": "rouge",

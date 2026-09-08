@@ -1,21 +1,23 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:18:26.851Z",
-  "diffPixels": 479680,
+  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "date": "2026-09-08T13:00:24.301Z",
+  "diffPixels": 479805,
   "ecartHauteurPx": -49,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma."
+  ],
   "figma": {
     "hauteur": 6460,
     "nodeId": "2624:57624",
-    "sha256": "749d70f334efdac0a8af0576aa4ee9d752c9bac3e5b57aa9a0ea8e55affeddf5"
+    "sha256": "8ec89a589e712c3060b21f07196606433c8ba94a9948232594d5e8813b115ccf"
   },
   "hauteurCommune": 6411,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Mesuré au 1200 sur l'accueil : la grille `reassurances-items` fait 1094 px côté Odoo contre 1154 px en vue, à structure identique (3 colonnes, écart 32, 2 rangées). Soit une carte de 531 px contre 561 px — 30 px par carte, 60 px sur deux rangées. Le reste de la section est au pixel : en-tête 76 = 76, écarts 48 = 48, bouton 54 = 54. C'est un écart de BLOC (`ds.reassurances` / carte), pas de page : le corriger sortirait du périmètre de cette vague (SC-010).",
   "largeur": 1728,
   "odoo": {
     "hauteur": 6411,
-    "sha256": "d6c490f79df53aa36b606b22251ad4d0fd9d428bb4c443d368045a0cce34389e"
+    "sha256": "a34d99d7857cf806849268fc80081f0341385ae804baad409d313416634f439c"
   },
   "page": "home",
   "raisonImpossible": null,
@@ -134,7 +136,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/home/1728.png",
-    "sha256": "64811a557b80674263a7c78a4bb226d15aba066e4dfb0788e943475cc0a5c760"
+    "sha256": "dbbb2a7758b9ea0ae736f507f3369e29f89650553ea6fb76da49af28112c9a71"
   },
   "url": "/",
   "verdictHauteur": "rouge",

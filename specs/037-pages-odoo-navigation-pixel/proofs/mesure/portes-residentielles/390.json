@@ -1,21 +1,24 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:27:57.131Z",
-  "diffPixels": 178310,
+  "cause": "la section Avis Google rend 8 à 10 px plus haut qu'en vue",
+  "date": "2026-09-08T13:00:59.099Z",
+  "diffPixels": 178354,
   "ecartHauteurPx": 18,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Les réponses des rangées FERMÉES (FAQ et Texte SEO) n'existent nulle part dans la vue : elles restent VIDES plutôt qu'inventées.",
+    "La 3ᵉ rangée de la FAQ est MASQUÉE dans la vue ; la page suit la vue et ne la porte pas."
+  ],
   "figma": {
     "hauteur": 9603,
     "nodeId": "2774:27924",
-    "sha256": "70507e8862f5513a50dfd1d1de8da4d1bafa8d00b80dc55855fa21ac3f74e3d2"
+    "sha256": "dca6f5a457398c5b9036e92ecd44dedbde2ea3bfe04ebefd9abe66048a78e7a0"
   },
   "hauteurCommune": 9603,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Écart constant sur toutes les pages qui la portent, aux quatre largeurs, à contenu égal. Sous la tolérance de hauteur pris isolément ; il s'additionne au reste quand une autre section a déjà décalé la page.",
   "largeur": 390,
   "odoo": {
     "hauteur": 9621,
-    "sha256": "63fad925b4f2f20bd281bbd92166d209a8892a2ebd4b0e2a8431379a54173028"
+    "sha256": "94e207f3cbe3bba2d1214a6dcc371c0aa769cf426943b0b40d77f03a80259c89"
   },
   "page": "portes-residentielles",
   "raisonImpossible": null,
@@ -134,7 +137,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/portes-residentielles/390.png",
-    "sha256": "8d85e44a849e81da717047a83fc2c9284d37e5fe2c122d16206b69a72a13415d"
+    "sha256": "4d4b495c79645639ffdc6c9ccd4e9799040235e43a970033f3fff98060c64d92"
   },
   "url": "/portes-residentielles",
   "verdictHauteur": "rouge",

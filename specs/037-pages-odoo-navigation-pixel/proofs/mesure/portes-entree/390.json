@@ -1,26 +1,29 @@
 {
-  "cause": null,
-  "date": "2026-09-08T12:33:34.569Z",
-  "diffPixels": 377454,
+  "cause": "la section Réalisations rend plus court qu'en vue sur Portes d'entrée",
+  "date": "2026-09-08T13:01:38.256Z",
+  "diffPixels": 377263,
   "ecartHauteurPx": -32,
-  "ecartsContenu": [],
+  "ecartsContenu": [
+    "Le titre des Réassurances de cette vue dit « nos portes de garage industrielles » — copie recopiée d'une autre page. Porté tel quel, à corriger à la source.",
+    "Le paragraphe des Réalisations est masqué dans la vue ; la page suit la vue."
+  ],
   "figma": {
     "hauteur": 9347,
     "nodeId": "2778:32308",
-    "sha256": "7dc379a34abc1ceed3b2c1d259f06d3a85d32a94b3970d3e8e3fadc171d7c87a"
+    "sha256": "527ae1b5646cf67664565a1c42d7c99feb4f2b9a4165957ad452bbeb6c8c109a"
   },
   "hauteurCommune": 9315,
   "instance": "piqueray-odoo-037",
-  "justification": null,
+  "justification": "Cette page est la seule dont la vue MONTRE le sur-titre des Réalisations et MASQUE le paragraphe — l'inverse des deux autres pages qui portent le bloc. La composition suit la vue ; l'écart restant est dans le bloc, pas dans le contenu.",
   "largeur": 390,
   "odoo": {
     "hauteur": 9315,
-    "sha256": "6ee082a690a554c817d2aa1463172c4e5f6dde7c76e6652102b12bd182979472"
+    "sha256": "68946fa313afd163835b378de2cafd090e86826e843dde78f23fa333bd99905c"
   },
   "page": "portes-entree",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 10.39,
+  "scorePct": 10.38,
   "sectionOrigineDecalage": "s_pqr_realisations",
   "sections": [
     {
@@ -134,7 +137,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/portes-entree/390.png",
-    "sha256": "095d78d4860e3c8402935136ea4737592b231afb0e588cd4acc68123d48b4c68"
+    "sha256": "bef1ac11d9d401c38e27180873171cc7157d898fac247127301fe818b0a14414"
   },
   "url": "/portes-entree",
   "verdictHauteur": "rouge",
