@@ -1,10 +1,11 @@
 {
-  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "cause": "la VUE de l'accueil porte la copie des Réassurances des portes INDUSTRIELLES, pas celle de l'accueil",
   "date": "2026-09-08T13:00:24.301Z",
   "diffPixels": 532424,
   "ecartHauteurPx": -58,
   "ecartsContenu": [
-    "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma."
+    "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma.",
+    "La section Réassurances de la vue de l'accueil porte la copie des portes INDUSTRIELLES (titre et cinq arguments). Vérifié au pont sur les vues 1200 et 1728. La page rend la copie de l'accueil ; l'écart est à corriger côté Figma."
   ],
   "figma": {
     "hauteur": 6233,
@@ -13,7 +14,7 @@
   },
   "hauteurCommune": 6175,
   "instance": "piqueray-odoo-037",
-  "justification": "Mesuré au 1200 sur l'accueil : la grille `reassurances-items` fait 1094 px côté Odoo contre 1154 px en vue, à structure identique (3 colonnes, écart 32, 2 rangées). Soit une carte de 531 px contre 561 px — 30 px par carte, 60 px sur deux rangées. Le reste de la section est au pixel : en-tête 76 = 76, écarts 48 = 48, bouton 54 = 54. C'est un écart de BLOC (`ds.reassurances` / carte), pas de page : le corriger sortirait du périmètre de cette vague (SC-010).",
+  "justification": "Lu au triptyque puis vérifié au pont sur les vues 1200 et 1728 : la section Réassurances de la vue de l'accueil est titrée « Pourquoi choisir nos portes de garage industrielles ? » et porte les cinq arguments industriels (Sécurité et conformité, Intégration parfaite, Moteur performant, SAV & maintenance dédiés, Expérience). La page, elle, rend la copie de l'accueil corrigée le 2026-09-07 (« Pourquoi choisir Piqueray ? »). Les photos sont les MÊMES des deux côtés : l'écart est du TEXTE, pas du rendu. C'est le même défaut de copier-coller que sur la vue Portes d'entrée. À corriger À LA SOURCE (FR-018) ; la page ne bouge pas. L'écart de hauteur, lui, reste dû à la carte de Réassurances qui rend 30 px plus court qu'en vue.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 6175,

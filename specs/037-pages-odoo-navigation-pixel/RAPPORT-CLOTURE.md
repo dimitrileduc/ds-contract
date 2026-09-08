@@ -37,6 +37,19 @@ au 1200 sur l'accueil, la grille fait 1094 px côté Odoo contre 1154 en vue, à
 contre 561, soit 60 px sur deux rangées. Le reste de la section est au pixel (en-tête 76 = 76, écarts 48 = 48,
 bouton 54 = 54). C'est un écart de **bloc**, pas de page : le corriger sortirait du périmètre (SC-010).
 
+**Deux attributions corrigées APRÈS avoir regardé les triptyques**, et c'est la leçon de `docs/16` payée une fois de
+plus (« avant d'annoncer un %, REGARDE le triptyque ») :
+
+- **Accueil** — la **vue Figma** porte la copie des Réassurances des portes **industrielles**, pas celle de l'accueil.
+  Photos identiques des deux côtés : l'écart est du **texte**. Vérifié au pont sur les vues 1200 et 1728. Même
+  copier-coller que sur la vue Portes d'entrée. **Correction à la source ; la page ne bouge pas.**
+- **À propos** — notre section **Équipe** ne porte pas les mêmes membres, ni dans le même ordre, que la vue : le
+  contenu a été repris du banc de la vague 035 au lieu d'être relevé sur la vue À Propos. La section fait 1891 px et
+  occupe le tiers de la page. **Cause de notre côté, correctif connu, non fait dans cette vague.**
+
+La carte de Réassurances 30 px plus courte **reste vraie** : c'est la cause de l'écart de HAUTEUR partout où le bloc
+apparaît. Ce qui était faux, c'était d'en faire la cause du score au pixel de l'accueil.
+
 Détail complet : `proofs/RAPPORT-MESURE.md`. Ce qui reste : `proofs/registre-restes.md`.
 
 ---

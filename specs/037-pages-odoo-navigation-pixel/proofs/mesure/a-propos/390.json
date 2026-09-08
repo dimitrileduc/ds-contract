@@ -1,12 +1,13 @@
 {
-  "cause": "la section Avis Google rend 8 à 10 px plus haut qu'en vue",
+  "cause": "la section Équipe ne porte pas les mêmes membres, ni dans le même ordre, que la vue",
   "date": "2026-09-08T13:17:52.005Z",
   "diffPixels": 294160,
   "ecartHauteurPx": 4,
   "ecartsContenu": [
     "Le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold.",
     "Les 16 photos de SURVOL de cette vue sont DISTINCTES, alors que celles du set l'étaient toutes identiques (défaut nommé en 035). Les portraits livrés ici restent ceux de 035 : à reprendre.",
-    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035)."
+    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035).",
+    "La liste des membres de l'Équipe et leur ordre diffèrent entre la page (contenu du banc 035) et la vue À Propos. Correctif de NOTRE côté : relever la vue 2782:41185."
   ],
   "figma": {
     "hauteur": 9093,
@@ -15,7 +16,7 @@
   },
   "hauteurCommune": 9093,
   "instance": "piqueray-odoo-037",
-  "justification": "Écart constant sur toutes les pages qui la portent, aux quatre largeurs, à contenu égal. Sous la tolérance de hauteur pris isolément ; il s'additionne au reste quand une autre section a déjà décalé la page.",
+  "justification": "Lu au triptyque : dès la première rangée, les portraits divergent — la page donne Cécilia, Florian, Sandra Magermans, Arnaud Dahmen ; la vue donne Cécilia, Florian puis deux autres membres. La section fait 1891 px de haut et occupe le tiers de la page : tout ce qui suit est comparé à côté. CAUSE DE NOTRE CÔTÉ, pas de la source : le contenu Équipe a été REPRIS du banc de la vague 035 (`equipe-test.json`, relevé sur les planches du set 2777:30992) au lieu d'être relevé sur la vue À Propos elle-même. Correctif connu : relever les 16 membres et leurs portraits sur la vue 2782:41185, recomposer, re-mesurer. Ce n'est pas fait dans cette vague.",
   "largeur": 390,
   "odoo": {
     "hauteur": 9097,

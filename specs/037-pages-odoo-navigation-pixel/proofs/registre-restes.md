@@ -129,6 +129,22 @@ et écrit ici.
 
 ---
 
+## 6bis. Ce que la LECTURE DES TRIPTYQUES a corrigé (2026-09-08, après la campagne)
+
+Les scores avaient été attribués sans avoir regardé les images. C'est exactement le défaut que `docs/16` nomme
+(« avant d'annoncer un %, REGARDE le triptyque »). La lecture a changé deux attributions sur trois pages :
+
+| Page | Ce qui avait été dit | Ce que l'image montre |
+|---|---|---|
+| **Accueil** | « la carte de Réassurances rend 30 px plus court » | **La VUE porte la copie des portes INDUSTRIELLES** : titre « Pourquoi choisir nos portes de garage industrielles ? » et les cinq arguments industriels. La page rend la copie de l'accueil corrigée le 2026-09-07. **Les photos sont les mêmes des deux côtés : l'écart est du TEXTE.** Vérifié au pont sur les vues 1200 et 1728. Même défaut de copier-coller que sur la vue Portes d'entrée. **Correction à la source, la page ne bouge pas.** |
+| **À propos** | « résidu de rendu du texte » | **Notre section Équipe ne suit pas la vue** : dès la première rangée les portraits divergent (page : Cécilia, Florian, Sandra Magermans, Arnaud Dahmen ; vue : Cécilia, Florian, puis deux autres). La section fait 1891 px et occupe le tiers de la page. **Cause de NOTRE côté** : le contenu Équipe a été repris du banc de la vague 035 au lieu d'être relevé sur la vue À Propos. Correctif : relever les 16 membres sur `2782:41185`, recomposer, re-mesurer. **Non fait dans cette vague.** |
+| **Portes de garage** | « conforme » | Confirmé à l'image : même titre, mêmes cinq cartes, mêmes photos, même mise en page ; le volet de différence est quasi blanc — seulement le lissage du texte. C'est la référence de ce qu'une page conforme donne. |
+
+**La carte de Réassurances 30 px plus courte reste vraie et mesurée** — c'est la cause de l'écart de HAUTEUR, sur
+toutes les pages qui portent le bloc. Ce qui était faux, c'est d'en faire la cause du score au PIXEL de l'accueil.
+
+---
+
 ## 7. `limite-moteur` — ce qu'Odoo ne sait pas faire, mesuré
 
 | Code | Fait | Conséquence |
