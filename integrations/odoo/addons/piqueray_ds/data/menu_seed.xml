@@ -38,25 +38,30 @@
       <field name="website_id" ref="website.default_website"/>
       <field name="sequence" eval="20"/>
     </record>
+    <!-- « Motorisation » : placement VALIDÉ PAR L'OWNER le 2026-09-08 (spec 037,
+         FR-008). Il était INFÉRÉ sous « Portes d'entrée » depuis la spec 022 — la
+         maquette ne dessinait aucun panneau de sous-menu, et le chevron du master
+         « Portes d'entrée » exigeait au moins un enfant. L'owner a tranché : c'est
+         sous « Portes de garage » que Motorisation appartient, en troisième position.
+         Le `noupdate="1"` reste : ce semis vaut pour une installation FRAÎCHE. Sur
+         une base déjà installée, c'est la migration `19.0.1.17.0` qui re-parente —
+         et UNIQUEMENT si l'entrée est encore à sa place inférée, jamais si le client
+         l'a rangée lui-même (FR-012). -->
+    <record id="menu_motorisation" model="website.menu">
+      <field name="name">Motorisation</field>
+      <field name="url">/motorisation</field>
+      <field name="parent_id" ref="menu_portes_garage"/>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="30"/>
+    </record>
 
-    <!-- 2. Portes d'entrée (chevron dérivé : a un enfant) -->
+    <!-- 2. Portes d'entrée (feuille depuis le 2026-09-08 : Motorisation est passée
+         sous « Portes de garage ») -->
     <record id="menu_portes_entree" model="website.menu">
       <field name="name">Portes d’entrée</field>
       <field name="url">/portes-entree</field>
       <field name="website_id" ref="website.default_website"/>
       <field name="sequence" eval="20"/>
-    </record>
-    <!-- « Motorisation » : placement INFÉRÉ (data-model §2.2, confidence: inferred).
-         La maquette ne dessine aucun panneau de sous-menu ; le master pose un
-         chevron sur « Portes d'entrée » qui exige au moins un enfant. Le menu
-         appartient au client dès la livraison — re-ranger cette entrée est une
-         édition standard. -->
-    <record id="menu_motorisation" model="website.menu">
-      <field name="name">Motorisation</field>
-      <field name="url">/motorisation</field>
-      <field name="parent_id" ref="menu_portes_entree"/>
-      <field name="website_id" ref="website.default_website"/>
-      <field name="sequence" eval="10"/>
     </record>
 
     <!-- 3. Dépannage/SAV (feuille) -->

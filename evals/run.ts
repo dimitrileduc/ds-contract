@@ -506,6 +506,77 @@ const cases: Case[] = [
     },
   },
   {
+    // 037 — l'arbre du menu VALIDÉ par l'owner est bien celui que le module sème.
+    // La donnée de test (`contracts/menu-tree.json`) et le semis
+    // (`data/menu_seed.xml`) sont deux écritures de la même décision : si elles
+    // divergent, le scénario de navigation mesurerait un arbre contre lui-même.
+    id: 'odoo-pages-navigation-tree',
+    claim: 'C3-detection',
+    run: () => {
+      const SEED_REL = 'integrations/odoo/addons/piqueray_ds/data/menu_seed.xml';
+      const TREE = path.join(ROOT, 'specs/037-pages-odoo-navigation-pixel/contracts/menu-tree.json');
+
+      /** Parse le semis : id → { label, url, parent, sequence }. */
+      const parseSeed = (xml: string) => {
+        const out = new Map<string, { label: string; url: string; parent: string | null; sequence: number }>();
+        for (const m of xml.matchAll(/<record id="(menu_[a-z_]+)" model="website\.menu">([\s\S]*?)<\/record>/g)) {
+          const corps = m[2];
+          const champ = (n: string) => /<field name="__N__">([\s\S]*?)<\/field>/.source.replace('__N__', n);
+          const label = new RegExp(champ('name')).exec(corps)?.[1] ?? '';
+          const url = new RegExp(champ('url')).exec(corps)?.[1] ?? '';
+          const parent = /<field name="parent_id" ref="([a-z_]+)"\/>/.exec(corps)?.[1] ?? null;
+          const sequence = Number(/<field name="sequence" eval="(\d+)"\/>/.exec(corps)?.[1] ?? '0');
+          out.set(m[1], { label, url, parent, sequence });
+        }
+        return out;
+      };
+      /** Rend l'arbre du semis dans la forme de `menu-tree.json`. */
+      interface Entree { label: string; url: string; children?: Entree[] }
+      const arbre = (seed: ReturnType<typeof parseSeed>): Entree[] => {
+        const enfants = (p: string | null): Entree[] => [...seed.entries()]
+          .filter(([, v]) => v.parent === p)
+          .sort((a, b) => a[1].sequence - b[1].sequence || (a[0] < b[0] ? -1 : 1))
+          .map(([id, v]) => {
+            const kids: Entree[] = enfants(id);
+            return kids.length ? { label: v.label, url: v.url, children: kids } : { label: v.label, url: v.url };
+          });
+        return enfants(null);
+      };
+
+      const attendu = JSON.parse(readFileSync(TREE, 'utf8')).entrees;
+      const vu = arbre(parseSeed(readFileSync(path.join(SCRATCH, SEED_REL), 'utf8')));
+      if (JSON.stringify(vu) !== JSON.stringify(attendu)) {
+        throw new Error(`l'arbre du semis n'est pas l'arbre validé :\nsemis  ${JSON.stringify(vu)}\nvalidé ${JSON.stringify(attendu)}`);
+      }
+
+      // Contre-épreuve : DÉPLACER une entrée dans le semis doit faire rougir ce
+      // cas. Sans elle, le comparateur pourrait être une tautologie (deux
+      // structures vides comparées entre elles).
+      const seedAbs = path.join(SCRATCH, SEED_REL);
+      const original = readFileSync(seedAbs, 'utf8');
+      writeFileSync(seedAbs, original.replace(
+        /(<record id="menu_motorisation"[\s\S]*?)ref="menu_portes_garage"/,
+        '$1ref="menu_portes_entree"',
+      ));
+      const deplace = arbre(parseSeed(readFileSync(seedAbs, 'utf8')));
+      writeFileSync(seedAbs, original);
+      if (JSON.stringify(deplace) === JSON.stringify(attendu)) {
+        throw new Error("déplacer Motorisation dans le semis n'a pas changé l'arbre — le comparateur ne compare rien");
+      }
+
+      // Et le chemin UPDATE existe, gardé : une base déjà installée ne se corrige
+      // pas toute seule, et une migration sans garde réécrirait le menu du client.
+      const migration = readFileSync(path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/migrations/19.0.1.17.0/post-migration.py'), 'utf8');
+      if (!/menu_portes_entree/.test(migration) || !/parent_id != inf/.test(migration)) {
+        throw new Error('la migration ne garde pas le re-parentage sur « encore à sa place inférée » (FR-012)');
+      }
+      const manifeste = readFileSync(path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/__manifest__.py'), 'utf8');
+      if (!/"version": "19\.0\.1\.17\.0"/.test(manifeste)) {
+        throw new Error('la migration 19.0.1.17.0 existe mais le manifeste ne la déclenche pas');
+      }
+    },
+  },
+  {
     id: 'accordion-row-source-cleanup-extraction',
     claim: 'C5-extraction',
     run: () => {

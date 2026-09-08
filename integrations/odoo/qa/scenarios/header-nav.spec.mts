@@ -35,7 +35,10 @@ const REACHABLE = [
   { url: '/a-propos', active: 'À propos', kind: 'leaf' as const },
   { url: '/portes-residentielles', active: 'Portes de garage', kind: 'child' as const, dd: 'Portes résidentielles' },
   { url: '/portes-industrielles', active: 'Portes de garage', kind: 'child' as const, dd: 'Portes industrielles' },
-  { url: '/motorisation', active: 'Portes d’entrée', kind: 'child' as const, dd: 'Motorisation' },
+  // 2026-09-08 (spec 037, FR-008) : « Motorisation » est passée sous « Portes de
+  // garage » — l'owner a tranché le placement que 022 avait INFÉRÉ. Le parent
+  // actif attendu change avec elle.
+  { url: '/motorisation', active: 'Portes de garage', kind: 'child' as const, dd: 'Motorisation' },
 ];
 const FIXTURE_URLS = [
   '/portes-de-garage', '/portes-residentielles', '/portes-industrielles',
