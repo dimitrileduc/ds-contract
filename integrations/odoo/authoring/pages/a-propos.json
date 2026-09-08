@@ -4,7 +4,7 @@
   "key": "a_propos",
   "header_overlay": true,
   "meta_title": "Piqueray, entreprise familiale et distributeur Hörmann depuis 50 ans | Piqueray",
-  "_note": "Contenu relevé sur la vue Figma wide 2782:41185. Réassurances SURCHARGÉES (titre propre + 4 cartes) — l'exemple canonique de la surcharge par champ (FR-003) ; Devis et Avis Google repris du commun. La section Équipe reprend le contenu et les portraits déjà posés par la vague 035 (`equipe-test.json`, 16 membres). ÉCARTS DE SOURCE au registre : (1) le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold ; (2) les 16 photos de SURVOL de la vue À Propos sont DISTINCTES alors que celles du set l'étaient toutes identiques (défaut nommé en 035) — les portraits de survol livrés ici restent ceux de 035, à reprendre.",
+  "_note": "Contenu relevé sur la vue Figma wide « 031 · DEMO À PROPOS — 4 vues » (2782:41185). Réassurances SURCHARGÉES (titre propre + 4 cartes) — l'exemple canonique de la surcharge par champ (FR-003) ; Devis et Avis Google repris du commun. ÉQUIPE : les 16 membres suivent l'ORDRE DE LA VUE (2026-09-08), pas celui de la planche de base du banc 035 — les deux portent les mêmes 16 portraits, appariés aux mêmes personnes, mais dans un ordre différent. ÉCARTS DE SOURCE au registre : (1) le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold ; (2) trois membres (positions 6, 7 et 8) s'appellent « Prénom / Poste » dans la vue ET dans la planche de base — la page le porte tel quel, à nommer par l'owner ; (3) les 16 photos de SURVOL de la vue À Propos sont DISTINCTES, alors que celles de la planche de base sont toutes la même image (défaut nommé en 035) — les survols livrés ici restent celui de 035, les seize de la vue n'ont pas pu être exportés (les dix ports du pont étaient pris, dont un par une session qui travaille précisément dessus).",
   "sections": [
     {
       "component": "s_pqr_hero",
@@ -51,6 +51,54 @@
           "poste": "Gérant",
           "images": {
             "member-picture-normal": "equipe_02",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Jordan",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_11",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Florian",
+          "poste": "Monteur",
+          "images": {
+            "member-picture-normal": "equipe_12",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Hervé",
+          "poste": "Dépanneur",
+          "images": {
+            "member-picture-normal": "equipe_13",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_14",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_15",
+            "member-picture-underlay": "equipe_survol"
+          }
+        },
+        {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "images": {
+            "member-picture-normal": "equipe_16",
             "member-picture-underlay": "equipe_survol"
           }
         },
@@ -103,14 +151,6 @@
           }
         },
         {
-          "nom": "Grégory",
-          "poste": "Monteur",
-          "images": {
-            "member-picture-normal": "equipe_09",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
           "nom": "Laurent",
           "poste": "Monteur",
           "images": {
@@ -119,50 +159,10 @@
           }
         },
         {
-          "nom": "Jordan",
+          "nom": "Grégory",
           "poste": "Monteur",
           "images": {
-            "member-picture-normal": "equipe_11",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
-          "nom": "Florian",
-          "poste": "Monteur",
-          "images": {
-            "member-picture-normal": "equipe_12",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
-          "nom": "Hervé",
-          "poste": "Dépanneur",
-          "images": {
-            "member-picture-normal": "equipe_13",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
-          "nom": "Prénom",
-          "poste": "Poste",
-          "images": {
-            "member-picture-normal": "equipe_14",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
-          "nom": "Prénom",
-          "poste": "Poste",
-          "images": {
-            "member-picture-normal": "equipe_15",
-            "member-picture-underlay": "equipe_survol"
-          }
-        },
-        {
-          "nom": "Prénom",
-          "poste": "Poste",
-          "images": {
-            "member-picture-normal": "equipe_16",
+            "member-picture-normal": "equipe_09",
             "member-picture-underlay": "equipe_survol"
           }
         }

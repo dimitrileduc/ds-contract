@@ -28,7 +28,7 @@ Trois évals neuves couvrent les trois mécanismes, et chacune précède la phra
 
 ## 2. Ce que la mesure dit, sans arrondir
 
-**15 rapports verts sur 36.** Deux pages sont vertes aux quatre largeurs — **Dépannage/SAV** et **Contactez-nous** ;
+**18 rapports verts sur 36.** Deux pages sont vertes aux quatre largeurs — **Dépannage/SAV** et **Contactez-nous** ;
 **Motorisation** à trois sur quatre, et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
 Les 36 rapports portent `structure: "égale"` : le nombre de sections rendues est celui de la vue, partout.
 
@@ -43,9 +43,13 @@ plus (« avant d'annoncer un %, REGARDE le triptyque ») :
 - **Accueil** — la **vue Figma** porte la copie des Réassurances des portes **industrielles**, pas celle de l'accueil.
   Photos identiques des deux côtés : l'écart est du **texte**. Vérifié au pont sur les vues 1200 et 1728. Même
   copier-coller que sur la vue Portes d'entrée. **Correction à la source ; la page ne bouge pas.**
-- **À propos** — notre section **Équipe** ne porte pas les mêmes membres, ni dans le même ordre, que la vue : le
-  contenu a été repris du banc de la vague 035 au lieu d'être relevé sur la vue À Propos. La section fait 1891 px et
-  occupe le tiers de la page. **Cause de notre côté, correctif connu, non fait dans cette vague.**
+- **À propos** — notre section **Équipe** ne portait pas les membres dans le même ordre que la vue : le contenu venait
+  du banc de la vague 035. **Corrigé le 2026-09-08** : les seize suivent désormais l'ordre de la vue, et les portraits
+  n'ont pas bougé — la vue et la planche de base portent les mêmes photos appariées aux mêmes personnes. La page passe
+  de 8,29 / 6,63 / 10,92 / 7,13 % à **3,47 / 2,07 / 6,50 / 1,53 %**, trois largeurs sur quatre au vert.
+  Reste ouvert : les **seize photos de survol** de la vue, toutes distinctes, n'ont pas pu être exportées — les dix
+  ports que le manifeste du plugin autorise étaient tous pris, dont un par une autre session travaillant précisément
+  sur ces photos.
 
 La carte de Réassurances 30 px plus courte **reste vraie** : c'est la cause de l'écart de HAUTEUR partout où le bloc
 apparaît. Ce qui était faux, c'était d'en faire la cause du score au pixel de l'accueil.

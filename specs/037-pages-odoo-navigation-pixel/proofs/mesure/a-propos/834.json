@@ -1,13 +1,12 @@
 {
-  "cause": "la section Équipe ne porte pas les mêmes membres, ni dans le même ordre, que la vue",
-  "date": "2026-09-08T13:17:52.005Z",
-  "diffPixels": 456892,
+  "cause": null,
+  "date": "2026-09-08T15:30:54.194Z",
+  "diffPixels": 143080,
   "ecartHauteurPx": 4,
   "ecartsContenu": [
     "Le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold.",
-    "Les 16 photos de SURVOL de cette vue sont DISTINCTES, alors que celles du set l'étaient toutes identiques (défaut nommé en 035). Les portraits livrés ici restent ceux de 035 : à reprendre.",
-    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035).",
-    "La liste des membres de l'Équipe et leur ordre diffèrent entre la page (contenu du banc 035) et la vue À Propos. Correctif de NOTRE côté : relever la vue 2782:41185."
+    "Trois membres de l'Équipe (positions 6, 7 et 8) s'appellent « Prénom / Poste » dans la vue ET dans la planche de base : la page le porte tel quel, à nommer par l'owner.",
+    "Les 16 photos de SURVOL de la vue À Propos sont DISTINCTES ; celles de la planche de base sont toutes la même image (défaut nommé en 035). Les survols livrés restent ceux de 035 — les seize de la vue n'ont pas pu être exportés (les dix ports du pont étaient pris)."
   ],
   "figma": {
     "hauteur": 8268,
@@ -16,16 +15,16 @@
   },
   "hauteurCommune": 8268,
   "instance": "piqueray-odoo-037",
-  "justification": "Lu au triptyque : dès la première rangée, les portraits divergent — la page donne Cécilia, Florian, Sandra Magermans, Arnaud Dahmen ; la vue donne Cécilia, Florian puis deux autres membres. La section fait 1891 px de haut et occupe le tiers de la page : tout ce qui suit est comparé à côté. CAUSE DE NOTRE CÔTÉ, pas de la source : le contenu Équipe a été REPRIS du banc de la vague 035 (`equipe-test.json`, relevé sur les planches du set 2777:30992) au lieu d'être relevé sur la vue À Propos elle-même. Correctif connu : relever les 16 membres et leurs portraits sur la vue 2782:41185, recomposer, re-mesurer. Ce n'est pas fait dans cette vague.",
+  "justification": null,
   "largeur": 834,
   "odoo": {
     "hauteur": 8272,
-    "sha256": "138cc1948573b3da5f1e83d28ddf693de158da2b499a4fa823ad1a6a9ddfeb3e"
+    "sha256": "46b168d4695b2bdc90e23dac2a479a1ab1c6674f0db69cf065043017945092d6"
   },
   "page": "a-propos",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 6.63,
+  "scorePct": 2.07,
   "sectionOrigineDecalage": null,
   "sections": [
     {
@@ -126,10 +125,10 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/a-propos/834.png",
-    "sha256": "2f7220e9221816c92a978027609fc936b3e323a36f145086633ab178ad8b2ed0"
+    "sha256": "122c457e9c4a56821d15907a16cc8d8dd65c2d4ee0a33f3429af2444de36d906"
   },
   "url": "/a-propos",
   "verdictHauteur": "bruit",
-  "verdictPage": "rouge",
-  "verdictPixel": "rouge"
+  "verdictPage": "vert",
+  "verdictPixel": "vert"
 }

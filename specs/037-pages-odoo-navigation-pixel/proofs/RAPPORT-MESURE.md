@@ -24,12 +24,17 @@ vraiment — « sur la partie que les deux ont en commun, tant de pixels diffèr
 | **Portes d'entrée** | ✖ 10.38 % · Δh -32 px | ✖ 7.25 % · Δh -3 px | ✖ 5.19 % · Δh +13 px | ✖ 7.68 % · Δh -25 px |
 | **Motorisation** | ✔ 3.28 % · Δh -1 px | ✔ 1.95 % · Δh -1 px | ✖ 19.12 % · Δh -52 px | ✔ 1.38 % · Δh +0 px |
 | **Dépannage/SAV** | ✔ 4.24 % · Δh +10 px | ✔ 2.46 % · Δh +9 px | ✔ 1.78 % · Δh +1 px | ✔ 1.70 % · Δh +8 px |
-| **À propos** | ✖ 8.29 % · Δh +4 px | ✖ 6.63 % · Δh +4 px | ✖ 10.92 % · Δh -58 px | ✖ 7.13 % · Δh +8 px |
+| **À propos** | ✔ 3.47 % · Δh +4 px | ✔ 2.07 % · Δh +4 px | ✖ 6.50 % · Δh -58 px | ✔ 1.53 % · Δh +8 px |
 | **Contactez-nous** | ✔ 4.25 % · Δh +10 px | ✔ 3.22 % · Δh +10 px | ✔ 3.24 % · Δh +2 px | ✔ 3.05 % · Δh +8 px |
 
-**15 rapports verts sur 36.** Deux pages sont vertes aux quatre largeurs — **Dépannage/SAV** et
-**Contactez-nous**. **Motorisation** l'est à trois largeurs sur quatre, et à 1728 **toutes ses sections sont à
+**18 rapports verts sur 36.** Deux pages sont vertes aux quatre largeurs — **Dépannage/SAV** et
+**Contactez-nous**. **Motorisation** et **À propos** le sont à trois largeurs sur quatre ; à 1728, Motorisation a **toutes ses sections à
 zéro d'écart de hauteur**.
+
+**Mise à jour du 2026-09-08, après lecture des triptyques** : la section Équipe d'À propos a été reprise dans l'ORDRE
+DE LA VUE (elle suivait celui du banc de la vague 035). La page passe de 8,29 / 6,63 / 10,92 / 7,13 % à
+**3,47 / 2,07 / 6,50 / 1,53 %** — trois largeurs sur quatre au vert. Les seize portraits n'ont pas changé : seul leur
+ordre. C'est la démonstration que le diagnostic tenait, et que l'écart venait bien de notre contenu.
 
 ## La section d'origine du décalage, quand il y en a une
 

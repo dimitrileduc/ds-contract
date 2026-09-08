@@ -17,7 +17,7 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   surchargé **champ par champ**. Prouvé sur les vraies pages : une correction du
   commun atteint les **7** pages qui le reprennent, et **n'atteint pas** celle qui le
   surcharge.
-- **36 rapports de mesure sur 36, aucun « impossible »** — **15 verts**. Dépannage/SAV
+- **36 rapports de mesure sur 36, aucun « impossible »** — **18 verts**. Dépannage/SAV
   et Contactez-nous sont verts aux quatre largeurs ; Motorisation à trois sur quatre,
   et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
 - **Une cause dominante, mesurée et non supposée** : la carte de Réassurances rend
@@ -41,6 +41,12 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   c'est mesuré.
 - **Re-pin ZÉRO vérifié sur sept chemins** (`golden.json`, `engine.receipt.json`,
   `examples/polaris/`, `src/`, `contracts/`, `tokens/`, `catalog/`).
+- **La lecture des triptyques a corrigé deux diagnostics faits sans regarder les images.**
+  Sur l'accueil, c'est la VUE qui porte la copie des portes industrielles — la page est
+  juste, l'écart est du texte. Sur À propos, l'Équipe ne suivait pas l'ordre de la vue :
+  corrigé le jour même, la page passe de 8,29/6,63/10,92/7,13 % à **3,47/2,07/6,50/1,53 %**
+  sans qu'un seul portrait change, seul leur ordre. `docs/16` le dit depuis longtemps —
+  « avant d'annoncer un %, REGARDE le triptyque ».
 - **Une éval a rougi à cause de la vague, et elle est corrigée** :
   `reassurances-grid-variant-isolation` lisait le bloc dans le FICHIER de `home.json`,
   qui le REPREND désormais du commun ; elle lit maintenant le descripteur **résolu**,

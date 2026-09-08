@@ -1,13 +1,12 @@
 {
-  "cause": "la section Équipe ne porte pas les mêmes membres, ni dans le même ordre, que la vue",
-  "date": "2026-09-08T13:17:52.005Z",
-  "diffPixels": 984716,
+  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "date": "2026-09-08T15:30:54.194Z",
+  "diffPixels": 586606,
   "ecartHauteurPx": -58,
   "ecartsContenu": [
     "Le titre du hero de cette vue est en graisse Regular alors que le contrat est SemiBold.",
-    "Les 16 photos de SURVOL de cette vue sont DISTINCTES, alors que celles du set l'étaient toutes identiques (défaut nommé en 035). Les portraits livrés ici restent ceux de 035 : à reprendre.",
-    "Section Équipe : le dessin du set la donne à 2652 px en Desktop (fait de source, nommé en 035).",
-    "La liste des membres de l'Équipe et leur ordre diffèrent entre la page (contenu du banc 035) et la vue À Propos. Correctif de NOTRE côté : relever la vue 2782:41185."
+    "Trois membres de l'Équipe (positions 6, 7 et 8) s'appellent « Prénom / Poste » dans la vue ET dans la planche de base : la page le porte tel quel, à nommer par l'owner.",
+    "Les 16 photos de SURVOL de la vue À Propos sont DISTINCTES ; celles de la planche de base sont toutes la même image (défaut nommé en 035). Les survols livrés restent ceux de 035 — les seize de la vue n'ont pas pu être exportés (les dix ports du pont étaient pris)."
   ],
   "figma": {
     "hauteur": 7573,
@@ -16,16 +15,16 @@
   },
   "hauteurCommune": 7515,
   "instance": "piqueray-odoo-037",
-  "justification": "Lu au triptyque : dès la première rangée, les portraits divergent — la page donne Cécilia, Florian, Sandra Magermans, Arnaud Dahmen ; la vue donne Cécilia, Florian puis deux autres membres. La section fait 1891 px de haut et occupe le tiers de la page : tout ce qui suit est comparé à côté. CAUSE DE NOTRE CÔTÉ, pas de la source : le contenu Équipe a été REPRIS du banc de la vague 035 (`equipe-test.json`, relevé sur les planches du set 2777:30992) au lieu d'être relevé sur la vue À Propos elle-même. Correctif connu : relever les 16 membres et leurs portraits sur la vue 2782:41185, recomposer, re-mesurer. Ce n'est pas fait dans cette vague.",
+  "justification": "Lu au triptyque : photo, titre et texte sont aux MÊMES positions des deux côtés ; c'est le bas de la carte qui diffère — la vue laisse 30 px de blanc en plus sous le texte. Deux rangées, donc 60 px sur la section. Écart de BLOC, hors périmètre de cette vague (SC-010). Décision owner du 2026-09-08 : **c'est la maquette qui fait foi** — l'alignement de la carte est un chantier à part.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 7515,
-    "sha256": "87f943521b5ae704c1ba722b3a9f7480fc74cf37ec14282a40a72e5932727ae0"
+    "sha256": "b9c5d6b7c9c109905b19e34ebb5deb9aef46b8f293b7238a7bfa78dc83c30f9a"
   },
   "page": "a-propos",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 10.92,
+  "scorePct": 6.5,
   "sectionOrigineDecalage": "s_pqr_reassurances",
   "sections": [
     {
@@ -126,7 +125,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/a-propos/1200.png",
-    "sha256": "0ff9d02f26c09b7b494a1c012f5c398a950fc85f15f3a1db5890023d388a301b"
+    "sha256": "f45376f0425d451b950e8644a47c8f1591d24772f40541c2ac2396e792491d61"
   },
   "url": "/a-propos",
   "verdictHauteur": "rouge",
