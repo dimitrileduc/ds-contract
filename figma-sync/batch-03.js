@@ -2606,7 +2606,7 @@ const COMPONENTS = [
     "setName": "FAQ",
     "contractId": "ds.faq",
     "anchorKey": "6a71ef12dca9523c5019defc7dad5139faf44f62",
-    "description": "FAQ — generated from contract ds.faq v2.1.0 †",
+    "description": "FAQ — generated from contract ds.faq v2.1.1 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -2663,6 +2663,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textCase": "UPPER",
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat"
@@ -2788,6 +2789,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textCase": "UPPER",
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat"
@@ -2913,6 +2915,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textCase": "UPPER",
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat"
@@ -3038,6 +3041,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textCase": "UPPER",
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat"

@@ -932,7 +932,7 @@ const COMPONENTS = [
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
     "anchorKey": "92ddbd842f0f0a22f284322298a9a6865c397055",
-    "description": "GoogleReviews — generated from contract ds.google-reviews v3.1.0",
+    "description": "GoogleReviews — generated from contract ds.google-reviews v3.1.1",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -989,6 +989,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Accroche"
@@ -1412,6 +1413,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Accroche"
@@ -1835,6 +1837,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Accroche"
@@ -2262,6 +2265,7 @@ const COMPONENTS = [
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 20,
+                  "letterSpacing": 2.4,
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Accroche"

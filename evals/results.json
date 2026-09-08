@@ -1,5 +1,5 @@
 {
-  "passed": 247,
+  "passed": 248,
   "total": 252,
   "quarantined": 46,
   "results": [
@@ -26,8 +26,7 @@
     {
       "id": "odoo-production-version-drift",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: current: état structure-stale"
+      "pass": true
     },
     {
       "id": "odoo-pages-resolve-determinism-and-refusals",
