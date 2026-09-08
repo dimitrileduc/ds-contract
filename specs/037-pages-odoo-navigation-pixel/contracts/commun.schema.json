@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ds-contracts/specs/037/commun",
+  "title": "Contenu commun (integrations/odoo/authoring/commun/<bloc>.json)",
+  "description": "Une section PROPRE complète, écrite une fois. Le nom du fichier est la clé référencée par `commun` dans une page. Trois documents obligatoires : devis.json (s_pqr_devis), reassurances.json (s_pqr_reassurances), avis-google.json (s_pqr_google_reviews_section). Le fichier destinations-externes.json a sa propre forme (voir `externes`).",
+  "oneOf": [
+    {
+      "type": "object", "required": ["component"],
+      "properties": {
+        "component": { "enum": ["s_pqr_devis", "s_pqr_reassurances", "s_pqr_google_reviews_section"] },
+        "set_html": { "type": "object", "additionalProperties": { "type": "string" } },
+        "set_button": { "type": "object", "additionalProperties": { "type": "string" } },
+        "images": { "type": "object", "additionalProperties": { "type": "string" } },
+        "links": { "type": "object", "additionalProperties": { "type": "string" } },
+        "disposition": { "type": "string" },
+        "cards": { "type": "array" },
+        "reviews": { "type": "array" },
+        "remove_class": { "type": "array", "items": { "type": "string" } },
+        "add_class": { "type": "array", "items": { "type": "string" } },
+        "_note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "externes",
+      "description": "destinations-externes.json : liste FERMÉE des adresses https autorisées comme destination, avec la raison. Une https absente d'ici est refusée par nom.",
+      "type": "object",
+      "propertyNames": { "pattern": "^https://" },
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ds-contracts/specs/037/rapport-mesure",
+  "title": "Rapport de mesure d'une page entière à une largeur (specs/037-…/proofs/mesure/<page>/<largeur>.json)",
+  "type": "object",
+  "required": ["page", "url", "largeur", "instance", "date", "statut", "seuilPct", "toleranceHauteurPx", "regleCadrage", "verdictPage"],
+  "additionalProperties": false,
+  "properties": {
+    "page": { "type": "string" },
+    "url": { "type": "string" },
+    "largeur": { "enum": [390, 834, 1200, 1728] },
+    "instance": { "type": "string", "not": { "const": "piqueray-odoo-test" } },
+    "date": { "type": "string" },
+    "statut": { "enum": ["mesurée", "impossible"] },
+    "raisonImpossible": { "type": ["string", "null"], "description": "Non nul si et seulement si statut = impossible (vue introuvable, vue de mauvaise largeur, page absente, capture en erreur, capture vide)." },
+    "figma": { "type": ["object", "null"], "required": ["nodeId", "hauteur", "sha256"], "properties": { "nodeId": { "type": "string" }, "hauteur": { "type": "integer" }, "sha256": { "type": "string" } } },
+    "odoo": { "type": ["object", "null"], "required": ["hauteur", "sha256"], "properties": { "hauteur": { "type": "integer" }, "sha256": { "type": "string" } } },
+    "ecartHauteurPx": { "type": ["integer", "null"], "description": "odoo.hauteur − figma.hauteur, signé." },
+    "regleCadrage": { "const": "alignées en haut, comparées sur la hauteur commune ; aucune image redimensionnée ni recalée" },
+    "hauteurCommune": { "type": ["integer", "null"] },
+    "diffPixels": { "type": ["integer", "null"] },
+    "scorePct": { "type": ["number", "null"], "description": "diffPixels / (largeur × hauteurCommune) × 100 ; jamais présenté sans ecartHauteurPx." },
+    "seuilPct": { "const": 5 },
+    "toleranceHauteurPx": { "const": 10 },
+    "verdictPixel": { "enum": ["vert", "rouge", null] },
+    "verdictHauteur": { "enum": ["bruit", "rouge", null] },
+    "verdictPage": { "enum": ["vert", "rouge", "impossible"], "description": "vert ⇔ verdictPixel = vert ET verdictHauteur = bruit." },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["nom", "figma", "odoo", "ecartH", "ecartYCumule"],
+        "properties": {
+          "nom": { "type": "string" },
+          "figma": { "type": "object", "properties": { "y": { "type": "integer" }, "h": { "type": "integer" } } },
+          "odoo": { "type": "object", "properties": { "y": { "type": "integer" }, "h": { "type": "integer" } } },
+          "ecartH": { "type": "integer" },
+          "ecartYCumule": { "type": "integer" }
+        }
+      }
+    },
+    "structure": { "type": ["string", "null"], "description": "« égale » ou « <n> sections Figma vs <m> sections Odoo » — jamais silencieux." },
+    "sectionOrigineDecalage": { "type": ["string", "null"], "description": "Première section dont ecartYCumule dépasse la tolérance ; nul si aucune." },
+    "ecartsContenu": { "type": "array", "items": { "type": "string" }, "description": "Écarts de copie NOMMÉS (FR-018) : corrigés à la source Figma avant re-mesure, jamais dans la page." },
+    "cause": { "type": ["string", "null"], "description": "Cause dominante, écrite à la main après lecture du triptyque ; nul par défaut." },
+    "justification": { "type": ["string", "null"] },
+    "triptyque": { "type": ["object", "null"], "required": ["chemin", "sha256"], "properties": { "chemin": { "type": "string" }, "sha256": { "type": "string" } }, "description": "PNG 1:1 hors dépôt (.page-parity/037/…) ; l'empreinte est dans le dépôt." }
+  }
+}

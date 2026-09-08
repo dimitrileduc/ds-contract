@@ -1,0 +1,31 @@
+{
+  "_decision": "Arbre validé par l'owner le 2026-09-08 (spec 037, FR-008) : le semis de la spec 022 avec Motorisation déplacée sous Portes de garage. « Contactez-nous » reste un bouton, Home le logo. Donnée de test : lue par pages-navigation.spec.mts et prouvée égale au semis (data/menu_seed.xml) par l'éval odoo-pages-navigation-tree.",
+  "entrees": [
+    {
+      "label": "Portes de garage", "url": "/portes-de-garage",
+      "children": [
+        { "label": "Portes résidentielles", "url": "/portes-residentielles" },
+        { "label": "Portes industrielles", "url": "/portes-industrielles" },
+        { "label": "Motorisation", "url": "/motorisation" }
+      ]
+    },
+    { "label": "Portes d’entrée", "url": "/portes-entree" },
+    { "label": "Dépannage/SAV", "url": "/depannage-sav" },
+    { "label": "À propos", "url": "/a-propos" }
+  ],
+  "boutons": [
+    { "label": "Contactez-nous", "url": "/contactez-nous", "ou": ["header", "menu-mobile", "footer"] },
+    { "label": "Accueil (logo)", "url": "/", "ou": ["header", "menu-mobile", "footer"] }
+  ],
+  "actifAttendu": {
+    "/": [],
+    "/portes-de-garage": ["Portes de garage"],
+    "/portes-residentielles": ["Portes de garage", "Portes résidentielles"],
+    "/portes-industrielles": ["Portes de garage", "Portes industrielles"],
+    "/motorisation": ["Portes de garage", "Motorisation"],
+    "/portes-entree": ["Portes d’entrée"],
+    "/depannage-sav": ["Dépannage/SAV"],
+    "/a-propos": ["À propos"],
+    "/contactez-nous": []
+  }
+}

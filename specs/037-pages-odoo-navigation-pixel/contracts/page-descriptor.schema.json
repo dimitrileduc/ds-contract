@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ds-contracts/specs/037/page-descriptor",
+  "title": "Descripteur de page Odoo (integrations/odoo/authoring/pages/<page>.json)",
+  "description": "Additif sur le format existant : les clés `commun`, `surcharge`, `links` et `cards[].lien` sont neuves ; tout descripteur d'avant reste valide (sauf une copie locale d'un bloc commun, refusée par SC-004).",
+  "type": "object",
+  "required": ["url", "name", "sections"],
+  "additionalProperties": false,
+  "properties": {
+    "url": { "type": "string", "pattern": "^/([a-z0-9-]+)?$" },
+    "name": { "type": "string", "minLength": 1 },
+    "key": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "view_tname": { "type": "string" },
+    "meta_title": { "type": "string" },
+    "meta_description": { "type": "string" },
+    "header_overlay": { "type": "boolean" },
+    "addon": { "type": "string" },
+    "_note": { "type": "string" },
+    "sections": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/section" } }
+  },
+  "definitions": {
+    "destination": {
+      "type": "string",
+      "description": "Grammaire fermée du résolveur : `#…` ; `/` ou `/<slug>` d'une page du site ; `tel:` ; `mailto:` ; `https://…` présent dans commun/destinations-externes.json. Tout le reste est refusé par NOM (fichier, section, part, valeur).",
+      "pattern": "^(#.*|/[a-z0-9-]*|tel:.+|mailto:.+|https://.+)$"
+    },
+    "links": {
+      "type": "object",
+      "description": "Part hôte → destination. Adressage : [data-pqr-part=<part>] a[data-pqr-part=button-root], sinon a[data-pqr-part=<part>].",
+      "additionalProperties": { "$ref": "#/definitions/destination" }
+    },
+    "carte": {
+      "type": "object",
+      "properties": {
+        "titre": { "type": "string" }, "texte": { "type": "string" }, "body": { "type": "string" },
+        "image": { "type": "string" }, "images": { "type": "object", "additionalProperties": { "type": "string" } },
+        "prix": { "type": "string" }, "nom": { "type": "string" }, "poste": { "type": "string" },
+        "auteur": { "type": "string" }, "date": { "type": "string" }, "initiale": { "type": "string" },
+        "lienAvis": { "$ref": "#/definitions/destination" },
+        "lien": { "$ref": "#/definitions/destination" }
+      },
+      "additionalProperties": false
+    },
+    "row": {
+      "type": "object", "required": ["titre"],
+      "properties": { "titre": { "type": "string" }, "contenu": { "type": "string" }, "etat": { "enum": ["ferme", "ouvert"] } },
+      "additionalProperties": false
+    },
+    "composerKeys": {
+      "type": "object",
+      "properties": {
+        "set_html": { "type": "object", "additionalProperties": { "type": "string" } },
+        "set_button": { "type": "object", "additionalProperties": { "type": "string" } },
+        "images": { "type": "object", "additionalProperties": { "type": "string" } },
+        "links": { "$ref": "#/definitions/links" },
+        "variant": { "type": "string" },
+        "disposition": { "type": "string" },
+        "cards": { "type": "array", "items": { "$ref": "#/definitions/carte" } },
+        "reviews": { "type": "array", "items": { "$ref": "#/definitions/carte" } },
+        "rows": { "type": "array", "items": { "$ref": "#/definitions/row" } },
+        "remove_class": { "type": "array", "items": { "type": "string" } },
+        "add_class": { "type": "array", "items": { "type": "string" } },
+        "set_empty": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "sectionPropre": {
+      "allOf": [
+        { "$ref": "#/definitions/composerKeys" },
+        {
+          "type": "object", "required": ["component"],
+          "properties": {
+            "component": {
+              "type": "string", "pattern": "^s_pqr_[a-z_]+$",
+              "not": { "enum": ["s_pqr_devis", "s_pqr_reassurances", "s_pqr_google_reviews_section"] },
+              "description": "Un bloc COMMUN (Devis, Réassurances, Avis Google) ne peut pas être écrit en clair dans une page : il passe par `commun` (SC-004)."
+            }
+          }
+        }
+      ]
+    },
+    "sectionCommune": {
+      "type": "object", "required": ["commun"], "additionalProperties": false,
+      "properties": {
+        "commun": { "enum": ["devis", "reassurances", "avis-google"] },
+        "surcharge": {
+          "allOf": [ { "$ref": "#/definitions/composerKeys" } ],
+          "description": "Un champ = une clé de premier niveau. Scalaires : remplacent. Listes (cards, reviews, rows) : remplacent la liste entière. Dictionnaires par part (set_html, set_button, images, links) : fusion PAR PART. Une clé absente du commun et hors des clés du composeur = orphelin, refus."
+        }
+      }
+    },
+    "section": { "oneOf": [ { "$ref": "#/definitions/sectionPropre" }, { "$ref": "#/definitions/sectionCommune" } ] }
+  }
+}

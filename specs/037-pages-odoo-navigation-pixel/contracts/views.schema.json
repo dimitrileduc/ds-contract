@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ds-contracts/specs/037/views",
+  "title": "Manifeste des vues Figma de référence (extract/odoo-page-parity/views.json)",
+  "type": "object",
+  "required": ["fileKey", "seuilPct", "toleranceHauteurPx", "largeurs", "pages"],
+  "additionalProperties": false,
+  "properties": {
+    "fileKey": { "const": "d9FYAUcqdcNtsuaMgLefvJ" },
+    "seuilPct": { "const": 5, "description": "Owner 2026-09-08 — marge pour le bruit de rendu du texte. Changer = décision owner datée, jamais un drapeau CLI." },
+    "seuilRaison": { "type": "string" },
+    "toleranceHauteurPx": { "const": 10, "description": "Owner 2026-09-08 — au-delà, la page est rouge sur la hauteur même si le pixel passe." },
+    "largeurs": { "const": [390, 834, 1200, 1728] },
+    "pages": {
+      "type": "object",
+      "minProperties": 9, "maxProperties": 9,
+      "propertyNames": { "enum": ["home", "portes-de-garage", "portes-residentielles", "portes-industrielles", "portes-entree", "motorisation", "depannage-sav", "a-propos", "contactez-nous"] },
+      "additionalProperties": {
+        "type": "object", "required": ["url", "vues"], "additionalProperties": false,
+        "properties": {
+          "url": { "type": "string" },
+          "section": { "type": ["string", "null"], "description": "Section « 4 vues » ; null pour Home (frames directs)." },
+          "vues": {
+            "type": "object", "required": ["390", "834", "1200", "1728"], "additionalProperties": false,
+            "properties": {
+              "390": { "$ref": "#/definitions/vue" }, "834": { "$ref": "#/definitions/vue" },
+              "1200": { "$ref": "#/definitions/vue" }, "1728": { "$ref": "#/definitions/vue" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "vue": {
+      "type": "object", "required": ["nodeId", "hauteurAuReleve", "releve"], "additionalProperties": false,
+      "properties": {
+        "nodeId": { "type": "string", "pattern": "^[0-9]+:[0-9]+$" },
+        "hauteurAuReleve": { "type": "integer", "description": "Informatif : la hauteur VIVE, relue à chaque mesure, fait foi." },
+        "releve": { "type": "string", "format": "date" }
+      }
+    }
+  }
+}
