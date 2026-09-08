@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/select.contract.json (ds.select v1.0.0)
+ * Source of truth: contracts/select.contract.json (ds.select v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -25,16 +25,16 @@ const S: Record<string, CSSProperties> = {
     "justifyContent": "space-between",
     "borderStyle": "solid",
     "backgroundColor": "#FFFFFF",
-    "borderColor": "#9BA4B5",
+    "borderColor": "#37373B",
+    "borderWidth": "1px",
     "color": "#37373B",
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "16px",
     "fontWeight": 400,
+    "lineHeight": "24px",
     "paddingBlock": "12px",
     "paddingInline": "12px",
-    "borderWidth": "1px",
-    "borderRadius": "0px",
-    "lineHeight": "24px"
+    "borderRadius": "0px"
   },
   "valeur": {},
   "chevron": {
@@ -47,21 +47,30 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {};
 
 export interface SelectProps extends HTMLAttributes<HTMLDivElement> {
+  /** Valeur affichée (option sélectionnée). Vide au repos depuis 2.0.0. */
   value?: string;
+  /** Nom du champ envoyé au serveur, posé sur le <select> réel. Code-only. */
+  name?: string;
+  /** Identifiant DOM du <select> réel, cible du htmlFor du libellé porté par Field. Code-only. */
+  id?: string;
+  /** Attribut natif required sur le <select> réel. Code-only. */
+  required?: boolean;
+  /** aria-describedby du <select> réel : identifiant du message d'erreur, unique par champ. Code-only. */
+  describedBy?: string;
 }
 
-/** Piqueray select. Extracted from the owner-validated Figma master « Select » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.
+/** Liste déroulante Piqueray. Relevée sur le candidat v2 « Select · candidat v2 » de la planche 031·21 (2026-09-08 ; composant simple, sans axe State — l'anneau de focus étant code-only, un axe dessiné à la main serait un aperçu creux que la parité refuse), revue et adoptée — pas rédigée à la main.
 
-Wrapper pattern (same spirit as Checkbox): the box is presentational, a REAL native <select> inside carries the value and the accessibility, and the Piqueray chevron is a sibling icon — a native <select> cannot hold a custom chevron, so the wrapper gives the exact look AND native semantics. The consumer (Field molecule / form) supplies the real options; the atom shows « Valeur » as the placeholder.
+Motif enveloppe conservé de 1.0.0 : la boîte est présentationnelle, un VRAI <select> natif à l'intérieur porte la valeur et l'accessibilité, le chevron gouverné (registre `chevron-down`, 24) est un frère — un <select> natif ne peut pas héberger un chevron dessiné. Le consommateur fournit les options.
 
-The chevron is the governed registry icon `chevron-down` (size 24, an instance in the master — reused, never copied). Box styling binds to Piqueray primitives where a token exists; off-scale values (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel. Atom scope only — no label, no state axes (the Field molecule owns them). */
+MAJEUR 2.0.0, même passe qu'Input : ancres sur le candidat, bordure color.noir (3:1 exigés), texte 16 px, valeur par défaut vide, anneau de focus déclaré. LIMITE NOMMÉE : le focus se pose sur le <select> intérieur, pas sur la boîte ; le canal d'états d'une part non-racine n'accepte pas outline (color/background-color/border-color seulement), et :focus-within n'est pas un état du schéma. L'anneau du Select est donc un fait CODE-ONLY, à porter dans la feuille Odoo (`.select:focus-within`) et nommé ici. Les props name, id, required, describedBy sont code-only et se posent sur la part `valeur` (le contrôle réel). */
 export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
-  { value = 'Texte de saisie', style, children, ...rest },
+  { required = false, value = '', name = '', id = '', describedBy = '', style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
-      <select style={{ ...S.valeur }}>{value}</select>
+    <div ref={ref} style={{ ...S.root, ...style }} data-required={required || undefined}  {...rest}>
+      <select style={{ ...S.valeur }} name={(String(name) || undefined)} id={(String(id) || undefined)} aria-describedby={(String(describedBy) || undefined)} {...(({ "true": { "required": true } } as const)[String(required) as "true"] ?? {})}>{value}</select>
 <span style={{ ...S.chevron }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-down"] }} />
     </div>
   );

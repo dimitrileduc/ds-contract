@@ -636,3 +636,35 @@ n'ait pas à le retrouver. Journal complet : `specs/tiny/vague-031/accordion-row
   `getSizeAsync`, export d'un cadre temporaire à cette taille), jamais un cadre exporté : un cadre 1728 recadré puis
   recadré à nouveau par `object-fit: cover` a donné 11–13 % d'écart pur cadrage ; avec l'original, `cover` centré =
   FILL centré, 0,9 à 3,5 % de résidu de lissage (Hero, 2026-09-07).
+
+## Complément du 2026-09-08 — Formulaire (section avec un `<form>` natif Odoo, option 2)
+
+Premier bloc dont la mécanique n'est pas à nous : le contrat gouverne l'apparence et les états, Odoo (`s_website_form`)
+envoie. Chaque point a coûté un aller-retour.
+
+- **`FORMULAIRE_EDITABLE_PARTS` dans `authoring.js` est un MIROIR de la config d'authoring, et aucune porte ne le vérifie.**
+  Sans lui, le QWeb pose `o_pqr_editable` mais la politique ne pose jamais `o_editable` : tout le bloc reste
+  `contenteditable=false`, le rédacteur ne peut rien toucher — et `odoo:authoring:check` + `odoo:module:check` sont verts.
+  Seul le test d'édition (étape 9) le voit. Ajouter à l'étape 3 : `<ROOT>_EDITABLE_PARTS` (+ `<ROOT>_RICH_TEXT` si gras),
+  agrégés dans `PIQUERAY_REOPENED` et `PIQUERAY_RICH_TEXT`.
+- **Le test d'édition doit lire `textContent`, pas `innerText`** : un sur-titre en `text-transform: uppercase` rend
+  « (ÉDITÉ) » par `innerText` et le verdict passe à PERDU à tort.
+- **`form.s_website_form` sur la balise `<form>` elle-même**, jamais sur un ancêtre : les panneaux natifs « + champ »
+  ne se branchent pas, la structure reste gouvernée. `action="/website/form/"`, `data-model_name="mail.mail"`, un
+  `email_to` caché (signé HMAC au rendu, un `website_form_signature` s'ajoute), `span#s_website_form_result` OBLIGATOIRE
+  et **`hidden` au repos** (vide, il ajoutait 32 px de gap flex), déclencheur `<a role="button" class="… s_website_form_send">`.
+- **Les états sont observés, pas calculés** : une `Interaction` avec `MutationObserver` reflète `o_has_error`/`is-invalid`
+  et `#s_website_form_result.text-success|danger` dans les classes d'état du contrat, pose `aria-invalid`, focalise le
+  résumé (patron GOV.UK) et cache la ligne générique d'Odoo. Elle ne valide rien, n'envoie rien.
+- **Un titre de section est `element: h2` au contrat.** Le `<h2>` du gabarit héritait la marge basse de Bootstrap
+  (8 px) et faisait +8 px en 390/834 ; déclarer l'élément au contrat suffit, l'émetteur remet la marge UA à zéro.
+- **Mesurer le comportement, pas seulement la boîte** : `.page-parity/vague-036/comportement-formulaire.mts` (envoi vide →
+  états ; envoi plein → ligne verte + `select count(*) from mail_mail` +1 ; axe-core aux trois états). Sans SMTP, l'état
+  `exception` est ATTENDU sur le pilote — ce n'est pas un défaut du bloc.
+- **axe-core sur le bloc à chaque état** (`axe-core` en devDependency) : a trouvé un contraste 2,23:1 sur les liens
+  orange du résumé, invisible à toute autre porte. Un contraste vient de Figma → décision owner → source d'abord (§VIII).
+- **Le registre d'adaptations refuse un `mechanism` hors énumération** (`adaptation-registry.schema.json`) : ajouter la
+  valeur au schéma AVANT `npm run build`, sinon `odoo:derivation` est rouge pour tout le monde dans le worktree.
+- **Un résumé d'erreurs se teste APRÈS correction partielle, pas seulement à vide** : l'owner a trouvé à la main que les
+  deux liens restaient après correction d'un seul champ. Chaque lien du résumé suit son champ (`href="#<id du contrôle>"`,
+  `hidden` sinon) ; l'instrument de comportement enchaîne vide → un champ corrigé → plein.

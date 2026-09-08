@@ -1,5 +1,5 @@
 <!--
-  Field — static HTML+CSS emitted from contract ds.field v2.0.0 by core/emit-html.ts.
+  Field — static HTML+CSS emitted from contract ds.field v3.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -10,35 +10,47 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <div class="field field--etat-normal" data-part="root">
-      <div class="field__label" data-part="label">
+      <label class="field__label" data-part="label">
         <span class="field__Label" data-part="Label">Libellé</span>
-      </div>
+      </label>
       <div class="field__Saisie" data-part="Saisie">
-        <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+        <input class="input input--type-text" data-part="root" autocomplete="off" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
       </div>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">etat=erreur</p>
     <div class="field field--etat-erreur" data-part="root">
-      <div class="field__label" data-part="label">
+      <label class="field__label" data-part="label">
         <span class="field__Label" data-part="Label">Libellé</span>
-      </div>
+      </label>
       <div class="field__Saisie" data-part="Saisie">
-        <input class="input" data-part="root" type="text" aria-invalid="true" aria-describedby="field-error-message" style="width: 100%; border-color: var(--color-rouge); --dsc-border-color: var(--color-rouge);" value="Texte de saisie">
+        <input class="input input--type-text" data-part="root" autocomplete="off" type="text" aria-invalid="true" style="width: 100%; border-color: var(--color-rouge); --dsc-border-color: var(--color-rouge);" value="">
       </div>
-      <span class="field__messageErreur" id="field-error-message" data-part="messageErreur">Message d’erreur</span>
+      <span class="field__messageErreur" data-part="messageErreur">Message d’erreur</span>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">optionnel=true</p>
     <div class="field field--etat-normal" data-part="root" data-optionnel="true">
-      <div class="field__label" data-part="label">
+      <label class="field__label" data-part="label">
         <span class="field__Label" data-part="Label">Libellé</span>
         <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
-      </div>
+      </label>
       <div class="field__Saisie" data-part="Saisie">
-        <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+        <input class="input input--type-text" data-part="root" autocomplete="off" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">obligatoire=true</p>
+    <div class="field field--etat-normal" data-part="root" data-obligatoire="true">
+      <label class="field__label" data-part="label">
+        <span class="field__Label" data-part="Label">Libellé</span>
+        <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+      </label>
+      <div class="field__Saisie" data-part="Saisie">
+        <input class="input input--type-text" data-part="root" autocomplete="off" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
       </div>
     </div>
   </div>

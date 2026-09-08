@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/avantage.contract.json (ds.avantage v1.0.0)
+ * Source of truth: contracts/avantage.contract.json (ds.avantage v2.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -17,7 +17,11 @@ export interface AvantageProps extends HTMLAttributes<HTMLDivElement> {
   texte?: string;
 }
 
-/** Piqueray Avantage. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. */
+/** Argument Piqueray : l'icône hexagonale et un titre suivi d'un texte. Relevé sur le candidat v2 « Avantage · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.
+
+MAJEUR 2.0.0 : les ancres passent au candidat ; la racine perd ses tailles figées (1.0.0 : 759×75 — un texte sur trois lignes DÉBORDAIT sur l'argument suivant, mesuré) au profit de width fill et d'une hauteur au contenu ; la typographie prend les rôles responsive du DS (titre = typography.h4, texte = typography.body, les valeurs par écran vivent dans tokens/modes/viewport.*) ; l'icône suit l'écran par le jeton spacing.avantage.icone (40 en Mobile et Tablette, 64 en Desktop et Wide — 64 était disproportionné sur un écran de 342, décision owner). Une molécule n'a pas d'axe présentation : tout ce qui change par écran passe par un jeton qui varie par écran, comme spacing.product-card.width.
+
+L'icône est l'asset gouverné `piqueray` ; sa taille intrinsèque reste 64 (icon.size) et les jetons width/height de la part la redimensionnent — l'émetteur reporte ces jetons sur le <svg> injecté, sinon seul le cadre changerait de taille. */
 export const Avantage = forwardRef<HTMLDivElement, AvantageProps>(function Avantage(
   {
     titre = 'Conseils personnalisés',

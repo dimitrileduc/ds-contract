@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "640ea7e0",
+    "gitCommit": "9bedfe37",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -83,6 +83,7 @@
       "--color-etat-carte-categorie-voile-survol",
       "--color-etat-accordion-row-chevron-survol",
       "--color-etat-accordion-row-anneau-focus",
+      "--color-etat-champ-anneau-focus",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -217,7 +218,8 @@
       "--spacing-review-gap",
       "--spacing-menu-entree-pad-v",
       "--spacing-menu-entree-hauteur",
-      "--spacing-product-card-width"
+      "--spacing-product-card-width",
+      "--spacing-avantage-icone"
     ],
     "allCssVariables": [
       "--color-bleu",
@@ -245,6 +247,7 @@
       "--color-transparent",
       "--color-noir-profond",
       "--color-noir-voile-55",
+      "--color-vert",
       "--nav-state",
       "--opacity-base",
       "--font-family-montserrat",
@@ -323,6 +326,10 @@
       "--size-avantage-text",
       "--size-avantage-root-w",
       "--size-avantage-root-h",
+      "--size-avantage-icone-mobile",
+      "--size-avantage-icone-tablette",
+      "--size-avantage-icone-desktop",
+      "--size-avantage-icone-wide",
       "--size-carte-reassurance-image",
       "--size-carte-categorie-image",
       "--size-carte-root",
@@ -409,6 +416,8 @@
       "--size-logo-width",
       "--size-logo-height",
       "--size-formulaire-root",
+      "--size-formulaire-panneau-desktop",
+      "--size-formulaire-panneau-wide",
       "--size-header-root",
       "--size-header-icone",
       "--size-equipe-root",
@@ -485,6 +494,7 @@
       "--color-etat-carte-categorie-voile-survol",
       "--color-etat-accordion-row-chevron-survol",
       "--color-etat-accordion-row-anneau-focus",
+      "--color-etat-champ-anneau-focus",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -619,7 +629,8 @@
       "--spacing-review-gap",
       "--spacing-menu-entree-pad-v",
       "--spacing-menu-entree-hauteur",
-      "--spacing-product-card-width"
+      "--spacing-product-card-width",
+      "--spacing-avantage-icone"
     ]
   },
   "components": [
@@ -680,13 +691,13 @@
     {
       "id": "ds.avantage",
       "name": "Avantage",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Avantage. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Argument Piqueray : l'icône hexagonale et un titre suivi d'un texte. Relevé sur le candidat v2 « Avantage · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 2.0.0 : les ancres passent au candidat ; la racine perd ses tailles figées (1.0.0 : 759×75 — un texte sur trois lignes DÉBORDAIT sur l'argument suivant, mesuré) au profit de width fill et d'une hauteur au contenu ; la typographie prend les rôles responsive du DS (titre = typography.h4, texte = typography.body, les valeurs par écran vivent dans tokens/modes/viewport.*) ; l'icône suit l'écran par le jeton spacing.avantage.icone (40 en Mobile et Tablette, 64 en Desktop et Wide — 64 était disproportionné sur un écran de 342, décision owner). Une molécule n'a pas d'axe présentation : tout ce qui change par écran passe par un jeton qui varie par écran, comme spacing.product-card.width.\n\nL'icône est l'asset gouverné `piqueray` ; sa taille intrinsèque reste 64 (icon.size) et les jetons width/height de la part la redimensionnent — l'émetteur reporte ces jetons sur le <svg> injecté, sinon seul le cadre changerait de taille.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b"
+        "componentSetKey": "74ddd5695503616aa0a1ea95139a1e9e05d0a3b7"
       },
       "props": [
         {
@@ -1194,7 +1205,7 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "status": "draft",
       "category": "atom",
       "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius. The visible normal plane receives its code-only src and alt scalars from its composed parent.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa are unavailable to the contract→canvas transport. That hidden-under-normal layer therefore keeps the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma.\n\nVERSION 1.4.0 (2026-09-07, passe 2 du portage « Equipe v2 ») — LE PLAN DE SURVOL RECOIT ENFIN SA ROUTE, ET C'EST FIGMA QUI LE COMMANDE. Jusqu'ici seul le plan normal portait src et alt : le plan funIa, celui que le survol decouvre, n'avait AUCUN canal. Consequence mesurable, nommee par la passe 1 (journal specs/tiny/equipe-v2/member-card.md, section 7 point 3) : survoler une carte faisait DISPARAITRE le portrait pour ne montrer que le lavis technique. Or le master empile bien DEUX photos, sur les deux variantes du set. Les props srcSurvol et altSurvol ouvrent donc le meme canal code-only que src et alt, sur le plan du dessous, avec exactement la meme convention : la ROUTE, jamais les octets (trou A5, matrice ligne 91). Ajout purement additif — aucune prop ne disparait, aucune valeur ne se resserre : MINEUR. Le lavis #D9D9D9 reste la base de previsualisation quand aucune route n'est fournie.",
@@ -1356,10 +1367,10 @@
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné À GAUCHE aux quatre largeurs (les autres sections de la vague centrent au-delà de 992 ; ici l'écart est voulu et nommé), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
+      "description": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné à gauche —, CORRIGÉE le 2026-09-08 : l'en-tête et le CTA sont CENTRÉS en Desktop et Wide, à gauche en Mobile et Tablette, comme AvisGoogle et Reassurances (l'écart assumé de la veille est levé ; le set 2773:27504 porte le geste, 14 instances avant, 14 après), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
       "figma": {
         "representation": "component",
         "componentSetKey": "6a71ef12dca9523c5019defc7dad5139faf44f62"
@@ -1395,19 +1406,66 @@
     {
       "id": "ds.input",
       "name": "Input",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray single-line text input. Extracted from the owner-validated Figma master « Input » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nThe shown text binds to the « Valeur » TEXT property EXACTLY as the Button's label binds to « Libellé » — one bound text prop, drawn on the canvas, carried in code. Because the code element is a native <input> (a void element), that same value renders through defaultValue on a self-closing tag rather than as a child.\n\nBox styling (white fill, blue-grey 1px border, square corners, 12px padding, 14px Regular Montserrat, text color noir) binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel, named rather than force-fit.\n\nAtom scope only: no label, no help text, no required/disabled/state axes — the master exposes none (the Field molecule owns them).",
+      "description": "Champ de saisie Piqueray sur une ligne. Relevé sur le candidat v2 « Input · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 2.0.0 : les ancres passent au set candidat ; la bordure passe de bleu-gris (2,51:1 sur blanc, sous le seuil de 3:1) à color.noir ; le texte saisi passe de 14 à 16 px (sous 16, Safari iOS zoome à chaque entrée) ; la valeur par défaut devient vide (1.0.0 livrait un champ PRÉ-REMPLI de « Texte de saisie », que le visiteur devait effacer) ; l'anneau de focus est dessiné (jeton color.etat.champ.anneau-focus, même recette que les boutons de la vague 032 : trait 2 px, à 2 px du bord).\n\nLes props placeholder, type, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE) : le canevas ne dessine pas un attribut HTML. Ils passent par le canal attrs/attrsByProp existant, sans évolution de schéma. L'association libellé↔champ est portée par le parent Field (htmlFor = inputID) et par l'id posé ici : le composant qui compose fournit les deux, explicitement. Pas de règle de validation ici : elle appartient au formulaire et au serveur.\n\nLimite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "376ed2e3d748a430b28e763035ba5c62bdc9b383"
+        "componentSetKey": "f8f77493f71087c7cd3234dad79eeee0d7e7362f"
       },
       "props": [
         {
           "name": "value",
           "type": "string",
-          "default": "Texte de saisie"
+          "default": "",
+          "description": "Valeur saisie. Vide au repos depuis 2.0.0 — un texte par défaut est une VALEUR, pas une aide à la saisie (voir placeholder)."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "",
+          "description": "Aide à la saisie, affichée seulement quand le champ est vide. Code-only : le canevas n'a pas de notion de placeholder."
+        },
+        {
+          "name": "type",
+          "type": [
+            "text",
+            "email",
+            "tel"
+          ],
+          "default": "text",
+          "description": "Type natif du contrôle : décide du clavier mobile (@ pour email, pavé numérique pour tel) et de la validation native. Code-only."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "Nom du champ envoyé au serveur. Code-only. Un nom absent ou mal orthographié n'échoue pas côté Odoo : la valeur est rangée en silence en texte libre — c'est au formulaire de le poser explicitement."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "",
+          "description": "Identifiant DOM, cible du htmlFor du libellé porté par Field. Code-only. Unique par champ dans une page : fourni par le composant qui compose."
+        },
+        {
+          "name": "autocomplete",
+          "type": "string",
+          "default": "off",
+          "description": "Jeton autocomplete HTML (given-name, family-name, email, tel…) — critère WCAG 1.3.5, pas un confort. Code-only."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": false,
+          "description": "Champ obligatoire : attribut natif required (annoncé « obligatoire » par les lecteurs d'écran). Code-only ; la marque visible « * » est dessinée par Field (prop obligatoire)."
+        },
+        {
+          "name": "describedBy",
+          "type": "string",
+          "default": "",
+          "description": "aria-describedby : l'identifiant du message d'erreur de ce champ (unique par champ — 1.0.0 partageait un seul identifiant en dur entre tous les champs, ce qui cassait l'association pour les lecteurs d'écran). Code-only ; fourni par le composant qui compose, vide sinon."
         }
       ],
       "children": {
@@ -1418,19 +1476,44 @@
     {
       "id": "ds.select",
       "name": "Select",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray select. Extracted from the owner-validated Figma master « Select » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nWrapper pattern (same spirit as Checkbox): the box is presentational, a REAL native <select> inside carries the value and the accessibility, and the Piqueray chevron is a sibling icon — a native <select> cannot hold a custom chevron, so the wrapper gives the exact look AND native semantics. The consumer (Field molecule / form) supplies the real options; the atom shows « Valeur » as the placeholder.\n\nThe chevron is the governed registry icon `chevron-down` (size 24, an instance in the master — reused, never copied). Box styling binds to Piqueray primitives where a token exists; off-scale values (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel. Atom scope only — no label, no state axes (the Field molecule owns them).",
+      "description": "Liste déroulante Piqueray. Relevée sur le candidat v2 « Select · candidat v2 » de la planche 031·21 (2026-09-08 ; composant simple, sans axe State — l'anneau de focus étant code-only, un axe dessiné à la main serait un aperçu creux que la parité refuse), revue et adoptée — pas rédigée à la main.\n\nMotif enveloppe conservé de 1.0.0 : la boîte est présentationnelle, un VRAI <select> natif à l'intérieur porte la valeur et l'accessibilité, le chevron gouverné (registre `chevron-down`, 24) est un frère — un <select> natif ne peut pas héberger un chevron dessiné. Le consommateur fournit les options.\n\nMAJEUR 2.0.0, même passe qu'Input : ancres sur le candidat, bordure color.noir (3:1 exigés), texte 16 px, valeur par défaut vide, anneau de focus déclaré. LIMITE NOMMÉE : le focus se pose sur le <select> intérieur, pas sur la boîte ; le canal d'états d'une part non-racine n'accepte pas outline (color/background-color/border-color seulement), et :focus-within n'est pas un état du schéma. L'anneau du Select est donc un fait CODE-ONLY, à porter dans la feuille Odoo (`.select:focus-within`) et nommé ici. Les props name, id, required, describedBy sont code-only et se posent sur la part `valeur` (le contrôle réel).",
       "figma": {
         "representation": "component",
-        "componentSetKey": "3063f8a5ed587927ede2ae021433c705656acff5"
+        "componentSetKey": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3"
       },
       "props": [
         {
           "name": "value",
           "type": "string",
-          "default": "Texte de saisie"
+          "default": "",
+          "description": "Valeur affichée (option sélectionnée). Vide au repos depuis 2.0.0."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "Nom du champ envoyé au serveur, posé sur le <select> réel. Code-only."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "",
+          "description": "Identifiant DOM du <select> réel, cible du htmlFor du libellé porté par Field. Code-only."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": false,
+          "description": "Attribut natif required sur le <select> réel. Code-only."
+        },
+        {
+          "name": "describedBy",
+          "type": "string",
+          "default": "",
+          "description": "aria-describedby du <select> réel : identifiant du message d'erreur, unique par champ. Code-only."
         }
       ],
       "children": {
@@ -1441,19 +1524,56 @@
     {
       "id": "ds.textarea",
       "name": "Textarea",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray multi-line text input. Extracted from the owner-validated Figma master « Textarea » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nSame native-control bridge as Input: the « Valeur » TEXT property drives the shown text, drawn on the canvas as a text child and carried in code through defaultValue on the native <textarea>. Differs from Input only in shape: a fixed 128px height and top-aligned text (the canvas frame's counter axis is MIN, not CENTER).\n\nBox styling binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius, 128px height) ride the honest `literals` channel, named. Atom scope only: no label, no state axes — the Field molecule owns them.",
+      "description": "Zone de texte Piqueray sur plusieurs lignes. Relevée sur le candidat v2 « Textarea · candidat v2 » de la planche 031·21 (2026-09-08), revue et adoptée — pas rédigée à la main.\n\nMAJEUR 2.0.0, même passe que Input : ancres sur le candidat, bordure color.noir (3:1 exigés, 11,85:1 obtenus), texte 16 px (zoom iOS), valeur par défaut vide (1.0.0 livrait « Texte de saisie » pré-rempli), anneau de focus dessiné (color.etat.champ.anneau-focus). Ne diffère d'Input que par la forme : hauteur fixe size.textarea.root (128) et texte calé en haut (axe transversal MIN au canevas).\n\nLes props placeholder, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE), portés par attrs/attrsByProp sans évolution de schéma. Le redimensionnement vertical par l'utilisateur reste possible (aucune règle resize ici : ne pas bloquer une zone où l'on écrit 500 caractères). Limite nommée : trait extérieur 2 px au canevas ≈ outline décalé de 2 px en CSS.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd"
+        "componentSetKey": "58263ac06e29ffa202c3b2395085c3521ebd9646"
       },
       "props": [
         {
           "name": "value",
           "type": "string",
-          "default": "Texte de saisie"
+          "default": "",
+          "description": "Valeur saisie. Vide au repos depuis 2.0.0."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "",
+          "description": "Aide à la saisie, visible seulement quand la zone est vide. Code-only."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "Nom du champ envoyé au serveur. Code-only ; posé explicitement par le formulaire."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "",
+          "description": "Identifiant DOM, cible du htmlFor du libellé porté par Field. Code-only, unique par champ."
+        },
+        {
+          "name": "autocomplete",
+          "type": "string",
+          "default": "off",
+          "description": "Jeton autocomplete HTML. Code-only."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": false,
+          "description": "Attribut natif required. Code-only ; la marque visible est dessinée par Field."
+        },
+        {
+          "name": "describedBy",
+          "type": "string",
+          "default": "",
+          "description": "aria-describedby : identifiant du message d'erreur de ce champ, unique par champ. Code-only."
         }
       ],
       "children": {
@@ -1464,13 +1584,13 @@
     {
       "id": "ds.field",
       "name": "Field",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Champ de formulaire Piqueray : un libellé, un contrôle de saisie slotté, un message d'erreur. Relevé sur le candidat v2 « Field · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 3.0.0 — la molécule tient enfin ce que les atomes de la spec 004 promettaient quatre fois (« Field s'en occupe ») : le libellé devient un VRAI <label for> relié au contrôle (prop inputID, motif inputID + htmlFor de l'archive demo-51, seul précédent du dépôt) ; le message d'erreur reçoit un identifiant UNIQUE par champ (prop erreurID — 2.0.0 partageait `field-error-message` en dur entre tous les champs, ce qui cassait l'association pour les lecteurs d'écran dès le deuxième champ) ; le libellé passe de bleu-gris 20 SemiBold (2,32:1, illisible) à noir-bleuté sur le rôle typography.body (16/24 puis 18/27 par écran, Medium) ; une marque d'obligation « * » apparaît (prop obligatoire, motif requiredMark de l'archive) ; la bordure de repos du contrôle passe à color.noir (3:1 exigés).\n\nUne molécule n'a pas d'axe présentation : la taille du libellé varie par écran par les jetons typography.body.* (variables Responsive au canevas). L'état Erreur du contrôle est une SURCHARGE de couleur de bordure forwardée au contrôle slotté (control.styles), pas un swap de variante : mesuré le 2026-09-08, des instances imbriquées liées à la même propriété de swap bougent ENSEMBLE. Le canevas ne porte pas aria-invalid : forwardé au contrôle par control.attributes (code-only). L'attribut aria-describedby n'est plus forwardé ici — il est posé par l'atome (prop describedBy) avec l'identifiant fourni par le composant qui compose, pour rester unique.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc"
+        "componentSetKey": "cc5fdd358f9a4668f3e1ed139d1b87f3cc7168de"
       },
       "props": [
         {
@@ -1490,7 +1610,31 @@
           "name": "optionnel",
           "type": "boolean",
           "default": false,
-          "description": "Extracted from Figma \"Optionnel\" BOOLEAN property (added by sync pass)."
+          "description": "Affiche la mention « (optionnel) » après le libellé. Marquer les DEUX catégories (obligatoire et optionnel) est la recommandation Baymard."
+        },
+        {
+          "name": "obligatoire",
+          "type": "boolean",
+          "default": false,
+          "description": "Affiche la marque « * » après le libellé (aria-hidden : l'obligation réelle est l'attribut required du contrôle, annoncé nativement)."
+        },
+        {
+          "name": "inputID",
+          "type": "string",
+          "default": "",
+          "description": "Identifiant du contrôle slotté : cible du htmlFor du libellé. Code-only ; le composant qui compose fournit la même valeur à l'atome (prop id) et ici."
+        },
+        {
+          "name": "erreurID",
+          "type": "string",
+          "default": "",
+          "description": "Identifiant du message d'erreur, unique par champ ; le composant qui compose fournit la même valeur à l'atome (prop describedBy). Code-only."
+        },
+        {
+          "name": "messageErreur",
+          "type": "string",
+          "default": "Message d’erreur",
+          "description": "Texte du message d'erreur, affiché sous le contrôle en état erreur. Dit ce qui manque et comment corriger — jamais « invalide ». Code-only (le canevas dessine le texte témoin)."
         }
       ],
       "children": {
@@ -1596,82 +1740,32 @@
       "slots": []
     },
     {
-      "id": "ds.section-header",
-      "name": "SectionHeader",
-      "version": "3.0.0",
-      "status": "draft",
-      "category": "molecule",
-      "description": "Piqueray SectionHeader v3. Generic section title only: a rich title, optional eyebrow and explicit alignment. CTA and specialised hierarchy belong to their owning sections: ds.hero@2.0.0, ds.presentation@3.0.0, ds.texte-seo@3.0.0 and ds.produits-ecommerce@1.0.0.",
-      "figma": {
-        "representation": "component",
-        "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
-      },
-      "props": [
-        {
-          "name": "titre",
-          "type": "string",
-          "default": [
-            {
-              "text": "Pourquoi choisir Piqueray ?"
-            }
-          ]
-        },
-        {
-          "name": "accroche",
-          "type": "string",
-          "default": "Plus de 50 ans d’expérience"
-        },
-        {
-          "name": "afficherAccroche",
-          "type": "boolean",
-          "default": true,
-          "description": "Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box."
-        },
-        {
-          "name": "alignement",
-          "type": [
-            "centre",
-            "gauche"
-          ],
-          "default": "centre"
-        }
-      ],
-      "children": {
-        "kind": "none"
-      },
-      "slots": []
-    },
-    {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.0.0 makes the existing Titre/Accroche controls live on the composed SectionHeader. Titre changes from flat text to rich-text so its governed marks survive parent→child forwarding; the prop name and visible default stay unchanged, while the type change is correctly major-versioned.",
+      "description": "Section « Formulaire de contact » Piqueray : à gauche l'accroche, le titre et quatre arguments ; à droite, sur un panneau bleu clair, cinq champs, la phrase de consentement et le bouton « Envoyer ». Relevée sur le candidat v2 « Formulaire » de la planche 031·21 (2026-09-08, option A validée par l'owner), revue et adoptée — pas rédigée à la main.\n\nMAJEUR 3.0.0. Ce que la source d'origine (master 2096:2564) avait de cassé et que ce contrat ne porte plus : un SectionHeader de 1550 posé dans une colonne de 759 (titre coupé), des champs HUG à 125 px, deux CTA « Contactez-nous » inutiles, un bouton d'envoi libellé « Contactez-nous » sous une phrase de consentement qui disait « Envoyer », des champs pré-remplis de « Texte de saisie ». Deux champs retirés (Adresse, Sujet — décision owner : ils se demandent au rappel) ; Email et Message obligatoires, les trois autres optionnels et marqués comme tels. L'en-tête est DESSINÉ à plat (accroche = typography.overline, titre = typography.h2), pas instancié : aucune section v2 n'instancie SectionHeader (runbook docs/16).\n\nResponsive : axe presentation ; racine width fill, referenceWidth 1728, gouttière DANS la section (24 · 48 · 56 · 89, règle de page de la vague 031) ; empilé en Mobile et Tablette, deux colonnes 50/50 en Desktop et Wide. Les paires Prénom|Nom et Email|Téléphone sont DÉPAIRÉES en Mobile (294 de contenu — une paire donnerait 139 par champ).\n\nMÉCANIQUE D'ENVOI CÔTÉ HÔTE, PAS DANS LE CONTRAT (décision owner 2026-09-08, sur le précédent des liens du 2026-08-18, matrice de capacité HOST-ONLY) : le contrat gouverne l'apparence et les états ; la balise <form>, la destination, la soumission, l'anti-spam et la validation serveur sont ceux d'Odoo (s_website_form), posés par le gabarit Odoo. Corollaire nommé : le bouton reste ds.button (type=\"button\" en dur, 264 épingles) — Odoo déclenche l'envoi sur son marqueur .s_website_form_send, pas sur un submit natif ; en React la soumission est au consommateur.\n\nÉTATS GOUVERNÉS (props code-only etat et envoye, validés sur les croquis de la planche) : etat=erreur affiche le résumé d'erreurs en tête du panneau (barre rouge, titre, un lien par champ fautif — patron GOV.UK) ET passe les deux champs obligatoires en erreur avec leur message, mot pour mot le même ; envoye=true affiche la ligne de confirmation SOUS le bouton, en color.vert, le formulaire restant en place et vidé (option B validée — pas de redirection, pas de saut de mise en page). Les liens du résumé sont des textes ici ; le gabarit Odoo en fait des ancres vers les champs (destination = contenu, hôte).\n\nDÉVIATIONS NOMMÉES : (1) colonnes 50/50 — grow seul garde une base de contenu (flex 1 1 auto) et rendrait les colonnes inégales ; on suit le motif ds.coordonnees 3.0.0 : le panneau a une largeur FIXE par écran (size.formulaire.panneau), la colonne grandit — exact aux largeurs témoins, fluide entre deux paliers. Le canevas dessine les deux moitiés fixes. (2) La légende « champs suivis d'un astérisque » recommandée par l'audit UX n'est pas portée : elle n'est pas sur la planche validée au repos — différée, nommée. (3) Aucune valeur de champ pré-remplie ; aucun placeholder au repos (décision owner : champs vides).",
       "figma": {
         "representation": "component",
-        "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5"
+        "componentSetKey": "c9fd2b5768aab43a4e1df5dc692d103b05145ab8"
       },
       "props": [
         {
-          "name": "consentement",
-          "type": "string",
-          "default": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité."
-        },
-        {
-          "name": "items",
-          "type": {
-            "arrayOf": {
-              "texte": "text",
-              "titre": "text"
-            }
-          }
+          "name": "presentation",
+          "type": [
+            "mobile",
+            "tablette",
+            "desktop",
+            "wide"
+          ],
+          "default": "mobile",
+          "description": "Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1400 de tokens/modes/viewport.*."
         },
         {
           "name": "accroche",
           "type": "string",
-          "default": "Une demande de devis ? Une réparation ?",
-          "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass)."
+          "default": "Une demande de devis ? Une réparation ?"
         },
         {
           "name": "titre",
@@ -1681,7 +1775,44 @@
               "text": "Prenez contact avec nous dès maintenant !"
             }
           ],
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text since 2.0.0 because the exact parent→SectionHeader mapping must preserve the child contract's governed marks instead of flattening them."
+          "description": "Titre riche (gras gouverné possible), rendu à plat dans la section."
+        },
+        {
+          "name": "items",
+          "type": {
+            "arrayOf": {
+              "titre": "text",
+              "texte": "text"
+            }
+          },
+          "description": "Les arguments (icône + titre + texte), collection code-only ; le canevas dessine l'échantillon de quatre."
+        },
+        {
+          "name": "consentement",
+          "type": "string",
+          "default": "En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.",
+          "description": "Phrase d'information RGPD (intérêt légitime : répondre à une demande) — pas de case à cocher, juridiquement inutile pour une réponse et coûteuse en conversion ; une case ne devient nécessaire que pour un autre usage (newsletter)."
+        },
+        {
+          "name": "etat",
+          "type": [
+            "normal",
+            "erreur"
+          ],
+          "default": "normal",
+          "description": "État du formulaire après une tentative d'envoi refusée. erreur : résumé en tête du panneau et champs obligatoires en erreur (forwardé aux deux Field concernés, même énumération). Code-only : posé par l'hôte (Odoo) au retour serveur ou par la validation client."
+        },
+        {
+          "name": "envoye",
+          "type": "boolean",
+          "default": false,
+          "description": "Envoi réussi : affiche la ligne de confirmation sous le bouton (le formulaire reste, vidé par l'hôte). Code-only."
+        },
+        {
+          "name": "succes",
+          "type": "string",
+          "default": "✓  Merci, votre message est parti. Nous vous répondons sous 24 à 48 heures ouvrées.",
+          "description": "Texte de la ligne de confirmation. Un délai chiffré rassure et évite les relances."
         }
       ],
       "children": {
@@ -1986,10 +2117,10 @@
     {
       "id": "ds.hero-video",
       "name": "HeroVideo",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray HeroVideo, responsive. 2.0.0 (2026-09-02, Odoo hero pilot): re-extracted from the spec-031 set 2689:15832 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner. Everything the canvas draws is proposed by `npm run extract:figma` and adopted as-is: layout per mode (column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings / gap / height per mode as tokensByProp on the presentation axis, the title riding the responsive text style H1 (typography.h1.* — size and line-height vary by viewport mode through tokens/modes/viewport.*). Added by hand, each named: the host element (section — not drawn), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the dump does not carry layoutPositioning), and the CTA's right icon fixed to TRUE (the canvas shows it on Desktop/Wide only; the schema has no per-mode channel for a nested instance's prop — `propsByProp` was abandoned on 2026-08-20 — so the Odoo projection hides the glyph under the desktop breakpoint, an acknowledged deviation). The drawn widths 390/668/1200/1728 are witnesses, not tokens: the root fills its parent. Code supports a video URL and poster; Figma projects the poster as a static IMAGE placeholder. The two governed scrims belong to HeroVideo itself. Breakpoints are not in this contract: they are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build. Plan de document : la partie titre porte la balise h1 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
+      "description": "Piqueray HeroVideo, responsive. 2.2.0 (2026-09-08, MINOR additif) : le plan Background porte enfin ses attributs de lecture (autoplay, muted, loop, playsinline, preload=metadata) — la surface livree rendait jusqu'ici une video qui ne demarrait nulle part. Le fichier video reste un asset gouverne de l'addon (jamais du contenu de page) ; seule l'affiche est du contenu, choisie par le redacteur comme une image. 2.0.0 (2026-09-02, Odoo hero pilot): re-extracted from the spec-031 set 2689:15832 (page « 031 · Planches de validation »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner. Everything the canvas draws is proposed by `npm run extract:figma` and adopted as-is: layout per mode (column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings / gap / height per mode as tokensByProp on the presentation axis, the title riding the responsive text style H1 (typography.h1.* — size and line-height vary by viewport mode through tokens/modes/viewport.*). Added by hand, each named: the host element (section — not drawn), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the dump does not carry layoutPositioning), and the CTA's right icon fixed to TRUE (the canvas shows it on Desktop/Wide only; the schema has no per-mode channel for a nested instance's prop — `propsByProp` was abandoned on 2026-08-20 — so the Odoo projection hides the glyph under the desktop breakpoint, an acknowledged deviation). The drawn widths 390/668/1200/1728 are witnesses, not tokens: the root fills its parent. Code supports a video URL and poster; Figma projects the poster as a static IMAGE placeholder. The two governed scrims belong to HeroVideo itself. Breakpoints are not in this contract: they are the token dimension `breakpoint.*` (768 / 992 / 1400), consumed by the CSS build. Plan de document : la partie titre porte la balise h1 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
       "figma": {
         "representation": "component",
         "componentSetKey": "366023701e65d2e3091332db4de0dfe4de0d33d4"
@@ -2675,6 +2806,52 @@
           "type": "string",
           "default": "",
           "description": "Code-supplied text alternative paired with imageUrl. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.section-header",
+      "name": "SectionHeader",
+      "version": "3.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Piqueray SectionHeader v3. Generic section title only: a rich title, optional eyebrow and explicit alignment. CTA and specialised hierarchy belong to their owning sections: ds.hero@2.0.0, ds.presentation@3.0.0, ds.texte-seo@3.0.0 and ds.produits-ecommerce@1.0.0.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
+      },
+      "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": [
+            {
+              "text": "Pourquoi choisir Piqueray ?"
+            }
+          ]
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Plus de 50 ans d’expérience"
+        },
+        {
+          "name": "afficherAccroche",
+          "type": "boolean",
+          "default": true,
+          "description": "Explicit eyebrow visibility. False removes its text node from layout rather than leaving an empty line box."
+        },
+        {
+          "name": "alignement",
+          "type": [
+            "centre",
+            "gauche"
+          ],
+          "default": "centre"
         }
       ],
       "children": {

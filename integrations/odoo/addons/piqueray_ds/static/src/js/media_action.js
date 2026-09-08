@@ -583,29 +583,28 @@ function heroVideoRoot(editingElement) {
     return editingElement?.closest?.(".s_pqr_hero_video") || null;
 }
 
+/** Le plan média du HeroVideo. Depuis ds.hero-video 2.2.0 c'est une balise
+ * `<video>` : le film est un asset gouverné de l'addon (`src`), l'affiche est du
+ * contenu (`poster`). Le rédacteur ne remplace donc PAS une image mais une
+ * affiche — même geste, autre attribut. */
 export function heroVideoPosterImage(editingElement) {
-    const image = heroVideoRoot(editingElement)?.querySelector(".hero-video__Background") || null;
-    // Le pipeline média natif reconstruit les attributs de l'image après upload
-    // et peut retirer l'adresse d'authoring. La classe contractuelle, elle,
-    // survit : on restaure donc l'adresse sur le même noeud, sans état parallèle.
-    if (image) image.dataset.pqrPart = "hero-video-poster";
-    return image;
+    const media = heroVideoRoot(editingElement)?.querySelector(".hero-video__Background") || null;
+    // Le pipeline média natif reconstruit les attributs après upload et peut
+    // retirer l'adresse d'authoring. La classe contractuelle, elle, survit :
+    // on restaure donc l'adresse sur le même noeud, sans état parallèle.
+    if (media) media.dataset.pqrPart = "hero-video-poster";
+    return media;
 }
 
-/** Le poster est le SEUL transport d'image du HeroVideo : le contrat déclare le
- * plan vidéo comme placeholder statique déterministe (canal `videoUrl` code-side,
- * sans projection Odoo). La seule source autorisée en production est donc une
- * pièce jointe publiée par le dialogue média Odoo. */
+/** Le poster est le SEUL transport d'image du HeroVideo. La seule source
+ * autorisée en production est une pièce jointe publiée par le dialogue média
+ * Odoo : une data URL hors cycle natif est hostile et retirée. */
 export function reconcileHeroVideoPoster(editingElement) {
-    const image = heroVideoPosterImage(editingElement);
-    if (!image) return false;
-    const source = image.getAttribute("src") || "";
-    // Pendant le cycle natif, Odoo garde le bitmap traité en data URL et le
-    // marque explicitement pour ImageSavePlugin. Cette exception disparaît au
-    // before_save, qui produit ensuite une URL publiée /web/image. Sans la
-    // classe native, une data URL reste une source hostile et est supprimée.
-    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
-    return Boolean(image.getAttribute("src"));
+    const media = heroVideoPosterImage(editingElement);
+    if (!media) return false;
+    const source = media.getAttribute("poster") || "";
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(media, source)) media.removeAttribute("poster");
+    return Boolean(media.getAttribute("poster"));
 }
 
 export class ReplaceHeroVideoPosterAction extends BuilderAction {
@@ -614,15 +613,22 @@ export class ReplaceHeroVideoPosterAction extends BuilderAction {
 
     async load({ editingElement }) {
         const root = heroVideoRoot(editingElement);
-        const image = heroVideoPosterImage(root);
-        if (!image) return null;
-        // Le dialogue remplace lui-même `node`, puis le pipeline before_save
-        // finalise toute image `o_modified_image_to_save`. Réécrire `src` dans
-        // onAttachmentChange casserait ce cycle et forcerait le placeholder.
+        const media = heroVideoPosterImage(root);
+        if (!media) return null;
+        // Le dialogue média ne sait remplacer qu'un `<img>` : il REMPLACE le
+        // noeud qu'on lui donne. On lui prête donc une image détachée, portant
+        // l'affiche courante, puis on recopie le résultat dans `poster`.
+        // Donner la `<video>` en pâture au dialogue la ferait disparaître.
+        const proxy = document.createElement("img");
+        proxy.className = "o_editable_media";
+        const courant = media.getAttribute("poster");
+        if (courant) proxy.setAttribute("src", courant);
         await this.dependencies.media.openMediaDialog({
-            node: image,
+            node: proxy,
             visibleTabs: ["IMAGES"],
         }, this.editable);
+        const choisi = proxy.getAttribute("src") || "";
+        if (choisi) media.setAttribute("poster", choisi);
         reconcileHeroVideoPoster(root);
         return null;
     }
@@ -635,12 +641,14 @@ export class ReplaceHeroVideoPosterAction extends BuilderAction {
 export class SetHeroVideoPosterAltAction extends BuilderAction {
     static id = "pqrSetHeroVideoPosterAlt";
     getValue({ editingElement }) {
-        return heroVideoPosterImage(editingElement)?.getAttribute("alt") || "";
+        return heroVideoPosterImage(editingElement)?.getAttribute("aria-label") || "";
     }
     apply({ editingElement, value }) {
-        const image = heroVideoPosterImage(editingElement);
-        if (!image) return;
-        image.setAttribute("alt", String(value || "").trim());
+        const media = heroVideoPosterImage(editingElement);
+        if (!media) return;
+        // Une `<video>` n'a pas d'`alt` : le contrat porte `aria-label` sur ce
+        // plan depuis 2.0.0, c'est lui qui reçoit la description.
+        media.setAttribute("aria-label", String(value || "").trim());
         reconcileHeroVideoPoster(editingElement);
     }
 }

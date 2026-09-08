@@ -40,6 +40,7 @@ import {
   type RichTextSegment,
 } from '../scripts/contract-schema.js';
 import { kebab } from '../extract/types.js';
+import { BOOLEAN_ATTRS_HTML, BOUND_ATTR_VALUE, EMPTY_MEANS_ABSENT_ATTRS_HTML, htmlAttrName } from './attr-policy.js';
 import { ALIGN_CSS, gridTracks, JUSTIFY_CSS, layoutOverrideDecls } from './css-layout.js';
 import {
   boolProps,
@@ -55,6 +56,7 @@ import {
   rootElementsOf,
   richTextStrongStyle,
   hasUnderlinedSegment,
+  iconSvgTokenLines,
   literalSegmentRanges,
   normalizeLineSeparators,
   richTextPlain,
@@ -160,6 +162,7 @@ function componentCss(contract: Contract): string[] {
         const width = part.vectorAsset?.width ?? part.icon?.size;
         const height = part.vectorAsset?.height ?? part.icon?.size;
         if (width && height) lines.push('', `${partCls(name)} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
+        lines.push(...iconSvgTokenLines(part, partCls(name)));
       }
       for (const [cssProp, ref] of Object.entries(part.tokens ?? {})) {
         const refPath = stripBraces(ref);
@@ -716,6 +719,9 @@ const escapeHtml = (s: string) =>
 interface RenderState {
   subst: Record<string, string>;          // enum prop → showcased value
   bools: Record<string, boolean>;         // boolean prop → showcased value
+  /** 031·21: slot name → the item(s) a composing parent fixed through
+   *  component.slots — wins over the slot's own defaultContent. */
+  slots?: Record<string, NonNullable<NonNullable<Part['slot']>['defaultContent']>>;
   /** v19: rich-text prop → the SEGMENTS a component-ref parent fixed. Flat
    *  `subst` would keep only the concatenation, so the parent's marks would
    *  vanish on this surface while the React one showed them. */
@@ -860,10 +866,21 @@ function renderComponentHtml(
     }
     return out;
   };
+  // The contract spells attributes the React way (htmlFor, autoComplete — the
+  // demo-51 archive precedent, which the React surface passes through). This
+  // surface spells them the HTML way, DROPS an empty bound value on the closed
+  // list (`aria-describedby=""` points at nothing) and writes DOM boolean
+  // attributes bare. The lists are shared with the React emitters — see
+  // core/attr-policy.ts and its receipt.
   const attrString = (part: Part): string =>
     Object.entries(selectedAttrs(part))
       .map(([attr, value]) => {
-        return ` ${attr}="${escapeHtml(attributeValue(value))}"`;
+        const htmlName = htmlAttrName(attr);
+        const bound = BOUND_ATTR_VALUE.test(value);
+        const resolved = attributeValue(value);
+        if (BOOLEAN_ATTRS_HTML.has(htmlName)) return resolved === '' || resolved === 'false' ? '' : ` ${htmlName}`;
+        if (bound && resolved === '' && EMPTY_MEANS_ABSENT_ATTRS_HTML.has(htmlName)) return '';
+        return ` ${htmlName}="${escapeHtml(resolved)}"`;
       })
       .join('');
 
@@ -939,6 +956,15 @@ function renderComponentHtml(
     if (part.component) {
       const dep = ctx.contracts.get(part.component.id)!;
       const depState = depStateFor(dep, part.component.props ?? {});
+      // v20 (016) parity with emit-react: component.slots — the parent says what
+      // the child's named slot holds. Until 031·21 this surface silently fell
+      // back to the child's defaultContent: a Message field declared as a
+      // ds.textarea rendered an <input>, and this is the surface Odoo derives from.
+      if (part.component.slots) {
+        depState.slots = Object.fromEntries(
+          Object.entries(part.component.slots).map(([slotName, item]) => [slotName, [item]]),
+        );
+      }
       return renderComponentHtml(
         dep,
         ctx,
@@ -951,7 +977,8 @@ function renderComponentHtml(
     }
     if (part.slot) {
       const el = part.element ?? 'div';
-      const items = part.slot.defaultContent ?? [];
+      // 031·21: a composing parent's component.slots wins over defaultContent.
+      const items = state.slots?.[part.slot.name] ?? part.slot.defaultContent ?? [];
       // Empty slot = ABSENT content: the wrapper renders empty, exactly as
       // the React surface renders `{slotName}` when the consumer passes
       // nothing. Placeholder text would be invented ink inside the component
@@ -1080,9 +1107,13 @@ function renderComponentHtml(
   // its value is carried through the native `value` attribute instead.  More
   // complex anatomy remains explicitly projected rather than silently
   // dropping an icon, slot, or nested structure.
+  // 031·21 (ds.textarea 2.0.0): the same holds for a native <textarea> — its
+  // raw-text content model cannot host child markup, but ONE text projection
+  // is exactly its text content. Projecting it as <div> lost the real control
+  // (name, required, aria) on the surface Odoo derives from.
   const nativeTextInputCandidate = rootParts[0]?.[1];
   const nativeTextInputPart =
-    inferredEl === 'input' &&
+    (inferredEl === 'input' || inferredEl === 'textarea') &&
     rootParts.length === 1 &&
     nativeTextInputCandidate?.content !== undefined &&
     nativeTextInputCandidate.parts === undefined &&
@@ -1096,8 +1127,7 @@ function renderComponentHtml(
       : undefined;
   const projected =
     rootParts.length > 0 &&
-    (inferredEl === 'textarea' ||
-      (VOID_ELEMENTS.has(inferredEl) && !nativeTextInputPart) ||
+    ((!nativeTextInputPart && (inferredEl === 'textarea' || VOID_ELEMENTS.has(inferredEl))) ||
       (inferredEl === 'select' && rootParts.some(([, p]) => hostsStructure(p))));
   const el = projected ? 'div' : inferredEl;
   const projectionComment = projected
@@ -1152,6 +1182,8 @@ function renderComponentHtml(
       : extraText ?? textDefaultOf(contract),
   );
   if (nativeTextInputPart) {
+    // A <textarea> carries its value as text content (never a value attribute).
+    if (el === 'textarea') return `${indent}<${el} ${attrs.join(' ')}>${rootText}</${el}>`;
     attrs.push(`value="${rootText}"`);
     return `${indent}<${el} ${attrs.join(' ')}>`;
   }
@@ -1192,6 +1224,10 @@ export function emitHtml(contract: Contract, ctx: EmitCtx): EmitHtmlResult {
     for (const w of walkAnatomy(c)) {
       if (w.part.component) collectCss(ctx.contracts.get(w.part.component.id)!);
       for (const item of w.part.slot?.defaultContent ?? []) collectCss(ctx.contracts.get(item.id)!);
+      // 031·21: a child slotted through component.slots (v20) is rendered on this
+      // surface (see the part.component branch) — its CSS must ride along, or the
+      // Formulaire's textarea rendered with no rule on the sheet Odoo derives from.
+      for (const item of Object.values(w.part.component?.slots ?? {})) collectCss(ctx.contracts.get(item.id)!);
     }
     cssBlocks.push(componentCss(c).join('\n'));
   };

@@ -37,6 +37,7 @@
   --pqr-color-transparent: #FFFFFF00;
   --pqr-color-noir-profond: #131416;
   --pqr-color-noir-voile-55: #0000008C;
+  --pqr-color-vert: #237A3C;
   --pqr-nav-state: Transparent;
   --pqr-opacity-base: 100;
   --pqr-font-family-montserrat: Montserrat, sans-serif;
@@ -115,6 +116,10 @@
   --pqr-size-avantage-text: 687px;
   --pqr-size-avantage-root-w: 759px;
   --pqr-size-avantage-root-h: 75px;
+  --pqr-size-avantage-icone-mobile: 40px;
+  --pqr-size-avantage-icone-tablette: 40px;
+  --pqr-size-avantage-icone-desktop: 64px;
+  --pqr-size-avantage-icone-wide: 64px;
   --pqr-size-carte-reassurance-image: 364px;
   --pqr-size-carte-categorie-image: 418px;
   --pqr-size-carte-root: 363.5px;
@@ -201,6 +206,8 @@
   --pqr-size-logo-width: 180px;
   --pqr-size-logo-height: 34px;
   --pqr-size-formulaire-root: 1550px;
+  --pqr-size-formulaire-panneau-desktop: 528px;
+  --pqr-size-formulaire-panneau-wide: 759px;
   --pqr-size-header-root: 1728px;
   --pqr-size-header-icone: 24px;
   --pqr-size-equipe-root: 1728px;
@@ -277,6 +284,7 @@
   --pqr-color-etat-carte-categorie-voile-survol: var(--pqr-color-noir-voile-55);
   --pqr-color-etat-accordion-row-chevron-survol: var(--pqr-color-orange);
   --pqr-color-etat-accordion-row-anneau-focus: var(--pqr-color-noir-bleute);
+  --pqr-color-etat-champ-anneau-focus: var(--pqr-color-noir-bleute);
   --pqr-typography-titre-1-family: var(--pqr-font-family-montserrat);
   --pqr-typography-titre-1-size: var(--pqr-font-size-48);
   --pqr-typography-titre-1-weight: var(--pqr-font-weight-medium);
@@ -412,6 +420,7 @@
   --pqr-spacing-menu-entree-pad-v: var(--pqr-space-12);
   --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-mobile);
   --pqr-spacing-product-card-width: var(--pqr-size-product-card-mobile);
+  --pqr-spacing-avantage-icone: var(--pqr-size-avantage-icone-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -463,6 +472,7 @@
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
     --pqr-spacing-product-card-width: var(--pqr-size-product-card-tablette);
+    --pqr-spacing-avantage-icone: var(--pqr-size-avantage-icone-tablette);
   }
 }
 
@@ -515,6 +525,7 @@
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
     --pqr-spacing-product-card-width: var(--pqr-size-product-card-desktop);
+    --pqr-spacing-avantage-icone: var(--pqr-size-avantage-icone-desktop);
   }
 }
 
@@ -567,5 +578,6 @@
     --pqr-spacing-menu-entree-pad-v: var(--pqr-space-4);
     --pqr-spacing-menu-entree-hauteur: var(--pqr-size-menu-entree-hauteur-tablette);
     --pqr-spacing-product-card-width: var(--pqr-size-product-card-wide);
+    --pqr-spacing-avantage-icone: var(--pqr-size-avantage-icone-wide);
   }
 }

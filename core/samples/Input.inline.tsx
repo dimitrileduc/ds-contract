@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/input.contract.json (ds.input v1.0.0)
+ * Source of truth: contracts/input.contract.json (ds.input v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -20,16 +20,16 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "center",
     "borderStyle": "solid",
     "backgroundColor": "#FFFFFF",
-    "borderColor": "#9BA4B5",
+    "borderColor": "#37373B",
+    "borderWidth": "1px",
     "color": "#37373B",
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "16px",
     "fontWeight": 400,
+    "lineHeight": "24px",
     "paddingBlock": "12px",
     "paddingInline": "12px",
-    "borderWidth": "1px",
-    "borderRadius": "0px",
-    "lineHeight": "24px"
+    "borderRadius": "0px"
   },
   "texteDeSaisie": {}
 };
@@ -38,22 +38,37 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {};
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  /** Valeur saisie. Vide au repos depuis 2.0.0 — un texte par défaut est une VALEUR, pas une aide à la saisie (voir placeholder). */
   value?: string;
+  /** Aide à la saisie, affichée seulement quand le champ est vide. Code-only : le canevas n'a pas de notion de placeholder. */
+  placeholder?: string;
+  /** Type natif du contrôle : décide du clavier mobile (@ pour email, pavé numérique pour tel) et de la validation native. Code-only. */
+  type?: 'text' | 'email' | 'tel';
+  /** Nom du champ envoyé au serveur. Code-only. Un nom absent ou mal orthographié n'échoue pas côté Odoo : la valeur est rangée en silence en texte libre — c'est au formulaire de le poser explicitement. */
+  name?: string;
+  /** Identifiant DOM, cible du htmlFor du libellé porté par Field. Code-only. Unique par champ dans une page : fourni par le composant qui compose. */
+  id?: string;
+  /** Jeton autocomplete HTML (given-name, family-name, email, tel…) — critère WCAG 1.3.5, pas un confort. Code-only. */
+  autocomplete?: string;
+  /** Champ obligatoire : attribut natif required (annoncé « obligatoire » par les lecteurs d'écran). Code-only ; la marque visible « * » est dessinée par Field (prop obligatoire). */
+  required?: boolean;
+  /** aria-describedby : l'identifiant du message d'erreur de ce champ (unique par champ — 1.0.0 partageait un seul identifiant en dur entre tous les champs, ce qui cassait l'association pour les lecteurs d'écran). Code-only ; fourni par le composant qui compose, vide sinon. */
+  describedBy?: string;
 }
 
-/** Piqueray single-line text input. Extracted from the owner-validated Figma master « Input » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.
+/** Champ de saisie Piqueray sur une ligne. Relevé sur le candidat v2 « Input · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.
 
-The shown text binds to the « Valeur » TEXT property EXACTLY as the Button's label binds to « Libellé » — one bound text prop, drawn on the canvas, carried in code. Because the code element is a native <input> (a void element), that same value renders through defaultValue on a self-closing tag rather than as a child.
+MAJEUR 2.0.0 : les ancres passent au set candidat ; la bordure passe de bleu-gris (2,51:1 sur blanc, sous le seuil de 3:1) à color.noir ; le texte saisi passe de 14 à 16 px (sous 16, Safari iOS zoome à chaque entrée) ; la valeur par défaut devient vide (1.0.0 livrait un champ PRÉ-REMPLI de « Texte de saisie », que le visiteur devait effacer) ; l'anneau de focus est dessiné (jeton color.etat.champ.anneau-focus, même recette que les boutons de la vague 032 : trait 2 px, à 2 px du bord).
 
-Box styling (white fill, blue-grey 1px border, square corners, 12px padding, 14px Regular Montserrat, text color noir) binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel, named rather than force-fit.
+Les props placeholder, type, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE) : le canevas ne dessine pas un attribut HTML. Ils passent par le canal attrs/attrsByProp existant, sans évolution de schéma. L'association libellé↔champ est portée par le parent Field (htmlFor = inputID) et par l'id posé ici : le composant qui compose fournit les deux, explicitement. Pas de règle de validation ici : elle appartient au formulaire et au serveur.
 
-Atom scope only: no label, no help text, no required/disabled/state axes — the master exposes none (the Field molecule owns them). */
+Limite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas. */
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { value = 'Texte de saisie', style, children, ...rest },
+  { type = 'text', required = false, value = '', placeholder = '', name = '', id = '', autocomplete = 'off', describedBy = '', style, children, ...rest },
   ref,
 ) {
   return (
-    <input ref={ref} style={{ ...S.root, ...style }}  type="text" {...rest}>
+    <input ref={ref} style={{ ...S.root, ...style }} data-required={required || undefined}  name={(String(name) || undefined)} id={(String(id) || undefined)} placeholder={(String(placeholder) || undefined)} aria-describedby={(String(describedBy) || undefined)} autoComplete={(String(autocomplete) || undefined)} {...(({ "text": { "type": "text" }, "email": { "type": "email" }, "tel": { "type": "tel" } } as const)[type as "text" | "email" | "tel"] ?? {})} {...(({ "true": { "required": true } } as const)[String(required) as "true"] ?? {})} {...rest}>
       <span style={{ ...S.texteDeSaisie }}>{value}</span>
     </input>
   );

@@ -1,5 +1,5 @@
 <!--
-  Input — static HTML+CSS emitted from contract ds.input v1.0.0 by core/emit-html.ts.
+  Input — static HTML+CSS emitted from contract ds.input v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,6 +9,18 @@
 <section class="showcase showcase--input">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <input class="input" data-part="root" type="text" value="Texte de saisie">
+    <input class="input input--type-text" data-part="root" autocomplete="off" type="text" value="">
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">type=email</p>
+    <input class="input input--type-email" data-part="root" autocomplete="off" type="email" value="">
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">type=tel</p>
+    <input class="input input--type-tel" data-part="root" autocomplete="off" type="tel" value="">
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">required=true</p>
+    <input class="input input--type-text" data-part="root" autocomplete="off" type="text" required data-required="true" value="">
   </div>
 </section>

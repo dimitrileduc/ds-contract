@@ -42,7 +42,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxProps>(function Chec
     <span ref={ref} className={classes} data-label-hidden={labelHidden || undefined} data-disabled={disabled || undefined}  {...rest}>
       <span className={styles.choice__control}>
 <span className={styles.checkbox}>
-<input className={styles.input} type="checkbox" name={String(name)} value={String(value)}>
+<input className={styles.input} type="checkbox" name={(String(name) || undefined)} value={String(value)}>
 
 </input>
 <div className={styles.backdrop}>

@@ -37,3 +37,10 @@ La FAQ légataire porte **4 onglets** (Porte de garage · Porte d'entrée · Por
 
 - Descripteur Odoo `integrations/odoo/authoring/pages/depannage-sav.json` + composition sur le pilote, puis mesure page entière aux 4 largeurs (comme `portes-de-garage.json`).
 - Promotion éventuelle de la copie légataire vers les sets v2 (captures avant, comptes, version nommée) — non demandée ici : l'owner veut la base gardée en légataire.
+
+## Correction du 2026-09-08 — l'en-tête de la FAQ se centre au-delà de 992
+
+L'owner a vu la mise en page sur les vues : la FAQ était le seul en-tête à gauche en Desktop/Wide alors qu'Avis Google
+centre. Corrigé À LA SOURCE (set `2773:27504`), donc les 4 vues ont suivi sans être retouchées. Détail, mesure et piège :
+`specs/tiny/vague-031/faq.md` § « Retour sur l'option B ». Hauteurs des vues **inchangées** (6356 / 6001 / 4175 / 4804) —
+le geste était purement horizontal.

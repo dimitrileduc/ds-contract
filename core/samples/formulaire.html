@@ -1,5 +1,5 @@
 <!--
-  Formulaire — static HTML+CSS emitted from contract ds.formulaire v2.0.0 by core/emit-html.ts.
+  Formulaire — static HTML+CSS emitted from contract ds.formulaire v3.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,11 +9,11 @@
 <section class="showcase showcase--formulaire">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="formulaire" data-part="root">
+    <div class="formulaire formulaire--presentation-mobile formulaire--etat-normal" data-part="root">
       <div class="formulaire__column" data-part="column">
-        <div class="section-header section-header--alignement-centre" data-part="SectionHeader" data-afficher-accroche="true">
-          <span class="section-header__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
-          <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
         </div>
         <div class="formulaire__features" data-part="features">
           <div class="avantage" data-part="root">
@@ -31,7 +31,7 @@
 </svg></span>
             <div class="avantage__text" data-part="text">
               <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
-              <span class="avantage__Texte" data-part="Texte">Marque Hormann renommée, qualité allemande</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
             </div>
           </div>
           <div class="avantage" data-part="root">
@@ -40,7 +40,7 @@
 </svg></span>
             <div class="avantage__text" data-part="text">
               <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
-              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
             </div>
           </div>
           <div class="avantage" data-part="root">
@@ -53,86 +53,592 @@
             </div>
           </div>
         </div>
-        <div class="formulaire__buttons" data-part="buttons">
-          <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="FormArgumentBoutonA" type="button">
-            <span class="button__label" data-part="label">Contactez-nous</span>
-          </button>
-          <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="FormArgumentBoutonB" type="button">
-            <span class="button__label" data-part="label">Contactez-nous</span>
-          </button>
+      </div>
+      <div class="formulaire__form" data-part="form">
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
+              <span class="field__Label" data-part="Label">Prénom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
+              <span class="field__Label" data-part="Label">Nom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-normal" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
+              <span class="field__Label" data-part="Label">Email</span>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
+              <span class="field__Label" data-part="Label">Téléphone</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="field field--etat-normal" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true"></textarea>
+          </div>
+        </div>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=tablette</p>
+    <div class="formulaire formulaire--presentation-tablette formulaire--etat-normal" data-part="root">
+      <div class="formulaire__column" data-part="column">
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
+        </div>
+        <div class="formulaire__features" data-part="features">
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Conseils personnalisés</span>
+              <span class="avantage__Texte" data-part="Texte">Devis gratuits effectués sur place, nous nous déplaçons chez vous</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Expérience et savoir-faire</span>
+              <span class="avantage__Texte" data-part="Texte">Nous cumulons plus de 50 ans d’expérience sur trois générations</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="formulaire__form" data-part="form">
-        <div class="formulaire__row" data-part="row">
-          <div class="field field--etat-normal" data-part="FormRow1FieldA">
-            <div class="field__label" data-part="label">
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
               <span class="field__Label" data-part="Label">Prénom</span>
-            </div>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
             <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
             </div>
           </div>
-          <div class="field field--etat-normal" data-part="FormRow1FieldB">
-            <div class="field__label" data-part="label">
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
               <span class="field__Label" data-part="Label">Nom</span>
-            </div>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
             <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
             </div>
           </div>
         </div>
-        <div class="formulaire__row2" data-part="row2">
-          <div class="field field--etat-normal" data-part="FormRow2FieldA">
-            <div class="field__label" data-part="label">
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-normal" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
               <span class="field__Label" data-part="Label">Email</span>
-            </div>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
             <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true" value="">
             </div>
           </div>
-          <div class="field field--etat-normal" data-part="FormRow2FieldB">
-            <div class="field__label" data-part="label">
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
               <span class="field__Label" data-part="Label">Téléphone</span>
-            </div>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
             <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
             </div>
           </div>
         </div>
-        <div class="formulaire__row3" data-part="row3">
-          <div class="field field--etat-normal" data-part="FormRow3Field">
-            <div class="field__label" data-part="label">
-              <span class="field__Label" data-part="Label">Adresse</span>
-            </div>
-            <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
-            </div>
+        <div class="field field--etat-normal" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true"></textarea>
           </div>
         </div>
-        <div class="formulaire__row4" data-part="row4">
-          <div class="field field--etat-normal" data-part="FormRow4Field">
-            <div class="field__label" data-part="label">
-              <span class="field__Label" data-part="Label">Sujet</span>
-            </div>
-            <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
-            </div>
-          </div>
-        </div>
-        <div class="formulaire__row5" data-part="row5">
-          <div class="field field--etat-normal" data-part="FormRow5Field">
-            <div class="field__label" data-part="label">
-              <span class="field__Label" data-part="Label">Message</span>
-            </div>
-            <div class="field__Saisie" data-part="Saisie">
-              <input class="input" data-part="root" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-bleu-gris); --dsc-border-color: var(--color-bleu-gris);" value="Texte de saisie">
-            </div>
-          </div>
-        </div>
-        <span class="formulaire__TexteConsentement" data-part="TexteConsentement">En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.</span>
-        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="FormulaireBouton" type="button">
-          <span class="button__label" data-part="label">Contactez-nous</span>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
         </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=desktop</p>
+    <div class="formulaire formulaire--presentation-desktop formulaire--etat-normal" data-part="root">
+      <div class="formulaire__column" data-part="column">
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
+        </div>
+        <div class="formulaire__features" data-part="features">
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Conseils personnalisés</span>
+              <span class="avantage__Texte" data-part="Texte">Devis gratuits effectués sur place, nous nous déplaçons chez vous</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Expérience et savoir-faire</span>
+              <span class="avantage__Texte" data-part="Texte">Nous cumulons plus de 50 ans d’expérience sur trois générations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="formulaire__form" data-part="form">
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
+              <span class="field__Label" data-part="Label">Prénom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
+              <span class="field__Label" data-part="Label">Nom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-normal" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
+              <span class="field__Label" data-part="Label">Email</span>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
+              <span class="field__Label" data-part="Label">Téléphone</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="field field--etat-normal" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true"></textarea>
+          </div>
+        </div>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">presentation=wide</p>
+    <div class="formulaire formulaire--presentation-wide formulaire--etat-normal" data-part="root">
+      <div class="formulaire__column" data-part="column">
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
+        </div>
+        <div class="formulaire__features" data-part="features">
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Conseils personnalisés</span>
+              <span class="avantage__Texte" data-part="Texte">Devis gratuits effectués sur place, nous nous déplaçons chez vous</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Expérience et savoir-faire</span>
+              <span class="avantage__Texte" data-part="Texte">Nous cumulons plus de 50 ans d’expérience sur trois générations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="formulaire__form" data-part="form">
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
+              <span class="field__Label" data-part="Label">Prénom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
+              <span class="field__Label" data-part="Label">Nom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-normal" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
+              <span class="field__Label" data-part="Label">Email</span>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
+              <span class="field__Label" data-part="Label">Téléphone</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="field field--etat-normal" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true"></textarea>
+          </div>
+        </div>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">etat=erreur</p>
+    <div class="formulaire formulaire--presentation-mobile formulaire--etat-erreur" data-part="root">
+      <div class="formulaire__column" data-part="column">
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
+        </div>
+        <div class="formulaire__features" data-part="features">
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Conseils personnalisés</span>
+              <span class="avantage__Texte" data-part="Texte">Devis gratuits effectués sur place, nous nous déplaçons chez vous</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Expérience et savoir-faire</span>
+              <span class="avantage__Texte" data-part="Texte">Nous cumulons plus de 50 ans d’expérience sur trois générations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="formulaire__form" data-part="form">
+        <div class="formulaire__ResumeErreurs" role="alert" tabindex="-1" data-part="ResumeErreurs">
+          <div class="formulaire__barre" data-part="barre"></div>
+          <div class="formulaire__texte" data-part="texte">
+            <span class="formulaire__TitreResume" data-part="TitreResume">Votre message n’a pas pu être envoyé</span>
+            <span class="formulaire__LienEmail" data-part="LienEmail">→ Saisissez votre adresse e-mail pour que nous puissions vous répondre.</span>
+            <span class="formulaire__LienMessage" data-part="LienMessage">→ Écrivez votre message : décrivez en quelques mots votre projet ou votre question.</span>
+          </div>
+        </div>
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
+              <span class="field__Label" data-part="Label">Prénom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
+              <span class="field__Label" data-part="Label">Nom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-erreur" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
+              <span class="field__Label" data-part="Label">Email</span>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="true" style="width: 100%; border-color: var(--color-rouge); --dsc-border-color: var(--color-rouge);" data-required="true" value="">
+            </div>
+            <span class="field__messageErreur" id="formulaire-email-erreur" data-part="messageErreur">Saisissez votre adresse e-mail pour que nous puissions vous répondre.</span>
+          </div>
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
+              <span class="field__Label" data-part="Label">Téléphone</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="field field--etat-erreur" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="true" style="width: 100%; border-color: var(--color-rouge); --dsc-border-color: var(--color-rouge);" data-required="true"></textarea>
+          </div>
+          <span class="field__messageErreur" id="formulaire-message-erreur" data-part="messageErreur">Écrivez votre message : décrivez en quelques mots votre projet ou votre question.</span>
+        </div>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">envoye=true</p>
+    <div class="formulaire formulaire--presentation-mobile formulaire--etat-normal" data-part="root" data-envoye="true">
+      <div class="formulaire__column" data-part="column">
+        <div class="formulaire__enTete" data-part="enTete">
+          <span class="formulaire__Accroche" data-part="Accroche">Une demande de devis ? Une réparation ?</span>
+          <h2 class="formulaire__Titre" data-part="Titre"><span>Prenez contact avec nous dès maintenant !</span></h2>
+        </div>
+        <div class="formulaire__features" data-part="features">
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Conseils personnalisés</span>
+              <span class="avantage__Texte" data-part="Texte">Devis gratuits effectués sur place, nous nous déplaçons chez vous</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Produits de qualité</span>
+              <span class="avantage__Texte" data-part="Texte">Marque Hörmann renommée, qualité allemande</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Dépannage et SAV</span>
+              <span class="avantage__Texte" data-part="Texte">Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais</span>
+            </div>
+          </div>
+          <div class="avantage" data-part="root">
+            <span class="avantage__Piqueray" aria-hidden="true" data-part="Piqueray"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 1.77761L5.71429 7.98341V24.0166L16 30.2224L26.2857 24.0166V7.98341L16 1.77761ZM23.2296 20.7622L17.0287 24.4992V21.7006L23.2296 17.9497V20.7622ZM23.2296 16.9444L17.0287 20.6901V17.8307L23.2296 14.0807V16.9444ZM23.2296 13.0755L17.0287 16.8194V14.085L23.2296 10.3359V13.0755ZM23.2296 9.32891L17.0287 13.0755L14.5285 11.3906L20.5636 7.61101L23.2296 9.32891ZM28 24.0166C27.9999 24.6495 27.6754 25.2348 27.1479 25.553L16.8622 31.7588C16.3292 32.0804 15.6708 32.0804 15.1378 31.7588L4.85212 25.553C4.32461 25.2348 4.00011 24.6495 4 24.0166V7.98341C4 7.35044 4.3246 6.76529 4.85212 6.44693L15.1378 0.241136C15.6707 -0.0803787 16.3293 -0.0803785 16.8622 0.241136L27.1479 6.44693C27.6754 6.76529 28 7.35044 28 7.98341V24.0166Z" fill="currentColor"/>
+</svg></span>
+            <div class="avantage__text" data-part="text">
+              <span class="avantage__Titre" data-part="Titre">Expérience et savoir-faire</span>
+              <span class="avantage__Texte" data-part="Texte">Nous cumulons plus de 50 ans d’expérience sur trois générations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="formulaire__form" data-part="form">
+        <div class="formulaire__rangIdentite" data-part="rangIdentite">
+          <div class="field field--etat-normal" data-part="champPrenom" data-optionnel="true">
+            <label class="field__label" for="formulaire-prenom" data-part="label">
+              <span class="field__Label" data-part="Label">Prénom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="prenom" id="formulaire-prenom" autocomplete="given-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champNom" data-optionnel="true">
+            <label class="field__label" for="formulaire-nom" data-part="label">
+              <span class="field__Label" data-part="Label">Nom</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-text" data-part="root" name="nom" id="formulaire-nom" autocomplete="family-name" type="text" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="formulaire__rangContact" data-part="rangContact">
+          <div class="field field--etat-normal" data-part="champEmail" data-obligatoire="true">
+            <label class="field__label" for="formulaire-email" data-part="label">
+              <span class="field__Label" data-part="Label">Email</span>
+              <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-email" data-part="root" name="email" id="formulaire-email" aria-describedby="formulaire-email-erreur" autocomplete="email" type="email" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true" value="">
+            </div>
+          </div>
+          <div class="field field--etat-normal" data-part="champTelephone" data-optionnel="true">
+            <label class="field__label" for="formulaire-telephone" data-part="label">
+              <span class="field__Label" data-part="Label">Téléphone</span>
+              <span class="field__MentionOptionnelle" data-part="MentionOptionnelle">(optionnel)</span>
+            </label>
+            <div class="field__Saisie" data-part="Saisie">
+              <input class="input input--type-tel" data-part="root" name="telephone" id="formulaire-telephone" autocomplete="tel" type="tel" aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" value="">
+            </div>
+          </div>
+        </div>
+        <div class="field field--etat-normal" data-part="champMessage" data-obligatoire="true">
+          <label class="field__label" for="formulaire-message" data-part="label">
+            <span class="field__Label" data-part="Label">Message</span>
+            <span class="field__MarqueObligatoire" aria-hidden="true" data-part="MarqueObligatoire">*</span>
+          </label>
+          <div class="field__Saisie" data-part="Saisie">
+            <textarea class="textarea" data-part="root" name="message" id="formulaire-message" aria-describedby="formulaire-message-erreur" autocomplete="off" required aria-invalid="false" style="width: 100%; border-color: var(--color-noir); --dsc-border-color: var(--color-noir);" data-required="true"></textarea>
+          </div>
+        </div>
+        <span class="formulaire__Consentement" data-part="Consentement">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+          <span class="button__label" data-part="label">Envoyer</span>
+        </button>
+        <p class="formulaire__Succes" role="status" data-part="Succes">✓  Merci, votre message est parti. Nous vous répondons sous 24 à 48 heures ouvrées.</p>
       </div>
     </div>
   </div>

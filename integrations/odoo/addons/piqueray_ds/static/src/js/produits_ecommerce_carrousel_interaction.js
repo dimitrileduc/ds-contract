@@ -28,6 +28,7 @@
  */
 import { registry } from "@web/core/registry";
 import { Interaction } from "@web/public/interaction";
+import { animationRefusee } from "@piqueray_ds/js/mouvement_reduit";
 
 // ODOO-034-PRODUITS-CARROUSEL-INTERACTION BEGIN
 const CADRE = '[data-pqr-part="root-carrousel"]';
@@ -82,7 +83,7 @@ function poserSiChange(el, nom, valeur) {
 
 /** Reflète les deux bouts de piste sur les boutons. Tolérance d'un pixel : un
  *  défilement lisse peut s'arrêter à une fraction. */
-export function refleterLesBouts(root, cadre, prev = root.querySelector(PREV), next = root.querySelector(NEXT)) {
+export function refleterLesBouts(cadre, prev, next) {
     const max = Math.max(0, cadre.scrollWidth - cadre.clientWidth);
     const auDebut = cadre.scrollLeft <= 1;
     const enButee = cadre.scrollLeft >= max - 1;
@@ -118,7 +119,7 @@ export class PiquerayProduitsCarrousel extends Interaction {
         if (!this._cadre) return;
         nommerLesDiapositives(this._cadre);
         nommerLaRegion(this.el, this._cadre);
-        refleterLesBouts(this.el, this._cadre, this._prev, this._next);
+        refleterLesBouts(this._cadre, this._prev, this._next);
     }
 
     /** @param {MouseEvent} ev */
@@ -129,7 +130,7 @@ export class PiquerayProduitsCarrousel extends Interaction {
         if (!cadre) return;
         ev.preventDefault();
         const sens = bouton.matches(NEXT) ? 1 : -1;
-        const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reduit = animationRefusee();
         cadre.scrollBy({ left: sens * pasDuCarrousel(cadre), behavior: reduit ? "auto" : "smooth" });
     }
 
@@ -143,7 +144,7 @@ export class PiquerayProduitsCarrousel extends Interaction {
     onFocusin(ev) {
         const carte = ev.target.closest?.(CARTE);
         if (!carte || !this.el.contains(carte) || !carte.matches(":focus-visible")) return;
-        const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reduit = animationRefusee();
         carte.scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduit ? "auto" : "smooth" });
     }
 
@@ -151,7 +152,7 @@ export class PiquerayProduitsCarrousel extends Interaction {
         if (this._raf) return;
         this._raf = requestAnimationFrame(() => {
             this._raf = null;
-            if (this._cadre) refleterLesBouts(this.el, this._cadre, this._prev, this._next);
+            if (this._cadre) refleterLesBouts(this._cadre, this._prev, this._next);
         });
     }
 

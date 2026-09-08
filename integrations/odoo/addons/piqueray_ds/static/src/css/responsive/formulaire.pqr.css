@@ -1,0 +1,60 @@
+/* ds.formulaire 3.0.0 — faits CODE-ONLY, un par règle, chacun commenté.
+ *
+ * Base = Mobile : déjà émise dans generated/components.pqr.css.
+ * Cette feuille porte (1) ce que le contrat dit par variante mais qu aucun QWeb ne pose
+ * (l axe `presentation`, re-porté PAR LES VARIABLES DE JETON, jamais par un chiffre),
+ * (2) les états que l hôte pilote (erreur, succès) et (3) les faits que le contrat ne
+ * PEUT pas dire. Aucune typographie recopiée : tokens.pqr.css porte ses @media.
+ * Chargée après generated/components.pqr.css, à spécificité égale (0,2,0 au plus). */
+
+/* (1) L axe `presentation`, posé par viewport. */
+@media (min-width: 768px) { /* Tablette */
+  .formulaire { padding-inline: var(--pqr-space-48); }
+  .formulaire__form { padding-inline: var(--pqr-space-48); padding-block: var(--pqr-space-64); }
+  .formulaire__rangIdentite, .formulaire__rangContact { flex-direction: row; gap: var(--pqr-space-16); }
+}
+
+@media (min-width: 992px) { /* Desktop */
+  .formulaire { flex-direction: row; align-items: center; padding-inline: var(--pqr-space-56); gap: var(--pqr-space-32); }
+  /* Motif ds.coordonnees 3.0.0 : le panneau est FIXE par écran (size.formulaire.panneau),
+   * la colonne d arguments grandit à côté. `flex: 0 0 auto` sur une colonne est une
+   * lacune connue contrat/émetteur (docs/16, A6) : portée ici, nommée. */
+  .formulaire__column { flex: 1 1 auto; min-width: 0; }
+  .formulaire__form { width: var(--pqr-size-formulaire-panneau-desktop); flex: 0 0 auto; }
+}
+
+@media (min-width: 1400px) { /* Wide */
+  .formulaire { padding-inline: var(--pqr-space-89); }
+  .formulaire__form { width: var(--pqr-size-formulaire-panneau-wide); }
+}
+
+/* (2) ÉTATS PILOTÉS PAR L HÔTE — le contrat les dit par `visibleWhen` (etat, envoye)
+ *     et par le prop `etat` forwardé aux deux champs obligatoires ; `emit-html` ne
+ *     projette pas la visibilité conditionnelle. Le gabarit rend ces parts TOUJOURS
+ *     (attribut `hidden` au repos) et formulaire_interaction.js bascule les classes
+ *     quand la machinerie native d Odoo (s_website_form) signale l erreur ou le succès. */
+.formulaire__ResumeErreurs[hidden],
+.formulaire__ResumeErreurs a[hidden],
+.formulaire__Succes[hidden],
+.s_pqr_formulaire #s_website_form_result[hidden] { display: none; }
+.field__messageErreur { display: none; }
+.field--etat-erreur .field__messageErreur { display: block; }
+/* La couleur de bordure en erreur est forwardée au contrôle par `control.styles`
+ * (border-color par etat) — `emit-html` la pose en style inline, qu une classe ne
+ * peut pas re-basculer. Re-portée ici par la classe d état, par sa variable. */
+.field--etat-erreur .s_website_form_input { border-color: var(--pqr-color-rouge); --dsc-border-color: var(--pqr-color-rouge); }
+/* Odoo pose `.is-invalid` (Bootstrap : fond image + bordure). Nos champs ne portent pas
+ * `.form-control`, donc seul le fond pourrait fuir : neutralisé, la bordure est à nous. */
+.s_pqr_formulaire .s_website_form_input.is-invalid { background-image: none; }
+
+/* (3) FAIT CODE-ONLY — l anneau de focus du Select. Le focus se pose sur le <select>
+ *     intérieur ; le canal d états d une part non-racine n admet pas `outline` et
+ *     `:focus-within` n est pas un état du schéma (ds.select 2.0.0, limite nommée). */
+.s_pqr_formulaire .select:focus-within {
+  outline: var(--pqr-border-width-2) solid var(--pqr-color-etat-champ-anneau-focus);
+  outline-offset: 2px;
+}
+
+/* (4) Le déclencheur d envoi d Odoo est un <a role="button"> (.s_website_form_send) :
+ *     il prend les classes de ds.button, jamais le soulignement d un lien. */
+.s_pqr_formulaire .s_website_form_send { text-decoration: none; }

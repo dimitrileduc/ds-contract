@@ -35,6 +35,7 @@ import {
   type RichTextSegment,
   SLOT_CONTROL_STYLE_CHANNELS,
 } from '../scripts/contract-schema.js';
+import { isJsxAttrExpression, jsxAttrValueExpression } from './attr-policy.js';
 import {
   ALIGN_CSS,
   gridTracks,
@@ -77,6 +78,20 @@ const cssVar = (tokenPath: string) => `var(--${tokenPath.split('.').join('-')})`
 function placeholdersIn(refPath: string): string[] {
   return [...refPath.matchAll(/\{([a-z][\w-]*)\}/g)].map((m) => m[1]);
 }
+
+/** 031·21 (ds.avantage 2.0.0): base width/height TOKENS on an icon part must
+ *  reach the injected `<svg>` too — the 015 mirror covered only the
+ *  per-variant overrides. A per-viewport icon size (spacing.avantage.icone)
+ *  would otherwise size the wrapper while the glyph stayed at `icon.size`.
+ *  Shared with `emit-html`; `selector` is the part's own selector on each
+ *  surface. */
+export const iconSvgTokenLines = (part: Part, selector: string): string[] =>
+  (['width', 'height'] as const).flatMap((dim) => {
+    const ref = part.icon ? part.tokens?.[dim] : undefined;
+    return ref && placeholdersIn(stripBraces(ref)).length === 0
+      ? ['', `${selector} svg {`, `  ${dim}: ${cssVar(stripBraces(ref))};`, '}']
+      : [];
+  });
 
 const STATE_SELECTORS: Record<string, string> = {
   hover: ':hover:not(:disabled)',
@@ -1677,6 +1692,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         const width = part.vectorAsset?.width ?? part.icon?.size;
         const height = part.vectorAsset?.height ?? part.icon?.size;
         if (width && height) lines.push('', `.${name} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
+        lines.push(...iconSvgTokenLines(part, `.${name}`));
       }
       // Non-substituted token refs → var(--…); single-placeholder refs are a
       // per-enum descendant idiom that only exists under a single root and do
@@ -2143,6 +2159,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       const width = part.vectorAsset?.width ?? part.icon?.size;
       const height = part.vectorAsset?.height ?? part.icon?.size;
       if (width && height) lines.push('', `.${name} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
+      lines.push(...iconSvgTokenLines(part, `.${name}`));
       if (part.element === 'button') {
         decls.push(
           'align-items: center',
@@ -2877,21 +2894,10 @@ export function generateTsx(
   const stylesRef = (cls: string): string =>
     JS_IDENT_RE.test(cls) ? `styles.${cls}` : `styles[${JSON.stringify(cls)}]`;
 
-  const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
-  const NUMERIC_ATTR_VALUE = /^-?\d+(?:\.\d+)?$/;
-  const isNumericAttrValue = (attr: string, value: string): boolean =>
-    NUMERIC_ATTRS.has(attr) && NUMERIC_ATTR_VALUE.test(value);
-  const attrValueExpression = (attr: string, value: string): string => {
-    const ref = value.match(/^\{([a-z][\w-]*)\}$/);
-    if (ref) {
-      const code = codePropOf(ref[1]);
-      // React numeric DOM attributes must remain numbers rather than their
-      // serialized HTML representation. This also keeps {prop} mappings
-      // assignable when the referenced prop is textual.
-      return NUMERIC_ATTRS.has(attr) ? `Number(${code})` : `String(${code})`;
-    }
-    return isNumericAttrValue(attr, value) ? value : JSON.stringify(value);
-  };
+  // The attribute policy (booleans, empty-means-absent, numerics) is shared by
+  // the three code surfaces — see core/attr-policy.ts and its receipt.
+  const attrValueExpression = (attr: string, value: string): string =>
+    jsxAttrValueExpression(attr, value, codePropOf);
   const controlIdAttrFor = (partName: string): string => {
     const idVar = controlIdByPart.get(partName);
     return idVar ? ` id={${idVar}}` : '';
@@ -2900,9 +2906,8 @@ export function generateTsx(
   const partAttrString = (part: Part): string =>
     Object.entries(part.attrs ?? {})
       .map(([attr, value]) => {
-        const isExpression = /^\{([a-z][\w-]*)\}$/.test(value) || isNumericAttrValue(attr, value);
         const expression = attrValueExpression(attr, value);
-        return isExpression ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
+        return isJsxAttrExpression(attr, value) ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
       })
       .join('');
 

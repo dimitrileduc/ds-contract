@@ -106,4 +106,12 @@
     </xpath>
   </template>
   <!-- ODOO-026-PRODUITS-ECOMMERCE-SNIPPET END -->
+  <!-- ODOO-036-FORMULAIRE-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_formulaire" inherit_id="website.snippets" name="Piqueray · Formulaire de contact dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_formulaire" string="Piqueray · Formulaire de contact"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_website_form.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-036-FORMULAIRE-SNIPPET END -->
 </odoo>

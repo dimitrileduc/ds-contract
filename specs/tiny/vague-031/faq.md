@@ -164,3 +164,37 @@ de démonstration de la planche FAQ (test Wide + témoin Mobile) ajoutent 6 rang
 `integrations/odoo/authoring/{pages/faq-test.json (NOUVEAU),compose_page.py}` ·
 `parity/snapshots/figma-{tokens,components}.json` (rafraîchis) · sorties générées (`src/`, `core/samples/`,
 `catalog/`, CSS Odoo générés) · `.page-parity/{probe-faq.mts,edit-faq.mts,edit-faq-gras.mts}` (NOUVEAUX).
+
+## Retour sur l'option B — l'en-tête et le CTA se centrent au-delà de 992 (2026-09-08)
+
+**Décision owner** : « centre sur wide et desktop en tout cas, mobile et tablette on peut laisser au pire, et aussi le CTA ».
+Elle **revient sur l'option B du 2026-09-07** (gauche aux quatre largeurs), qui était écrite noir sur blanc dans le contrat
+comme un « ÉCART assumé avec AvisGoogle et Reassurances ». L'écart est levé : la FAQ dit maintenant la même chose que
+les deux autres sections à en-tête.
+
+- **Canevas** (version nommée « 031 — avant centrage en-tête + CTA FAQ (Desktop/Wide) 2026-09-08 », id 2396755093106109188) :
+  sur les variantes Desktop et Wide du set `2773:27504` — en-tête `counterAxisAlignItems=CENTER`, Accroche et Titre
+  `textAlignHorizontal=CENTER`, **racine `CENTER`**. Mobile et Tablette inchangées. **14 instances avant, 14 après**,
+  hauteurs des quatre variantes inchangées (615 / 464 / 496 / 511).
+  *Le centrage du CTA passe par la RACINE, pas par l'enfant* : `layoutAlign='CENTER'` sur le bouton est un no-op (Figma
+  a déprécié l'alignement par enfant), mais la racine en `CENTER` ne déplace que l'enfant qui ne s'étire pas — l'en-tête
+  et l'accordéon sont en `FILL`, seul le bouton est en `HUG`. C'est la seule orthographe qui marche.
+- **Contrat** `ds.faq` 2.0.0 → **2.1.0** (MINEUR, additif) : `layoutByProp` align center sur la racine ET sur SectionHeader
+  (desktop, wide). Le `text-align` reste `declared: left` — le canal ne varie pas par mode : c'est un FAIT CODE-ONLY,
+  exactement comme `ds.google-reviews` 3.1.0 le dit et le fait.
+- **Odoo** : bloc `@media (min-width: 992px)` de `responsive/faq.pqr.css` — trois déclarations, deux qui viennent du
+  contrat, une qui est le fait code-only (le troisième de la feuille, l'en-tête en comptait deux).
+- **Mesure** (pilote 8087, `/faq-test`, planches REST 1x du set contre le bloc) :
+
+| largeur | planche | Odoo | écart de hauteur | diff |
+|---|---|---|---|---|
+| 390 | 390×615 | 390×615 | 0 | **4,05 %** |
+| 834 | 834×464 | 834×464 | 0 | **1,97 %** |
+| 1200 | 1200×496 | 1200×496 | 0 | **1,48 %** |
+| 1728 | 1728×511 | 1728×511 | 0 | **0,95 %** |
+
+  Les mêmes chiffres qu'au 2026-09-07 (4,07 / 1,99 / 1,49 / 0,94) : le centrage n'a rien coûté, le rouge est du lissage
+  de glyphe. Triptyques regardés : `.page-parity/faq-centrage/cmp-{390,834,1200,1728}/triptych.png`.
+- **Piège payé** : la version d'un contrat adopté a un **6ᵉ miroir** que la note de mémoire ne listait pas —
+  `integrations/odoo/config/figma-panels.json` (2 épingles). Oublié, il rend `faq (version-mismatch)` et fait rougir
+  l'éval `odoo-figma-links-governance`. C'est une porte qui l'a attrapé, pas une relecture.

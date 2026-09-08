@@ -2,8 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.avantage",
   "name": "Avantage",
-  "version": "1.0.0",
-  "description": "Piqueray Avantage. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
+  "version": "2.0.0",
+  "category": "molecule",
+  "description": "Argument Piqueray : l'icône hexagonale et un titre suivi d'un texte. Relevé sur le candidat v2 « Avantage · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 2.0.0 : les ancres passent au candidat ; la racine perd ses tailles figées (1.0.0 : 759×75 — un texte sur trois lignes DÉBORDAIT sur l'argument suivant, mesuré) au profit de width fill et d'une hauteur au contenu ; la typographie prend les rôles responsive du DS (titre = typography.h4, texte = typography.body, les valeurs par écran vivent dans tokens/modes/viewport.*) ; l'icône suit l'écran par le jeton spacing.avantage.icone (40 en Mobile et Tablette, 64 en Desktop et Wide — 64 était disproportionné sur un écran de 342, décision owner). Une molécule n'a pas d'axe présentation : tout ce qui change par écran passe par un jeton qui varie par écran, comme spacing.product-card.width.\n\nL'icône est l'asset gouverné `piqueray` ; sa taille intrinsèque reste 64 (icon.size) et les jetons width/height de la part la redimensionnent — l'émetteur reporte ces jetons sur le <svg> injecté, sinon seul le cadre changerait de taille.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -44,22 +45,28 @@
       "layout": {
         "display": "flex",
         "direction": "row",
-        "align": "start"
+        "align": "start",
+        "width": "fill"
       },
       "parts": {
         "Piqueray": {
           "icon": {
             "asset": "piqueray",
             "size": 64
+          },
+          "tokens": {
+            "width": "{spacing.avantage.icone}",
+            "height": "{spacing.avantage.icone}"
           }
         },
         "text": {
           "layout": {
-            "direction": "column"
+            "direction": "column",
+            "width": "fill",
+            "grow": true
           },
           "tokens": {
-            "gap": "{space.8}",
-            "width": "{size.avantage.text}"
+            "gap": "{space.8}"
           },
           "parts": {
             "Titre": {
@@ -68,11 +75,9 @@
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.32}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "40px"
+                "font-size": "{typography.h4.size}",
+                "font-weight": "{typography.h4.weight}",
+                "line-height": "{typography.h4.line-height}"
               }
             },
             "Texte": {
@@ -81,11 +86,9 @@
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
-                "font-size": "{font.size.18}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "literals": {
-                "line-height": "27px"
+                "font-size": "{typography.body.size}",
+                "font-weight": "{typography.body.weight}",
+                "line-height": "{typography.body.line-height}"
               }
             }
           }
@@ -93,23 +96,20 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.8}",
-        "width": "{size.avantage.root-w}",
-        "height": "{size.avantage.root-h}"
+        "gap": "{space.8}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
-      "nodeId": "2088:2350",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "74ddd5695503616aa0a1ea95139a1e9e05d0a3b7",
+      "nodeId": "2782:38706",
+      "dumpedAt": "2026-09-08"
     },
     "code": {
       "importPath": "src/components/Avantage",
       "export": "Avantage"
     }
-  },
-  "category": "molecule"
+  }
 }

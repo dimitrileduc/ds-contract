@@ -1,4 +1,4 @@
-/* Avantage — from ds.avantage v1.0.0 (core/emit-html.ts) */
+/* Avantage — from ds.avantage v2.0.0 (core/emit-html.ts) */
 
 .avantage, .avantage *, .avantage *::before, .avantage *::after {
   box-sizing: border-box;
@@ -8,11 +8,11 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-8);
-  width: var(--size-avantage-root-w);
-  height: var(--size-avantage-root-h);
 }
 
 .avantage__Piqueray svg {
@@ -24,27 +24,31 @@
 .avantage__Piqueray {
   display: inline-flex;
   flex-shrink: 0;
+  width: var(--spacing-avantage-icone);
+  height: var(--spacing-avantage-icone);
 }
 
 .avantage__text {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   gap: var(--space-8);
-  width: var(--size-avantage-text);
 }
 
 .avantage__Titre {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-32);
-  font-weight: var(--font-weight-regular);
-  line-height: 40px;
+  font-size: var(--typography-h4-size);
+  font-weight: var(--typography-h4-weight);
+  line-height: var(--typography-h4-line-height);
 }
 
 .avantage__Texte {
   color: var(--color-noir-bleute);
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-regular);
-  line-height: 27px;
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
 }
 
 /* showcase chrome */

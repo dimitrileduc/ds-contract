@@ -299,3 +299,53 @@ tout autre contrat, `inputs.lock.json`, `version_guard.js`, `scan-saved-versions
 | `npx tsc -p tsconfig.build.json` | **VERTE** (exit 0) |
 | `npm run parity` | **VERTE** (exit 0) — « No new drift », 19 constats acquittés. **Aucun patch accepté, `baseline.json` intact**, aucun constat sur Equipe / MemberCard / MemberPicture |
 | `npm run eval` | **non lancée** — interdite à l'agent (A0) |
+
+## 2026-09-08 — le set Équipe n'était instanciable par rien, et la cause est dans `ds.member-picture`
+
+**Découvert en montant les 4 vues « À Propos »** (première utilisation du set : il avait **0 instance** depuis sa
+création — c'est exactement pour ça que personne ne l'avait vu).
+
+### Le défaut, prouvé quatre fois plutôt qu'argumenté
+
+Les deux plans photo de `MemberPicture` (`funIa`, `normal`) étaient tous deux `layoutPositioning: ABSOLUTE` avec
+contraintes STRETCH — l'orthographe que le dépôt déclare lui-même pour `position:absolute; inset:0`
+(`docs/FIGMA-CAPABILITY-MATRIX.md`, et `applyInsetOverlay` dans `core/emit-figma-script.ts`, qui **redimensionne**
+ces plans au moment du dessin). Or ce redimensionnement n'existe qu'au dessin :
+
+| geste | résultat |
+|---|---|
+| instance fraîche d'une variante (cartes 155) | plans à **364** |
+| `resize()` de l'instance | parent 155, plans **toujours 364** |
+| `resize()` / `resizeWithoutConstraints()` des plans | **sans effet, en silence** |
+| reposer leur x/y | **refusé** : `This property cannot be overridden in an instance: relative-transform` |
+| **cloner** une instance correcte | plans à 364 |
+
+Conclusion : **une instance n'hérite pas la taille solvée de ses enfants absolus.** Toutes les autres sections de la
+vague passent parce que leurs enfants sont EN FLUX ; `MemberPicture` est le seul composant du DS instancié à une
+taille ≠ celle de son master (155 / 225 / 341 / 364 selon l'écran). Redessiner le master par le générateur ne
+réparerait rien : `figma-sync/13-memberpicture.js` repose exactement les deux `insetOverlay`.
+Voie « grille Figma » (deux plans dans une même cellule) : **refusée par Figma**, cellule occupée.
+
+### La réparation (canevas, version nommée « 031 — avant réparation MemberPicture (plan visible en flux) »)
+
+Dans les DEUX variantes du set `MemberPicture` `274:2389` : **le plan VISIBLE de l'état passe en flux, FILL/FILL**
+(`normal` en Defaut, `funIa` en Survol), l'autre reste absolu derrière, et la racine **clippe** —
+`clipsContent: false` → `true`, ce que le contrat demandait déjà (`overflow: hidden` dans ses deux `stylesWhen`).
+Vérifié : le plan visible suit son parent à 155, 225, 341 et 364. **115 instances avant, 115 après.**
+
+### Un défaut de plus, trouvé par la mesure et réparé au passage
+
+Sur la page légataire « À Propos », `MemberPicture` fait **408** et son plan photo faisait **364** : un croissant gris
+de 44 px (le lavis technique `#D9D9D9`) était visible à droite et en bas de chaque portrait, sur la v1, depuis
+toujours. Le plan en flux remplit désormais le disque. Capture avant/après dans la session.
+
+### Ce qui reste ouvert (à trancher, pas fait)
+
+- **Le générateur défera cette réparation** au prochain redessin du master (`applyInsetOverlay` repose les deux plans
+  en absolu). Le correctif durable est côté émetteur : le plan visible d'un état doit rester en flux quand il est le
+  seul contenu. C'est un travail de code (avec re-épinglage golden), pas de page. → à ouvrir en DW.
+- Le contrat `ds.member-picture` 1.4.0 décrit les deux plans en `position: absolute` : le canevas s'en écarte
+  maintenant pour le plan visible. Écart ASSUMÉ et nommé ici ; à porter dans la `description` de la part au prochain
+  passage sur le contrat.
+- L'axe Équipe en **Desktop (1200) : 3 colonnes, 2652 px de haut, soit plus haut que le Wide** (1891, 4 colonnes).
+  Dessin du candidat, jamais validé à l'écran.

@@ -1,5 +1,5 @@
 <!--
-  Textarea — static HTML+CSS emitted from contract ds.textarea v1.0.0 by core/emit-html.ts.
+  Textarea — static HTML+CSS emitted from contract ds.textarea v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,9 +9,10 @@
 <section class="showcase showcase--textarea">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <!-- root element "textarea" cannot host the drawn anatomy (raw-text content model — child markup would render as literal text); box projected as <div>, element inference stays on the contract -->
-    <div class="textarea" data-part="root">
-      <span class="textarea__texteDeSaisie" data-part="texteDeSaisie">Texte de saisie</span>
-    </div>
+    <textarea class="textarea" data-part="root" autocomplete="off"></textarea>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">required=true</p>
+    <textarea class="textarea" data-part="root" autocomplete="off" required data-required="true"></textarea>
   </div>
 </section>

@@ -93,6 +93,10 @@
       "$type": "color",
       "$value": "#0000008C",
       "$description": "Voile de survol de la CarteCategorie (vague 033, 2026-09-05, choix owner A3). Noir a 55 % (0x8C = 140/255). Litteral, donc il vit bien dans les PRIMITIVES : c'est un ALIAS en primitives qui peint du NaN (piege 032), jamais une valeur. Il se compose SOUS le degrade de 16 arrets du voile, qui n'est pas touche : au repos la carte est inchangee a l'octet."
+    },
+    "vert": {
+      "$value": "#237A3C",
+      "$description": "Vert de confirmation (succès d'un formulaire). PREMIER VERT DE LA CHARTE — la palette n'en avait aucun. Posé par la planche 031·21 le 2026-09-08 (décision owner : texte de succès en vert) ; teinte choisie pour 4,95:1 sur color.bleu-clair et 5,36:1 sur blanc (AA texte), à confirmer par l'owner. Variable Figma color/vert."
     }
   },
   "nav": {
@@ -413,6 +417,21 @@
         "$type": "dimension",
         "$description": "Authored from ds.avantage's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "75px"
+      },
+      "icone": {
+        "$description": "Taille de l'icône d'un Avantage, par écran (40 · 40 · 64 · 64). Une molécule n'a pas d'axe présentation : ce qui change par écran passe par un jeton qui varie par écran (spacing.avantage.icone), comme spacing.product-card.width. Relevé sur le candidat « Avantage · candidat v2 » 2782:38706 le 2026-09-08 ; variable Figma spacing/avantage/icone dans la collection Responsive. 64 était disproportionné sur 342 (décision owner).",
+        "mobile": {
+          "$value": "40px"
+        },
+        "tablette": {
+          "$value": "40px"
+        },
+        "desktop": {
+          "$value": "64px"
+        },
+        "wide": {
+          "$value": "64px"
+        }
       }
     },
     "carte": {
@@ -886,6 +905,15 @@
         "$value": "1550px",
         "$type": "dimension",
         "$description": "Authored from the pinned REST dump of the Formulaire master (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2096_2564.json, layoutSizingHorizontal FIXED, width 1550) — minted from-dump so anatomy references tokens, not literals. Minted 016 (attribution FINAL2, 2026-08-05) : la largeur racine n'etait pas portee par le contrat et la regeneration rendait le master HUG."
+      },
+      "panneau": {
+        "$description": "Largeur du panneau de champs du Formulaire quand les deux colonnes sont côte à côte (Desktop 528, Wide 759 — la moitié du contenu 1088/1550 moins l'écart 32). Motif ds.coordonnees 3.0.0 : UN côté fixe par écran, l'autre grandit — fluide entre deux paliers, exact aux largeurs témoins. Relevé sur le candidat Formulaire 2782:38403 (bbox de la part form) le 2026-09-08.",
+        "desktop": {
+          "$value": "528px"
+        },
+        "wide": {
+          "$value": "759px"
+        }
       }
     },
     "header": {

@@ -34,6 +34,13 @@
       "version": "2.1.0"
     },
     {
+      "id": "ds.avantage",
+      "kind": "contract",
+      "path": "contracts/avantage.contract.json",
+      "sha256": "5dbca3bfe7b7aef19185ababd241ed1401b6213fc30c49b13ab28effd6ecc6f7",
+      "version": "2.0.0"
+    },
+    {
       "id": "ds.button",
       "kind": "contract",
       "path": "contracts/button.contract.json",
@@ -72,7 +79,7 @@
       "id": "ds.coordonnees",
       "kind": "contract",
       "path": "contracts/coordonnees.contract.json",
-      "sha256": "790148fd5cedd5482f728666a0422cf08ff7e8d0ec2fc3ba881ef3ff509854ac",
+      "sha256": "b5b28b761540d29b66399019a26c39c391c4bd10e96b35f8647b1c7c667bf904",
       "version": "3.0.0"
     },
     {
@@ -100,8 +107,15 @@
       "id": "ds.faq",
       "kind": "contract",
       "path": "contracts/faq.contract.json",
-      "sha256": "82289d699b8dcb06183de495d2acd7576f08ccdbd04fc92b59bf05a289de992c",
-      "version": "2.0.0"
+      "sha256": "6e86dd8fda1e7df796568051fc990d7c00e4d14965b2ce6b2ba632d81909bdd7",
+      "version": "2.1.0"
+    },
+    {
+      "id": "ds.field",
+      "kind": "contract",
+      "path": "contracts/field.contract.json",
+      "sha256": "478aa67c05892c4aeeea01ee6d40e92db1b872d0b25a396f3c42109143757c67",
+      "version": "3.0.0"
     },
     {
       "id": "ds.footer",
@@ -116,6 +130,13 @@
       "path": "contracts/footer-column.contract.json",
       "sha256": "321a736ebb2ce1cd889d73ce682216882f21de59641616f02dd700600fea8269",
       "version": "1.1.0"
+    },
+    {
+      "id": "ds.formulaire",
+      "kind": "contract",
+      "path": "contracts/formulaire.contract.json",
+      "sha256": "cefba230d9905642c0b562ad03079cd542be793b75cb9c0f908848eb15ddbe8c",
+      "version": "3.0.0"
     },
     {
       "id": "ds.google-reviews",
@@ -142,8 +163,15 @@
       "id": "ds.hero-video",
       "kind": "contract",
       "path": "contracts/hero-video.contract.json",
-      "sha256": "cabcf0953a6b0f932561ceacfe3ddf8fa51e252166e727478d60bd74e883b614",
-      "version": "2.1.0"
+      "sha256": "6a9d8070b8024ac00b6fe467597414b3acde7d1d4e656590c24ddd10375f371f",
+      "version": "2.2.0"
+    },
+    {
+      "id": "ds.input",
+      "kind": "contract",
+      "path": "contracts/input.contract.json",
+      "sha256": "174582be7233a0e471fbcbdb15204f0bc080126895322520aa9ba6e1e1f91009",
+      "version": "2.0.0"
     },
     {
       "id": "ds.member-card",
@@ -156,8 +184,8 @@
       "id": "ds.member-picture",
       "kind": "contract",
       "path": "contracts/member-picture.contract.json",
-      "sha256": "0094b264150a37c2a19f88018f6b2130a6818f8f3c59dd4e816e7c12fcce76c3",
-      "version": "1.4.0"
+      "sha256": "fb95dbec6457002ecf29550b538abb0a113a150eced5fef4a612bcf5a124fd3d",
+      "version": "1.4.1"
     },
     {
       "id": "ds.menu-entree",
@@ -251,6 +279,13 @@
       "version": "2.2.0"
     },
     {
+      "id": "ds.textarea",
+      "kind": "contract",
+      "path": "contracts/textarea.contract.json",
+      "sha256": "f4d18bd61c534d3ffff50a73799e12ff906057b0b54dbfd380ea867f5845ac71",
+      "version": "2.0.0"
+    },
+    {
       "id": "ds.texte-seo",
       "kind": "contract",
       "path": "contracts/texte-seo.contract.json",
@@ -258,7 +293,7 @@
       "version": "4.0.0"
     }
   ],
-  "graphDigest": "414641d1ceebe451ed69a5880c3a2113324f2bf99b4411cf2a443094ccbb04f2",
+  "graphDigest": "aa82d31bd6a7d63af76781a3d6fbd1a3443b3b279767c58112c6cd918cc1869d",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",
@@ -285,13 +320,13 @@
       "id": "primitives",
       "kind": "tokens",
       "path": "tokens/primitives.tokens.json",
-      "sha256": "ceb8261df75560fa8b3414345c61089e6145d41e6b278374e646d36166be6168"
+      "sha256": "910cd2f8fc26c4792c8d29c4e217a2977519e3042d07bfced6b4e6b1ed0fb4f2"
     },
     {
       "id": "semantic",
       "kind": "tokens",
       "path": "tokens/semantic.tokens.json",
-      "sha256": "da2ecf9e20125df502cf0104fda4be1d3477bfa05adc0c6e61304b07305a4b7f"
+      "sha256": "751f61ffbf849b9572a5618b5ae139a79740746a6d52faae03459990f067c760"
     },
     {
       "id": "semantic.light",

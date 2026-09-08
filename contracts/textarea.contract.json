@@ -2,10 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.textarea",
   "name": "Textarea",
-  "version": "1.0.0",
-  "status": "draft",
+  "version": "2.0.0",
   "category": "atom",
-  "description": "Piqueray multi-line text input. Extracted from the owner-validated Figma master « Textarea » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nSame native-control bridge as Input: the « Valeur » TEXT property drives the shown text, drawn on the canvas as a text child and carried in code through defaultValue on the native <textarea>. Differs from Input only in shape: a fixed 128px height and top-aligned text (the canvas frame's counter axis is MIN, not CENTER).\n\nBox styling binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius, 128px height) ride the honest `literals` channel, named. Atom scope only: no label, no state axes — the Field molecule owns them.",
+  "description": "Zone de texte Piqueray sur plusieurs lignes. Relevée sur le candidat v2 « Textarea · candidat v2 » de la planche 031·21 (2026-09-08), revue et adoptée — pas rédigée à la main.\n\nMAJEUR 2.0.0, même passe que Input : ancres sur le candidat, bordure color.noir (3:1 exigés, 11,85:1 obtenus), texte 16 px (zoom iOS), valeur par défaut vide (1.0.0 livrait « Texte de saisie » pré-rempli), anneau de focus dessiné (color.etat.champ.anneau-focus). Ne diffère d'Input que par la forme : hauteur fixe size.textarea.root (128) et texte calé en haut (axe transversal MIN au canevas).\n\nLes props placeholder, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE), portés par attrs/attrsByProp sans évolution de schéma. Le redimensionnement vertical par l'utilisateur reste possible (aucune règle resize ici : ne pas bloquer une zone où l'on écrit 500 caractères). Limite nommée : trait extérieur 2 px au canevas ≈ outline décalé de 2 px en CSS.",
   "semantics": {
     "element": "textarea",
     "provenance": "extracted"
@@ -14,7 +13,8 @@
     {
       "name": "value",
       "type": "text",
-      "default": "Texte de saisie",
+      "default": "",
+      "description": "Valeur saisie. Vide au repos depuis 2.0.0.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -24,11 +24,115 @@
           "prop": "value"
         }
       }
+    },
+    {
+      "name": "placeholder",
+      "type": "text",
+      "default": "",
+      "description": "Aide à la saisie, visible seulement quand la zone est vide. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "placeholder"
+        }
+      }
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "default": "",
+      "description": "Nom du champ envoyé au serveur. Code-only ; posé explicitement par le formulaire.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "name"
+        }
+      }
+    },
+    {
+      "name": "id",
+      "type": "text",
+      "default": "",
+      "description": "Identifiant DOM, cible du htmlFor du libellé porté par Field. Code-only, unique par champ.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "id"
+        }
+      }
+    },
+    {
+      "name": "autocomplete",
+      "type": "text",
+      "default": "off",
+      "description": "Jeton autocomplete HTML. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "autocomplete"
+        }
+      }
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "default": false,
+      "description": "Attribut natif required. Code-only ; la marque visible est dessinée par Field.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "required"
+        }
+      }
+    },
+    {
+      "name": "describedBy",
+      "type": "text",
+      "default": "",
+      "description": "aria-describedby : identifiant du message d'erreur de ce champ, unique par champ. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "describedBy"
+        }
+      }
     }
   ],
-  "states": [],
+  "states": [
+    "focus-visible"
+  ],
+  "figmaStatePreviews": true,
   "anatomy": {
     "root": {
+      "attrs": {
+        "name": "{name}",
+        "id": "{id}",
+        "placeholder": "{placeholder}",
+        "aria-describedby": "{describedBy}",
+        "autoComplete": "{autocomplete}"
+      },
+      "attrsByProp": [
+        {
+          "prop": "required",
+          "map": {
+            "true": {
+              "required": "required"
+            }
+          }
+        }
+      ],
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -36,19 +140,25 @@
       },
       "tokens": {
         "background-color": "{color.blanc}",
-        "border-color": "{color.bleu-gris}",
+        "border-color": "{color.noir}",
+        "border-width": "{border-width.1}",
         "color": "{color.noir}",
         "font-family": "{font.family.montserrat}",
-        "font-size": "{font.size.14}",
+        "font-size": "{font.size.16}",
         "font-weight": "{font.weight.regular}",
+        "line-height": "{font.line-height.24}",
         "padding-block": "{space.12}",
         "padding-inline": "{space.12}",
         "height": "{size.textarea.root}"
       },
       "literals": {
-        "border-width": "1px",
-        "border-radius": "0px",
-        "line-height": "24px"
+        "border-radius": "0px"
+      },
+      "states": {
+        "focus-visible": {
+          "outline-color": "{color.etat.champ.anneau-focus}",
+          "outline-width": "{border-width.2}"
+        }
       },
       "parts": {
         "texteDeSaisie": {
@@ -63,9 +173,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
-      "nodeId": "2053:1247",
-      "dumpedAt": "2026-07-24"
+      "componentSetKey": "58263ac06e29ffa202c3b2395085c3521ebd9646",
+      "nodeId": "2782:43296",
+      "dumpedAt": "2026-09-08"
     },
     "code": {
       "importPath": "src/components/Textarea",

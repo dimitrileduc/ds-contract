@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.4.0)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.4.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

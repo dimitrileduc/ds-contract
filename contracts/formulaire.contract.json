@@ -2,41 +2,39 @@
   "$schema": "./contract.schema.json",
   "id": "ds.formulaire",
   "name": "Formulaire",
-  "version": "2.0.0",
-  "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.0.0 makes the existing Titre/Accroche controls live on the composed SectionHeader. Titre changes from flat text to rich-text so its governed marks survive parent→child forwarding; the prop name and visible default stay unchanged, while the type change is correctly major-versioned.",
+  "version": "3.0.0",
+  "category": "section",
+  "description": "Section « Formulaire de contact » Piqueray : à gauche l'accroche, le titre et quatre arguments ; à droite, sur un panneau bleu clair, cinq champs, la phrase de consentement et le bouton « Envoyer ». Relevée sur le candidat v2 « Formulaire » de la planche 031·21 (2026-09-08, option A validée par l'owner), revue et adoptée — pas rédigée à la main.\n\nMAJEUR 3.0.0. Ce que la source d'origine (master 2096:2564) avait de cassé et que ce contrat ne porte plus : un SectionHeader de 1550 posé dans une colonne de 759 (titre coupé), des champs HUG à 125 px, deux CTA « Contactez-nous » inutiles, un bouton d'envoi libellé « Contactez-nous » sous une phrase de consentement qui disait « Envoyer », des champs pré-remplis de « Texte de saisie ». Deux champs retirés (Adresse, Sujet — décision owner : ils se demandent au rappel) ; Email et Message obligatoires, les trois autres optionnels et marqués comme tels. L'en-tête est DESSINÉ à plat (accroche = typography.overline, titre = typography.h2), pas instancié : aucune section v2 n'instancie SectionHeader (runbook docs/16).\n\nResponsive : axe presentation ; racine width fill, referenceWidth 1728, gouttière DANS la section (24 · 48 · 56 · 89, règle de page de la vague 031) ; empilé en Mobile et Tablette, deux colonnes 50/50 en Desktop et Wide. Les paires Prénom|Nom et Email|Téléphone sont DÉPAIRÉES en Mobile (294 de contenu — une paire donnerait 139 par champ).\n\nMÉCANIQUE D'ENVOI CÔTÉ HÔTE, PAS DANS LE CONTRAT (décision owner 2026-09-08, sur le précédent des liens du 2026-08-18, matrice de capacité HOST-ONLY) : le contrat gouverne l'apparence et les états ; la balise <form>, la destination, la soumission, l'anti-spam et la validation serveur sont ceux d'Odoo (s_website_form), posés par le gabarit Odoo. Corollaire nommé : le bouton reste ds.button (type=\"button\" en dur, 264 épingles) — Odoo déclenche l'envoi sur son marqueur .s_website_form_send, pas sur un submit natif ; en React la soumission est au consommateur.\n\nÉTATS GOUVERNÉS (props code-only etat et envoye, validés sur les croquis de la planche) : etat=erreur affiche le résumé d'erreurs en tête du panneau (barre rouge, titre, un lien par champ fautif — patron GOV.UK) ET passe les deux champs obligatoires en erreur avec leur message, mot pour mot le même ; envoye=true affiche la ligne de confirmation SOUS le bouton, en color.vert, le formulaire restant en place et vidé (option B validée — pas de redirection, pas de saut de mise en page). Les liens du résumé sont des textes ici ; le gabarit Odoo en fait des ancres vers les champs (destination = contenu, hôte).\n\nDÉVIATIONS NOMMÉES : (1) colonnes 50/50 — grow seul garde une base de contenu (flex 1 1 auto) et rendrait les colonnes inégales ; on suit le motif ds.coordonnees 3.0.0 : le panneau a une largeur FIXE par écran (size.formulaire.panneau), la colonne grandit — exact aux largeurs témoins, fluide entre deux paliers. Le canevas dessine les deux moitiés fixes. (2) La légende « champs suivis d'un astérisque » recommandée par l'audit UX n'est pas portée : elle n'est pas sur la planche validée au repos — différée, nommée. (3) Aucune valeur de champ pré-remplie ; aucun placeholder au repos (décision owner : champs vides).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
     {
-      "name": "consentement",
-      "type": "text",
-      "default": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
-      "bindings": {
-        "figma": {
-          "kind": "TEXT",
-          "property": "Consentement"
-        },
-        "code": {
-          "prop": "consentement"
-        }
-      }
-    },
-    {
-      "name": "items",
+      "name": "presentation",
       "type": {
-        "arrayOf": {
-          "texte": "text",
-          "titre": "text"
-        }
+        "enum": [
+          "mobile",
+          "tablette",
+          "desktop",
+          "wide"
+        ]
       },
+      "default": "mobile",
+      "description": "Écran de présentation, mobile-first. Les quatre valeurs sont les quatre variantes du candidat ; en CSS elles sont les paliers 768 / 992 / 1400 de tokens/modes/viewport.*.",
       "bindings": {
         "figma": {
-          "kind": "NONE"
+          "kind": "VARIANT",
+          "property": "Presentation",
+          "values": {
+            "mobile": "Mobile",
+            "tablette": "Tablette",
+            "desktop": "Desktop",
+            "wide": "Wide"
+          }
         },
         "code": {
-          "prop": "items"
+          "prop": "presentation"
         }
       }
     },
@@ -44,7 +42,6 @@
       "name": "accroche",
       "type": "text",
       "default": "Une demande de devis ? Une réparation ?",
-      "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass).",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -63,7 +60,7 @@
           "text": "Prenez contact avec nous dès maintenant !"
         }
       ],
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text since 2.0.0 because the exact parent→SectionHeader mapping must preserve the child contract's governed marks instead of flattening them.",
+      "description": "Titre riche (gras gouverné possible), rendu à plat dans la section.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -73,6 +70,86 @@
           "prop": "titre"
         }
       }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "titre": "text",
+          "texte": "text"
+        }
+      },
+      "description": "Les arguments (icône + titre + texte), collection code-only ; le canevas dessine l'échantillon de quatre.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    },
+    {
+      "name": "consentement",
+      "type": "text",
+      "default": "En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.",
+      "description": "Phrase d'information RGPD (intérêt légitime : répondre à une demande) — pas de case à cocher, juridiquement inutile pour une réponse et coûteuse en conversion ; une case ne devient nécessaire que pour un autre usage (newsletter).",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Consentement"
+        },
+        "code": {
+          "prop": "consentement"
+        }
+      }
+    },
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "normal",
+          "erreur"
+        ]
+      },
+      "default": "normal",
+      "description": "État du formulaire après une tentative d'envoi refusée. erreur : résumé en tête du panneau et champs obligatoires en erreur (forwardé aux deux Field concernés, même énumération). Code-only : posé par l'hôte (Odoo) au retour serveur ou par la validation client.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "envoye",
+      "type": "boolean",
+      "default": false,
+      "description": "Envoi réussi : affiche la ligne de confirmation sous le bouton (le formulaire reste, vidé par l'hôte). Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "envoye"
+        }
+      }
+    },
+    {
+      "name": "succes",
+      "type": "text",
+      "default": "✓  Merci, votre message est parti. Nous vous répondons sous 24 à 48 heures ouvrées.",
+      "description": "Texte de la ligne de confirmation. Un délai chiffré rassure et évite les relances.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "succes"
+        }
+      }
     }
   ],
   "states": [],
@@ -80,32 +157,120 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row"
+        "direction": "column",
+        "justify": "start",
+        "align": "stretch",
+        "width": "fill",
+        "referenceWidth": 1728
+      },
+      "layoutByProp": {
+        "prop": "presentation",
+        "map": {
+          "desktop": {
+            "direction": "row",
+            "align": "center"
+          },
+          "wide": {
+            "direction": "row",
+            "align": "center"
+          }
+        }
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "padding-inline": "{space.24}",
+        "padding-block": "{space.0}",
+        "gap": "{space.48}"
+      },
+      "tokensByProp": {
+        "prop": "presentation",
+        "map": {
+          "tablette": {
+            "padding-inline": "{space.48}"
+          },
+          "desktop": {
+            "padding-inline": "{space.56}",
+            "gap": "{space.32}"
+          },
+          "wide": {
+            "padding-inline": "{space.89}",
+            "gap": "{space.32}"
+          }
+        }
       },
       "parts": {
         "column": {
+          "description": "Colonne des arguments. En Desktop et Wide elle GRANDIT pour occuper ce que le panneau (largeur fixe par écran) laisse — motif ds.coordonnees 3.0.0 : un côté fixe, l'autre fluide ; exact 50/50 aux largeurs témoins, sans débordement entre deux paliers. Centrée verticalement face au panneau par l'align center de la racine.",
           "layout": {
             "direction": "column",
-            "grow": true,
-            "align": "stretch"
+            "align": "stretch",
+            "width": "fill",
+            "grow": true
+          },
+          "tokens": {
+            "gap": "{space.48}"
           },
           "parts": {
-            "SectionHeader": {
-              "description": "The exact {titre}/{accroche} mappings keep the existing parent TEXT properties live on the nested SectionHeader. The former literals made both exposed Figma controls orphaned.",
-              "component": {
-                "id": "ds.section-header",
-                "props": {
-                  "titre": "{titre}",
-                  "accroche": "{accroche}"
-                }
-              },
+            "enTete": {
               "layout": {
-                "grow": true
+                "direction": "column",
+                "align": "stretch",
+                "width": "fill"
+              },
+              "tokens": {
+                "gap": "{space.8}"
+              },
+              "parts": {
+                "Accroche": {
+                  "description": "Sur-titre, rôle overline (14/20 Regular · 14/20 Regular · 16/20 Medium · 20/25 Medium), capitales et interlettrage 15 % en em — même recette que ds.coordonnees 3.0.0 ; le canal letter-spacing est hors de la population de geometry:gate (canal typographique).",
+                  "content": {
+                    "prop": "accroche"
+                  },
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{typography.overline.size}",
+                    "font-weight": "{typography.overline.weight}",
+                    "line-height": "{typography.overline.line-height}"
+                  },
+                  "literals": {
+                    "letter-spacing": "0.15em"
+                  },
+                  "declared": {
+                    "text-transform": "uppercase"
+                  }
+                },
+                "Titre": {
+                  "description": "Titre, rôle h2 (24/30 · 24/30 · 32/40 · 40/50, SemiBold) — l'échelle relevée sur Réalisations, FAQ et Réassurances. Élément h2 : un vrai titre de document sur les trois surfaces (plan de la page, comme les autres sections v2) ; l'émetteur remet sa marge UA à zéro — sans quoi le h2 du gabarit Odoo héritait de la marge basse de Bootstrap (8 px, mesurés à la sonde le 2026-09-08, seule cause du résidu géométrique).",
+                  "content": {
+                    "prop": "titre",
+                    "marks": {
+                      "strong": "{font.weight.bold}"
+                    }
+                  },
+                  "layout": {
+                    "width": "fill"
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{typography.h2.size}",
+                    "font-weight": "{typography.h2.weight}",
+                    "line-height": "{typography.h2.line-height}"
+                  },
+                  "element": "h2"
+                }
               }
             },
             "features": {
               "layout": {
-                "direction": "column"
+                "direction": "column",
+                "align": "stretch",
+                "width": "fill"
+              },
+              "tokens": {
+                "gap": "{space.32}"
               },
               "parts": {
                 "Avantage": {
@@ -116,247 +281,419 @@
                     "itemsProp": "items",
                     "sample": [
                       {
-                        "texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
-                        "titre": "Conseils personnalisés"
+                        "titre": "Conseils personnalisés",
+                        "texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous"
                       },
                       {
-                        "texte": "Marque Hormann renommée, qualité allemande",
-                        "titre": "Produits de qualité"
+                        "titre": "Produits de qualité",
+                        "texte": "Marque Hörmann renommée, qualité allemande"
                       },
                       {
-                        "texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
-                        "titre": "Dépannage et SAV"
+                        "titre": "Dépannage et SAV",
+                        "texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleurs délais"
                       },
                       {
-                        "texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
-                        "titre": "Expérience et savoir-faire"
+                        "titre": "Expérience et savoir-faire",
+                        "texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations"
                       }
                     ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "form": {
+          "description": "Le panneau bleu clair. Pleine largeur en Mobile et Tablette ; largeur FIXE par écran en Desktop (528) et Wide (759) — la colonne d'arguments grandit à côté (motif ds.coordonnees 3.0.0). Marges 24/32 en Mobile puis 48/64 (horizontal/vertical, décision owner « ça respire »), écart entre champs 32.",
+          "layout": {
+            "direction": "column",
+            "align": "stretch",
+            "width": "fill"
+          },
+          "tokens": {
+            "background-color": "{color.bleu-clair}",
+            "padding-inline": "{space.24}",
+            "padding-block": "{space.32}",
+            "gap": "{space.32}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "tablette": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.64}"
+              },
+              "desktop": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.64}",
+                "width": "{size.formulaire.panneau.desktop}"
+              },
+              "wide": {
+                "padding-inline": "{space.48}",
+                "padding-block": "{space.64}",
+                "width": "{size.formulaire.panneau.wide}"
+              }
+            }
+          },
+          "parts": {
+            "ResumeErreurs": {
+              "description": "Résumé d'erreurs, patron GOV.UK : visible en état erreur, en tête du panneau ; l'hôte y pose le focus au retour serveur et préfixe le titre de page de « Erreur : ». Les deux lignes reprennent MOT POUR MOT les messages des champs. Ce sont des textes ici — le gabarit Odoo les rend en ancres vers les champs (destination = contenu, hôte).",
+              "element": "div",
+              "attrs": {
+                "role": "alert",
+                "tabIndex": "-1"
+              },
+              "layout": {
+                "direction": "row",
+                "align": "stretch",
+                "width": "fill"
+              },
+              "tokens": {
+                "gap": "{space.16}"
+              },
+              "visibleWhen": {
+                "prop": "etat",
+                "equals": "erreur"
+              },
+              "parts": {
+                "barre": {
+                  "tokens": {
+                    "width": "{space.4}",
+                    "background-color": "{color.rouge}"
+                  }
+                },
+                "texte": {
+                  "layout": {
+                    "direction": "column",
+                    "align": "stretch",
+                    "width": "fill",
+                    "grow": true
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "TitreResume": {
+                      "text": "Votre message n’a pas pu être envoyé",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{typography.h4.size}",
+                        "font-weight": "{font.weight.semibold}",
+                        "line-height": "{typography.h4.line-height}"
+                      }
+                    },
+                    "LienEmail": {
+                      "text": "→ Saisissez votre adresse e-mail pour que nous puissions vous répondre.",
+                      "tokens": {
+                        "color": "{color.rouge}",
+                        "font-size": "{font.size.16}",
+                        "font-weight": "{font.weight.regular}",
+                        "line-height": "{font.line-height.24}"
+                      },
+                      "declared": {
+                        "text-decoration-line": "underline"
+                      },
+                      "description": "Couleur : color.rouge (décision owner 2026-09-08) — l orange faisait 2,23:1 sur le bleu-clair (axe-core), le rouge 4,60:1, le même rouge que l état d erreur."
+                    },
+                    "LienMessage": {
+                      "text": "→ Écrivez votre message : décrivez en quelques mots votre projet ou votre question.",
+                      "tokens": {
+                        "color": "{color.rouge}",
+                        "font-size": "{font.size.16}",
+                        "font-weight": "{font.weight.regular}",
+                        "line-height": "{font.line-height.24}"
+                      },
+                      "declared": {
+                        "text-decoration-line": "underline"
+                      },
+                      "description": "Couleur : color.rouge (décision owner 2026-09-08) — l orange faisait 2,23:1 sur le bleu-clair (axe-core), le rouge 4,60:1, le même rouge que l état d erreur."
+                    }
+                  }
+                }
+              }
+            },
+            "rangIdentite": {
+              "description": "Prénom | Nom. Empilés en Mobile (base) avec l’écart du panneau (32 — mesuré sur la planche : le triptyque a montré −24 px avec un 16 modélisé à tort), côte à côte dès Tablette avec l’écart de paire (16).",
+              "layout": {
+                "direction": "column",
+                "align": "stretch",
+                "width": "fill"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "direction": "row"
+                  },
+                  "desktop": {
+                    "direction": "row"
+                  },
+                  "wide": {
+                    "direction": "row"
                   }
                 }
               },
               "tokens": {
                 "gap": "{space.32}"
-              }
-            },
-            "buttons": {
-              "layout": {
-                "direction": "row"
               },
               "parts": {
-                "FormArgumentBoutonA": {
-                  "component": {
-                    "id": "ds.button"
-                  }
-                },
-                "FormArgumentBoutonB": {
-                  "component": {
-                    "id": "ds.button"
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.16}"
-              }
-            }
-          },
-          "tokens": {
-            "gap": "{space.48}"
-          }
-        },
-        "form": {
-          "layout": {
-            "direction": "column",
-            "grow": true
-          },
-          "tokens": {
-            "background-color": "{color.bleu-clair}",
-            "padding-inline": "{space.32}",
-            "padding-block": "{space.32}",
-            "gap": "{space.16}"
-          },
-          "parts": {
-            "row": {
-              "layout": {
-                "direction": "row"
-              },
-              "parts": {
-                "FormRow1FieldA": {
+                "champPrenom": {
                   "component": {
                     "id": "ds.field",
                     "props": {
                       "label": "Prénom",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                },
-                "FormRow1FieldB": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Nom",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.16}"
-              }
-            },
-            "row2": {
-              "layout": {
-                "direction": "row"
-              },
-              "parts": {
-                "FormRow2FieldA": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Email",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                },
-                "FormRow2FieldB": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Téléphone",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.16}"
-              }
-            },
-            "row3": {
-              "layout": {
-                "direction": "row"
-              },
-              "parts": {
-                "FormRow3Field": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Adresse",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.16}"
-              }
-            },
-            "row4": {
-              "layout": {
-                "direction": "row"
-              },
-              "parts": {
-                "FormRow4Field": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Sujet",
-                      "etat": "normal"
-                    }
-                  },
-                  "layout": {
-                    "grow": true
-                  }
-                }
-              },
-              "tokens": {
-                "gap": "{space.16}"
-              }
-            },
-            "row5": {
-              "layout": {
-                "direction": "row"
-              },
-              "parts": {
-                "FormRow5Field": {
-                  "component": {
-                    "id": "ds.field",
-                    "props": {
-                      "label": "Message",
-                      "etat": "normal"
+                      "optionnel": true,
+                      "inputID": "formulaire-prenom",
+                      "erreurID": "formulaire-prenom-erreur"
                     },
                     "slots": {
                       "children": {
-                        "id": "ds.textarea",
+                        "id": "ds.input",
                         "props": {
-                          "value": "Écrivez votre message ici..."
+                          "id": "formulaire-prenom",
+                          "name": "prenom",
+                          "type": "text",
+                          "autocomplete": "given-name"
                         }
                       }
                     }
                   },
                   "layout": {
+                    "width": "fill",
+                    "grow": true
+                  }
+                },
+                "champNom": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Nom",
+                      "optionnel": true,
+                      "inputID": "formulaire-nom",
+                      "erreurID": "formulaire-nom-erreur"
+                    },
+                    "slots": {
+                      "children": {
+                        "id": "ds.input",
+                        "props": {
+                          "id": "formulaire-nom",
+                          "name": "nom",
+                          "type": "text",
+                          "autocomplete": "family-name"
+                        }
+                      }
+                    }
+                  },
+                  "layout": {
+                    "width": "fill",
                     "grow": true
                   }
                 }
               },
-              "tokens": {
-                "gap": "{space.16}"
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "gap": "{space.16}"
+                  },
+                  "desktop": {
+                    "gap": "{space.16}"
+                  },
+                  "wide": {
+                    "gap": "{space.16}"
+                  }
+                }
               }
             },
-            "TexteConsentement": {
+            "rangContact": {
+              "description": "Email | Téléphone. Empilés en Mobile (base) avec l’écart du panneau (32 — mesuré sur la planche : le triptyque a montré −24 px avec un 16 modélisé à tort), côte à côte dès Tablette avec l’écart de paire (16). Email est obligatoire et suit l'état du formulaire.",
+              "layout": {
+                "direction": "column",
+                "align": "stretch",
+                "width": "fill"
+              },
+              "layoutByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "direction": "row"
+                  },
+                  "desktop": {
+                    "direction": "row"
+                  },
+                  "wide": {
+                    "direction": "row"
+                  }
+                }
+              },
+              "tokens": {
+                "gap": "{space.32}"
+              },
+              "parts": {
+                "champEmail": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Email",
+                      "obligatoire": true,
+                      "etat": "{etat}",
+                      "inputID": "formulaire-email",
+                      "erreurID": "formulaire-email-erreur",
+                      "messageErreur": "Saisissez votre adresse e-mail pour que nous puissions vous répondre."
+                    },
+                    "slots": {
+                      "children": {
+                        "id": "ds.input",
+                        "props": {
+                          "id": "formulaire-email",
+                          "name": "email",
+                          "type": "email",
+                          "autocomplete": "email",
+                          "required": true,
+                          "describedBy": "formulaire-email-erreur"
+                        }
+                      }
+                    }
+                  },
+                  "layout": {
+                    "width": "fill",
+                    "grow": true
+                  }
+                },
+                "champTelephone": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Téléphone",
+                      "optionnel": true,
+                      "inputID": "formulaire-telephone",
+                      "erreurID": "formulaire-telephone-erreur"
+                    },
+                    "slots": {
+                      "children": {
+                        "id": "ds.input",
+                        "props": {
+                          "id": "formulaire-telephone",
+                          "name": "telephone",
+                          "type": "tel",
+                          "autocomplete": "tel"
+                        }
+                      }
+                    }
+                  },
+                  "layout": {
+                    "width": "fill",
+                    "grow": true
+                  }
+                }
+              },
+              "tokensByProp": {
+                "prop": "presentation",
+                "map": {
+                  "tablette": {
+                    "gap": "{space.16}"
+                  },
+                  "desktop": {
+                    "gap": "{space.16}"
+                  },
+                  "wide": {
+                    "gap": "{space.16}"
+                  }
+                }
+              }
+            },
+            "champMessage": {
+              "description": "Message, obligatoire, zone multiligne (ds.textarea via le slot) ; suit l'état du formulaire.",
+              "component": {
+                "id": "ds.field",
+                "props": {
+                  "label": "Message",
+                  "obligatoire": true,
+                  "etat": "{etat}",
+                  "inputID": "formulaire-message",
+                  "erreurID": "formulaire-message-erreur",
+                  "messageErreur": "Écrivez votre message : décrivez en quelques mots votre projet ou votre question."
+                },
+                "slots": {
+                  "children": {
+                    "id": "ds.textarea",
+                    "props": {
+                      "id": "formulaire-message",
+                      "name": "message",
+                      "required": true,
+                      "describedBy": "formulaire-message-erreur"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "width": "fill"
+              }
+            },
+            "Consentement": {
               "content": {
                 "prop": "consentement"
               },
+              "layout": {
+                "width": "fill"
+              },
               "tokens": {
+                "color": "{color.noir-bleute}",
                 "font-size": "{font.size.14}",
                 "font-weight": "{font.weight.regular}",
                 "line-height": "{font.line-height.24}"
               }
             },
-            "FormulaireBouton": {
+            "Bouton": {
+              "description": "Un seul bouton, « Envoyer », pleine largeur du panneau (décision owner D1). Jamais désactivé pendant l'envoi (perte du focus clavier) : le double-envoi se bloque côté hôte. type=button en dur dans ds.button : l'envoi est déclenché par l'hôte (Odoo .s_website_form_send).",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "props": {
+                  "children": "Envoyer"
+                }
               },
               "layout": {
+                "width": "fill",
                 "grow": true
+              }
+            },
+            "Succes": {
+              "description": "Ligne de confirmation, sous le bouton, en color.vert (option B validée : le formulaire reste, vidé par l'hôte ; pas de saut de mise en page). L'hôte l'annonce en role=status.",
+              "element": "p",
+              "attrs": {
+                "role": "status"
+              },
+              "content": {
+                "prop": "succes"
+              },
+              "layout": {
+                "width": "fill"
+              },
+              "tokens": {
+                "color": "{color.vert}",
+                "font-size": "{font.size.16}",
+                "font-weight": "{font.weight.medium}",
+                "line-height": "{font.line-height.24}"
+              },
+              "visibleWhen": {
+                "prop": "envoye"
               }
             }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "width": "{size.formulaire.root}",
-        "gap": "{space.32}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5",
-      "nodeId": "2096:2564",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "c9fd2b5768aab43a4e1df5dc692d103b05145ab8",
+      "nodeId": "2782:38403",
+      "dumpedAt": "2026-09-08"
     },
     "code": {
       "importPath": "src/components/Formulaire",
       "export": "Formulaire"
     }
-  },
-  "category": "section"
+  }
 }

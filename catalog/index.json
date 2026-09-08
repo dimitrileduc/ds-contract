@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "640ea7e0",
+    "gitCommit": "9bedfe37",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -69,14 +69,14 @@
     {
       "id": "ds.avantage",
       "name": "Avantage",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
         "titre",
         "texte"
       ],
-      "summary": "Piqueray Avantage."
+      "summary": "Argument Piqueray : l'icône hexagonale et un titre suivi d'un texte."
     },
     {
       "id": "ds.button",
@@ -207,7 +207,7 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -252,7 +252,7 @@
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -264,48 +264,69 @@
     {
       "id": "ds.input",
       "name": "Input",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
-        "value"
+        "value",
+        "placeholder",
+        "type",
+        "name",
+        "id",
+        "autocomplete",
+        "required",
+        "describedBy"
       ],
-      "summary": "Piqueray single-line text input."
+      "summary": "Champ de saisie Piqueray sur une ligne."
     },
     {
       "id": "ds.select",
       "name": "Select",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
-        "value"
+        "value",
+        "name",
+        "id",
+        "required",
+        "describedBy"
       ],
-      "summary": "Piqueray select."
+      "summary": "Liste déroulante Piqueray."
     },
     {
       "id": "ds.textarea",
       "name": "Textarea",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
-        "value"
+        "value",
+        "placeholder",
+        "name",
+        "id",
+        "autocomplete",
+        "required",
+        "describedBy"
       ],
-      "summary": "Piqueray multi-line text input."
+      "summary": "Zone de texte Piqueray sur plusieurs lignes."
     },
     {
       "id": "ds.field",
       "name": "Field",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
         "etat",
         "label",
-        "optionnel"
+        "optionnel",
+        "obligatoire",
+        "inputID",
+        "erreurID",
+        "messageErreur"
       ],
-      "summary": "Piqueray Field."
+      "summary": "Champ de formulaire Piqueray : un libellé, un contrôle de saisie slotté, un message d'erreur."
     },
     {
       "id": "ds.footer-column",
@@ -343,32 +364,22 @@
       "summary": "Piqueray Footer, responsive."
     },
     {
-      "id": "ds.section-header",
-      "name": "SectionHeader",
-      "version": "3.0.0",
-      "status": "draft",
-      "category": "molecule",
-      "propNames": [
-        "titre",
-        "accroche",
-        "afficherAccroche",
-        "alignement"
-      ],
-      "summary": "Piqueray SectionHeader v3."
-    },
-    {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
-        "consentement",
-        "items",
+        "presentation",
         "accroche",
-        "titre"
+        "titre",
+        "items",
+        "consentement",
+        "etat",
+        "envoye",
+        "succes"
       ],
-      "summary": "Piqueray Formulaire."
+      "summary": "Section « Formulaire de contact » Piqueray : à gauche l'accroche, le titre et quatre arguments ; à droite, sur un panneau bleu clair, cinq champs, la phrase de consentement et le bouton « Envoyer »."
     },
     {
       "id": "ds.notation",
@@ -448,7 +459,7 @@
     {
       "id": "ds.hero-video",
       "name": "HeroVideo",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -606,6 +617,20 @@
         "imageAlt"
       ],
       "summary": "Piqueray SAV, responsive."
+    },
+    {
+      "id": "ds.section-header",
+      "name": "SectionHeader",
+      "version": "3.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "propNames": [
+        "titre",
+        "accroche",
+        "afficherAccroche",
+        "alignement"
+      ],
+      "summary": "Piqueray SectionHeader v3."
     },
     {
       "id": "ds.tab",

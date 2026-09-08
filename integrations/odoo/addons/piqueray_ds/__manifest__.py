@@ -34,7 +34,7 @@ colonnes et du copyright sont éditables inline via `t-field` sur des champs
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.15.0",
+    "version": "19.0.1.16.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
@@ -84,6 +84,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/produits-ecommerce.pqr.css",
             "piqueray_ds/static/src/css/responsive/footer.pqr.css",
             "piqueray_ds/static/src/css/responsive/texte-seo.pqr.css",
+            "piqueray_ds/static/src/css/responsive/formulaire.pqr.css",
             "piqueray_ds/static/src/css/responsive/hero.pqr.css",
             # Après categories-principales : la carte empilée doit battre les
             # deux hauteurs superposées que la section pose (ds.carte-categorie 3.0.0).
@@ -103,9 +104,16 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             # Menu mobile (ds.menu-mobile, 2026-09-04) : bascule des entrées déroulantes ;
             # l'ouverture du menu est l'offcanvas du noyau.
             "piqueray_ds/static/src/js/menu_mobile_interaction.js",
+            # Un seul relevé de `prefers-reduced-motion`, partagé par le carrousel et
+            # le fond vidéo (le MediaQueryList est créé une fois, voir le fichier).
+            "piqueray_ds/static/src/js/mouvement_reduit.js",
             # Carrousel Produits e-commerce (vague 034, 2026-09-07) : Précédent/Suivant
             # et aria-disabled aux bouts ; le défilement lui-même est natif (scroll-snap).
             "piqueray_ds/static/src/js/produits_ecommerce_carrousel_interaction.js",
+            "piqueray_ds/static/src/js/formulaire_interaction.js",
+            # ODOO-036 (2026-09-08) : les deux refus du fond vidéo — animation
+            # réduite demandée au système, et données mobiles sous 992 px.
+            "piqueray_ds/static/src/js/hero_video_interaction.js",
         ],
         # Chargé uniquement dans l'éditeur de site.
         "website.website_builder_assets": [

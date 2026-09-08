@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.member-picture",
   "name": "MemberPicture",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "category": "atom",
   "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius. The visible normal plane receives its code-only src and alt scalars from its composed parent.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa are unavailable to the contract→canvas transport. That hidden-under-normal layer therefore keeps the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma.\n\nVERSION 1.4.0 (2026-09-07, passe 2 du portage « Equipe v2 ») — LE PLAN DE SURVOL RECOIT ENFIN SA ROUTE, ET C'EST FIGMA QUI LE COMMANDE. Jusqu'ici seul le plan normal portait src et alt : le plan funIa, celui que le survol decouvre, n'avait AUCUN canal. Consequence mesurable, nommee par la passe 1 (journal specs/tiny/equipe-v2/member-card.md, section 7 point 3) : survoler une carte faisait DISPARAITRE le portrait pour ne montrer que le lavis technique. Or le master empile bien DEUX photos, sur les deux variantes du set. Les props srcSurvol et altSurvol ouvrent donc le meme canal code-only que src et alt, sur le plan du dessous, avec exactement la meme convention : la ROUTE, jamais les octets (trou A5, matrice ligne 91). Ajout purement additif — aucune prop ne disparait, aucune valeur ne se resserre : MINEUR. Le lavis #D9D9D9 reste la base de previsualisation quand aucune route n'est fournie.",
   "semantics": {
@@ -112,7 +112,7 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "Square circular clipping root. The Figma master is presented at 364×364, while composed instances fill their parent width and retain a native 1:1 aspect ratio. Its #D9D9D9 fill is only the generic technical A5 preview base, never a Piqueray colour.",
+      "description": "Square circular clipping root. The Figma master is presented at 364×364, while composed instances fill their parent width and retain a native 1:1 aspect ratio. Its #D9D9D9 fill is only the generic technical A5 preview base, never a Piqueray colour. ÉCART DE SOURCE NOMMÉ (2026-09-08) : sur le canevas, le plan VISIBLE de chaque état est en FLUX (auto-layout, FILL/FILL) et non en position absolue comme ici — c'est la seule orthographe Figma qui suive le parent quand la molécule est instanciée à une autre taille que son master (155 / 225 / 341 selon l'écran dans le set Équipe). Une instance n'hérite pas la taille solvée de ses enfants absolus, et Figma refuse de la corriger (« relative-transform cannot be overridden in an instance »). La racine du master clippe désormais, ce que ce contrat demandait déjà par ses deux stylesWhen overflow hidden. Le rendu code est inchangé : c'est le canevas qui rejoint le contrat, pas l'inverse. Limite connue : un redessin du master par le générateur reposerait les deux plans en absolu et déferait la réparation.",
       "layout": {
         "width": "fill",
         "referenceWidth": 364,
@@ -146,7 +146,7 @@
       ],
       "parts": {
         "funIa": {
-          "description": "Plan photo du dessous, decouvert au survol quand le plan normal passe en opacite 0. Version 1.4.0 : il porte enfin ses scalaires code-only srcSurvol et altSurvol — avant, il etait rendu SANS src et le survol effacait le visage au lieu d'en montrer un second. † A5 : les pixels de la source IMAGE restent hors du transport contrat vers canevas ; sans route fournie a l'execution, le lavis technique du root reste visible.",
+          "description": "Plan photo du dessous, decouvert au survol quand le plan normal passe en opacite 0. Version 1.4.0 : il porte enfin ses scalaires code-only srcSurvol et altSurvol — avant, il etait rendu SANS src et le survol effacait le visage au lieu d'en montrer un second. † A5 : les pixels de la source IMAGE restent hors du transport contrat vers canevas ; sans route fournie a l'execution, le lavis technique du root reste visible. 2026-09-08 : sur le canevas il reste absolu dans l'état Defaut (il est dessous, invisible au repos) et passe EN FLUX dans l'état Survol, où c'est lui qu'on voit.",
           "element": "img",
           "attrs": {
             "src": "{srcSurvol}",
@@ -182,7 +182,7 @@
           ]
         },
         "normal": {
-          "description": "Top member photo plane. It is opacity 1 in defaut and opacity 0 in survol; its code-only src and alt scalars render the MemberCard instance's normal IMAGE override.",
+          "description": "Top member photo plane. It is opacity 1 in defaut and opacity 0 in survol; its code-only src and alt scalars render the MemberCard instance's normal IMAGE override. 2026-09-08 : c'est ce plan qui est EN FLUX sur le canevas de l'état Defaut (voir la description de la racine).",
           "element": "img",
           "attrs": {
             "src": "{src}",

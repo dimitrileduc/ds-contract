@@ -174,6 +174,13 @@
           "$value": "{color.noir-bleute}",
           "$description": "Anneau de focus clavier de la zone cliquable de la rangee d'accordeon — meme geste que le bouton outlineNoir. FAIT CODE-ONLY : le vocabulaire n'a pas de canal d'etat PROPRE pour une part interactive imbriquee (les etats de part sont ancres a la racine, core/emit-react.ts), la regle vit donc dans la feuille Odoo et est nommee dans la description de la part trigger."
         }
+      },
+      "champ": {
+        "anneau-focus": {
+          "$type": "color",
+          "$value": "{color.noir-bleute}",
+          "$description": "Anneau de focus des champs de saisie (Input, Textarea, Select). Même recette que les 8 anneaux des boutons (vague 032) : alias de color.noir-bleute, trait 2 px décalé de 2 px. Posé par la planche 031·21 le 2026-09-08 ; variable Figma color/etat/champ/anneau-focus. Alias en couche SEMANTIC, jamais en primitives (piège DW-032-007)."
+        }
       }
     }
   },
@@ -1013,6 +1020,12 @@
       "width": {
         "$value": "{size.product-card.mobile}",
         "$description": "Largeur d une carte produit dans le carrousel, par écran (260 · 322 · 326 · 363). Une molécule n a pas d axe présentation : ce qui change par écran passe par un jeton qui varie par écran, comme spacing.carte-reassurance. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
+      }
+    },
+    "avantage": {
+      "icone": {
+        "$value": "{size.avantage.icone.mobile}",
+        "$description": "Taille de l'icône d'un Avantage, par écran (40 · 40 · 64 · 64). Base = Mobile ; les trois autres écrans surchargent dans tokens/modes/viewport.*. Relevé sur le candidat 2782:38706 le 2026-09-08, variable Figma spacing/avantage/icone."
       }
     }
   }

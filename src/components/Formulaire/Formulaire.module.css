@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/formulaire.contract.json (ds.formulaire v2.0.0)
+ * Source of truth: contracts/formulaire.contract.json (ds.formulaire v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -12,11 +12,40 @@
 
 .root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-formulaire-root);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-0);
+  gap: var(--space-48);
+}
+
+.presentation-tablette {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop {
+  padding-inline: var(--space-56);
   gap: var(--space-32);
+}
+
+.presentation-wide {
+  padding-inline: var(--space-89);
+  gap: var(--space-32);
+}
+
+.presentation-desktop {
+  flex-direction: row;
+  align-items: center;
+}
+
+.presentation-wide {
+  flex-direction: row;
+  align-items: center;
 }
 
 .column {
@@ -25,64 +54,225 @@
   align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
   gap: var(--space-48);
+}
+
+.enTete {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-size: var(--typography-overline-size);
+  font-weight: var(--typography-overline-weight);
+  line-height: var(--typography-overline-line-height);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.Titre {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-noir-bleute);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line-height);
+}
+
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .features {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
-}
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-16);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  align-items: stretch;
+  width: 100%;
   min-width: 0;
   background-color: var(--color-bleu-clair);
-  padding-inline: var(--space-32);
+  padding-inline: var(--space-24);
   padding-block: var(--space-32);
-  gap: var(--space-16);
+  gap: var(--space-32);
 }
 
-.row {
+.presentation-tablette .form {
+  padding-inline: var(--space-48);
+}
+
+.presentation-tablette .form {
+  padding-block: var(--space-64);
+}
+
+.presentation-desktop .form {
+  padding-inline: var(--space-48);
+}
+
+.presentation-desktop .form {
+  padding-block: var(--space-64);
+}
+
+.presentation-desktop .form {
+  width: var(--size-formulaire-panneau-desktop);
+}
+
+.presentation-wide .form {
+  padding-inline: var(--space-48);
+}
+
+.presentation-wide .form {
+  padding-block: var(--space-64);
+}
+
+.presentation-wide .form {
+  width: var(--size-formulaire-panneau-wide);
+}
+
+.ResumeErreurs {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-16);
 }
 
-.row2 {
+.barre {
+  width: var(--space-4);
+  background-color: var(--color-rouge);
+}
+
+.texte {
   display: flex;
-  flex-direction: row;
-  gap: var(--space-16);
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  gap: var(--space-8);
 }
 
-.row3 {
+.TitreResume {
+  color: var(--color-noir-bleute);
+  font-size: var(--typography-h4-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--typography-h4-line-height);
+}
+
+.LienEmail {
+  color: var(--color-rouge);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
+  text-decoration-line: underline;
+}
+
+.LienMessage {
+  color: var(--color-rouge);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
+  text-decoration-line: underline;
+}
+
+.rangIdentite {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-32);
+}
+
+.presentation-tablette .rangIdentite {
   gap: var(--space-16);
 }
 
-.row4 {
+.presentation-desktop .rangIdentite {
+  gap: var(--space-16);
+}
+
+.presentation-wide .rangIdentite {
+  gap: var(--space-16);
+}
+
+.presentation-tablette .rangIdentite {
+  flex-direction: row;
+}
+
+.presentation-desktop .rangIdentite {
+  flex-direction: row;
+}
+
+.presentation-wide .rangIdentite {
+  flex-direction: row;
+}
+
+.rangContact {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-32);
+}
+
+.presentation-tablette .rangContact {
   gap: var(--space-16);
 }
 
-.row5 {
-  display: flex;
-  flex-direction: row;
+.presentation-desktop .rangContact {
   gap: var(--space-16);
 }
 
-.TexteConsentement {
+.presentation-wide .rangContact {
+  gap: var(--space-16);
+}
+
+.presentation-tablette .rangContact {
+  flex-direction: row;
+}
+
+.presentation-desktop .rangContact {
+  flex-direction: row;
+}
+
+.presentation-wide .rangContact {
+  flex-direction: row;
+}
+
+.Consentement {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-noir-bleute);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
+}
+
+.Succes {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-vert);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-24);
 }

@@ -489,6 +489,9 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   { id: 'reassurances', label: 'Reassurances (Piqueray)', kind: 'contract', contractId: 'ds.reassurances', fileKey: PIQUERAY, setNodeId: '2114:3721' , renderWidth: 1550},
   { id: 'equipe', label: 'Equipe (Piqueray)', kind: 'contract', contractId: 'ds.equipe', fileKey: PIQUERAY, setNodeId: '2115:3947' , renderWidth: 1728},
   { id: 'sav', label: 'SAV (Piqueray)', kind: 'contract', contractId: 'ds.sav', fileKey: PIQUERAY, setNodeId: '2108:3105' , renderWidth: 1550},
+  // Formulaire (vague 036, 2026-09-08) : la 13e section entre enfin dans la mesure — le
+  // candidat v2 `2782:38403` de la planche 031·21, aux largeurs d'écran (390…1728).
+  { id: 'formulaire', label: 'Formulaire (Piqueray)', kind: 'contract', contractId: 'ds.formulaire', fileKey: PIQUERAY, setNodeId: '2782:38403' , renderWidth: 1728},
   { id: 'devis', label: 'Devis (Piqueray)', kind: 'contract', contractId: 'ds.devis', fileKey: PIQUERAY, setNodeId: '2096:2524' , renderWidth: 1728},
   { id: 'faq', label: 'FAQ (Piqueray)', kind: 'contract', contractId: 'ds.faq', fileKey: PIQUERAY, setNodeId: '2104:2914' , renderWidth: 1550},
   // Coordonnees porte 2 icônes et Header 3 : `core/emit-html.ts` ne rend NI

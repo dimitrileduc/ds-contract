@@ -497,7 +497,7 @@
   flex-shrink: 0;
 }
 
-/* FAQ — from ds.faq v2.0.0 (core/emit-html.ts) */
+/* FAQ — from ds.faq v2.1.0 (core/emit-html.ts) */
 
 .faq, .faq *, .faq *::before, .faq *::after {
   box-sizing: border-box;
@@ -531,6 +531,14 @@
   gap: var(--space-48);
 }
 
+.faq--presentation-desktop {
+  align-items: center;
+}
+
+.faq--presentation-wide {
+  align-items: center;
+}
+
 .faq__SectionHeader {
   display: flex;
   flex-direction: column;
@@ -546,6 +554,14 @@
 
 .faq--presentation-wide .faq__SectionHeader {
   gap: var(--space-16);
+}
+
+.faq--presentation-desktop .faq__SectionHeader {
+  align-items: center;
+}
+
+.faq--presentation-wide .faq__SectionHeader {
+  align-items: center;
 }
 
 .faq__Accroche {

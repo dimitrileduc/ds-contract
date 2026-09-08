@@ -1,4 +1,4 @@
-/* Input — from ds.input v1.0.0 (core/emit-html.ts) */
+/* Input — from ds.input v2.0.0 (core/emit-html.ts) */
 
 .input, .input *, .input *::before, .input *::after {
   box-sizing: border-box;
@@ -11,16 +11,29 @@
   border: 0;
   box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
   background-color: var(--color-blanc);
-  --dsc-border-color: var(--color-bleu-gris);
+  --dsc-border-color: var(--color-noir);
+  --dsc-border-width: var(--border-width-1);
   color: var(--color-noir);
   font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-14);
+  font-size: var(--font-size-16);
   font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
   padding-block: var(--space-12);
   padding-inline: var(--space-12);
-  --dsc-border-width: 1px;
   border-radius: 0px;
-  line-height: 24px;
+}
+
+.input:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+.input:focus-visible {
+  outline-color: var(--color-etat-champ-anneau-focus);
+}
+
+.input:focus-visible {
+  outline-width: var(--border-width-2);
 }
 
 /* showcase chrome */

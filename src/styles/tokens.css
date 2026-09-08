@@ -29,6 +29,7 @@
   --color-transparent: #FFFFFF00;
   --color-noir-profond: #131416;
   --color-noir-voile-55: #0000008C;
+  --color-vert: #237A3C;
   --nav-state: Transparent;
   --opacity-base: 100;
   --font-family-montserrat: Montserrat, sans-serif;
@@ -107,6 +108,10 @@
   --size-avantage-text: 687px;
   --size-avantage-root-w: 759px;
   --size-avantage-root-h: 75px;
+  --size-avantage-icone-mobile: 40px;
+  --size-avantage-icone-tablette: 40px;
+  --size-avantage-icone-desktop: 64px;
+  --size-avantage-icone-wide: 64px;
   --size-carte-reassurance-image: 364px;
   --size-carte-categorie-image: 418px;
   --size-carte-root: 363.5px;
@@ -193,6 +198,8 @@
   --size-logo-width: 180px;
   --size-logo-height: 34px;
   --size-formulaire-root: 1550px;
+  --size-formulaire-panneau-desktop: 528px;
+  --size-formulaire-panneau-wide: 759px;
   --size-header-root: 1728px;
   --size-header-icone: 24px;
   --size-equipe-root: 1728px;
@@ -269,6 +276,7 @@
   --color-etat-carte-categorie-voile-survol: var(--color-noir-voile-55);
   --color-etat-accordion-row-chevron-survol: var(--color-orange);
   --color-etat-accordion-row-anneau-focus: var(--color-noir-bleute);
+  --color-etat-champ-anneau-focus: var(--color-noir-bleute);
   --typography-titre-1-family: var(--font-family-montserrat);
   --typography-titre-1-size: var(--font-size-48);
   --typography-titre-1-weight: var(--font-weight-medium);
@@ -404,6 +412,7 @@
   --spacing-menu-entree-pad-v: var(--space-12);
   --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-mobile);
   --spacing-product-card-width: var(--size-product-card-mobile);
+  --spacing-avantage-icone: var(--size-avantage-icone-mobile);
 }
 
 /* viewport mode "tablette" — from {breakpoint.tablette} = 768px */
@@ -455,6 +464,7 @@
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
     --spacing-product-card-width: var(--size-product-card-tablette);
+    --spacing-avantage-icone: var(--size-avantage-icone-tablette);
   }
 }
 
@@ -507,6 +517,7 @@
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
     --spacing-product-card-width: var(--size-product-card-desktop);
+    --spacing-avantage-icone: var(--size-avantage-icone-desktop);
   }
 }
 
@@ -559,5 +570,6 @@
     --spacing-menu-entree-pad-v: var(--space-4);
     --spacing-menu-entree-hauteur: var(--size-menu-entree-hauteur-tablette);
     --spacing-product-card-width: var(--size-product-card-wide);
+    --spacing-avantage-icone: var(--size-avantage-icone-wide);
   }
 }

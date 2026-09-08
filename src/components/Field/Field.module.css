@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/field.contract.json (ds.field v2.0.0)
+ * Source of truth: contracts/field.contract.json (ds.field v3.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -13,7 +13,9 @@
 .root {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-8);
@@ -28,26 +30,37 @@
 }
 
 .Label {
-  color: var(--color-bleu-gris);
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-semibold);
-  line-height: 25px;
+  color: var(--color-noir-bleute);
+  font-size: var(--typography-body-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--typography-body-line-height);
+}
+
+.MarqueObligatoire {
+  color: var(--color-noir-bleute);
+  font-size: var(--typography-body-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--typography-body-line-height);
 }
 
 .MentionOptionnelle {
-  color: var(--color-bleu-gris);
+  color: var(--color-noir-bleute-72);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
 }
 
 .Saisie {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  width: 100%;
+  min-width: 0;
 }
 
 .messageErreur {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-24);
   color: var(--color-rouge);
 }

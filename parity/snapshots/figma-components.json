@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788814944948,
+  "extractedAt": 1788858937594,
   "sets": [
     {
       "name": "Input",
@@ -2438,6 +2438,205 @@
             "Desktop",
             "Wide"
           ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Formulaire",
+      "nodeId": "2782:38403",
+      "key": "c9fd2b5768aab43a4e1df5dc692d103b05145ab8",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Accroche#2782:240": {
+          "type": "TEXT",
+          "defaultValue": "Une demande de devis ? Une réparation ?",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2782:245": {
+          "type": "TEXT",
+          "defaultValue": "Prenez contact avec nous dès maintenant !",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Consentement#2782:250": {
+          "type": "TEXT",
+          "defaultValue": "En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Wide",
+            "Mobile",
+            "Tablette",
+            "Desktop"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Avantage · candidat v2",
+        "Field · candidat v2",
+        "Input · candidat v2",
+        "Textarea · candidat v2",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Avantage · candidat v2",
+      "nodeId": "2782:38706",
+      "key": "74ddd5695503616aa0a1ea95139a1e9e05d0a3b7",
+      "description": "Avantage — generated from contract ds.avantage v1.0.0",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2088:41": {
+          "type": "TEXT",
+          "defaultValue": "Conseils personnalisés",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2088:42": {
+          "type": "TEXT",
+          "defaultValue": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Input · candidat v2",
+      "nodeId": "2782:43289",
+      "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Valeur#2782:222": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Focus Visible"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Textarea · candidat v2",
+      "nodeId": "2782:43296",
+      "key": "58263ac06e29ffa202c3b2395085c3521ebd9646",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Valeur#2782:223": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Focus Visible"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Field · candidat v2",
+      "nodeId": "2782:43327",
+      "key": "cc5fdd358f9a4668f3e1ed139d1b87f3cc7168de",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Obligatoire#2782:225": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Label#2782:228": {
+          "type": "TEXT",
+          "defaultValue": "Libellé",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Optionnel#2782:231": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Saisie#2782:237": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "2782:43283",
+          "variantOptions": null,
+          "preferredValues": [
+            {
+              "type": "COMPONENT_SET",
+              "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "58263ac06e29ffa202c3b2395085c3521ebd9646"
+            }
+          ]
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Normal",
+          "variantOptions": [
+            "Normal",
+            "Erreur"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Input · candidat v2"
+      ]
+    },
+    {
+      "name": "Select · candidat v2",
+      "nodeId": "2782:46959",
+      "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3",
+      "description": "Select — generated from contract ds.select v1.0.0",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2782:255": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
           "preferredValues": null
         }
       },
@@ -4970,6 +5169,83 @@
           "values": {
             "Value": 400
           }
+        },
+        {
+          "name": "color/vert",
+          "type": "COLOR",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": "#237A3C"
+          }
+        },
+        {
+          "name": "size/avantage/icone/mobile",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 40
+          }
+        },
+        {
+          "name": "size/avantage/icone/tablette",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 40
+          }
+        },
+        {
+          "name": "size/avantage/icone/desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 64
+          }
+        },
+        {
+          "name": "size/avantage/icone/wide",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 64
+          }
+        },
+        {
+          "name": "size/formulaire/panneau/desktop",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 528
+          }
+        },
+        {
+          "name": "size/formulaire/panneau/wide",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Value": 759
+          }
         }
       ]
     },
@@ -6428,6 +6704,17 @@
           "values": {
             "Light": "{font/weight/medium}"
           }
+        },
+        {
+          "name": "color/etat/champ/anneau-focus",
+          "type": "COLOR",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Light": "{color/noir-bleute}"
+          }
         }
       ]
     },
@@ -7054,6 +7341,20 @@
             "Tablette": 322,
             "Desktop": 326,
             "Wide": 363
+          }
+        },
+        {
+          "name": "spacing/avantage/icone",
+          "type": "FLOAT",
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": null,
+          "values": {
+            "Mobile": 40,
+            "Tablette": 40,
+            "Desktop": 64,
+            "Wide": 64
           }
         }
       ]

@@ -58,7 +58,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   ref,
 ) {
   return (
-    <button ref={ref} style={{ ...S.root, ...(V[`etat-${etat}:root`] ?? {}), ...style }} role="tab"  type="button" data-tablist-id={String(tablistId)} {...(({ "defaut": { "aria-selected": "false", "aria-controls": String(panelId), "tabIndex": -1 }, "selectionne": { "aria-selected": "true", "aria-controls": String(panelId), "tabIndex": 0 } } as const)[etat as "defaut" | "selectionne"] ?? {})} {...rest}>
+    <button ref={ref} style={{ ...S.root, ...(V[`etat-${etat}:root`] ?? {}), ...style }} role="tab"  type="button" data-tablist-id={String(tablistId)} {...(({ "defaut": { "aria-selected": "false", "aria-controls": (String(panelId) || undefined), "tabIndex": -1 }, "selectionne": { "aria-selected": "true", "aria-controls": (String(panelId) || undefined), "tabIndex": 0 } } as const)[etat as "defaut" | "selectionne"] ?? {})} {...rest}>
       <span style={{ ...S.libell }}>{libelle}</span>
     </button>
   );

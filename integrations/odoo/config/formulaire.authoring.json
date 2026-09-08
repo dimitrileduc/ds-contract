@@ -1,0 +1,3190 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-formulaire-authoring",
+  "authoringVersion": "3.1.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
+  ],
+  "rootContract": {
+    "id": "ds.formulaire",
+    "version": "3.0.0"
+  },
+  "controls": [
+    {
+      "decisionId": "formulaire-ctl-presentation",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "presentation"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "formulaire-ctl-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "accroche"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-eyebrow\"]",
+      "label": "Sur-titre"
+    },
+    {
+      "decisionId": "formulaire-ctl-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-title\"]",
+      "label": "Titre"
+    },
+    {
+      "decisionId": "formulaire-ctl-items",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "items"
+      },
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"features\"]",
+      "label": "Arguments"
+    },
+    {
+      "decisionId": "formulaire-ctl-consentement",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "consentement"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-consent\"]",
+      "label": "Phrase de consentement"
+    },
+    {
+      "decisionId": "formulaire-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "formulaire-ctl-envoye",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "envoye"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "formulaire-ctl-succes",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "prop": "succes"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-succes\"]",
+      "label": "Ligne de confirmation"
+    },
+    {
+      "decisionId": "avantage-ctl-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"avantage-titre\"]",
+      "label": "Titre de l’argument"
+    },
+    {
+      "decisionId": "avantage-ctl-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_formulaire [data-pqr-part=\"avantage-texte\"]",
+      "label": "Texte de l’argument"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "label"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-optionnel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "optionnel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "obligatoire"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-input-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "inputID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-erreur-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "erreurID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-prenom-ctl-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "prop": "messageErreur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "label"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-optionnel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "optionnel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "obligatoire"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-input-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "inputID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-erreur-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "erreurID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-nom-ctl-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "prop": "messageErreur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "label"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-optionnel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "optionnel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "obligatoire"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-input-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "inputID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-erreur-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "erreurID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-email-ctl-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "prop": "messageErreur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "label"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-optionnel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "optionnel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "obligatoire"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-input-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "inputID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-erreur-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "erreurID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-telephone-ctl-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "prop": "messageErreur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "label"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-optionnel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "optionnel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "obligatoire"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-input-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "inputID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-erreur-id",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "erreurID"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "champ-message-ctl-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "prop": "messageErreur"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-icon-left-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "bouton-ctl-icon-right-glyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "formulaire-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-column",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"column\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-column-en-tete",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column",
+          "enTete"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"en-tete\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-column-en-tete-accroche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column",
+          "enTete",
+          "Accroche"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-eyebrow\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-column-en-tete-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column",
+          "enTete",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-title\"]",
+      "allowedMarks": [
+        "strong"
+      ]
+    },
+    {
+      "decisionId": "formulaire-part-root-column-features",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column",
+          "features"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"features\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-column-features-avantage",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "column",
+          "features",
+          "Avantage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"features-avantage\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"form\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs-barre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs",
+          "barre"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs-barre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs",
+          "texte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs-texte-titre-resume",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs",
+          "texte",
+          "TitreResume"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs-titre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs-texte-lien-email",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs",
+          "texte",
+          "LienEmail"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs-lien-email\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-resume-erreurs-texte-lien-message",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "ResumeErreurs",
+          "texte",
+          "LienMessage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"resume-erreurs-lien-message\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-identite",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangIdentite"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"rang-identite\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-identite-champ-prenom",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangIdentite",
+          "champPrenom"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-identite-champ-nom",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangIdentite",
+          "champNom"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-contact",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangContact"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"rang-contact\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-contact-champ-email",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangContact",
+          "champEmail"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-rang-contact-champ-telephone",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "rangContact",
+          "champTelephone"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-champ-message",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "champMessage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-consentement",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "Consentement"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-consent\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-bouton",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "Bouton"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "formulaire-part-root-form-succes",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "form",
+          "Succes"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"formulaire-succes\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "avantage-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"avantage-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "avantage-part-root-piqueray",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Piqueray"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"avantage-piqueray\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "avantage-part-root-text",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"avantage-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "avantage-part-root-text-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "Titre"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"avantage-titre\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "avantage-part-root-text-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.avantage",
+              "version": "2.0.0"
+            },
+            "viaPart": "Avantage",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "Texte"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"avantage-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-label-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "Label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-label-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-label-marque-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MarqueObligatoire"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-label-mention-optionnelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MentionOptionnelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-optionnel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-saisie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "Saisie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-saisie\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-prenom-part-root-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champPrenom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "messageErreur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-prenom-erreur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-label-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "Label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-label-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-label-marque-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MarqueObligatoire"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-label-mention-optionnelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MentionOptionnelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-optionnel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-saisie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "Saisie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-saisie\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-nom-part-root-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champNom",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "messageErreur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-nom-erreur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-label-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "Label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-label-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-label-marque-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MarqueObligatoire"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-label-mention-optionnelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MentionOptionnelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-optionnel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-saisie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "Saisie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-saisie\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-email-part-root-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champEmail",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "messageErreur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-email-erreur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-label-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "Label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-label-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-label-marque-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MarqueObligatoire"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-label-mention-optionnelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MentionOptionnelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-optionnel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-saisie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "Saisie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-saisie\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-telephone-part-root-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champTelephone",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "messageErreur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-telephone-erreur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-label-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "Label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-label-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-label-marque-obligatoire",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MarqueObligatoire"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-marque\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-label-mention-optionnelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label",
+          "MentionOptionnelle"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-optionnel\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-saisie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "Saisie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-saisie\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "champ-message-part-root-message-erreur",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.field",
+              "version": "3.0.0"
+            },
+            "viaPart": "champMessage",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "messageErreur"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"champ-message-erreur\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "bouton-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "bouton-part-root-icon-left",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "bouton-part-root-icon-only-icon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-icon-only-icon\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "bouton-part-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "bouton-part-root-icon-right",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.formulaire",
+              "version": "3.0.0"
+            },
+            "repeat": false
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.4.0"
+            },
+            "viaPart": "Bouton",
+            "repeat": false
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_formulaire [data-pqr-part=\"bouton-icon-right\"]",
+      "allowedMarks": []
+    }
+  ]
+}

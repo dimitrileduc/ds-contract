@@ -2,10 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.select",
   "name": "Select",
-  "version": "1.0.0",
-  "status": "draft",
+  "version": "2.0.0",
   "category": "atom",
-  "description": "Piqueray select. Extracted from the owner-validated Figma master « Select » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nWrapper pattern (same spirit as Checkbox): the box is presentational, a REAL native <select> inside carries the value and the accessibility, and the Piqueray chevron is a sibling icon — a native <select> cannot hold a custom chevron, so the wrapper gives the exact look AND native semantics. The consumer (Field molecule / form) supplies the real options; the atom shows « Valeur » as the placeholder.\n\nThe chevron is the governed registry icon `chevron-down` (size 24, an instance in the master — reused, never copied). Box styling binds to Piqueray primitives where a token exists; off-scale values (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel. Atom scope only — no label, no state axes (the Field molecule owns them).",
+  "description": "Liste déroulante Piqueray. Relevée sur le candidat v2 « Select · candidat v2 » de la planche 031·21 (2026-09-08 ; composant simple, sans axe State — l'anneau de focus étant code-only, un axe dessiné à la main serait un aperçu creux que la parité refuse), revue et adoptée — pas rédigée à la main.\n\nMotif enveloppe conservé de 1.0.0 : la boîte est présentationnelle, un VRAI <select> natif à l'intérieur porte la valeur et l'accessibilité, le chevron gouverné (registre `chevron-down`, 24) est un frère — un <select> natif ne peut pas héberger un chevron dessiné. Le consommateur fournit les options.\n\nMAJEUR 2.0.0, même passe qu'Input : ancres sur le candidat, bordure color.noir (3:1 exigés), texte 16 px, valeur par défaut vide, anneau de focus déclaré. LIMITE NOMMÉE : le focus se pose sur le <select> intérieur, pas sur la boîte ; le canal d'états d'une part non-racine n'accepte pas outline (color/background-color/border-color seulement), et :focus-within n'est pas un état du schéma. L'anneau du Select est donc un fait CODE-ONLY, à porter dans la feuille Odoo (`.select:focus-within`) et nommé ici. Les props name, id, required, describedBy sont code-only et se posent sur la part `valeur` (le contrôle réel).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -14,7 +13,8 @@
     {
       "name": "value",
       "type": "text",
-      "default": "Texte de saisie",
+      "default": "",
+      "description": "Valeur affichée (option sélectionnée). Vide au repos depuis 2.0.0.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -22,6 +22,62 @@
         },
         "code": {
           "prop": "value"
+        }
+      }
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "default": "",
+      "description": "Nom du champ envoyé au serveur, posé sur le <select> réel. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "name"
+        }
+      }
+    },
+    {
+      "name": "id",
+      "type": "text",
+      "default": "",
+      "description": "Identifiant DOM du <select> réel, cible du htmlFor du libellé porté par Field. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "id"
+        }
+      }
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "default": false,
+      "description": "Attribut natif required sur le <select> réel. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "required"
+        }
+      }
+    },
+    {
+      "name": "describedBy",
+      "type": "text",
+      "default": "",
+      "description": "aria-describedby du <select> réel : identifiant du message d'erreur, unique par champ. Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "describedBy"
         }
       }
     }
@@ -37,25 +93,40 @@
       },
       "tokens": {
         "background-color": "{color.blanc}",
-        "border-color": "{color.bleu-gris}",
+        "border-color": "{color.noir}",
+        "border-width": "{border-width.1}",
         "color": "{color.noir}",
         "font-family": "{font.family.montserrat}",
-        "font-size": "{font.size.14}",
+        "font-size": "{font.size.16}",
         "font-weight": "{font.weight.regular}",
+        "line-height": "{font.line-height.24}",
         "padding-block": "{space.12}",
         "padding-inline": "{space.12}"
       },
       "literals": {
-        "border-width": "1px",
-        "border-radius": "0px",
-        "line-height": "24px"
+        "border-radius": "0px"
       },
       "parts": {
         "valeur": {
           "element": "select",
           "content": {
             "prop": "value"
-          }
+          },
+          "attrs": {
+            "name": "{name}",
+            "id": "{id}",
+            "aria-describedby": "{describedBy}"
+          },
+          "attrsByProp": [
+            {
+              "prop": "required",
+              "map": {
+                "true": {
+                  "required": "required"
+                }
+              }
+            }
+          ]
         },
         "chevron": {
           "icon": {
@@ -69,9 +140,9 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "nodeId": "2053:1249",
-      "dumpedAt": "2026-07-24"
+      "componentSetKey": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3",
+      "nodeId": "2782:46959",
+      "dumpedAt": "2026-09-08"
     },
     "code": {
       "importPath": "src/components/Select",

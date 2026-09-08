@@ -62,6 +62,7 @@ import {
   validateContract,
   ELEMENT_META,
 } from './emit-react.js';
+import { isJsxAttrExpression, jsxAttrValueExpression } from './attr-policy.js';
 import {
   ALIGN_CSS,
   gridTracks,
@@ -611,24 +612,15 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     return jsx;
   };
 
-  const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
-  const NUMERIC_ATTR_VALUE = /^-?\d+(?:\.\d+)?$/;
-  const isNumericAttrValue = (attr: string, value: string): boolean =>
-    NUMERIC_ATTRS.has(attr) && NUMERIC_ATTR_VALUE.test(value);
-  const attrValueExpression = (attr: string, value: string): string => {
-    const ref = value.match(/^\{([a-z][\w-]*)\}$/);
-    if (ref) {
-      const code = codePropOf(ref[1]);
-      return NUMERIC_ATTRS.has(attr) ? `Number(${code})` : `String(${code})`;
-    }
-    return isNumericAttrValue(attr, value) ? value : JSON.stringify(value);
-  };
+  // The attribute policy (booleans, empty-means-absent, numerics) is shared by
+  // the three code surfaces — see core/attr-policy.ts and its receipt.
+  const attrValueExpression = (attr: string, value: string): string =>
+    jsxAttrValueExpression(attr, value, codePropOf);
   const partAttrString = (part: Part): string =>
     Object.entries(part.attrs ?? {})
       .map(([attr, value]) => {
-        const isExpression = /^\{([a-z][\w-]*)\}$/.test(value) || isNumericAttrValue(attr, value);
         const expression = attrValueExpression(attr, value);
-        return isExpression ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
+        return isJsxAttrExpression(attr, value) ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
       })
       .join('');
 
@@ -728,7 +720,12 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     ...new Set(
       walkAnatomy(contract)
         .filter((w) => w.part.component)
-        .map((w) => ctx.contracts.get(w.part.component!.id)!.name),
+        .flatMap((w) => [
+          ctx.contracts.get(w.part.component!.id)!.name,
+          // 031·21: a slotted child (component.slots) is a dependency too —
+          // Formulaire.inline.tsx did not even import Textarea before.
+          ...Object.values(w.part.component!.slots ?? {}).map((item) => ctx.contracts.get(item.id)!.name),
+        ]),
     ),
   ];
 
@@ -849,9 +846,22 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const dep = ctx.contracts.get(part.component.id)!;
       const fixedProps = part.component.props ?? {};
       const mappedChildren = componentChildrenJsx(dep, fixedProps);
-      const attrs = depAttrString(dep, fixedProps, mappedChildren !== undefined);
+      // v20 (016) parity with emit-react: component.slots.children — the parent
+      // says what the child's slot holds. Until 031·21 this surface silently
+      // dropped it (a Message field declared as ds.textarea rendered the default).
+      const slotItem = part.component.slots?.['children'];
+      const slotJsx = slotItem
+        ? (() => {
+            const slotDep = ctx.contracts.get(slotItem.id)!;
+            const slotAttrs = depAttrString(slotDep, slotItem.props ?? {});
+            return slotItem.text !== undefined
+              ? `<${slotDep.name}${slotAttrs}>${slotItem.text}</${slotDep.name}>`
+              : `<${slotDep.name}${slotAttrs} />`;
+          })()
+        : undefined;
+      const attrs = depAttrString(dep, fixedProps, mappedChildren !== undefined || slotJsx !== undefined);
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
-      const text = mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
+      const text = slotJsx ?? mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
       const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;

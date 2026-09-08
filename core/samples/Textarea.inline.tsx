@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/textarea.contract.json (ds.textarea v1.0.0)
+ * Source of truth: contracts/textarea.contract.json (ds.textarea v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -20,17 +20,17 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "flex-start",
     "borderStyle": "solid",
     "backgroundColor": "#FFFFFF",
-    "borderColor": "#9BA4B5",
+    "borderColor": "#37373B",
+    "borderWidth": "1px",
     "color": "#37373B",
     "fontFamily": "Montserrat, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "16px",
     "fontWeight": 400,
+    "lineHeight": "24px",
     "paddingBlock": "12px",
     "paddingInline": "12px",
     "height": "128px",
-    "borderWidth": "1px",
-    "borderRadius": "0px",
-    "lineHeight": "24px"
+    "borderRadius": "0px"
   },
   "texteDeSaisie": {}
 };
@@ -39,20 +39,33 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {};
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** Valeur saisie. Vide au repos depuis 2.0.0. */
   value?: string;
+  /** Aide à la saisie, visible seulement quand la zone est vide. Code-only. */
+  placeholder?: string;
+  /** Nom du champ envoyé au serveur. Code-only ; posé explicitement par le formulaire. */
+  name?: string;
+  /** Identifiant DOM, cible du htmlFor du libellé porté par Field. Code-only, unique par champ. */
+  id?: string;
+  /** Jeton autocomplete HTML. Code-only. */
+  autocomplete?: string;
+  /** Attribut natif required. Code-only ; la marque visible est dessinée par Field. */
+  required?: boolean;
+  /** aria-describedby : identifiant du message d'erreur de ce champ, unique par champ. Code-only. */
+  describedBy?: string;
 }
 
-/** Piqueray multi-line text input. Extracted from the owner-validated Figma master « Textarea » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.
+/** Zone de texte Piqueray sur plusieurs lignes. Relevée sur le candidat v2 « Textarea · candidat v2 » de la planche 031·21 (2026-09-08), revue et adoptée — pas rédigée à la main.
 
-Same native-control bridge as Input: the « Valeur » TEXT property drives the shown text, drawn on the canvas as a text child and carried in code through defaultValue on the native <textarea>. Differs from Input only in shape: a fixed 128px height and top-aligned text (the canvas frame's counter axis is MIN, not CENTER).
+MAJEUR 2.0.0, même passe que Input : ancres sur le candidat, bordure color.noir (3:1 exigés, 11,85:1 obtenus), texte 16 px (zoom iOS), valeur par défaut vide (1.0.0 livrait « Texte de saisie » pré-rempli), anneau de focus dessiné (color.etat.champ.anneau-focus). Ne diffère d'Input que par la forme : hauteur fixe size.textarea.root (128) et texte calé en haut (axe transversal MIN au canevas).
 
-Box styling binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius, 128px height) ride the honest `literals` channel, named. Atom scope only: no label, no state axes — the Field molecule owns them. */
+Les props placeholder, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE), portés par attrs/attrsByProp sans évolution de schéma. Le redimensionnement vertical par l'utilisateur reste possible (aucune règle resize ici : ne pas bloquer une zone où l'on écrit 500 caractères). Limite nommée : trait extérieur 2 px au canevas ≈ outline décalé de 2 px en CSS. */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
-  { value = 'Texte de saisie', style, children, ...rest },
+  { required = false, value = '', placeholder = '', name = '', id = '', autocomplete = 'off', describedBy = '', style, children, ...rest },
   ref,
 ) {
   return (
-    <textarea ref={ref} style={{ ...S.root, ...style }}  {...rest}>
+    <textarea ref={ref} style={{ ...S.root, ...style }} data-required={required || undefined}  name={(String(name) || undefined)} id={(String(id) || undefined)} placeholder={(String(placeholder) || undefined)} aria-describedby={(String(describedBy) || undefined)} autoComplete={(String(autocomplete) || undefined)} {...(({ "true": { "required": true } } as const)[String(required) as "true"] ?? {})} {...rest}>
       <span style={{ ...S.texteDeSaisie }}>{value}</span>
     </textarea>
   );

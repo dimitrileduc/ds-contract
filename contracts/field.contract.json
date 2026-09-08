@@ -2,8 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.field",
   "name": "Field",
-  "version": "2.0.0",
-  "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "version": "3.0.0",
+  "category": "molecule",
+  "description": "Champ de formulaire Piqueray : un libellé, un contrôle de saisie slotté, un message d'erreur. Relevé sur le candidat v2 « Field · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 3.0.0 — la molécule tient enfin ce que les atomes de la spec 004 promettaient quatre fois (« Field s'en occupe ») : le libellé devient un VRAI <label for> relié au contrôle (prop inputID, motif inputID + htmlFor de l'archive demo-51, seul précédent du dépôt) ; le message d'erreur reçoit un identifiant UNIQUE par champ (prop erreurID — 2.0.0 partageait `field-error-message` en dur entre tous les champs, ce qui cassait l'association pour les lecteurs d'écran dès le deuxième champ) ; le libellé passe de bleu-gris 20 SemiBold (2,32:1, illisible) à noir-bleuté sur le rôle typography.body (16/24 puis 18/27 par écran, Medium) ; une marque d'obligation « * » apparaît (prop obligatoire, motif requiredMark de l'archive) ; la bordure de repos du contrôle passe à color.noir (3:1 exigés).\n\nUne molécule n'a pas d'axe présentation : la taille du libellé varie par écran par les jetons typography.body.* (variables Responsive au canevas). L'état Erreur du contrôle est une SURCHARGE de couleur de bordure forwardée au contrôle slotté (control.styles), pas un swap de variante : mesuré le 2026-09-08, des instances imbriquées liées à la même propriété de swap bougent ENSEMBLE. Le canevas ne porte pas aria-invalid : forwardé au contrôle par control.attributes (code-only). L'attribut aria-describedby n'est plus forwardé ici — il est posé par l'atome (prop describedBy) avec l'identifiant fourni par le composant qui compose, pour rester unique.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -50,7 +51,7 @@
       "name": "optionnel",
       "type": "boolean",
       "default": false,
-      "description": "Extracted from Figma \"Optionnel\" BOOLEAN property (added by sync pass).",
+      "description": "Affiche la mention « (optionnel) » après le libellé. Marquer les DEUX catégories (obligatoire et optionnel) est la recommandation Baymard.",
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
@@ -58,6 +59,63 @@
         },
         "code": {
           "prop": "optionnel"
+        }
+      }
+    },
+    {
+      "name": "obligatoire",
+      "type": "boolean",
+      "default": false,
+      "description": "Affiche la marque « * » après le libellé (aria-hidden : l'obligation réelle est l'attribut required du contrôle, annoncé nativement).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Obligatoire"
+        },
+        "code": {
+          "prop": "obligatoire"
+        }
+      }
+    },
+    {
+      "name": "inputID",
+      "type": "text",
+      "default": "",
+      "description": "Identifiant du contrôle slotté : cible du htmlFor du libellé. Code-only ; le composant qui compose fournit la même valeur à l'atome (prop id) et ici.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "inputID"
+        }
+      }
+    },
+    {
+      "name": "erreurID",
+      "type": "text",
+      "default": "",
+      "description": "Identifiant du message d'erreur, unique par champ ; le composant qui compose fournit la même valeur à l'atome (prop describedBy). Code-only.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "erreurID"
+        }
+      }
+    },
+    {
+      "name": "messageErreur",
+      "type": "text",
+      "default": "Message d’erreur",
+      "description": "Texte du message d'erreur, affiché sous le contrôle en état erreur. Dit ce qui manque et comment corriger — jamais « invalide ». Code-only (le canevas dessine le texte témoin).",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "messageErreur"
         }
       }
     }
@@ -68,10 +126,15 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "start"
+        "align": "stretch",
+        "width": "fill"
       },
       "parts": {
         "label": {
+          "element": "label",
+          "attrs": {
+            "htmlFor": "{inputID}"
+          },
           "layout": {
             "direction": "row",
             "align": "start"
@@ -85,20 +148,34 @@
                 "prop": "label"
               },
               "tokens": {
-                "color": "{color.bleu-gris}",
-                "font-size": "{font.size.20}",
-                "font-weight": "{font.weight.semibold}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{typography.body.size}",
+                "font-weight": "{font.weight.medium}",
+                "line-height": "{typography.body.line-height}"
+              }
+            },
+            "MarqueObligatoire": {
+              "text": "*",
+              "attrs": {
+                "aria-hidden": "true"
               },
-              "literals": {
-                "line-height": "25px"
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{typography.body.size}",
+                "font-weight": "{font.weight.medium}",
+                "line-height": "{typography.body.line-height}"
+              },
+              "visibleWhen": {
+                "prop": "obligatoire"
               }
             },
             "MentionOptionnelle": {
               "text": "(optionnel)",
               "tokens": {
-                "color": "{color.bleu-gris}",
+                "color": "{color.noir-bleute-72}",
                 "font-size": "{font.size.14}",
-                "font-weight": "{font.weight.regular}"
+                "font-weight": "{font.weight.regular}",
+                "line-height": "{font.line-height.24}"
               },
               "visibleWhen": {
                 "prop": "optionnel"
@@ -113,7 +190,8 @@
           "layout": {
             "display": "flex",
             "direction": "column",
-            "align": "stretch"
+            "align": "stretch",
+            "width": "fill"
           },
           "slot": {
             "name": "children",
@@ -135,20 +213,13 @@
                     "normal": "false",
                     "erreur": "true"
                   }
-                },
-                "aria-describedby": {
-                  "prop": "etat",
-                  "values": {
-                    "normal": null,
-                    "erreur": "field-error-message"
-                  }
                 }
               },
               "styles": {
                 "border-color": {
                   "prop": "etat",
                   "values": {
-                    "normal": "{color.bleu-gris}",
+                    "normal": "{color.noir}",
                     "erreur": "{color.rouge}"
                   }
                 }
@@ -158,7 +229,7 @@
               {
                 "id": "ds.input",
                 "props": {
-                  "value": "Texte de saisie"
+                  "value": ""
                 }
               }
             ],
@@ -167,38 +238,21 @@
         },
         "messageErreur": {
           "element": "span",
-          "text": "Message d’erreur",
+          "content": {
+            "prop": "messageErreur"
+          },
           "attrs": {
-            "id": "field-error-message"
+            "id": "{erreurID}"
           },
           "tokens": {
             "font-size": "{font.size.14}",
             "font-weight": "{font.weight.regular}",
+            "line-height": "{font.line-height.24}",
             "color": "{color.rouge}"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "erreur"
-          }
-        }
-      },
-      "geometryJustification": {
-        "cause": "typographic-subpixel-rounding",
-        "reason": "Pinned Figma GET records the Label text as Montserrat-SemiBold 600 at 20px/25px in a HUG frame. Chromium retains the source-driven position and line height but resolves the glyph advance fractionally narrower by at most 0.003 of the Field root; no letter-spacing, fixed label width, or transform compensation is introduced.",
-        "bounds": {
-          "root": {
-            "x": 0,
-            "y": 0,
-            "width": 0,
-            "height": 0
-          },
-          "parts": {
-            "label": {
-              "x": 0,
-              "y": 0,
-              "width": 0.0031,
-              "height": 0
-            }
           }
         }
       },
@@ -211,14 +265,13 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
-      "nodeId": "2056:1278",
-      "dumpedAt": "2026-07-27"
+      "componentSetKey": "cc5fdd358f9a4668f3e1ed139d1b87f3cc7168de",
+      "nodeId": "2782:43327",
+      "dumpedAt": "2026-09-08"
     },
     "code": {
       "importPath": "src/components/Field",
       "export": "Field"
     }
-  },
-  "category": "molecule"
+  }
 }

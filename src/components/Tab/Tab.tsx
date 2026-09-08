@@ -31,8 +31,16 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       data-tablist-id={String(tablistId)}
       {...((
         {
-          defaut: { 'aria-selected': 'false', 'aria-controls': String(panelId), tabIndex: -1 },
-          selectionne: { 'aria-selected': 'true', 'aria-controls': String(panelId), tabIndex: 0 },
+          defaut: {
+            'aria-selected': 'false',
+            'aria-controls': String(panelId) || undefined,
+            tabIndex: -1,
+          },
+          selectionne: {
+            'aria-selected': 'true',
+            'aria-controls': String(panelId) || undefined,
+            tabIndex: 0,
+          },
         } as const
       )[etat as 'defaut' | 'selectionne'] ?? {})}
       {...rest}

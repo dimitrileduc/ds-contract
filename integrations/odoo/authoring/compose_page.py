@@ -21,6 +21,8 @@ from lxml import html as LH
 DESC = json.load(open(os.environ.get("PQR_DESCRIPTOR", "/tmp/pqr_compose/descriptor.json"), encoding="utf-8"))
 IMG_DIR = os.environ.get("PQR_IMG_DIR", "/tmp/pqr_imgs")
 ADDON = DESC.get("addon", "piqueray_ds")
+# Lu UNE fois : `write_arch` en a besoin pour chaque vue (voir sa docstring).
+INSTALLED_LANGS = [lang for lang, _name in env["res.lang"].get_installed()]
 
 # Clé conviviale du descripteur -> data-pqr-part candidats (le premier présent
 # dans la carte gagne). Ajouter une nouvelle liste ne demande aucune branche :
@@ -99,12 +101,22 @@ def set_html(el, html):
         el.append(c)
 
 def set_img(root, name, url):
+    """Pose un media de contenu sur une partie.
+
+    Deux formes, une regle : c'est l'element qui decide de l'attribut.
+    · <img>   -> `src`    (le cas d'origine)
+    · <video> -> `poster` (2026-09-08 : le hero video. Le `src` de la video est
+      un asset de l'addon, gouverne, jamais du contenu de page ; seule l'affiche
+      est choisie par le redacteur, exactement comme une image.)
+    """
     el = part(root, name)
     if el is None:
         return
-    img = el if el.tag == "img" else next(iter(el.xpath(".//img")), None)
-    if img is not None:
-        img.set("src", url)
+    for tag, attr in (("video", "poster"), ("img", "src")):
+        node = el if el.tag == tag else next(iter(el.xpath(".//" + tag)), None)
+        if node is not None:
+            node.set(attr, url)
+            return
 
 def set_button(root, cta_part, label):
     el = part(root, cta_part)
@@ -208,7 +220,7 @@ def write_arch(view, arch):
     2026-09-07, Texte SEO). La page composée est la source partout ; ce helper est
     le seul endroit du composeur qui écrit une arch, création comprise.
     """
-    for lang, _name in env["res.lang"].get_installed():
+    for lang in INSTALLED_LANGS:
         view.with_context(lang=lang).write({"arch_db": arch})
 
 def set_disposition(root, component, disposition):
@@ -231,8 +243,6 @@ def build():
     out = []
     for sec in DESC["sections"]:
         comp = sec["component"]
-
-
         root = parse(render(comp))
 
         set_disposition(root, comp, sec.get("disposition"))

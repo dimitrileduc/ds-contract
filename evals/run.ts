@@ -1642,6 +1642,77 @@ const cases: Case[] = [
     },
   },
   {
+    // 031·21 (ds.input 2.0.0 / ds.field 3.0.0 — the contact form): three
+    // attribute facts a real form needs, proven on BOTH code surfaces.
+    //   (a) a DOM boolean attribute bound through attrsByProp reaches React as a
+    //       boolean (`required={Boolean(required)}` / `required={true}`) and HTML
+    //       bare (` required`) — never the string "required" (a TS error);
+    //   (b) a bound value that is EMPTY is ABSENT on a closed list of attributes
+    //       (id, name, htmlFor, placeholder, autoComplete, aria-describedby…):
+    //       `aria-describedby=""` points a screen reader at nothing; while
+    //       `alt=""` (decorative image) keeps reaching the DOM as written;
+    //   (c) the contract spells attributes the React way (htmlFor, autoComplete —
+    //       the demo-51 archive precedent) and the HTML surface spells them the
+    //       HTML way (for, autocomplete) — before, `htmlFor=""` leaked into the
+    //       surface Odoo derives from.
+    // Fixture → eval → claim; adversarial: each check names the exact regression.
+    id: 'form-attrs-boolean-empty-absent-and-html-spelling',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = ContractSchema.parse({
+        id: 'ds.formattrsfixture', name: 'FormAttrsFixture', version: '1.0.0',
+        description: 'Eval fixture: a labelled native input with form attributes.',
+        semantics: { element: 'div' },
+        props: [
+          { name: 'inputID', type: 'text', default: '', bindings: { figma: { kind: 'NONE' }, code: { prop: 'inputID' } } },
+          { name: 'describedBy', type: 'text', default: '', bindings: { figma: { kind: 'NONE' }, code: { prop: 'describedBy' } } },
+          { name: 'alt', type: 'text', default: '', bindings: { figma: { kind: 'NONE' }, code: { prop: 'alt' } } },
+          { name: 'required', type: 'boolean', default: false, bindings: { figma: { kind: 'NONE' }, code: { prop: 'required' } } },
+        ],
+        anatomy: { root: { parts: {
+          label: { element: 'label', attrs: { htmlFor: '{inputID}' }, text: 'Email' },
+          control: {
+            element: 'input',
+            attrs: { id: '{inputID}', 'aria-describedby': '{describedBy}', autoComplete: 'email' },
+            attrsByProp: { prop: 'required', map: { true: { required: 'required' } } },
+          },
+          picture: { element: 'img', attrs: { src: 'x.png', alt: '{alt}' } },
+        } } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/FormAttrsFixture', export: 'FormAttrsFixture' },
+        },
+      });
+      const contracts = new Map([[fixture.id, fixture]]);
+      const { tsx } = coreEmitReact(fixture, { tokens: new Set(), icons: new Map(), contracts });
+      // (a) boolean attribute → boolean JSX, never a string
+      if (!/"required": true\b/.test(tsx) || /"required": "required"/.test(tsx)) {
+        throw new Error('attrsByProp boolean attribute did not reach JSX as a boolean (expected "required": true)');
+      }
+      // (b) empty-means-absent list vs alt=""
+      if (!tsx.includes('aria-describedby={(String(describedBy) || undefined)}')) throw new Error('empty aria-describedby is not dropped on the React surface');
+      if (!tsx.includes('htmlFor={(String(inputID) || undefined)}')) throw new Error('empty htmlFor is not dropped on the React surface');
+      if (!tsx.includes('alt={String(alt)}')) throw new Error('alt="" must keep reaching the DOM (decorative image) — it was wrongly folded into the empty-means-absent list');
+      if (!tsx.includes('autoComplete="email"')) throw new Error('React keeps the autoComplete spelling');
+      // (c) the HTML surface: HTML spelling, empty attributes absent, boolean bare
+      const html = coreEmitHtml(fixture, { tokens: new Set(), icons: new Map(), contracts }).html;
+      if (/htmlFor=|autoComplete=/.test(html)) throw new Error('React attribute spelling leaked into the HTML surface (htmlFor/autoComplete)');
+      if (!html.includes('autocomplete="email"')) throw new Error('autoComplete was not translated to autocomplete on the HTML surface');
+      if (/aria-describedby=""|\sfor=""|\sid=""/.test(html)) throw new Error('an EMPTY bound attribute was emitted on the HTML surface (must be absent)');
+      if (!html.includes('alt=""')) throw new Error('alt="" must be emitted on the HTML surface (decorative image)');
+      if (/required="required"|required=""/.test(html)) throw new Error('a boolean attribute was emitted with a value on the HTML surface (must be bare)');
+      // (d) the THIRD code surface, react-inline, follows the SAME policy — the
+      // three emitters read one table (core/attr-policy.ts). Receipt: the first
+      // version of this fix landed in emit-react and emit-html only, and
+      // Input.inline.tsx kept `"required": "required"` and `id={String(id)}`.
+      const emptyTokens = { primitives: {}, semantic: {}, light: {}, dark: {}, brands: {} };
+      const inline = coreEmitReactInline(fixture, { tokens: emptyTokens, icons: new Map(), contracts, mode: 'light' }).tsx;
+      if (!/"required": true\b/.test(inline) || /"required": "required"/.test(inline)) throw new Error('react-inline: attrsByProp boolean attribute did not reach JSX as a boolean');
+      if (!inline.includes('aria-describedby={(String(describedBy) || undefined)}')) throw new Error('react-inline: empty aria-describedby is not dropped');
+      if (!inline.includes('alt={String(alt)}')) throw new Error('react-inline: alt="" must keep reaching the DOM');
+    },
+  },
+  {
     // v17 native form controls (spec 004, US1): the checkbox and select
     // patterns. A native checkable input reflects its state through
     // `defaultChecked` even with no declared event (the real DOM checked state

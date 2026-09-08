@@ -138,7 +138,7 @@ export class PiquerayFigmaLinkOption extends BaseOptionComponent {
 /** Les seules racines posables. Fermées par défaut, sans exception.
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
  *  (US2). Spec 023 ajoute `.s_pqr_categories_principales`. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video", ".s_pqr_produits_ecommerce"];
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video", ".s_pqr_produits_ecommerce", ".s_pqr_realisations", ".s_pqr_formulaire"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -293,9 +293,24 @@ export const PRODUITS_ECOMMERCE_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_produits_ecommerce ${part}`);
 export const PRODUITS_ECOMMERCE_RICH_TEXT =
     '.s_pqr_produits_ecommerce [data-pqr-part="produits-ecommerce-title"]';
+/** Formulaire 3.0.0 (vague 036, `formulaire.authoring.json`) : sur-titre, titre (gras
+ * autorisé), les trois arguments (titre + texte), le texte de consentement et la
+ * ligne de succès. Les champs, leurs libellés, le résumé d erreurs et le bouton
+ * « Envoyer » restent fixés par composition : la structure du formulaire est gouvernée
+ * (option 2, décision owner 2026-09-08). La ligne de succès est `hidden` au repos :
+ * éditable par la politique, mais invisible dans l éditeur — limite nommée. */
+export const FORMULAIRE_EDITABLE_PARTS = [
+    '[data-pqr-part="formulaire-eyebrow"]',
+    '[data-pqr-part="formulaire-title"]',
+    '[data-pqr-part="avantage-titre"]',
+    '[data-pqr-part="avantage-texte"]',
+    '[data-pqr-part="formulaire-consent"]',
+    '[data-pqr-part="formulaire-succes"]',
+].map((part) => `.s_pqr_formulaire ${part}`);
+export const FORMULAIRE_RICH_TEXT = '.s_pqr_formulaire [data-pqr-part="formulaire-title"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}, ${HERO_VIDEO_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}, ${HERO_VIDEO_RICH_TEXT}, ${FORMULAIRE_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -320,6 +335,7 @@ export const PIQUERAY_REOPENED = [
     ...CATEGORIES_EDITABLE_PARTS,
     ...HERO_VIDEO_EDITABLE_PARTS,
     ...PRODUITS_ECOMMERCE_EDITABLE_PARTS,
+    ...FORMULAIRE_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -638,6 +654,13 @@ export class SetCtaHrefAction extends BuilderAction {
     }
 }
 
+/** La part visée par une action est l'élément édité LUI-MÊME ou un de ses
+ *  descendants — une seule résolution, partagée par les actions qui la
+ *  demandent (lien générique, plan d'accès). */
+function noeudDePart(editingElement, selector) {
+    return editingElement.matches?.(selector) ? editingElement : editingElement.querySelector(selector);
+}
+
 /** ODOO-022 — variante générique du lien : l'ancre PORTE elle-même l'adresse
  * `data-pqr-part` (icône sociale cliquable, Q-C2), au lieu d'être un
  * `a[data-pqr-part="button-root"]` sous une part hôte. Même grammaire, même
@@ -646,10 +669,7 @@ export class SetCtaHrefAction extends BuilderAction {
 export class SetLinkHrefAction extends BuilderAction {
     static id = "pqrSetLinkHref";
     ancre(editingElement, part) {
-        if (!part) return null;
-        return editingElement.matches?.(`a[data-pqr-part="${part}"]`)
-            ? editingElement
-            : editingElement.querySelector(`a[data-pqr-part="${part}"]`);
+        return part ? noeudDePart(editingElement, `a[data-pqr-part="${part}"]`) : null;
     }
     getValue({ editingElement, params: { mainParam } = {} }) {
         return this.ancre(editingElement, mainParam)?.getAttribute("href") || "";
@@ -696,9 +716,7 @@ export class SetLinkHrefAction extends BuilderAction {
 export class SetMapAddressAction extends BuilderAction {
     static id = "pqrSetMapAddress";
     plan(editingElement) {
-        return editingElement.matches?.('[data-pqr-part="coordonnees-map"]')
-            ? editingElement
-            : editingElement.querySelector('[data-pqr-part="coordonnees-map"]');
+        return noeudDePart(editingElement, '[data-pqr-part="coordonnees-map"]');
     }
     /** Remet à niveau une page figée d'avant le 2026-09-08 : l'ancienne `<img>`
      *  devient le conteneur + son iframe, avec les mêmes classes et le même
