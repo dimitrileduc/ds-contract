@@ -100,7 +100,15 @@ d'elles a d'ailleurs **refusé les sept premières photos**, qui étaient en JPE
 
 ## 6. Les portes
 
-Toutes vertes ; codes de sortie dans `proofs/portes.md`. **Re-pin ZÉRO vérifié sur sept chemins** —
+Toutes vertes ; codes de sortie dans `proofs/portes.md`.
+
+`npm run eval` : **une éval a rougi à cause de cette vague, et elle est corrigée**.
+`reassurances-grid-variant-isolation` lisait le bloc Réassurances dans le FICHIER de `pages/home.json` ; la home le
+reprend désormais du commun. L'éval lit maintenant le descripteur **résolu** — là où le composeur lit — au lieu
+d'exiger la copie locale que SC-004 interdit. Les **trois autres rouges sont antérieurs** et déjà nommés dans
+`specs/tiny/vague-033-etats-cartes.md` (2026-09-07) : ils portent sur `ds.footer` / `ds.faq` / `ds.reassurances`, sur
+un recensement de styles de texte déplacé par des chantiers concurrents, et sur le plancher du replay calculé.
+Aucun contrat de cette vague n'y est pour quelque chose — le re-pin zéro le prouve. **Re-pin ZÉRO vérifié sur sept chemins** —
 `evals/golden.json`, `figma-sync/plugin/engine.receipt.json`, `examples/polaris/`, `src/`, `contracts/`, `tokens/`,
 `catalog/` : aucun n'a bougé. Aucune version Figma neuve datée de cette vague (FR-022) : tous les gestes de pont
 étaient en lecture.

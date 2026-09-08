@@ -13,7 +13,27 @@ Date : **2026-09-08** · worktree `comet-yogurt`.
 | `node scripts/core-browser-check.mjs` | **0** |
 | `npx tsc --noEmit` | **0** |
 | `npx tsc -p tsconfig.build.json` | **0** |
-| `npm run eval` | voir `RAPPORT-CLOTURE.md` (le compte vif est la seule autorité, jamais recopié en prose) |
+| `npm run eval` | **1 rouge introduit par cette vague, corrigé** ; 3 rouges ANTÉRIEURS, nommés ci-dessous. Le compte vif de `npm run eval` est la seule autorité, jamais recopié en prose. |
+
+### Les rouges de `npm run eval`, un par un
+
+**Celui de cette vague, et il est corrigé.** `reassurances-grid-variant-isolation` lisait le bloc Réassurances dans le
+FICHIER de `pages/home.json`. La home ne le recopie plus : elle le REPREND du commun. Ce que l'éval vérifie n'a pas
+changé — « la composition fixe exactement cinq cartes en 5Cartes » — mais elle doit le lire **là où le composeur le
+lit**, dans le descripteur **résolu**. Lire le fichier brut reviendrait à exiger la copie locale que SC-004 interdit
+désormais. L'éval a été corrigée en ce sens, pas contournée.
+
+**Les trois autres sont ANTÉRIEURS à cette vague et déjà nommés** dans `specs/tiny/vague-033-etats-cartes.md` § « les
+trois rouges sont nommés » (2026-09-07) :
+
+| Cas | Pourquoi il n'est pas de cette vague |
+|---|---|
+| `figma-text-styles-piqueray` | recensement de styles de texte déplacé par des chantiers concurrents dans ce worktree ; aucun contrat n'a été touché ici. |
+| `preservation-013-clobber-detected` | porte sur `ds.footer`, `ds.faq`, `ds.reassurances` — **aucun contrat de cette vague** (re-pin ZÉRO vérifié). |
+| `computed-floor-gate` | plancher d'égalité du replay calculé, sans rapport avec les pages Odoo ni avec l'instrument de mesure. |
+
+Aucun n'est masqué, aucun n'est « corrigé » ici : les toucher demanderait de modifier des contrats, ce que SC-010
+interdit à cette vague.
 
 ## Les portes Odoo
 

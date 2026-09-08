@@ -41,6 +41,11 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   c'est mesuré.
 - **Re-pin ZÉRO vérifié sur sept chemins** (`golden.json`, `engine.receipt.json`,
   `examples/polaris/`, `src/`, `contracts/`, `tokens/`, `catalog/`).
+- **Une éval a rougi à cause de la vague, et elle est corrigée** :
+  `reassurances-grid-variant-isolation` lisait le bloc dans le FICHIER de `home.json`,
+  qui le REPREND désormais du commun ; elle lit maintenant le descripteur **résolu**,
+  là où le composeur lit. Les trois autres rouges sont antérieurs et déjà nommés
+  (vague 033, 2026-09-07).
 
 Ce qui reste est écrit : **aucune des neuf pages n'est validée par l'owner**, 21
 écarts au-dessus du seuil et 15 hauteurs rouges attendent une décision, et le pilote

@@ -4193,10 +4193,18 @@ const cases: Case[] = [
         }
       }
 
-      const home = JSON.parse(readFileSync(path.join(ROOT, 'integrations/odoo/authoring/pages/home.json'), 'utf8'));
+      // 2026-09-08 (spec 037) : la home ne recopie plus le bloc Réassurances, elle
+      // le REPREND du contenu commun (`{"commun": "reassurances"}`). Ce que cette
+      // éval doit vérifier n'a pas changé — « la composition fixe exactement cinq
+      // cartes en 5Cartes » — mais elle doit le lire là où le composeur le lit :
+      // dans le descripteur RÉSOLU, pas dans le fichier de page. Lire le fichier
+      // brut reviendrait à vérifier une copie locale que SC-004 interdit désormais.
+      const resolu = run(TSX, ['scripts/odoo/resolve-page.ts', 'home']);
+      if (resolu.status !== 0) throw new Error(`Accueil Odoo: la résolution du descripteur a échoué :\n${resolu.out}`);
+      const home = JSON.parse(resolu.out);
       const homeReassurances = home.sections.find((section: { component?: string }) => section.component === 's_pqr_reassurances');
       if (!homeReassurances || homeReassurances.disposition !== '5Cartes' || homeReassurances.cards?.length !== 5) {
-        throw new Error('Accueil Odoo: la composition doit fixer exactement cinq cartes en variante 5Cartes');
+        throw new Error('Accueil Odoo: la composition résolue doit fixer exactement cinq cartes en variante 5Cartes');
       }
       const composer = readFileSync(path.join(ROOT, 'integrations/odoo/authoring/compose_page.py'), 'utf8');
       const authoring = readFileSync(path.join(ROOT, 'integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml'), 'utf8');

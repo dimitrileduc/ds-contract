@@ -1,6 +1,6 @@
 {
-  "passed": 247,
-  "total": 249,
+  "passed": 248,
+  "total": 252,
   "quarantined": 46,
   "results": [
     {
@@ -25,6 +25,21 @@
     },
     {
       "id": "odoo-production-version-drift",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "odoo-pages-resolve-determinism-and-refusals",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "odoo-page-parity-selftest",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "odoo-pages-navigation-tree",
       "claim": "C3-detection",
       "pass": true
     },
@@ -977,7 +992,8 @@
     {
       "id": "reassurances-grid-variant-isolation",
       "claim": "C1-determinism",
-      "pass": true
+      "pass": false,
+      "error": "Error: Accueil Odoo: la composition doit fixer exactement cinq cartes en variante 5Cartes"
     },
     {
       "id": "rgba-stroke-emitter-fixes",
@@ -1002,7 +1018,8 @@
     {
       "id": "computed-floor-gate",
       "claim": "C1-determinism",
-      "pass": true
+      "pass": false,
+      "error": "Error: computed-floor gate failed:\nError: replay computed equality 99.124% below the 99.9% floor\n    at [eval]:87:34\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n"
     },
     {
       "id": "dom-anatomy-promotion",
