@@ -1,30 +1,30 @@
 {
-  "cause": "la VUE de l'accueil porte la copie des Réassurances des portes INDUSTRIELLES, pas celle de l'accueil",
-  "date": "2026-09-08T16:37:28.308Z",
-  "diffPixels": 292943,
-  "ecartHauteurPx": -20,
+  "cause": null,
+  "date": "2026-09-08T16:40:20.227Z",
+  "diffPixels": 158479,
+  "ecartHauteurPx": 4,
   "ecartsContenu": [
     "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma.",
     "La section Réassurances de la vue de l'accueil porte la copie des portes INDUSTRIELLES (titre et cinq arguments). Vérifié au pont sur les vues 1200 et 1728. La page rend la copie de l'accueil ; l'écart est à corriger côté Figma."
   ],
   "figma": {
-    "hauteur": 8262,
+    "hauteur": 8238,
     "nodeId": "2674:14994",
-    "sha256": "9867a466f5df50166be2c89b782b13184d9c3673fae570be4bc5796d3241f0c5"
+    "sha256": "477f61d413f33616c1e6cf01aadc43bb5b62ec5dc26314d51634036a272afb20"
   },
-  "hauteurCommune": 8242,
+  "hauteurCommune": 8238,
   "instance": "piqueray-odoo-037",
-  "justification": "Lu au triptyque puis vérifié au pont sur les vues 1200 et 1728 : la section Réassurances de la vue de l'accueil est titrée « Pourquoi choisir nos portes de garage industrielles ? » et porte les cinq arguments industriels (Sécurité et conformité, Intégration parfaite, Moteur performant, SAV & maintenance dédiés, Expérience). La page, elle, rend la copie de l'accueil corrigée le 2026-09-07 (« Pourquoi choisir Piqueray ? »). Les photos sont les MÊMES des deux côtés : l'écart est du TEXTE, pas du rendu. C'est le même défaut de copier-coller que sur la vue Portes d'entrée. À corriger À LA SOURCE (FR-018) ; la page ne bouge pas. L'écart de hauteur, lui, reste dû à la carte de Réassurances qui rend 30 px plus court qu'en vue.",
+  "justification": null,
   "largeur": 834,
   "odoo": {
     "hauteur": 8242,
-    "sha256": "9b07cf3cc23467d55d64c95addc566c31977745806be8221e104d6165d943e7c"
+    "sha256": "5582b02c7585604d7d21816020661e1157f186c7810724c65d28e038f4e4a87f"
   },
   "page": "home",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 4.26,
-  "sectionOrigineDecalage": "s_pqr_reassurances",
+  "scorePct": 2.31,
+  "sectionOrigineDecalage": null,
   "sections": [
     {
       "ecartH": 0,
@@ -105,10 +105,10 @@
       }
     },
     {
-      "ecartH": -24,
-      "ecartYCumule": -24,
+      "ecartH": 0,
+      "ecartYCumule": 0,
       "figma": {
-        "h": 2053,
+        "h": 2029,
         "y": 3830
       },
       "nom": "s_pqr_reassurances",
@@ -119,10 +119,10 @@
     },
     {
       "ecartH": 10,
-      "ecartYCumule": -14,
+      "ecartYCumule": 10,
       "figma": {
         "h": 1392,
-        "y": 5963
+        "y": 5939
       },
       "nom": "s_pqr_google_reviews_section",
       "odoo": {
@@ -137,10 +137,10 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/home/834.png",
-    "sha256": "cf4663385f9f8b1c9f79f60dc6939007bf9711ac09d0bf815dc39642f4af6ab9"
+    "sha256": "00b16c3858079e190efd1b67dda1fcb4dd57871eca5091e525e0ca2fcfa7d2d3"
   },
   "url": "/",
-  "verdictHauteur": "rouge",
-  "verdictPage": "rouge",
+  "verdictHauteur": "bruit",
+  "verdictPage": "vert",
   "verdictPixel": "vert"
 }

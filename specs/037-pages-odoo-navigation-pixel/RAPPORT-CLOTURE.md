@@ -28,7 +28,15 @@ Trois évals neuves couvrent les trois mécanismes, et chacune précède la phra
 
 ## 2. Ce que la mesure dit, sans arrondir
 
-**18 rapports verts sur 36.** Deux pages sont vertes aux quatre largeurs — **Dépannage/SAV** et **Contactez-nous** ;
+**36 rapports sur 36, aucun « impossible » — 25 verts** (15 avant les corrections du jour). **Quatre pages sont
+vertes aux quatre largeurs** : Portes d'entrée, Dépannage/SAV, Contactez-nous, et Motorisation à trois sur quatre.
+Les 36 rapports portent `structure: "égale"`.
+
+Les onze rouges restants tiennent à **cinq causes, toutes nommées et toutes acceptées** : la hauteur de rangée figée
+au desktop (limite de Figma, §6quinquies), le sur-titre vide de la FAQ (16 px, `ds.faq` n'a pas d'axe pour le
+masquer), la section Avis Google (8 à 10 px partout), les trois cartes de Catégories au 1200 seulement, et un
+résidu de coupure du Texte SEO. Aucune n'est corrigée au-delà de ce que l'owner a validé.
+
 **Motorisation** à trois sur quatre, et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
 Les 36 rapports portent `structure: "égale"` : le nombre de sections rendues est celui de la vue, partout.
 

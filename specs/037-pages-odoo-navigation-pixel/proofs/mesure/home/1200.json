@@ -1,7 +1,7 @@
 {
-  "cause": "la maquette FIGE la hauteur de rangée à 561 px au 1200, au-dessus de ce que son propre contenu demande",
-  "date": "2026-09-08T16:37:28.308Z",
-  "diffPixels": 529353,
+  "cause": "la maquette fige la hauteur de rangée au desktop — limite de Figma, écart accepté",
+  "date": "2026-09-08T16:40:20.227Z",
+  "diffPixels": 518386,
   "ecartHauteurPx": -58,
   "ecartsContenu": [
     "Le titre du Devis porte un U+2028 (séparateur de ligne) dans la vue v2 ; la page rend un <br/>. Écart de source, à trancher côté Figma.",
@@ -10,20 +10,20 @@
   "figma": {
     "hauteur": 6233,
     "nodeId": "2647:6734",
-    "sha256": "e351c9fa0e882451aa6ef3b9fbb0d811a59fe7d04b9149314e9862fbd33d12fc"
+    "sha256": "3cd026fe2a284537eddd8edec0866d3e5dea7685495ee9cf7edcd8cfb6ca84f4"
   },
   "hauteurCommune": 6175,
   "instance": "piqueray-odoo-037",
-  "justification": "Relevé au pont, sur cinq vues : au 1200 la grille des Réassurances a `gridRowSizes: [FIXED 561, FIXED 561]` — une hauteur de rangée ÉCRITE EN DUR, la même sur toutes les pages, quel que soit le contenu. Sur À Propos la carte la plus haute demande 531 px : la maquette impose donc 30 px de vide. Sur Portes résidentielles elle demande 558 : 3 px de vide. Aux largeurs 390 et 834 il n'y a pas de grille du tout (une rangée flex, une colonne flex) et nos pages y sont vertes.\n\nNotre grille CSS, elle, dimensionne les rangées SUR LE CONTENU. Vérification faite, cartes chargées avec leurs polices : nos cinq blocs de texte mesurent 54/81/81/54/81 px — exactement comme la maquette. Le texte se coupe au même endroit, la police, le corps, l'interligne et l'approche sont identiques.\n\nCONCLUSION : l'écart n'est pas un défaut de la page. Reproduire la maquette voudrait dire figer 561 px de rangée dans le CSS — ce qui casserait au premier texte modifié. La correction appartient à la SOURCE : retirer la hauteur fixe de la grille au 1200 et la laisser suivre son contenu.\n\nPREMIÈRE LECTURE ERRONÉE, corrigée ici : « il manque 30 px de blanc sous le texte de la carte ». C'était une déduction à partir du triptyque seul, sans avoir mesuré la grille.",
+  "justification": "Au desktop seulement (les trois autres formats n'ont pas de grille), la maquette écrit la hauteur de rangée en dur : 561 px. Ce n'est pas un reste : c'est le SEUL moyen, dans Figma, d'obtenir cinq cartes de même hauteur — rangée en `hug` + cartes en `fill` est impossible (un enfant Fill empêche le parent de hug), en `hug`+`hug` les cartes cessent d'être égales, et l'équivalent d'`align-items: stretch` n'existe pas dans la grille Figma. Une grille CSS le fait nativement. Décision du 2026-09-08 : écart ACCEPTÉ, des deux côtés. Détail : registre §6quinquies.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 6175,
-    "sha256": "c46482818e2b496ff195c761efa85e1dde695c2cf65026dee757dd7b3dc0cf1d"
+    "sha256": "99a31cef39cc51a0ca699116905302860b4ac62a084a523bba8d10c6b755adf1"
   },
   "page": "home",
   "raisonImpossible": null,
   "regleCadrage": "alignées en haut, comparées sur la hauteur commune ; l’écart de hauteur est rapporté à côté du score, jamais fondu dedans",
-  "scorePct": 7.14,
+  "scorePct": 7,
   "sectionOrigineDecalage": "s_pqr_reassurances",
   "sections": [
     {
@@ -137,7 +137,7 @@
   "toleranceHauteurPx": 10,
   "triptyque": {
     "chemin": ".page-parity/037/home/1200.png",
-    "sha256": "6f9446860f47a9de31cb56841ea2f29769330254083c7c3da2e852ac59054730"
+    "sha256": "f2f151e6c09096028ef9e2e8767b279358f9379edeba9f32ac9bc0a5dfa61121"
   },
   "url": "/",
   "verdictHauteur": "rouge",

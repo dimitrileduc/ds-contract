@@ -56,6 +56,6 @@ Ce que cette validation ne couvre PAS, et qui reste ouvert :
   texte. Corriger le composant est un chantier à part (cette vague s'interdisait de toucher aux blocs, SC-010).
 - **Le titre des Réassurances de l'accueil.** La VUE porte la copie des portes industrielles ; la page porte la bonne.
   Correction attendue **côté Figma**.
-- **Les seize photos de survol de l'Équipe.** Celles de la vue sont distinctes, celles livrées viennent de la planche
-  de base où elles sont toutes identiques. Non exportées : les dix ports du pont étaient pris.
+- ~~Les seize photos de survol de l'Équipe~~ — **FAIT le 2026-09-08** : les seize de la vue, toutes distinctes,
+  appariées à leur membre. Reste ouvert côté canevas : la planche de base du banc 035 les a toutes identiques.
 - **Trois membres nommés « Prénom / Poste »** dans la vue comme dans la planche de base.

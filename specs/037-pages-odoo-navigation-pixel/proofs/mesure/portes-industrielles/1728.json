@@ -1,5 +1,5 @@
 {
-  "cause": "le sur-titre VIDE de la FAQ coûte quand même son écart de 16 px",
+  "cause": "le sur-titre VIDE de la FAQ coûte son écart de 16 px",
   "date": "2026-09-08T16:38:23.757Z",
   "diffPixels": 339588,
   "ecartHauteurPx": 16,
@@ -14,7 +14,7 @@
   },
   "hauteurCommune": 7694,
   "instance": "piqueray-odoo-037",
-  "justification": "La vue MASQUE le sur-titre (`Accroche`), et l'auto-layout Figma ne compte pas un enfant masqué. Côté Odoo le `<span>` existe toujours — vidé, il mesure 0 px, mais l'écart de 16 px de l'en-tête reste. Le bloc n'a pas d'option « sans sur-titre » : c'est une limite de `ds.faq`, nommée ici, pas contournée dans la page.",
+  "justification": "La vue masque le sur-titre ; l'auto-layout Figma ne compte pas un enfant invisible, le DOM si — le `<span>` vidé mesure 0 px mais l'écart de l'en-tête reste. `ds.faq` n'a pas d'axe « sans sur-titre » (contrairement à `ds.realisations`, dont l'axe `enTete` a servi le 2026-09-08). L'ajouter serait une vague de plus pour 16 px : écart ACCEPTÉ, nommé.",
   "largeur": 1728,
   "odoo": {
     "hauteur": 7710,

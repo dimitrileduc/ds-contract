@@ -17,7 +17,8 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   surchargé **champ par champ**. Prouvé sur les vraies pages : une correction du
   commun atteint les **7** pages qui le reprennent, et **n'atteint pas** celle qui le
   surcharge.
-- **36 rapports de mesure sur 36, aucun « impossible »** — **18 verts**. Dépannage/SAV
+- **36 rapports de mesure sur 36, aucun « impossible » — 25 verts** (15 avant les cinq
+  corrections du jour). Quatre pages vertes aux quatre largeurs. Dépannage/SAV
   et Contactez-nous sont verts aux quatre largeurs ; Motorisation à trois sur quatre,
   et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
 - **Une cause dominante, mesurée et non supposée** : la carte de Réassurances rend
@@ -41,6 +42,19 @@ mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
   c'est mesuré.
 - **Re-pin ZÉRO vérifié sur sept chemins** (`golden.json`, `engine.receipt.json`,
   `examples/polaris/`, `src/`, `contracts/`, `tokens/`, `catalog/`).
+- **Cinq corrections en fin de vague, dont trois À LA SOURCE** : la copie des
+  Réassurances de l'accueil (44 textes, les 4 vues portaient les arguments des portes
+  industrielles) ; le sur-titre des Réalisations en mobile (20/25 au lieu de 14/20, seul
+  des huit variantes resté lié au style de texte — 1 instance) ; l'ordre des seize
+  membres de l'Équipe d'À propos ; la variante d'en-tête des Réalisations de Portes
+  d'entrée (deux lignes de descripteur, le bloc savait déjà le faire) ; et l'approche de
+  15 % absente de quatre sur-titres du dépôt. **Portes d'entrée passe de 10,39/7,25/5,19/7,68 %
+  à 3,68/1,96/1,38/1,53 %.**
+- **Un miroir de version oublié, dénoncé par son propre symptôme** : la génération des
+  liens Figma est passée de « 0 indisponible » à « 6 » (`version-mismatch`) — six
+  panneaux d'édition auraient perdu leur lien vers la maquette. `figma-panels.json` est
+  le CINQUIÈME miroir d'un bump de contrat, après les `*.authoring.json`,
+  `components.xml`, les deux transcriptions JS/TS et la fixture `version-drift`.
 - **Deux corrections posées À LA SOURCE, sur le canevas** : la copie des Réassurances
   des 4 vues de l'accueil (44 textes, elles portaient les arguments des portes
   industrielles) ; et l'ordre des seize membres de l'Équipe d'À propos, côté page.

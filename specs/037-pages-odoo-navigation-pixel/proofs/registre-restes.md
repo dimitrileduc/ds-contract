@@ -243,7 +243,7 @@ plus courte qu'elle n'est. C'est exactement le piège que `docs/16` nomme.*
 | Carte Réassurances 30 px plus courte | **TRANCHÉ le 2026-09-08 : écart accepté.** C'est une limite de Figma, pas un défaut — le 561 en dur est le seul moyen d'y obtenir cinq cartes de même hauteur (§6quinquies). Rien à corriger, ni au canevas ni au site. |
 | Copie des Réassurances de l'accueil | **CORRIGÉE À LA SOURCE le 2026-09-08** : les 4 vues de l'accueil portaient les arguments des portes industrielles. 44 textes réécrits, version nommée posée avant. Trois largeurs sur quatre tombent désormais au pixel sur notre page. |
 | Ordre de l'Équipe d'À propos | Repris depuis la vue. **Fait.** |
-| Photos de survol de l'Équipe | Les seize de la vue sont distinctes et n'ont pas pu être exportées : **les dix ports que le plugin autorise étaient tous pris**, dont un par une autre session travaillant précisément sur les photos de survol. À reprendre quand un port se libère. |
+| Photos de survol de l'Équipe | **FAIT le 2026-09-08.** Un port du pont s'est libéré : les **seize** photos de survol de la vue À Propos ont été exportées et posées, chacune appariée à son membre. Elles sont toutes DISTINCTES. Reste ouvert **côté canevas** : la planche de base du banc 035 les a toujours toutes identiques (défaut nommé en 035). |
 
 ---
 
