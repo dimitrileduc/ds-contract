@@ -37,15 +37,25 @@ correction du descripteur, la recomposition **puis** la mesure avant tout nouvea
 
 | Date | Page | Verdict | Demande |
 |---|---|---|---|
-| — | Accueil | **en attente** | — |
-| — | Portes de garage | **en attente** | — |
-| — | Portes résidentielles | **en attente** | — |
-| — | Portes industrielles | **en attente** | — |
-| — | Portes d'entrée | **en attente** | — |
-| — | Motorisation | **en attente** | — |
-| — | Dépannage/SAV | **en attente** | — |
-| — | À propos | **en attente** | — |
-| — | Contactez-nous | **en attente** | — |
+| 2026-09-08 | Accueil | **validée** | — |
+| 2026-09-08 | Portes de garage | **validée** | — |
+| 2026-09-08 | Portes résidentielles | **validée** | — |
+| 2026-09-08 | Portes industrielles | **validée** | — |
+| 2026-09-08 | Portes d'entrée | **validée** | — |
+| 2026-09-08 | Motorisation | **validée** | — |
+| 2026-09-08 | Dépannage/SAV | **validée** | — |
+| 2026-09-08 | À propos | **validée** | après reprise de l'ordre de l'Équipe le même jour |
+| 2026-09-08 | Contactez-nous | **validée** | — |
 
-**Aucune des neuf pages n'est validée à ce jour.** C'est écrit ainsi plutôt que laissé implicite : les neuf lignes
-sont ouvertes, et la vague ne prétend pas le contraire.
+**Les neuf pages sont validées par l'owner le 2026-09-08**, sur l'instance 8109, après lecture des triptyques et
+reprise de l'ordre de l'Équipe d'À propos.
+
+Ce que cette validation ne couvre PAS, et qui reste ouvert :
+
+- **La carte de Réassurances.** Décision du même jour : *la maquette fait foi* — il manque 30 px de blanc sous le
+  texte. Corriger le composant est un chantier à part (cette vague s'interdisait de toucher aux blocs, SC-010).
+- **Le titre des Réassurances de l'accueil.** La VUE porte la copie des portes industrielles ; la page porte la bonne.
+  Correction attendue **côté Figma**.
+- **Les seize photos de survol de l'Équipe.** Celles de la vue sont distinctes, celles livrées viennent de la planche
+  de base où elles sont toutes identiques. Non exportées : les dix ports du pont étaient pris.
+- **Trois membres nommés « Prénom / Poste »** dans la vue comme dans la planche de base.

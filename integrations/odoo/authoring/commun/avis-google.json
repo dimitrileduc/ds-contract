@@ -1,5 +1,5 @@
 {
-  "_note": "Contenu COMMUN du bloc Avis Google (spec 037, D1). Repris par référence par les sept pages qui le portent. Les destinations « Voir tous les avis » (part ecrire-avis) et « Lire la suite » (par avis) ne sont PAS écrites ici : l'adresse de la fiche Google de Piqueray n'existe nulle part dans le dépôt, et une destination ne s'invente pas (D3). Les boutons gardent donc href=\"#\" et partent au registre des restes (FR-021) — une ligne par part, à trancher par l'owner.",
+  "_note": "Contenu COMMUN du bloc Avis Google (spec 037, D1). Repris par référence par les sept pages qui le portent. Destinations posées le 2026-09-08 : le bouton « Voir tous les avis » et le « Lire la suite » de chaque avis mènent à la FICHE GOOGLE de Piqueray. L'identifiant d'établissement a été relevé dans le lien « avis » du site actuel piqueray.be. Limite dite : Google ne donne pas d'adresse par AVIS — les cinq « Lire la suite » mènent donc à la même page d'avis, pas à l'avis précis.",
   "component": "s_pqr_google_reviews_section",
   "set_html": {
     "accroche": "Nos avis Google vérifiés",
@@ -12,31 +12,39 @@
       "auteur": "p. syster",
       "initiale": "P",
       "date": "il y a 2 mois",
-      "texte": "super très pro et service après vente présent"
+      "texte": "super très pro et service après vente présent",
+      "lienAvis": "https://www.google.com/maps?cid=8309536980980743310"
     },
     {
       "auteur": "P. Nicole",
       "initiale": "P",
       "date": "il y a 3 mois",
-      "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…"
+      "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…",
+      "lienAvis": "https://www.google.com/maps?cid=8309536980980743310"
     },
     {
       "auteur": "A. Bukhari",
       "initiale": "A",
       "date": "il y a 4 mois",
-      "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…"
+      "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…",
+      "lienAvis": "https://www.google.com/maps?cid=8309536980980743310"
     },
     {
       "auteur": "T. Picard",
       "initiale": "T",
       "date": "il y a 5 mois",
-      "texte": "Dépannage ultra rapide et professionnel"
+      "texte": "Dépannage ultra rapide et professionnel",
+      "lienAvis": "https://www.google.com/maps?cid=8309536980980743310"
     },
     {
       "auteur": "m. martinez",
       "initiale": "m",
       "date": "il y a 6 mois",
-      "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…"
+      "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…",
+      "lienAvis": "https://www.google.com/maps?cid=8309536980980743310"
     }
-  ]
+  ],
+  "links": {
+    "ecrire-avis": "https://www.google.com/maps?cid=8309536980980743310"
+  }
 }

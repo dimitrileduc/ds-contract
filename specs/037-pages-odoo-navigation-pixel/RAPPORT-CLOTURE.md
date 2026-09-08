@@ -90,14 +90,18 @@ Détail complet : `proofs/RAPPORT-MESURE.md`. Ce qui reste : `proofs/registre-re
 
 ## 4. Ce qui n'est PAS fait, nommé
 
-- **Aucune des neuf pages n'est validée par l'owner.** Les neuf lignes sont ouvertes dans
-  `proofs/validations-owner.md`.
+- **Les neuf pages sont validées par l'owner le 2026-09-08** (`proofs/validations-owner.md`), après lecture des
+  triptyques et reprise de l'ordre de l'Équipe d'À propos. La validation ne couvre PAS les quatre points ci-dessous.
 - **Le pilote 8087 n'a pas pu servir** : il est levé par un autre worktree (`oceanic-oak`) et monte les addons de
   celui-ci. Le mettre à jour ferait servir un module qui n'est pas celui de cette vague et dérangerait une autre
   session. La validation est proposée sur 8109, qui porte exactement le module et les pages de ce commit.
   **Décision attendue** : valider là, ou relever le pilote depuis ce worktree.
-- **66 destinations ne sont pas tranchées**, dont l'adresse de la fiche Google et les deux comptes sociaux. La liste
-  fermée des adresses externes autorisées est **vide** : aucune `https://` ne passe aujourd'hui.
+- **16 destinations ne sont pas tranchées** (66 au départ). Le 2026-09-08, trois adresses ont été trouvées et posées —
+  fiche Google, Facebook, Instagram — et cinq pages n'ont plus aucun reste. Des 16 qui restent, **14 attendent la
+  boutique en ligne, qui n'existe pas encore** (décision owner : attente assumée, pas un oubli) ; les deux autres sont
+  le CTA des Réassurances de Portes de garage et le bouton du hero de Contactez-nous, dont la vue ne dit pas la
+  destination. **Écart relevé** : le site actuel pointe vers l'ancien compte Instagram `@piqueraysprl` ; le compte
+  vivant est `@piqueraysrl`, et c'est celui qui est posé.
 - **21 écarts au-dessus du seuil et 15 hauteurs rouges** attendent chacun une décision — corriger le bloc dans une
   vague suivante, corriger la source, ou acquitter.
 - **Les réponses des rangées d'accordéon FERMÉES n'existent nulle part dans les vues.** Elles sont **vides** dans les

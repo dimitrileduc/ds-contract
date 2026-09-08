@@ -5,26 +5,31 @@ Chaque ligne est typée (data-model §9), nomme sa page ou son mécanisme, et di
 
 ---
 
-## 1. `destination-non-tranchée` — 66 boutons ou cartes sans adresse
+## 1. `destination-non-tranchée` — 16 boutons ou cartes sans adresse
 
-Ces boutons EXISTENT dans les blocs et gardent `href="#"`. **Aucune adresse n'a été inventée** : celles qui
-manquent n'existent nulle part dans le dépôt. Sortie vive : `npm run odoo:pages:check -- --json`.
+Ces boutons EXISTENT dans les blocs et gardent `href="#"`. **Aucune adresse n'a été inventée.**
+Sortie vive : `npm run odoo:pages:check -- --json`.
+
+**Le 2026-09-08, trois adresses ont été trouvées et posées** (fiche Google, Facebook, Instagram) : le registre est
+passé de **66 restes à 16**, et cinq pages n'en ont plus aucun.
 
 | Part | Occurrences | Pages | Décision attendue |
 |---|---|---|---|
-| `lire-la-suite` | 40 | a-propos, contactez-nous, depannage-sav, home, portes-de-garage, portes-entree, portes-industrielles, portes-residentielles | l'adresse de chaque avis Google, ou la décision de retirer le bouton |
-| `produit-card` | 9 | home, motorisation | l'adresse de chaque produit sur la boutique |
-| `ecrire-avis` | 8 | a-propos, contactez-nous, depannage-sav, home, portes-de-garage, portes-entree, portes-industrielles, portes-residentielles | l'adresse de la fiche Google de Piqueray (bouton « Voir tous les avis ») |
-| `root-bouton-conteneur` | 2 | home, motorisation | idem, second bouton (bas de section) |
-| `root-entete-bouton` | 2 | home, motorisation | l'adresse de la boutique (bouton « Voir les produits ») |
+| `produit-card` | 9 | home, motorisation | l'adresse de chaque produit — **la boutique n'existe pas encore** (owner, 2026-09-08). Attente assumée, pas un oubli. |
+| `root-bouton-conteneur` | 2 | home, motorisation | idem, second bouton de la section produits — **pas encore de boutique**. |
+| `root-entete-bouton` | 2 | home, motorisation | l'adresse de la boutique (bouton « Voir les produits ») — **pas encore de boutique**. |
 | `reassurances-cta` | 2 | home, portes-de-garage | l'adresse du CTA de Réassurances là où la disposition l'affiche |
-| `hero-cta` | 1 | contactez-nous | l'adresse du CTA du hero de Contactez-nous (la vue ne la dit pas ; aucune ancre `#formulaire` n'existe dans le module) |
-| `coordonnees-facebook-link` | 1 | contactez-nous | l'adresse de la page Facebook |
-| `coordonnees-instagram-link` | 1 | contactez-nous | l'adresse du compte Instagram |
+| `hero-cta` | 1 | contactez-nous | l'adresse du CTA du hero de Contactez-nous — la vue ne la dit pas, et le module n'a aucune ancre `#formulaire` |
 
-Une adresse externe autorisée s'ajoute à `integrations/odoo/authoring/commun/destinations-externes.json`, qui est
-**vide à ce jour** : aucune adresse externe n'est donc admise, et la grammaire refuse toute autre `https://`.
+Les adresses externes autorisées sont dans `integrations/odoo/authoring/commun/destinations-externes.json` —
+**trois** au 2026-09-08. Toute autre `https://` est refusée par la grammaire.
 
+**Écart relevé au passage** : le site actuel `piqueray.be` pointe vers `instagram.com/piqueraysprl` (l'ancienne
+dénomination SPRL) alors que le compte vivant est `@piqueraysrl` — « Piqueray - Portes ». C'est le second qui est posé ;
+à confirmer par l'owner.
+
+**Limite dite** : Google ne donne pas d'adresse par AVIS. Les cinq « Lire la suite » mènent donc à la page d'avis de la
+fiche, pas à l'avis précis.
 ---
 
 ## 2. `commun-figé-par-page` — Odoo ne propage rien
@@ -161,7 +166,7 @@ toutes les pages qui portent le bloc. Ce qui était faux, c'est d'en faire la ca
 |---|---|---|
 | `ODOO-LIMIT-MENU-PARENT-HREF` | Odoo force `url = '#'` sur une entrée de menu **qui a des enfants** (mesuré sur base fraîche ET mise à jour) | « Portes de garage » ne mène pas à `/portes-de-garage` |
 | `ODOO-LIMIT-MENU-PARENT-ACTIF` | `website.menu._is_active()` exige « URL qui correspond **et** pas d'enfants » | « Portes de garage » n'est jamais soulignée sur sa propre page |
-| `ODOO-SOCIAL-NON-CONFIGURE` | `/website/social/facebook` et `/website/social/instagram` répondent **404** sur les neuf pages | les icônes du pied ne mènent nulle part tant que les champs sociaux du site sont vides |
+| `ODOO-SOCIAL-NON-CONFIGURE` | ~~`/website/social/*` répondaient **404**~~ — **RÉSOLU le 2026-09-08** : les deux comptes sont renseignés sur le site, la route répond 303 vers l'adresse. | à reporter sur toute nouvelle instance : c'est un réglage de site, pas du code |
 
 ---
 

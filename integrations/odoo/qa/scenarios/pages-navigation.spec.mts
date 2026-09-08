@@ -161,10 +161,17 @@ async function main(): Promise<void> {
       // s'invente pas. La ligne part au registre des restes ; ce n'est pas un
       // défaut de page, mais ce n'est pas non plus « rien ».
       for (const href of vu.liens) {
-        const r = await page.request.get(`${base}${sansCache(href)}`);
-        if (r.status() === 200) continue;
+        // La clé anti-cache ne se pose QUE sur les pages du site. Les routes
+        // techniques d'Odoo (`/website/social/*`, redirections) refusent un
+        // paramètre inconnu par un 400 — et ce 400 est alors un défaut du TEST,
+        // pas du site. Mesuré le 2026-09-08 : la même route répond 303 sans lui.
+        const estPage = SITE_PAGES.some((sp) => sp.url === href);
+        const r = await page.request.get(`${base}${estPage ? sansCache(href) : href}`, { maxRedirects: 0 });
+        // Une redirection est une réponse valide pour une route technique : la
+        // route sociale d'Odoo répond 303 vers l'adresse configurée.
+        if (r.status() === 200 || (!estPage && r.status() >= 300 && r.status() < 400)) continue;
         if (/^\/website\/social\//.test(href)) {
-          limites.add(`ODOO-SOCIAL-NON-CONFIGURE — « ${href} » répond ${r.status()} : le champ social du site est vide (adresse à fournir par l'owner)`);
+          limites.add(`ODOO-SOCIAL-NON-CONFIGURE — « ${href} » répond ${r.status()} au lieu de rediriger : l'adresse du compte n'est pas configurée sur le site`);
           continue;
         }
         note(`lien mort « ${href} » trouvé sur la page hôte ${p.url}`, false, '200', `HTTP ${r.status()}`);
