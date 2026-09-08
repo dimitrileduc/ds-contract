@@ -33,6 +33,10 @@ RESOLU="$(mktemp -t pqr-page-XXXXXX.json)"
 trap 'rm -f "$RESOLU"' EXIT
 echo "page> résolution de '$NAME'"
 npx tsx "$HERE/../../../scripts/odoo/resolve-page.ts" "$NAME" --out "$RESOLU"
+# `mktemp` crée en 0600 ; `docker cp` conserve le mode, et Odoo tourne sous un
+# autre utilisateur dans le conteneur — le composeur lisait alors
+# « Permission denied » sur un descripteur parfaitement valide (2026-09-08).
+chmod 644 "$RESOLU"
 
 echo "page> construction de '$NAME' dans '$PROJECT'"
 bash "$HERE/run-compose.sh" "$PROJECT" "$RESOLU" "$ASSETS"

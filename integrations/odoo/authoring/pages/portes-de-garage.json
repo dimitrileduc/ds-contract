@@ -4,7 +4,7 @@
   "key": "portes_de_garage",
   "header_overlay": true,
   "meta_title": "Portes de garage Hörmann en Province de Liège | Piqueray",
-  "_note": "Page « Portes de garage » v2 (2026-09-07) : composée avec les blocs v2 (Hero 3.0.0, TexteSEO 4.0.0, lignes 2.0.0) et les blocs 031 déjà responsive, dans l'ordre et avec le contenu de la vue Figma « 031 · DEMO PORTES DE GARAGE — 4 vues » (section 2770:21610), elle-même reprise de la page de référence Pages › Portes de garage. Devis, Réassurances et Avis Google sont identiques à la home (contenu commun, à unifier avant livraison — voir décision owner du 2026-09-07).",
+  "_note": "Page « Portes de garage » v2 (2026-09-07), reprise le 2026-09-08 : Devis, Réassurances et Avis Google ne sont plus copiés ici, ils sont REPRIS du contenu commun (spec 037, FR-004 — c'était la dette nommée dans la note d'origine, « à unifier avant livraison »). Ordre et contenu suivent la vue Figma « 031 · DEMO PORTES DE GARAGE — 4 vues » (section 2770:21610).",
   "sections": [
     {
       "component": "s_pqr_hero",
@@ -17,6 +17,9 @@
       },
       "images": {
         "hero-background": "hero_portes_garage"
+      },
+      "links": {
+        "hero-cta": "/contactez-nous"
       }
     },
     {
@@ -26,12 +29,14 @@
         {
           "titre": "Portes de garage résidentielles",
           "texte": "Sectionnelles, basculantes ou enroulables. Alliez esthétique, confort et isolation pour votre habitat.",
-          "image": "cat_garage"
+          "image": "cat_garage",
+          "lien": "/portes-residentielles"
         },
         {
           "titre": "Portes de garage industrielles",
           "texte": "Solutions robustes, rapides et sécurisées pour vos entrepôts, commerces et bâtiments logistiques.",
-          "image": "cat_industriel"
+          "image": "cat_industriel",
+          "lien": "/portes-industrielles"
         }
       ]
     },
@@ -43,92 +48,19 @@
       },
       "set_button": {
         "button-root": "En savoir plus"
-      }
-    },
-    {
-      "component": "s_pqr_devis",
-      "images": {
-        "devis-background": "devis"
       },
-      "set_html": {
-        "devis-title": "Prenez rendez-vous pour un devis gratuit,<br/>nous nous déplaçons chez vous"
+      "links": {
+        "presentation-cta": "/a-propos"
       }
     },
     {
-      "component": "s_pqr_reassurances",
-      "disposition": "5Cartes",
-      "cards": [
-        {
-          "titre": "Conseil personnalisé",
-          "body": "Devis gratuits réalisés sur place, nous nous déplaçons chez vous.",
-          "image": "rea1"
-        },
-        {
-          "titre": "Produits de qualité",
-          "body": "Partenaire de la marque Hörmann, l’excellence de la qualité allemande.",
-          "image": "rea2"
-        },
-        {
-          "titre": "Peinture",
-          "body": "Mise en peinture personnalisée en cabine pour une finition durable.",
-          "image": "rea3"
-        },
-        {
-          "titre": "Service après-vente",
-          "body": "Une équipe réactive pour vos dépannages et entretiens.",
-          "image": "rea4"
-        },
-        {
-          "titre": "Expérience",
-          "body": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-          "image": "rea5"
-        }
-      ],
-      "set_html": {
-        "reassurances-eyebrow": "Plus de 50 ans d’expérience",
-        "reassurances-title": "Pourquoi choisir Piqueray ?"
-      }
+      "commun": "devis"
     },
     {
-      "component": "s_pqr_google_reviews_section",
-      "set_html": {
-        "accroche": "Nos avis Google vérifiés",
-        "google-reviews-header-title": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>",
-        "note-globale": "4.8",
-        "volume": "93 avis"
-      },
-      "reviews": [
-        {
-          "auteur": "p. syster",
-          "initiale": "P",
-          "date": "il y a 2 mois",
-          "texte": "super très pro et service après vente présent"
-        },
-        {
-          "auteur": "P. Nicole",
-          "initiale": "P",
-          "date": "il y a 3 mois",
-          "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…"
-        },
-        {
-          "auteur": "A. Bukhari",
-          "initiale": "A",
-          "date": "il y a 4 mois",
-          "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…"
-        },
-        {
-          "auteur": "T. Picard",
-          "initiale": "T",
-          "date": "il y a 5 mois",
-          "texte": "Dépannage ultra rapide et professionnel"
-        },
-        {
-          "auteur": "m. martinez",
-          "initiale": "m",
-          "date": "il y a 6 mois",
-          "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…"
-        }
-      ]
+      "commun": "reassurances"
+    },
+    {
+      "commun": "avis-google"
     },
     {
       "component": "s_pqr_texte_seo",

@@ -15,6 +15,9 @@
       },
       "images": {
         "hero-video-poster": "hero_video_facade"
+      },
+      "links": {
+        "button-root": "/contactez-nous"
       }
     },
     {
@@ -24,12 +27,14 @@
         {
           "titre": "Portes de garage",
           "texte": "Une porte de garage pour chaque goût et chaque style de maison.",
-          "image": "cat_garage"
+          "image": "cat_garage",
+          "lien": "/portes-de-garage"
         },
         {
           "titre": "Portes d’entrée",
           "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
-          "image": "cat_entree"
+          "image": "cat_entree",
+          "lien": "/portes-entree"
         }
       ]
     },
@@ -41,6 +46,9 @@
       },
       "set_button": {
         "button-root": "En savoir plus"
+      },
+      "links": {
+        "presentation-cta": "/a-propos"
       }
     },
     {
@@ -48,6 +56,9 @@
       "images": {
         "sav-background": "sav_bg",
         "sav-photo": "sav_tech"
+      },
+      "links": {
+        "sav-cta": "/depannage-sav"
       }
     },
     {
@@ -76,89 +87,14 @@
       ]
     },
     {
-      "component": "s_pqr_devis",
-      "images": {
-        "devis-background": "devis"
-      },
-      "set_html": {
-        "devis-title": "Prenez rendez-vous pour un devis gratuit,<br/>nous nous déplaçons chez vous"
-      }
+      "commun": "devis"
     },
     {
-      "component": "s_pqr_reassurances",
-      "disposition": "5Cartes",
-      "cards": [
-        {
-          "titre": "Conseil personnalisé",
-          "body": "Devis gratuits réalisés sur place, nous nous déplaçons chez vous.",
-          "image": "rea1"
-        },
-        {
-          "titre": "Produits de qualité",
-          "body": "Partenaire de la marque Hörmann, l’excellence de la qualité allemande.",
-          "image": "rea2"
-        },
-        {
-          "titre": "Peinture",
-          "body": "Mise en peinture personnalisée en cabine pour une finition durable.",
-          "image": "rea3"
-        },
-        {
-          "titre": "Service après-vente",
-          "body": "Une équipe réactive pour vos dépannages et entretiens.",
-          "image": "rea4"
-        },
-        {
-          "titre": "Expérience",
-          "body": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-          "image": "rea5"
-        }
-      ],
-      "set_html": {
-        "reassurances-eyebrow": "Plus de 50 ans d’expérience",
-        "reassurances-title": "Pourquoi choisir Piqueray ?"
-      }
+      "commun": "reassurances"
     },
     {
-      "component": "s_pqr_google_reviews_section",
-      "set_html": {
-        "accroche": "Nos avis Google vérifiés",
-        "google-reviews-header-title": "<span>Plus de 1500 portes installées par année et autant de clients satisfaits</span>",
-        "note-globale": "4.8",
-        "volume": "93 avis"
-      },
-      "reviews": [
-        {
-          "auteur": "p. syster",
-          "initiale": "P",
-          "date": "il y a 2 mois",
-          "texte": "super très pro et service après vente présent"
-        },
-        {
-          "auteur": "P. Nicole",
-          "initiale": "P",
-          "date": "il y a 3 mois",
-          "texte": "Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…"
-        },
-        {
-          "auteur": "A. Bukhari",
-          "initiale": "A",
-          "date": "il y a 4 mois",
-          "texte": "Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…"
-        },
-        {
-          "auteur": "T. Picard",
-          "initiale": "T",
-          "date": "il y a 5 mois",
-          "texte": "Dépannage ultra rapide et professionnel"
-        },
-        {
-          "auteur": "m. martinez",
-          "initiale": "m",
-          "date": "il y a 6 mois",
-          "texte": "Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…"
-        }
-      ]
+      "commun": "avis-google"
     }
-  ]
+  ],
+  "_note": "Page d'accueil. Devis, Réassurances et Avis Google sont REPRIS du contenu commun (`authoring/commun/`, spec 037) : les corriger là les corrige partout. Les destinations sont posées par `links` — celles qui manquent encore sont au registre des restes, jamais inventées."
 }

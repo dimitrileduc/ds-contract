@@ -41,7 +41,7 @@ const sha = (b: Buffer): string => createHash('sha256').update(b).digest('hex');
 
 /** Les drapeaux qui consomment la valeur suivante — pour ne pas prendre celle-ci
  *  pour le nom de la page. */
-const DRAPEAUX_A_VALEUR = new Set(['--base', '--out', '--instance']);
+const DRAPEAUX_A_VALEUR = new Set(['--base', '--out', '--instance', '--png']);
 
 const positionnel = (argv: readonly string[]): string | null => {
   for (let i = 0; i < argv.length; i++) {
@@ -72,7 +72,10 @@ async function mesurer(argv: string[]): Promise<number> {
   const base = arg(argv, '--base', 'http://localhost:8109');
   const instance = arg(argv, '--instance', 'piqueray-odoo-037');
   const sortie = path.resolve(arg(argv, '--out', path.join(REPO, 'specs/037-pages-odoo-navigation-pixel/proofs/mesure', page)));
-  const triptyques = path.join(REPO, '.page-parity', '037', page);
+  // Les PNG vivent HORS du dépôt (`.page-parity/`, gitignoré) : ils pèsent des
+  // dizaines de mégaoctets et leur `sha256` suffit à la preuve. `--png` permet
+  // de ranger une campagne à part — c'est ce que fait la capture de l'AVANT (§X).
+  const triptyques = path.resolve(arg(argv, '--png', path.join(REPO, '.page-parity', '037', page)));
   const seulOdoo = argv.includes('--only-odoo');
   const seulFigma = argv.includes('--only-figma');
   const date = new Date().toISOString();
