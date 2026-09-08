@@ -34,10 +34,10 @@ description: "Task list — 037 · Les neuf pages du site sur Odoo"
 
 **Purpose**: rendre ce worktree autonome et poser les points d'entrée, sans encore écrire de mécanisme.
 
-- [ ] T001 Rendre le worktree autonome (constitution Worktree Gates F1, `node_modules` vide au 2026-09-08) : `npm install && npx playwright install chromium` à la racine du worktree, puis `npm run build` et `npx tsc --noEmit` verts ; consigner la sortie dans `specs/037-pages-odoo-navigation-pixel/proofs/f1-worktree.md`
-- [ ] T002 [P] Créer l'instance Odoo **jetable** `piqueray-odoo-037` (compose QA `integrations/odoo/qa/compose.yaml`, image épinglée `odoo:19.0-20260803`, port libre — 8071/8087/8093/8085/8075/8099/8105/18069 pris au 2026-09-08) et écrire nom de projet + port dans `specs/037-pages-odoo-navigation-pixel/proofs/instance.md` (D10)
-- [ ] T003 [P] Déclarer les trois commandes neuves dans `package.json` (pointant vers des fichiers encore vides) : `odoo:pages:check` → `scripts/odoo/resolve-page.ts`, `odoo:pages:measure` → `extract/odoo-page-parity/cli.ts`, `odoo:pages:selftest` → `extract/odoo-page-parity/selftest.ts` (contrats/README.md § Commandes)
-- [ ] T004 [P] Créer l'arborescence de preuves `specs/037-pages-odoo-navigation-pixel/proofs/{mesure,navigation}/` et ignorer les PNG lourds en ajoutant `.page-parity/` à `.gitignore` s'il n'y est pas (décision owner 2026-08-27 : aucune image lourde committée)
+- [X] T001 Rendre le worktree autonome (constitution Worktree Gates F1, `node_modules` vide au 2026-09-08) : `npm install && npx playwright install chromium` à la racine du worktree, puis `npm run build` et `npx tsc --noEmit` verts ; consigner la sortie dans `specs/037-pages-odoo-navigation-pixel/proofs/f1-worktree.md`
+- [X] T002 [P] Créer l'instance Odoo **jetable** `piqueray-odoo-037` (compose QA `integrations/odoo/qa/compose.yaml`, image épinglée `odoo:19.0-20260803`, port libre — 8071/8087/8093/8085/8075/8099/8105/18069 pris au 2026-09-08) et écrire nom de projet + port dans `specs/037-pages-odoo-navigation-pixel/proofs/instance.md` (D10)
+- [X] T003 [P] Déclarer les trois commandes neuves dans `package.json` (pointant vers des fichiers encore vides) : `odoo:pages:check` → `scripts/odoo/resolve-page.ts`, `odoo:pages:measure` → `extract/odoo-page-parity/cli.ts`, `odoo:pages:selftest` → `extract/odoo-page-parity/selftest.ts` (contrats/README.md § Commandes)
+- [X] T004 [P] Créer l'arborescence de preuves `specs/037-pages-odoo-navigation-pixel/proofs/{mesure,navigation}/` et ignorer les PNG lourds en ajoutant `.page-parity/` à `.gitignore` s'il n'y est pas (décision owner 2026-08-27 : aucune image lourde committée)
 
 ---
 
@@ -47,8 +47,8 @@ description: "Task list — 037 · Les neuf pages du site sur Odoo"
 
 **⚠️ CRITICAL**: aucune histoire ne démarre avant la fin de cette phase.
 
-- [ ] T005 Créer `scripts/odoo/lib/pages.ts` : la liste des 9 pages du site (`url` ↔ fichier descripteur ↔ nom court), export typé consommé par le résolveur, `pages-navigation.spec.mts` et `extract/odoo-page-parity/` ; `/` = home. La liste est une **liste blanche des 9 URL écrite en dur**, jamais dérivée d'un motif de nom de fichier : `pages/` contient aussi des descripteurs qui ne sont pas des pages du site et **tous ne finissent pas par `-test.json`** — relevé du 2026-09-08, `hero-video-mesure.json` en est un. Le résolveur en `--check` **refuse en nommant le fichier** tout descripteur de `pages/` qui n'est ni dans la liste blanche ni un `*-test.json` : un nouveau fichier de travail doit être classé, jamais ignoré en silence (§V, data-model §1)
-- [ ] T006 Vérifier que `scripts/odoo/lib/pages.ts` est couvert par le tsconfig racine (`npx tsc --noEmit` vert) et que la liste correspond aux 9 URL du tableau R1 de research.md
+- [X] T005 Créer `scripts/odoo/lib/pages.ts` : la liste des 9 pages du site (`url` ↔ fichier descripteur ↔ nom court), export typé consommé par le résolveur, `pages-navigation.spec.mts` et `extract/odoo-page-parity/` ; `/` = home. La liste est une **liste blanche des 9 URL écrite en dur**, jamais dérivée d'un motif de nom de fichier : `pages/` contient aussi des descripteurs qui ne sont pas des pages du site et **tous ne finissent pas par `-test.json`** — relevé du 2026-09-08, `hero-video-mesure.json` en est un. Le résolveur en `--check` **refuse en nommant le fichier** tout descripteur de `pages/` qui n'est ni dans la liste blanche ni un `*-test.json` : un nouveau fichier de travail doit être classé, jamais ignoré en silence (§V, data-model §1)
+- [X] T006 Vérifier que `scripts/odoo/lib/pages.ts` est couvert par le tsconfig racine (`npx tsc --noEmit` vert) et que la liste correspond aux 9 URL du tableau R1 de research.md
 
 **Checkpoint**: l'identité des 9 pages est unique et typée — US1, US2 et US3 peuvent démarrer (US3 en parallèle sur les 2 pages existantes).
 
