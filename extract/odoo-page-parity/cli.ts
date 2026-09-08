@@ -18,12 +18,11 @@
  * Options : `--base <url>` (défaut http://localhost:8109 — l'instance jetable
  * 037), `--out <dir>`, `--instance <nom>`, `--only-odoo` / `--only-figma`.
  */
-import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { launchBrowser } from '../figma/visual-parity/render.js';
-import { capturerPage } from './capture.js';
+import { capturerPage, empreintePixels } from './capture.js';
 import { comparer } from './compare.js';
 import { MesureImpossible, exporterVue, jetonFigma, lireVueDuCache } from './figma-views.js';
 import { ecrireRapport, rapportImpossible, rapportMesure, reprendreAnnotations } from './report.js';
@@ -36,8 +35,6 @@ export const MANIFESTE = path.join(HERE, 'views.json');
 
 export const lireManifeste = (abs: string = MANIFESTE): Manifeste =>
   JSON.parse(readFileSync(abs, 'utf8')) as Manifeste;
-
-const sha = (b: Buffer): string => createHash('sha256').update(b).digest('hex');
 
 /** Les drapeaux qui consomment la valeur suivante — pour ne pas prendre celle-ci
  *  pour le nom de la page. */
@@ -124,7 +121,9 @@ async function mesurer(argv: string[]): Promise<number> {
         const d = diagnostiquer(figma.enfants, odoo!.sections, manifeste.toleranceHauteurPx);
         rapport = rapportMesure({
           entree: e, nodeId: vue.nodeId,
-          hauteurFigma: figma.hauteur, sha256Figma: sha(figma.octets),
+          // Les deux côtés sont hachés de la MÊME façon — sur les pixels — pour
+          // que les deux empreintes veuillent dire la même chose.
+          hauteurFigma: figma.hauteur, sha256Figma: empreintePixels(figma.png),
           hauteurOdoo: odoo!.hauteur, sha256Odoo: odoo!.sha256,
           comparaison: c, diagnostic: d,
           dossierTriptyques: triptyques,

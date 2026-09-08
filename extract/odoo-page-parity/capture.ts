@@ -30,10 +30,30 @@ export interface CapturePage {
   readonly octets: Buffer;
   readonly largeur: number;
   readonly hauteur: number;
+  /** Empreinte des PIXELS, pas des octets du PNG — voir `empreintePixels`. */
   readonly sha256: string;
   /** Les `#wrap > section` de la page : `data-snippet`, haut, hauteur. */
   readonly sections: readonly Boite[];
 }
+
+/**
+ * L'empreinte d'une capture, prise sur les PIXELS DÉCODÉS et jamais sur les
+ * octets du PNG.
+ *
+ * MESURÉ le 2026-09-08 : deux captures de la même page, au même instant, ont des
+ * pixels RIGOUREUSEMENT identiques (`image-parity` : `identical`, 0 pixel) et des
+ * fichiers PNG DIFFÉRENTS — 1 123 307 contre 1 124 418 octets. L'encodeur de
+ * Chromium ne rend pas le même flux d'un appel à l'autre. Hacher les octets
+ * ferait donc échouer le déterminisme (SC-005) sur une variation qui n'existe
+ * pas à l'écran, et pire : ferait douter d'une page parfaitement stable.
+ * L'empreinte porte donc sur ce que la mesure regarde — la largeur, la hauteur,
+ * et les octets RGBA.
+ */
+export const empreintePixels = (png: PNG): string =>
+  createHash('sha256')
+    .update(`${png.width}x${png.height}:`)
+    .update(png.data)
+    .digest('hex');
 
 /** Hauteur minimale sous laquelle une capture n'est pas une page (§V). */
 export const HAUTEUR_MINIMALE_PX = 10;
@@ -113,7 +133,7 @@ export async function capturerPage(
     }
     return {
       png, octets, largeur: png.width, hauteur: png.height,
-      sha256: createHash('sha256').update(octets).digest('hex'),
+      sha256: empreintePixels(png),
       sections: releve.sections as Boite[],
     };
   } finally {
