@@ -127,6 +127,51 @@ def set_button(root, cta_part, label):
             node.text = label
             return
 
+def _ancre(el, pt):
+    """L'ancre que le panneau d'edition adresse pour cette part.
+
+    Deux resolutions, les MEMES que `SetCtaHrefAction` et `SetLinkHrefAction` :
+    la part est elle-meme une ancre, ou elle HEBERGE un bouton gouverne dont
+    l'ancre interne porte `data-pqr-part="button-root"`. Un lien pose par le
+    fichier et un lien edite ensuite atterrissent donc au meme endroit — le
+    panneau relit l'`href` de cette ancre-la.
+    """
+    if el is None:
+        raise ValueError("Lien impossible : aucune part `%s` dans ce gabarit" % pt)
+    if el.tag == "a":
+        return el
+    a = next(iter(el.xpath('.//a[@data-pqr-part="button-root"]')), None) or next(iter(el.xpath(".//a")), None)
+    if a is None:
+        # REFUS, jamais un silence : un `href` ecrit nulle part est le defaut le
+        # plus cher a trouver — le bouton a l'air normal et ne mene nulle part.
+        raise ValueError("Lien impossible : la part `%s` ne porte aucune ancre" % pt)
+    return a
+
+
+def set_link(root, pt, href):
+    """Pose la DESTINATION d'un bouton de section. Spec 037, T019.
+
+    C'est la SEULE addition de la spec 037 a ce composeur. Le resolveur a deja
+    refuse tout ce qui sort de la grammaire fermee ; ici on ecrit, on ne juge
+    plus. Une carte recoit en plus `data-pqr-cta-href`, comme `repeat_action.js`,
+    pour que le geste de collection retrouve l'adresse au clonage.
+    """
+    a = _ancre(part(root, pt), pt)
+    a.set("href", href)
+    if a.get("data-pqr-carte") is not None or a.get("data-pqr-produit") is not None:
+        a.set("data-pqr-cta-href", href)
+
+
+def set_link_carte(card, href, pt):
+    """Meme geste, a l'echelle d'UNE carte : la carte-categorie et la carte
+    produit SONT des ancres (leur racine porte le lien) ; la carte d'avis, elle,
+    heberge un bouton « Lire la suite »."""
+    a = card if card.tag == "a" else _ancre(card, pt)
+    a.set("href", href)
+    if a.get("data-pqr-carte") is not None or a.get("data-pqr-produit") is not None:
+        a.set("data-pqr-cta-href", href)
+
+
 def fill_list(root, items, variant=""):
     """Remplit UNE collection de cartes/avis, quel que soit le composant.
 
@@ -176,6 +221,12 @@ def fill_list(root, items, variant=""):
         # exactement comme la cle `images` d'une section.
         for pt, name in (item.get("images") or {}).items():
             set_img(card, pt, img_url(name))
+        # Destination de la carte (spec 037) : `lien` pour une carte, `lienAvis`
+        # pour un avis. Absente = `href="#"` conserve — le registre des restes
+        # la porte, on ne l'invente pas.
+        lien = item.get("lien") or item.get("lienAvis")
+        if lien:
+            set_link_carte(card, lien, "lire-la-suite")
         lst.append(card)
 
 ROW_TEMPLATES = {
@@ -260,6 +311,8 @@ def build():
             set_img(root, pt, img_url(name))
         for pt, label in sec.get("set_button", {}).items():
             set_button(root, pt, label)
+        for pt, href in sec.get("links", {}).items():
+            set_link(root, pt, href)
         rem = sec.get("remove_class", [])
         if rem:
             sec_root = part(root, "root")

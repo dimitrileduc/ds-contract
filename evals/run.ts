@@ -376,6 +376,95 @@ const cases: Case[] = [
     }),
   },
   {
+    // 037 — le résolveur de pages Odoo : déterminisme, surcharge PAR CHAMP,
+    // sept refus nommés, et une destination absente qui part au registre plutôt
+    // que d'être inventée. Aucun Docker, aucun réseau : la résolution est une
+    // fonction pure sur des fichiers, et c'est exactement pour ça qu'elle vit
+    // côté hôte (D2) plutôt que dans `compose_page.py`.
+    id: 'odoo-pages-resolve-determinism-and-refusals',
+    claim: 'C2-refusal',
+    run: () => {
+      const FIX = 'evals/fixtures/odoo-pages';
+      const resoudre = (page: string) => run(TSX, ['scripts/odoo/resolve-page.ts', '--fixture', FIX, page]);
+
+      // ---- C1 : deux résolutions rendent le MÊME octet.
+      const a = resoudre('surcharge');
+      if (a.status !== 0) throw new Error(`résolution rouge sur une fixture saine :\n${a.out}`);
+      const b = resoudre('surcharge');
+      if (b.out !== a.out) throw new Error('résolution non déterministe ×2');
+
+      // ---- La surcharge est PAR CHAMP, et l'invariant SC-004 tient : une part
+      // surchargée reste surchargée, une part NON surchargée suit le commun
+      // quand le commun est corrigé. C'est tout l'intérêt du commun ; sans cet
+      // invariant, « unifié » ne voudrait rien dire.
+      const avant = JSON.parse(a.out) as { descripteur: { sections: Record<string, any>[] } };
+      const rea = avant.descripteur.sections[1];
+      if (rea.set_html['reassurances-title'] !== 'Titre de la page') throw new Error('la part surchargée n\'a pas été appliquée');
+      if (rea.set_html['reassurances-eyebrow'] !== 'Sur-titre du commun') throw new Error('une part NON surchargée n\'a pas suivi le commun (fusion par part cassée)');
+      if (rea.cards.length !== 4) throw new Error(`la liste surchargée doit REMPLACER la liste du commun (4 attendues, ${rea.cards.length} vues)`);
+      if (rea.disposition !== '4Cartes') throw new Error('un scalaire surchargé n\'a pas remplacé celui du commun');
+
+      const communRel = `${FIX}/commun/reassurances.json`;
+      const communAbs = path.join(SCRATCH, communRel);
+      const communOriginal = readFileSync(communAbs, 'utf8');
+      try {
+        editJson(communRel, (c: any) => { c.set_html['reassurances-eyebrow'] = 'Sur-titre corrigé'; });
+        const apres = JSON.parse(resoudre('surcharge').out) as { descripteur: { sections: Record<string, any>[] } };
+        const rea2 = apres.descripteur.sections[1];
+        if (rea2.set_html['reassurances-eyebrow'] !== 'Sur-titre corrigé') {
+          throw new Error('une correction du commun n\'atteint pas une part non surchargée — le commun ne sert à rien');
+        }
+        if (rea2.set_html['reassurances-title'] !== 'Titre de la page') {
+          throw new Error('une correction du commun a écrasé une part SURCHARGÉE');
+        }
+      } finally {
+        writeFileSync(communAbs, communOriginal);
+      }
+
+      // ---- C2 : SEPT refus, chacun nommé — fichier, section, clé/part, valeur.
+      const refus: [string, RegExp][] = [
+        ['commun-inconnu', /› section 1 › commun : devis-2 — bloc commun inconnu/],
+        ['orphelin', /› section 1 › titre_du_devis : .* — clé de surcharge orpheline/],
+        ['destination-javascript', /› section 1 › links\.hero-cta : javascript:alert\(1\) — destination hors grammaire/],
+        ['destination-interne-inconnue', /› links\.hero-cta : \/promo-de-mars — chemin interne qui n'est pas une page du site/],
+        ['destination-externe-hors-liste', /› links\.hero-cta : https:\/\/ailleurs\.test\/promo — adresse externe hors de la liste fermée/],
+        ['component-inconnu', /› section 1 › component : s_pqr_bandeau_promo — composant inconnu du module/],
+        ['copie-locale', /› section 1 › component : s_pqr_devis — copie locale interdite/],
+      ];
+      for (const [page, motif] of refus) {
+        const r = resoudre(page);
+        if (r.status === 0) throw new Error(`${page} : une faute a été acceptée`);
+        if (!motif.test(r.out)) throw new Error(`${page} : le refus ne nomme pas ce qu'il refuse :\n${r.out}`);
+      }
+
+      // ---- Une destination ABSENTE n'est pas une faute : le bouton garde son
+      // `href="#"` et la décision qui reste à prendre s'écrit au registre.
+      const sans = resoudre('sans-destination');
+      if (sans.status !== 0) throw new Error(`un bouton sans destination ne doit PAS refuser :\n${sans.out}`);
+      const restes = (JSON.parse(sans.out) as { restes: { part: string }[] }).restes;
+      if (!restes.some((x) => x.part === 'hero-cta')) throw new Error(`le bouton sans destination n'est pas au registre des restes : ${JSON.stringify(restes)}`);
+      const desc = JSON.parse(sans.out).descripteur.sections[0];
+      if (desc.links !== undefined) throw new Error('une destination a été inventée pour un bouton qui n\'en a pas');
+
+      // ---- Contre-épreuve : la grammaire n'est pas rouge par principe. Une
+      // externe PRÉSENTE dans la liste fermée passe — sans quoi les cinq refus
+      // de destination ne prouveraient qu'un refus systématique.
+      const listee = resoudre('destination-externe-listee');
+      if (listee.status !== 0) throw new Error(`une externe listée doit passer :\n${listee.out}`);
+
+      // ---- Le refus des DESCRIPTEURS NON CLASSÉS porte sur le vrai dossier
+      // `pages/` : un fichier de travail se classe, il ne s'ignore pas.
+      const intrus = path.join(SCRATCH, 'integrations/odoo/authoring/pages/brouillon-du-mardi.json');
+      writeFileSync(intrus, '{"url":"/x","name":"x","sections":[{"component":"s_pqr_hero"}]}\n');
+      const check = run(TSX, ['scripts/odoo/resolve-page.ts', '--check']);
+      rmSync(intrus);
+      if (check.status === 0) throw new Error('un descripteur non classé a été ignoré en silence');
+      if (!/brouillon-du-mardi.*descripteur non classé/s.test(check.out)) {
+        throw new Error(`le descripteur non classé n'est pas nommé :\n${check.out}`);
+      }
+    },
+  },
+  {
     id: 'accordion-row-source-cleanup-extraction',
     claim: 'C5-extraction',
     run: () => {

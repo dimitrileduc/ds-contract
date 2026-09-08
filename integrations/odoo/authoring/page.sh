@@ -21,5 +21,18 @@ if [ -z "$NAME" ] || [ ! -f "$DESC" ]; then
   exit 1
 fi
 
+# ── Résolution AVANT Docker (spec 037, D2) ──────────────────────────────────
+# Le descripteur peut reprendre un contenu COMMUN par référence et poser des
+# destinations ; `compose_page.py` ne connaît ni l'un ni l'autre — il tourne
+# dans le conteneur, sans `commun/` sous la main. Le résolveur produit le
+# descripteur RÉSOLU côté hôte et REFUSE en nommant (bloc inconnu, clé
+# orpheline, destination hors grammaire, copie locale d'un bloc commun). Un
+# refus doit coûter une seconde, pas un cycle Docker complet : rien n'est copié
+# dans le conteneur tant que la résolution n'a pas réussi.
+RESOLU="$(mktemp -t pqr-page-XXXXXX.json)"
+trap 'rm -f "$RESOLU"' EXIT
+echo "page> résolution de '$NAME'"
+npx tsx "$HERE/../../../scripts/odoo/resolve-page.ts" "$NAME" --out "$RESOLU"
+
 echo "page> construction de '$NAME' dans '$PROJECT'"
-bash "$HERE/run-compose.sh" "$PROJECT" "$DESC" "$ASSETS"
+bash "$HERE/run-compose.sh" "$PROJECT" "$RESOLU" "$ASSETS"
