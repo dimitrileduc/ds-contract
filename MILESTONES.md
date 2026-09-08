@@ -4,6 +4,49 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-09-08 — 037 : les neuf pages du site existent sur Odoo, et un instrument mesure chacune contre sa vue
+
+Sept pages du site n'existaient pas alors que le menu et les boutons y menaient déjà.
+La vague les compose depuis **un fichier de contenu par page** avec les blocs
+existants — **zéro contrat, zéro jeton, zéro bloc neuf** — et pose l'instrument qui
+mesure une page **entière** contre sa vue Figma v2, aux quatre largeurs.
+
+- **Les neuf adresses répondent.** `npm run odoo:pages:check` : 9 pages, **0 refus**,
+  et **66 destinations non tranchées** au registre — aucune inventée.
+- **Le contenu commun est écrit une fois** (Devis, Réassurances, Avis Google) et
+  surchargé **champ par champ**. Prouvé sur les vraies pages : une correction du
+  commun atteint les **7** pages qui le reprennent, et **n'atteint pas** celle qui le
+  surcharge.
+- **36 rapports de mesure sur 36, aucun « impossible »** — **15 verts**. Dépannage/SAV
+  et Contactez-nous sont verts aux quatre largeurs ; Motorisation à trois sur quatre,
+  et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
+- **Une cause dominante, mesurée et non supposée** : la carte de Réassurances rend
+  **30 px plus court** qu'en vue (grille 1094 px contre 1154 au 1200, à structure
+  identique). Écart de bloc, hors périmètre — nommé, pas corrigé.
+- **Un enfant MASQUÉ dans une vue coûte sa hauteur si on le compose quand même** :
+  Figma ne compte pas un enfant invisible, le DOM si. +80 px sur une page par
+  ailleurs juste, retombés à +18 en suivant la vue.
+- **Odoo force `url = '#'` sur une entrée de menu qui a des enfants** — mesuré sur
+  base fraîche ET mise à jour. Depuis 022, « Portes d'entrée » ne menait donc nulle
+  part ; la migration `19.0.1.17.0` le répare, gardée pour ne jamais toucher au
+  rangement du client.
+- **Les icônes sociales du pied répondent 404 sur les neuf pages** : les champs
+  sociaux du site sont vides. Trouvé par le scénario de navigation, jamais regardé
+  avant.
+- **`compose_page.py` crée une nouvelle pièce jointe à chaque composition** : 286 →
+  399 après une seule reconstruction complète (**+113**).
+- **L'empreinte d'une capture ne peut pas porter sur les octets du PNG** : deux
+  captures aux pixels rigoureusement identiques pesaient 1 123 307 et 1 124 418
+  octets. Le schéma de rapport annonçait un `sha256` déterministe ; c'était faux, et
+  c'est mesuré.
+- **Re-pin ZÉRO vérifié sur sept chemins** (`golden.json`, `engine.receipt.json`,
+  `examples/polaris/`, `src/`, `contracts/`, `tokens/`, `catalog/`).
+
+Ce qui reste est écrit : **aucune des neuf pages n'est validée par l'owner**, 21
+écarts au-dessus du seuil et 15 hauteurs rouges attendent une décision, et le pilote
+8087 n'a pas pu servir — il est levé par un autre worktree. Détail :
+`specs/037-pages-odoo-navigation-pixel/RAPPORT-CLOTURE.md`.
+
 ## 2026-09-04 — 032 : le Bouton répond au geste — le canal d'états rempli pour la première fois, et deux défauts trouvés en lisant avant d'écrire
 
 Le canal `states` existait dans le schéma, rendu par les trois émetteurs, et **vide
