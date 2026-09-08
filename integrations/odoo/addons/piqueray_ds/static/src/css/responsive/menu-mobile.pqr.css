@@ -76,7 +76,7 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
   transform: none;
   visibility: visible;
   opacity: 1;
-  transition: opacity 280ms ease-out, visibility 0s linear 0s;
+  transition: opacity 280ms cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 0s;
 }
 .menu-mobile.offcanvas.hiding {
   transform: none;
@@ -97,20 +97,37 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
   transition: opacity 180ms ease-in;
 }
 body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
-  transition: opacity 280ms ease-out;
+  transition: opacity 280ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Montée des entrées, décalées de 40 ms : un seul moment orchestré à l'ouverture. */
+/* Montée des entrées, décalées de 40 ms : un seul moment orchestré à l'ouverture.
+ * MESURÉ le 2026-09-08 (sonde .page-parity/sous-menu/mobile-anim.mts) : Bootstrap pose
+ * `showing` pendant le fondu (0–290 ms) puis le remplace par `show` ; keyée sur `show`
+ * seul, la montée ne partait qu'À LA FIN du fondu — les entrées apparaissaient une
+ * première fois avec le panneau, puis retombaient à 0 / +16 px pour remonter : deux
+ * apparitions (le « doublon » vu par l'owner). Keyée sur `showing` ET `show` avec la
+ * MÊME déclaration, l'animation démarre avec le fondu et survit au changement de
+ * classe (une animation ne redémarre que si sa déclaration change). */
+/* Repères (2026-09-08, owner « le plus smooth, minimal, clean ») : entrée < 300 ms sur une
+ * décélération FRANCHE (Material 3 « emphasized » cubic-bezier(0.2, 0, 0, 1) : 80 % du chemin
+ * dans les premiers 20 % du temps — Emil Kowalski : l'ease-out donne la réactivité, jamais
+ * d'ease-in à l'entrée), translation petite (12 px, pas 16), sortie plus courte. Le décalage
+ * de 40 ms reste (4 entrées → la dernière est en place à ~400 ms). */
 @keyframes pqr-menu-entree-monte {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree,
 .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
-  animation: pqr-menu-entree-monte 280ms ease-out both;
+  animation: pqr-menu-entree-monte 280ms cubic-bezier(0.2, 0, 0, 1) both;
 }
+.menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree:nth-child(2),
 .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(2) { animation-delay: 40ms; }
+.menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree:nth-child(3),
 .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(3) { animation-delay: 80ms; }
+.menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree:nth-child(4),
 .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(4) { animation-delay: 120ms; }
+.menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree:nth-child(n+5),
 .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree:nth-child(n+5) { animation-delay: 160ms; }
 
 /* Le burger et la croix sont des <button> natifs : habillage navigateur retiré, la
@@ -184,7 +201,7 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
   .menu-mobile.offcanvas.showing,
   .menu-mobile.offcanvas.show {
     transform: none;
-    transition: transform 300ms ease-out, visibility 0s linear 0s;
+    transition: transform 300ms cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 0s;
   }
   .menu-mobile.offcanvas.hiding {
     transform: translateX(100%);
@@ -192,6 +209,7 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
     transition: transform 200ms ease-in;
   }
   /* Pas de montée décalée en Tablette : le glissement est le mouvement. */
+  .menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree,
   .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
     animation: none;
   }
@@ -217,6 +235,7 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
   body:has(#pqr_menu_mobile.show) .offcanvas-backdrop {
     transition: none;
   }
+  .menu-mobile.offcanvas.showing .menu-mobile__nav > .menu-entree,
   .menu-mobile.offcanvas.show .menu-mobile__nav > .menu-entree {
     animation: none;
   }

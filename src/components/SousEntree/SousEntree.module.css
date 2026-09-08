@@ -1,0 +1,56 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/sous-entree.contract.json (ds.sous-entree v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 0;
+  gap: var(--space-4);
+  min-height: var(--size-cible-tactile-min);
+  text-decoration-line: none;
+}
+
+.root:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+.root:focus-visible {
+  outline-color: var(--color-orange);
+}
+
+.root:focus-visible {
+  outline-width: var(--border-width-2);
+}
+
+.texte {
+  color: var(--color-blanc);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-menu-sous-entree-size);
+  font-weight: var(--typography-menu-sous-entree-weight);
+  line-height: var(--typography-menu-sous-entree-line-height);
+}
+
+.etat-actif .texte {
+  color: var(--color-orange);
+}
+
+.root:hover:not(:disabled) .texte {
+  color: var(--color-orange);
+}
+
+.Soulignement {
+  background-color: var(--color-orange);
+  height: var(--size-nav-item-soulignement);
+}

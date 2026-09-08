@@ -1,0 +1,100 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.sous-entree",
+  "name": "SousEntree",
+  "version": "1.0.0",
+  "description": "Une sous-entrée du sous-menu desktop/wide (option A retenue par l'owner le 2026-09-08). Extrait du set 031 `SousEntree` 2793:49492 (journal specs/tiny/vague-031/sous-menu.md). Un lien (`href` = contenu code-only, même règle que ds.nav-item), libellé au style « Sous-entrée menu » (typography.menu-sous-entree : 18/27 en Mobile, 16/24 dès Tablette — donc 16/24 là où ce panneau existe), rangée à la boîte tactile 44 (size.cible-tactile.min). Etat=Actif = page courante : libellé orange + Soulignement orange (hauteur size.nav-item.soulignement), comme NavItem.Actif ; côté Odoo l'état vient de website.menu._is_active(). Survol = libellé orange (canal d'états, non dessiné sur le set — pas de figmaStatePreviews) ; focus visible = anneau orange (border-width.2). Déviation nommée : sur le canevas le libellé est HUG et le Soulignement FILL ; le contrat porte align stretch sur la racine (boîte rendue identique, le soulignement prend la largeur du texte). Le dépliage du panneau est la couche comportement (Odoo), jamais le contrat.",
+  "category": "molecule",
+  "semantics": {
+    "element": "a",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": { "enum": ["repos", "actif"] },
+      "default": "repos",
+      "bindings": {
+        "figma": { "kind": "VARIANT", "property": "Etat", "values": { "repos": "Repos", "actif": "Actif" } },
+        "code": { "prop": "etat" }
+      },
+      "description": "Repos (défaut) ou actif = page courante. Côté Odoo : `child._is_active()`."
+    },
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Portes résidentielles",
+      "bindings": {
+        "figma": { "kind": "TEXT", "property": "Libellé" },
+        "code": { "prop": "libelle" }
+      }
+    },
+    {
+      "name": "href",
+      "type": "text",
+      "default": "/portes-residentielles",
+      "bindings": {
+        "figma": { "kind": "NONE" },
+        "code": { "prop": "href" }
+      },
+      "description": "Cible du lien — contenu, jamais dessiné (même règle que ds.nav-item). Côté Odoo la donnée vient de website.menu."
+    }
+  ],
+  "states": ["hover", "focus-visible"],
+  "anatomy": {
+    "root": {
+      "attrs": { "href": "{href}" },
+      "attrsByProp": [
+        { "prop": "etat", "map": { "actif": { "aria-current": "page" } } }
+      ],
+      "layout": { "display": "flex", "direction": "column", "justify": "center", "align": "stretch" },
+      "declared": { "text-decoration-line": "none" },
+      "tokens": {
+        "gap": "{space.4}",
+        "min-height": "{size.cible-tactile.min}"
+      },
+      "states": {
+        "focus-visible": {
+          "outline-color": "{color.orange}",
+          "outline-width": "{border-width.2}"
+        }
+      },
+      "parts": {
+        "texte": {
+          "content": { "prop": "libelle" },
+          "tokens": {
+            "color": "{color.blanc}",
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{typography.menu-sous-entree.size}",
+            "font-weight": "{typography.menu-sous-entree.weight}",
+            "line-height": "{typography.menu-sous-entree.line-height}"
+          },
+          "tokensByProp": {
+            "prop": "etat",
+            "map": { "actif": { "color": "{color.orange}" } }
+          },
+          "states": {
+            "hover": { "color": "{color.orange}" }
+          }
+        },
+        "Soulignement": {
+          "description": "Trait sous le libellé, page courante seulement. Largeur = celle du texte (racine en colonne étirée).",
+          "tokens": {
+            "background-color": "{color.orange}",
+            "height": "{size.nav-item.soulignement}"
+          },
+          "visibleWhen": { "prop": "etat", "equals": "actif" }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "ae2d1314bdd33d4b6b6d6adbe637ce85bdd4ced6",
+      "nodeId": "2793:49492",
+      "dumpedAt": "2026-09-08"
+    },
+    "code": { "importPath": "src/components/SousEntree", "export": "SousEntree" }
+  }
+}

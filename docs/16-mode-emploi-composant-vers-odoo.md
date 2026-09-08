@@ -4,7 +4,7 @@
 plus une note de spec : c'est **LA référence** de ce type de chantier, citée comme telle dans `CLAUDE.md`.
 Ce qu'un chantier apprend revient ICI — document vivant, pas archive.
 
-**Version** : 2026-09-07 (runbook consolidé après 3 agents seuls sur la recette : AccordionRow, TexteSEO, Hero ; un
+**Version** : 2026-09-08 (runbook consolidé après 3 agents seuls sur la recette : AccordionRow, TexteSEO, Hero ; un
 orchestrateur + owner pour la partie Figma). **Pour** : un agent d'exécution qui n'a PAS le contexte de la journée.
 La PARTIE A dit quoi faire, dans l'ordre, avec la commande exacte, ce que tu dois obtenir, et quand t'arrêter.
 La PARTIE B (plus bas) est l'historique daté : les leçons y sont, la PARTIE A les a déjà intégrées.
@@ -290,6 +290,20 @@ Jamais `npm run eval` (orchestrateur).
   existantes, ne retape pas 11 arrêts.
 - Un fichier étranger dans le worktree (`v9.js`, autres contrats) : une autre session travaille peut-être ici. Ne touche
   pas, ne supprime pas, signale.
+- **Exporter un nœud posé DANS une SECTION de la page 031 rend 149 octets** (mesuré le 2026-09-08 : `Header` Wide 031,
+  `MenuEntree`, la vue « menu ouvert » — tous à 149 ; le cadre `Accueil`, hors section, exporte normalement).
+  `exportAsync({ useAbsoluteBounds: true })` rend l'image réelle (149 → 4 908 octets sur le même nœud). Les outils
+  `figma_capture_screenshot` / `figma_take_screenshot` n'ont pas cette option : pour un nœud en section, passe par
+  `figma_execute` + POST au receveur. Et **ne renvoie JAMAIS un PNG en base64 dans le retour d'un `figma_execute`** :
+  45 Ko de base64 dans le contexte de l'agent, pour rien — le receveur existe pour ça.
+- **Vérifie `/health` d'un receveur AVANT d'y envoyer un octet.** Le 2026-09-08, 9228 et 9230 répondaient tous deux —
+  deux receveurs d'autres sessions (`/tmp/equipe-survol`, `.page-parity/037/vues`) : un POST y aurait « réussi »
+  en rangeant les images ailleurs. Un port qui répond n'est pas ton port ; 9224 et 9226 étaient libres.
+- **Dans une instance, `rotation` (relative-transform) n'est pas surchargeable** — `fills` et `visible` le sont. Pour
+  montrer un chevron retourné sur une instance de Header : masquer le chevron de l'instance, poser un vecteur
+  à toi au même endroit, positionné depuis `absoluteBoundingBox` APRÈS que la mise en page a tourné (les positions
+  lues juste après `createInstance` sont fausses de 25 px).
+- `figma.currentPage = page` est refusé (`documentAccess: dynamic-page`) : `await figma.setCurrentPageAsync(page)`.
 
 ---
 
@@ -698,3 +712,68 @@ envoie. Chaque point a coûté un aller-retour.
 - **Un résumé d'erreurs se teste APRÈS correction partielle, pas seulement à vide** : l'owner a trouvé à la main que les
   deux liens restaient après correction d'un seul champ. Chaque lien du résumé suit son champ (`href="#<id du contrôle>"`,
   `hidden` sinon) ; l'instrument de comportement enchaîne vide → un champ corrigé → plein.
+
+## Complément du 2026-09-08 (soir) — Sous-menu desktop : la proposition Figma AVANT le contrat
+
+Premier composant de ce dépôt dont la source Figma n'existait pas : la barre (`ds.header` 3.0.0) dessine le chevron,
+le menu mobile (`ds.menu-entree`) dessine des sous-entrées, mais **aucun panneau de sous-menu desktop/wide n'a jamais
+été dessiné** (vérifié sur le canevas vif : `NavItem`, `VoileNavigation`, rien d'autre). Odoo sert donc le déroulant
+Bootstrap par défaut depuis la spec 022 (FR-009, différé nommé) — panneau blanc, entrée active en violet Odoo.
+L'ordre §VIII s'applique dans ce cas aussi : **on dessine la source d'abord, puis on contracte, puis on projette** —
+jamais un CSS Odoo « en attendant » qui deviendrait la référence par défaut.
+
+- **Ce qui a été posé** : page `031 · Planches de validation`, section `031 · 22 · SOUS-MENU DESKTOP — ds.sous-menu
+  (proposition · 3 options · 2026-09-08)` (`2793:49079`, à −12000 / 59700, sous Formulaire). Six cadres de démo
+  (Wide 1728 + Desktop 1200 par option) : instance du Header 031 sur la photo du hero + voile, parent « Portes de
+  garage » en état ouvert (libellé orange, chevron retourné), panneau posé sous la barre, texte des sous-entrées
+  aligné sur le libellé du parent. Rien du DS existant n'a été touché : seule une section neuve a été créée.
+- **Les trois options** — A « Rail » (le minimum : trois liens, rail orange 2 px + retrait 22 = le menu mobile ;
+  recommandée pour trois liens) · B « Rail + repères » (une ligne d'aide par lien en bleu-gris + un lien « Toutes nos
+  portes de garage ») · C « Bandeau pleine largeur » (colonne d'intro + trois colonnes avec photo des catégories ;
+  plus lourd, à réserver si le catalogue grandit). Vocabulaire strictement existant : `color/noir-bleute`, `blanc`,
+  `orange`, `blanc-14`, `bleu-gris` ; `space/2·4·12·16·24·32·48` ; `border-width/1` ; styles de texte « Sous-entrée
+  menu » (18/27) et « Paragraphe » (14/24). Aucun jeton neuf, aucun littéral hors la gouttière 89 de Wide (celle du
+  Header) et le retrait 22 du rail (celui de `MenuEntree`, non lié à une variable là non plus — à lier à la source).
+- **Règles d'interaction proposées, à porter côté Odoo quand l'owner aura choisi** : ouverture au CLIC (pattern
+  « disclosure » : bouton + `aria-expanded`, liste de liens, Échap et clic dehors ferment, **pas de `role="menu"`**),
+  jamais au survol seul (NN/g : déclenchement accidentel, inexistant au tactile). Le parent qui a une page se rend
+  joignable par le lien « Toutes nos … » dans le panneau (B, C) — Odoo force `url='#'` sur une entrée qui a des enfants
+  (`ODOO-LIMIT-MENU-PARENT-HREF`, spec 037). États : parent ouvert = orange + chevron haut ; sous-entrée repos blanc,
+  survol orange, page courante orange + soulignement 2 px.
+- **La suite, dans l'ordre du runbook** : l'owner choisit (ou corrige) une option sur la planche → l'orchestrateur
+  en fait un set propre (`SousMenu`, variantes par état, rail et retrait liés aux variables, `MenuEntree` idem) →
+  dump + `extract:figma` → contrat `ds.sous-menu` (molécule, pas d'axe présentation ; ce qui change entre Desktop et
+  Wide passe par des jetons par écran) → `header.xml` remplace le `dropdown-menu` Bootstrap par le gabarit gouverné,
+  `menu_mobile_interaction.js` sert de modèle pour la bascule → portes A5 + test clavier (Tab, Entrée, Échap).
+- **Ce que cette soirée a coûté et qui est maintenant en A6** : l'export à 149 octets des nœuds en section
+  (`useAbsoluteBounds`), deux receveurs fantômes sur 9228/9230, la rotation non surchargeable dans une instance,
+  `setCurrentPageAsync`, et 45 Ko de base64 renvoyés dans un retour d'outil au lieu du receveur.
+
+### Suite du même soir — option A retenue, portée de bout en bout (journal `specs/tiny/vague-031/sous-menu.md`)
+
+- **Fait dans l'ordre du runbook, en une session** : sets propres `SousEntree` (Etat Repos|Actif) + `SousMenu` sur la
+  planche · dump (0 dégradation) · extraction (0 non lié) · contrats `ds.sous-entree` / `ds.sous-menu` 1.0.0 · racine
+  **shell** côté Odoo (`repo-data.ts`, comme le menu mobile — sans quoi la fermeture CSS n'est pas émise) · gabarit
+  `piqueray_ds.sous_menu` + `sous_menu_interaction.js` + `responsive/sous-menu.pqr.css` · miroirs, repin, figma:plan,
+  catalogue, reçu, golden · sonde sur l'instance qui monte CE worktree (8109 ; le pilote 8087 montait un autre worktree —
+  **vérifie les montages `docker inspect` avant de déployer**, sinon tu mesures un addon qui n'est pas le tien).
+- **Un cadre créé par API a `strokesIncludedInLayout = true`** : le filet de 1 px ajoute 2 px à la boîte Figma alors que le
+  CSS border-box la garde — 252×190 contre 250×188, invisible au dump (le drapeau n'y est pas). Corrigé à la source ; le
+  contrat ne change pas. Regarde ce drapeau sur tout set dessiné par script.
+- **Une zone manuelle ne s'imbrique pas dans une autre** : `odoo:derivation:check` refuse « ODOO-031-… dans
+  ODOO-022-… ». Un ajout dans un gabarit déjà zoné se fait dans un gabarit à part, appelé par `t-call`.
+- **Le rapport de dérivation est signé** : toute édition d'un fichier zoné après `npm run build` le rend « tampered » —
+  rebuild avant `odoo:derivation:check`.
+- **Un pattern disclosure sur la barre = `<button class="nav-item">`** : les classes générées de `ds.nav-item` s'appliquent
+  quel que soit l'élément ; seul l'habillage natif du bouton est à retirer (feuille responsive). `aria-current="page"`
+  sur un bouton est licite.
+- **Le survol/l'actif d'une sous-entrée sont des canaux de PART** (`states.hover.color` sur `texte`) : l'émetteur les
+  rend sous `.sous-entree:hover .sous-entree__texte` — rien à écrire côté Odoo.
+- **Mouvement, les repères qui tiennent (2026-09-08)** : entrée < 300 ms, décélération franche (Material 3
+  « emphasized » `cubic-bezier(0.2, 0, 0, 1)`), translation petite (4–12 px), sortie plus courte ou instantanée, jamais
+  d'ease-in à l'entrée, `prefers-reduced-motion` toujours. **Bootstrap offcanvas pose `showing` PUIS `show`** : une
+  animation d'enfants keyée sur `show` seul ne part qu'à la fin du fondu (deux apparitions, mesuré) — keyer sur les deux
+  classes avec la même déclaration. Un plan `hidden` s'anime à l'entrée avec `@starting-style` (sortie instantanée), pas
+  besoin de JS. Sondes : `.page-parity/sous-menu/{mobile,desktop}-anim.mts` (relevé toutes les 25–30 ms).
+- **Une erreur de page n'est à toi que si elle n'existe pas AVANT** : `TypeError … querySelector` au chargement était
+  identique sur le pilote non touché. Compare toujours avec une instance d'avant avant d'accuser ton script.

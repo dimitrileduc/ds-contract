@@ -1,0 +1,54 @@
+/* SousEntree — from ds.sous-entree v1.0.0 (core/emit-html.ts) */
+
+.sous-entree, .sous-entree *, .sous-entree *::before, .sous-entree *::after {
+  box-sizing: border-box;
+}
+
+.sous-entree {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 0;
+  gap: var(--space-4);
+  min-height: var(--size-cible-tactile-min);
+  text-decoration-line: none;
+}
+
+.sous-entree:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+.sous-entree:focus-visible {
+  outline-color: var(--color-orange);
+}
+
+.sous-entree:focus-visible {
+  outline-width: var(--border-width-2);
+}
+
+.sous-entree__texte {
+  color: var(--color-blanc);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--typography-menu-sous-entree-size);
+  font-weight: var(--typography-menu-sous-entree-weight);
+  line-height: var(--typography-menu-sous-entree-line-height);
+}
+
+.sous-entree--etat-actif .sous-entree__texte {
+  color: var(--color-orange);
+}
+
+.sous-entree:hover:not(:disabled) .sous-entree__texte {
+  color: var(--color-orange);
+}
+
+.sous-entree__Soulignement {
+  background-color: var(--color-orange);
+  height: var(--size-nav-item-soulignement);
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

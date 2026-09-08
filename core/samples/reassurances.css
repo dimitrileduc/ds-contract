@@ -443,7 +443,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v2.1.1 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.1.2 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -519,6 +519,7 @@
   font-size: var(--typography-overline-size);
   font-weight: var(--typography-overline-weight);
   line-height: var(--typography-overline-line-height);
+  letter-spacing: 0.15em;
   text-align: left;
   text-transform: uppercase;
 }

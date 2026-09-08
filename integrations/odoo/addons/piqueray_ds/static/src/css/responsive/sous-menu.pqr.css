@@ -1,0 +1,91 @@
+/*
+ * responsive/sous-menu.pqr.css — ZONE MANUELLE (sous-menu desktop/wide, option A, 2026-09-08).
+ *
+ * Projection Odoo de ds.sous-menu 1.0.0 + ds.sous-entree 1.0.0 : la boîte, les couleurs,
+ * la typographie viennent de components.pqr.css (fermeture du shell). Ici SEULEMENT ce que
+ * le contrat ne peut pas dire, chaque fait nommé :
+ *   · le panneau se pose SOUS la barre : position absolue dans `.header` ; `left`/`top` sont
+ *     MESURÉS par sous_menu_interaction.js (texte aligné sur le libellé du parent) ;
+ *   · le plan inactif porte `hidden` (le `display: flex` généré bat la règle UA) ;
+ *   · le parent est un <button> natif (disclosure) : habillage navigateur retiré ;
+ *   · le parent OUVERT (aria-expanded) : libellé orange + chevron retourné — ds.nav-item
+ *     ne dessine pas d'état « ouvert » (fait code-only, dessiné sur la planche 031 · 22) ;
+ *   · sous 992 la nav n'existe pas (menu mobile) : rien à faire ici.
+ * Vocabulaire `var(--pqr-…)` uniquement.
+ */
+
+/* ---- ds.sous-menu 1.0.0 ---------------------------------------------------- */
+
+/* La barre est le conteneur du panneau (position relative ; l'offcanvas du menu mobile est
+ * `fixed`, un ancêtre relatif ne le déplace pas). */
+.header[data-pqr-shell="header"] {
+  position: relative;
+}
+.header .header__navItemDropdown {
+  position: static;
+}
+.header .sous-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1030;
+  width: max-content;
+}
+.header .sous-menu[hidden] {
+  display: none !important;
+}
+/* Le thème d'Odoo souligne les liens : le contrat déclare text-decoration none sur la
+ * racine de ds.sous-entree, on le re-porte ici contre la cascade Odoo (précédent : footer). */
+.header .sous-menu a.sous-entree,
+.header .sous-menu a.sous-entree:hover {
+  text-decoration: none;
+}
+
+/* Le parent : <button> natif, même boîte que le lien de ds.nav-item. */
+.header .nav-item[aria-controls] {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Mouvement (fait code-only, repères 2026-09-08 — Material 3 « emphasized », Emil Kowalski) :
+ * entrée 150 ms, fondu + 4 px de descente, décélération franche ; SORTIE INSTANTANÉE (le
+ * plan repasse `hidden`) — la fermeture répond au geste, elle n'a rien à montrer.
+ * `@starting-style` donne l'état de départ quand `display` passe de none à flex ; sans
+ * prise en charge (≈ 10 % des navigateurs début 2026) le panneau apparaît d'un coup —
+ * dégradation acceptée, jamais un panneau invisible. Opacité et transform seulement. */
+.header .sous-menu {
+  transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1), transform 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+@starting-style {
+  .header .sous-menu:not([hidden]) {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.header .nav-item[aria-controls] .nav-item__OcticonChevronDown12 svg {
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Parent OUVERT — fait code-only (ds.nav-item n'a pas d'état « ouvert »). */
+.header .nav-item[aria-expanded="true"] .nav-item__libell {
+  color: var(--pqr-color-orange);
+}
+.header .nav-item[aria-expanded="true"] .nav-item__OcticonChevronDown12 svg {
+  transform: translateY(-1px) rotate(180deg);
+}
+.header .nav-item[aria-expanded="true"] .nav-item__OcticonChevronDown12 svg path {
+  fill: var(--pqr-color-orange);
+}
+
+/* Mouvement réduit : apparition immédiate, chevron sans rotation animée. */
+@media (prefers-reduced-motion: reduce) {
+  .header .sous-menu,
+  .header .nav-item[aria-controls] .nav-item__OcticonChevronDown12 svg {
+    transition: none;
+  }
+}

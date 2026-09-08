@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/realisations.contract.json (ds.realisations v1.0.0)
+ * Source of truth: contracts/realisations.contract.json (ds.realisations v1.0.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -57,6 +57,7 @@ const S: Record<string, CSSProperties> = {
     "fontSize": "14px",
     "fontWeight": 400,
     "lineHeight": "20px",
+    "letterSpacing": "0.15em",
     "textAlign": "center",
     "textTransform": "uppercase"
   },

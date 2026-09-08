@@ -37,6 +37,8 @@ export * from './ReviewCard';
 export * from './SAV';
 export * from './SectionHeader';
 export * from './Select';
+export * from './SousEntree';
+export * from './SousMenu';
 export * from './Tab';
 export * from './Textarea';
 export * from './TexteSEO';

@@ -1,0 +1,78 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.sous-menu",
+  "name": "SousMenu",
+  "version": "1.0.0",
+  "description": "Le sous-menu desktop/wide d'une entrée de la barre (option A « Rail », retenue par l'owner le 2026-09-08 sur la planche 031 · 22). Extrait du set 031 `SousMenu` 2793:49493 (journal specs/tiny/vague-031/sous-menu.md). Panneau noir-bleuté, filet color.blanc-14 (border-width.1), padding 24 / 32 ; à l'intérieur un rail orange (largeur size.nav-item.soulignement) et la liste des sous-entrées (répétition de ds.sous-entree, écart space.4, retrait space.22 = le menu mobile). Trois sous-entrées dessinées ; la liste réelle vient de website.menu (`items`, code-only). Faits code-only, portés par Odoo et nommés ici : le panneau se pose SOUS la barre (position absolue, haut = bas de la barre), son texte aligné sur le libellé du parent (gauche = libellé − 56 : padding 32 + rail 2 + retrait 22) ; il s'ouvre au CLIC sur le parent (pattern disclosure : bouton aria-expanded, Échap et clic dehors ferment, pas de role=menu) ; le parent ouvert prend le libellé orange et le chevron retourné (fait code-only sur ds.nav-item, non dessiné dans ce set). Aucun axe de présentation : Desktop et Wide dessinent le même panneau ; sous 992 la barre n'a pas de nav (menu mobile).",
+  "category": "molecule",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": { "arrayOf": { "libelle": "text", "href": "text" } },
+      "bindings": {
+        "figma": { "kind": "NONE" },
+        "code": { "prop": "items" }
+      },
+      "description": "Les sous-entrées — code-only par construction (arrayOf ⇔ figma NONE). Côté Odoo la boucle sur `submenu.child_id` ; l'état actif de chaque rangée est posé par Odoo (`_is_active()`), pas par la donnée."
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": { "display": "flex", "direction": "column" },
+      "tokens": {
+        "background-color": "{color.noir-bleute}",
+        "border-color": "{color.blanc-14}",
+        "border-width": "{border-width.1}",
+        "padding-inline": "{space.32}",
+        "padding-block": "{space.24}"
+      },
+      "parts": {
+        "sousEntrees": {
+          "description": "Rail orange + liste, alignés en hauteur (le rail s'étire sur la liste, comme dans ds.menu-entree).",
+          "layout": { "direction": "row", "align": "stretch" },
+          "tokens": { "gap": "{space.22}" },
+          "parts": {
+            "rail": {
+              "tokens": {
+                "background-color": "{color.orange}",
+                "width": "{size.nav-item.soulignement}"
+              }
+            },
+            "liste": {
+              "layout": { "direction": "column" },
+              "tokens": { "gap": "{space.4}" },
+              "parts": {
+                "SousEntree1": {
+                  "description": "Gabarit de rangée, répété sur `items`. Sur le canevas les trois rangées sont au repos ; l'état actif est montré sur les vues de démo seulement.",
+                  "component": { "id": "ds.sous-entree", "props": { "etat": "repos" } },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      { "libelle": "Portes résidentielles", "href": "/portes-residentielles" },
+                      { "libelle": "Portes industrielles", "href": "/portes-industrielles" },
+                      { "libelle": "Motorisation", "href": "/motorisation" }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "74abf72bd929e46cd854b04d2663a0d3fb46c6da",
+      "nodeId": "2793:49493",
+      "dumpedAt": "2026-09-08"
+    },
+    "code": { "importPath": "src/components/SousMenu", "export": "SousMenu" }
+  }
+}

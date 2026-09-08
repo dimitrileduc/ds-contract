@@ -22,6 +22,7 @@
  *   ds.realisations → ds.realisation, ds.realisations
  *   ds.reassurances → ds.button, ds.carte, ds.reassurances
  *   ds.sav → ds.button, ds.sav
+ *   ds.sous-menu → ds.sous-entree, ds.sous-menu
  *   ds.texte-seo → ds.accordion-row, ds.texte-seo
  */
 
@@ -4684,6 +4685,93 @@
 
 .sav--presentation-tablette .sav__vousRencontrezUnProblmeA {
   white-space: normal;
+}
+
+/* SousEntree — from ds.sous-entree v1.0.0 (core/emit-html.ts) */
+
+.sous-entree, .sous-entree *, .sous-entree *::before, .sous-entree *::after {
+  box-sizing: border-box;
+}
+
+.sous-entree {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border: 0;
+  gap: var(--pqr-space-4);
+  min-height: var(--pqr-size-cible-tactile-min);
+  text-decoration-line: none;
+}
+
+.sous-entree:focus-visible {
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+.sous-entree:focus-visible {
+  outline-color: var(--pqr-color-orange);
+}
+
+.sous-entree:focus-visible {
+  outline-width: var(--pqr-border-width-2);
+}
+
+.sous-entree__texte {
+  color: var(--pqr-color-blanc);
+  font-family: var(--pqr-font-family-montserrat);
+  font-size: var(--pqr-typography-menu-sous-entree-size);
+  font-weight: var(--pqr-typography-menu-sous-entree-weight);
+  line-height: var(--pqr-typography-menu-sous-entree-line-height);
+}
+
+.sous-entree--etat-actif .sous-entree__texte {
+  color: var(--pqr-color-orange);
+}
+
+.sous-entree:hover:not(:disabled) .sous-entree__texte {
+  color: var(--pqr-color-orange);
+}
+
+.sous-entree__Soulignement {
+  background-color: var(--pqr-color-orange);
+  height: var(--pqr-size-nav-item-soulignement);
+}
+
+/* SousMenu — from ds.sous-menu v1.0.0 (core/emit-html.ts) */
+
+.sous-menu, .sous-menu *, .sous-menu *::before, .sous-menu *::after {
+  box-sizing: border-box;
+}
+
+.sous-menu {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--pqr-dsc-border-width, 0) var(--pqr-dsc-border-color, transparent);
+  background-color: var(--pqr-color-noir-bleute);
+  --pqr-dsc-border-color: var(--pqr-color-blanc-14);
+  --pqr-dsc-border-width: var(--pqr-border-width-1);
+  padding-inline: var(--pqr-space-32);
+  padding-block: var(--pqr-space-24);
+}
+
+.sous-menu__sousEntrees {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--pqr-space-22);
+}
+
+.sous-menu__rail {
+  background-color: var(--pqr-color-orange);
+  width: var(--pqr-size-nav-item-soulignement);
+}
+
+.sous-menu__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pqr-space-4);
 }
 
 /* TexteSEO — from ds.texte-seo v4.0.0 (core/emit-html.ts) */

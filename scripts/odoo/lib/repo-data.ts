@@ -81,6 +81,9 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.header': '.header',
   'ds.footer': '.footer',
   'ds.menu-mobile': '.menu-mobile',
+  // Sous-menu desktop/wide (2026-09-08, option A) : rendu par header.xml sous chaque
+  // entrée à enfants — shell comme le menu mobile, jamais sauvegardé.
+  'ds.sous-menu': '.sous-menu',
 };
 
 /** Les classes des racines POSABLES, sans le point — l'alternative d'une regex
@@ -107,7 +110,7 @@ export const ROOT_CLASSES = ROOT_CONTRACT_IDS.map((id) => ROOT_SELECTOR[id].slic
  *     au lock par son sha256 par-entrée, pas par le digest — voir `check-inputs`.
  * Leur CSS de fermeture est néanmoins émise (le gabarit consomme les classes).
  */
-export const SHELL_CONTRACT_IDS = ['ds.header', 'ds.footer', 'ds.menu-mobile'] as const;
+export const SHELL_CONTRACT_IDS = ['ds.header', 'ds.footer', 'ds.menu-mobile', 'ds.sous-menu'] as const;
 
 /** Toutes les racines de l'intégration — posables ∪ shell, triées. La CSS et le
  *  lock couvrent cette union ; seule la staleness du HTML sauvegardé (digest,

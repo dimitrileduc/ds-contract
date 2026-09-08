@@ -1,0 +1,29 @@
+<!--
+  SousMenu — static HTML+CSS emitted from contract ds.sous-menu v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--sous-menu">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="sous-menu" data-part="root">
+      <div class="sous-menu__sousEntrees" data-part="sousEntrees">
+        <div class="sous-menu__rail" data-part="rail"></div>
+        <div class="sous-menu__liste" data-part="liste">
+          <a class="sous-entree sous-entree--etat-repos" data-part="root" href="/portes-residentielles">
+            <span class="sous-entree__texte" data-part="texte">Portes résidentielles</span>
+          </a>
+          <a class="sous-entree sous-entree--etat-repos" data-part="root" href="/portes-industrielles">
+            <span class="sous-entree__texte" data-part="texte">Portes industrielles</span>
+          </a>
+          <a class="sous-entree sous-entree--etat-repos" data-part="root" href="/motorisation">
+            <span class="sous-entree__texte" data-part="texte">Motorisation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

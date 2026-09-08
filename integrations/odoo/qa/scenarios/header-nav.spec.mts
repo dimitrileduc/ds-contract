@@ -29,7 +29,9 @@ import { baseUrl, odooShell, readQaEnv } from '../run.mts';
 const SNAPSHOT = 'odoo-019-foundation';
 const OUT = path.join(REPO, 'specs', '022-odoo-nav-shell', 'proofs', 'header-nav.json');
 
-const DROPDOWNS = ['Portes de garage', 'Portes d’entrée'];
+// 2026-09-08 : « Portes d’entrée » est une feuille depuis que Motorisation vit sous
+// « Portes de garage » (spec 037) — un seul déroulant dans le semis.
+const DROPDOWNS = ['Portes de garage'];
 const REACHABLE = [
   { url: '/depannage-sav', active: 'Dépannage/SAV', kind: 'leaf' as const },
   { url: '/a-propos', active: 'À propos', kind: 'leaf' as const },
@@ -79,7 +81,8 @@ async function main() {
     const ctx = await browser.newContext({ viewport: { width: 1600, height: 900 }, colorScheme: 'light' });
     const page = await ctx.newPage();
 
-    // --- SC-004 : chaque déroulant s'ouvre (Bootstrap) et porte ses enfants ---
+    // --- SC-004 : chaque déroulant s'ouvre (sous-menu gouverné ds.sous-menu, 2026-09-08 —
+    // <button aria-expanded> + panneau `hidden`, sous_menu_interaction.js) et porte ses enfants ---
     await page.goto(`${base}/`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
     await page.evaluate(`Promise.race([document.fonts.ready, new Promise(r=>setTimeout(r,3000))])`);
     for (const label of DROPDOWNS) {
@@ -94,21 +97,21 @@ async function main() {
         var dds=[].slice.call(h.querySelectorAll('.header__navItemDropdown'));
         var dd=dds.find(function(d){var s=d.querySelector('.nav-item__libell'); return s && s.textContent===l;});
         if(!dd) return JSON.stringify({found:false});
-        var t=dd.querySelector('.nav-item'); var m=dd.querySelector('.dropdown-menu');
+        var t=dd.querySelector('.nav-item'); var m=dd.querySelector('.sous-menu');
         for(var i=0;i<40;i++){
           t.click();
           await new Promise(function(r){setTimeout(r,250);});
-          if(m.classList.contains('show') && getComputedStyle(m).display!=='none') break;
+          if(!m.hidden && getComputedStyle(m).display!=='none') break;
           document.body.click();
           await new Promise(function(r){setTimeout(r,150);});
         }
-        var hrefs=[].slice.call(m.querySelectorAll('.dropdown-item')).map(function(a){return a.getAttribute('href');});
-        return JSON.stringify({found:true, shown:m.classList.contains('show')&&getComputedStyle(m).display!=='none', aria:t.getAttribute('aria-expanded'), hrefs:hrefs});
+        var hrefs=[].slice.call(m.querySelectorAll('.sous-entree')).map(function(a){return a.getAttribute('href');});
+        return JSON.stringify({found:true, shown:!m.hidden&&getComputedStyle(m).display!=='none', aria:t.getAttribute('aria-expanded'), hrefs:hrefs});
       })(${JSON.stringify(label)})`)) as { found: boolean; shown?: boolean; aria?: string; hrefs?: string[] };
       const navigable = !!st.hrefs && st.hrefs.length > 0 && st.hrefs.every((href) => typeof href === 'string' && href.startsWith('/'));
       note(`SC-004 — le déroulant « ${label} » s'ouvre et ses enfants sont navigables`,
         st.found && !!st.shown && st.aria === 'true' && navigable,
-        'ouvert (show + aria-expanded), enfants à href interne',
+        'ouvert (panneau visible + aria-expanded), enfants à href interne',
         `ouvert ${st.shown}, aria ${st.aria}, hrefs ${JSON.stringify(st.hrefs)}`);
       // Referme avant le déroulant suivant.
       await page.evaluate(`document.body.click()`);
@@ -122,7 +125,7 @@ async function main() {
       const state = JSON.parse(await page.evaluate(`(function(){
         var h=document.querySelectorAll('.header')[0];
         var act=[].slice.call(h.querySelectorAll('.nav-item[data-actif]')).map(function(a){var s=a.querySelector('.nav-item__libell');return {label:s?s.textContent:'', aria:a.getAttribute('aria-current'), soul:!!a.querySelector('.nav-item__Soulignement')};});
-        var ddActive=[].slice.call(h.querySelectorAll('.dropdown-menu .dropdown-item.active')).map(function(a){return a.textContent.trim();});
+        var ddActive=[].slice.call(h.querySelectorAll('.sous-menu .sous-entree--etat-actif')).map(function(a){return a.textContent.trim();});
         return JSON.stringify({act:act, ddActive:ddActive});
       })()`)) as { act: Array<{ label: string; aria: string | null; soul: boolean }>; ddActive: string[] };
       const active = state.act.find((a) => a.label === r.active);
@@ -130,7 +133,7 @@ async function main() {
       note(`SC-005 — ${r.url} → « ${r.active} » souligné (aria-current + Soulignement, unique)`,
         okActive, `1 actif « ${r.active} »`, JSON.stringify(state.act));
       if (r.kind === 'child') {
-        note(`SC-005 — ${r.url} → entrée de sous-menu « ${r.dd} » active (style Odoo)`,
+        note(`SC-005 — ${r.url} → entrée de sous-menu « ${r.dd} » active (ds.sous-entree, etat=actif)`,
           state.ddActive.includes(r.dd!), `active « ${r.dd} »`, JSON.stringify(state.ddActive));
       }
     }

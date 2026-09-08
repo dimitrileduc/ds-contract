@@ -21,7 +21,7 @@
   object-fit: cover;
 }
 
-/* Realisations — from ds.realisations v1.0.0 (core/emit-html.ts) */
+/* Realisations — from ds.realisations v1.0.1 (core/emit-html.ts) */
 
 .realisations, .realisations *, .realisations *::before, .realisations *::after {
   box-sizing: border-box;
@@ -102,6 +102,7 @@
   font-size: var(--typography-overline-size);
   font-weight: var(--typography-overline-weight);
   line-height: var(--typography-overline-line-height);
+  letter-spacing: 0.15em;
   text-align: center;
   text-transform: uppercase;
 }

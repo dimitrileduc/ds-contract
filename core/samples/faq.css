@@ -497,7 +497,7 @@
   flex-shrink: 0;
 }
 
-/* FAQ — from ds.faq v2.1.0 (core/emit-html.ts) */
+/* FAQ — from ds.faq v2.1.1 (core/emit-html.ts) */
 
 .faq, .faq *, .faq *::before, .faq *::after {
   box-sizing: border-box;
@@ -570,6 +570,7 @@
   font-size: var(--typography-overline-size);
   font-weight: var(--typography-overline-weight);
   line-height: var(--typography-overline-line-height);
+  letter-spacing: 0.15em;
   text-align: left;
   text-transform: uppercase;
 }

@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "244deea2",
+    "gitCommit": "099ccd13",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -252,7 +252,7 @@
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -415,7 +415,7 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "3.1.0",
+      "version": "3.1.1",
       "status": "draft",
       "propNames": [
         "presentation",
@@ -573,7 +573,7 @@
     {
       "id": "ds.realisations",
       "name": "Realisations",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -589,7 +589,7 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -631,6 +631,30 @@
         "alignement"
       ],
       "summary": "Piqueray SectionHeader v3."
+    },
+    {
+      "id": "ds.sous-entree",
+      "name": "SousEntree",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "propNames": [
+        "etat",
+        "libelle",
+        "href"
+      ],
+      "summary": "Une sous-entrée du sous-menu desktop/wide (option A retenue par l'owner le 2026-09-08)."
+    },
+    {
+      "id": "ds.sous-menu",
+      "name": "SousMenu",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "propNames": [
+        "items"
+      ],
+      "summary": "Le sous-menu desktop/wide d'une entrée de la barre (option A « Rail », retenue par l'owner le 2026-09-08 sur la planche 031 · 22)."
     },
     {
       "id": "ds.tab",

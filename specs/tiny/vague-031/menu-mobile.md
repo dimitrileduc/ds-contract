@@ -104,3 +104,25 @@ Triptyques : `.page-parity/menu-mesure/triptyques/`.
 **Portes** : build ✔ · emitters ✔ · catalog ✔ · geometry:gate ✔ · plugin:check ✔ · core-browser ✔ · parity ✔ (« No new drift »,
 cliché rafraîchi) · odoo:inputs/module/authoring ✔ · derivation:check ne cite plus que `ODOO-031-GOOGLE-REVIEWS-PANEL` (autre
 chantier) · golden + engine receipt re-pinnés · tsc : seuls GoogleReviews/GoogleReviewsSection (autre chantier).
+
+## Correctif du 2026-09-08 — « doublon » d'animation à l'ouverture (Mobile)
+
+Symptôme owner : les entrées semblaient apparaître deux fois. **Mesuré** (`.page-parity/sous-menu/mobile-anim.mts`,
+390×844, relevé toutes les 30 ms après le clic sur le burger) : de 0 à 290 ms l'offcanvas porte `showing` et fond
+à 1 avec les entrées **déjà à opacité 1** ; à 290 ms Bootstrap remplace `showing` par `show`, et la montée
+(`pqr-menu-entree-monte`, keyée sur `.show` seul) démarrait seulement là : entrées à 0 / +16 px, remontée jusqu'à
+~700 ms pour la 4ᵉ. Deux apparitions.
+
+Correctif (`responsive/menu-mobile.pqr.css`) : la montée et ses délais sont keyés sur **`.showing` ET `.show`** avec
+la même déclaration — une animation ne redémarre que si sa déclaration change, donc elle survit au remplacement de
+classe. Après : à 9 ms les entrées partent de 0 / +16 px en même temps que le fondu, à 294 ms (`show`) la 1ʳᵉ est à
+1 / 0 px sans retomber, la 4ᵉ est en place à ~410 ms. Même traitement des exceptions Tablette et `prefers-reduced-motion`
+(`animation: none` sur les deux classes). Aucun contrat, aucun jeton touché ; le fait « fondu 280 ms + montée décalée
+de 40 ms » du contrat est enfin ce qui se voit.
+
+**Affinage du même soir (owner : « le plus smooth, minimal, clean »)** — repères : Material 3 « emphasized »
+`cubic-bezier(0.2, 0, 0, 1)` (80 % du chemin dans les premiers 20 % du temps), Emil Kowalski (entrées < 300 ms,
+ease-out pour la réactivité, jamais d'ease-in à l'entrée, translations petites). Appliqué : cette courbe sur le fondu,
+la montée et le glissement Tablette ; montée 16 → **12 px** ; durées, décalage 40 ms et sorties inchangés (le contrat
+décrit toujours ce qui se voit). Mesuré : la 1ʳᵉ entrée est à 1 / 0 px avant `show` (292 ms), la 4ᵉ à 0,92 à cet instant
+et en place à ~420 ms.

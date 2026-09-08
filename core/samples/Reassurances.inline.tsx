@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.1)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.1.2)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -49,6 +49,7 @@ const S: Record<string, CSSProperties> = {
     "fontSize": "14px",
     "fontWeight": 400,
     "lineHeight": "20px",
+    "letterSpacing": "0.15em",
     "textAlign": "left",
     "textTransform": "uppercase"
   },

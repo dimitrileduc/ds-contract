@@ -81,6 +81,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/responsive/google-reviews.pqr.css",
             "piqueray_ds/static/src/css/responsive/header.pqr.css",
             "piqueray_ds/static/src/css/responsive/menu-mobile.pqr.css",
+            "piqueray_ds/static/src/css/responsive/sous-menu.pqr.css",
             "piqueray_ds/static/src/css/responsive/produits-ecommerce.pqr.css",
             "piqueray_ds/static/src/css/responsive/footer.pqr.css",
             "piqueray_ds/static/src/css/responsive/texte-seo.pqr.css",
@@ -104,6 +105,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             # Menu mobile (ds.menu-mobile, 2026-09-04) : bascule des entrées déroulantes ;
             # l'ouverture du menu est l'offcanvas du noyau.
             "piqueray_ds/static/src/js/menu_mobile_interaction.js",
+            "piqueray_ds/static/src/js/sous_menu_interaction.js",
             # Un seul relevé de `prefers-reduced-motion`, partagé par le carrousel et
             # le fond vidéo (le MediaQueryList est créé une fois, voir le fichier).
             "piqueray_ds/static/src/js/mouvement_reduit.js",

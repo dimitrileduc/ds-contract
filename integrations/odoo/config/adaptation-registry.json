@@ -1225,6 +1225,32 @@
       "mechanism": "repeat-action"
     },
     {
+      "adaptationId": "ODOO-031-SOUS-MENU",
+      "path": "integrations/odoo/addons/piqueray_ds/views/header.xml",
+      "rootContracts": [
+        "ds.sous-menu"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "sous-menu.authoring.json",
+        "specs/tiny/vague-031/sous-menu.md"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-031-SOUS-MENU-INTERACTION",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/sous_menu_interaction.js",
+      "rootContracts": [
+        "ds.sous-menu"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "sous-menu-ouverture",
+        "specs/tiny/vague-031/sous-menu.md"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
       "adaptationId": "ODOO-034-PRODUITS-CARROUSEL-INTERACTION",
       "path": "integrations/odoo/addons/piqueray_ds/static/src/js/produits_ecommerce_carrousel_interaction.js",
       "rootContracts": [

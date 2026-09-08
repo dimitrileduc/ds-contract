@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788858937594,
+  "extractedAt": 1788889110230,
   "sets": [
     {
       "name": "Input",
@@ -2642,6 +2642,44 @@
       },
       "forwardedProperties": {},
       "nestedInstances": []
+    },
+    {
+      "name": "SousEntree",
+      "nodeId": "2793:49492",
+      "key": "ae2d1314bdd33d4b6b6d6adbe637ce85bdd4ced6",
+      "description": "Une sous-entrée du sous-menu desktop/wide (option A, 2026-09-08). Etat=Actif : page courante — libellé orange + soulignement (même règle que NavItem.Actif). Survol = orange (fait d’état du contrat, non dessiné). Rangée à la boîte tactile 44.",
+      "variantCount": 2,
+      "properties": {
+        "Libellé#2793:256": {
+          "type": "TEXT",
+          "defaultValue": "Portes résidentielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Repos",
+          "variantOptions": [
+            "Repos",
+            "Actif"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "SousMenu",
+      "nodeId": "2793:49493",
+      "key": "74abf72bd929e46cd854b04d2663a0d3fb46c6da",
+      "description": "Sous-menu desktop/wide (option A retenue le 2026-09-08). Panneau noir-bleuté, filet blanc-14, rail orange + liste de sous-entrées (répétition de SousEntree : 3 dessinées, la liste réelle vient de website.menu). Se pose sous la barre, texte aligné sur le libellé du parent. Ouverture au clic (disclosure), Échap ferme — comportement, pas dessiné.",
+      "variantCount": 1,
+      "properties": {},
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "SousEntree"
+      ]
     }
   ],
   "collections": [

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "244deea2",
+    "gitCommit": "099ccd13",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -1367,7 +1367,7 @@
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "status": "draft",
       "category": "section",
       "description": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné à gauche —, CORRIGÉE le 2026-09-08 : l'en-tête et le CTA sont CENTRÉS en Desktop et Wide, à gauche en Mobile et Tablette, comme AvisGoogle et Reassurances (l'écart assumé de la veille est levé ; le set 2773:27504 porte le geste, 14 instances avant, 14 après), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
@@ -1937,7 +1937,7 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "3.1.0",
+      "version": "3.1.1",
       "status": "draft",
       "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
       "figma": {
@@ -2569,7 +2569,7 @@
     {
       "id": "ds.realisations",
       "name": "Realisations",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "draft",
       "category": "section",
       "description": "Section Realisations — la mosaïque de photos de chantiers. Contrat NEUF (vague 035, 2026-09-07) : la section n'existait ni en contrat ni en bloc Odoo, seule la tuile ds.realisation était gouvernée. Extrait du set candidat v2 de la page « 031 · Planches de validation », posé le même jour à partir du set v1 2117:4691 après nettoyage de la source (8 défauts relevés, dont l'aplat gris opaque qui cachait les 27 photos vivantes du fichier). Mosaïque : une grande tuile sur 2×2 cellules puis huit petites, 4 colonnes en Desktop et Wide, 2 en Tablette et Mobile — décision owner du 2026-09-07 (option B : deux colonnes en mobile plutôt qu'une, qui donnait 3638 px de défilement pour un seul bloc). Le rythme vertical appartient à la page (padding vertical 0), la gouttière au contrat, comme toutes les sections depuis la vague 031.",
@@ -2664,7 +2664,7 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "status": "draft",
       "category": "section",
       "description": "2.1.1 (2026-09-07) : en WIDE, la rangee de cartes cesse d'etre une grille a nombre de colonnes FIXE pour devenir une simple ligne. Le defaut : `columns: 5` etait calcule pour le cas a cinq cartes, donc quatre cartes laissaient une piste vide et le bloc ne remplissait plus la largeur. Le nombre de cartes est du CONTENU — la collection `items`, clonee par item au montage, sans plafond — jamais une variante, et aucun composant du systeme ne compte ses items par un axe. Une ligne resout le probleme SANS rien declarer de neuf : les cartes portent deja `width: 100 %`, donc leur base de flex est egale, donc le retrait se fait au prorata et les colonnes sortent EXACTEMENT egales — 284,4 a cinq cartes, 363,5 a quatre, mesure dans le navigateur le 2026-09-07, au dixieme, identique a ce que rendait la grille. CARRY-BOTH, et c'est ce qui rend ce choix meilleur qu'une regle ecrite a la main : Figma exprime la meme chose nativement avec un auto-layout horizontal dont les enfants sont en Fill, et repartit lui aussi a parts egales. Le canevas reflue donc comme le site quand une carte de moins est posee. PORTEE : le WIDE seulement, decision owner du 2026-09-07. Le Desktop garde sa grille de TROIS colonnes en toutes circonstances — quatre cartes s'y rangent en 3 + 1, exactement comme avant. Mobile et Tablette sont en colonne, inchanges.\n\nPiqueray section « Réassurances », responsive. 2.0.0 (2026-09-02, vague 031) : ré-extraite du set 2700:26297 (page « 031 · Planches de validation »), quatre variantes sur l'axe Presentation. La collection change de mécanique par écran — une carte par ligne sous le seuil bureau, puis une grille de 3 colonnes en Desktop et de 5 en Wide — et les marges suivent 24 / 48 / 56 / 89. Le défaut de `disposition` passe à « 5Cartes », la seule forme que le set dessine ; les deux autres restent en archive. Les vingt cartes de la source étaient des cadres libres : elles ont été remplacées par des instances du composant le 2026-09-02, à zéro pixel de différence sur les quatre vues.\n\nL'en-tête cesse d'être une instance de ds.section-header : le set 031 le dessine à plat, il est donc modélisé dans la section (sur-titre sur typography.overline.*, titre sur le style responsive H2), ce qui lui rend ses tailles par écran — l'ancienne composition figeait le titre à 40 px sur les quatre écrans.\n\nHistorique avant 2.0.0 :\nPiqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.3.0 porte les variantes en grille native : 4 colonnes pour « 4 cartes » et « QuatreCartesDeuxCta », 5 pour « 5 cartes » ; les cartes remplissent leur piste. Les 285px observés à 1550px de conteneur étaient une mesure dérivée, jamais une règle de dimension. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur). Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
@@ -2852,6 +2852,72 @@
             "gauche"
           ],
           "default": "centre"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.sous-entree",
+      "name": "SousEntree",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Une sous-entrée du sous-menu desktop/wide (option A retenue par l'owner le 2026-09-08). Extrait du set 031 `SousEntree` 2793:49492 (journal specs/tiny/vague-031/sous-menu.md). Un lien (`href` = contenu code-only, même règle que ds.nav-item), libellé au style « Sous-entrée menu » (typography.menu-sous-entree : 18/27 en Mobile, 16/24 dès Tablette — donc 16/24 là où ce panneau existe), rangée à la boîte tactile 44 (size.cible-tactile.min). Etat=Actif = page courante : libellé orange + Soulignement orange (hauteur size.nav-item.soulignement), comme NavItem.Actif ; côté Odoo l'état vient de website.menu._is_active(). Survol = libellé orange (canal d'états, non dessiné sur le set — pas de figmaStatePreviews) ; focus visible = anneau orange (border-width.2). Déviation nommée : sur le canevas le libellé est HUG et le Soulignement FILL ; le contrat porte align stretch sur la racine (boîte rendue identique, le soulignement prend la largeur du texte). Le dépliage du panneau est la couche comportement (Odoo), jamais le contrat.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "ae2d1314bdd33d4b6b6d6adbe637ce85bdd4ced6"
+      },
+      "props": [
+        {
+          "name": "etat",
+          "type": [
+            "repos",
+            "actif"
+          ],
+          "default": "repos",
+          "description": "Repos (défaut) ou actif = page courante. Côté Odoo : `child._is_active()`."
+        },
+        {
+          "name": "libelle",
+          "type": "string",
+          "default": "Portes résidentielles"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "default": "/portes-residentielles",
+          "description": "Cible du lien — contenu, jamais dessiné (même règle que ds.nav-item). Côté Odoo la donnée vient de website.menu."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.sous-menu",
+      "name": "SousMenu",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Le sous-menu desktop/wide d'une entrée de la barre (option A « Rail », retenue par l'owner le 2026-09-08 sur la planche 031 · 22). Extrait du set 031 `SousMenu` 2793:49493 (journal specs/tiny/vague-031/sous-menu.md). Panneau noir-bleuté, filet color.blanc-14 (border-width.1), padding 24 / 32 ; à l'intérieur un rail orange (largeur size.nav-item.soulignement) et la liste des sous-entrées (répétition de ds.sous-entree, écart space.4, retrait space.22 = le menu mobile). Trois sous-entrées dessinées ; la liste réelle vient de website.menu (`items`, code-only). Faits code-only, portés par Odoo et nommés ici : le panneau se pose SOUS la barre (position absolue, haut = bas de la barre), son texte aligné sur le libellé du parent (gauche = libellé − 56 : padding 32 + rail 2 + retrait 22) ; il s'ouvre au CLIC sur le parent (pattern disclosure : bouton aria-expanded, Échap et clic dehors ferment, pas de role=menu) ; le parent ouvert prend le libellé orange et le chevron retourné (fait code-only sur ds.nav-item, non dessiné dans ce set). Aucun axe de présentation : Desktop et Wide dessinent le même panneau ; sous 992 la barre n'a pas de nav (menu mobile).",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "74abf72bd929e46cd854b04d2663a0d3fb46c6da"
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": {
+            "arrayOf": {
+              "libelle": "text",
+              "href": "text"
+            }
+          },
+          "description": "Les sous-entrées — code-only par construction (arrayOf ⇔ figma NONE). Côté Odoo la boucle sur `submenu.child_id` ; l'état actif de chaque rangée est posé par Odoo (`_is_active()`), pas par la donnée."
         }
       ],
       "children": {

@@ -1,0 +1,340 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-sous-menu-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.sous-menu",
+    "version": "1.0.0"
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "remove",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden",
+      "reasonCode": "shell-systeme"
+    }
+  ],
+  "controls": [
+    {
+      "decisionId": "sous-menu-items",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "items"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".sous-menu [data-pqr-part=\"sous-menu-liste\"]",
+      "label": "Liens du menu",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "sous-menu-sousentree-etat",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "prop": "etat"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".sous-menu [data-pqr-part=\"sous-entree-root\"]",
+      "label": "Page courante — calculé (website.menu._is_active)",
+      "reasonCode": "computed-from-menu"
+    },
+    {
+      "decisionId": "sous-menu-sousentree-libelle",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "prop": "libelle"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".sous-menu [data-pqr-part=\"sous-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    },
+    {
+      "decisionId": "sous-menu-sousentree-href",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "prop": "href"
+      },
+      "verdict": "controlled",
+      "mechanism": "native-menu",
+      "targetSelector": ".sous-menu [data-pqr-part=\"sous-entree-root\"]",
+      "label": "Menu du site",
+      "reasonCode": "native-menu-dialog"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "sous-menu-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-menu-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-part-root-sousentrees",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-menu-sous-entrees\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-part-root-sousentrees-rail",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "rail"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-menu-rail\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-part-root-sousentrees-liste",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-menu-liste\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-part-root-sousentrees-liste-sousentree1",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "sousEntrees",
+          "liste",
+          "SousEntree1"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".sous-menu [data-pqr-part=\"sous-entree-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-sousentree-part-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-entree-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-sousentree-part-root-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "texte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "selector": ".sous-menu [data-pqr-part=\"sous-entree-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "sous-menu-sousentree-part-root-soulignement",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.sous-menu",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.sous-entree",
+              "version": "1.0.0"
+            },
+            "viaPart": "SousEntree1",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Soulignement"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".sous-menu [data-pqr-part=\"sous-entree-soulignement\"]",
+      "allowedMarks": []
+    }
+  ]
+}

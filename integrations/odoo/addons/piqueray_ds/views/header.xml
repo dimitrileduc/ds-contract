@@ -25,9 +25,9 @@
     `website.menu._is_active()` (page courante OU parent d'une page courante,
     récursif) — aucun bundle JS. On projette ce booléen natif sur les canaux de
     ds.nav-item : l'attribut `data-actif` (que la CSS générée conditionne pour le
-    Soulignement) + `aria-current="page"`. Le déroulant est le balisage Bootstrap
-    d'Odoo PAR DÉFAUT (FR-009 — sous-menu non piquerayisé, différé nommé) ; son
-    entrée active garde la classe `active` d'Odoo.
+    Soulignement) + `aria-current="page"`. Le déroulant ÉTAIT le balisage Bootstrap
+    d'Odoo par défaut (FR-009, différé nommé) jusqu'au 2026-09-08 : il est désormais le
+    sous-menu gouverné ds.sous-menu (zone ODOO-031-SOUS-MENU ci-dessous).
   -->
   <template id="header_nav_entry" name="Piqueray · Header — entrée de nav">
     <t t-set="is_active" t-value="submenu._is_active()"/>
@@ -42,31 +42,67 @@
       </a>
     </t>
     <t t-else="">
-      <div class="header__navItemDropdown dropdown" data-pqr-part="nav-item-dropdown">
-        <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-           class="nav-item" data-pqr-part="nav-item-root" data-chevron="true"
+      <!--
+        Déclencheur du sous-menu desktop/wide GOUVERNÉ (ds.sous-menu 1.0.0 + ds.sous-entree 1.0.0, option A
+        retenue le 2026-09-08 — journal specs/tiny/vague-031/sous-menu.md). Remplace le
+        déroulant Bootstrap d'Odoo différé par la spec 022 (FR-009). Pattern « disclosure » :
+        le parent est un <button aria-expanded aria-controls> (jamais role=menu), le panneau
+        une liste de liens, plan inactif `hidden`. Ouverture au clic, Échap, clic dehors et
+        sortie du focus ferment : sous_menu_interaction.js. Le parent ouvert (libellé orange,
+        chevron retourné) est un fait CODE-ONLY posé par responsive/sous-menu.pqr.css sur
+        `aria-expanded` — ds.nav-item ne dessine pas d'état « ouvert ». La position du
+        panneau (sous la barre, texte aligné sur le libellé) est mesurée par le script, pas
+        écrite en dur. L'état actif d'une sous-entrée = `child._is_active()` (Odoo), comme
+        pour la barre.
+      -->
+      <t t-set="sm_id" t-value="'pqr_sousmenu_%d' % submenu.id"/>
+      <div class="header__navItemDropdown" data-pqr-part="nav-item-dropdown">
+        <button type="button" class="nav-item" data-pqr-part="nav-item-root" data-chevron="true"
+           aria-expanded="false" t-att-aria-controls="sm_id"
            t-att-data-actif="'true' if is_active else None"
            t-att-aria-current="'page' if is_active else None">
           <span class="nav-item__libell" data-pqr-part="nav-item-libelle"><t t-esc="submenu.name"/></span>
           <span class="nav-item__OcticonChevronDown12" aria-hidden="true" data-pqr-part="nav-item-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.00003 11.7666C7.73336 11.7666 7.4667 11.6333 7.33336 11.5L2.93336 7.09998C2.53336 6.69998 2.53336 6.03331 2.93336 5.63331C3.33336 5.23331 4.00003 5.23331 4.40003 5.63331L8.00003 9.23331L11.6 5.63331C12 5.23331 12.6667 5.23331 13.0667 5.63331C13.4667 6.03331 13.4667 6.69998 13.0667 7.09998L8.80003 11.3666C8.53336 11.6333 8.2667 11.7666 8.00003 11.7666Z" fill="white"/></svg></span>
           <span t-if="is_active" class="nav-item__Soulignement" data-pqr-part="nav-item-soulignement"/>
-        </a>
-        <ul class="dropdown-menu">
-          <t t-foreach="submenu.child_id" t-as="child">
-            <li>
-              <t t-set="child_active" t-value="child._is_active()"/>
-              <a t-attf-class="dropdown-item #{'active' if child_active else ''}"
-                 t-att-href="child._clean_url()"
-                 t-att-target="'_blank' if child.new_window else None"
-                 t-att-rel="'noopener' if child.new_window else None"
-                 t-att-aria-current="'page' if child_active else None"><t t-esc="child.name"/></a>
-            </li>
-          </t>
-        </ul>
+        </button>
+        <t t-call="piqueray_ds.sous_menu"/>
       </div>
     </t>
   </template>
   <!-- ODOO-022-HEADER-ACTIF END -->
+
+  <!-- ODOO-031-SOUS-MENU BEGIN -->
+  <!--
+    Le PANNEAU du sous-menu (ds.sous-menu 1.0.0 → ds.sous-entree 1.0.0), option A retenue le
+    2026-09-08 — journal specs/tiny/vague-031/sous-menu.md. Appelé par header_nav_entry pour
+    chaque entrée à enfants (`submenu`, `sm_id` posés par l'appelant). Plan inactif `hidden` ;
+    ouverture/fermeture, position mesurée : sous_menu_interaction.js. Classes = la CSS
+    générée (fermeture du shell ds.sous-menu) + data-pqr-part. La liste réelle vient de
+    website.menu (le contrat en dessine trois — `items`, code-only) ; l'état actif d'une
+    rangée = `child._is_active()`, comme pour la barre.
+  -->
+  <template id="sous_menu" name="Piqueray · Sous-menu (panneau)">
+    <div class="sous-menu" t-att-id="sm_id" data-pqr-part="sous-menu-root" data-ds-contract="ds.sous-menu" hidden="hidden">
+      <div class="sous-menu__sousEntrees" data-pqr-part="sous-menu-sous-entrees">
+        <span class="sous-menu__rail" data-pqr-part="sous-menu-rail"/>
+        <div class="sous-menu__liste" data-pqr-part="sous-menu-liste">
+          <t t-foreach="submenu.child_id" t-as="child">
+            <t t-set="child_active" t-value="child._is_active()"/>
+            <a t-attf-class="sous-entree sous-entree--etat-#{'actif' if child_active else 'repos'}"
+               data-pqr-part="sous-entree-root"
+               t-att-href="child._clean_url()"
+               t-att-target="'_blank' if child.new_window else None"
+               t-att-rel="'noopener' if child.new_window else None"
+               t-att-aria-current="'page' if child_active else None">
+              <span class="sous-entree__texte" data-pqr-part="sous-entree-texte"><t t-esc="child.name"/></span>
+              <span t-if="child_active" class="sous-entree__Soulignement" data-pqr-part="sous-entree-soulignement"/>
+            </a>
+          </t>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!-- ODOO-031-SOUS-MENU END -->
 
   <!-- ODOO-022-HEADER-QWEB BEGIN -->
   <!--

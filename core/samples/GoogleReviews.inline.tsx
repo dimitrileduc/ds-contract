@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -43,6 +43,7 @@ const S: Record<string, CSSProperties> = {
     "fontSize": "14px",
     "fontWeight": 400,
     "lineHeight": "20px",
+    "letterSpacing": "0.15em",
     "textAlign": "left"
   },
   "Titre": {
