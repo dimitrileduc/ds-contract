@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Piqueray FAQ, v2 de la vague 031 — candidat responsive extrait du set FAQ 2773:27504 (page « 031 · Planches de validation », 4 variantes Presentation Mobile/Tablette/Desktop/Wide). MAJEUR pour deux raisons : les ancres changent de set (le master v1 2104:2914 n'avait qu'une largeur, 1728) et la prop `ligne3` disparaît — en v2 le nombre de questions est du CONTENU (la liste `items`), plus une bascule de visibilité sur une troisième rangée sortie du repeat. Mise en page : option B tranchée par l'owner le 2026-09-07 — en-tête aligné à gauche —, CORRIGÉE le 2026-09-08 : l'en-tête et le CTA sont CENTRÉS en Desktop et Wide, à gauche en Mobile et Tablette, comme AvisGoogle et Reassurances (l'écart assumé de la veille est levé ; le set 2773:27504 porte le geste, 14 instances avant, 14 après), rangées Taille=Grand partout, CTA pleine largeur sous 992 (fait code-only, une part `component` ne peut pas porter layoutByProp). L'en-tête n'est plus une instance de ds.section-header : aucune section v2 de la vague n'en utilise — chacune dessine son accroche et son titre avec les rôles typographiques responsive, ce qui règle au passage le défaut de source v1 (instance bridée à 50 px, titre débordant de 33 px dans le gap).",
   "semantics": {
     "element": "section",
@@ -114,7 +114,7 @@
           },
           "parts": {
             "Accroche": {
-              "description": "Accroche « FAQ » — rôle typographique overline (14 / 14 / 16 / 20 relevés, graisse Regular → Medium à 992, interligne 20 / 20 / 20 / 25 : exactement la définition responsive du rôle, l'extraction avait minté quatre imported.* par canal). LIMITE DE DUMP nommée : la casse UPPER et l'interlettrage 15 % du style Figma ne sont portés par aucun canal du dump v1 — ils vivent dans le style de texte, la feuille Odoo les repose (declared text-transform). Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — le canal `declared` ne varie pas par mode, le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section.",
+              "description": "Accroche « FAQ » — rôle typographique overline (14 / 14 / 16 / 20 relevés, graisse Regular → Medium à 992, interligne 20 / 20 / 20 / 25 : exactement la définition responsive du rôle, l'extraction avait minté quatre imported.* par canal). LIMITE DE DUMP nommée : la casse UPPER et l'interlettrage 15 % du style Figma ne sont portés par aucun canal du dump v1 — ils vivent dans le style de texte, la feuille Odoo les repose (declared text-transform). Alignement : à GAUCHE sous 992 px, CENTRÉ au-delà — le canal `declared` ne varie pas par mode, le passage au centré est un FAIT CODE-ONLY, écrit une fois dans la feuille CSS de la section. Interlettrage ajouté le 2026-09-08 : la source pose 15 % sur TOUS les sur-titres (relevé au pont sur une même vue — Réassurances, FAQ et Réalisations, tous à 15 %), et ce contrat ne le portait pas. Écrit en em comme `ds.coordonnees` et `ds.formulaire` : la même valeur sert les quatre corps (14, 14, 16, 20), et em est l'orthographe CSS du POURCENT de Figma. Invisible sur la HAUTEUR — le sur-titre tient sur une ligne dans les deux cas — donc aucune mesure ne l'avait attrapé : l'écart se voyait sur le score au pixel, dilué dans le bruit.",
               "text": "FAQ",
               "tokens": {
                 "color": "{color.noir-bleute}",
@@ -122,6 +122,9 @@
                 "font-size": "{typography.overline.size}",
                 "font-weight": "{typography.overline.weight}",
                 "line-height": "{typography.overline.line-height}"
+              },
+              "literals": {
+                "letter-spacing": "0.15em"
               },
               "declared": {
                 "text-align": "left",

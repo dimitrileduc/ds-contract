@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

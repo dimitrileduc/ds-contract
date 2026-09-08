@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v2.1.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v2.1.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

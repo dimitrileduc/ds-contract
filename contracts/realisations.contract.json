@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.realisations",
   "name": "Realisations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Section Realisations — la mosaïque de photos de chantiers. Contrat NEUF (vague 035, 2026-09-07) : la section n'existait ni en contrat ni en bloc Odoo, seule la tuile ds.realisation était gouvernée. Extrait du set candidat v2 de la page « 031 · Planches de validation », posé le même jour à partir du set v1 2117:4691 après nettoyage de la source (8 défauts relevés, dont l'aplat gris opaque qui cachait les 27 photos vivantes du fichier). Mosaïque : une grande tuile sur 2×2 cellules puis huit petites, 4 colonnes en Desktop et Wide, 2 en Tablette et Mobile — décision owner du 2026-09-07 (option B : deux colonnes en mobile plutôt qu'une, qui donnait 3638 px de défilement pour un seul bloc). Le rythme vertical appartient à la page (padding vertical 0), la gouttière au contrat, comme toutes les sections depuis la vague 031.",
   "semantics": {
     "element": "section",
@@ -236,7 +236,7 @@
               },
               "parts": {
                 "Accroche": {
-                  "description": "Sur-titre en capitales. Visible dans la seule forme `accroche` : la forme `presentation` pose afficherAccroche=false sur le canevas.",
+                  "description": "Sur-titre en capitales. Visible dans la seule forme `accroche` : la forme `presentation` pose afficherAccroche=false sur le canevas. Interlettrage ajouté le 2026-09-08 : la source pose 15 % sur TOUS les sur-titres (relevé au pont sur une même vue — Réassurances, FAQ et Réalisations, tous à 15 %), et ce contrat ne le portait pas. Écrit en em comme `ds.coordonnees` et `ds.formulaire` : la même valeur sert les quatre corps (14, 14, 16, 20), et em est l'orthographe CSS du POURCENT de Figma. Invisible sur la HAUTEUR — le sur-titre tient sur une ligne dans les deux cas — donc aucune mesure ne l'avait attrapé : l'écart se voyait sur le score au pixel, dilué dans le bruit.",
                   "layout": {
                     "width": "fill"
                   },
@@ -253,6 +253,9 @@
                     "font-size": "{typography.overline.size}",
                     "font-weight": "{typography.overline.weight}",
                     "line-height": "{typography.overline.line-height}"
+                  },
+                  "literals": {
+                    "letter-spacing": "0.15em"
                   },
                   "declared": {
                     "text-align": "center",
