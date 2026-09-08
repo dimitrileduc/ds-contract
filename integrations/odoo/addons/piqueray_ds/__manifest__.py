@@ -70,7 +70,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/generated/components.pqr.css",
             # Zone manuelle — projection responsive des blocs (pilote hero, 2026-09-02) :
             # les règles par mode du contrat, réécrites en @media sur les breakpoints
-            # des tokens (768 / 992 / 1400). Écrit à la main, jamais généré (décision owner).
+            # des tokens (768 / 992 / 1600). Écrit à la main, jamais généré (décision owner).
             "piqueray_ds/static/src/css/responsive.pqr.css",
             "piqueray_ds/static/src/css/responsive/presentation.pqr.css",
             "piqueray_ds/static/src/css/responsive/sav.pqr.css",

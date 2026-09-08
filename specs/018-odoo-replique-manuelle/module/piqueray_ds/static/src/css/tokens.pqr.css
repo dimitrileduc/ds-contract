@@ -237,7 +237,7 @@
   --pqr-border-width-2: 2px;
   --pqr-breakpoint-tablette: 768px;
   --pqr-breakpoint-desktop: 992px;
-  --pqr-breakpoint-wide: 1400px;
+  --pqr-breakpoint-wide: 1600px;
   --pqr-decoration-etat-default-survol: none;
   --pqr-decoration-etat-orange-survol: none;
   --pqr-decoration-etat-blanc-survol: none;
@@ -530,8 +530,8 @@
   }
 }
 
-/* viewport mode "wide" — from {breakpoint.wide} = 1400px */
-@media (min-width: 1400px) {
+/* viewport mode "wide" — from {breakpoint.wide} = 1600px */
+@media (min-width: 1600px) {
   :root {
     --pqr-typography-h1-size: var(--pqr-font-size-54);
     --pqr-typography-h1-line-height: var(--pqr-font-line-height-68);

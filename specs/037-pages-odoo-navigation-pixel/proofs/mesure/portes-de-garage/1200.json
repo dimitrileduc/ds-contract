@@ -1,5 +1,5 @@
 {
-  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "cause": "la maquette FIGE la hauteur de rangée à 561 px au 1200, au-dessus de ce que son propre contenu demande",
   "date": "2026-09-08T15:39:10.284Z",
   "diffPixels": 412405,
   "ecartHauteurPx": -58,
@@ -14,7 +14,7 @@
   },
   "hauteurCommune": 5151,
   "instance": "piqueray-odoo-037",
-  "justification": "Mesuré au 1200 sur l'accueil : la grille `reassurances-items` fait 1094 px côté Odoo contre 1154 px en vue, à structure identique (3 colonnes, écart 32, 2 rangées). Soit une carte de 531 px contre 561 px — 30 px par carte, 60 px sur deux rangées. Le reste de la section est au pixel : en-tête 76 = 76, écarts 48 = 48, bouton 54 = 54. C'est un écart de BLOC (`ds.reassurances` / carte), pas de page : le corriger sortirait du périmètre de cette vague (SC-010).",
+  "justification": "Relevé au pont, sur cinq vues : au 1200 la grille des Réassurances a `gridRowSizes: [FIXED 561, FIXED 561]` — une hauteur de rangée ÉCRITE EN DUR, la même sur toutes les pages, quel que soit le contenu. Sur À Propos la carte la plus haute demande 531 px : la maquette impose donc 30 px de vide. Sur Portes résidentielles elle demande 558 : 3 px de vide. Aux largeurs 390 et 834 il n'y a pas de grille du tout (une rangée flex, une colonne flex) et nos pages y sont vertes.\n\nNotre grille CSS, elle, dimensionne les rangées SUR LE CONTENU. Vérification faite, cartes chargées avec leurs polices : nos cinq blocs de texte mesurent 54/81/81/54/81 px — exactement comme la maquette. Le texte se coupe au même endroit, la police, le corps, l'interligne et l'approche sont identiques.\n\nCONCLUSION : l'écart n'est pas un défaut de la page. Reproduire la maquette voudrait dire figer 561 px de rangée dans le CSS — ce qui casserait au premier texte modifié. La correction appartient à la SOURCE : retirer la hauteur fixe de la grille au 1200 et la laisser suivre son contenu.\n\nPREMIÈRE LECTURE ERRONÉE, corrigée ici : « il manque 30 px de blanc sous le texte de la carte ». C'était une déduction à partir du triptyque seul, sans avoir mesuré la grille.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 5151,

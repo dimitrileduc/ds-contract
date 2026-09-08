@@ -150,11 +150,43 @@ toutes les pages qui portent le bloc. Ce qui était faux, c'est d'en faire la ca
 
 ---
 
+## 6quater. LA CAUSE DES ROUGES DE 1200 — trois lectures successives, la troisième est la bonne
+
+| Lecture | Ce qui était dit | Pourquoi c'était faux |
+|---|---|---|
+| 1 — depuis le tableau des sections | « la carte de Réassurances rend 30 px plus court » | vrai comme constat, muet sur la cause |
+| 2 — depuis le triptyque seul | « il manque 30 px de blanc sous le texte » | déduit d'une image, jamais mesuré |
+| 3 — **mesurée au pont** | **la maquette FIGE la hauteur de rangée à 561 px au 1200** | c'est celle-ci qui tient |
+
+Relevé sur cinq vues : au 1200, la grille des Réassurances porte `gridRowSizes: [FIXED 561, FIXED 561]` — une hauteur
+de rangée **écrite en dur**, identique sur toutes les pages, quel que soit le contenu.
+
+| Page (1200) | Ce que le contenu demande | Ce que la maquette impose | Vide imposé |
+|---|---|---|---|
+| À Propos | 531 px | 561 px | **30 px** |
+| Portes résidentielles | 558 px | 561 px | 3 px |
+| Accueil | 561 px | 561 px | 0 (mais un TITRE y passe à 2 lignes côté maquette) |
+
+Aux largeurs **390 et 834 il n'y a pas de grille du tout** (rangée flex, colonne flex) — et nos pages y sont vertes.
+
+**Nos cartes sont justes.** Vérifié polices chargées : nos cinq blocs de texte mesurent 54/81/81/54/81 px, exactement
+comme la maquette. Le texte se coupe au même endroit ; police, corps, interligne et approche sont identiques.
+
+**Décision recommandée : corriger la SOURCE, pas le composant.** Reproduire la maquette voudrait dire figer 561 px de
+rangée dans le CSS — ce qui casserait au premier texte modifié. Il faut retirer la hauteur fixe de la grille au 1200 et
+la laisser suivre son contenu.
+
+*Piège de méthode payé ici : la première mesure de nos cartes a été faite **sans attendre le chargement des polices**.
+Le texte était alors mesuré avec la police de secours et tenait sur 2 lignes au lieu de 3 — la carte paraissait 27 px
+plus courte qu'elle n'est. C'est exactement le piège que `docs/16` nomme.*
+
+---
+
 ## 6ter. Décisions owner prises le 2026-09-08
 
 | Sujet | Décision |
 |---|---|
-| Carte Réassurances 30 px plus courte | **La maquette fait foi.** Il manque 30 px de blanc sous le texte de la carte. Corriger le composant est un chantier à part : cette vague s'interdisait de toucher aux blocs (SC-010). |
+| Carte Réassurances 30 px plus courte | Décision prise **sur une explication fausse** (« il manque 30 px de blanc sous le texte »). La mesure au pont montre que c'est la MAQUETTE qui fige la rangée à 561 px au 1200, au-dessus de son propre contenu. **À re-trancher** : la correction appartient à la source, pas au composant. |
 | Ordre de l'Équipe d'À propos | Repris depuis la vue. **Fait.** |
 | Photos de survol de l'Équipe | Les seize de la vue sont distinctes et n'ont pas pu être exportées : **les dix ports que le plugin autorise étaient tous pris**, dont un par une autre session travaillant précisément sur les photos de survol. À reprendre quand un port se libère. |
 

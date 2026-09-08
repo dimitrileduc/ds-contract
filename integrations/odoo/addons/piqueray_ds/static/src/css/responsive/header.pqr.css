@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css, mobile-first)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la
  * classe `.header--presentation-<mode>` (Odoo ne pose jamais cette classe).
  * La typographie n'est pas ici (tokens.pqr.css porte ses blocs @media ; le
@@ -64,8 +64,8 @@
     display: none;
   }
 }
-/* Desktop seul (BORNÉ à 1399.98) : pas de bouton, icône Mail présente. */
-@media (min-width: 992px) and (max-width: 1399.98px) {
+/* Desktop seul (BORNÉ à 1599.98) : pas de bouton, icône Mail présente. */
+@media (min-width: 992px) and (max-width: 1599.98px) {
   .header .header__nav > .button {
     display: none;
   }
@@ -74,14 +74,14 @@
 .header .header__Mail {
   display: none;
 }
-@media (min-width: 992px) and (max-width: 1399.98px) {
+@media (min-width: 992px) and (max-width: 1599.98px) {
   .header .header__Mail {
     display: inline-flex;
   }
 }
 
-/* Wide ≥ 1400 : padding-inline 89, padding-block 16, gap nav ↔ icônes 64, bouton présent. */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : padding-inline 89, padding-block 16, gap nav ↔ icônes 64, bouton présent. */
+@media (min-width: 1600px) {
   .header {
     padding-inline: var(--pqr-space-89);
     padding-block: var(--pqr-space-16);

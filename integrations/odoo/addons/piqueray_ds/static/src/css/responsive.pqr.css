@@ -6,7 +6,7 @@
  *   Mobile   = base (:root, components.pqr.css — mobile-first)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * La typographie n'est PAS ici : tokens.pqr.css porte déjà ses blocs @media
  * (typography/h1 = 32/32/40/54). Ici : structure, espacements, hauteur.
  *
@@ -103,8 +103,8 @@
   }
 }
 
-/* Wide ≥ 1400 : padding-inline 89. */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : padding-inline 89. */
+@media (min-width: 1600px) {
   .s_pqr_hero_video.hero-video {
     padding-inline: var(--pqr-space-89);
   }

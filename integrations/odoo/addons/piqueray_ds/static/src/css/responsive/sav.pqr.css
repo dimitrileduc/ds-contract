@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.sav`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
  * (typography/h2 = 24/24/32/40, typography/body = 16/16/18/18).
  *
@@ -125,11 +125,11 @@
   }
 }
 
-/* Wide ≥ 1400 : padding-inline 89, hauteur de section 677 avec la rangée en bas ;
+/* Wide ≥ 1600 : padding-inline 89, hauteur de section 677 avec la rangée en bas ;
  * rangée padding-inline 131 (size.sav.content-padding), 561 de haut ; carte
  * 48 / 47 / 0 / 48, 561 ; colonne image 3 / 78, 561. Fond dans le padding
  * (canvas : 1550 sur 1728). */
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .s_pqr_sav.sav {
     padding-inline: var(--pqr-space-89);
     padding-block: var(--pqr-space-0);
@@ -158,11 +158,11 @@
   }
 }
 
-/* Desktop SEUL (992–1399.98) : le CTA est dessiné FIXED 279 (size.sav.cta-w-desktop,
+/* Desktop SEUL (992–1599.98) : le CTA est dessiné FIXED 279 (size.sav.cta-w-desktop,
  * minté from-dump) — une part instance n'a pas de canal par mode. (La photo porte un
  * recadrage CROP à transformation propre sur ce mode : sans orthographe CSS, le
  * contain du contrat est gardé — mesuré plus proche que cover — déviation nommée.) */
-@media (min-width: 992px) and (max-width: 1399.98px) {
+@media (min-width: 992px) and (max-width: 1599.98px) {
   .s_pqr_sav.sav .sav__Bouton > .button {
     width: var(--pqr-size-sav-cta-w-desktop);
     justify-content: center;

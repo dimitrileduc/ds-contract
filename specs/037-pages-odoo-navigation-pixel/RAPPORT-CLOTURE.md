@@ -32,10 +32,21 @@ Trois évals neuves couvrent les trois mécanismes, et chacune précède la phra
 **Motorisation** à trois sur quatre, et à 1728 **toutes ses sections sont à zéro d'écart de hauteur**.
 Les 36 rapports portent `structure: "égale"` : le nombre de sections rendues est celui de la vue, partout.
 
-**La cause dominante est UNE, et elle est mesurée.** La carte de Réassurances rend **30 px plus court** qu'en vue :
-au 1200 sur l'accueil, la grille fait 1094 px côté Odoo contre 1154 en vue, à structure identique — 531 px par carte
-contre 561, soit 60 px sur deux rangées. Le reste de la section est au pixel (en-tête 76 = 76, écarts 48 = 48,
-bouton 54 = 54). C'est un écart de **bloc**, pas de page : le corriger sortirait du périmètre (SC-010).
+**La cause dominante des rouges de 1200, mesurée au pont après DEUX lectures fausses** : au 1200, la grille des
+Réassurances de la maquette porte `gridRowSizes: [FIXED 561, FIXED 561]` — une hauteur de rangée **écrite en dur**,
+la même sur toutes les pages, quel que soit le contenu. Sur À Propos la carte la plus haute demande 531 px : la
+maquette impose donc **30 px de vide**. Aux largeurs 390 et 834 il n'y a pas de grille du tout, et nos pages y sont
+vertes.
+
+**Nos cartes sont justes** : polices chargées, nos cinq blocs de texte mesurent 54/81/81/54/81 px — exactement comme
+la maquette, au même endroit de coupure, avec la même police, le même corps, le même interligne et la même approche.
+Reproduire la maquette voudrait dire figer 561 px de rangée dans le CSS, ce qui casserait au premier texte modifié.
+**La correction appartient à la source.**
+
+Les deux lectures fausses sont conservées au registre (§6quater) plutôt qu'effacées : la première déduisait la cause
+du tableau des sections, la seconde d'une image. Seule la troisième a mesuré. Et la première mesure de nos cartes a
+été faite **sans attendre le chargement des polices** — le texte, mesuré avec la police de secours, tenait sur 2
+lignes au lieu de 3.
 
 **Deux attributions corrigées APRÈS avoir regardé les triptyques**, et c'est la leçon de `docs/16` payée une fois de
 plus (« avant d'annoncer un %, REGARDE le triptyque ») :

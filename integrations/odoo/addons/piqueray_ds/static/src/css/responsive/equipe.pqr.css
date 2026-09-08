@@ -6,7 +6,7 @@
  *   Mobile   = base (components.pqr.css, classe `.equipe`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  *
  * POURQUOI CETTE FEUILLE EXISTE — le seul fait code-only de cette section, et il n'a
  * qu'une cause. Le contrat DIT tout ce qui change par écran (gouttière en tokensByProp,
@@ -87,8 +87,8 @@
   }
 }
 
-/* Wide ≥ 1400 : gouttière 89, la grille passe à 4 colonnes. */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : gouttière 89, la grille passe à 4 colonnes. */
+@media (min-width: 1600px) {
   .s_pqr_equipe.equipe {
     padding-inline: var(--pqr-space-89);
   }

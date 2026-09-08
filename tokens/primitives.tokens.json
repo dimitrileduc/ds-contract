@@ -1068,7 +1068,7 @@
   },
   "breakpoint": {
     "$type": "dimension",
-    "$description": "Viewport breakpoints of the delivered CSS (decision owner 2026-09-02: the Odoo/Bootstrap steps, not the Figma witness widths). Consumed by scripts/build-tokens.mjs as @media (min-width) for tokens/modes/viewport.<mode>.tokens.json. Never Figma variables (parity excludes breakpoint/*).",
+    "$description": "Viewport breakpoints of the delivered CSS. Consumed by scripts/build-tokens.mjs as @media (min-width) for tokens/modes/viewport.<mode>.tokens.json. Never Figma variables (parity excludes breakpoint/*). ORIGINE (owner 2026-09-02, spec 027 R6): reprendre les paliers Odoo/Bootstrap 5.3 lg=992 et xxl=1400, jamais les largeurs temoins Figma. RELEVE (owner 2026-09-08): `wide` quitte 1400 pour 1600 — Bootstrap n'a AUCUN palier au-dessus de 1400, donc il n'existait pas de valeur suivante a reprendre ; 1600 est le palier `xxl` d'Ant Design et l'entree de la classe Extra-Large de Material 3 (dont la classe Large 1200-1599 couvre exactement notre temoin desktop 1200). Cause mesuree : a 1400 un MacBook Air 13 (1470 CSS) et un MacBook Pro 14 (1512) recevaient la maquette dessinee pour 1728 ; a 1600 ils recoivent la maquette 1200 et le MacBook Pro 16 (1728 CSS) garde le mode wide avec 128px de marge. Un seuil se pose ENTRE deux familles d'ecrans, jamais sur l'une d'elles — c'est pourquoi 1728 a ete ecarte. Ce faisant le profil livre n'est plus un sous-ensemble Bootstrap : 992 l'est encore, 1600 ne l'est pas.",
     "tablette": {
       "$value": "768px",
       "$description": "Tablette mode starts here (Figma witness 834)."
@@ -1078,7 +1078,7 @@
       "$description": "Desktop mode starts here (Figma witness 1200)."
     },
     "wide": {
-      "$value": "1400px",
+      "$value": "1600px",
       "$description": "Wide mode starts here (Figma witness 1728)."
     }
   },

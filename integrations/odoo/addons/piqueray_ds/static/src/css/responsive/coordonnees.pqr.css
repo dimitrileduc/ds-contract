@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.coordonnees`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * Le générateur émet déjà ces mêmes déclarations sous les classes
  * `.coordonnees--presentation-<mode>` — mais AUCUN QWeb ne pose ces classes sur le
  * DOM Odoo (Odoo n'a aucun moyen d'appliquer une classe selon la fenêtre) : cette
@@ -128,11 +128,11 @@
   }
 }
 
-/* ---- Wide ≥ 1400 --------------------------------------------------------- */
+/* ---- Wide ≥ 1600 --------------------------------------------------------- */
 /* Le panneau passe à 576 (size.coordonnees.wrapper) ; le plan garde le reste,
  * 1152 sur la planche 1728 — le même partage deux tiers / un tiers. Les marges
  * intérieures du panneau restent à 48, la grille à une colonne (contenu 480). */
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .s_pqr_coordonnees .coordonnees__wrapper {
     width: var(--pqr-size-coordonnees-wrapper);
     flex: 0 0 var(--pqr-size-coordonnees-wrapper);

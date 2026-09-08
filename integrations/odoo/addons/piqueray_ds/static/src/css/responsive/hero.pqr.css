@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.hero`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
  * `.hero--presentation-<mode>` (qu'aucun QWeb ne pose) — même source, même vocabulaire.
  * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
@@ -104,10 +104,10 @@
   }
 }
 
-/* Wide ≥ 1400 : gouttière 89 (canevas : 1550 de contenu sur 1728). Le voile de navigation
+/* Wide ≥ 1600 : gouttière 89 (canevas : 1550 de contenu sur 1728). Le voile de navigation
  * Wide du contrat est IDENTIQUE à celui de Desktop : la règle ≥ 992 reste vraie, rien à
  * recopier. */
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .s_pqr_hero.hero .hero__Titres {
     padding-inline: var(--pqr-space-89);
   }

@@ -228,7 +228,7 @@
   --border-width-2: 2px;
   --breakpoint-tablette: 768px;
   --breakpoint-desktop: 992px;
-  --breakpoint-wide: 1400px;
+  --breakpoint-wide: 1600px;
   --decoration-etat-default-survol: none;
   --decoration-etat-orange-survol: none;
   --decoration-etat-blanc-survol: none;
@@ -521,8 +521,8 @@
   }
 }
 
-/* viewport mode "wide" — from {breakpoint.wide} = 1400px */
-@media (min-width: 1400px) {
+/* viewport mode "wide" — from {breakpoint.wide} = 1600px */
+@media (min-width: 1600px) {
   :root {
     --typography-h1-size: var(--font-size-54);
     --typography-h1-line-height: var(--font-line-height-68);

@@ -1,5 +1,5 @@
 {
-  "cause": "la carte de Réassurances rend 30 px plus court qu'en vue",
+  "cause": "la maquette FIGE la hauteur de rangée à 561 px au 1200, au-dessus de ce que son propre contenu demande",
   "date": "2026-09-08T15:40:57.929Z",
   "diffPixels": 587108,
   "ecartHauteurPx": -58,
@@ -15,7 +15,7 @@
   },
   "hauteurCommune": 7515,
   "instance": "piqueray-odoo-037",
-  "justification": "Lu au triptyque : photo, titre et texte sont aux MÊMES positions des deux côtés ; c'est le bas de la carte qui diffère — la vue laisse 30 px de blanc en plus sous le texte. Deux rangées, donc 60 px sur la section. Écart de BLOC, hors périmètre de cette vague (SC-010). Décision owner du 2026-09-08 : **c'est la maquette qui fait foi** — l'alignement de la carte est un chantier à part.",
+  "justification": "Relevé au pont, sur cinq vues : au 1200 la grille des Réassurances a `gridRowSizes: [FIXED 561, FIXED 561]` — une hauteur de rangée ÉCRITE EN DUR, la même sur toutes les pages, quel que soit le contenu. Sur À Propos la carte la plus haute demande 531 px : la maquette impose donc 30 px de vide. Sur Portes résidentielles elle demande 558 : 3 px de vide. Aux largeurs 390 et 834 il n'y a pas de grille du tout (une rangée flex, une colonne flex) et nos pages y sont vertes.\n\nNotre grille CSS, elle, dimensionne les rangées SUR LE CONTENU. Vérification faite, cartes chargées avec leurs polices : nos cinq blocs de texte mesurent 54/81/81/54/81 px — exactement comme la maquette. Le texte se coupe au même endroit, la police, le corps, l'interligne et l'approche sont identiques.\n\nCONCLUSION : l'écart n'est pas un défaut de la page. Reproduire la maquette voudrait dire figer 561 px de rangée dans le CSS — ce qui casserait au premier texte modifié. La correction appartient à la SOURCE : retirer la hauteur fixe de la grille au 1200 et la laisser suivre son contenu.\n\nPREMIÈRE LECTURE ERRONÉE, corrigée ici : « il manque 30 px de blanc sous le texte de la carte ». C'était une déduction à partir du triptyque seul, sans avoir mesuré la grille.",
   "largeur": 1200,
   "odoo": {
     "hauteur": 7515,

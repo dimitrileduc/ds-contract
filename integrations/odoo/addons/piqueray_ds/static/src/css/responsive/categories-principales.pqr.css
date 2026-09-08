@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.categories-principales`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  *
  * Écrit à la main depuis le contrat, jamais généré (décision owner 2026-09-02).
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
@@ -59,8 +59,8 @@
   }
 }
 
-/* Wide ≥ 1400 : marges 89. */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : marges 89. */
+@media (min-width: 1600px) {
   .s_pqr_categories_principales.categories-principales {
     padding-inline: var(--pqr-space-89);
   }

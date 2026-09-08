@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.reassurances`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * La typographie n'est pas ici : tokens.pqr.css porte ses blocs @media, et la
  * carte porte ses propres jetons par écran (photo 192/240/364, écart 16/24…).
  *
@@ -100,8 +100,8 @@
   }
 }
 
-/* Wide ≥ 1400 : grille de 5 colonnes, marges 89. */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : grille de 5 colonnes, marges 89. */
+@media (min-width: 1600px) {
   .s_pqr_reassurances.reassurances {
     padding-inline: var(--pqr-space-89);
   }

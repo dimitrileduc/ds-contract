@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.devis`)
  *   Tablette = @media (min-width: 768px)
  *   Desktop  = @media (min-width: 992px)
- *   Wide     = @media (min-width: 1400px)
+ *   Wide     = @media (min-width: 1600px)
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
  * `.devis--presentation-<mode>` — même source, même vocabulaire, rien d'autre.
  * La typographie n'est PAS ici : tokens.pqr.css porte ses blocs @media
@@ -78,8 +78,8 @@
   }
 }
 
-/* Wide ≥ 1400 : hauteur 506, voile en plateau 0,55 sur 21 stops (plateau plus long). */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : hauteur 506, voile en plateau 0,55 sur 21 stops (plateau plus long). */
+@media (min-width: 1600px) {
   .s_pqr_devis.devis {
     min-height: var(--pqr-size-devis-root-h-wide);
   }

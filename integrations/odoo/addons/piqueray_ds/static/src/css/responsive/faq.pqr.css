@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.faq`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1400px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la classe
  * `.faq--presentation-<mode>` (qu'aucun QWeb ne pose) — même source, même vocabulaire.
  *
@@ -90,8 +90,8 @@
   .s_pqr_faq.faq .faq__Titre { text-align: center; }
 }
 
-/* Wide ≥ 1400 : padding-inline 89 (canvas : 1550 sur 1728). */
-@media (min-width: 1400px) {
+/* Wide ≥ 1600 : padding-inline 89 (canvas : 1550 sur 1728). */
+@media (min-width: 1600px) {
   .s_pqr_faq.faq {
     padding-inline: var(--pqr-space-89);
   }

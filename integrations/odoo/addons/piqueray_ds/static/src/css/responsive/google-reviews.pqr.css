@@ -5,7 +5,7 @@
  * les retranscrit en @media, avec le MÊME vocabulaire de variables, plus les quelques faits
  * que le contrat ne sait pas dire.
  *
- * Seuils = jetons `breakpoint.*` : 768 (tablette), 992 (bureau), 1400 (grand écran).
+ * Seuils = jetons `breakpoint.*` : 768 (tablette), 992 (bureau), 1600 (grand écran).
  */
 
 /* ---------- base = Mobile ------------------------------------------------- */
@@ -128,7 +128,7 @@
 }
 
 /* ---------- Grand écran --------------------------------------------------- */
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .s_pqr_google_reviews_section.google-reviews {
     padding-inline: var(--pqr-space-89);
     gap: var(--pqr-space-40);
