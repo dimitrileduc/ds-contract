@@ -465,6 +465,47 @@ const cases: Case[] = [
     },
   },
   {
+    // 037 — l'instrument de mesure de page entière est PROUVÉ avant de servir
+    // (FR-015). Hors ligne, hors Docker, hors Figma : des PNG synthétiques.
+    // Le cas d'appariement est celui qui compte le plus — mal traité, il
+    // ferait sortir un faux « 8 vs 10 sections » sur les NEUF pages, sur des
+    // pages parfaitement saines.
+    id: 'odoo-page-parity-selftest',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['extract/odoo-page-parity/selftest.ts']);
+      if (r.status !== 0) throw new Error(`self-test de l'instrument rouge :\n${r.out}`);
+      for (const attendu of [
+        'identique → 0,00 %',
+        'section décalée de 40 px → pixel rouge',
+        '+64 px → hauteur ROUGE',
+        '+64 px → la section d’origine du décalage est NOMMÉE',
+        'deux passes → mêmes chiffres',
+        'entrée manquante → aucun score inventé',
+        '10 enfants (Header+Footer) face à 8 sections → structure « égale »',
+        'le retrait ne mord que la tête et la queue',
+      ]) {
+        if (!r.out.includes(`✔ ${attendu}`)) {
+          throw new Error(`le self-test ne couvre plus « ${attendu} » :\n${r.out}`);
+        }
+      }
+      // Le seuil et la tolérance vivent dans le MANIFESTE, avec leur date et
+      // leur raison — jamais dans la ligne de commande, sans quoi on pourrait
+      // les choisir après avoir lu les scores (FR-016).
+      const manifeste = JSON.parse(readFileSync(path.join(SCRATCH, 'extract/odoo-page-parity/views.json'), 'utf8'));
+      if (manifeste.seuilPct !== 5 || manifeste.toleranceHauteurPx !== 10) {
+        throw new Error(`seuil/tolérance déplacés hors décision owner : ${manifeste.seuilPct} / ${manifeste.toleranceHauteurPx}`);
+      }
+      const cli = readFileSync(path.join(SCRATCH, 'extract/odoo-page-parity/cli.ts'), 'utf8');
+      if (/--seuil|--tolerance|--threshold/.test(cli)) {
+        throw new Error('le CLI expose un drapeau qui change le seuil ou la tolérance');
+      }
+      if (Object.keys(manifeste.pages).length !== 9) {
+        throw new Error(`le manifeste doit porter les 9 pages, ${Object.keys(manifeste.pages).length} vue(s)`);
+      }
+    },
+  },
+  {
     id: 'accordion-row-source-cleanup-extraction',
     claim: 'C5-extraction',
     run: () => {
