@@ -1,5 +1,5 @@
 {
-  "passed": 248,
+  "passed": 247,
   "total": 252,
   "quarantined": 46,
   "results": [
@@ -26,7 +26,8 @@
     {
       "id": "odoo-production-version-drift",
       "claim": "C3-detection",
-      "pass": true
+      "pass": false,
+      "error": "Error: current: état structure-stale"
     },
     {
       "id": "odoo-pages-resolve-determinism-and-refusals",
@@ -803,7 +804,7 @@
       "id": "golden-generated-output",
       "claim": "C1-determinism",
       "pass": false,
-      "error": "Error: Generated output diverges from golden manifest (12 file[s]): src/components/Equipe/Equipe.stories.tsx, src/components/Equipe/Equipe.tsx, src/components/FAQ/FAQ.stories.tsx, src/components/FAQ/FAQ.tsx, src/components/Formulaire/Formulaire.stories.tsx — if intentional, npm run golden:update in a reviewed change"
+      "error": "Error: Generated output diverges from golden manifest (7 file[s]): figma-sync/16-faq.js, figma-sync/27-googlereviews.js, figma-sync/38-realisations.js, figma-sync/39-reassurances.js, figma-sync/batch-03.js — if intentional, npm run golden:update in a reviewed change"
     },
     {
       "id": "detect-snapshot-provenance-mismatch",

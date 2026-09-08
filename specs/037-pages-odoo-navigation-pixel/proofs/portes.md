@@ -17,7 +17,21 @@ Date : **2026-09-08** · worktree `comet-yogurt`.
 
 ### Les rouges de `npm run eval`, un par un
 
-**Celui de cette vague, et il est corrigé.** `reassurances-grid-variant-isolation` lisait le bloc Réassurances dans le
+### Deuxième passage (2026-09-08, après la vague de l'approche)
+
+La vague de l'approche a fait rougir **deux cas de plus**, tous deux de mon fait, tous deux corrigés :
+
+| Cas | Cause | Correctif |
+|---|---|---|
+| `golden-generated-output` | `golden:update` avait été lancé AVANT le dernier build (celui qui a suivi la correction de `figma-panels.json`) — sept fichiers générés divergeaient du manifeste | re-pin après le build final |
+| `odoo-production-version-drift` | la fixture citait l'ANCIEN digest de graphe : le cas « current » se lisait `structure-stale`, et le cas « policy-stale » citait une version de contrat devenue périmée côté structure | digest et version mis à jour ; les quatre états sont revenus justes (`current`, `policy-stale`, `structure-stale`, `unknown`) |
+
+**Leçon** : un bump de contrat ne se termine pas au build. Il se termine quand `golden:update` a tourné APRÈS le
+dernier build, et quand la fixture de dérive de version a suivi le digest.
+
+---
+
+**Celui de la première passe, et il est corrigé.** `reassurances-grid-variant-isolation` lisait le bloc Réassurances dans le
 FICHIER de `pages/home.json`. La home ne le recopie plus : elle le REPREND du commun. Ce que l'éval vérifie n'a pas
 changé — « la composition fixe exactement cinq cartes en 5Cartes » — mais elle doit le lire **là où le composeur le
 lit**, dans le descripteur **résolu**. Lire le fichier brut reviendrait à exiger la copie locale que SC-004 interdit
