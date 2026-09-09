@@ -1516,7 +1516,7 @@ const COMPONENTS = [
     "setName": "TexteSEO",
     "contractId": "ds.texte-seo",
     "anchorKey": "3a13552df8319a513d0ee623f27c7b571013d96b",
-    "description": "TexteSEO — generated from contract ds.texte-seo v4.0.0",
+    "description": "TexteSEO — generated from contract ds.texte-seo v4.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],

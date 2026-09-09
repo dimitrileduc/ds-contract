@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "AccordionRow",
     "contractId": "ds.accordion-row",
     "anchorKey": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
-    "description": "AccordionRow — generated from contract ds.accordion-row v2.1.0 †",
+    "description": "AccordionRow — generated from contract ds.accordion-row v2.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
