@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v3.0.1)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v3.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -19,7 +19,10 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   min-width: var(--size-carte-categorie-min-w);
+  border-radius: var(--radius-4);
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .style-empile {

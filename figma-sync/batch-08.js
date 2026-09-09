@@ -1657,7 +1657,7 @@ const COMPONENTS = [
     "setName": "Reassurances",
     "contractId": "ds.reassurances",
     "anchorKey": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
-    "description": "Reassurances — generated from contract ds.reassurances v2.2.0 †",
+    "description": "Reassurances — generated from contract ds.reassurances v2.2.1 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/realisation.contract.json (ds.realisation v2.0.0)
+ * Source of truth: contracts/realisation.contract.json (ds.realisation v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -20,7 +20,10 @@ const S: Record<string, CSSProperties> = {
     "minWidth": 0,
     "aspectRatio": 1,
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "borderRadius": "4px",
+    "overflowX": "hidden",
+    "overflowY": "hidden"
   },
   "Image": {
     "display": "flex",
@@ -43,7 +46,9 @@ export interface RealisationProps extends HTMLAttributes<HTMLDivElement> {
   imageAlt?: string;
 }
 
-/** Piqueray Realisation — la tuile photo de la section Realisations. 2.0.0 (2026-09-07, vague 035) : RUPTURE MAJEURE de geometrie. La 1.1.0 portait sa propre taille (743 ou 339,5 selon l'axe Taille) ; en v2 la tuile prend la taille de sa cellule de grille et reste carree (rapport 1:1). Defaut de source releve a l'etape 0 et corrige a la source le meme jour : le cadre enfant Image portait un aplat gris opaque de la meme taille que la tuile, qui recouvrait entierement la photo — les 27 tuiles vivantes du fichier (3 pages + les 2 masters) n'ont jamais montre leur photo. Le fill IMAGE reste une surcharge d'instance cote Figma ; src et alt sont des semantiques de code. */
+/** Piqueray Realisation — la tuile photo de la section Realisations. 2.0.0 (2026-09-07, vague 035) : RUPTURE MAJEURE de geometrie. La 1.1.0 portait sa propre taille (743 ou 339,5 selon l'axe Taille) ; en v2 la tuile prend la taille de sa cellule de grille et reste carree (rapport 1:1). Defaut de source releve a l'etape 0 et corrige a la source le meme jour : le cadre enfant Image portait un aplat gris opaque de la meme taille que la tuile, qui recouvrait entierement la photo — les 27 tuiles vivantes du fichier (3 pages + les 2 masters) n'ont jamais montre leur photo. Le fill IMAGE reste une surcharge d'instance cote Figma ; src et alt sont des semantiques de code.
+
+VERSION 2.1.0 (2026-09-09, vague « arrondis ») — rayon radius.4 sur la tuile (l'owner a demandé 4 et non 8 pour les photos de réalisation) et rognage de la photo aux coins. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const Realisation = forwardRef<HTMLDivElement, RealisationProps>(function Realisation(
   { taille = 'grand', imageUrl = '', imageAlt = '', style, children, ...rest },
   ref,

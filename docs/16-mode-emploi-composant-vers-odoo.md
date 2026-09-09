@@ -210,7 +210,16 @@ Ce qu'il faut savoir avant de lire un chiffre :
   sur les octets du PNG — l'encodeur de Chromium ne rend pas deux fois le même flux.
 
 ### Étape 9 — Le test d'édition (OBLIGATOIRE, jamais sauté)
-- Modèle `.page-parity/edit-accordion.mts` / `edit-hero-image.mts` / `edit-linebreak.mts`. Env :
+- **Depuis le 2026-09-09, l'instrument est générique** : `npm run odoo:qa:edition -- --only <bloc>` lit la config
+  d'authoring du bloc et prouve chaque verdict dans le VRAI éditeur (rôle rédacteur, instance jetable À SOI :
+  `COMPOSE_PROJECT_NAME` + `PQR_ODOO_PORT` propres — jamais une instance où quelqu'un édite en même temps, ses saves
+  cassent les pages de test). Un bloc neuf est couvert par sa config, sans scénario dédié. Les règles d'édition
+  tranchées sont en §A7 ; les cas ouverts dans `specs/tiny/odoo-edition-registre.md`.
+- **Un rouge « la frappe ne prend pas » n'est inscrit qu'après contrôle à l'œil** (Claude in Chrome ou l'owner) :
+  l'instrument a produit deux faux rouges le 2026-09-09 (clic forcé hors écran → curseur nulle part ; taper dans un
+  champ du formulaire ouvre « Oops » et bloque la session). Il s'auto-vérifie depuis (curseur contrôlé, frappe à
+  40 ms/touche, verrous testés dans une session à part).
+- Ancien modèle, toujours valable pour un test ciblé : `.page-parity/edit-accordion.mts` / `edit-hero-image.mts` / `edit-linebreak.mts`. Env :
   `PQR_ODOO_PORT=8087 PQR_DB_NAME=piqueray_pilote` (le script lit `.env.example` sinon). Rédacteur `editor@example.test`.
 - Modifier un texte simple ET un mot en gras → enregistrer (RPC 200) → relire en public → **remettre l'original**
   (pour ne pas polluer la mesure). Le gras doit survivre à la garde de saisie.
@@ -308,6 +317,29 @@ Jamais `npm run eval` (orchestrateur).
 ---
 
 # PARTIE B — HISTORIQUE ET LEÇONS DATÉES (la recette d'origine, telle qu'écrite le 2026-09-02, et ses compléments)
+
+## A7. Règles d'édition tranchées par l'owner (2026-09-09) — valables pour TOUTES les pages
+
+Ce que le rédacteur peut toucher est une décision, pas un accident du gabarit. Avant d'ouvrir ou de fermer une part
+sur un bloc neuf, lire ce tableau ; une règle absente ici se tranche avec l'owner et s'ajoute ici, jamais dans le code seul.
+Registre des cas et des reçus : `specs/tiny/odoo-edition-registre.md`. Instrument : `npm run odoo:qa:edition` (§ Étape 9).
+
+| Bloc | Ouvert au rédacteur | Fermé, et c'est voulu | Décision / motif |
+|---|---|---|---|
+| Tous | textes déclarés `controlled` dans la config, images par l'outil natif Odoo + alt, liens des CTA au panneau | structure, styles, tout réglage Odoo par défaut (Background, Height, Visibility, save-as-custom, resize) | le panneau ne montre QUE la politique Piqueray ; un réglage natif visible = défaut à corriger (EB-009) |
+| Collections (catégories, membres, avis, FAQ, tuiles) | ajouter / supprimer / monter / descendre au panneau ; l'état VIDE reste ajoutable | — | Équipe vidée ne se ré-ajoute pas = défaut (EB-006). Pas de confirmation à la suppression : ergonomie acceptée, à surveiller (EB-022) |
+| Produits e-commerce | titre de section | titre, prix, image, ajout de produit | **normal** : sera bridgé sur l'e-commerce (Malin Signe). Config en `fixed-by-composition` (EB-003) |
+| Réassurances | titre de carte, texte de carte (`carte-body`), CTA, ajout de carte, **accroche et titre de section (à ouvrir)** | — | EB-004 : fix |
+| Avis Google | accroche, titre, qualificatif, note, nombre, étoiles, lien du bouton, cartes (auteur, date, témoignage, note) | libellé « Voir tous les avis » | **normal** fermé (EB-007) ; la section doit perdre ses réglages natifs (EB-009) |
+| Hero vidéo | titre, libellé + lien du CTA, image d'attente + description | — | la description va en `aria-label` sur la `<video>` (pas d'alt sur une vidéo) — un test qui lit `alt` se trompe (EB-008, faux rouge) |
+| Réalisations | titre, paragraphe (gras), photos par l'outil natif + « Remplacer » + alt, ajout/retrait/ordre des tuiles | le sur-titre OU le paragraphe selon la variante d'en-tête (`accroche` / `presentation`), posée par la composition | couche d'édition écrite le 2026-09-09 sur le modèle Catégories (EB-001). Zones `ODOO-038-REALISATIONS-*` |
+| Formulaire | accroche, titre (gras), consentement, avantages (titre, texte) | le formulaire lui-même (champs, étiquettes, bouton) | pas d'ajout d'avantage aujourd'hui (à faire) ; le message de succès est `hidden` donc inéditable (à trancher) ; **cliquer une étiquette ne doit pas ouvrir « Oops »** (EB-002/EB-019) |
+| Coordonnées, Présentation (libellé CTA), cartes d'avis | ouverts à l'écran alors que la config dit fermé | — | à trancher : on garde ouvert et on aligne la config (EB-010/011/012) |
+| Catégories `carte-text`, Hero sous-titre | le gras passe alors que `allowedMarks` est vide | — | à trancher : autoriser le gras dans la config, ou aplatir (EB-013/014) |
+
+**Deux pièges de l'éditeur lui-même, à connaître avant de tester une page :**
+- Un utilisateur dont Odoo est en **anglais** ouvre l'éditeur en **mode traduction** (« Translate to English (US) ») — l'URL passe en `/en`. Il éditerait une traduction sans le voir. Toujours ouvrir la page maître : `…website_preview?path=/fr&enable_editor=1`, ou mettre le rédacteur en français (EB-021).
+- Le curseur peut être dans le texte d'une carte alors que le panneau de droite montre une AUTRE carte (clic pendant un défilement) : vérifier le panneau avant « Supprimer ».
 
 ## Le but, en une phrase
 
@@ -997,6 +1029,54 @@ en une heure quand la source est propre ; ce qui suit est ce qu'il faut savoir p
   `.page-parity/equipe-colonnes/mesure-equipe.mjs` est la version réécrite (capture clippée, refus de boîte dégénérée,
   sonde, triptyque, `X-Odoo-Database` en option).
 
+### Suite du même jour — Réassurances remis en instance, puis contrats et Odoo (option A + Link SemiBold), sans eval
+
+- **Réassurances** : même protocole (versions « Avant/Après Reassurances », exports `rea-{avant,apres}-<Écran>`) — le cadre
+  `BoutonCinqCartes` remplacé par une instance `Style=Outline noir` « Contactez-nous » + flèche, même index, même
+  dimensionnement (FILL sous 992, HUG au-dessus). **Les 4 exports avant/après sont identiques à l'octet** (`cmp`) : le
+  cadre dessiné rendait exactement le style du DS ; la marge 24 de Mobile/Tablette n'était pas visible (contenu centré
+  en pleine largeur). 28 instances suivent. Plus AUCUN texte de CTA hors instance du Bouton sur la page 031.
+- **Cinq contrats, tous en patch** : `ds.button` 2.4.1 (`tokensByProp.map.link.font-weight = font.weight.semibold`),
+  `ds.produits-ecommerce` 2.2.1 (3 parts Bouton/BoutonWide/BoutonPied → link + iconRight), `ds.google-reviews` 3.1.2
+  (`ecrireAvis` → link + iconRight), `ds.presentation` 4.2.1 et `ds.reassurances` 2.2.1 (descriptions : le fait
+  code-only disparu avec le cadre dessiné). Deux feuilles Odoo allégées d'autant : `responsive/presentation.pqr.css`
+  (plus de `padding-block: 16` sous 992 ni de `padding-block: 4` au-dessus — c'est le style link) et
+  `responsive/reassurances.pqr.css` (plus de `padding-inline` 24/32 — c'est le style outline).
+- **Les miroirs, mécaniquement** : 275 épingles `ds.button` dans 14 `*.authoring.json` + 146 avis + 85 produits +
+  22 présentation + 91 réassurances ; `figma-panels.json` (7) ; `components.xml` (5 versions + **16 digests**, que
+  la dérivation n'écrit PAS — miroir manuel) ; `version_guard.js` et `scan-saved-versions.ts` (4 versions + digest) ;
+  fixture `version-drift` (1 version + 2 digests). Ordre tenu : épingles → `check-inputs --repin` (digest
+  `a283f37e…` → `874da6c2…`) → digests → `build` → `figma:plan` → `catalog` → `emitters:check` → `golden:update` →
+  reçu du plugin. Cliché de parité rafraîchi AVANT `parity` : le script `parity/extract-figma.plugin.js` passé tel quel
+  à `figma_execute` avec son `return` remplacé par un POST `/json` au receveur 9230 (120 Ko, jamais dans un retour
+  d'outil), puis scindé en `figma-components.json` (94 sets) et `figma-tokens.json` (3 collections).
+- **Portes** : parity ✔ (aucune dérive neuve, 14 acquittements inchangés), geometry:gate ✔, authoring ✔, module 23/23,
+  inputs ✔, figma-links ✔, assets ✔ (deux constructions identiques), tsc ×2 ✔, plugin:check ✔, core-browser ✔.
+  **`npm run eval` NON lancé** (demande owner). **`odoo:derivation:check` rouge sur une entrée qui n'est pas de cette
+  vague** : `adaptation-registry.json` #93 `ODOO-A11Y-ANCRE-FORMULAIRE`, mécanisme `css-bridge` hors schéma — travail
+  non committé d'une AUTRE session (accessibilité passe 2) dans le même worktree.
+- **Le piège du jour : deux sessions dans le même worktree, et la seconde faisait tourner build + golden + repin
+  pendant que la première relevait Figma.** `git status` montrait une quarantaine de fichiers étrangers modifiés
+  (Équipe v2) — dont les CINQ miroirs à éditer. Ce qui a tenu : ne toucher que ses lignes (regex à comptage attendu,
+  écriture différée jusqu'à validation de tous les fichiers) ; lire les mtimes ET `ps` (un `tsx integrations/odoo/qa/run.mts`
+  tournait : QA, pas de miroirs) et lancer son propre cycle dans la fenêtre entre deux cycles de l'autre ; le digest
+  étant GLOBAL, le repin englobe l'état courant de l'autre — **le dernier qui finit re-pin, et le dit**.
+- **Odoo** : instance `piqueray-odoo-037` (8109, la seule qui monte CE worktree — `docker inspect`), `-u piqueray_ds`
+  avec identifiants, restart, les NEUF pages recomposées (`COMPOSE_OK` ×9), versions servies vérifiées par `curl`
+  (`3.1.2`, `2.2.1`, `4.2.1`, `2.2.1`). La capture par bloc (`.page-parity/capture-bloc.mts`) n'existe plus dans ce
+  worktree (dossier gitignoré, recréé vide) — voir la ligne suivante pour la mesure faite.
+- **Le SIXIÈME miroir d'un changement de prop sur un bouton imbriqué : le `t-call="piqueray_ds.pqr_button"` du gabarit
+  QWeb.** Après build + recomposition, Odoo servait ENCORE `button--variant-outlineNoir` sur produits et avis : la variante
+  et `icon_right` du bouton imbriqué sont écrits en dur dans `components.xml` (`<t t-set="variant" t-value="'outlineNoir'"/>`),
+  jamais dérivés du contrat. Trois `t-call` passés en `'link'` + `icon_right True` (lignes ecrireAvis, root-entete-bouton,
+  root-bouton-conteneur), `-u`, restart, recomposition ×9. Vérifié par sonde Playwright sur la home 8109 (Chromium 1243 du
+  cache, `waitUntil: 'load'` — `networkidle` n'arrive JAMAIS sur Odoo, longpolling) : `button--variant-link`, `font-weight 600`,
+  30 px, sur produits, avis et présentation ; réassurances `outlineNoir` 54 px. Hauteurs de bloc contre les variantes Figma :
+  produits **518 / 484 / 430 = 518 / 484 / 430**, présentation **520 / 351 / 332 = 520 / 351 / 332**, avis 477 / 459 / 1741 contre
+  469 / 459 / 1731 (+8 en Wide, +10 en Mobile — écart ANTÉRIEUR, identique avant la vague : 501 vs 493). Captures :
+  `specs/tiny/proofs/cta-hierarchie/odoo-apres-*.png`. Un bloc gouverné change de rendu quand le CONTRAT ET le t-call
+  changent — le contrat seul ne fait bouger que le CSS.
+
 ## Complément du 2026-09-09 — La vidéo du hero : décider le format AVANT d'encoder, mesurer au VMAF, deux sources
 
 - **Le symptôme** : « la vidéo est pixellisée depuis qu'un agent l'a compressée ». Le fichier commité le 2026-09-08
@@ -1033,3 +1113,50 @@ en une heure quand la source est propre ; ce qui suit est ce qu'il faut savoir p
   Cause non élucidée (cache de traduction du champ `translate=xml` après le restart ?). Règle : après toute recomposition,
   **lire la vue par langue** (`select k, … from ir_ui_view, jsonb_each_text(arch_db)`) ou `curl` la home, et ne jamais
   conclure sur `COMPOSE_OK` seul.
+
+## Complément du 2026-09-09 — L'édition Odoo : un instrument générique, un registre, et les règles tranchées (§A7)
+
+- **Demande** : vérifier tout le panneau d'édition, bloc par bloc (ce qui doit être éditable l'est, l'édition prend,
+  les collections s'ajoutent / se retirent / s'ordonnent). Le dépôt avait 31 scénarios Playwright datés d'août,
+  jamais relancés en série, et cinq blocs sans scénario.
+- **Fait** : `integrations/odoo/qa/scenarios/edition-generique.spec.mts` (19 configs, 5 min), `run.mts --all`
+  (tableau `suite.json`), le registre `specs/tiny/odoo-edition-registre.md`, le fichier machine
+  `integrations/odoo/qa/fixtures/edition-bugs.json`, et une passe à l'œil sur la home (8109) avec Claude in Chrome.
+- **Ce qui a coûté** : cinq corrections de l'instrument avant qu'il soit fiable, deux faux rouges vus par l'owner
+  avant moi, des relances de suite pendant que le poste était saturé (charge 81 : Spotlight, quatre sessions Claude),
+  Colima tombé en route. Règle qui en sort : **pas de test tant que la charge dépasse ~10, pas de lancement programmé
+  sans l'owner, jamais sur son instance, et confronter un rouge de frappe à l'écran avant de l'écrire.**
+- **Trouvé, hors registre initial** : mode traduction quand l'utilisateur est en anglais (EB-021) ; suppression de
+  carte sans confirmation (EB-022) ; une erreur JS au chargement public (`web.assets_frontend_minimal`,
+  `null.querySelector`, EB-023, cause à identifier) ; les sélecteurs `parts[].selector` des configs ne résolvent
+  presque rien dans le DOM (EB-015 : les 480 verdicts `not-editable` sont invérifiables, aucune porte ne le voit).
+- **Suite (TDD, rouge d'abord, un bloc à la fois sur 8113)** : Réassurances accroche/titre → section Avis Google
+  sans réglages natifs → alt du hero vidéo → Réalisations (couche entière) → configs Produits et « Voir tous les avis »
+  en `fixed-by-composition`.
+
+## Complément du 2026-09-09 — Arrondis : un seul rayon (4 px) posé sur tout le DS, Figma d'abord, 12 contrats ensuite
+
+Journal complet : `specs/tiny/vague-031/arrondis.md`. Ce qui vaut pour toutes les vagues suivantes :
+
+- **Une planche, deux colonnes, puis suppression** : « Aujourd'hui » (instance intacte) / « Proposé » (instance avec
+  surcharges) sur une page à part, cadre auto-layout. Une fois le geste posé à la source, la colonne « Aujourd'hui »
+  montre le nouveau master — la planche n'a plus de sens, on la supprime (versions nommées gardent l'avant).
+- **Un geste sur un master composé peut écraser les surcharges de DIMENSION des instances** (CategoriesPrincipales
+  Wide : 474×267 FILL → 743×418 FIXED après un `clipsContent` + liaison de rayon sur CarteCategorie). Le patron des vues
+  est « visibles en FILL, masquée en FIXED » : relire les instances dans les vues après tout geste, pas seulement les
+  empreintes des masters. Et **un geste de dimension par appel `figma_execute`** : Figma ne recalcule qu'après.
+- **Une surcharge posée à l'instance bloque la propagation** (20 ReviewCard liées à `radius/8` à l'instance). L'empreinte
+  avant/après le dit (« N inchangées ») ; la correction est de re-lier à l'instance.
+- **Schéma** : `declared.overflow` est refusé, `overflow-x` / `overflow-y` sont les canaux (comme la carte produit).
+- **Clichés de parité sans REST** : `parity/extract-figma.plugin.js` dans le bac à sable → `fetch` vers le receveur 9230
+  (`POST /json?name=…`) → `mv` dans `parity/snapshots/`. Le receveur de la spec 037 sert aussi à ça.
+- **Réexporter les 36 vues** (bridge `export-vues.js`, receveur 9230, nonce lu à `/health`) avant toute mesure de page :
+  des vues de la veille font porter aux blocs les gestes canvas du jour.
+- **Après un `-u` sur une instance neuve** : `restore-seed.sh` demande que `…/Odoo/filestore` existe (`mkdir -p` en root).
+- **Worktree partagé par trois sessions** : dire ses fichiers par message, laisser la chaîne de build à une seule, garder
+  `npm run eval` pour le repos des autres (`evals/.scratch` est unique). Une épingle périmée trouvée en chemin
+  (`reassurances.authoring.json` @2.2.0 / bouton @2.4.0) est corrigée et nommée, pas contournée.
+- **Limite nommée du jour** : la mesure de page est rouge au pixel (5,9 à 22,8 %) sur 28 rapports **à structure et
+  hauteurs égales**, sur chaque glyphe — sur l'instance de la vague ET sur l'instance 037 aux blocs d'avant. Ce n'est pas
+  un écart de composant ; la cause (rendu texte de l'export Figma du jour, ou rendu Odoo posé par une autre session) est
+  à trancher avant de relire ces scores.

@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.4.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.5.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -21,6 +21,7 @@
   padding-block: var(--space-16);
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
+  border-radius: var(--radius-4);
   text-transform: uppercase;
   white-space: nowrap;
   position: relative;
@@ -64,6 +65,7 @@
   border-radius: var(--radius-32);
   padding-block: var(--space-4);
   padding-inline: var(--space-0);
+  font-weight: var(--font-weight-semibold);
 }
 
 .button--variant-outlineNoir {
@@ -319,7 +321,7 @@
   flex-shrink: 0;
 }
 
-/* CarteCategorie — from ds.carte-categorie v3.0.1 (core/emit-html.ts) */
+/* CarteCategorie — from ds.carte-categorie v3.1.0 (core/emit-html.ts) */
 
 .carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
   box-sizing: border-box;
@@ -334,7 +336,10 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   min-width: var(--size-carte-categorie-min-w);
+  border-radius: var(--radius-4);
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .carte-categorie--style-empile {

@@ -2,9 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "status": "draft",
-  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
+  "description": "3.1.2 (2026-09-09, decision owner, option A « lien en place ») : « Voir tous les avis » passe du style outlineNoir au style link avec fleche (iconRight), dans la barre Google — navigation, pas conversion. Source Figma posee d'abord (4 boutons du set, 40 instances suivent). Le bouton fait 30 de haut au lieu de 54 : la section raccourcit (Wide 493 → 469, Mobile 1755 → 1731).\n\nPROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.\n\nVERSION 3.2.0 (2026-09-09, vague « arrondis ») — le bandeau de résumé (resume) passe de radius.8 à radius.4 : un seul rayon dans tout le DS, décision owner. Canevas : radius/4 lié sur les 4 variantes, versions nommées avant/après. Ajout purement additif : MINEUR.",
   "semantics": {
     "element": "section",
     "provenance": "authored"
@@ -321,7 +321,7 @@
                 "border-color": "{color.bleu-clair}",
                 "padding-inline": "{space.16}",
                 "padding-block": "{space.24}",
-                "border-radius": "{radius.8}",
+                "border-radius": "{radius.4}",
                 "border-width": "{border-width.1}",
                 "gap": "{space.8}"
               },
@@ -516,11 +516,12 @@
                   "component": {
                     "id": "ds.button",
                     "props": {
-                      "variant": "outlineNoir",
+                      "variant": "link",
+                      "iconRight": true,
                       "children": "Voir tous les avis"
                     }
                   },
-                  "description": "Le bouton du bloc résumé. Réparation de source du 2026-09-03, décision owner (option A) : c'était un cadre dessiné à la main, différent du bouton gouverné sur quatre canaux (marge 8/22 contre 16/32, taille 14 contre 16 en bureau, interligne 20 contre 22, trait 1 contre 2). Remplacé par une instance de ds.button variante outlineNoir, comme Réassurances et Devis. Le rendu grossit — c'est le prix de la gouvernance, et c'est ce qui rend le bouton NAVIGABLE : le composant se projette en ancre quand il porte une adresse."
+                  "description": "Le bouton du bloc résumé. Réparation de source du 2026-09-03, décision owner (option A) : c'était un cadre dessiné à la main, différent du bouton gouverné sur quatre canaux (marge 8/22 contre 16/32, taille 14 contre 16 en bureau, interligne 20 contre 22, trait 1 contre 2). Remplacé par une instance de ds.button variante outlineNoir, comme Réassurances et Devis. 2026-09-09 : variante link + flèche (option A, hiérarchie des CTA). Le rendu grossit — c'est le prix de la gouvernance, et c'est ce qui rend le bouton NAVIGABLE : le composant se projette en ancre quand il porte une adresse."
                 }
               }
             },

@@ -1,14 +1,15 @@
 /* ds.presentation 4.0.0 — projection Odoo du set 031.
  * Base mobile-first, puis Tablette / Desktop / Wide aux breakpoints gouvernés.
- * Le CTA mobile/tablette est full-width et reprend son format Link compact dès
+ * Le CTA mobile/tablette est full-width et reprend sa taille intrinsèque dès
  * Desktop : fait code-only nommé dans contracts/presentation.contract.json,
- * car le schéma ne porte pas de style par mode sur une part component. */
+ * car le schéma ne porte pas de style par mode sur une part component.
+ * 2026-09-09 : plus de padding-block 16 sous 992 — le cadre dessiné qui le
+ * portait est remplacé à la source par l'instance link (padding 4 du style). */
 
 /* Base = Mobile. components.pqr.css porte déjà la colonne, les tokens de
  * typographie, le gap 32 et le padding horizontal 24. */
 .s_pqr_presentation.presentation [data-pqr-part="presentation-cta"] > .button {
   width: 100%;
-  padding-block: var(--pqr-space-16);
   justify-content: center;
 }
 
@@ -33,7 +34,6 @@
 
   .s_pqr_presentation.presentation [data-pqr-part="presentation-cta"] > .button {
     width: auto;
-    padding-block: var(--pqr-space-4);
   }
 }
 

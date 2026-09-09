@@ -1,4 +1,4 @@
-/* Realisation — from ds.realisation v2.0.0 (core/emit-html.ts) */
+/* Realisation — from ds.realisation v2.1.0 (core/emit-html.ts) */
 
 .realisation, .realisation *, .realisation *::before, .realisation *::after {
   box-sizing: border-box;
@@ -11,6 +11,9 @@
   aspect-ratio: 1;
   border: 0;
   font-family: var(--font-family-montserrat);
+  border-radius: var(--radius-4);
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .realisation__Image {

@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v3.1.1)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -21,8 +21,11 @@
   font-family: var(--font-family-montserrat);
   gap: var(--spacing-carte-reassurance-gap);
   padding-bottom: var(--spacing-carte-reassurance-pad-bas);
+  border-radius: var(--radius-4);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   text-rendering: geometricprecision;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .disposition-categorie {

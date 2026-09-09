@@ -1,4 +1,4 @@
-/* Input — from ds.input v2.0.0 (core/emit-html.ts) */
+/* Input — from ds.input v2.1.0 (core/emit-html.ts) */
 
 .input, .input *, .input *::before, .input *::after {
   box-sizing: border-box;
@@ -20,7 +20,7 @@
   line-height: var(--font-line-height-24);
   padding-block: var(--space-12);
   padding-inline: var(--space-12);
-  border-radius: 0px;
+  border-radius: var(--radius-4);
 }
 
 .input:focus-visible {

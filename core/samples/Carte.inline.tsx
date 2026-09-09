@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v3.1.1)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -26,8 +26,11 @@ const S: Record<string, CSSProperties> = {
     "fontFamily": "Montserrat, sans-serif",
     "gap": "16px",
     "paddingBottom": "16px",
+    "borderRadius": "4px",
     "boxShadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
-    "textRendering": "geometricprecision"
+    "textRendering": "geometricprecision",
+    "overflowX": "hidden",
+    "overflowY": "hidden"
   },
   "reassuranceImage": {
     "height": "192px",
@@ -138,7 +141,9 @@ Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassura
 Historique avant 3.0.0 :
 Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
 
-Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
+Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. Plan de document : la partie titre porte la balise h4 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.
+
+VERSION 3.2.0 (2026-09-09, vague « arrondis ») — rayon radius.4 sur la racine et rognage : la photo collée au bord suit les coins. L'ombre portée reste extérieure, non affectée par le rognage. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
   { disposition = 'reassurance', alignement = 'centre', ctaIconLeftGlyph = 'pdf', ctaIconRightGlyph = 'download', titre = 'Sécurité et conformité', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"Respectent les normes des bâtiments publics et les réglementations pompiers."}], style, children, ...rest },
   ref,

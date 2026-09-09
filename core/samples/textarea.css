@@ -1,4 +1,4 @@
-/* Textarea — from ds.textarea v2.0.0 (core/emit-html.ts) */
+/* Textarea — from ds.textarea v2.1.0 (core/emit-html.ts) */
 
 .textarea, .textarea *, .textarea *::before, .textarea *::after {
   box-sizing: border-box;
@@ -21,7 +21,7 @@
   padding-block: var(--space-12);
   padding-inline: var(--space-12);
   height: var(--size-textarea-root);
-  border-radius: 0px;
+  border-radius: var(--radius-4);
 }
 
 .textarea:focus-visible {

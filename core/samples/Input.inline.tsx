@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/input.contract.json (ds.input v2.0.0)
+ * Source of truth: contracts/input.contract.json (ds.input v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -29,7 +29,7 @@ const S: Record<string, CSSProperties> = {
     "lineHeight": "24px",
     "paddingBlock": "12px",
     "paddingInline": "12px",
-    "borderRadius": "0px"
+    "borderRadius": "4px"
   },
   "texteDeSaisie": {}
 };
@@ -62,7 +62,9 @@ MAJEUR 2.0.0 : les ancres passent au set candidat ; la bordure passe de bleu-gri
 
 Les props placeholder, type, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE) : le canevas ne dessine pas un attribut HTML. Ils passent par le canal attrs/attrsByProp existant, sans évolution de schéma. L'association libellé↔champ est portée par le parent Field (htmlFor = inputID) et par l'id posé ici : le composant qui compose fournit les deux, explicitement. Pas de règle de validation ici : elle appartient au formulaire et au serveur.
 
-Limite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas. */
+Limite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas.
+
+VERSION 2.1.0 (2026-09-09, vague « arrondis ») — le littéral border-radius 0px, invisible au différentiel, devient le token radius.4 : le champ est un contrôle comme le bouton, même rayon. Canevas : le candidat v2 de la planche 031 · 21 porte radius/4 ; l'atome DS suivra avec la vague Formulaire v2. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { type = 'text', required = false, value = '', placeholder = '', name = '', id = '', autocomplete = 'off', describedBy = '', style, children, ...rest },
   ref,

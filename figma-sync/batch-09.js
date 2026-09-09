@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "SAV",
     "contractId": "ds.sav",
     "anchorKey": "55d2731a22907512ac83a63499f969e0bd2bab36",
-    "description": "SAV — generated from contract ds.sav v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "SAV — generated from contract ds.sav v2.3.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -89,7 +89,11 @@ const COMPONENTS = [
                   "grow": true,
                   "bindings": {
                     "paddingLeft": "space/24",
-                    "paddingRight": "space/24"
+                    "paddingRight": "space/24",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 320,
@@ -152,7 +156,11 @@ const COMPONENTS = [
                     "paddingTop": "space/48",
                     "paddingRight": "space/24",
                     "paddingBottom": "space/24",
-                    "paddingLeft": "space/24"
+                    "paddingLeft": "space/24",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "children": [
                     {
@@ -335,7 +343,11 @@ const COMPONENTS = [
                   "grow": true,
                   "bindings": {
                     "paddingLeft": "space/24",
-                    "paddingRight": "space/24"
+                    "paddingRight": "space/24",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 320,
@@ -398,7 +410,11 @@ const COMPONENTS = [
                     "paddingTop": "space/48",
                     "paddingRight": "space/24",
                     "paddingBottom": "space/24",
-                    "paddingLeft": "space/24"
+                    "paddingLeft": "space/24",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "children": [
                     {
@@ -587,7 +603,11 @@ const COMPONENTS = [
                     "paddingTop": "space/48",
                     "paddingRight": "space/48",
                     "paddingBottom": "space/48",
-                    "paddingLeft": "space/48"
+                    "paddingLeft": "space/48",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 505,
@@ -709,7 +729,11 @@ const COMPONENTS = [
                   "grow": true,
                   "bindings": {
                     "paddingLeft": "space/0",
-                    "paddingRight": "space/0"
+                    "paddingRight": "space/0",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 505,
@@ -848,7 +872,11 @@ const COMPONENTS = [
                     "paddingTop": "space/48",
                     "paddingRight": "space/47",
                     "paddingBottom": "space/0",
-                    "paddingLeft": "space/48"
+                    "paddingLeft": "space/48",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 561,
@@ -970,7 +998,11 @@ const COMPONENTS = [
                   "grow": true,
                   "bindings": {
                     "paddingLeft": "space/3",
-                    "paddingRight": "size/sav/image-right-inset"
+                    "paddingRight": "size/sav/image-right-inset",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4"
                   },
                   "fixedHeight": {
                     "px": 561,

@@ -1,10 +1,10 @@
 {
   "id": "ds.realisation",
   "name": "Realisation",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "status": "draft",
   "category": "molecule",
-  "description": "Piqueray Realisation — la tuile photo de la section Realisations. 2.0.0 (2026-09-07, vague 035) : RUPTURE MAJEURE de geometrie. La 1.1.0 portait sa propre taille (743 ou 339,5 selon l'axe Taille) ; en v2 la tuile prend la taille de sa cellule de grille et reste carree (rapport 1:1). Defaut de source releve a l'etape 0 et corrige a la source le meme jour : le cadre enfant Image portait un aplat gris opaque de la meme taille que la tuile, qui recouvrait entierement la photo — les 27 tuiles vivantes du fichier (3 pages + les 2 masters) n'ont jamais montre leur photo. Le fill IMAGE reste une surcharge d'instance cote Figma ; src et alt sont des semantiques de code.",
+  "description": "Piqueray Realisation — la tuile photo de la section Realisations. 2.0.0 (2026-09-07, vague 035) : RUPTURE MAJEURE de geometrie. La 1.1.0 portait sa propre taille (743 ou 339,5 selon l'axe Taille) ; en v2 la tuile prend la taille de sa cellule de grille et reste carree (rapport 1:1). Defaut de source releve a l'etape 0 et corrige a la source le meme jour : le cadre enfant Image portait un aplat gris opaque de la meme taille que la tuile, qui recouvrait entierement la photo — les 27 tuiles vivantes du fichier (3 pages + les 2 masters) n'ont jamais montre leur photo. Le fill IMAGE reste une surcharge d'instance cote Figma ; src et alt sont des semantiques de code.\n\nVERSION 2.1.0 (2026-09-09, vague « arrondis ») — rayon radius.4 sur la tuile (l'owner a demandé 4 et non 8 pour les photos de réalisation) et rognage de la photo aux coins. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR.",
   "figma": {
     "representation": "component",
     "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43"

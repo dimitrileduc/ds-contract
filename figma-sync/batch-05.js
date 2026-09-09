@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "ReviewCard",
     "contractId": "ds.review-card",
     "anchorKey": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c",
-    "description": "ReviewCard — generated from contract ds.review-card v4.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "ReviewCard — generated from contract ds.review-card v4.3.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [
       {
@@ -52,10 +52,10 @@ const COMPONENTS = [
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
             "itemSpacing": "spacing/review/gap",
-            "topLeftRadius": "radius/8",
-            "topRightRadius": "radius/8",
-            "bottomLeftRadius": "radius/8",
-            "bottomRightRadius": "radius/8",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "strokeWeight": "border-width/1"
           },
           "fillWidth": true,
@@ -271,10 +271,10 @@ const COMPONENTS = [
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
             "itemSpacing": "spacing/review/gap",
-            "topLeftRadius": "radius/8",
-            "topRightRadius": "radius/8",
-            "bottomLeftRadius": "radius/8",
-            "bottomRightRadius": "radius/8",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "strokeWeight": "border-width/1"
           },
           "fillWidth": true,
@@ -487,10 +487,10 @@ const COMPONENTS = [
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
             "itemSpacing": "spacing/review/gap",
-            "topLeftRadius": "radius/8",
-            "topRightRadius": "radius/8",
-            "bottomLeftRadius": "radius/8",
-            "bottomRightRadius": "radius/8",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "strokeWeight": "border-width/1"
           },
           "fillWidth": true,
@@ -731,10 +731,10 @@ const COMPONENTS = [
             "paddingLeft": "space/24",
             "paddingRight": "space/24",
             "itemSpacing": "spacing/review/gap",
-            "topLeftRadius": "radius/8",
-            "topRightRadius": "radius/8",
-            "bottomLeftRadius": "radius/8",
-            "bottomRightRadius": "radius/8",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "strokeWeight": "border-width/1"
           },
           "fillWidth": true,
@@ -956,7 +956,7 @@ const COMPONENTS = [
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
     "anchorKey": "92ddbd842f0f0a22f284322298a9a6865c397055",
-    "description": "GoogleReviews — generated from contract ds.google-reviews v3.1.1",
+    "description": "GoogleReviews — generated from contract ds.google-reviews v3.2.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1064,10 +1064,10 @@ const COMPONENTS = [
                     "paddingRight": "space/16",
                     "paddingTop": "space/24",
                     "paddingBottom": "space/24",
-                    "topLeftRadius": "radius/8",
-                    "topRightRadius": "radius/8",
-                    "bottomLeftRadius": "radius/8",
-                    "bottomRightRadius": "radius/8",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4",
                     "strokeWeight": "border-width/1",
                     "itemSpacing": "space/8"
                   },
@@ -1286,7 +1286,8 @@ const COMPONENTS = [
                       "dep":"Button",
                       "depId": "ds.button",
                       "depProps": {
-                        "Style": "Outline noir",
+                        "Style": "Link",
+                        "Icone droite": true,
                         "Libelle": "Voir tous les avis"
                       }
                     }
@@ -1488,10 +1489,10 @@ const COMPONENTS = [
                     "paddingRight": "space/24",
                     "paddingTop": "space/16",
                     "paddingBottom": "space/16",
-                    "topLeftRadius": "radius/8",
-                    "topRightRadius": "radius/8",
-                    "bottomLeftRadius": "radius/8",
-                    "bottomRightRadius": "radius/8",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4",
                     "strokeWeight": "border-width/1",
                     "itemSpacing": "space/16"
                   },
@@ -1710,7 +1711,8 @@ const COMPONENTS = [
                       "dep":"Button",
                       "depId": "ds.button",
                       "depProps": {
-                        "Style": "Outline noir",
+                        "Style": "Link",
+                        "Icone droite": true,
                         "Libelle": "Voir tous les avis"
                       }
                     }
@@ -1916,10 +1918,10 @@ const COMPONENTS = [
                     "paddingRight": "space/16",
                     "paddingTop": "space/12",
                     "paddingBottom": "space/12",
-                    "topLeftRadius": "radius/8",
-                    "topRightRadius": "radius/8",
-                    "bottomLeftRadius": "radius/8",
-                    "bottomRightRadius": "radius/8",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4",
                     "strokeWeight": "border-width/1",
                     "itemSpacing": "space/0"
                   },
@@ -2138,7 +2140,8 @@ const COMPONENTS = [
                       "dep":"Button",
                       "depId": "ds.button",
                       "depProps": {
-                        "Style": "Outline noir",
+                        "Style": "Link",
+                        "Icone droite": true,
                         "Libelle": "Voir tous les avis"
                       }
                     }
@@ -2342,10 +2345,10 @@ const COMPONENTS = [
                     "paddingRight": "space/16",
                     "paddingTop": "space/12",
                     "paddingBottom": "space/12",
-                    "topLeftRadius": "radius/8",
-                    "topRightRadius": "radius/8",
-                    "bottomLeftRadius": "radius/8",
-                    "bottomRightRadius": "radius/8",
+                    "topLeftRadius": "radius/4",
+                    "topRightRadius": "radius/4",
+                    "bottomLeftRadius": "radius/4",
+                    "bottomRightRadius": "radius/4",
                     "strokeWeight": "border-width/1",
                     "itemSpacing": "space/0"
                   },
@@ -2564,7 +2567,8 @@ const COMPONENTS = [
                       "dep":"Button",
                       "depId": "ds.button",
                       "depProps": {
-                        "Style": "Outline noir",
+                        "Style": "Link",
+                        "Icone droite": true,
                         "Libelle": "Voir tous les avis"
                       }
                     }

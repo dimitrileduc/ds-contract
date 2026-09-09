@@ -957,7 +957,7 @@ const COMPONENTS = [
     "setName": "Formulaire",
     "contractId": "ds.formulaire",
     "anchorKey": "c9fd2b5768aab43a4e1df5dc692d103b05145ab8",
-    "description": "Formulaire — generated from contract ds.formulaire v3.0.0",
+    "description": "Formulaire — generated from contract ds.formulaire v3.1.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1125,7 +1125,11 @@ const COMPONENTS = [
                 "paddingRight": "space/24",
                 "paddingTop": "space/32",
                 "paddingBottom": "space/32",
-                "itemSpacing": "space/32"
+                "itemSpacing": "space/32",
+                "topLeftRadius": "radius/4",
+                "topRightRadius": "radius/4",
+                "bottomLeftRadius": "radius/4",
+                "bottomRightRadius": "radius/4"
               },
               "children": [
                 {
@@ -1454,7 +1458,11 @@ const COMPONENTS = [
                 "paddingRight": "space/48",
                 "paddingTop": "space/64",
                 "paddingBottom": "space/64",
-                "itemSpacing": "space/32"
+                "itemSpacing": "space/32",
+                "topLeftRadius": "radius/4",
+                "topRightRadius": "radius/4",
+                "bottomLeftRadius": "radius/4",
+                "bottomRightRadius": "radius/4"
               },
               "children": [
                 {
@@ -1782,7 +1790,11 @@ const COMPONENTS = [
                 "paddingRight": "space/48",
                 "paddingTop": "space/64",
                 "paddingBottom": "space/64",
-                "itemSpacing": "space/32"
+                "itemSpacing": "space/32",
+                "topLeftRadius": "radius/4",
+                "topRightRadius": "radius/4",
+                "bottomLeftRadius": "radius/4",
+                "bottomRightRadius": "radius/4"
               },
               "fixedWidth": {
                 "px": 528,
@@ -2114,7 +2126,11 @@ const COMPONENTS = [
                 "paddingRight": "space/48",
                 "paddingTop": "space/64",
                 "paddingBottom": "space/64",
-                "itemSpacing": "space/32"
+                "itemSpacing": "space/32",
+                "topLeftRadius": "radius/4",
+                "topRightRadius": "radius/4",
+                "bottomLeftRadius": "radius/4",
+                "bottomRightRadius": "radius/4"
               },
               "fixedWidth": {
                 "px": 759,

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.1.1)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v3.2.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.",
+          "3.1.2 (2026-09-09, decision owner, option A « lien en place ») : « Voir tous les avis » passe du style outlineNoir au style link avec fleche (iconRight), dans la barre Google — navigation, pas conversion. Source Figma posee d'abord (4 boutons du set, 40 instances suivent). Le bouton fait 30 de haut au lieu de 54 : la section raccourcit (Wide 493 → 469, Mobile 1755 → 1731).\n\nPROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. Correction 2026-09-04 : les cinq entrées de `sample` omettaient trois clés du type de l'élément (avatar, note, lienAvis) — le typage de l'histoire générée refusait de compiler. Complétées avec la valeur dessinée : avatar Initiale, note 5, lien vide. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.\n\nVERSION 3.2.0 (2026-09-09, vague « arrondis ») — le bandeau de résumé (resume) passe de radius.8 à radius.4 : un seul rayon dans tout le DS, décision owner. Canevas : radius/4 lié sur les 4 variantes, versions nommées avant/après. Ajout purement additif : MINEUR.",
       },
     },
   },

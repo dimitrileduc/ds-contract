@@ -28,11 +28,11 @@
 /* ---- ds.reassurances 2.0.0 ----------------------------------------------- */
 
 /* Base = Mobile : une carte par ligne, marges 24, texte des cartes à gauche,
- * bouton PLEINE LARGEUR à marge intérieure 24 (canvas : 342 puis 738). */
+ * bouton PLEINE LARGEUR (canvas : 342 puis 738). 2026-09-09 : la marge intérieure
+ * est celle du style (32), le cadre dessiné à marge 24 a été remis en instance. */
 .s_pqr_reassurances.reassurances > .button {
   width: 100%;
   justify-content: center;
-  padding-inline: var(--pqr-space-24);
 }
 .s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TitreReassurance,
 .s_pqr_reassurances.reassurances .carte--alignement-centre .carte__TexteReassurance {
@@ -79,7 +79,7 @@
     text-align: center;
   }
   /* Le bouton cesse de s occuper toute la largeur : il se contente de son contenu
-   * (canvas 249 puis 268) et la racine le centre. Marge intérieure 32. */
+   * (canvas 249 puis 268) et la racine le centre. */
   .s_pqr_reassurances.reassurances {
     align-items: center;
   }
@@ -89,7 +89,6 @@
   }
   .s_pqr_reassurances.reassurances > .button {
     width: auto;
-    padding-inline: var(--pqr-space-32);
   }
   .s_pqr_reassurances.reassurances .reassurances__items > .carte {
     height: 100%;

@@ -989,8 +989,8 @@
     "carte-categorie": {
       "min-w": {
         "$type": "dimension",
-        "$description": "Minted from-dump 2026-09-02: minWidth drawn on the CarteCategorie set of spec 031 (2692:19667). Its companion minHeight (180.0269px, Figma's 16:9 computed partner) is a computed artifact and is NOT carried — named in the contract.",
-        "$value": "320px"
+        "$description": "Minted from-dump 2026-09-02: minWidth drawn on the CarteCategorie set of spec 031 (2692:19667). Its companion minHeight (180.0269px, Figma's 16:9 computed partner) is a computed artifact and is NOT carried — named in the contract. RE-RELEVE le 2026-09-09 : la valeur passe de 320 a 272 px, et la SOURCE A ETE CORRIGEE D'ABORD — ce jeton reste donc la traduction fidele du dump, jamais un ecart. Cause du defaut de source : a 320 px de fenetre (largeur exigee par WCAG 1.4.10) la section Categories pose 24 px de gouttiere de chaque cote, la carte ne dispose donc que de 320 - 48 = 272 px. Le minWidth de 320 rendait le defilement horizontal inevitable ; mesure avant correction sur les SEPT pages porteuses : document de 344 px pour une fenetre de 320. La vue mobile de reference etant 390 (ou la carte recoit 366), aucune planche ne dessinait le cas. Geste canvas du 2026-09-09 sur 2692:19667, variantes Style=Superpose Default (2692:19666) et Hover (2763:10136) : version nommee avant et apres, captures identiques a l octet (498720 o), dimensions inchangees (743 x 418), 132 instances avant et 132 apres. Cote code : plancher jamais atteint aux largeurs dessinees, donc zero pixel d ecart sur 28 comparaisons (7 pages x 390, 768, 1200, 1728).",
+        "$value": "272px"
       }
     },
     "categories-principales": {
@@ -1050,6 +1050,10 @@
     "1": {
       "$value": "1px",
       "$description": "Arrondi des traits du burger du header. Minté from-dump le 2026-09-04 depuis le set Header 031 (2732:12096, dump v1.8) ; variable Figma créée le 2026-09-03 (Primitives, marquée 031 provisoire)."
+    },
+    "4": {
+      "$value": "4px",
+      "$description": "Minté from-dump le 2026-09-09 depuis le set Bouton (6:122) après la décision owner « un seul rayon, 4 px » (planches 031 · 26/27) : rayon de TOUS les coins du DS — boutons (hors Link), flèches, champs de saisie, cartes (catégorie, réassurance, produit, avis), tuiles de réalisation, panneaux SAV et formulaire. Variable Figma `radius/4` créée le même jour, liée sur chaque master. `radius/8` ne sert plus qu'au badge de vérification de la carte avis (cercle 16 px)."
     },
     "8": {
       "$value": "8px",

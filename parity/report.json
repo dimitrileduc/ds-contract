@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 19,
+    "acknowledged": 14,
     "pending": 0,
     "bySurface": {}
   },
@@ -52,44 +52,9 @@
     {
       "surface": "figma",
       "classification": "behind",
-      "subject": "Presentation.Bouton",
-      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
-      "remedy": "Re-run the component sync script"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
       "subject": "Reassurances.Disposition",
       "detail": "Contract prop \"disposition\" has no VARIANT property on the Figma set",
       "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Reassurances.Bouton",
-      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
-      "remedy": "Re-run the component sync script"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Reassurances.Bouton",
-      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
-      "remedy": "Re-run the component sync script"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Reassurances.Bouton",
-      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
-      "remedy": "Re-run the component sync script"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Reassurances.Bouton",
-      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
-      "remedy": "Re-run the component sync script"
     },
     {
       "surface": "figma",
@@ -145,10 +110,10 @@
   "checkedContracts": [
     "ds.accordion-row@2.1.0",
     "ds.avantage@2.0.0",
-    "ds.button@2.4.0",
+    "ds.button@2.5.0",
     "ds.carousel-controls@1.1.0",
-    "ds.carte-categorie@3.0.1",
-    "ds.carte@3.1.1",
+    "ds.carte-categorie@3.1.0",
+    "ds.carte@3.2.0",
     "ds.categories-principales@2.1.0",
     "ds.checkbox@1.0.1",
     "ds.coordonnees@3.0.0",
@@ -159,12 +124,12 @@
     "ds.field@3.0.0",
     "ds.footer-column@1.1.0",
     "ds.footer@2.1.0",
-    "ds.formulaire@3.0.0",
-    "ds.google-reviews@3.1.1",
+    "ds.formulaire@3.1.0",
+    "ds.google-reviews@3.2.0",
     "ds.header@3.0.0",
     "ds.hero-video@2.3.0",
     "ds.hero@3.2.0",
-    "ds.input@2.0.0",
+    "ds.input@2.1.0",
     "ds.member-card@2.1.1",
     "ds.member-picture@1.4.1",
     "ds.menu-entree@1.0.0",
@@ -172,20 +137,20 @@
     "ds.nav-item@1.2.0",
     "ds.notation@1.0.0",
     "ds.piqueray-logo@1.0.0",
-    "ds.presentation@4.2.0",
-    "ds.product-card@4.0.0",
-    "ds.produits-ecommerce@2.2.0",
-    "ds.realisation@2.0.0",
+    "ds.presentation@4.2.1",
+    "ds.product-card@4.1.0",
+    "ds.produits-ecommerce@2.2.1",
+    "ds.realisation@2.1.0",
     "ds.realisations@1.0.1",
-    "ds.reassurances@2.2.0",
-    "ds.review-card@4.2.0",
-    "ds.sav@2.2.0",
+    "ds.reassurances@2.2.1",
+    "ds.review-card@4.3.0",
+    "ds.sav@2.3.0",
     "ds.section-header@3.0.0",
-    "ds.select@2.0.0",
+    "ds.select@2.1.0",
     "ds.sous-entree@1.0.0",
     "ds.sous-menu@1.0.0",
     "ds.tab@2.0.0",
-    "ds.textarea@2.0.0",
+    "ds.textarea@2.1.0",
     "ds.texte-seo@4.0.0"
   ],
   "namingBridges": [

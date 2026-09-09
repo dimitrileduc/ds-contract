@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v2.2.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -104,7 +104,10 @@
   padding-left: var(--space-24);
   padding-right: var(--space-24);
   height: var(--size-sav-img-group-h-compact);
+  border-radius: var(--radius-4);
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .presentation-desktop .imgGroup {
@@ -170,7 +173,10 @@
   padding-right: var(--space-24);
   padding-bottom: var(--space-24);
   padding-left: var(--space-24);
+  border-radius: var(--radius-4);
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .presentation-desktop .wrapper {

@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "52fa1849",
+    "gitCommit": "52676b9c",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -81,7 +81,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.4.0",
+      "version": "2.5.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -91,7 +91,7 @@
         "iconLeftGlyph",
         "iconRightGlyph"
       ],
-      "summary": "2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse."
+      "summary": "2.4.1 (2026-09-09) : le style LINK prend la graisse SemiBold au REPOS (canal font-weight sur la valeur link, jeton font.weight.semibold ; les six autres styles gardent font.weight.medium)."
     },
     {
       "id": "ds.carousel-controls",
@@ -105,7 +105,7 @@
     {
       "id": "ds.carte-categorie",
       "name": "CarteCategorie",
-      "version": "3.0.1",
+      "version": "3.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -123,7 +123,7 @@
     {
       "id": "ds.carte",
       "name": "Carte",
-      "version": "3.1.1",
+      "version": "3.2.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -264,7 +264,7 @@
     {
       "id": "ds.input",
       "name": "Input",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -282,7 +282,7 @@
     {
       "id": "ds.select",
       "name": "Select",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -297,7 +297,7 @@
     {
       "id": "ds.textarea",
       "name": "Textarea",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -366,7 +366,7 @@
     {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -395,7 +395,7 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "4.2.0",
+      "version": "4.3.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -415,7 +415,7 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "3.1.1",
+      "version": "3.2.0",
       "status": "draft",
       "propNames": [
         "presentation",
@@ -428,7 +428,7 @@
         "note",
         "lienAvis"
       ],
-      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
+      "summary": "3.1.2 (2026-09-09, decision owner, option A « lien en place ») : « Voir tous les avis » passe du style outlineNoir au style link avec fleche (iconRight), dans la barre Google — navigation, pas conversion."
     },
     {
       "id": "ds.nav-item",
@@ -519,7 +519,7 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "4.2.0",
+      "version": "4.2.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -528,12 +528,12 @@
         "bouton",
         "titre"
       ],
-      "summary": "Piqueray Presentation responsive, adopted from the 031 component set."
+      "summary": "4.2.1 (2026-09-09) : correction de SOURCE, contrat inchange dans ses faits."
     },
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -547,7 +547,7 @@
     {
       "id": "ds.produits-ecommerce",
       "name": "ProduitsECommerce",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -555,12 +555,12 @@
         "titre",
         "produits"
       ],
-      "summary": "Piqueray ProduitsECommerce, responsive (vague 031)."
+      "summary": "2.2.1 (2026-09-09, decision owner, option A « lien en place ») : « Voir les produits » passe du style outlineNoir au style link avec fleche (iconRight), sur les trois parts Bouton / BoutonWide / BoutonPied — c'est de la NAVIGATION, pas de la conversion, et il pesait autant que le « Contactez-nous » de Reassurances."
     },
     {
       "id": "ds.realisation",
       "name": "Realisation",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -589,7 +589,7 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -599,12 +599,12 @@
         "titre",
         "items"
       ],
-      "summary": "2.2.0 (2026-09-08, demande owner) : la grille du BUREAU passe de 3 a 4 colonnes — et d'elle seule ; Mobile, Tablette et Wide sont inchanges, verifie sur le canevas apres le geste."
+      "summary": "2.2.1 (2026-09-09) : correction de SOURCE, contrat inchange dans ses faits."
     },
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "status": "draft",
       "category": "section",
       "propNames": [

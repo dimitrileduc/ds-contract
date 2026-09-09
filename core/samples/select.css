@@ -1,4 +1,4 @@
-/* Select — from ds.select v2.0.0 (core/emit-html.ts) */
+/* Select — from ds.select v2.1.0 (core/emit-html.ts) */
 
 .select, .select *, .select *::before, .select *::after {
   box-sizing: border-box;
@@ -21,7 +21,7 @@
   line-height: var(--font-line-height-24);
   padding-block: var(--space-12);
   padding-inline: var(--space-12);
-  border-radius: 0px;
+  border-radius: var(--radius-4);
 }
 
 .select__valeur {

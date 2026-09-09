@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v4.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v4.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -28,7 +28,9 @@ Le geste sur la source : 71 instances comptees avant et apres, AUCUNE photo perd
 
 La LARGEUR par ecran est portee par le jeton `spacing.product-card.width` sur la racine de CETTE molecule, jamais sur la part instance de la section : un jeton pose sur une part `component` est silencieusement ignore par les emetteurs (verifie le 2026-09-04, zero regle generee). Patron d'art anterieur ds.avatar-group. `min-width` repete `width` : la carte est dans une piste flex et le retrecissement par defaut la ferait passer sous la largeur dessinee — le carrousel exige qu'elle garde sa taille et que la piste deborde. Le titre reste tronque sur une ligne (maxLines 1 / ENDING au canevas), desormais aligne a gauche : la troncature paraît voulue au lieu d'accidentelle.
 
-Le filet du REPOS est `color.bleu-clair`, le meme que celui de la carte d'avis — assez pour poser la boite, trop leger pour la cerner (demande owner du 2026-09-08 : « si pas hover faudrait la bordure plus legere »). Il passe a `color.gris-clair` au survol : la carte se raffermit en meme temps qu'elle s'eleve, et la transition d'etat porte sur deux canaux plutot qu'un. */
+Le filet du REPOS est `color.bleu-clair`, le meme que celui de la carte d'avis — assez pour poser la boite, trop leger pour la cerner (demande owner du 2026-09-08 : « si pas hover faudrait la bordure plus legere »). Il passe a `color.gris-clair` au survol : la carte se raffermit en meme temps qu'elle s'eleve, et la transition d'etat porte sur deux canaux plutot qu'un.
+
+VERSION 4.1.0 (2026-09-09, vague « arrondis ») — les deux rayons (racine de la carte, tuile image) passent de radius.8 à radius.4 : un seul rayon dans tout le DS. Canevas : le 8 brut du master (non lié) a été lié à radius/4. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function ProductCard(
   {
     titre = 'Télécommande Hörmann HSE4-868BS',

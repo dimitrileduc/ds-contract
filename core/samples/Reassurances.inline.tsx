@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.2.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v2.2.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -147,7 +147,9 @@ export interface ReassurancesProps extends HTMLAttributes<HTMLElement> {
   items?: Array<{ texte: string; titre: string; imageUrl: string }>;
 }
 
-/** 2.2.0 (2026-09-08, demande owner) : la grille du BUREAU passe de 3 a 4 colonnes — et d'elle seule ; Mobile, Tablette et Wide sont inchanges, verifie sur le canevas apres le geste. Le declencheur n'est pas esthetique mais arithmetique : sur les six pages qui portent le bloc, QUATRE en rendent quatre cartes (a-propos, portes-entree, portes-industrielles, portes-residentielles) et deux en rendent cinq (home, portes-de-garage). En 3 colonnes, les quatre premieres affichaient donc 3 + 1, une orpheline sur la majorite des pages. En 4 colonnes elles tiennent sur une rangee pleine ; les deux pages a cinq cartes passent de 3 + 2 a 4 + 1, arbitrage owner assume (« si 5 cartes ca reste 4 colonnes, sinon ca rend trop gros »).
+/** 2.2.1 (2026-09-09) : correction de SOURCE, contrat inchange dans ses faits. Le « Contactez-nous » du set 031 etait un cadre dessine a la main (« BoutonCinqCartes », texte libre sans style, 18 en dur en Wide) sur les 4 variantes ; remplace par une vraie instance de ds.button (Outline noir, fleche), rendu identique a l'octet sur les 4 exports (28 instances suivent). La marge interieure est celle du style (32) partout : le fait code-only « marge 24 sous 992 » disparait ; reste « pleine largeur sous 992, ajuste au contenu au-dessus ». CSS Odoo par ecran allege d'autant.
+
+2.2.0 (2026-09-08, demande owner) : la grille du BUREAU passe de 3 a 4 colonnes — et d'elle seule ; Mobile, Tablette et Wide sont inchanges, verifie sur le canevas apres le geste. Le declencheur n'est pas esthetique mais arithmetique : sur les six pages qui portent le bloc, QUATRE en rendent quatre cartes (a-propos, portes-entree, portes-industrielles, portes-residentielles) et deux en rendent cinq (home, portes-de-garage). En 3 colonnes, les quatre premieres affichaient donc 3 + 1, une orpheline sur la majorite des pages. En 4 colonnes elles tiennent sur une rangee pleine ; les deux pages a cinq cartes passent de 3 + 2 a 4 + 1, arbitrage owner assume (« si 5 cartes ca reste 4 colonnes, sinon ca rend trop gros »).
 
 LIMITE MESUREE, pas supposee : a 1200 px la carte tombe a 248 et deux libelles passent a deux lignes (« Conseil personnalise », « Service apres-vente »), ce qui porte la carte de 531 a 588 px. A 1440 px la carte fait 308 et les titres tiennent sur une ligne. Aucun debordement a aucune des deux largeurs.
 

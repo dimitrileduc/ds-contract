@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v2.2.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v2.3.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -60,7 +60,10 @@ const S: Record<string, CSSProperties> = {
     "paddingLeft": "24px",
     "paddingRight": "24px",
     "height": "320px",
-    "position": "relative"
+    "borderRadius": "4px",
+    "position": "relative",
+    "overflowX": "hidden",
+    "overflowY": "hidden"
   },
   "ImgGroupBackground": {
     "backgroundColor": "#F4F6FA",
@@ -91,7 +94,10 @@ const S: Record<string, CSSProperties> = {
     "paddingRight": "24px",
     "paddingBottom": "24px",
     "paddingLeft": "24px",
-    "position": "relative"
+    "borderRadius": "4px",
+    "position": "relative",
+    "overflowX": "hidden",
+    "overflowY": "hidden"
   },
   "WrapperBackground": {
     "backgroundColor": "#FFFFFF",
@@ -256,7 +262,9 @@ Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098
 
 v1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.
 
-v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. 2.1.0 (2026-09-04) : le saut de ligne du paragraphe devient conditionnel a l'ecran. Il n'est dessine qu'en Desktop et Wide ; le rendre partout ajoutait une ligne et 24 px de hauteur sous 992. Le photo de la variante Desktop etait recadree a la main (CROP + zoom vertical 1,356) alors que les trois autres sont en FIT : recadrage annule a la source le 2026-09-04, les quatre variantes sont de nouveau identiques. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau. */
+v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. 2.1.0 (2026-09-04) : le saut de ligne du paragraphe devient conditionnel a l'ecran. Il n'est dessine qu'en Desktop et Wide ; le rendre partout ajoutait une ligne et 24 px de hauteur sous 992. Le photo de la variante Desktop etait recadree a la main (CROP + zoom vertical 1,356) alors que les trois autres sont en FIT : recadrage annule a la source le 2026-09-04, les quatre variantes sont de nouveau identiques. Plan de document : la partie titre porte la balise h2 (accessibilite-home-odoo, 2026-09-04) ; l'apparence reste pilotee par les jetons typography, axe independant du niveau.
+
+VERSION 2.3.0 (2026-09-09, vague « arrondis ») — rayon radius.4 sur le cadre blanc (wrapper) et sur le groupe photo (imgGroup), rognage sur les deux. Décision owner : rayon uniforme sur les quatre coins de chaque bloc (le rayon par coin est la limite A11 de la matrice), donc un léger creux à la jonction des deux blocs, accepté. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const SAV = forwardRef<HTMLElement, SAVProps>(function SAV(
   { presentation = 'mobile', titre = 'Dépannage / SAV', backgroundUrl = '', backgroundAlt = '', imageUrl = '', imageAlt = '', texte = [{"text":"Vous rencontrez un problème avec "},{"text":"votre installation ","strong":true},{"text":"Hörmann à Liège ? Il y a une panne de courant et "},{"text":"votre porte de garage","strong":true},{"text":" ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "},{"text":"votre distributeur Hörmann en province de Liège","strong":true},{"text":" est là pour vous aider !"}], style, children, ...rest },
   ref,

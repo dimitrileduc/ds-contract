@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.4.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.5.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -21,6 +21,7 @@
   padding-block: var(--space-16);
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
+  border-radius: var(--radius-4);
   text-transform: uppercase;
   white-space: nowrap;
   position: relative;
@@ -64,6 +65,7 @@
   border-radius: var(--radius-32);
   padding-block: var(--space-4);
   padding-inline: var(--space-0);
+  font-weight: var(--font-weight-semibold);
 }
 
 .button--variant-outlineNoir {
@@ -319,7 +321,7 @@
   flex-shrink: 0;
 }
 
-/* ProductCard — from ds.product-card v4.0.0 (core/emit-html.ts) */
+/* ProductCard — from ds.product-card v4.1.0 (core/emit-html.ts) */
 
 .product-card, .product-card *, .product-card *::before, .product-card *::after {
   box-sizing: border-box;
@@ -338,7 +340,7 @@
   background-color: var(--color-blanc);
   border-color: var(--color-bleu-clair);
   border-width: var(--border-width-1);
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-4);
   padding-top: var(--space-12);
   padding-right: var(--space-12);
   padding-bottom: var(--space-12);
@@ -361,7 +363,7 @@
   min-width: 0;
   overflow: hidden;
   background-color: var(--color-bleu-clair);
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-4);
   padding-top: var(--space-16);
   padding-right: var(--space-16);
   padding-bottom: var(--space-16);
@@ -425,7 +427,7 @@
   gap: var(--space-8);
 }
 
-/* ProduitsECommerce — from ds.produits-ecommerce v2.2.0 (core/emit-html.ts) */
+/* ProduitsECommerce — from ds.produits-ecommerce v2.2.1 (core/emit-html.ts) */
 
 .produits-ecommerce, .produits-ecommerce *, .produits-ecommerce *::before, .produits-ecommerce *::after {
   box-sizing: border-box;

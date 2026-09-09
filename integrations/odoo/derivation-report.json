@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "f0c7c261d4a1b06b9c4397d12db65a5b1c46261a50a1a9a02f510135071fd53a",
-      "actualSha256": "f0c7c261d4a1b06b9c4397d12db65a5b1c46261a50a1a9a02f510135071fd53a",
-      "bytes": 115523
+      "expectedSha256": "98ca305ee6cd4cb0a2264a1ccc83621eeac6c6a991e44ce7ac00d7f3f88f4bcc",
+      "actualSha256": "98ca305ee6cd4cb0a2264a1ccc83621eeac6c6a991e44ce7ac00d7f3f88f4bcc",
+      "bytes": 116133
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -29,9 +29,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css",
       "status": "clean",
-      "expectedSha256": "15215517e7732c1099c9849fd816494d24ccadc828d33cd35c9ee43c98ea32e2",
-      "actualSha256": "15215517e7732c1099c9849fd816494d24ccadc828d33cd35c9ee43c98ea32e2",
-      "bytes": 31618
+      "expectedSha256": "c843cbda38b2b266e002f15a0f373932d805c7bca57a986dc15dd79cc6140224",
+      "actualSha256": "c843cbda38b2b266e002f15a0f373932d805c7bca57a986dc15dd79cc6140224",
+      "bytes": 31641
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2",
@@ -71,16 +71,16 @@
   ],
   "manualDelta": {
     "files": 23,
-    "blocks": 93,
-    "lines": 5569,
-    "bytes": 354968,
+    "blocks": 97,
+    "lines": 5854,
+    "bytes": 371037,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
         "files": 4,
-        "blocks": 20,
-        "lines": 1464,
-        "bytes": 83375
+        "blocks": 21,
+        "lines": 1539,
+        "bytes": 88405
       },
       {
         "key": "odoo-internal-api",
@@ -93,15 +93,15 @@
         "key": "odoo-layout-bridge",
         "files": 1,
         "blocks": 12,
-        "lines": 507,
-        "bytes": 26472
+        "lines": 534,
+        "bytes": 27915
       },
       {
         "key": "odoo-media-dialog",
         "files": 1,
-        "blocks": 8,
-        "lines": 639,
-        "bytes": 28012
+        "blocks": 9,
+        "lines": 696,
+        "bytes": 30397
       },
       {
         "key": "odoo-menu-seed",
@@ -112,10 +112,10 @@
       },
       {
         "key": "odoo-motion-policy",
-        "files": 2,
-        "blocks": 2,
-        "lines": 62,
-        "bytes": 2291
+        "files": 3,
+        "blocks": 3,
+        "lines": 117,
+        "bytes": 4820
       },
       {
         "key": "odoo-native-menu",
@@ -135,15 +135,15 @@
         "key": "odoo-qweb-composition",
         "files": 4,
         "blocks": 32,
-        "lines": 1440,
-        "bytes": 150618
+        "lines": 1469,
+        "bytes": 153180
       },
       {
         "key": "odoo-repeat-dom",
         "files": 8,
-        "blocks": 13,
-        "lines": 1124,
-        "bytes": 46677
+        "blocks": 14,
+        "lines": 1166,
+        "bytes": 48797
       },
       {
         "key": "odoo-version-policy",
@@ -157,9 +157,9 @@
       {
         "key": "builder-option",
         "files": 4,
-        "blocks": 20,
-        "lines": 1464,
-        "bytes": 83375
+        "blocks": 21,
+        "lines": 1539,
+        "bytes": 88405
       },
       {
         "key": "compatibility",
@@ -171,16 +171,16 @@
       {
         "key": "media",
         "files": 1,
-        "blocks": 8,
-        "lines": 639,
-        "bytes": 28012
+        "blocks": 9,
+        "lines": 696,
+        "bytes": 30397
       },
       {
         "key": "odoo-bridge",
         "files": 1,
-        "blocks": 12,
-        "lines": 507,
-        "bytes": 26472
+        "blocks": 13,
+        "lines": 567,
+        "bytes": 29466
       },
       {
         "key": "page-composition",
@@ -193,22 +193,22 @@
         "key": "public-interaction",
         "files": 2,
         "blocks": 2,
-        "lines": 62,
-        "bytes": 2291
+        "lines": 84,
+        "bytes": 3269
       },
       {
         "key": "qweb",
         "files": 4,
         "blocks": 33,
-        "lines": 1492,
-        "bytes": 154447
+        "lines": 1521,
+        "bytes": 157009
       },
       {
         "key": "repeat-action",
         "files": 8,
-        "blocks": 13,
-        "lines": 1124,
-        "bytes": 46677
+        "blocks": 14,
+        "lines": 1166,
+        "bytes": 48797
       },
       {
         "key": "save-version",
@@ -229,7 +229,9 @@
   "unclassified": {
     "files": [],
     "blocks": [],
-    "registryEntries": []
+    "registryEntries": [
+      "ODOO-037-CTA-CARTE-REPLI"
+    ]
   },
-  "canonicalDigest": "ede59e3a83d13e04614fce87dd2f8808630cfa619b5e391fc7339f87f06de011"
+  "canonicalDigest": "a2ed484d4113080d946d652d7fc33d274cf2e5ac3b4d9001c318510bc89fe7d1"
 }

@@ -619,7 +619,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v2.4.0 †",
+    "description": "Button — generated from contract ds.button v2.5.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -908,7 +908,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/noir-bleute",
           "children": [
@@ -974,7 +978,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/orange",
           "children": [
@@ -1040,7 +1048,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/blanc",
           "children": [
@@ -1106,7 +1118,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/blanc",
           "children": [
@@ -1198,8 +1214,7 @@ const COMPONENTS = [
               "name": "label",
               "characters": "Contactez-nous",
               "fontSize": 16,
-              "fontStyle": "Medium",
-              "textStyle": "Libellé bouton",
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -1241,7 +1256,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/noir-bleute",
           "children": [
@@ -1307,7 +1326,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/16",
             "paddingRight": "space/16",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 52,
@@ -1382,7 +1405,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/default/fond-survol",
           "children": [
@@ -1448,7 +1475,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/orange/fond-survol",
           "children": [
@@ -1514,7 +1545,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/blanc/fond-survol",
           "children": [
@@ -1580,7 +1615,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/blanc",
           "fill": "color/etat/outlineBlanc/fond-survol",
@@ -1716,7 +1755,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/noir-bleute",
           "fill": "color/etat/outlineNoir/fond-survol",
@@ -1783,7 +1826,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/16",
             "paddingRight": "space/16",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 52,
@@ -1857,7 +1904,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/default/fond-presse",
           "children": [
@@ -1923,7 +1974,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/orange/fond-presse",
           "children": [
@@ -1989,7 +2044,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/0"
+            "strokeWeight": "border-width/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/etat/blanc/fond-presse",
           "children": [
@@ -2055,7 +2114,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/blanc",
           "fill": "color/etat/outlineBlanc/fond-presse",
@@ -2149,8 +2212,7 @@ const COMPONENTS = [
               "name": "label",
               "characters": "Contactez-nous",
               "fontSize": 16,
-              "fontStyle": "Medium",
-              "textStyle": "Libellé bouton",
+              "fontStyle": "Semi Bold",
               "textFill": "color/etat/link/libelle-presse",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -2192,7 +2254,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/noir-bleute",
           "fill": "color/etat/outlineNoir/fond-presse",
@@ -2259,7 +2325,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/16",
             "paddingRight": "space/16",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 52,
@@ -2333,7 +2403,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/noir-bleute",
           "stroke": "color/etat/default/anneau-focus",
@@ -2401,7 +2475,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/orange",
           "stroke": "color/etat/orange/anneau-focus",
@@ -2469,7 +2547,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fill": "color/blanc",
           "stroke": "color/etat/blanc/anneau-focus",
@@ -2537,7 +2619,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/etat/outlineBlanc/anneau-focus",
           "strokeOutside": true,
@@ -2632,8 +2718,7 @@ const COMPONENTS = [
               "name": "label",
               "characters": "Contactez-nous",
               "fontSize": 16,
-              "fontStyle": "Medium",
-              "textStyle": "Libellé bouton",
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -2675,7 +2760,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/32",
             "paddingRight": "space/32",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "stroke": "color/etat/outlineNoir/anneau-focus",
           "strokeOutside": true,
@@ -2742,7 +2831,11 @@ const COMPONENTS = [
             "paddingBottom": "space/16",
             "paddingLeft": "space/16",
             "paddingRight": "space/16",
-            "strokeWeight": "border-width/2"
+            "strokeWeight": "border-width/2",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 52,

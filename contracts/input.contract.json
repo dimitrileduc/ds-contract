@@ -2,9 +2,9 @@
   "$schema": "./contract.schema.json",
   "id": "ds.input",
   "name": "Input",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "category": "atom",
-  "description": "Champ de saisie Piqueray sur une ligne. Relevé sur le candidat v2 « Input · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 2.0.0 : les ancres passent au set candidat ; la bordure passe de bleu-gris (2,51:1 sur blanc, sous le seuil de 3:1) à color.noir ; le texte saisi passe de 14 à 16 px (sous 16, Safari iOS zoome à chaque entrée) ; la valeur par défaut devient vide (1.0.0 livrait un champ PRÉ-REMPLI de « Texte de saisie », que le visiteur devait effacer) ; l'anneau de focus est dessiné (jeton color.etat.champ.anneau-focus, même recette que les boutons de la vague 032 : trait 2 px, à 2 px du bord).\n\nLes props placeholder, type, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE) : le canevas ne dessine pas un attribut HTML. Ils passent par le canal attrs/attrsByProp existant, sans évolution de schéma. L'association libellé↔champ est portée par le parent Field (htmlFor = inputID) et par l'id posé ici : le composant qui compose fournit les deux, explicitement. Pas de règle de validation ici : elle appartient au formulaire et au serveur.\n\nLimite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas.",
+  "description": "Champ de saisie Piqueray sur une ligne. Relevé sur le candidat v2 « Input · candidat v2 » de la planche 031·21 (2026-09-08), revu et adopté — pas rédigé à la main.\n\nMAJEUR 2.0.0 : les ancres passent au set candidat ; la bordure passe de bleu-gris (2,51:1 sur blanc, sous le seuil de 3:1) à color.noir ; le texte saisi passe de 14 à 16 px (sous 16, Safari iOS zoome à chaque entrée) ; la valeur par défaut devient vide (1.0.0 livrait un champ PRÉ-REMPLI de « Texte de saisie », que le visiteur devait effacer) ; l'anneau de focus est dessiné (jeton color.etat.champ.anneau-focus, même recette que les boutons de la vague 032 : trait 2 px, à 2 px du bord).\n\nLes props placeholder, type, name, id, autocomplete, required et describedBy sont CODE-ONLY (liaison figma NONE) : le canevas ne dessine pas un attribut HTML. Ils passent par le canal attrs/attrsByProp existant, sans évolution de schéma. L'association libellé↔champ est portée par le parent Field (htmlFor = inputID) et par l'id posé ici : le composant qui compose fournit les deux, explicitement. Pas de règle de validation ici : elle appartient au formulaire et au serveur.\n\nLimite nommée : Figma ne porte pas de trait décalé — le candidat approxime l'anneau par un trait EXTÉRIEUR de 2 px, le CSS le rend en outline avec un décalage de 2 px. Le trait de repos 1 px (bordure) et l'anneau (outline) coexistent en CSS, pas au canevas.\n\nVERSION 2.1.0 (2026-09-09, vague « arrondis ») — le littéral border-radius 0px, invisible au différentiel, devient le token radius.4 : le champ est un contrôle comme le bouton, même rayon. Canevas : le candidat v2 de la planche 031 · 21 porte radius/4 ; l'atome DS suivra avec la vague Formulaire v2. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR.",
   "semantics": {
     "element": "input",
     "provenance": "extracted"
@@ -182,10 +182,8 @@
         "font-weight": "{font.weight.regular}",
         "line-height": "{font.line-height.24}",
         "padding-block": "{space.12}",
-        "padding-inline": "{space.12}"
-      },
-      "literals": {
-        "border-radius": "0px"
+        "padding-inline": "{space.12}",
+        "border-radius": "{radius.4}"
       },
       "states": {
         "focus-visible": {

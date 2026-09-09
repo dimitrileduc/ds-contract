@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.4.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.5.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -51,6 +51,7 @@ const S: Record<string, CSSProperties> = {
     "paddingBlock": "16px",
     "paddingInline": "32px",
     "borderWidth": "0px",
+    "borderRadius": "4px",
     "textTransform": "uppercase",
     "whiteSpace": "nowrap"
   },
@@ -89,7 +90,8 @@ const V: Record<string, CSSProperties> = {
     "color": "#26282C",
     "borderRadius": "32px",
     "paddingBlock": "4px",
-    "paddingInline": "0px"
+    "paddingInline": "0px",
+    "fontWeight": 600
   },
   "variant-outlineNoir:root": {
     "borderWidth": "2px",
@@ -120,7 +122,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconRightGlyph?: 'piqueray' | 'phone' | 'download' | 'pdf' | 'search' | 'user' | 'chevron-right' | 'chevron-left' | 'chevron-down' | 'chevron-up' | 'cart' | 'arrow-right' | 'arrow-left' | 'facebook' | 'instagram' | 'star' | 'external-link' | 'mail' | 'octicon-chevron-down12';
 }
 
-/** 2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse. Nouveau canal `font-weight` sur l'etat hover, sur le meme modele par style que le soulignement : `typography.etat.<style>.graisse-survol`, six styles a font.weight.medium (la graisse du repos, leur survol ne bouge donc pas d'un octet) et link a font.weight.semibold. Decision owner du 2026-09-07, prise sur la carte categorie empilee : le libelle du CTA y est le seul signal de cible cliquable, et l'owner a refuse la couleur orange comme accent. Deux faits mesures avant d'ecrire : la couleur du survol etait DEJA le noir pur (color.etat.link.libelle-survol pointe sur color.noir-pur depuis la vague 032), donc « jouer sur le noir » n'ajoutait rien ; et le decalage horizontal du gras est de 1 px sur le libelle « CONTACTEZ-NOUS » (155 vs 156 px, releve sur le canevas), donc l'argument classique du deplacement de mise en page ne s'applique pas ici. MEME JOUR, ECART DE SOURCE REFERME : le contrat declarait le soulignement du survol link depuis la 2.3.0, la variante Figma `Style=Link, State=Hover` (2749:17111) ne le DESSINAIT pas. Elle porte desormais le style de texte « Libelle bouton survol » (Montserrat SemiBold, casse UPPER, soulignement, fontSize lie a typography/button/size comme le repos). Poser la graisse par surcharge de fontName detachait le libelle de son style de texte et lui faisait perdre la taille responsive : d'ou le style dedie. 449 instances du set Bouton avant le geste, 449 apres.
+/** 2.4.1 (2026-09-09) : le style LINK prend la graisse SemiBold au REPOS (canal font-weight sur la valeur link, jeton font.weight.semibold ; les six autres styles gardent font.weight.medium). Question de l'owner : « ce CTA link ne devrait-il pas etre plus gras pour tout le monde ? » — releve sur le canevas : un seul style, 24 contextes (Lire la suite, Contactez-nous des cartes, En savoir plus, brochures, Voir les produits, Voir tous les avis), tous suivent. Cote canevas : style de texte DEDIE « Libelle bouton lien » (copie champ par champ de « Libelle bouton », SemiBold, fontSize lie a typography/button/size) pose sur les variantes Link Repos/Actif/Focus — jamais une graisse par surcharge, qui detacherait le libelle de sa taille responsive. Le survol garde « Libelle bouton survol » : il ne change plus de graisse (typography.etat.link.graisse-survol reste semibold, canal neutre), il garde soulignement et noir pur. 468 instances Link relues, 468 suivent — dont 40 libelles des Categories principales dans les vues demo de cinq pages qui etaient DETACHES de tout style (taille 18 en dur en Wide), re-lies. Meme jour, deux CTA dessines a la main remis en instance du Bouton : « En savoir plus » de Presentation (Mobile/Tablette/Desktop) et « Contactez-nous » de Reassurances (4 variantes).
+
+2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse. Nouveau canal `font-weight` sur l'etat hover, sur le meme modele par style que le soulignement : `typography.etat.<style>.graisse-survol`, six styles a font.weight.medium (la graisse du repos, leur survol ne bouge donc pas d'un octet) et link a font.weight.semibold. Decision owner du 2026-09-07, prise sur la carte categorie empilee : le libelle du CTA y est le seul signal de cible cliquable, et l'owner a refuse la couleur orange comme accent. Deux faits mesures avant d'ecrire : la couleur du survol etait DEJA le noir pur (color.etat.link.libelle-survol pointe sur color.noir-pur depuis la vague 032), donc « jouer sur le noir » n'ajoutait rien ; et le decalage horizontal du gras est de 1 px sur le libelle « CONTACTEZ-NOUS » (155 vs 156 px, releve sur le canevas), donc l'argument classique du deplacement de mise en page ne s'applique pas ici. MEME JOUR, ECART DE SOURCE REFERME : le contrat declarait le soulignement du survol link depuis la 2.3.0, la variante Figma `Style=Link, State=Hover` (2749:17111) ne le DESSINAIT pas. Elle porte desormais le style de texte « Libelle bouton survol » (Montserrat SemiBold, casse UPPER, soulignement, fontSize lie a typography/button/size comme le repos). Poser la graisse par surcharge de fontName detachait le libelle de son style de texte et lui faisait perdre la taille responsive : d'ou le style dedie. 449 instances du set Bouton avant le geste, 449 apres.
 
 Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.
 
@@ -132,7 +136,9 @@ Extracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump,
 
 2.2.0 (2026-09-04, vague 032) : le canal d'etats est rempli pour la premiere fois sur un contrat Piqueray -- survol, presse et focus clavier, sur les sept styles. Les couleurs voyagent par les jetons color.etat.<style>.<canal> (sans accolades ici : l'invariant zero-accolade d'emitters:check scanne aussi les descriptions), jamais en valeur litterale. L'apparence au REPOS est inchangee, prouvee au pixel sur les sept styles. Arbitrage owner du 2026-09-04 sur FR-019 : le plancher de contraste AA 4,5 vaut pour les six styles conformes ; le style orange, deja sous AA au repos a 2,42 et deliberement non corrige, est borne par une clause de non-regression -- ses etats vont en croissant 2,42 -> 2,98 -> 3,74, un etat n'a jamais le droit d'etre MOINS lisible que le repos. Limite nommee : le soulignement du style link au survol est impossible PAR STYLE -- les etats sont indexes etat -> canal -> valeur sur la racine, sans dimension par valeur d'enumere, donc souligner le link soulignerait les sept. Repli decide par l'owner : changement de couleur du libelle. L'etat disabled reste hors perimetre : aucun bouton de la home n'est inactif.
 
-2.3.0 (2026-09-05) : le style link se souligne au survol. La 2.2.0 disait cette variation impossible par style — c'etait faux, et la limite avait ete ecrite dans la matrice de capacites avant d'etre verifiee. Le canal d'etats emet en realite UNE regle par valeur d'enumere, et un jeton de type texte porte le mot-cle : le style link recoit underline, les six autres un none explicite. Le none explicite n'est pas decoratif — il resiste a une regle d'hote qui soulignerait nos boutons rendus en lien. */
+2.3.0 (2026-09-05) : le style link se souligne au survol. La 2.2.0 disait cette variation impossible par style — c'etait faux, et la limite avait ete ecrite dans la matrice de capacites avant d'etre verifiee. Le canal d'etats emet en realite UNE regle par valeur d'enumere, et un jeton de type texte porte le mot-cle : le style link recoit underline, les six autres un none explicite. Le none explicite n'est pas decoratif — il resiste a une regle d'hote qui soulignerait nos boutons rendus en lien.
+
+VERSION 2.5.0 (2026-09-09, vague « arrondis ») — la racine porte enfin un rayon, token radius.4 (4 px), sur tous les styles ; le style Link garde son radius.32 par sa surcharge de variante. Canevas : variable radius/4 liée sur les 24 variantes hors Link. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR. */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = 'default', iconLeftGlyph = 'arrow-left', iconRightGlyph = 'arrow-right', iconLeft = false, iconRight = false, style, children, ...rest },
   ref,

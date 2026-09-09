@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "CarteCategorie",
     "contractId": "ds.carte-categorie",
     "anchorKey": "eb623f48fadf36edd0e8a8b818a9dbeb51254e6c",
-    "description": "CarteCategorie — generated from contract ds.carte-categorie v3.0.1 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "CarteCategorie — generated from contract ds.carte-categorie v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -31,7 +31,11 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "minWidth": "size/carte-categorie/min-w"
+            "minWidth": "size/carte-categorie/min-w",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fillWidth": true,
           "lits": {
@@ -333,6 +337,10 @@ const COMPONENTS = [
           },
           "bindings": {
             "minWidth": "size/carte-categorie/min-w",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "itemSpacing": "space/32"
           },
           "fill": "color/blanc",
@@ -449,7 +457,11 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "minWidth": "size/carte-categorie/min-w"
+            "minWidth": "size/carte-categorie/min-w",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fillWidth": true,
           "lits": {
@@ -752,6 +764,10 @@ const COMPONENTS = [
           },
           "bindings": {
             "minWidth": "size/carte-categorie/min-w",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4",
             "itemSpacing": "space/32"
           },
           "fill": "color/blanc",
@@ -859,7 +875,7 @@ const COMPONENTS = [
     "setName": "Carte",
     "contractId": "ds.carte",
     "anchorKey": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
-    "description": "Carte — generated from contract ds.carte v3.1.1 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Carte — generated from contract ds.carte v3.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -886,7 +902,11 @@ const COMPONENTS = [
           "fill": "color/blanc",
           "bindings": {
             "itemSpacing": "spacing/carte-reassurance/gap",
-            "paddingBottom": "spacing/carte-reassurance/pad-bas"
+            "paddingBottom": "spacing/carte-reassurance/pad-bas",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fillWidth": true,
           "children": [
@@ -973,7 +993,11 @@ const COMPONENTS = [
           "fill": "color/blanc",
           "bindings": {
             "itemSpacing": "spacing/carte-reassurance/gap",
-            "paddingBottom": "spacing/carte-reassurance/pad-bas"
+            "paddingBottom": "spacing/carte-reassurance/pad-bas",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fillWidth": true,
           "children": [
@@ -1060,7 +1084,11 @@ const COMPONENTS = [
           "fill": "color/blanc",
           "bindings": {
             "itemSpacing": "space/32",
-            "paddingBottom": "space/0"
+            "paddingBottom": "space/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 743,
@@ -1179,7 +1207,11 @@ const COMPONENTS = [
           "fill": "color/blanc",
           "bindings": {
             "itemSpacing": "space/32",
-            "paddingBottom": "space/0"
+            "paddingBottom": "space/0",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedWidth": {
             "px": 743,

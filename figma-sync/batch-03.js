@@ -3129,7 +3129,7 @@ const COMPONENTS = [
     "setName": "Input",
     "contractId": "ds.input",
     "anchorKey": "f8f77493f71087c7cd3234dad79eeee0d7e7362f",
-    "description": "Input — generated from contract ds.input v2.0.0",
+    "description": "Input — generated from contract ds.input v2.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -3159,10 +3159,11 @@ const COMPONENTS = [
             "paddingTop": "space/12",
             "paddingBottom": "space/12",
             "paddingLeft": "space/12",
-            "paddingRight": "space/12"
-          },
-          "lits": {
-            "radius": 0
+            "paddingRight": "space/12",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "children": [
             {
@@ -3200,10 +3201,11 @@ const COMPONENTS = [
             "paddingTop": "space/12",
             "paddingBottom": "space/12",
             "paddingLeft": "space/12",
-            "paddingRight": "space/12"
-          },
-          "lits": {
-            "radius": 0
+            "paddingRight": "space/12",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "strokeOutside": true,
           "children": [
@@ -3228,7 +3230,7 @@ const COMPONENTS = [
     "setName": "Select",
     "contractId": "ds.select",
     "anchorKey": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3",
-    "description": "Select — generated from contract ds.select v2.0.0",
+    "description": "Select — generated from contract ds.select v2.1.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -3258,10 +3260,11 @@ const COMPONENTS = [
             "paddingTop": "space/12",
             "paddingBottom": "space/12",
             "paddingLeft": "space/12",
-            "paddingRight": "space/12"
-          },
-          "lits": {
-            "radius": 0
+            "paddingRight": "space/12",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "children": [
             {
@@ -3292,7 +3295,7 @@ const COMPONENTS = [
     "setName": "Textarea",
     "contractId": "ds.textarea",
     "anchorKey": "58263ac06e29ffa202c3b2395085c3521ebd9646",
-    "description": "Textarea — generated from contract ds.textarea v2.0.0",
+    "description": "Textarea — generated from contract ds.textarea v2.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -3322,14 +3325,15 @@ const COMPONENTS = [
             "paddingTop": "space/12",
             "paddingBottom": "space/12",
             "paddingLeft": "space/12",
-            "paddingRight": "space/12"
+            "paddingRight": "space/12",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedHeight": {
             "px": 128,
             "varName": "size/textarea/root"
-          },
-          "lits": {
-            "radius": 0
           },
           "children": [
             {
@@ -3367,14 +3371,15 @@ const COMPONENTS = [
             "paddingTop": "space/12",
             "paddingBottom": "space/12",
             "paddingLeft": "space/12",
-            "paddingRight": "space/12"
+            "paddingRight": "space/12",
+            "topLeftRadius": "radius/4",
+            "topRightRadius": "radius/4",
+            "bottomLeftRadius": "radius/4",
+            "bottomRightRadius": "radius/4"
           },
           "fixedHeight": {
             "px": 128,
             "varName": "size/textarea/root"
-          },
-          "lits": {
-            "radius": 0
           },
           "strokeOutside": true,
           "children": [
