@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v4.1.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -28,6 +28,8 @@
   gap: var(--spacing-review-gap);
   border-radius: var(--radius-8);
   border-width: var(--border-width-1);
+  cursor: pointer;
+  position: relative;
 }
 
 .root:hover:not(:disabled) {

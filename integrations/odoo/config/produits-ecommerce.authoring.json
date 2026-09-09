@@ -375,7 +375,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -401,7 +401,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -427,7 +427,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -453,7 +453,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1454,7 +1454,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1482,7 +1482,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1490,6 +1490,7 @@
         ],
         "partPath": [
           "root",
+          "Tuile",
           "Image"
         ]
       },
@@ -1511,7 +1512,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1519,6 +1520,7 @@
         ],
         "partPath": [
           "root",
+          "Texte",
           "Titre"
         ]
       },
@@ -1540,7 +1542,7 @@
           {
             "contract": {
               "id": "ds.product-card",
-              "version": "3.1.0"
+              "version": "4.0.0"
             },
             "viaPart": "ProductCard",
             "repeat": true
@@ -1548,12 +1550,71 @@
         ],
         "partPath": [
           "root",
+          "Texte",
           "Prix"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "plain-text",
       "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-prix\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-product-card-part-root-tuile",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.product-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ProductCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Tuile"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-tuile\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "produits-ecommerce-product-card-part-root-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.produits-ecommerce",
+              "version": "2.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.product-card",
+              "version": "4.0.0"
+            },
+            "viaPart": "ProductCard",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Texte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_produits_ecommerce [data-pqr-part=\"produit-texte\"]",
       "allowedMarks": []
     },
     {

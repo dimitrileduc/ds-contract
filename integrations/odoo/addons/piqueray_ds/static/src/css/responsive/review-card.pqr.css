@@ -17,3 +17,54 @@
 @media (min-width: 992px) {
   .review-card .review-card__marque { display: none; }
 }
+
+/* ODOO-033-OMBRE-SURVOL-TRANSITION (2026-09-08) — meme fait que sur la carte produit :
+ * le contrat gouverne l'ombre de survol (`states.hover.box-shadow`), pas sa duree. Le
+ * schema n'a pas de canal de transition ; c'est un fait code-only. Reperes de docs/16
+ * l. 772 : moins de 300 ms, decelaration franche, `prefers-reduced-motion` respecte.
+ * Pas de rognage a corriger ici — la grille d'avis n'est pas un conteneur de defilement.
+ */
+.review-card {
+  transition: box-shadow 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-card { transition: none; }
+}
+
+/* ODOO-038-REVIEW-CARD-LIEN-CARTE (2026-09-08) — la carte entiere est cliquable.
+ * Le contrat 4.2.0 porte les deux canaux gouvernes (`cursor: pointer` et
+ * `position: relative` sur la racine) ; ce qui vit ICI est le seul fait que le
+ * schema ne sait pas dire : le pseudo-element du lien, etendu par-dessus la carte.
+ *
+ * Pourquoi ce patron et pas un autre : envelopper la carte dans une ancre serait du
+ * HTML invalide, la carte CONTENANT deja l'ancre « Lire la suite » ; et un clic pose
+ * en JavaScript donnerait une surface cliquable sans lien — ni clic milieu, ni
+ * « ouvrir dans un nouvel onglet », ni destination dans la barre d'etat, et rien
+ * pour un lecteur d'ecran. Ici il n'y a toujours QU'UN lien, avec sa destination :
+ * seule sa zone de clic s'agrandit.
+ *
+ * PIEGE PAYE ET MESURE (2026-09-08) : une premiere version posait aussi
+ * `position: relative` sur `.review-card__lireLaSuite`, pour garder le libelle du lien
+ * au-dessus du recouvrement. Elle rendait le mecanisme INOPERANT — un `inset: 0` se
+ * resout contre le premier ancetre POSITIONNE, donc contre ce conteneur de 20 px de
+ * haut et non contre la carte. Mesure : `elementFromPoint` sur l'avatar ne trouvait
+ * aucun lien. Le conteneur doit rester statique ; c'est la RACINE, et elle seule, qui
+ * porte `position: relative` — et elle le porte depuis le contrat, pas d'ici.
+ * SECOND PIEGE, MEME FORME, UN ETAGE PLUS BAS : `.button` porte lui aussi
+ * `position: relative` — non pas pour decorer, mais parce que son `::before` est la
+ * CIBLE TACTILE de 44 px minimum, qui a besoin d'un bloc de reference. Le `::after`
+ * se resolvait donc contre le bouton, pas contre la carte, et le recouvrement faisait
+ * la taille du libelle. Le remede n'est pas de retirer ce `relative` du contrat
+ * `ds.button` — il sert a tous les boutons du site — mais de le neutraliser sur CETTE
+ * ancre-la, ou la carte joue deja le role de bloc de reference. La cible tactile n'y
+ * perd rien : elle s'etend a la carte entiere au lieu de 44 px, ce qui va dans le bon
+ * sens. Verifie par `elementFromPoint` en trois points de la carte, pas par lecture.
+ */
+.review-card__lireLaSuite .button {
+  position: static;
+}
+.review-card__lireLaSuite .button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}

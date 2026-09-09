@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v3.1.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v4.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -13,12 +13,21 @@
 .root {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   border: 0;
+  border-style: solid;
   font-family: var(--font-family-montserrat);
-  gap: var(--space-16);
+  gap: var(--space-12);
   width: var(--spacing-product-card-width);
   min-width: var(--spacing-product-card-width);
+  background-color: var(--color-blanc);
+  border-color: var(--color-bleu-clair);
+  border-width: var(--border-width-1);
+  border-radius: var(--radius-8);
+  padding-top: var(--space-12);
+  padding-right: var(--space-12);
+  padding-bottom: var(--space-12);
+  padding-left: var(--space-12);
   text-rendering: geometricprecision;
 }
 
@@ -26,9 +35,40 @@
   box-shadow: var(--shadow-etat-product-card-survol);
 }
 
+.root:hover:not(:disabled) {
+  border-color: var(--color-gris-clair);
+}
+
+.Tuile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background-color: var(--color-bleu-clair);
+  border-radius: var(--radius-8);
+  padding-top: var(--space-16);
+  padding-right: var(--space-16);
+  padding-bottom: var(--space-16);
+  padding-left: var(--space-16);
+  aspect-ratio: 1;
+}
+
 .Image {
-  width: var(--size-product-card-image);
-  height: var(--size-product-card-image);
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.Texte {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-4);
 }
 
 .Titre {
@@ -37,7 +77,7 @@
   font-weight: var(--typography-titre-6-weight);
   font-family: var(--typography-titre-6-family);
   line-height: var(--typography-titre-6-line-height);
-  text-align: center;
+  text-align: left;
   align-self: stretch;
   white-space: nowrap;
   overflow-x: hidden;
@@ -51,6 +91,6 @@
   font-weight: var(--typography-titre-6-weight);
   font-family: var(--typography-titre-6-family);
   line-height: var(--typography-titre-6-line-height);
-  text-align: center;
+  text-align: left;
   align-self: stretch;
 }

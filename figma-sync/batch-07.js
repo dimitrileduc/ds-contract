@@ -1092,7 +1092,7 @@ const COMPONENTS = [
     "setName": "ProductCard",
     "contractId": "ds.product-card",
     "anchorKey": "2e7981e1e2deb32e4e98f291e31e66697cfbfc30",
-    "description": "ProductCard — generated from contract ds.product-card v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "ProductCard — generated from contract ds.product-card v4.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1113,69 +1113,116 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "CENTER"
+            "counter": "MIN"
           },
           "bindings": {
-            "itemSpacing": "space/16",
-            "minWidth": "spacing/product-card/width"
+            "itemSpacing": "space/12",
+            "minWidth": "spacing/product-card/width",
+            "strokeWeight": "border-width/1",
+            "topLeftRadius": "radius/8",
+            "topRightRadius": "radius/8",
+            "bottomLeftRadius": "radius/8",
+            "bottomRightRadius": "radius/8",
+            "paddingTop": "space/12",
+            "paddingRight": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12"
           },
           "fixedWidth": {
-            "px": 260,
+            "px": 220,
             "varName": "spacing/product-card/width"
           },
+          "fill": "color/blanc",
+          "stroke": "color/bleu-clair",
           "children": [
             {
               "type": "frame",
-              "name": "Image",
+              "name": "Tuile",
               "layout": {
-                "mode": "HORIZONTAL",
+                "mode": "VERTICAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
-              "fixedWidth": {
-                "px": 240,
-                "varName": "size/product-card/image"
+              "fill": "color/bleu-clair",
+              "bindings": {
+                "topLeftRadius": "radius/8",
+                "topRightRadius": "radius/8",
+                "bottomLeftRadius": "radius/8",
+                "bottomRightRadius": "radius/8",
+                "paddingTop": "space/16",
+                "paddingRight": "space/16",
+                "paddingBottom": "space/16",
+                "paddingLeft": "space/16"
               },
-              "fixedHeight": {
-                "px": 240,
-                "varName": "size/product-card/image"
-              },
-              "imgPlaceholder": true,
-              "lits": {
-                "fillColor": {
-                  "r": 0.8509803921568627,
-                  "g": 0.8509803921568627,
-                  "b": 0.8509803921568627
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "Image",
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "primary": "MIN",
+                    "counter": "MIN",
+                    "stretchChildren": true
+                  },
+                  "grow": true,
+                  "imgPlaceholder": true,
+                  "lits": {
+                    "fillColor": {
+                      "r": 0.8509803921568627,
+                      "g": 0.8509803921568627,
+                      "b": 0.8509803921568627
+                    }
+                  },
+                  "children": [],
+                  "fillWidth": true
                 }
+              ],
+              "fillWidth": true,
+              "clipContent": true
+            },
+            {
+              "type": "frame",
+              "name": "Texte",
+              "layout": {
+                "mode": "VERTICAL",
+                "primary": "MIN",
+                "counter": "MIN",
+                "stretchChildren": true
               },
-              "children": []
-            },
-            {
-              "type": "text",
-              "name": "Titre",
-              "characters": "Télécommande Hörmann HSE4-868BS",
-              "fontSize": 16,
-              "fontStyle": "Semi Bold",
-              "textStyle": "Titre 6",
-              "textFill": "color/noir-bleute",
-              "lineHeight": 20,
-              "textAlignH": "CENTER",
-              "fontFamily": "Montserrat",
-              "textTruncation": true,
-              "contentProp": "Titre"
-            },
-            {
-              "type": "text",
-              "name": "Prix",
-              "characters": "74,99€",
-              "fontSize": 16,
-              "fontStyle": "Semi Bold",
-              "textStyle": "Titre 6",
-              "textFill": "color/bleu",
-              "lineHeight": 20,
-              "textAlignH": "CENTER",
-              "fontFamily": "Montserrat",
-              "contentProp": "Prix"
+              "bindings": {
+                "itemSpacing": "space/4"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "name": "Titre",
+                  "characters": "Télécommande Hörmann HSE4-868BS",
+                  "fontSize": 16,
+                  "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 6",
+                  "textFill": "color/noir-bleute",
+                  "lineHeight": 20,
+                  "textAlignH": "LEFT",
+                  "fontFamily": "Montserrat",
+                  "textTruncation": true,
+                  "contentProp": "Titre"
+                },
+                {
+                  "type": "text",
+                  "name": "Prix",
+                  "characters": "74,99€",
+                  "fontSize": 16,
+                  "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 6",
+                  "textFill": "color/bleu",
+                  "lineHeight": 20,
+                  "textAlignH": "LEFT",
+                  "fontFamily": "Montserrat",
+                  "contentProp": "Prix"
+                }
+              ],
+              "fillWidth": true
             }
           ]
         }
@@ -1192,82 +1239,141 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "CENTER"
+            "counter": "MIN"
           },
           "bindings": {
-            "itemSpacing": "space/16",
-            "minWidth": "spacing/product-card/width"
+            "itemSpacing": "space/12",
+            "minWidth": "spacing/product-card/width",
+            "strokeWeight": "border-width/1",
+            "topLeftRadius": "radius/8",
+            "topRightRadius": "radius/8",
+            "bottomLeftRadius": "radius/8",
+            "bottomRightRadius": "radius/8",
+            "paddingTop": "space/12",
+            "paddingRight": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12"
           },
           "fixedWidth": {
-            "px": 260,
+            "px": 220,
             "varName": "spacing/product-card/width"
           },
+          "fill": "color/blanc",
+          "stroke": "color/gris-clair",
           "effectStack": [
             {
               "x": 0,
-              "y": 8,
-              "radius": 24,
+              "y": 2,
+              "radius": 6,
               "color": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.12
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.05
               }
+            },
+            {
+              "x": 0,
+              "y": 16,
+              "radius": 32,
+              "color": {
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.18
+              },
+              "spread": -12
             }
           ],
           "children": [
             {
               "type": "frame",
-              "name": "Image",
+              "name": "Tuile",
               "layout": {
-                "mode": "HORIZONTAL",
+                "mode": "VERTICAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
-              "fixedWidth": {
-                "px": 240,
-                "varName": "size/product-card/image"
+              "fill": "color/bleu-clair",
+              "bindings": {
+                "topLeftRadius": "radius/8",
+                "topRightRadius": "radius/8",
+                "bottomLeftRadius": "radius/8",
+                "bottomRightRadius": "radius/8",
+                "paddingTop": "space/16",
+                "paddingRight": "space/16",
+                "paddingBottom": "space/16",
+                "paddingLeft": "space/16"
               },
-              "fixedHeight": {
-                "px": 240,
-                "varName": "size/product-card/image"
-              },
-              "imgPlaceholder": true,
-              "lits": {
-                "fillColor": {
-                  "r": 0.8509803921568627,
-                  "g": 0.8509803921568627,
-                  "b": 0.8509803921568627
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "Image",
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "primary": "MIN",
+                    "counter": "MIN",
+                    "stretchChildren": true
+                  },
+                  "grow": true,
+                  "imgPlaceholder": true,
+                  "lits": {
+                    "fillColor": {
+                      "r": 0.8509803921568627,
+                      "g": 0.8509803921568627,
+                      "b": 0.8509803921568627
+                    }
+                  },
+                  "children": [],
+                  "fillWidth": true
                 }
+              ],
+              "fillWidth": true,
+              "clipContent": true
+            },
+            {
+              "type": "frame",
+              "name": "Texte",
+              "layout": {
+                "mode": "VERTICAL",
+                "primary": "MIN",
+                "counter": "MIN",
+                "stretchChildren": true
               },
-              "children": []
-            },
-            {
-              "type": "text",
-              "name": "Titre",
-              "characters": "Télécommande Hörmann HSE4-868BS",
-              "fontSize": 16,
-              "fontStyle": "Semi Bold",
-              "textStyle": "Titre 6",
-              "textFill": "color/noir-bleute",
-              "lineHeight": 20,
-              "textAlignH": "CENTER",
-              "fontFamily": "Montserrat",
-              "textTruncation": true,
-              "contentProp": "Titre"
-            },
-            {
-              "type": "text",
-              "name": "Prix",
-              "characters": "74,99€",
-              "fontSize": 16,
-              "fontStyle": "Semi Bold",
-              "textStyle": "Titre 6",
-              "textFill": "color/bleu",
-              "lineHeight": 20,
-              "textAlignH": "CENTER",
-              "fontFamily": "Montserrat",
-              "contentProp": "Prix"
+              "bindings": {
+                "itemSpacing": "space/4"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "name": "Titre",
+                  "characters": "Télécommande Hörmann HSE4-868BS",
+                  "fontSize": 16,
+                  "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 6",
+                  "textFill": "color/noir-bleute",
+                  "lineHeight": 20,
+                  "textAlignH": "LEFT",
+                  "fontFamily": "Montserrat",
+                  "textTruncation": true,
+                  "contentProp": "Titre"
+                },
+                {
+                  "type": "text",
+                  "name": "Prix",
+                  "characters": "74,99€",
+                  "fontSize": 16,
+                  "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 6",
+                  "textFill": "color/bleu",
+                  "lineHeight": 20,
+                  "textAlignH": "LEFT",
+                  "fontFamily": "Montserrat",
+                  "contentProp": "Prix"
+                }
+              ],
+              "fillWidth": true
             }
           ]
         }

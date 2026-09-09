@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v3.1.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v4.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,11 +16,19 @@ export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   imageAlt?: string;
 }
 
-/** 3.1.0 (2026-09-05, vague 033) : elevation au survol. L'ancre Figma change de nature avec cette version : ProductCard etait un COMPONENT simple, il devient un COMPONENT_SET a axe `Etat` (2763:10149). Le composant d'origine 2693:21081 devient la variante `Etat=Defaut` et GARDE son identifiant — ses 52 instances ont ete comptees avant (52) et apres (52) le geste, aucune n'a ete detachee. L'ombre est portee par la RACINE, donc elle trace la boite entiere de la carte — photo + titre + prix — et non la photo seule. La distinction n'est pas theorique : la premiere proposition faite a l'owner rendait l'ombre autour de l'image uniquement, et a ete refusee pour cela.
+/** 4.0.0 (2026-09-08, refonte carte produit — option choisie par l'owner sur la planche 031 · 23, DESSINEE DANS FIGMA AVANT d'etre contractee, §VIII). La carte cesse d'etre une photo carree de 240 flottant au milieu d'une boite de 364 sans fond, sans filet, sans rayon et sans marge : elle devient une vraie carte — fond blanc, filet cheveu, rayon 8, 12 px de marge interieure, texte aligne a gauche — et elle RETRECIT (220 · 240 · 264 · 288 au lieu de 260 · 322 · 326 · 363).
 
-La carte ne porte AUCUNE ombre au repos, donc aucun octet du repos ne bouge. Valeur a 12 % et non 10 % : 10 % sur fond blanc s'est avere invisible a l'oeil, constate puis releve le 2026-09-05.
+MAJEUR et non mineur : deux parts neuves s'interposent, `Tuile` autour de la photo et `Texte` autour du titre et du prix. Les proprietes ne bougent pas, mais les parts sont ADRESSABLES cote Odoo (`data-pqr-part`), donc l'imbrication casse l'adressage — c'est un retrait de vocabulaire au sens du semver du depot.
 
-Piqueray ProductCard. 3.0.0 (2026-09-04, vague 031) : les ancres passent du master DS 2068:1972 au master 031 `ProductCard` 2693:21081, celui que le set ProduitsECommerce de la page 031 instancie réellement — décision owner, patron déjà appliqué à ReviewCard, CarteCategorie et CarteReassurance. Deux changements avec : la typographie monte le groupe de jetons `typography.titre-6` (au lieu de font.size.16 / font.weight.semibold en dur, même recette résolue) ; et la largeur devient un PLAFOND, pas une largeur fixe — dans les quatre vues la carte vaut 260 · 322 · 326 · 363 selon l'écran, posée par la section via le jeton responsive `spacing.product-card.width` (une molécule n'a pas d'axe présentation : ce qui change par écran passe par un jeton qui varie par écran). L'URL et l'alternative textuelle de l'image restent des sémantiques de code : Figma les fournit par surcharge d'instance, jamais comme propriété de composant. La LARGEUR par écran (260 · 322 · 326 · 363) est portée par le jeton `spacing.product-card.width` sur la racine de CETTE molécule, et non sur la part instance de la section : les jetons posés sur une part `component` sont silencieusement ignorés par les émetteurs (vérifié le 2026-09-04 — zéro règle générée). C'est le patron d'art antérieur du dépôt (ds.avatar-group : largeur fixe sur la racine de l'enfant), la seule route qui traverse. Le jeton résout par mode viewport, ce qu'une molécule sans axe presentation ne saurait faire elle-même. `min-width` répète `width` : la carte est dans une piste flex et le rétrécissement par défaut la ferait passer sous la largeur dessinée — le carrousel exige qu'elle garde sa taille et que la piste déborde. Canal jeton, donc gouverné des deux côtés ; `flex-shrink` n'est pas un canal `declared` du registre (refus du schéma, 2026-09-04). Le titre est tronqué sur une ligne (maxLines 1 / ENDING au canevas) : porté par les canaux declared white-space, overflow et text-overflow. */
+LE FAIT QUI PILOTE LE DESSIN, mesure et non suppose : ces produits sont en plastique blanc et gris pale, photographies sur fond blanc opaque. Sur une carte blanche ils se dissolvent — le bouton poussoir FIT2 etait invisible. La tuile teintee (`color.bleu-clair`) leur donne un sol. Mais les photos n'ont AUCUNE transparence : posees telles quelles sur la tuile elles y dessinent un carre blanc et annulent la teinte. D'ou `mix-blend-mode: multiply` sur la photo, canal declare leve pour l'occasion (registre DECLARED_CHANNELS, verdict 'annotate'). C'est un CONTOURNEMENT nomme : le vrai correctif est de detourer les huit photos une bonne fois. Et parce que le verdict est 'annotate', regenerer le master depuis le contrat perd le fondu — sur le canevas il vit sur la PEINTURE (`paint.blendMode`), que l'emetteur ne pose pas.
+
+Le geste sur la source : 71 instances comptees avant et apres, AUCUNE photo perdue. La photo n'a pas ete recreee mais DEMENAGEE dans la tuile — c'est la difference avec le `remove()` + recreation qui avait detruit les surcharges d'instance en 017. La proportion carree de la tuile est posee par `lockAspectRatio()` : le setter `targetAspectRatio` est refuse par cette version de l'API, et un redimensionnement par instance ne se propage pas aux instances imbriquees (52 tuiles restaient rectangulaires), alors que le verrou, lui, traverse.
+
+3.1.0 (2026-09-05, vague 033) : elevation au survol, ombre portee par la RACINE — donc la boite entiere, photo + titre + prix — et non la photo seule. Valeur revue le 2026-09-08 : deux couches sur un noir bleute au lieu d'une couche de noir pur a 12 %.
+
+La LARGEUR par ecran est portee par le jeton `spacing.product-card.width` sur la racine de CETTE molecule, jamais sur la part instance de la section : un jeton pose sur une part `component` est silencieusement ignore par les emetteurs (verifie le 2026-09-04, zero regle generee). Patron d'art anterieur ds.avatar-group. `min-width` repete `width` : la carte est dans une piste flex et le retrecissement par defaut la ferait passer sous la largeur dessinee — le carrousel exige qu'elle garde sa taille et que la piste deborde. Le titre reste tronque sur une ligne (maxLines 1 / ENDING au canevas), desormais aligne a gauche : la troncature paraît voulue au lieu d'accidentelle.
+
+Le filet du REPOS est `color.bleu-clair`, le meme que celui de la carte d'avis — assez pour poser la boite, trop leger pour la cerner (demande owner du 2026-09-08 : « si pas hover faudrait la bordure plus legere »). Il passe a `color.gris-clair` au survol : la carte se raffermit en meme temps qu'elle s'eleve, et la transition d'etat porte sur deux canaux plutot qu'un. */
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function ProductCard(
   {
     titre = 'Télécommande Hörmann HSE4-868BS',
@@ -36,9 +44,13 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <img className={styles.Image} src={String(imageUrl)} alt={String(imageAlt)}></img>
-      <span className={styles.Titre}>{titre}</span>
-      <span className={styles.Prix}>{prix}</span>
+      <div className={styles.Tuile}>
+        <img className={styles.Image} src={String(imageUrl)} alt={String(imageAlt)}></img>
+      </div>
+      <div className={styles.Texte}>
+        <span className={styles.Titre}>{titre}</span>
+        <span className={styles.Prix}>{prix}</span>
+      </div>
     </div>
   );
 });

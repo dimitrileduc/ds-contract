@@ -35,6 +35,37 @@
  * doctrinal : à revoir si un relevé sur appareil montre un arrêt flottant.
  */
 
+/* ODOO-034-PRODUITS-OMBRE-RESPIRATION (2026-09-08) — l'ombre de survol de la carte
+ * etait ROGNEE, mesure a l'appui : le cadre `carrouselProduits` fait EXACTEMENT la
+ * hauteur d'une carte (312 px releve au 1440) et porte `overflow: auto hidden`. Or un
+ * conteneur de defilement rogne sur SES DEUX AXES — des qu'un axe vaut `auto`, l'autre
+ * ne peut plus valoir `visible` (CSS Overflow 3). L'ombre n'avait donc aucune place
+ * au-dessus ni au-dessous : il ne restait que les debords lateraux, coupes net en haut
+ * et en bas, ce qui donnait deux bandes grises verticales de part et d'autre de la carte.
+ *
+ * Le remede n'est PAS une valeur d'ombre : c'est de la place a l'interieur de la boite
+ * qui rogne. Une respiration verticale, annulee par une marge negative de meme valeur,
+ * pour que la mise en page ne bouge pas d'un pixel — la boite de marge du cadre reste a
+ * 312, donc l'ecart de 24 avec les controles et celui de 32/48 avec l'en-tete sont
+ * inchanges. La valeur est prise sur `space.24`, jamais ecrite en dur (§ geometrie).
+ *
+ * FAIT CODE-ONLY : le canevas ne dessine pas ce couple padding/marge — il n'en a pas
+ * besoin, Figma ne rogne rien. Il vit ici et nulle part ailleurs.
+ *
+ * ODOO-033-OMBRE-SURVOL-TRANSITION (2026-09-08) — l'ombre apparaissait d'un coup :
+ * aucune transition n'etait ecrite nulle part. Reperes de mouvement de docs/16 l. 772 :
+ * moins de 300 ms, decelaration franche, jamais d'ease-in a l'entree, et
+ * `prefers-reduced-motion` toujours respecte. Le canal `box-shadow` est gouverne par le
+ * contrat (`states.hover`) ; sa DUREE ne l'est pas — le schema n'a pas de canal de
+ * transition, c'est un fait code-only (matrice, CARRY-CODE-ONLY).
+ */
+.s_pqr_produits_ecommerce .product-card {
+  transition: box-shadow 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .s_pqr_produits_ecommerce .product-card { transition: none; }
+}
+
 /* ---- Base = Mobile -------------------------------------------------------- */
 
 /* ODOO-034-PRODUITS-CARROUSEL-SNAP BEGIN */
@@ -64,6 +95,15 @@
  * ailleurs. La piste est un enfant du cadre : elle en hérite la variable. */
 .s_pqr_produits_ecommerce .produits-ecommerce__carrouselProduits {
   --pqr-gouttiere-carrousel: var(--pqr-space-24);
+  /* ODOO-034-PRODUITS-OMBRE-RESPIRATION (2026-09-08) — voir le bloc en tête de zone.
+   * La valeur n'est pas au choix : elle doit couvrir la portée VERS LE BAS de la couche
+   * la plus profonde de l'ombre de survol, soit `dy + etalement + flou` = 16 − 12 + 32
+   * = 36 px. Posee a 24 d'abord, elle rognait l'ombre de 12 px par le bas — visible a
+   * l'oeil, retrouve par le calcul. `space.40` est le premier palier qui passe. Si
+   * `shadow.etat.product-card.survol` change, ce nombre se recalcule. */
+  --pqr-respiration-ombre: var(--pqr-space-40);
+  padding-block: var(--pqr-respiration-ombre);
+  margin-block: calc(-1 * var(--pqr-respiration-ombre));
   scroll-snap-type: x proximity;
   scroll-padding-inline: var(--pqr-gouttiere-carrousel);
   scrollbar-width: none;
@@ -155,4 +195,29 @@
   .s_pqr_produits_ecommerce .produits-ecommerce__Produits {
     gap: var(--pqr-space-24);
   }
+}
+
+/* ODOO-034-PRODUITS-CARROUSEL-BOUTS (2026-09-08, demande owner) — au premier cran la
+ * fleche gauche est grise, au dernier c'est la droite. L'Interaction posait deja
+ * `aria-disabled` aux deux bouts depuis la vague 034 : l'accessibilite etait juste,
+ * seule l'APPARENCE manquait, et elle manquait pour une raison nommee — `ds.button`
+ * n'a pas d'etat `disabled` (DW-034-002 : ses 7 styles ne portent que hover, active
+ * et focus-visible, et lui en ajouter un est une vague a part, 7 styles de jetons et
+ * autant de variantes Figma).
+ *
+ * Donc FAIT CODE-ONLY, assume et borne a ce carrousel : on peint l'attribut que le
+ * JavaScript pose deja, avec des jetons existants (`gris-clair` pour le filet,
+ * `bleu-gris` pour le chevron) — aucun jeton minte, aucun contrat touche. Le jour ou
+ * `ds.button` recevra un vrai `disabled`, ces trois regles disparaissent et le
+ * contrat reprend la main. Le bouton reste focalisable et annonce : `aria-disabled`
+ * decrit, il ne retire pas du parcours de tabulation.
+ */
+.s_pqr_produits_ecommerce .produits-ecommerce__controles .button[aria-disabled="true"] {
+  --pqr-dsc-border-color: var(--pqr-color-gris-clair);
+  color: var(--pqr-color-bleu-gris);
+  cursor: default;
+}
+.s_pqr_produits_ecommerce .produits-ecommerce__controles .button[aria-disabled="true"]:hover {
+  background-color: transparent;
+  color: var(--pqr-color-bleu-gris);
 }

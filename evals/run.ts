@@ -4140,8 +4140,17 @@ const cases: Case[] = [
     // carte qu'il faut ajouter — et cette porte devra l'exiger.
     //
     // Pourquoi l'argument « le colonnage n'est pas du contenu » s'arrête à 992 px :
-    // en Desktop la largeur utile ne permet pas plus de trois cartes lisibles, donc
-    // le repli en deux rangées est un choix de DESIGN, pas une déduction du contenu.
+    // en Desktop le nombre de pistes est un choix de DESIGN, pas une déduction du
+    // contenu — et ce choix a CHANGÉ le 2026-09-08, décision owner sur mesure.
+    // Cette porte disait TROIS pistes, avec pour raison « la largeur utile ne permet
+    // pas plus de trois cartes lisibles ». La mesure a défait la prémisse : sur les
+    // six pages qui portent le bloc, QUATRE en rendent quatre cartes et affichaient
+    // donc 3 + 1, une orpheline sur la majorité du site ; deux en rendent cinq et
+    // passent de 3 + 2 à 4 + 1. À 1200 px la carte tombe à 248 et deux libellés
+    // passent à deux lignes (531 → 588 px de hauteur) ; à 1440 elle fait 308 et les
+    // titres tiennent. Aucun débordement à aucune des deux largeurs, vérifié au
+    // navigateur. La grille tombe juste : 248×4 + 32×3 = 1088, la largeur exacte du
+    // contenu au seuil bureau — elle tombait à 1087 en trois pistes.
     id: 'reassurances-grid-variant-isolation',
     claim: 'C1-determinism',
     run: () => {
@@ -4154,8 +4163,8 @@ const cases: Case[] = [
       }
       const tracks = items.layoutByProp;
       if (Array.isArray(tracks) || !tracks || tracks.prop !== 'presentation' ||
-          JSON.stringify(tracks.map) !== JSON.stringify({ desktop: { columns: 3 }, wide: { display: 'flex', direction: 'row' } })) {
-        throw new Error('Reassurances: Desktop garde ses TROIS pistes de grille ; le Wide est une LIGNE flex, jamais un nombre de colonnes figé');
+          JSON.stringify(tracks.map) !== JSON.stringify({ desktop: { columns: 4 }, wide: { display: 'flex', direction: 'row' } })) {
+        throw new Error('Reassurances: Desktop porte QUATRE pistes de grille depuis le 2026-09-08 ; le Wide est une LIGNE flex, jamais un nombre de colonnes figé');
       }
       const carteRoot = carte.anatomy.root;
       if (carteRoot.layout?.width !== 'fill') {
@@ -4164,9 +4173,9 @@ const cases: Case[] = [
 
       const css = readFileSync(path.join(ROOT, 'src/components/Reassurances/Reassurances.module.css'), 'utf8');
       if (!/\.items\s*\{[\s\S]*?grid-template-columns: repeat\(1, minmax\(0, 1fr\)\);[\s\S]*?width: 100%;/.test(css) ||
-          !/\.presentation-desktop \.items\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/.test(css) ||
+          !/\.presentation-desktop \.items\s*\{\s*grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);/.test(css) ||
           !/\.presentation-wide \.items\s*\{\s*display: flex;\s*flex-direction: row;/.test(css)) {
-        throw new Error('React: la base à une piste, les trois pistes du Desktop, la ligne flex du Wide ou le Fill généré sont divergents');
+        throw new Error('React: la base à une piste, les quatre pistes du Desktop, la ligne flex du Wide ou le Fill généré sont divergents');
       }
       // The component script index follows dependency order. It changes when
       // another governed component is introduced, so locate Reassurances by
@@ -4175,11 +4184,11 @@ const cases: Case[] = [
       if (!figmaFile) throw new Error('Figma: script Reassurances généré absent');
       const figma = parseSyncComponent(readFileSync(path.join(ROOT, 'figma-sync', figmaFile), 'utf8'));
       // Vague 031 : le nombre de colonnes suit l'ÉCRAN. Chaque variante porte donc
-      // deux axes (Presentation × Disposition). 2026-09-07 : la grille vaut 1 / 1 / 3
+      // deux axes (Presentation × Disposition). 2026-09-08 : la grille vaut 1 / 1 / 4
       // et le Wide devient une LIGNE. Le mode est DIT, pas déduit d'une sentinelle :
       // le Wide n'a pas de nombre de colonnes, et `undefined` se compare tel quel.
       for (const [presentation, mode, columns] of [
-        ['Mobile', 'GRID', 1], ['Tablette', 'GRID', 1], ['Desktop', 'GRID', 3], ['Wide', 'HORIZONTAL', undefined],
+        ['Mobile', 'GRID', 1], ['Tablette', 'GRID', 1], ['Desktop', 'GRID', 4], ['Wide', 'HORIZONTAL', undefined],
       ] as const) {
         const variantes = figma.variants.filter((item: { name: string }) => item.name.startsWith(`Presentation=${presentation},`));
         if (variantes.length === 0) throw new Error(`Figma: aucune variante Presentation=${presentation}`);

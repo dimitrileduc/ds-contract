@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "ReviewCard",
     "contractId": "ds.review-card",
     "anchorKey": "7da404ac2427b30fb3e49b1eb27bea01acfbd39c",
-    "description": "ReviewCard — generated from contract ds.review-card v4.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "ReviewCard — generated from contract ds.review-card v4.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [
       {
@@ -497,14 +497,26 @@ const COMPONENTS = [
           "effectStack": [
             {
               "x": 0,
-              "y": 12,
-              "radius": 32,
+              "y": 1,
+              "radius": 3,
               "color": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.2
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.04
               }
+            },
+            {
+              "x": 0,
+              "y": 12,
+              "radius": 24,
+              "color": {
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.14
+              },
+              "spread": -10
             }
           ],
           "children": [
@@ -729,14 +741,26 @@ const COMPONENTS = [
           "effectStack": [
             {
               "x": 0,
-              "y": 12,
-              "radius": 32,
+              "y": 1,
+              "radius": 3,
               "color": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.2
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.04
               }
+            },
+            {
+              "x": 0,
+              "y": 12,
+              "radius": 24,
+              "color": {
+                "r": 0.14901960784313725,
+                "g": 0.1568627450980392,
+                "b": 0.17254901960784313,
+                "a": 0.14
+              },
+              "spread": -10
             }
           ],
           "children": [

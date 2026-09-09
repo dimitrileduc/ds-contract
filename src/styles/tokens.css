@@ -29,6 +29,8 @@
   --color-transparent: #FFFFFF00;
   --color-noir-profond: #131416;
   --color-noir-voile-55: #0000008C;
+  --color-noir-voile-25: #00000040;
+  --color-noir-voile-40: #00000066;
   --color-vert: #237A3C;
   --nav-state: Transparent;
   --opacity-base: 100;
@@ -153,11 +155,11 @@
   --size-presentation-wrapper: 627px;
   --size-presentation-col-gauche: 628px;
   --size-product-card-image: 240px;
-  --size-product-card-root: 364px;
-  --size-product-card-mobile: 260px;
-  --size-product-card-tablette: 322px;
-  --size-product-card-desktop: 326px;
-  --size-product-card-wide: 363px;
+  --size-product-card-root: 288px;
+  --size-product-card-mobile: 220px;
+  --size-product-card-tablette: 240px;
+  --size-product-card-desktop: 264px;
+  --size-product-card-wide: 288px;
   --size-realisation-image: 743px;
   --size-realisation-image-petit: 339.5px;
   --size-reassurances-root: 1550px;
@@ -236,8 +238,8 @@
   --decoration-etat-link-survol: underline;
   --decoration-etat-outlineNoir-survol: none;
   --decoration-etat-iconOnly-survol: none;
-  --shadow-etat-product-card-survol: 0 8px 24px rgba(0,0,0,0.12);
-  --shadow-etat-review-card-survol: 0 12px 32px rgba(0,0,0,0.20);
+  --shadow-etat-product-card-survol: 0 2px 6px rgba(38,40,44,0.05), 0 16px 32px -12px rgba(38,40,44,0.18);
+  --shadow-etat-review-card-survol: 0 1px 3px rgba(38,40,44,0.04), 0 12px 24px -10px rgba(38,40,44,0.14);
   --color-etat-default-fond-survol: var(--color-noir-bleute-survol);
   --color-etat-default-libelle-survol: var(--color-blanc);
   --color-etat-default-fond-presse: var(--color-noir-bleute-presse);

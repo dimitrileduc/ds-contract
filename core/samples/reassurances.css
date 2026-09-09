@@ -443,7 +443,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v2.1.2 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v2.2.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -562,7 +562,7 @@
 }
 
 .reassurances--presentation-desktop .reassurances__items {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .reassurances--presentation-wide .reassurances__items {

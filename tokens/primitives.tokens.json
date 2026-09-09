@@ -94,6 +94,16 @@
       "$value": "#0000008C",
       "$description": "Voile de survol de la CarteCategorie (vague 033, 2026-09-05, choix owner A3). Noir a 55 % (0x8C = 140/255). Litteral, donc il vit bien dans les PRIMITIVES : c'est un ALIAS en primitives qui peint du NaN (piege 032), jamais une valeur. Il se compose SOUS le degrade de 16 arrets du voile, qui n'est pas touche : au repos la carte est inchangee a l'octet."
     },
+    "noir-voile-25": {
+      "$type": "color",
+      "$value": "#00000040",
+      "$description": "Voile plein du HeroVideo (cadre VoileBas, premiere peinture sous le degrade), pose le 2026-09-08 sur decision owner (duel canevas actuel/C/D/E, option D retenue) : « faut comme mnt, + leger overlay sur tout, la ca fait pas assez cinematic et les autres elements ressortent pas assez ». Noir a 25 % (0x40 = 64/255). Litteral, donc il vit bien dans les PRIMITIVES : un ALIAS en primitives peindrait du NaN (piege 032). Variable Figma color/noir-voile-25."
+    },
+    "noir-voile-40": {
+      "$type": "color",
+      "$value": "#00000066",
+      "$description": "Voile plein du Hero image (cadre Voile), pose le 2026-09-08 sur decision owner (duel canevas actuel/A/B, option A retenue) : le voile precedent noir-voile-55 ecrasait la photo, mesure 0,81 de noir effectif sous le texte contre 0,55 cote HeroVideo. Noir a 40 % (0x66 = 102/255). Litteral, donc il vit bien dans les PRIMITIVES : un ALIAS en primitives peindrait du NaN (piege 032). noir-voile-55 reste, il sert au voile de survol de la CarteCategorie. Variable Figma color/noir-voile-40."
+    },
     "vert": {
       "$value": "#237A3C",
       "$description": "Vert de confirmation (succès d'un formulaire). PREMIER VERT DE LA CHARTE — la palette n'en avait aucun. Posé par la planche 031·21 le 2026-09-08 (décision owner : texte de succès en vert) ; teinte choisie pour 4,95:1 sur color.bleu-clair et 5,36:1 sur blanc (AA texte), à confirmer par l'owner. Variable Figma color/vert."
@@ -665,32 +675,32 @@
     "product-card": {
       "image": {
         "$type": "dimension",
-        "$description": "Authored from ds.product-card's already-governed anatomy at /anatomy/root/parts/Image/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$description": "PLUS UTILISE PAR L'ANATOMIE depuis la refonte du 2026-09-08 : la photo ne fait plus un carre fixe de 240 flottant au milieu d'une carte de 364, elle remplit la tuile teintee (largeur de carte moins les marges, proportion 1:1 par aspect-ratio). Le jeton est conserve, non supprime : sa disparition serait un retrait de vocabulaire, donc un majeur, et rien d'autre ne le lit. A retirer a la prochaine occasion qui bouge deja ce contrat en majeur.",
         "$value": "240px"
       },
       "root": {
         "$type": "dimension",
-        "$description": "Authored from ds.product-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "364px"
+        "$description": "Largeur du master ProductCard sur le canevas (variante Wide). 364 → 288 le 2026-09-08 avec la refonte de la carte (option B).",
+        "$value": "288px"
       },
       "mobile": {
         "$type": "dimension",
-        "$value": "260px",
+        "$value": "220px",
         "$description": "Largeur d une carte produit en mobile. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
       },
       "tablette": {
         "$type": "dimension",
-        "$value": "322px",
+        "$value": "240px",
         "$description": "Largeur d une carte produit en tablette. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
       },
       "desktop": {
         "$type": "dimension",
-        "$value": "326px",
+        "$value": "264px",
         "$description": "Largeur d une carte produit en desktop. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
       },
       "wide": {
         "$type": "dimension",
-        "$value": "363px",
+        "$value": "288px",
         "$description": "Largeur d une carte produit en wide. Relevé sur le set ProduitsECommerce 031 (2694:21337) le 2026-09-04, variable Figma spacing/product-card/width — 031 provisoire."
       }
     },
@@ -1141,15 +1151,15 @@
       "product-card": {
         "survol": {
           "$type": "string",
-          "$value": "0 8px 24px rgba(0,0,0,0.12)",
-          "$description": "Elevation de la carte produit au survol (choix owner B2). L'ombre trace la boite de la RACINE — photo + titre + prix — et non la photo seule : c'est ce que fait box-shadow en CSS, et c'est la correction demandee par l'owner apres une premiere proposition ou l'ombre ne cernait que l'image. 12 % : la valeur a 10 % s'est averee invisible a l'oeil sur fond blanc, mesuree puis relevee."
+          "$value": "0 2px 6px rgba(38,40,44,0.05), 0 16px 32px -12px rgba(38,40,44,0.18)",
+          "$description": "Elevation de la carte produit au survol. DEUX couches depuis le 2026-09-08 : une courte pour le contact, une longue et rentree (etalement -12) pour l'elevation, sur un noir bleute (38,40,44) et non un noir pur — une seule couche a 12 % de noir pur dessinait un rectangle plat. L'ombre trace la boite de la RACINE — photo + titre + prix — et non la photo seule : c'est ce que fait box-shadow en CSS, et c'est la correction demandee par l'owner apres une premiere proposition ou l'ombre ne cernait que l'image. ATTENTION, defaut voisin corrige le meme jour : le cadre du carrousel fait exactement la hauteur de la carte et porte overflow auto/hidden — un conteneur de defilement rogne sur SES DEUX AXES, donc l'ombre etait coupee net en haut et en bas et ne se voyait que sur les cotes. Le remede est une respiration verticale dans la zone Odoo produits-ecommerce.pqr.css, pas une valeur d'ombre."
         }
       },
       "review-card": {
         "survol": {
           "$type": "string",
-          "$value": "0 12px 32px rgba(0,0,0,0.20)",
-          "$description": "Elevation de la carte d'avis au survol (choix owner C3). Une seule couche, et c'est le resultat d'une mesure qui a DEMENTI l'hypothese de depart. On avait lu dans le CSS genere que la bordure de cette carte etait dessinee en `box-shadow: inset` — donc qu'une ombre de survol la remplacerait et la ferait disparaitre — et le jeton portait au depart une couche inset pour la re-declarer. Faux : des que le canal box-shadow est utilise par un etat, l'emetteur bascule DE LUI-MEME la bordure en `border` reel (`border-style/-color/-width`). Verifie sur la page Odoo rendue le 2026-09-05 : au repos `border: 1px solid rgb(244,246,250)` et `box-shadow: none`. La couche inset etait donc redondante — elle repeignait un 1px par-dessus une bordure deja la — et elle figeait #F4F6FA alors que {color.bleu-clair} le porte. Retiree."
+          "$value": "0 1px 3px rgba(38,40,44,0.04), 0 12px 24px -10px rgba(38,40,44,0.14)",
+          "$description": "Elevation de la carte d'avis au survol. DEUX couches depuis le 2026-09-08, plus legere que la carte produit : la carte d'avis a deja un fond blanc, un filet bleu-clair et un rayon au repos, sa boite se lit sans l'ombre. L'ancienne valeur, 0 12px 32px de noir pur a 20 %, empatait ce filet. Noir bleute (38,40,44) comme la carte produit."
         }
       }
     }

@@ -1657,7 +1657,7 @@ const COMPONENTS = [
     "setName": "Reassurances",
     "contractId": "ds.reassurances",
     "anchorKey": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
-    "description": "Reassurances — generated from contract ds.reassurances v2.1.2 †",
+    "description": "Reassurances — generated from contract ds.reassurances v2.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -2680,7 +2680,7 @@ const COMPONENTS = [
               "name": "items",
               "layout": {
                 "mode": "GRID",
-                "columns": 3,
+                "columns": 4,
                 "primary": "MIN",
                 "counter": "MIN"
               },
@@ -2826,7 +2826,7 @@ const COMPONENTS = [
               "name": "items",
               "layout": {
                 "mode": "GRID",
-                "columns": 3,
+                "columns": 4,
                 "primary": "MIN",
                 "counter": "MIN"
               },
@@ -2972,7 +2972,7 @@ const COMPONENTS = [
               "name": "items",
               "layout": {
                 "mode": "GRID",
-                "columns": 3,
+                "columns": 4,
                 "primary": "MIN",
                 "counter": "MIN"
               },

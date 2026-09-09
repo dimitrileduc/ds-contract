@@ -494,6 +494,21 @@ export const DECLARED_CHANNELS: Record<string, DeclaredChannelSpec> = {
     canvas: 'annotate',
     note: 'Image crop behavior maps approximately to the Figma IMAGE scaleMode; the canvas retains the native paint scaleMode.',
   },
+  // -- fondu de calque (vague carte produit, 2026-09-08) : la photo d'un
+  //    produit est fournie sur fond BLANC OPAQUE — pas de transparence. Posee
+  //    telle quelle sur la tuile teintee de ds.product-card, elle y dessine un
+  //    carre blanc et annule la teinte, ce qui etait tout l'objet de la tuile.
+  //    `multiply` fait disparaitre le blanc dans la teinte sans toucher aux
+  //    octets de l'image. Figma porte le meme fait nativement, sur la PEINTURE
+  //    (`paint.blendMode`) et non sur le noeud, donc l'emetteur de canevas ne
+  //    le pose pas : verdict 'annotate', declare-non-dessine. CONSEQUENCE
+  //    NOMMEE : regenerer le master depuis le contrat perd le fondu, il se
+  //    repose a la main — et le vrai correctif reste de detourer les photos.
+  'mix-blend-mode': {
+    value: kw('normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten'),
+    canvas: 'annotate',
+    note: 'Layer blending is carried by the coded component; the canvas keeps the blend on the image PAINT (paint.blendMode), which the generator does not set.',
+  },
   'object-position': {
     value: /^(?:left|center|right|top|bottom|-?\d+(?:\.\d+)?(?:%|px))(?: (?:left|center|right|top|bottom|-?\d+(?:\.\d+)?(?:%|px)))?$/,
     canvas: 'annotate',

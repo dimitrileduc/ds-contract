@@ -580,7 +580,7 @@ const COMPONENTS = [
     "setName": "HeroVideo",
     "contractId": "ds.hero-video",
     "anchorKey": "366023701e65d2e3091332db4de0dfe4de0d33d4",
-    "description": "HeroVideo — generated from contract ds.hero-video v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "HeroVideo — generated from contract ds.hero-video v2.3.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -651,6 +651,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -668,7 +669,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.03
+                      "a": 0.033
                     },
                     "position": 0.08
                   },
@@ -677,7 +678,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.09
+                      "a": 0.099
                     },
                     "position": 0.15
                   },
@@ -686,7 +687,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.2
+                      "a": 0.22
                     },
                     "position": 0.23
                   },
@@ -695,7 +696,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.36
+                      "a": 0.396
                     },
                     "position": 0.31
                   },
@@ -704,7 +705,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.52
+                      "a": 0.572
                     },
                     "position": 0.39
                   },
@@ -713,7 +714,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.6
+                      "a": 0.66
                     },
                     "position": 0.48
                   },
@@ -722,7 +723,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.65
+                      "a": 0.715
                     },
                     "position": 0.61
                   },
@@ -731,7 +732,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.68
+                      "a": 0.748
                     },
                     "position": 0.7
                   },
@@ -740,7 +741,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.72
+                      "a": 0.792
                     },
                     "position": 0.78
                   },
@@ -749,7 +750,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.78
+                      "a": 0.858
                     },
                     "position": 0.9
                   },
@@ -758,7 +759,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.88
                     },
                     "position": 1
                   }
@@ -797,7 +798,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.02
+                      "a": 0.0222
                     },
                     "position": 0.78
                   },
@@ -806,7 +807,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.07
+                      "a": 0.0777
                     },
                     "position": 0.82
                   },
@@ -815,7 +816,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.17
+                      "a": 0.1887
                     },
                     "position": 0.86
                   },
@@ -824,7 +825,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.3
+                      "a": 0.333
                     },
                     "position": 0.9
                   },
@@ -833,7 +834,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.41
+                      "a": 0.4551
                     },
                     "position": 0.93
                   },
@@ -842,7 +843,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.51
+                      "a": 0.5661
                     },
                     "position": 0.96
                   },
@@ -851,7 +852,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.59
+                      "a": 0.6549
                     },
                     "position": 0.98
                   },
@@ -860,7 +861,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.65
+                      "a": 0.7215
                     },
                     "position": 1
                   }
@@ -976,6 +977,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -993,7 +995,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.03
+                      "a": 0.033
                     },
                     "position": 0.08
                   },
@@ -1002,7 +1004,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.09
+                      "a": 0.099
                     },
                     "position": 0.15
                   },
@@ -1011,7 +1013,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.2
+                      "a": 0.22
                     },
                     "position": 0.23
                   },
@@ -1020,7 +1022,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.36
+                      "a": 0.396
                     },
                     "position": 0.31
                   },
@@ -1029,7 +1031,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.52
+                      "a": 0.572
                     },
                     "position": 0.39
                   },
@@ -1038,7 +1040,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.6
+                      "a": 0.66
                     },
                     "position": 0.48
                   },
@@ -1047,7 +1049,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.65
+                      "a": 0.715
                     },
                     "position": 0.61
                   },
@@ -1056,7 +1058,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.68
+                      "a": 0.748
                     },
                     "position": 0.7
                   },
@@ -1065,7 +1067,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.72
+                      "a": 0.792
                     },
                     "position": 0.78
                   },
@@ -1074,7 +1076,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.78
+                      "a": 0.858
                     },
                     "position": 0.9
                   },
@@ -1083,7 +1085,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.88
                     },
                     "position": 1
                   }
@@ -1122,7 +1124,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.02
+                      "a": 0.0222
                     },
                     "position": 0.78
                   },
@@ -1131,7 +1133,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.07
+                      "a": 0.0777
                     },
                     "position": 0.82
                   },
@@ -1140,7 +1142,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.17
+                      "a": 0.1887
                     },
                     "position": 0.86
                   },
@@ -1149,7 +1151,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.3
+                      "a": 0.333
                     },
                     "position": 0.9
                   },
@@ -1158,7 +1160,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.41
+                      "a": 0.4551
                     },
                     "position": 0.93
                   },
@@ -1167,7 +1169,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.51
+                      "a": 0.5661
                     },
                     "position": 0.96
                   },
@@ -1176,7 +1178,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.59
+                      "a": 0.6549
                     },
                     "position": 0.98
                   },
@@ -1185,7 +1187,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.65
+                      "a": 0.7215
                     },
                     "position": 1
                   }
@@ -1301,6 +1303,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -1320,95 +1323,95 @@ const COMPONENTS = [
                       "b": 0,
                       "a": 0
                     },
-                    "position": 0.5
+                    "position": 0.4
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.015
+                      "a": 0.0206
                     },
-                    "position": 0.528
+                    "position": 0.43799999999999994
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.057
+                      "a": 0.0762
                     },
-                    "position": 0.556
+                    "position": 0.47600000000000003
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.119
+                      "a": 0.1584
                     },
-                    "position": 0.584
+                    "position": 0.514
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.194
+                      "a": 0.2581
                     },
-                    "position": 0.612
+                    "position": 0.552
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.275
+                      "a": 0.3667
                     },
-                    "position": 0.64
+                    "position": 0.59
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.356
+                      "a": 0.4752
                     },
-                    "position": 0.6679999999999999
+                    "position": 0.628
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.431
+                      "a": 0.5749
                     },
-                    "position": 0.696
+                    "position": 0.6659999999999999
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.493
+                      "a": 0.6571
                     },
-                    "position": 0.7240000000000001
+                    "position": 0.7040000000000001
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.535
+                      "a": 0.7128
                     },
-                    "position": 0.752
+                    "position": 0.742
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.55
+                      "a": 0.7333
                     },
                     "position": 0.78
                   },
@@ -1417,7 +1420,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.575
+                      "a": 0.7667
                     },
                     "position": 0.9
                   },
@@ -1426,7 +1429,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.6
+                      "a": 0.8
                     },
                     "position": 1
                   }
@@ -1465,16 +1468,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.022
+                      "a": 0.0252
                     },
-                    "position": 0.723
+                    "position": 0.7225
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.078
+                      "a": 0.0914
                     },
                     "position": 0.745
                   },
@@ -1483,16 +1486,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.158
+                      "a": 0.1851
                     },
-                    "position": 0.767
+                    "position": 0.7675
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.25
+                      "a": 0.2925
                     },
                     "position": 0.79
                   },
@@ -1501,16 +1504,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.342
+                      "a": 0.3999
                     },
-                    "position": 0.813
+                    "position": 0.8125
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.422
+                      "a": 0.4936
                     },
                     "position": 0.835
                   },
@@ -1519,16 +1522,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.479
+                      "a": 0.5598
                     },
-                    "position": 0.858
+                    "position": 0.8575
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.5
+                      "a": 0.585
                     },
                     "position": 0.88
                   },
@@ -1537,7 +1540,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.54
+                      "a": 0.6318
                     },
                     "position": 0.94
                   },
@@ -1546,7 +1549,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.58
+                      "a": 0.6786
                     },
                     "position": 1
                   }
@@ -1663,6 +1666,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -1682,113 +1686,113 @@ const COMPONENTS = [
                       "b": 0,
                       "a": 0
                     },
-                    "position": 0.44
+                    "position": 0.34
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.011
+                      "a": 0.0144
                     },
-                    "position": 0.46299999999999997
+                    "position": 0.3716
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.041
+                      "a": 0.0542
                     },
-                    "position": 0.48700000000000004
+                    "position": 0.40340000000000004
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.086
+                      "a": 0.1146
                     },
-                    "position": 0.51
+                    "position": 0.435
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.143
+                      "a": 0.1901
                     },
-                    "position": 0.5329999999999999
+                    "position": 0.46659999999999996
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.207
+                      "a": 0.2759
                     },
-                    "position": 0.557
+                    "position": 0.4984
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.275
+                      "a": 0.3667
                     },
-                    "position": 0.58
+                    "position": 0.53
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.343
+                      "a": 0.4574
                     },
-                    "position": 0.603
+                    "position": 0.5616
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.407
+                      "a": 0.5432
                     },
-                    "position": 0.627
+                    "position": 0.5934
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.464
+                      "a": 0.6188
                     },
-                    "position": 0.65
+                    "position": 0.625
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.509
+                      "a": 0.6791
                     },
-                    "position": 0.6729999999999999
+                    "position": 0.6566
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.539
+                      "a": 0.7189
                     },
-                    "position": 0.6970000000000001
+                    "position": 0.6884
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.55
+                      "a": 0.7333
                     },
                     "position": 0.72
                   },
@@ -1797,7 +1801,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.575
+                      "a": 0.7667
                     },
                     "position": 0.86
                   },
@@ -1806,7 +1810,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.6
+                      "a": 0.8
                     },
                     "position": 1
                   }
@@ -1845,16 +1849,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.022
+                      "a": 0.0252
                     },
-                    "position": 0.723
+                    "position": 0.7225
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.078
+                      "a": 0.0914
                     },
                     "position": 0.745
                   },
@@ -1863,16 +1867,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.158
+                      "a": 0.1851
                     },
-                    "position": 0.767
+                    "position": 0.7675
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.25
+                      "a": 0.2925
                     },
                     "position": 0.79
                   },
@@ -1881,16 +1885,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.342
+                      "a": 0.3999
                     },
-                    "position": 0.813
+                    "position": 0.8125
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.422
+                      "a": 0.4936
                     },
                     "position": 0.835
                   },
@@ -1899,16 +1903,16 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.479
+                      "a": 0.5598
                     },
-                    "position": 0.858
+                    "position": 0.8575
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.5
+                      "a": 0.585
                     },
                     "position": 0.88
                   },
@@ -1917,7 +1921,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.54
+                      "a": 0.6318
                     },
                     "position": 0.94
                   },
@@ -1926,7 +1930,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.58
+                      "a": 0.6786
                     },
                     "position": 1
                   }
@@ -1990,7 +1994,7 @@ const COMPONENTS = [
     "setName": "Hero",
     "contractId": "ds.hero",
     "anchorKey": "18e85e203a80f1190745ae89352759020b6cbaa0",
-    "description": "Hero — generated from contract ds.hero v3.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Hero — generated from contract ds.hero v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [
       {
@@ -2066,7 +2070,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-55",
+              "fill": "color/noir-voile-40",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -2093,7 +2097,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.7
                     },
                     "position": 1
                   }
@@ -2378,7 +2382,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-55",
+              "fill": "color/noir-voile-40",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -2405,7 +2409,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.7
                     },
                     "position": 1
                   }
@@ -2689,7 +2693,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-55",
+              "fill": "color/noir-voile-40",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -2716,7 +2720,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.7
                     },
                     "position": 1
                   }
@@ -3018,7 +3022,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-55",
+              "fill": "color/noir-voile-40",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -3045,7 +3049,7 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.8
+                      "a": 0.7
                     },
                     "position": 1
                   }

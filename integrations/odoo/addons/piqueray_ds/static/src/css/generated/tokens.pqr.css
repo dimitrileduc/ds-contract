@@ -37,6 +37,8 @@
   --pqr-color-transparent: #FFFFFF00;
   --pqr-color-noir-profond: #131416;
   --pqr-color-noir-voile-55: #0000008C;
+  --pqr-color-noir-voile-25: #00000040;
+  --pqr-color-noir-voile-40: #00000066;
   --pqr-color-vert: #237A3C;
   --pqr-nav-state: Transparent;
   --pqr-opacity-base: 100;
@@ -161,11 +163,11 @@
   --pqr-size-presentation-wrapper: 627px;
   --pqr-size-presentation-col-gauche: 628px;
   --pqr-size-product-card-image: 240px;
-  --pqr-size-product-card-root: 364px;
-  --pqr-size-product-card-mobile: 260px;
-  --pqr-size-product-card-tablette: 322px;
-  --pqr-size-product-card-desktop: 326px;
-  --pqr-size-product-card-wide: 363px;
+  --pqr-size-product-card-root: 288px;
+  --pqr-size-product-card-mobile: 220px;
+  --pqr-size-product-card-tablette: 240px;
+  --pqr-size-product-card-desktop: 264px;
+  --pqr-size-product-card-wide: 288px;
   --pqr-size-realisation-image: 743px;
   --pqr-size-realisation-image-petit: 339.5px;
   --pqr-size-reassurances-root: 1550px;
@@ -244,8 +246,8 @@
   --pqr-decoration-etat-link-survol: underline;
   --pqr-decoration-etat-outlineNoir-survol: none;
   --pqr-decoration-etat-iconOnly-survol: none;
-  --pqr-shadow-etat-product-card-survol: 0 8px 24px rgba(0,0,0,0.12);
-  --pqr-shadow-etat-review-card-survol: 0 12px 32px rgba(0,0,0,0.20);
+  --pqr-shadow-etat-product-card-survol: 0 2px 6px rgba(38,40,44,0.05), 0 16px 32px -12px rgba(38,40,44,0.18);
+  --pqr-shadow-etat-review-card-survol: 0 1px 3px rgba(38,40,44,0.04), 0 12px 24px -10px rgba(38,40,44,0.14);
   --pqr-color-etat-default-fond-survol: var(--pqr-color-noir-bleute-survol);
   --pqr-color-etat-default-libelle-survol: var(--pqr-color-blanc);
   --pqr-color-etat-default-fond-presse: var(--pqr-color-noir-bleute-presse);

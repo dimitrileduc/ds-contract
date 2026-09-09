@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/review-card.contract.json (ds.review-card v4.1.0)
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v4.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -34,7 +34,9 @@ export interface ReviewCardProps extends HTMLAttributes<HTMLElement> {
   lienAvis?: string;
 }
 
-/** 4.1.0 (2026-09-05, vague 033) : elevation au survol. La carte ne porte aucune ombre au repos, donc le repos ne bouge pas d'un octet ; le survol pose `0 12px 32px rgba(0,0,0,0.20)`.
+/** 4.2.0 (2026-09-08, demande owner) : LA CARTE ENTIERE EST CLIQUABLE, pas seulement « Lire la suite ». Deux canaux declares sur la racine — `cursor: pointer`, parce que la surface cliquable est la carte et que le pointeur doit le dire partout, et `position: relative`, qui n'est pas de la mise en forme mais le SOCLE du mecanisme. Le mecanisme lui-meme est code-only et vit dans la zone Odoo `responsive/review-card.pqr.css` : le lien « Lire la suite » etend un `::after` en `inset: 0` par-dessus la carte. C'est le patron de la carte-lien, et c'est le seul correct ici — envelopper la carte dans une ancre serait du HTML invalide (la carte CONTIENT deja une ancre), et un gestionnaire de clic en JavaScript donnerait une zone cliquable sans lien, donc sans clic milieu, sans « ouvrir dans un nouvel onglet » et sans destination visible dans la barre d'etat. Un seul lien, une seule destination, toute la carte.
+
+4.1.0 (2026-09-05, vague 033) : elevation au survol. La carte ne porte aucune ombre au repos, donc le repos ne bouge pas d'un octet ; le survol pose `0 12px 32px rgba(0,0,0,0.20)`.
 
 Ce qui merite d'etre retenu ici est une hypothese REFUTEE PAR LA MESURE, gardee parce qu'elle se represente. En lisant le CSS genere avant d'ecrire, on a vu la bordure de cette carte dessinee en `box-shadow: inset 0 0 0 <w> <c>` et conclu qu'une ombre de survol la remplacerait — la carte perdrait son contour. Le jeton a d'abord porte une couche inset pour le re-declarer. La mesure sur la page rendue a montre l'inverse : des que le canal `box-shadow` est utilise par un etat, l'emetteur bascule la bordure en `border` reel (border-style/-color/-width), et les deux canaux cessent de se disputer. Au repos, page Odoo du 2026-09-05 : `border: 1px solid rgb(244,246,250)`, `box-shadow: none`. La couche inset a donc ete retiree — elle repeignait un 1px par-dessus une bordure deja presente et figeait un hexadecimal qu'un jeton portait deja.
 

@@ -642,7 +642,7 @@
   flex-shrink: 0;
 }
 
-/* ReviewCard — from ds.review-card v4.1.0 (core/emit-html.ts) */
+/* ReviewCard — from ds.review-card v4.2.0 (core/emit-html.ts) */
 
 .review-card, .review-card *, .review-card *::before, .review-card *::after {
   box-sizing: border-box;
@@ -666,6 +666,8 @@
   gap: var(--spacing-review-gap);
   border-radius: var(--radius-8);
   border-width: var(--border-width-1);
+  cursor: pointer;
+  position: relative;
 }
 
 .review-card:hover:not(:disabled) {

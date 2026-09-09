@@ -53,8 +53,16 @@
     padding-inline: var(--pqr-space-56);
     gap: var(--pqr-space-48);
   }
+  /* QUATRE colonnes depuis le 2026-09-08 (contrat 2.2.0, demande owner) — au BUREAU
+   * seulement : Tablette et Wide gardent leur mécanique, et ce bloc-ci ne vit que sous
+   * `@media (min-width: 992px)`. Le motif décide, pas le goût : sur les six pages qui
+   * portent le bloc, quatre rendent QUATRE cartes et affichaient donc 3 + 1, une
+   * orpheline sur la majorité du site. En quatre colonnes elles tiennent sur une
+   * rangée ; les deux pages à cinq cartes passent de 3 + 2 à 4 + 1, arbitrage owner.
+   * La grille tombe juste : 248×4 + 32×3 = 1088, la largeur exacte du contenu au
+   * seuil bureau (elle tombait à 1087 en trois colonnes). */
   .s_pqr_reassurances.reassurances .reassurances__items {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   /* En-tête : écart 16 et contenu centré au-delà du seuil bureau (canvas : le
    * cadre passe de MIN à CENTER et son écart de 8 à 16). */
