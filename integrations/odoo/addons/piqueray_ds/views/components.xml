@@ -232,14 +232,26 @@
              data-vcss="19.0.1.17.0" data-vxml="19.0.1.17.0" data-vjs="19.0.1.17.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-video-default" data-pqr-part="root">
       <!-- Le plan média : une VRAIE balise vidéo, pas une image (contrat ds.hero-video 2.2.0).
-           · `src` = un asset gouverné de l'addon, jamais du contenu de page ;
+           · les `source` = des assets gouvernés de l'addon, jamais du contenu de page ;
            · `poster` = du contenu, posé par le composeur et remplaçable par le rédacteur ;
            · autoplay+muted+playsinline sont indissociables, preload="metadata" et NON "none"
-             (mesuré le 2026-09-08 : avec "none" la vidéo ne démarre jamais). -->
+             (mesuré le 2026-09-08 : avec "none" la vidéo ne démarre jamais).
+           Deux sources, le navigateur prend la PREMIÈRE qu'il sait décoder (l'attribut `type`
+           porte le codec, il tranche sans télécharger) — 2026-09-09, mesuré au VMAF contre
+           l'original 1920×1080 à 3 Mbit/s (16 Mo) :
+           · HEVC crf 27, tag hvc1 (exigé par Safari) : 6,2 Mo, VMAF 95,3 — décodé en matériel
+             sur tout Apple depuis iOS 11 et presque tout Android ;
+           · H.264 = l'original tel quel, 16 Mo, VMAF 100 : le secours des navigateurs sans
+             HEVC. Réencoder en H.264 ne gagne rien (crf 21 veryslow : 15,6 Mo pour VMAF 97).
+           Le fichier de 4,6 Mo commité le 2026-09-08 (1600×900, 0,86 Mbit/s) mesurait VMAF 85,
+           sous le seuil où l'œil voit les blocs : c'est lui qui pixellisait. AV1 mesuré sans
+           gain sur cette vidéo (6,3 Mo pour VMAF 95,5) : écarté, une source de moins à tenir. -->
       <video class="hero-video__Background oe_unremovable oe_unmovable" data-pqr-part="hero-video-poster"
-             src="/piqueray_ds/static/src/video/hero-video.mp4"
              autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline"
-             preload="metadata" poster="" aria-label=""/>
+             preload="metadata" poster="" aria-label="">
+        <source src="/piqueray_ds/static/src/video/hero-video.hevc.mp4" type="video/mp4; codecs=hvc1.1.6.L120.B0"/>
+        <source src="/piqueray_ds/static/src/video/hero-video.h264.mp4" type="video/mp4; codecs=avc1.4D4029"/>
+      </video>
       <div class="hero-video__VoileBas oe_unremovable oe_unmovable" data-pqr-part="hero-video-voile-bas"/>
       <div class="hero-video__VoileNavigation oe_unremovable oe_unmovable" data-pqr-part="hero-video-voile-navigation"/>
       <div class="hero-video__Text oe_unremovable oe_unmovable" data-pqr-part="hero-video-content">

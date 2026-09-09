@@ -996,3 +996,40 @@ en une heure quand la source est propre ; ce qui suit est ce qu'il faut savoir p
   nulle part). Un outil de mesure qui a servi à prouver un chiffre committé devrait vivre dans le dépôt ; en attendant,
   `.page-parity/equipe-colonnes/mesure-equipe.mjs` est la version réécrite (capture clippée, refus de boîte dégénérée,
   sonde, triptyque, `X-Odoo-Database` en option).
+
+## Complément du 2026-09-09 — La vidéo du hero : décider le format AVANT d'encoder, mesurer au VMAF, deux sources
+
+- **Le symptôme** : « la vidéo est pixellisée depuis qu'un agent l'a compressée ». Le fichier commité le 2026-09-08
+  (`hero-video.mp4`, 1600×900, 0,86 Mbit/s, 4,6 Mo) mesurait **VMAF 85** contre l'original (1920×1080, 3 Mbit/s, 16 Mo,
+  `~/Downloads/piqueray-hero-video.mp4` — à mettre à l'abri, il n'est nulle part dans le dépôt). Sous 90, l'œil voit les blocs ;
+  au-dessus de 95, il ne distingue plus de l'original. La recette de compression n'était écrite nulle part : c'est ici qu'elle vit.
+- **La mesure, pas l'impression** : `ffmpeg … -lavfi libvmaf=n_threads=4:pool=harmonic_mean` contre l'original, **un fichier
+  à la fois** (deux mesures en parallèle + les encodeurs = 12 Go de RAM, tués par l'owner). Un `<video>` sur Odoo est servi avec
+  `Cache-Control: max-age=604800` sur une URL fixe : remplacer le fichier ne change RIEN dans un navigateur qui l'a déjà vu —
+  comparer avec des noms de fichiers neufs, ou renommer.
+- **Le résultat** (42 s, 25 i/s) : H.264 crf 21 veryslow 15,6 Mo / VMAF 97 (= l'original : rien à gratter dans ce codec, la
+  source est déjà un H.264 efficace) ; **HEVC crf 27 (`-tag:v hvc1`) 6,2 Mo / 95,3** ; HEVC crf 24 9,6 Mo / 96,9 ;
+  AV1 SVT preset 4 crf 34 6,3 Mo / 95,5 ; AV1 crf 30 8,2 Mo / 96,4. **AV1 = HEVC sur cette vidéo** : le « 20 % de mieux »
+  publié dépend du contenu (animation, images propres) ; sur un plan d'atelier bruité, zéro. Écarté : une source de moins à tenir.
+- **Décision : deux `<source>` dans la balise, HEVC puis l'original H.264.** Le navigateur prend la première qu'il décode ;
+  l'attribut `type="video/mp4; codecs=hvc1.1.6.L120.B0"` / `avc1.4D4029` (profil+niveau lus par ffprobe) le laisse trancher sans
+  télécharger. HEVC : Safari iOS 11+ (tous les iPhone), macOS 13+, Android matériel ; Chrome/Firefox « partiel » (selon la puce)
+  → le H.264 les rattrape. AV1 serait sûr en tête (vérifié : sur un iPhone 13 mini `canPlayType` rend `""` et Safari saute à la
+  source suivante — `AV1UtilitiesCocoa.mm` refuse sans décodeur), mais il n'apporte rien ici.
+- **L'autoplay iOS ne dépend pas du codec** (WebKit : `muted` ou sans piste audio, `playsinline`, visible à l'écran). Le repli
+  existait déjà : l'affiche (`poster`) reste si le film ne joue pas (économie d'énergie, `prefers-reduced-motion`).
+- **Le piège de code** : `hero_video_interaction.js` coupait le film en lisant l'attribut `src` — avec des `<source>` enfants,
+  il n'y a plus de `src`, et la coupure « réduire les animations » cessait de fonctionner sans erreur. Il retire et remet
+  désormais les `<source>` (gardées hors DOM, dans l'ordre), et garde le chemin `src` pour une page composée AVANT (HTML figé).
+  Vérifié par sonde Playwright sur 8109 : normal → `currentSrc` HEVC, 1920 large, joue ; `reducedMotion: 'reduce'` → zéro
+  source, en pause, affiche seule.
+- **Chaîne complète** : fichiers dans `static/src/video/` (`hero-video.hevc.mp4` + `hero-video.h264.mp4` = l'original (renommé : l'ancien nom est en cache 7 jours chez qui l'a vu)) →
+  `components.xml` (balise à deux sources) → `-u piqueray_ds` avec identifiants → restart → `npm run odoo:page -- home
+  piqueray-odoo-037` (le HTML de page est figé : sans recomposition, l'ancienne balise `src` reste) → `odoo:module:check` 23/23.
+  Recette d'encodage : `ffmpeg -i original.mp4 -an -c:v libx265 -preset slow -crf 27 -tag:v hvc1 -pix_fmt yuv420p
+  -movflags +faststart hero-video.hevc.mp4`.
+- **Piège trouvé en vérifiant, pas en lisant : après `-u` + recomposition, `arch_db` de la page était à jour en `en_US` et
+  PAS en `fr_BE` (la langue servie) — `write_arch` écrit pourtant les deux langues. Une SECONDE recomposition a posé fr_BE.
+  Cause non élucidée (cache de traduction du champ `translate=xml` après le restart ?). Règle : après toute recomposition,
+  **lire la vue par langue** (`select k, … from ir_ui_view, jsonb_each_text(arch_db)`) ou `curl` la home, et ne jamais
+  conclure sur `COMPOSE_OK` seul.

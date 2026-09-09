@@ -23,19 +23,41 @@ import { Interaction } from "@web/public/interaction";
 import { MOUVEMENT_REDUIT, animationRefusee } from "@piqueray_ds/js/mouvement_reduit";
 
 // ODOO-036-HERO-VIDEO-INTERACTION BEGIN
-/** Coupe le film sans toucher au cadre : la source part, l'affiche reste. */
+/** Les sources du film : les `<source>` enfants (deux codecs depuis le 2026-09-09,
+ * HEVC puis H.264 — le navigateur prend la première qu'il décode), ou l'attribut
+ * `src` d'une page composée AVANT ce passage (HTML figé : Odoo ne propage rien). */
+function sourcesDuFilm(video) {
+    return [...video.querySelectorAll("source")];
+}
+
+/** Vrai si le film a encore de quoi jouer. */
+function filmPresent(video) {
+    return Boolean(video.getAttribute("src")) || sourcesDuFilm(video).length > 0;
+}
+
+/** Coupe le film sans toucher au cadre : les sources partent, l'affiche reste. */
 export function couperLeFilm(video) {
-    if (!video || !video.getAttribute("src")) return;
-    video.dataset.pqrVideoSrc = video.getAttribute("src");
-    video.removeAttribute("src");
+    if (!video || !filmPresent(video)) return;
+    const src = video.getAttribute("src");
+    if (src) {
+        video.dataset.pqrVideoSrc = src;
+        video.removeAttribute("src");
+    }
+    // Les `<source>` sont gardées HORS du DOM, dans l'ordre : un `load()` sur une
+    // vidéo sans source ni src vide le lecteur et laisse le `poster` seul.
+    video._pqrSources = sourcesDuFilm(video).map((s) => video.removeChild(s));
     video.removeAttribute("autoplay");
     video.load();
 }
 
 /** Rend le film si le visiteur change d'avis en cours de route. */
 export function rendreLeFilm(video) {
-    if (!video || video.getAttribute("src") || !video.dataset.pqrVideoSrc) return;
-    video.setAttribute("src", video.dataset.pqrVideoSrc);
+    if (!video || filmPresent(video)) return;
+    const sources = video._pqrSources || [];
+    if (!video.dataset.pqrVideoSrc && sources.length === 0) return;
+    if (video.dataset.pqrVideoSrc) video.setAttribute("src", video.dataset.pqrVideoSrc);
+    for (const s of sources) video.appendChild(s);
+    video._pqrSources = [];
     video.setAttribute("autoplay", "autoplay");
     video.load();
     video.play?.().catch(() => {
