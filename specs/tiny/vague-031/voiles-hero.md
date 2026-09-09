@@ -216,3 +216,9 @@ Reçus : `specs/tiny/proofs/hero-voile-mobile/` (les deux rapports JSON + les ca
 - Aucune porte ne surveille la valeur d'un voile : `parity` ne compare ni les peintures ni les
   descriptions, et le cliché `figma-components.json` ne porte pas les `fills`. Rafraîchi quand même ce
   matin — seuls `extractedAt` et la description du set bougent, ce qui le prouve.
+
+**Triptyques du hero seul** (`specs/tiny/proofs/hero-voile-mobile/triptyque-hero-{390,834}.png`, Figma |
+Odoo | diff, cadrés sur les 640 px de la section) : **2,95 %** en Mobile, **3,25 %** en Tablette, et le
+diff ne rougit **que le texte et le logo** — le fond n'apparaît nulle part, c'est-à-dire que le voile est
+au même noir au même endroit des deux côtés. Un triptyque de PAGE ENTIÈRE ne montre pas cela : il fait
+8 000 px de haut et le hero y est une bande de 8 %.
