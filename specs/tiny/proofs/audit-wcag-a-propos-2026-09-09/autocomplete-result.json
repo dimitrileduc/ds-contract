@@ -1,0 +1,53 @@
+{
+  "source": "autocomplete-audit",
+  "url": "http://localhost:8109/en/a-propos",
+  "timestamp": "2026-09-09T10:05:18.700Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [],
+  "inapplicable": [
+    {
+      "id": "a11y-skills/autocomplete-invalid",
+      "impact": "moderate",
+      "description": "Ensure autocomplete attribute values are valid tokens",
+      "help": "autocomplete attributes must use valid token values",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag135"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/autocomplete-missing",
+      "impact": "moderate",
+      "description": "Ensure fields collecting user information declare their purpose via autocomplete",
+      "help": "Add an autocomplete attribute matching the field purpose",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag135"
+      ],
+      "nodes": []
+    }
+  ],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 0,
+    "checkedNodes": 0
+  },
+  "details": {
+    "totalFieldsChecked": 0,
+    "missingAutocomplete": [],
+    "invalidAutocomplete": []
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

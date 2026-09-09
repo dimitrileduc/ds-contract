@@ -1,0 +1,55 @@
+{
+  "source": "keyboard-trap-check",
+  "url": "http://localhost:8109/en/portes-de-garage",
+  "timestamp": "2026-09-09T09:33:26.974Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/no-keyboard-trap",
+      "impact": "critical",
+      "description": "Ensure keyboard focus can be moved away from all components",
+      "help": "Keyboard users must be able to navigate away from any focused component",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag212"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/keyboard-trap-needs-review",
+      "impact": "critical",
+      "description": "Focus appears confined; verify whether the escape path is documented or discoverable",
+      "help": "Verify that users can escape focus-confined areas via documented keyboard methods",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag212"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 2,
+    "checkedNodes": 47
+  },
+  "details": {
+    "totalFocusableElements": 47,
+    "trapCandidates": 0,
+    "confirmedTraps": [],
+    "needsReview": [],
+    "screenshotPath": ""
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

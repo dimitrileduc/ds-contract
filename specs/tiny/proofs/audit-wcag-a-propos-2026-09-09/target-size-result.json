@@ -1,0 +1,569 @@
+{
+  "source": "target-size-check",
+  "url": "http://localhost:8109/en/a-propos",
+  "timestamp": "2026-09-09T10:05:31.021Z",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "a11y-skills/target-size-minimum",
+      "impact": "serious",
+      "description": "Ensure pointer targets are at least 24x24 CSS px (WCAG 2.5.8 AA)",
+      "help": "Pointer targets should be at least 24x24 CSS px",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "tags": [
+        "a11y-skills",
+        "wcag22aa",
+        "wcag258"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-of-type(1) > a"
+          ],
+          "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 1x1px (min dimension 1px, requirement 24px). Possible 'spacing' exception: No adjacent targets within 24px. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > div > button"
+          ],
+          "html": "<button type=\"button\" class=\"nav-item\" data-pqr-part=\"nav-item-root\" data-chevron=\"true\" aria-expanded=\"false\" aria-controls=\"pqr_sousmenu_7\">\n          <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes de garage</span>\n          <span class=\"nav-item__OcticonChevronDown12\" aria",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 193.39x16px (min dimension 16px, requirement 24px). Possible 'spacing' exception: No adjacent targets within 24px. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(1)"
+          ],
+          "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/portes-entree\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes d’entrée</span>\n      </a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 153.61x16px (min dimension 16px, requirement 24px). Possible 'spacing' exception: No adjacent targets within 24px. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(2)"
+          ],
+          "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/depannage-sav\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Dépannage/SAV</span>\n      </a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 144.86x16px (min dimension 16px, requirement 24px). Possible 'spacing' exception: No adjacent targets within 24px. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(3)"
+          ],
+          "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/a-propos\" data-actif=\"true\" aria-current=\"page\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">À propos</span>\n        <span class=\"nav-item__Soulignement\" data-pqr-part=\"nav-item-soulignement\"></span>\n      </a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 87.42x16px (min dimension 16px, requirement 24px). Possible 'spacing' exception: No adjacent targets within 24px. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(1) > p > a"
+          ],
+          "html": "<a href=\"tel:+3287463266\">+32 (0)87 46 32 66</a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 160.06x22px (min dimension 22px, requirement 24px). Possible 'inline' exception: Inline link within <p>, surrounding text: 24 chars. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(2) > p > a"
+          ],
+          "html": "<a href=\"mailto:info@piqueray.be\">info@piqueray.be</a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 157.84x22px (min dimension 22px, requirement 24px). Possible 'inline' exception: Inline link within <p>, surrounding text: 23 chars. Confirm manually."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(1) > span > a"
+          ],
+          "html": "<a href=\"/en/pages\">Plan du site</a>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 105.59x22px (min dimension 22px, requirement 24px). Possible 'inline' exception: Inline link within <span>, surrounding text: 104 chars. Confirm manually."
+        }
+      ]
+    },
+    {
+      "id": "a11y-skills/target-size-enhanced",
+      "impact": "moderate",
+      "description": "Ensure pointer targets are at least 44x44 CSS px (WCAG 2.5.5 AAA)",
+      "help": "Pointer targets should be at least 44x44 CSS px",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aaa",
+        "wcag255"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-of-type(1) > header > div:nth-of-type(1) > a"
+          ],
+          "html": "<a href=\"/en\" class=\"header__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\">\n          <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n            <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-part=\"piqueray-logo-marq",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 180x34px (min dimension 34px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" data-pqr-marks=\"\">En savoir plus</",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 169.13x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 198.83x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(1) > div:nth-of-type(3) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 115.67x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(2) > div:nth-of-type(3) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 115.67x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(3) > div:nth-of-type(3) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 115.67x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(4) > div:nth-of-type(3) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 115.67x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(5) > div:nth-of-type(3) > a"
+          ],
+          "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 115.67x30px (min dimension 30px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(7) > div:nth-of-type(4) > div:nth-of-type(1) > button"
+          ],
+          "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Formation continue des équipes&lt;/strong&gt;\"></button>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 1168x43px (min dimension 43px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(7) > div:nth-of-type(4) > div:nth-of-type(3) > button"
+          ],
+          "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Un service client à visage humain&lt;/strong&gt;\"></button>",
+          "htmlTruncated": false,
+          "failureSummary": "Target is 1168x43px (min dimension 43px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(1)"
+          ],
+          "html": "<a href=\"/en\" class=\"footer__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\">\n              <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n                <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-part=\"piqueray-l",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 218.39x34px (min dimension 34px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(1)"
+          ],
+          "html": "<a href=\"/en/website/social/facebook\" class=\"footer__FacebookBas\" data-pqr-part=\"facebook-bas\" aria-label=\"Facebook\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M15.9889 2.80987e-06C20.0465 -0.00240035 23.9535 1.53676 26.9192 4.30601C29.884",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 24x24px (min dimension 24px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        },
+        {
+          "target": [
+            "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(2)"
+          ],
+          "html": "<a href=\"/en/website/social/instagram\" class=\"footer__InstagramBas\" data-pqr-part=\"instagram-bas\" aria-label=\"Instagram\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M9.28 0H22.72C27.84 0 32 4.16 32 9.28V22.72C32 25.1812 31.0223 27.5416 29.2",
+          "htmlTruncated": true,
+          "failureSummary": "Target is 24x24px (min dimension 24px, AAA requirement 44px). Verify whether an SC 2.5.5 exception applies."
+        }
+      ]
+    }
+  ],
+  "passes": [],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 2,
+    "passCount": 0,
+    "checkedNodes": 26
+  },
+  "details": {
+    "totalTargetsChecked": 26,
+    "failAA": [],
+    "failAAAOnly": [
+      {
+        "selector": "div:nth-of-type(1) > header > div:nth-of-type(1) > a",
+        "tagName": "a",
+        "html": "<a href=\"/en\" class=\"header__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\">\n          <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n            <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-part=\"piqueray-logo-marq",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Accueil — Piqueray",
+        "width": 180,
+        "height": 34,
+        "minDimension": 34,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "http://localhost:8109/en"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" data-pqr-marks=\"\">En savoir plus</",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "En savoir plus",
+        "width": 169.13,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "http://localhost:8109/en/contactez-nous"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Voir tous les avis",
+        "width": 198.83,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(1) > div:nth-of-type(3) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Lire la suite",
+        "width": 115.67,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(2) > div:nth-of-type(3) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Lire la suite",
+        "width": 115.67,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(3) > div:nth-of-type(3) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Lire la suite",
+        "width": 115.67,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(4) > div:nth-of-type(3) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Lire la suite",
+        "width": 115.67,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(5) > div:nth-of-type(3) > a",
+        "tagName": "a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" d",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Lire la suite",
+        "width": 115.67,
+        "height": 30,
+        "minDimension": 30,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "https://www.google.com/maps?cid=8309536980980743310"
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(7) > div:nth-of-type(4) > div:nth-of-type(1) > button",
+        "tagName": "button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Formation continue des équipes&lt;/strong&gt;\"></button>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "<strong>Formation continue des équipes</strong>",
+        "width": 1168,
+        "height": 43,
+        "minDimension": 43,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": null
+      },
+      {
+        "selector": "div:nth-of-type(1) > main > div:nth-of-type(1) > section:nth-of-type(7) > div:nth-of-type(4) > div:nth-of-type(3) > button",
+        "tagName": "button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Un service client à visage humain&lt;/strong&gt;\"></button>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "<strong>Un service client à visage humain</strong>",
+        "width": 1168,
+        "height": 43,
+        "minDimension": 43,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": null
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(1)",
+        "tagName": "a",
+        "html": "<a href=\"/en\" class=\"footer__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\">\n              <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n                <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-part=\"piqueray-l",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Accueil — Piqueray",
+        "width": 218.39,
+        "height": 34,
+        "minDimension": 34,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "http://localhost:8109/en"
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(1)",
+        "tagName": "a",
+        "html": "<a href=\"/en/website/social/facebook\" class=\"footer__FacebookBas\" data-pqr-part=\"facebook-bas\" aria-label=\"Facebook\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M15.9889 2.80987e-06C20.0465 -0.00240035 23.9535 1.53676 26.9192 4.30601C29.884",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Facebook",
+        "width": 24,
+        "height": 24,
+        "minDimension": 24,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "http://localhost:8109/en/website/social/facebook"
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(2)",
+        "tagName": "a",
+        "html": "<a href=\"/en/website/social/instagram\" class=\"footer__InstagramBas\" data-pqr-part=\"instagram-bas\" aria-label=\"Instagram\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M9.28 0H22.72C27.84 0 32 4.16 32 9.28V22.72C32 25.1812 31.0223 27.5416 29.2",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Instagram",
+        "width": 24,
+        "height": 24,
+        "minDimension": 24,
+        "level": "fail-aaa-only",
+        "exception": null,
+        "exceptionDetails": null,
+        "exceptionAssessment": "not-assessed",
+        "href": "http://localhost:8109/en/website/social/instagram"
+      }
+    ],
+    "passedTargets": 5,
+    "exceptedTargets": [
+      {
+        "selector": "div:nth-of-type(1) > a",
+        "tagName": "a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "Skip to Content",
+        "width": 1,
+        "height": 1,
+        "minDimension": 1,
+        "level": "fail-aa",
+        "exception": "spacing",
+        "exceptionDetails": "No adjacent targets within 24px",
+        "exceptionAssessment": "possible",
+        "href": "http://localhost:8109/en/a-propos#wrap"
+      },
+      {
+        "selector": "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > div > button",
+        "tagName": "button",
+        "html": "<button type=\"button\" class=\"nav-item\" data-pqr-part=\"nav-item-root\" data-chevron=\"true\" aria-expanded=\"false\" aria-controls=\"pqr_sousmenu_7\">\n          <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes de garage</span>\n          <span class=\"nav-item__OcticonChevronDown12\" aria",
+        "htmlTruncated": true,
+        "role": null,
+        "accessibleName": "Portes de garage",
+        "width": 193.39,
+        "height": 16,
+        "minDimension": 16,
+        "level": "fail-aa",
+        "exception": "spacing",
+        "exceptionDetails": "No adjacent targets within 24px",
+        "exceptionAssessment": "possible",
+        "href": null
+      },
+      {
+        "selector": "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(1)",
+        "tagName": "a",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/portes-entree\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes d’entrée</span>\n      </a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "Portes d’entrée",
+        "width": 153.61,
+        "height": 16,
+        "minDimension": 16,
+        "level": "fail-aa",
+        "exception": "spacing",
+        "exceptionDetails": "No adjacent targets within 24px",
+        "exceptionAssessment": "possible",
+        "href": "http://localhost:8109/en/portes-entree"
+      },
+      {
+        "selector": "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(2)",
+        "tagName": "a",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/depannage-sav\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Dépannage/SAV</span>\n      </a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "Dépannage/SAV",
+        "width": 144.86,
+        "height": 16,
+        "minDimension": 16,
+        "level": "fail-aa",
+        "exception": "spacing",
+        "exceptionDetails": "No adjacent targets within 24px",
+        "exceptionAssessment": "possible",
+        "href": "http://localhost:8109/en/depannage-sav"
+      },
+      {
+        "selector": "div:nth-of-type(1) > header > div:nth-of-type(1) > div > nav > a:nth-of-type(3)",
+        "tagName": "a",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/a-propos\" data-actif=\"true\" aria-current=\"page\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">À propos</span>\n        <span class=\"nav-item__Soulignement\" data-pqr-part=\"nav-item-soulignement\"></span>\n      </a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "À propos",
+        "width": 87.42,
+        "height": 16,
+        "minDimension": 16,
+        "level": "fail-aa",
+        "exception": "spacing",
+        "exceptionDetails": "No adjacent targets within 24px",
+        "exceptionAssessment": "possible",
+        "href": "http://localhost:8109/en/a-propos"
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(1) > p > a",
+        "tagName": "a",
+        "html": "<a href=\"tel:+3287463266\">+32 (0)87 46 32 66</a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "+32 (0)87 46 32 66",
+        "width": 160.06,
+        "height": 22,
+        "minDimension": 22,
+        "level": "fail-aa",
+        "exception": "inline",
+        "exceptionDetails": "Inline link within <p>, surrounding text: 24 chars",
+        "exceptionAssessment": "possible",
+        "href": "tel:+3287463266"
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(2) > p > a",
+        "tagName": "a",
+        "html": "<a href=\"mailto:info@piqueray.be\">info@piqueray.be</a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "info@piqueray.be",
+        "width": 157.84,
+        "height": 22,
+        "minDimension": 22,
+        "level": "fail-aa",
+        "exception": "inline",
+        "exceptionDetails": "Inline link within <p>, surrounding text: 23 chars",
+        "exceptionAssessment": "possible",
+        "href": "mailto:info@piqueray.be"
+      },
+      {
+        "selector": "div:nth-of-type(1) > footer > div > div:nth-of-type(6) > div:nth-of-type(1) > span > a",
+        "tagName": "a",
+        "html": "<a href=\"/en/pages\">Plan du site</a>",
+        "htmlTruncated": false,
+        "role": null,
+        "accessibleName": "Plan du site",
+        "width": 105.59,
+        "height": 22,
+        "minDimension": 22,
+        "level": "fail-aa",
+        "exception": "inline",
+        "exceptionDetails": "Inline link within <span>, surrounding text: 104 chars",
+        "exceptionAssessment": "possible",
+        "href": "http://localhost:8109/en/pages"
+      }
+    ],
+    "summary": {
+      "failAACount": 0,
+      "failAAAOnlyCount": 13,
+      "passCount": 5,
+      "exceptedCount": 8
+    }
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

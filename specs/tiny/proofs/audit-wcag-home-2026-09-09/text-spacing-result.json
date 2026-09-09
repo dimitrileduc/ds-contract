@@ -1,0 +1,401 @@
+{
+  "source": "text-spacing-check",
+  "url": "http://localhost:8199/en",
+  "timestamp": "2026-09-09T08:38:15.408Z",
+  "violations": [
+    {
+      "id": "a11y-skills/text-spacing",
+      "impact": "moderate",
+      "description": "Ensure no loss of content when WCAG 1.4.12 text spacing overrides are applied",
+      "help": "Text must not be clipped under increased text spacing",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag1412"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+          "htmlTruncated": false,
+          "failureSummary": "<a> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 150x24px content in a 1x1px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE4-868BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 384x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 347x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 414x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 301x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 382x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 351x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 339x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its content (horizontal-clip) when WCAG 1.4.12 text spacing is applied: 305x24px content in a 238x24px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(2) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> clips its content (vertical-clip) when WCAG 1.4.12 text spacing is applied: 173x147px content in a 173x63px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(3) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> clips its content (vertical-clip) when WCAG 1.4.12 text spacing is applied: 173x168px content in a 173x63px box."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(5) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> clips its content (vertical-clip) when WCAG 1.4.12 text spacing is applied: 173x105px content in a 173x63px box."
+        }
+      ]
+    }
+  ],
+  "incomplete": [],
+  "passes": [],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 1,
+    "incompleteCount": 0,
+    "passCount": 0,
+    "checkedNodes": 15
+  },
+  "details": {
+    "clippedElements": [
+      {
+        "selector": "div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 116,
+          "scrollHeight": 24,
+          "clientWidth": 1,
+          "clientHeight": 1
+        },
+        "afterMetrics": {
+          "scrollWidth": 150,
+          "scrollHeight": 24,
+          "clientWidth": 1,
+          "clientHeight": 1
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE4-868BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 319,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 384,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 277,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 347,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 335,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 414,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 244,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 301,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 318,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 382,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 283,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 351,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 272,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 339,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 245,
+          "scrollHeight": 20,
+          "clientWidth": 238,
+          "clientHeight": 20
+        },
+        "afterMetrics": {
+          "scrollWidth": 305,
+          "scrollHeight": 24,
+          "clientWidth": 238,
+          "clientHeight": 24
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "horizontal-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(2) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…</p>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 120,
+          "clientWidth": 173,
+          "clientHeight": 60
+        },
+        "afterMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 147,
+          "clientWidth": 173,
+          "clientHeight": 63
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "vertical-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(3) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…</p>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 120,
+          "clientWidth": 173,
+          "clientHeight": 60
+        },
+        "afterMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 168,
+          "clientWidth": 173,
+          "clientHeight": 63
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "vertical-clip"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(8) > div:nth-child(2) > div:nth-child(2) > article:nth-child(5) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…</p>",
+        "htmlTruncated": false,
+        "beforeMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 80,
+          "clientWidth": 173,
+          "clientHeight": 60
+        },
+        "afterMetrics": {
+          "scrollWidth": 173,
+          "scrollHeight": 105,
+          "clientWidth": 173,
+          "clientHeight": 63
+        },
+        "overflow": "hidden",
+        "overflowX": "hidden",
+        "overflowY": "hidden",
+        "issueType": "vertical-clip"
+      }
+    ],
+    "totalElementsChecked": 15
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

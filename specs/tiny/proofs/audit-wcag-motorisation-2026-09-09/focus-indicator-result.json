@@ -1,0 +1,626 @@
+{
+  "source": "focus-indicator-check",
+  "url": "http://localhost:8109/en/motorisation",
+  "timestamp": "2026-09-09T09:43:01.456Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/focus-visible",
+      "impact": "serious",
+      "description": "Ensure keyboard focus produces a visible indicator on focusable elements",
+      "help": "Focusable elements should have a visible focus indicator",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2aa",
+        "wcag247"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/no-context-change-on-focus",
+      "impact": "serious",
+      "description": "Ensure receiving focus does not trigger a change of context (navigation, new window)",
+      "help": "Focusing an element must not trigger a context change",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag321"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/focus-not-obscured",
+      "impact": "moderate",
+      "description": "Ensure the focused element is not hidden by fixed or sticky content",
+      "help": "Focused elements should not be obscured by author-created content",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+      "tags": [
+        "a11y-skills",
+        "wcag22aa",
+        "wcag2411"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 3,
+    "checkedNodes": 33
+  },
+  "details": {
+    "totalFocusableElements": 33,
+    "elementsWithFocusStyle": 33,
+    "elementsWithoutFocusStyle": 0,
+    "issues": [],
+    "onFocusViolations": [],
+    "focusObscuredIssues": [],
+    "elementsWithObscuredFocus": 0,
+    "allElements": [
+      {
+        "id": 0,
+        "tag": "A",
+        "role": null,
+        "name": "Skip to Content",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) none 0px",
+          "outlineWidth": "0px",
+          "outlineOffset": "1px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        },
+        "selector": "#wrapwrap > a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\" data-focus-visited=\"0\">Skip to Content</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 1,
+        "tag": "A",
+        "role": null,
+        "name": "Accueil — Piqueray",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > a",
+        "html": "<a href=\"/en\" class=\"header__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\" data-focus-visited=\"1\">\n          <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n            <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 2,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "\n          Portes de garage\n  ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > div > button",
+        "html": "<button type=\"button\" class=\"nav-item\" data-pqr-part=\"nav-item-root\" data-chevron=\"true\" aria-expanded=\"false\" aria-controls=\"pqr_sousmenu_7\" data-actif=\"true\" aria-current=\"page\" data-focus-visited=\"2\">\n          <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes de garage</span",
+        "htmlTruncated": true
+      },
+      {
+        "id": 3,
+        "tag": "A",
+        "role": null,
+        "name": "\n        Portes d’entrée\n     ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(1)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/portes-entree\" data-focus-visited=\"3\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes d’entrée</span>\n      </a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 4,
+        "tag": "A",
+        "role": null,
+        "name": "\n        Dépannage/SAV\n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(2)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/depannage-sav\" data-focus-visited=\"4\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Dépannage/SAV</span>\n      </a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 5,
+        "tag": "A",
+        "role": null,
+        "name": "\n        À propos\n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(3)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/a-propos\" data-focus-visited=\"5\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">À propos</span>\n      </a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 6,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Demander un devis gratuit",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(1) > div:nth-of-type(3) > div > div:nth-of-type(2) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"6\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" dat",
+        "htmlTruncated": true
+      },
+      {
+        "id": 7,
+        "tag": "A",
+        "role": null,
+        "name": "\n      \n      \n        \n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(2) > div > a:nth-of-type(1)",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/contactez-nous\" data-focus-visited=\"7\">\n      \n      <span class=\"carte-categorie__cadrePhot",
+        "htmlTruncated": true
+      },
+      {
+        "id": 8,
+        "tag": "A",
+        "role": null,
+        "name": "\n      \n      \n        \n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(2) > div > a:nth-of-type(2)",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/contactez-nous\" data-focus-visited=\"8\">\n      \n      <span class=\"carte-categorie__cadrePhot",
+        "htmlTruncated": true
+      },
+      {
+        "id": 9,
+        "tag": "A",
+        "role": null,
+        "name": "\n      \n      \n        \n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(2) > div > a:nth-of-type(3)",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-2\" data-pqr-cta-href=\"/contactez-nous\" data-focus-visited=\"9\">\n      \n      <span class=\"carte-categorie__cadrePhot",
+        "htmlTruncated": true
+      },
+      {
+        "id": 10,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Prendre rendez-vous\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(3) > div:nth-of-type(2) > div > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"10\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" da",
+        "htmlTruncated": true
+      },
+      {
+        "id": 11,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Voir les produits\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(1) > div > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://shop.piqueray.be\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"11\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" data",
+        "htmlTruncated": true
+      },
+      {
+        "id": 12,
+        "tag": "DIV",
+        "role": null,
+        "name": "\n              \n            \n ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div",
+        "html": "<div class=\"produits-ecommerce__Produits\" data-pqr-carte-list=\"\" data-pqr-part=\"root-produits\" tabindex=\"0\" data-focus-visited=\"12\">\n              <a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"h",
+        "htmlTruncated": true
+      },
+      {
+        "id": 13,
+        "tag": "A",
+        "role": null,
+        "name": "Télécommande Hörmann HSE4-868BS, 74,99€—produit 1 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(1)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Télécommande Hörmann HSE4-868BS, 74,99€—produit 1 sur 8\" data-focus-visited=\"13\">\n            <div class=\"prod",
+        "htmlTruncated": true
+      },
+      {
+        "id": 14,
+        "tag": "A",
+        "role": null,
+        "name": "Clavier à code Hörmann FCT3-1BS, 139,99€—produit 2 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(2)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier à code Hörmann FCT3-1BS, 139,99€—produit 2 sur 8\" data-focus-visited=\"14\">\n            <div class=\"pro",
+        "htmlTruncated": true
+      },
+      {
+        "id": 15,
+        "tag": "A",
+        "role": null,
+        "name": "Bouton poussoir Hörmann FIT2-1-868-BS, 89,99€—produit 3 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(3)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton poussoir Hörmann FIT2-1-868-BS, 89,99€—produit 3 sur 8\" data-focus-visited=\"15\">\n            <div class",
+        "htmlTruncated": true
+      },
+      {
+        "id": 16,
+        "tag": "A",
+        "role": null,
+        "name": "Passerelle BiSecure Hörmann, 74,99€—produit 4 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(4)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Passerelle BiSecure Hörmann, 74,99€—produit 4 sur 8\" data-focus-visited=\"16\">\n            <div class=\"product-",
+        "htmlTruncated": true
+      },
+      {
+        "id": 17,
+        "tag": "A",
+        "role": null,
+        "name": "Télécommande Hörmann HSE2-868BS, 64,99€—produit 5 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(5)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Télécommande Hörmann HSE2-868BS, 64,99€—produit 5 sur 8\" data-focus-visited=\"17\">\n            <div class=\"prod",
+        "htmlTruncated": true
+      },
+      {
+        "id": 18,
+        "tag": "A",
+        "role": null,
+        "name": "Récepteur Hörmann HET-E2 24 BS, 119,99€—produit 6 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(6)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Récepteur Hörmann HET-E2 24 BS, 119,99€—produit 6 sur 8\" data-focus-visited=\"18\">\n            <div class=\"prod",
+        "htmlTruncated": true
+      },
+      {
+        "id": 19,
+        "tag": "A",
+        "role": null,
+        "name": "Clavier radio Hörmann FCT10-1BS, 179,99€—produit 7 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(7)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier radio Hörmann FCT10-1BS, 179,99€—produit 7 sur 8\" data-focus-visited=\"19\">\n            <div class=\"pro",
+        "htmlTruncated": true
+      },
+      {
+        "id": 20,
+        "tag": "A",
+        "role": null,
+        "name": "Bouton mural Hörmann IT1b-1, 49,99€—produit 8 sur 8",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div > a:nth-of-type(8)",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton mural Hörmann IT1b-1, 49,99€—produit 8 sur 8\" data-focus-visited=\"20\">\n            <div class=\"product-",
+        "htmlTruncated": true
+      },
+      {
+        "id": 21,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "Précédent",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px",
+          "boxShadow": "rgb(38, 40, 44) 0px 0px 0px 2px inset"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > nav > button:nth-of-type(1)",
+        "html": "<button type=\"button\" class=\"button button--variant-iconOnly button--iconLeftGlyph-chevron-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-pqr-part=\"carousel-previous\" aria-disabled=\"false\" data-focus-visited=\"21\"><span class=\"button__iconOnlyIcon\" role=\"img\" aria-label=\"Pr",
+        "htmlTruncated": true
+      },
+      {
+        "id": 22,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "Suivant",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px",
+          "boxShadow": "rgb(224, 224, 224) 0px 0px 0px 2px inset"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > nav > button:nth-of-type(2)",
+        "html": "<button type=\"button\" class=\"button button--variant-iconOnly button--iconLeftGlyph-chevron-right button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-pqr-part=\"carousel-next\" aria-disabled=\"true\" data-focus-visited=\"22\"><span class=\"button__iconOnlyIcon\" role=\"img\" aria-label=\"Suivan",
+        "htmlTruncated": true
+      },
+      {
+        "id": 23,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Motorisation sur porte existante</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(5) > div:nth-of-type(4) > div:nth-of-type(1) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Motorisation sur porte existante&lt;/strong&gt;\" data-focus-visited=\"23\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 24,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Maison connectée et smartphone</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(5) > div:nth-of-type(4) > div:nth-of-type(2) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"true\" aria-label=\"&lt;strong&gt;Maison connectée et smartphone&lt;/strong&gt;\" data-focus-visited=\"24\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 25,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Sécurité en cas de coupure de courant</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(5) > div:nth-of-type(4) > div:nth-of-type(3) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Sécurité en cas de coupure de courant&lt;/strong&gt;\" data-focus-visited=\"25\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 26,
+        "tag": "A",
+        "role": null,
+        "name": "Accueil — Piqueray",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(1)",
+        "html": "<a href=\"/en\" class=\"footer__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\" data-focus-visited=\"26\">\n              <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n                <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" d",
+        "htmlTruncated": true
+      },
+      {
+        "id": 27,
+        "tag": "A",
+        "role": null,
+        "name": "\n              Contactez-nous\n",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(2)",
+        "html": "<a class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" data-focus-visited=\"27\">\n              <span class=\"button__label\" data-pqr-part=\"button-label\" data-pq",
+        "htmlTruncated": true
+      },
+      {
+        "id": 28,
+        "tag": "A",
+        "role": null,
+        "name": "+32 (0)87 46 32 66",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(1) > p > a",
+        "html": "<a href=\"tel:+3287463266\" data-focus-visited=\"28\">+32 (0)87 46 32 66</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 29,
+        "tag": "A",
+        "role": null,
+        "name": "info@piqueray.be",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(2) > p > a",
+        "html": "<a href=\"mailto:info@piqueray.be\" data-focus-visited=\"29\">info@piqueray.be</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 30,
+        "tag": "A",
+        "role": null,
+        "name": "Plan du site",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(1) > span > a",
+        "html": "<a href=\"/en/pages\" data-focus-visited=\"30\">Plan du site</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 31,
+        "tag": "A",
+        "role": null,
+        "name": "Facebook",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(1)",
+        "html": "<a href=\"/en/website/social/facebook\" class=\"footer__FacebookBas\" data-pqr-part=\"facebook-bas\" aria-label=\"Facebook\" data-focus-visited=\"31\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M15.9889 2.80987e-06C20.0465 -0.00240035 23.9535 1.5367",
+        "htmlTruncated": true
+      },
+      {
+        "id": 32,
+        "tag": "A",
+        "role": null,
+        "name": "Instagram",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(2)",
+        "html": "<a href=\"/en/website/social/instagram\" class=\"footer__InstagramBas\" data-pqr-part=\"instagram-bas\" aria-label=\"Instagram\" data-focus-visited=\"32\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M9.28 0H22.72C27.84 0 32 4.16 32 9.28V22.72C32 25.1",
+        "htmlTruncated": true
+      }
+    ],
+    "interrupted": false,
+    "screenshotPath": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-motorisation-2026-09-09/focus-indicators.png"
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

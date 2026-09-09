@@ -1,0 +1,121 @@
+{
+  "source": "reflow-check",
+  "url": "http://localhost:8109/en/depannage-sav",
+  "timestamp": "2026-09-09T09:59:20.188Z",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "a11y-skills/reflow-clipped-text",
+      "impact": "moderate",
+      "description": "Ensure text is not clipped when content reflows at 320 CSS px",
+      "help": "Text should remain readable at 320px width",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag1410"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+          "htmlTruncated": false,
+          "failureSummary": "<a> clips its text at 320px (scrollWidth 116px > clientWidth 1px, overflow: hidden). Verify whether content is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(3) > div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/contactez-nous\">\n      \n      <span class=\"carte-categorie__cadrePhoto\" data-pqr-part=\"carte",
+          "htmlTruncated": true,
+          "failureSummary": "<a> clips its text at 320px (scrollWidth 272px > clientWidth 272px, overflow: hidden). Verify whether content is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(3) > div:nth-child(1) > a:nth-child(2)"
+          ],
+          "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/contactez-nous\">\n      \n      <span class=\"carte-categorie__cadrePhoto\" data-pqr-part=\"carte",
+          "htmlTruncated": true,
+          "failureSummary": "<a> clips its text at 320px (scrollWidth 272px > clientWidth 272px, overflow: hidden). Verify whether content is lost."
+        }
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "a11y-skills/reflow-overflow",
+      "impact": "serious",
+      "description": "Ensure content reflows at 320 CSS px width without horizontal scrolling",
+      "help": "Content should not require horizontal scrolling at 320px width",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag1410"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 1,
+    "passCount": 1
+  },
+  "details": {
+    "viewport": {
+      "width": 320,
+      "height": 256
+    },
+    "hasHorizontalScroll": false,
+    "documentScrollWidth": 320,
+    "documentClientWidth": 320,
+    "overflowingElements": [],
+    "clippedTextElements": [
+      {
+        "selector": "div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+        "htmlTruncated": false,
+        "scrollWidth": 116,
+        "clientWidth": 1,
+        "scrollHeight": 24,
+        "clientHeight": 1,
+        "overflow": "hidden",
+        "overflowX": "hidden"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(3) > div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/contactez-nous\">\n      \n      <span class=\"carte-categorie__cadrePhoto\" data-pqr-part=\"carte",
+        "htmlTruncated": true,
+        "scrollWidth": 272,
+        "clientWidth": 272,
+        "scrollHeight": 439,
+        "clientHeight": 432,
+        "overflow": "hidden",
+        "overflowX": "hidden"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(3) > div:nth-child(1) > a:nth-child(2)",
+        "tagName": "a",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/contactez-nous\">\n      \n      <span class=\"carte-categorie__cadrePhoto\" data-pqr-part=\"carte",
+        "htmlTruncated": true,
+        "scrollWidth": 272,
+        "clientWidth": 272,
+        "scrollHeight": 439,
+        "clientHeight": 432,
+        "overflow": "hidden",
+        "overflowX": "hidden"
+      }
+    ]
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

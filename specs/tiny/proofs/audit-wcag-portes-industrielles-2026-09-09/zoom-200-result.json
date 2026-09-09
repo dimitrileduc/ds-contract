@@ -1,0 +1,161 @@
+{
+  "source": "zoom-200-check",
+  "url": "http://localhost:8109/en/portes-industrielles",
+  "timestamp": "2026-09-09T09:40:39.437Z",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "a11y-skills/resize-text",
+      "impact": "moderate",
+      "description": "Ensure content remains usable when text is resized to 200%",
+      "help": "Content should not be lost or clipped at 200% zoom",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2aa",
+        "wcag144"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+          "htmlTruncated": false,
+          "failureSummary": "<a> overflows horizontally at 200% zoom (scrollWidth 116px > clientWidth 1px). Verify whether content or functionality is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(1) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">super très pro et service après vente présent</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> overflows horizontally at 200% zoom (scrollWidth 54px > clientWidth 45px). Verify whether content or functionality is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(2) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> overflows horizontally at 200% zoom (scrollWidth 87px > clientWidth 45px). Verify whether content or functionality is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(3) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> overflows horizontally at 200% zoom (scrollWidth 82px > clientWidth 45px). Verify whether content or functionality is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(4) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Dépannage ultra rapide et professionnel</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> overflows horizontally at 200% zoom (scrollWidth 94px > clientWidth 45px). Verify whether content or functionality is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(5) > p:nth-child(3)"
+          ],
+          "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…</p>",
+          "htmlTruncated": false,
+          "failureSummary": "<p> overflows horizontally at 200% zoom (scrollWidth 60px > clientWidth 45px). Verify whether content or functionality is lost."
+        }
+      ]
+    }
+  ],
+  "passes": [],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 1,
+    "passCount": 0
+  },
+  "details": {
+    "zoomFactor": 2,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "hasHorizontalScroll": true,
+    "documentScrollWidth": 1707,
+    "documentClientWidth": 1280,
+    "clippedElements": [
+      {
+        "selector": "div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+        "htmlTruncated": false,
+        "scrollWidth": 116,
+        "clientWidth": 1,
+        "scrollHeight": 24,
+        "clientHeight": 1,
+        "issueType": "horizontal-scroll"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(1) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">super très pro et service après vente présent</p>",
+        "htmlTruncated": false,
+        "scrollWidth": 54,
+        "clientWidth": 45,
+        "scrollHeight": 140,
+        "clientHeight": 60,
+        "issueType": "horizontal-scroll"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(2) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé…</p>",
+        "htmlTruncated": false,
+        "scrollWidth": 87,
+        "clientWidth": 45,
+        "scrollHeight": 360,
+        "clientHeight": 60,
+        "issueType": "horizontal-scroll"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(3) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui a fait le suivi…</p>",
+        "htmlTruncated": false,
+        "scrollWidth": 82,
+        "clientWidth": 45,
+        "scrollHeight": 340,
+        "clientHeight": 60,
+        "issueType": "horizontal-scroll"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(4) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Dépannage ultra rapide et professionnel</p>",
+        "htmlTruncated": false,
+        "scrollWidth": 94,
+        "clientWidth": 45,
+        "scrollHeight": 100,
+        "clientHeight": 60,
+        "issueType": "horizontal-scroll"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(7) > div:nth-child(2) > div:nth-child(2) > article:nth-child(5) > p:nth-child(3)",
+        "tagName": "p",
+        "html": "<p class=\"review-card__temoignage o_pqr_editable\" data-pqr-part=\"temoignage\" data-pqr-marks=\"strong\">Je ne mets pas 5 étoiles mais 10 ! Les 2 placeurs de mes 2 portes de garage il…</p>",
+        "htmlTruncated": false,
+        "scrollWidth": 60,
+        "clientWidth": 45,
+        "scrollHeight": 280,
+        "clientHeight": 60,
+        "issueType": "horizontal-scroll"
+      }
+    ]
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

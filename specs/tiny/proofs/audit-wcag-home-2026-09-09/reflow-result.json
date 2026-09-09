@@ -1,0 +1,1131 @@
+{
+  "source": "reflow-check",
+  "url": "http://localhost:8199/en",
+  "timestamp": "2026-09-09T08:38:14.490Z",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "a11y-skills/reflow-overflow",
+      "impact": "serious",
+      "description": "Ensure content reflows at 320 CSS px width without horizontal scrolling",
+      "help": "Content should not require horizontal scrolling at 320px width",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag1410"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"carte-categorie carte-categorie--style-superpose oe_unremovable oe_unmovable\" href=\"/en/portes-de-garage\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/portes-de-garage\">\n      <img class=\"carte-categorie__photoSuperpose o_editable_media\" ",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"carte-categorie__photoSuperpose o_editable_media\" data-pqr-part=\"carte-image\" data-pqr-native-image=\"1\" alt=\"\" src=\"/web/image/1815\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"carte-categorie__contenuSuperpose\" data-pqr-part=\"carte-contenu-superpose\">\n        \n        <div class=\"carte-categorie__inner\">\n          <div class=\"carte-categorie__blocTexte\">\n            <h3 class=\"carte-categorie__TitreSuperpose o_pqr_editable\" data-pqr-part=\"carte-title\" data-pqr",
+          "htmlTruncated": true,
+          "failureSummary": "<div> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2)"
+          ],
+          "html": "<a class=\"carte-categorie carte-categorie--style-superpose oe_unremovable oe_unmovable\" href=\"/en/portes-entree\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/portes-entree\">\n      <img class=\"carte-categorie__photoSuperpose o_editable_media\" data-p",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"carte-categorie__photoSuperpose o_editable_media\" data-pqr-part=\"carte-image\" data-pqr-native-image=\"1\" alt=\"\" src=\"/web/image/1816\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"carte-categorie__contenuSuperpose\" data-pqr-part=\"carte-contenu-superpose\">\n        \n        <div class=\"carte-categorie__inner\">\n          <div class=\"carte-categorie__blocTexte\">\n            <h3 class=\"carte-categorie__TitreSuperpose o_pqr_editable\" data-pqr-part=\"carte-title\" data-pqr",
+          "htmlTruncated": true,
+          "failureSummary": "<div> extends to 344px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"produits-ecommerce__Produits\" data-pqr-carte-list=\"\" data-pqr-part=\"root-produits\" tabindex=\"0\">\n              <a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\"",
+          "htmlTruncated": true,
+          "failureSummary": "<div> extends to 1920px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier à code Hörmann FCT3-1BS, 139,99€—produit 2 sur 8\">\n            <div class=\"product-card__Tuile\" data-p",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 480px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 467px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 451px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">139,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 467px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 467px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">139,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 467px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton poussoir Hörmann FIT2-1-868-BS, 89,99€—produit 3 sur 8\">\n            <div class=\"product-card__Tuile\" d",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 716px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 703px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 687px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">89,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 703px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 703px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">89,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 703px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Passerelle BiSecure Hörmann, 74,99€—produit 4 sur 8\">\n            <div class=\"product-card__Tuile\" data-pqr-pa",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 952px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 939px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 923px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">74,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 939px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 939px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">74,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 939px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Télécommande Hörmann HSE2-868BS, 64,99€—produit 5 sur 8\">\n            <div class=\"product-card__Tuile\" data-pq",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 1188px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1819\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1175px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1819\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 1159px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">64,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1175px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1175px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">64,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1175px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Récepteur Hörmann HET-E2 24 BS, 119,99€—produit 6 sur 8\">\n            <div class=\"product-card__Tuile\" data-pq",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 1424px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1411px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 1395px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">119,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1411px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1411px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">119,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1411px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier radio Hörmann FCT10-1BS, 179,99€—produit 7 sur 8\">\n            <div class=\"product-card__Tuile\" data-p",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 1660px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1647px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 1631px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">179,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1647px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1647px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">179,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1647px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8)"
+          ],
+          "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton mural Hörmann IT1b-1, 49,99€—produit 8 sur 8\">\n            <div class=\"product-card__Tuile\" data-pqr-pa",
+          "htmlTruncated": true,
+          "failureSummary": "<a> extends to 1896px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(1)"
+          ],
+          "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\"></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1883px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(1) > img:nth-child(1)"
+          ],
+          "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\">",
+          "htmlTruncated": false,
+          "failureSummary": "<img> extends to 1867px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2)"
+          ],
+          "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">49,99€</span></div>",
+          "htmlTruncated": false,
+          "failureSummary": "<div> extends to 1883px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1883px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(2)"
+          ],
+          "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">49,99€</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> extends to 1883px in a 320px viewport (overflow-right). Verify whether a two-dimensional layout exception (table, map, diagram, ...) applies."
+        }
+      ]
+    },
+    {
+      "id": "a11y-skills/reflow-clipped-text",
+      "impact": "moderate",
+      "description": "Ensure text is not clipped when content reflows at 320 CSS px",
+      "help": "Text should remain readable at 320px width",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag1410"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "div:nth-child(1) > a:nth-child(1)"
+          ],
+          "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+          "htmlTruncated": false,
+          "failureSummary": "<a> clips its text at 320px (scrollWidth 116px > clientWidth 1px, overflow: hidden). Verify whether content is lost."
+        },
+        {
+          "target": [
+            "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > span:nth-child(1)"
+          ],
+          "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE4-868BS</span>",
+          "htmlTruncated": false,
+          "failureSummary": "<span> clips its text at 320px (scrollWidth 319px > clientWidth 194px, overflow: hidden). Verify whether content is lost."
+        }
+      ]
+    }
+  ],
+  "passes": [],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 2,
+    "passCount": 0
+  },
+  "details": {
+    "viewport": {
+      "width": 320,
+      "height": 256
+    },
+    "hasHorizontalScroll": true,
+    "documentScrollWidth": 344,
+    "documentClientWidth": 320,
+    "overflowingElements": [
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"carte-categorie carte-categorie--style-superpose oe_unremovable oe_unmovable\" href=\"/en/portes-de-garage\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/portes-de-garage\">\n      <img class=\"carte-categorie__photoSuperpose o_editable_media\" ",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"carte-categorie__photoSuperpose o_editable_media\" data-pqr-part=\"carte-image\" data-pqr-native-image=\"1\" alt=\"\" src=\"/web/image/1815\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"carte-categorie__contenuSuperpose\" data-pqr-part=\"carte-contenu-superpose\">\n        \n        <div class=\"carte-categorie__inner\">\n          <div class=\"carte-categorie__blocTexte\">\n            <h3 class=\"carte-categorie__TitreSuperpose o_pqr_editable\" data-pqr-part=\"carte-title\" data-pqr",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2)",
+        "tagName": "a",
+        "html": "<a class=\"carte-categorie carte-categorie--style-superpose oe_unremovable oe_unmovable\" href=\"/en/portes-entree\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/portes-entree\">\n      <img class=\"carte-categorie__photoSuperpose o_editable_media\" data-p",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"carte-categorie__photoSuperpose o_editable_media\" data-pqr-part=\"carte-image\" data-pqr-native-image=\"1\" alt=\"\" src=\"/web/image/1816\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(2) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"carte-categorie__contenuSuperpose\" data-pqr-part=\"carte-contenu-superpose\">\n        \n        <div class=\"carte-categorie__inner\">\n          <div class=\"carte-categorie__blocTexte\">\n            <h3 class=\"carte-categorie__TitreSuperpose o_pqr_editable\" data-pqr-part=\"carte-title\" data-pqr",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 24,
+          "right": 344,
+          "width": 320
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"produits-ecommerce__Produits\" data-pqr-carte-list=\"\" data-pqr-part=\"root-produits\" tabindex=\"0\">\n              <a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\"",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 24,
+          "right": 1920,
+          "width": 1896
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier à code Hörmann FCT3-1BS, 139,99€—produit 2 sur 8\">\n            <div class=\"product-card__Tuile\" data-p",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 260,
+          "right": 480,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 273,
+          "right": 467,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 289,
+          "right": 451,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">139,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 273,
+          "right": 467,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier à code Hörmann FCT3-1BS</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 273,
+          "right": 467,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(2) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">139,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 273,
+          "right": 467,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton poussoir Hörmann FIT2-1-868-BS, 89,99€—produit 3 sur 8\">\n            <div class=\"product-card__Tuile\" d",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 496,
+          "right": 716,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 509,
+          "right": 703,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 525,
+          "right": 687,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">89,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 509,
+          "right": 703,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton poussoir Hörmann FIT2-1-868-BS</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 509,
+          "right": 703,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(3) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">89,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 509,
+          "right": 703,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Passerelle BiSecure Hörmann, 74,99€—produit 4 sur 8\">\n            <div class=\"product-card__Tuile\" data-pqr-pa",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 732,
+          "right": 952,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 745,
+          "right": 939,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 761,
+          "right": 923,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">74,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 745,
+          "right": 939,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Passerelle BiSecure Hörmann</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 745,
+          "right": 939,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(4) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">74,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 745,
+          "right": 939,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Télécommande Hörmann HSE2-868BS, 64,99€—produit 5 sur 8\">\n            <div class=\"product-card__Tuile\" data-pq",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 968,
+          "right": 1188,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1819\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 981,
+          "right": 1175,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1819\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 997,
+          "right": 1159,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">64,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 981,
+          "right": 1175,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE2-868BS</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 981,
+          "right": 1175,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(5) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">64,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 981,
+          "right": 1175,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Récepteur Hörmann HET-E2 24 BS, 119,99€—produit 6 sur 8\">\n            <div class=\"product-card__Tuile\" data-pq",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 1204,
+          "right": 1424,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1217,
+          "right": 1411,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1822\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1233,
+          "right": 1395,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">119,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1217,
+          "right": 1411,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Récepteur Hörmann HET-E2 24 BS</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1217,
+          "right": 1411,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(6) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">119,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1217,
+          "right": 1411,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Clavier radio Hörmann FCT10-1BS, 179,99€—produit 7 sur 8\">\n            <div class=\"product-card__Tuile\" data-p",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 1440,
+          "right": 1660,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1453,
+          "right": 1647,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1820\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1469,
+          "right": 1631,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">179,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1453,
+          "right": 1647,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Clavier radio Hörmann FCT10-1BS</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1453,
+          "right": 1647,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(7) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">179,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1453,
+          "right": 1647,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8)",
+        "tagName": "a",
+        "html": "<a class=\"product-card oe_unremovable oe_unmovable\" href=\"https://shop.piqueray.be\" data-pqr-produit=\"\" data-pqr-part=\"produit-card\" data-pqr-cta-href=\"https://shop.piqueray.be\" aria-label=\"Bouton mural Hörmann IT1b-1, 49,99€—produit 8 sur 8\">\n            <div class=\"product-card__Tuile\" data-pqr-pa",
+        "htmlTruncated": true,
+        "rect": {
+          "left": 1676,
+          "right": 1896,
+          "width": 220
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(1)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Tuile\" data-pqr-part=\"produit-tuile\"><img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\"></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1689,
+          "right": 1883,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(1) > img:nth-child(1)",
+        "tagName": "img",
+        "html": "<img class=\"product-card__Image\" alt=\"\" data-pqr-part=\"produit-image\" src=\"/web/image/1821\" loading=\"lazy\" style=\"\">",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1705,
+          "right": 1867,
+          "width": 162
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2)",
+        "tagName": "div",
+        "html": "<div class=\"product-card__Texte\" data-pqr-part=\"produit-texte\"><span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>\n            <span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">49,99€</span></div>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1689,
+          "right": 1883,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Bouton mural Hörmann IT1b-1</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1689,
+          "right": 1883,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(8) > div:nth-child(2) > span:nth-child(2)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Prix\" data-pqr-part=\"produit-prix\">49,99€</span>",
+        "htmlTruncated": false,
+        "rect": {
+          "left": 1689,
+          "right": 1883,
+          "width": 194
+        },
+        "viewportWidth": 320,
+        "reason": "overflow-right"
+      }
+    ],
+    "clippedTextElements": [
+      {
+        "selector": "div:nth-child(1) > a:nth-child(1)",
+        "tagName": "a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\">Skip to Content</a>",
+        "htmlTruncated": false,
+        "scrollWidth": 116,
+        "clientWidth": 1,
+        "scrollHeight": 24,
+        "clientHeight": 1,
+        "overflow": "hidden",
+        "overflowX": "hidden"
+      },
+      {
+        "selector": "div:nth-child(1) > main:nth-child(3) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > span:nth-child(1)",
+        "tagName": "span",
+        "html": "<span class=\"product-card__Titre\" data-pqr-part=\"produit-titre\">Télécommande Hörmann HSE4-868BS</span>",
+        "htmlTruncated": false,
+        "scrollWidth": 319,
+        "clientWidth": 194,
+        "scrollHeight": 20,
+        "clientHeight": 20,
+        "overflow": "hidden",
+        "overflowX": "hidden"
+      }
+    ]
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

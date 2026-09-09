@@ -1,0 +1,585 @@
+{
+  "source": "focus-indicator-check",
+  "url": "http://localhost:8109/en/portes-entree",
+  "timestamp": "2026-09-09T09:47:41.887Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/focus-visible",
+      "impact": "serious",
+      "description": "Ensure keyboard focus produces a visible indicator on focusable elements",
+      "help": "Focusable elements should have a visible focus indicator",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2aa",
+        "wcag247"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/no-context-change-on-focus",
+      "impact": "serious",
+      "description": "Ensure receiving focus does not trigger a change of context (navigation, new window)",
+      "help": "Focusing an element must not trigger a context change",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag321"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/focus-not-obscured",
+      "impact": "moderate",
+      "description": "Ensure the focused element is not hidden by fixed or sticky content",
+      "help": "Focused elements should not be obscured by author-created content",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+      "tags": [
+        "a11y-skills",
+        "wcag22aa",
+        "wcag2411"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 3,
+    "checkedNodes": 31
+  },
+  "details": {
+    "totalFocusableElements": 31,
+    "elementsWithFocusStyle": 31,
+    "elementsWithoutFocusStyle": 0,
+    "issues": [],
+    "onFocusViolations": [],
+    "focusObscuredIssues": [],
+    "elementsWithObscuredFocus": 0,
+    "allElements": [
+      {
+        "id": 0,
+        "tag": "A",
+        "role": null,
+        "name": "Skip to Content",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) none 0px",
+          "outlineWidth": "0px",
+          "outlineOffset": "1px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+        },
+        "selector": "#wrapwrap > a",
+        "html": "<a class=\"o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0\" href=\"#wrap\" data-focus-visited=\"0\">Skip to Content</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 1,
+        "tag": "A",
+        "role": null,
+        "name": "Accueil — Piqueray",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > a",
+        "html": "<a href=\"/en\" class=\"header__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\" data-focus-visited=\"1\">\n          <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n            <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" data-pqr-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 2,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "\n          Portes de garage\n  ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > div > button",
+        "html": "<button type=\"button\" class=\"nav-item\" data-pqr-part=\"nav-item-root\" data-chevron=\"true\" aria-expanded=\"false\" aria-controls=\"pqr_sousmenu_7\" data-focus-visited=\"2\">\n          <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes de garage</span>\n          <span class=\"nav-item__Oct",
+        "htmlTruncated": true
+      },
+      {
+        "id": 3,
+        "tag": "A",
+        "role": null,
+        "name": "\n        Portes d’entrée\n     ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(1)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/portes-entree\" data-actif=\"true\" aria-current=\"page\" data-focus-visited=\"3\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Portes d’entrée</span>\n        <span class=\"nav-item__Soulignement\" data-pqr-part=\"nav-item",
+        "htmlTruncated": true
+      },
+      {
+        "id": 4,
+        "tag": "A",
+        "role": null,
+        "name": "\n        Dépannage/SAV\n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(2)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/depannage-sav\" data-focus-visited=\"4\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">Dépannage/SAV</span>\n      </a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 5,
+        "tag": "A",
+        "role": null,
+        "name": "\n        À propos\n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#top > div:nth-of-type(1) > div > nav > a:nth-of-type(3)",
+        "html": "<a class=\"nav-item\" data-pqr-part=\"nav-item-root\" href=\"/en/a-propos\" data-focus-visited=\"5\">\n        <span class=\"nav-item__libell\" data-pqr-part=\"nav-item-libelle\">À propos</span>\n      </a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 6,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Demander un devis gratuit",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(1) > div:nth-of-type(3) > div > div:nth-of-type(2) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"6\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" dat",
+        "htmlTruncated": true
+      },
+      {
+        "id": 7,
+        "tag": "A",
+        "role": null,
+        "name": "\n      \n      \n        \n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(2) > div > a:nth-of-type(1)",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-0\" data-pqr-cta-href=\"/contactez-nous\" data-focus-visited=\"7\">\n      \n      <span class=\"carte-categorie__cadrePhot",
+        "htmlTruncated": true
+      },
+      {
+        "id": 8,
+        "tag": "A",
+        "role": null,
+        "name": "\n      \n      \n        \n      ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(2) > div > a:nth-of-type(2)",
+        "html": "<a class=\"carte-categorie carte-categorie--style-empile oe_unremovable oe_unmovable\" href=\"/en/contactez-nous\" data-pqr-carte=\"\" data-pqr-part=\"carte-root\" data-pqr-carte-marker=\"carte-1\" data-pqr-cta-href=\"/contactez-nous\" data-focus-visited=\"8\">\n      \n      <span class=\"carte-categorie__cadrePhot",
+        "htmlTruncated": true
+      },
+      {
+        "id": 9,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Prendre rendez-vous\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(3) > div:nth-of-type(2) > div > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"9\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" dat",
+        "htmlTruncated": true
+      },
+      {
+        "id": 10,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Contactez-nous\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(4) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"10\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" dat",
+        "htmlTruncated": true
+      },
+      {
+        "id": 11,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "Quelle est la différence entre une porte en acier et en alluminium ?",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(1) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"Quelle est la différence entre une porte en acier et en alluminium ?\" data-focus-visited=\"11\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 12,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "Peut-on motoriser une ancienne porte ?",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(2) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"true\" aria-label=\"Peut-on motoriser une ancienne porte ?\" data-focus-visited=\"12\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 13,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "Assurez-vous la maintenance après l'installation ?",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(38, 40, 44)",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(6) > div:nth-of-type(2) > div:nth-of-type(3) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"Assurez-vous la maintenance après l'installation ?\" data-focus-visited=\"13\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 14,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Contactez-nous\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(6) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" class=\"button button--variant-outlineNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"14\">\n    <span class=\"button__label o_pqr_editable\" data-pqr-part=\"button-label\" dat",
+        "htmlTruncated": true
+      },
+      {
+        "id": 15,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Voir tous les avis\n    ",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"15\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 16,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Lire la suite",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(1) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"16\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 17,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Lire la suite",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(2) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"17\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 18,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Lire la suite",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(3) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"18\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 19,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Lire la suite",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(4) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"19\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 20,
+        "tag": "A",
+        "role": null,
+        "name": "\n    Lire la suite",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(38, 40, 44) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#wrap > section:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > article:nth-of-type(5) > div:nth-of-type(3) > a",
+        "html": "<a data-pqr-part=\"button-root\" href=\"https://www.google.com/maps?cid=8309536980980743310\" class=\"button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-focus-visited=\"20\">\n    <span class=\"button__label o_pqr_editable\" data-p",
+        "htmlTruncated": true
+      },
+      {
+        "id": 21,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Niveaux de sécurité (RC2 / RC3)</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(8) > div:nth-of-type(4) > div:nth-of-type(1) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Niveaux de sécurité (RC2 / RC3)&lt;/strong&gt;\" data-focus-visited=\"21\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 22,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Harmonie de façade (Design partner)</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(8) > div:nth-of-type(4) > div:nth-of-type(2) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"true\" aria-label=\"&lt;strong&gt;Harmonie de façade (Design partner)&lt;/strong&gt;\" data-focus-visited=\"22\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 23,
+        "tag": "BUTTON",
+        "role": null,
+        "name": "<strong>Isolation acoustique</strong>",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px"
+        },
+        "selector": "#wrap > section:nth-of-type(8) > div:nth-of-type(4) > div:nth-of-type(3) > button",
+        "html": "<button type=\"button\" class=\"accordion-row__trigger\" data-pqr-part=\"trigger\" aria-expanded=\"false\" aria-label=\"&lt;strong&gt;Isolation acoustique&lt;/strong&gt;\" data-focus-visited=\"23\"></button>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 24,
+        "tag": "A",
+        "role": null,
+        "name": "Accueil — Piqueray",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(1)",
+        "html": "<a href=\"/en\" class=\"footer__logoLink\" aria-label=\"Accueil — Piqueray\" data-pqr-part=\"logo-link\" data-focus-visited=\"24\">\n              <div class=\"piqueray-logo piqueray-logo--couleur-blanc\" data-pqr-part=\"piqueray-logo-root\">\n                <span class=\"piqueray-logo__Marque\" aria-hidden=\"true\" d",
+        "htmlTruncated": true
+      },
+      {
+        "id": 25,
+        "tag": "A",
+        "role": null,
+        "name": "\n              Contactez-nous\n",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(255, 255, 255) solid 2px",
+          "outlineStyle": "solid",
+          "outlineWidth": "2px",
+          "outlineOffset": "2px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(1) > a:nth-of-type(2)",
+        "html": "<a class=\"button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right oe_unremovable oe_unmovable\" data-pqr-part=\"button-root\" href=\"/en/contactez-nous\" data-focus-visited=\"25\">\n              <span class=\"button__label\" data-pqr-part=\"button-label\" data-pq",
+        "htmlTruncated": true
+      },
+      {
+        "id": 26,
+        "tag": "A",
+        "role": null,
+        "name": "+32 (0)87 46 32 66",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(1) > p > a",
+        "html": "<a href=\"tel:+3287463266\" data-focus-visited=\"26\">+32 (0)87 46 32 66</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 27,
+        "tag": "A",
+        "role": null,
+        "name": "info@piqueray.be",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(2) > div:nth-of-type(4) > div > div:nth-of-type(2) > p > a",
+        "html": "<a href=\"mailto:info@piqueray.be\" data-focus-visited=\"27\">info@piqueray.be</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 28,
+        "tag": "A",
+        "role": null,
+        "name": "Plan du site",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(1) > span > a",
+        "html": "<a href=\"/en/pages\" data-focus-visited=\"28\">Plan du site</a>",
+        "htmlTruncated": false
+      },
+      {
+        "id": 29,
+        "tag": "A",
+        "role": null,
+        "name": "Facebook",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(1)",
+        "html": "<a href=\"/en/website/social/facebook\" class=\"footer__FacebookBas\" data-pqr-part=\"facebook-bas\" aria-label=\"Facebook\" data-focus-visited=\"29\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M15.9889 2.80987e-06C20.0465 -0.00240035 23.9535 1.5367",
+        "htmlTruncated": true
+      },
+      {
+        "id": 30,
+        "tag": "A",
+        "role": null,
+        "name": "Instagram",
+        "hasFocusStyle": true,
+        "diff": {
+          "outline": "rgb(0, 95, 204) auto 1px",
+          "outlineStyle": "auto",
+          "outlineColor": "rgb(0, 95, 204)",
+          "outlineWidth": "1px",
+          "outlineOffset": "1px"
+        },
+        "selector": "#bottom > div > div:nth-of-type(6) > div:nth-of-type(2) > a:nth-of-type(2)",
+        "html": "<a href=\"/en/website/social/instagram\" class=\"footer__InstagramBas\" data-pqr-part=\"instagram-bas\" aria-label=\"Instagram\" data-focus-visited=\"30\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M9.28 0H22.72C27.84 0 32 4.16 32 9.28V22.72C32 25.1",
+        "htmlTruncated": true
+      }
+    ],
+    "interrupted": false,
+    "screenshotPath": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-portes-entree-2026-09-09/focus-indicators.png"
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

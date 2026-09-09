@@ -1,0 +1,95 @@
+{
+  "source": "auto-play-detection",
+  "url": "http://localhost:8109/en/depannage-sav",
+  "timestamp": "2026-09-09T09:59:37.847Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/auto-play",
+      "impact": "moderate",
+      "description": "Detect auto-playing/moving content lasting longer than 5 seconds without a working pause control",
+      "help": "Moving content over 5 seconds needs a pause, stop, or hide mechanism",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag222",
+        "wcag142"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 1
+  },
+  "details": {
+    "screenshotRecords": [
+      {
+        "time": "0s",
+        "path": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-depannage-sav-2026-09-09/auto-play-screenshots/screenshot-0s.png"
+      },
+      {
+        "time": "2s",
+        "path": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-depannage-sav-2026-09-09/auto-play-screenshots/screenshot-2s.png"
+      },
+      {
+        "time": "4s",
+        "path": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-depannage-sav-2026-09-09/auto-play-screenshots/screenshot-4s.png"
+      },
+      {
+        "time": "6s",
+        "path": "/Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/comet-yogurt/specs/tiny/proofs/audit-wcag-depannage-sav-2026-09-09/auto-play-screenshots/screenshot-6s.png"
+      }
+    ],
+    "comparisons": [
+      {
+        "compare": "0s vs 2s",
+        "diffPixels": 0,
+        "totalPixels": 921600,
+        "diffPercent": "0.000%",
+        "hasChange": false
+      },
+      {
+        "compare": "2s vs 4s",
+        "diffPixels": 0,
+        "totalPixels": 921600,
+        "diffPercent": "0.000%",
+        "hasChange": false
+      },
+      {
+        "compare": "4s vs 6s",
+        "diffPixels": 0,
+        "totalPixels": 921600,
+        "diffPercent": "0.000%",
+        "hasChange": false
+      }
+    ],
+    "hasAutoPlayContent": false,
+    "stopsWithin5Seconds": false,
+    "pauseControls": {
+      "found": false,
+      "controls": [],
+      "carouselIndicators": [],
+      "hasAccessibleName": false
+    },
+    "pauseVerification": {
+      "attempted": false,
+      "controlClicked": null,
+      "beforeClickDiffPercent": null,
+      "afterClickDiffPercent": null,
+      "pauseWorked": null,
+      "error": "No auto-play detected"
+    },
+    "recommendation": "No auto-playing content detected in viewport."
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

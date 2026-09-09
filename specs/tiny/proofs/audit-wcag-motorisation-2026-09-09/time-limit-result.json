@@ -1,0 +1,66 @@
+{
+  "source": "time-limit-detector",
+  "url": "http://localhost:8109/en/motorisation",
+  "timestamp": "2026-09-09T09:43:09.774Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/meta-refresh",
+      "impact": "serious",
+      "description": "Ensure meta refresh time limits can be turned off, adjusted, or extended",
+      "help": "Verify the meta refresh satisfies an SC 2.2.1 exception or is adjustable",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag221"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/time-limit-timer",
+      "impact": "moderate",
+      "description": "Detect JavaScript timers that may implement a time limit",
+      "help": "Verify whether detected timers implement an adjustable time limit",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag221"
+      ],
+      "nodes": []
+    },
+    {
+      "id": "a11y-skills/time-limit-countdown",
+      "impact": "moderate",
+      "description": "Detect countdown/timeout wording in visible text",
+      "help": "Verify whether the countdown text indicates an adjustable time limit",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+      "tags": [
+        "a11y-skills",
+        "wcag2a",
+        "wcag221"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 3
+  },
+  "details": {
+    "metaRefresh": [],
+    "timers": [],
+    "countdownIndicators": [],
+    "hasTimeLimits": false
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}

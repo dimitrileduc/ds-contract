@@ -1,0 +1,54 @@
+{
+  "source": "orientation-check",
+  "url": "http://localhost:8109/en/a-propos",
+  "timestamp": "2026-09-09T10:05:17.658Z",
+  "violations": [],
+  "incomplete": [],
+  "passes": [
+    {
+      "id": "a11y-skills/orientation-lock",
+      "impact": "serious",
+      "description": "Ensure content does not restrict its view to a single display orientation",
+      "help": "Content should work in both portrait and landscape orientation",
+      "helpUrl": "https://www.w3.org/WAI/WCAG22/Understanding/orientation.html",
+      "tags": [
+        "a11y-skills",
+        "wcag21aa",
+        "wcag134"
+      ],
+      "nodes": []
+    }
+  ],
+  "inapplicable": [],
+  "summary": {
+    "violationCount": 0,
+    "incompleteCount": 0,
+    "passCount": 1
+  },
+  "details": {
+    "portrait": {
+      "lockMessageFound": false,
+      "lockMessageText": null,
+      "mainContentHidden": false,
+      "bodyWidth": 375,
+      "bodyHeight": 9063,
+      "visibleTextLength": 3317
+    },
+    "landscape": {
+      "lockMessageFound": false,
+      "lockMessageText": null,
+      "mainContentHidden": false,
+      "bodyWidth": 667,
+      "bodyHeight": 9421,
+      "visibleTextLength": 3317
+    },
+    "hasOrientationLock": false,
+    "lockDetectedIn": "none"
+  },
+  "disclaimer": {
+    "message": "自動テストで検出できるのはWCAG違反の一部です。完全な準拠確認には手動テストが必須です。",
+    "messageEn": "Automated testing can only detect a subset of WCAG violations. Manual testing is required for full compliance.",
+    "coverage": "approximately 30-40%",
+    "moreInfo": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  }
+}
