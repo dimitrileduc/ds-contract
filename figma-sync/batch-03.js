@@ -1709,7 +1709,7 @@ const COMPONENTS = [
     "setName": "Equipe",
     "contractId": "ds.equipe",
     "anchorKey": "e5563df1e3d6a5e6d023174576ec6d16f54f997b",
-    "description": "Equipe — generated from contract ds.equipe v2.0.0",
+    "description": "Equipe — generated from contract ds.equipe v2.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -2188,7 +2188,7 @@ const COMPONENTS = [
               "name": "grid",
               "layout": {
                 "mode": "GRID",
-                "columns": 3,
+                "columns": 4,
                 "primary": "MIN",
                 "counter": "MIN"
               },
@@ -2408,7 +2408,7 @@ const COMPONENTS = [
               "name": "grid",
               "layout": {
                 "mode": "GRID",
-                "columns": 4,
+                "columns": 5,
                 "primary": "MIN",
                 "counter": "MIN"
               },

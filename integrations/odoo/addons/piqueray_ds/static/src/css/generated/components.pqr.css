@@ -1013,7 +1013,7 @@
   text-align: center;
 }
 
-/* Equipe — from ds.equipe v2.0.0 (core/emit-html.ts) */
+/* Equipe — from ds.equipe v2.1.0 (core/emit-html.ts) */
 
 .equipe, .equipe *, .equipe *::before, .equipe *::after {
   box-sizing: border-box;
@@ -1059,11 +1059,11 @@
 }
 
 .equipe--presentation-desktop .equipe__grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .equipe--presentation-wide .equipe__grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 /* AccordionRow — from ds.accordion-row v2.1.0 (core/emit-html.ts) */
@@ -4249,7 +4249,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* Carte — from ds.carte v3.1.0 (core/emit-html.ts) */
+/* Carte — from ds.carte v3.1.1 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;

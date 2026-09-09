@@ -1,7 +1,8 @@
 /*
  * responsive/equipe.pqr.css — ZONE MANUELLE (portage « Équipe v2 », passe 2, 2026-09-07).
  *
- * Projection Odoo des règles PAR MODE du contrat ds.equipe 2.0.0 (axe `presentation`),
+ * Projection Odoo des règles PAR MODE du contrat ds.equipe 2.1.0 (axe `presentation` ;
+ * 2.1.0 le 2026-09-09 : Desktop 3→4 colonnes, Wide 4→5, posé à la source Figma d'abord),
  * réécrites en @media sur les seuils des jetons de rupture :
  *   Mobile   = base (components.pqr.css, classe `.equipe`)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
@@ -25,11 +26,12 @@
  * LE DÉCLENCHEUR DU SURVOL n'est pas ici non plus : il vit dans
  * responsive/member-card.pqr.css, zone ODOO-EQUIPE-V2-MEMBER-SURVOL (passe 1).
  *
- * VÉRIFICATION DE LA GRILLE, au pixel, depuis le dump v1.8 du set 2777:30992 :
+ * VÉRIFICATION DE LA GRILLE, au pixel (Mobile/Tablette : dump v1.8 du set 2777:30992 du
+ * 2026-09-07 ; Desktop/Wide : canevas vif relu après le geste du 2026-09-09) :
  *   Mobile   342 de contenu, 2 colonnes : (342 − 32) / 2 = 155,00
  *   Tablette 738 de contenu, 3 colonnes : (738 − 64) / 3 = 224,67
- *   Desktop 1088 de contenu, 3 colonnes : (1088 − 64) / 3 = 341,33
- *   Wide    1550 de contenu, 4 colonnes : (1550 − 96) / 4 = 363,50
+ *   Desktop 1088 de contenu, 4 colonnes : (1088 − 96) / 4 = 248,00   (2.0.0 : 3 col → 341,33)
+ *   Wide    1550 de contenu, 5 colonnes : (1550 − 128) / 5 = 284,40  (2.0.0 : 4 col → 363,50)
  * — exactement les quatre largeurs de carte relevées sur les instances du canevas.
  */
 
@@ -74,26 +76,27 @@
   }
 }
 
-/* Desktop ≥ 992 : gouttière 56. Le nombre de colonnes NE CHANGE PAS (3, comme en
- * tablette) — le contrat porte bien `desktop: { columns: 3 }`, et la règle est
- * répétée ici plutôt que sous-entendue, pour que la feuille se lise sans avoir à
- * savoir laquelle des trois requêtes précédentes est encore active. */
+/* Desktop ≥ 992 : gouttière 56, la grille passe de 3 à 4 colonnes (2.1.0, 2026-09-09 ;
+ * en 2.0.0 le compte restait à 3 et les portraits rendaient trop grands). 16 cartes
+ * → 4 rangées pleines. */
 @media (min-width: 992px) {
   .s_pqr_equipe.equipe {
     padding-inline: var(--pqr-space-56);
   }
   .s_pqr_equipe.equipe .equipe__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* Wide ≥ 1600 : gouttière 89, la grille passe à 4 colonnes. */
+/* Wide ≥ 1600 : gouttière 89, la grille passe à 5 colonnes (2.1.0 ; 4 en 2.0.0). Avec
+ * 16 membres la dernière rangée n'en porte qu'un — fait dessiné à la source, identique
+ * sur le canevas (grille Figma 5 × 4, rangées HUG). */
 @media (min-width: 1600px) {
   .s_pqr_equipe.equipe {
     padding-inline: var(--pqr-space-89);
   }
   .s_pqr_equipe.equipe .equipe__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 

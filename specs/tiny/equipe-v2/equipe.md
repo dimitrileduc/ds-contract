@@ -349,3 +349,83 @@ toujours. Le plan en flux remplit désormais le disque. Capture avant/après dan
   passage sur le contrat.
 - L'axe Équipe en **Desktop (1200) : 3 colonnes, 2652 px de haut, soit plus haut que le Wide** (1891, 4 colonnes).
   Dessin du candidat, jamais validé à l'écran.
+
+---
+
+## 2026-09-09 — Desktop 4 colonnes, Wide 5 colonnes (owner : « les photos sont trop grosses au rendu »)
+
+Le point laissé ouvert ci-dessus (« Desktop : 3 colonnes, plus haut que le Wide, jamais validé à l'écran ») est
+tranché par l'owner : **4 colonnes au bureau au lieu de 3, 5 en wide au lieu de 4**. Fait dans l'ordre du runbook
+(docs/16) : la source Figma d'abord, puis le contrat, puis les miroirs, puis la mesure.
+
+### Le geste à la source (§VIII, §X)
+
+- Relevé AVANT sur le canevas vif : 4 variantes, **1 instance par variante** (les 4 vues « À Propos » de la planche
+  031), rangées toutes en `HUG`, **aucune surcharge de grille** sur les instances.
+- Version nommée « Avant Equipe — Desktop 3→4 col, Wide 4→5 col (2026-09-09) », puis empreintes FNV-1a des 8 cibles
+  (4 masters + 4 instances) exportées avec `useAbsoluteBounds`, PNG rangés via le receveur 9230 de ce worktree.
+- Mutation : `gridColumnCount` **3 → 4** sur la grille `2777:30765` (Desktop) et **4 → 5** sur `2777:30879` (Wide).
+  Figma recompte lui-même les rangées (6 → 4 ; 4 → 4) et garde `HUG`. Version nommée « Après … ».
+- APRÈS : les **4 cibles Mobile/Tablette sont identiques à l'octet** (même empreinte), les 4 cibles Desktop/Wide ont
+  changé et seulement elles ; les instances suivent le master sans surcharge.
+
+| Écran | avant | après | carte |
+|---|---|---|---|
+| Desktop 1200 | 3 col × 6 rangées, 2652 de haut | **4 col × 4**, **1404** | 341,33 → **248** = (1088 − 96) / 4 |
+| Wide 1728 | 4 col × 4 rangées, 1891 | **5 col × 4**, **1574,6** | 363,5 → **284,4** = (1550 − 128) / 5 |
+
+**Conséquence dessinée, à connaître** : 16 membres sur 5 colonnes = 3 rangées pleines + **une rangée d'UNE carte**
+en Wide. C'est le dessin de la source, le site fait pareil (grille CSS) ; ni corrigé ni masqué — à l'owner de dire si
+l'équipe passe à 15 ou 20, ou si ça reste.
+
+Reçus : `specs/tiny/proofs/equipe-colonnes/equipe-cols-{avant,apres}-{master,vue}-{mobile,tablette,desktop,wide}.png`
+(échelle 0,5) et `equipe-cols-planche-{390,834,1200,1728}.png` (1x, référence de mesure).
+
+### Le contrat — `ds.equipe` 2.0.0 → **2.1.0** (MINEUR)
+
+Seul `layoutByProp.map.{desktop,wide}.columns` bouge (3 → 4, 4 → 5) ; aucune prop, aucune ancre, aucun jeton.
+Précédent exact : `ds.reassurances` 2.2.0 (bureau 3 → 4 colonnes, 2026-09-08). Descriptions du contrat, de la prop
+`presentation` et de la part `grid` mises à jour avec la provenance (canevas vif après le geste, pas un dump neuf :
+aucun autre fait du set n'a bougé, les empreintes Mobile/Tablette le prouvent). Pas de re-dump, décision assumée ici.
+
+### Les miroirs Odoo (les cinq, plus le digest)
+
+`equipe.authoring.json` (27 épingles), `figma-panels.json` (2), `components.xml` (version du bloc),
+`version_guard.js`, `scan-saved-versions.ts`, fixture `version-drift/cases.json` ; `inputs.lock.json --repin`
+→ digest `4afa8f18… → a283f37e…`, propagé sur les 16 blocs de `components.xml` et les 3 miroirs.
+`responsive/equipe.pqr.css` : `repeat(4, …)` à 992, `repeat(5, …)` à 1600, en-tête et commentaires recopiés.
+
+### Mesure — bloc `/equipe-test` contre planche, MÊME boîte, contenu ÉGAL (instance `piqueray-odoo-037`, 8109)
+
+Les outils de la passe 2 (`.page-parity/equipe-v2/tools/`, hors git) **n'existent plus sur aucun disque** ; réécrit
+en un fichier `.page-parity/equipe-colonnes/mesure-equipe.mjs` (hors git — capture clippée sur la boîte du bloc
+après `document.fonts.ready`, refus d'une boîte < 10 px, sonde, alpha aplati, triptyque). **Les quatre triptyques
+ont été regardés** : trois panneaux pleins partout, le panneau diff ne porte que le lissage des anneaux et du texte.
+
+| Écran | planche | bloc Odoo | Δh | écart | colonnes | contenu | carte | images |
+|---|---|---|---|---|---|---|---|---|
+| 390 | 390 × 2086 | 390 × 2086 | 0 | **0,53 %** | 2 | 342 | 155 × 249 | 32/32 |
+| 834 | 834 × 1962 | 834 × 1962 | 0 | **0,39 %** | 3 | 738 | 224,66 × 293,66 | 32/32 |
+| 1200 | 1200 × 1404 | 1200 × 1404 | 0 | **0,51 %** | **4** | 1088 | **248** × 322 | 32/32 |
+| 1728 | 1728 × 1575 | 1728 × 1574 | −1 (1574,6 arrondi) | **0,40 %** | **5** | 1550 | **284,39** × 363,39 | 32/32 |
+
+Triptyques et sonde : `specs/tiny/proofs/equipe-colonnes/mesure/`. `/a-propos` recomposé sur 037 (bloc figé → sert
+2.1.0). L'instance de l'owner (8071) n'a pas été touchée.
+
+### Portes
+
+`build` vert · `geometry:gate` 0 invisible · `odoo:authoring:check` vert · `odoo:module:check` 23/23 ·
+`emitters:check` vert · `catalog`, `golden:update`, reçu du moteur re-posés · `tsc` 0 · `parity` « No new drift »
+(19 acquittements inchangés). **`npm run eval` NON lancé** : une autre session travaille dans ce même worktree
+(carte-réassurance `photo-h` 248, `evals/run.ts`, `parity/report.json` modifiés pendant cette passe) — deux évals dans
+un scratch partagé se faussent (mémoire `worktree-partage-eval-scratch`). À lancer quand le worktree est calme.
+
+### Deux pièges payés ce matin
+
+- **`odoo -d <base inexistante> -u piqueray_ds` CRÉE la base** — puis le conteneur en a deux et toutes les pages
+  tombent en 404 « No database is selected » (le piège 037, re-payé de l'autre côté). La base de l'instance 037 est
+  `piqueray_037`, pas `piqueray_pilote` : lire `docker exec <db> psql -U odoo -d postgres -Atc "select datname from
+  pg_database"` AVANT tout `-u`. Base parasite supprimée (créée 07:13:30, 14 modules, vérifiée avant le `DROP`).
+- **`parity` ne dit rien d'un nombre de colonnes qui change** : le cliché `figma-components.json` ne porte ni
+  `gridColumnCount` ni `columns`, donc 3 → 4 et 4 → 5 sont passés sans un mot, cliché périmé ou non. La preuve du
+  canevas est l'empreinte avant/après ci-dessus, pas la porte.
