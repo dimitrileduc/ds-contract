@@ -65,3 +65,27 @@
     padding-inline: var(--pqr-space-89);
   }
 }
+
+/* ---- ODOO-037-CTA-CARTE-REPLI (2026-09-09, audit WCAG de la home) ---------
+ *
+ * FAIT CODE-ONLY, et la raison pour laquelle le contrat ne peut pas le dire :
+ * `white-space: nowrap` est déclaré sur la RACINE de ds.button 2.4.1, pour tout
+ * le système. Le corriger là serait une décision de design sur tous les boutons
+ * du site — hors périmètre de cet audit.
+ *
+ * Ce que ça répare : à 320 px de fenêtre (largeur exigée par WCAG 1.4.10) la
+ * carte de catégorie dispose de 272 px, et un CTA à libellé long y déborde —
+ * mesuré sur /motorisation : « BROCHURE PORTES DE GARAGE » rend 302 px, donc un
+ * document de 326 px pour une fenêtre de 320. La page défilait latéralement.
+ *
+ * Pourquoi c'est sans effet ailleurs : un libellé ne se replie que s'il ne tient
+ * PAS. À 390 la carte reçoit 342 px et le CTA en demande 302 : il tient, donc
+ * rien ne bouge. Prouvé au pixel sur les 7 pages porteuses, aux 4 largeurs
+ * dessinées (390 · 768 · 1200 · 1728) : zéro pixel d'écart.
+ *
+ * Alternative écartée, à garder en tête : raccourcir le libellé dans le contenu
+ * de la page. Zéro code, mais fragile — le prochain libellé long redéborderait.
+ */
+.s_pqr_categories_principales.categories-principales .carte-categorie .button {
+  white-space: normal;
+}

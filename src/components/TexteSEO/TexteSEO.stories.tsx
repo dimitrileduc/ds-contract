@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -58,7 +58,7 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
     .join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <span className={styles.Titre}>
+      <h2 className={styles.Titre}>
         {titre.map((segment, index) => {
           const inner = segment.underline ? <u>{segment.text}</u> : segment.text;
           return segment.strong ? (
@@ -67,7 +67,7 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
             <span key={index}>{inner}</span>
           );
         })}
-      </span>
+      </h2>
       <div className={styles.p}>
         <span className={styles.Paragraphe}>
           {texte.map((segment, index) => {
@@ -81,7 +81,7 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
         </span>
       </div>
       <div className={styles.h3}>
-        <span className={styles.SousTitre}>{sousTitre}</span>
+        <h3 className={styles.SousTitre}>{sousTitre}</h3>
       </div>
       <div className={styles.accordion}>
         {items?.map((item, index) => (

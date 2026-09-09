@@ -525,6 +525,33 @@
   text-decoration: underline;
 }
 
+/* (8) La ligne de copyright, depuis qu'elle porte des liens (2026-09-09, audit
+ * WCAG, critère 2.4.5). Jumelle exacte de la règle (7), même cause : sans elle
+ * Odoo peint le lien avec sa couleur par défaut — MESURÉ sur la page vive,
+ * rgb(88, 59, 81), un violet foncé sur le fond sombre du pied, sans soulignement.
+ * Illisible, et invisible comme lien.
+ *
+ * `color: inherit` rend au lien le blanc de la ligne ; le soulignement le désigne
+ * comme lien sans dépendre de la couleur — ce que le critère 1.4.1 « Utilisation
+ * de la couleur » demande, et que la couleur d'Odoo ne faisait pas. Les cinq
+ * états sont couverts, comme en (7) : un lien visité ne doit pas non plus
+ * disparaître. */
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] a,
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] a:hover,
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] a:focus,
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] a:active,
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] a:visited {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Même conséquence du passage en `Html` que pour la colonne Contact : la valeur
+ * est enveloppée dans un `<p>` porteur de la marge Bootstrap. Ici elle décalerait
+ * la ligne du bas sous le séparateur. */
+.footer[data-pqr-shell="footer"] [data-pqr-part="copyright-texte"] p {
+  margin: 0;
+}
+
 /* Un champ `Html` d'Odoo stocke du contenu de BLOC : la valeur est enregistrée
  * enveloppée dans un `<p>`, qui apporte la marge de paragraphe de Bootstrap.
  * MESURÉ sur la page vive : 16 px sous chaque ligne, colonne Contact à 132 px
@@ -617,3 +644,37 @@
 .s_pqr_google_reviews_section .google-reviews__avisGoogle {
   width: 100%;
 }
+
+/* ODOO-037-ANCRE-FORMULAIRE BEGIN
+   2026-09-09 (accessibilité, passe 2). Le CTA du hero de /contactez-nous pointait
+   vers `#`, donc au clavier il renvoyait le focus en haut de page — le défaut que
+   cette passe corrige partout ailleurs. Sa destination sensée est le formulaire de
+   la même page, pas une autre page : d'où une ancre, et le confort qui va avec.
+
+   Trois choses, et pas une de plus :
+   (1) le défilement doux, refusé quand le système demande moins d'animation —
+       même politique que `odoo-motion-policy` posée pour la vidéo du hero ;
+   (2) une marge de défilement, pour que la cible ne colle pas au bord haut. Le
+       header Piqueray est en `position: absolute` (mesuré : 76 px en mobile,
+       86 px au bureau) et NON collant : il ne recouvre donc rien une fois la page
+       défilée. La marge est du confort de lecture, pas une compensation ;
+   (3) rien sur le focus : `scroll-behavior` ne déplace pas le focus, et un lien
+       d'ancre le déplace nativement sur la cible. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+#pqr_formulaire {
+  scroll-margin-top: var(--pqr-space-24, 24px);
+}
+
+/* La cible porte `tabindex="-1"` pour recevoir le focus. Elle n'est pas dans le
+   parcours de tabulation, donc son anneau de focus n'apprend rien à personne et
+   dessine un cadre autour de toute la section : on le retire, pour cette cible
+   programmatique UNIQUEMENT. */
+#pqr_formulaire:focus {
+  outline: none;
+}
+/* ODOO-037-ANCRE-FORMULAIRE END */

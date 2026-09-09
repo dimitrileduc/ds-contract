@@ -57,10 +57,31 @@ class Website(models.Model):
         translate=True,
         default='Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a>',
     )
-    x_pqr_footer_copyright = fields.Text(
+    # 2026-09-09 (audit WCAG de la home, critère 2.4.5 « Plusieurs moyens »).
+    # Text → Html, sur le patron déjà établi juste au-dessus par `x_pqr_footer_tel`
+    # et `x_pqr_footer_email` : un champ Text ne peut porter aucun lien, or cette
+    # ligne EST la ligne des liens de bas de page. Le stockage ne change pas
+    # (Odoo range Html comme Text, et les deux sont traduits) — c'est le rendu et
+    # l'éditeur qui gagnent le droit au lien.
+    #
+    # « Plan du site » pointe /pages, la liste native des pages publiques d'Odoo,
+    # qui porte AUSSI un champ de recherche : elle fournit donc les deux moyens
+    # que le critère exige, d'un coup. Elle existait déjà et n'était liée nulle part.
+    #
+    # CGV et « Politique de confidentialité » RESTENT DU TEXTE, et c'est délibéré :
+    # ces pages n'existent pas (vérifié le 2026-09-09, 404 sur /cgv,
+    # /conditions-generales, /politique-de-confidentialite, /mentions-legales).
+    # On n'invente pas une destination — règle de la spec 037. Le jour où elles
+    # existent, il suffit de les envelopper ici comme « Plan du site ».
+    x_pqr_footer_copyright = fields.Html(
         string="Piqueray Footer — Copyright",
         translate=True,
-        default="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        sanitize=False,
+        default=(
+            "© 2025 Piqueray - CGV - Politique de confidentialité - "
+            '<a href="/pages">Plan du site</a>'
+            " | Création de site internet ProduWeb"
+        ),
     )
     x_pqr_footer_cta_label = fields.Char(
         string="Piqueray Footer — CTA Label",

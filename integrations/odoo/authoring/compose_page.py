@@ -221,6 +221,18 @@ def fill_list(root, items, variant=""):
             im = next(iter(card.xpath(".//img")), None)
             if im is not None:
                 im.set("src", img_url(item["image"]))
+        # 2026-09-09 (accessibilite, passe 2) : le texte alternatif de la photo.
+        # Le tuyau existait DEJA de bout en bout — la prop `imageAlt` du contrat
+        # `ds.carte`, le `t-att-alt` du gabarit, et un controle d'edition cote
+        # Odoo — mais le composeur n'ecrivait que `src`, donc les 18 images
+        # visibles de la home sortaient toutes avec un `alt` vide (mesure du
+        # 2026-09-09). Une cle `alt` absente laisse le `alt=""` du gabarit : c'est
+        # le bon defaut pour une photo purement decorative, et c'est un choix
+        # ECRIT, pas un oubli. Le redacteur peut le changer dans Odoo ensuite.
+        if item.get("alt") is not None:
+            im = next(iter(card.xpath(".//img")), None)
+            if im is not None:
+                im.set("alt", item["alt"])
         # 2026-09-07 (Equipe v2, passe 2) : une carte peut porter PLUSIEURS plans
         # photo — la carte membre en empile deux, le portrait de repos et celui que
         # le survol decouvre. La cle `image` (une seule image, la premiere du DOM)

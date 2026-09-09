@@ -1,120 +1,132 @@
 {
-  "url": "/",
-  "name": "Home",
-  "meta_title": "Portes de garage et portes d'entrée Hörmann en Province de Liège | Piqueray",
-  "view_tname": "website.homepage",
-  "header_overlay": true,
-  "sections": [
+ "url": "/",
+ "name": "Home",
+ "meta_title": "Portes de garage et portes d'entrée Hörmann en Province de Liège | Piqueray",
+ "view_tname": "website.homepage",
+ "header_overlay": true,
+ "sections": [
+  {
+   "component": "s_pqr_hero_video",
+   "set_html": {
+    "hero-video-title": "Le numéro 1 des portes HÖRMANN<br/>en Province de Liège !"
+   },
+   "set_button": {
+    "button-root": "En savoir plus"
+   },
+   "images": {
+    "hero-video-poster": "hero_video_facade"
+   },
+   "links": {
+    "button-root": "/contactez-nous"
+   }
+  },
+  {
+   "component": "s_pqr_categories_principales",
+   "variant": "superpose",
+   "cards": [
     {
-      "component": "s_pqr_hero_video",
-      "set_html": {
-        "hero-video-title": "Le numéro 1 des portes HÖRMANN<br/>en Province de Liège !"
-      },
-      "set_button": {
-        "button-root": "En savoir plus"
-      },
-      "images": {
-        "hero-video-poster": "hero_video_facade"
-      },
-      "links": {
-        "button-root": "/contactez-nous"
-      }
+     "titre": "Portes de garage",
+     "texte": "Une porte de garage pour chaque goût et chaque style de maison.",
+     "image": "cat_garage",
+     "lien": "/portes-de-garage"
     },
     {
-      "component": "s_pqr_categories_principales",
-      "variant": "superpose",
-      "cards": [
-        {
-          "titre": "Portes de garage",
-          "texte": "Une porte de garage pour chaque goût et chaque style de maison.",
-          "image": "cat_garage",
-          "lien": "/portes-de-garage"
-        },
-        {
-          "titre": "Portes d’entrée",
-          "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
-          "image": "cat_entree",
-          "lien": "/portes-entree"
-        }
-      ]
-    },
-    {
-      "component": "s_pqr_presentation",
-      "set_html": {
-        "presentation-title": "<span>Piqueray, votre distributeur de portes Hörmann </span><strong>en Province de Liège</strong>",
-        "presentation-text": "<strong>Depuis plus de 50 ans,</strong><span> PIQUERAY est dépositaire officiel de la marque </span><strong><u>Hörmann</u></strong><span>, fabricant connu pour ses produits de qualité et ses innovations.</span><br/><br/><span>Composée d’une équipe d’une vingtaine de personnes de la </span><strong>région verviétoise</strong><span> et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.</span><br/><br/><span>Que vous soyez particulier ou une entreprise, </span><strong>Piqueray vous accompagne de A à Z</strong><span> dans votre projet.</span>"
-      },
-      "set_button": {
-        "button-root": "En savoir plus"
-      },
-      "links": {
-        "presentation-cta": "/a-propos"
-      }
-    },
-    {
-      "component": "s_pqr_sav",
-      "images": {
-        "sav-background": "sav_bg",
-        "sav-photo": "sav_tech"
-      },
-      "links": {
-        "sav-cta": "/depannage-sav"
-      }
-    },
-    {
-      "component": "s_pqr_produits_ecommerce",
-      "cards": [
-        {
-          "titre": "Télécommande Hörmann HSE4-868BS",
-          "prix": "74,99€",
-          "image": "produit1"
-        },
-        {
-          "titre": "Clavier à code Hörmann FCT3-1BS",
-          "prix": "139,99€",
-          "image": "produit2"
-        },
-        {
-          "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
-          "prix": "89,99€",
-          "image": "produit3"
-        },
-        {
-          "titre": "Passerelle BiSecure Hörmann",
-          "prix": "74,99€",
-          "image": "produit4"
-        },
-        {
-          "titre": "Télécommande Hörmann HSE2-868BS",
-          "prix": "64,99€",
-          "image": "produit1"
-        },
-        {
-          "titre": "Récepteur Hörmann HET-E2 24 BS",
-          "prix": "119,99€",
-          "image": "produit4"
-        },
-        {
-          "titre": "Clavier radio Hörmann FCT10-1BS",
-          "prix": "179,99€",
-          "image": "produit2"
-        },
-        {
-          "titre": "Bouton mural Hörmann IT1b-1",
-          "prix": "49,99€",
-          "image": "produit3"
-        }
-      ]
-    },
-    {
-      "commun": "devis"
-    },
-    {
-      "commun": "reassurances"
-    },
-    {
-      "commun": "avis-google"
+     "titre": "Portes d’entrée",
+     "texte": "Bienvenue chez vous ! Découvrez les portes d’entrée.",
+     "image": "cat_entree",
+     "lien": "/portes-entree"
     }
-  ],
-  "_note": "Page d'accueil. Devis, Réassurances et Avis Google sont REPRIS du contenu commun (`authoring/commun/`, spec 037) : les corriger là les corrige partout. Les destinations sont posées par `links` — celles qui manquent encore sont au registre des restes, jamais inventées."
+   ]
+  },
+  {
+   "component": "s_pqr_presentation",
+   "set_html": {
+    "presentation-title": "<span>Piqueray, votre distributeur de portes Hörmann </span><strong>en Province de Liège</strong>",
+    "presentation-text": "<strong>Depuis plus de 50 ans,</strong><span> PIQUERAY est dépositaire officiel de la marque </span><strong><u>Hörmann</u></strong><span>, fabricant connu pour ses produits de qualité et ses innovations.</span><br/><br/><span>Composée d’une équipe d’une vingtaine de personnes de la </span><strong>région verviétoise</strong><span> et gérée par Florian et Cécilia Piqueray (frère et sœur), l’entreprise se démarque par son caractère familial et sa proximité.</span><br/><br/><span>Que vous soyez particulier ou une entreprise, </span><strong>Piqueray vous accompagne de A à Z</strong><span> dans votre projet.</span>"
+   },
+   "set_button": {
+    "button-root": "En savoir plus"
+   },
+   "links": {
+    "presentation-cta": "/a-propos"
+   }
+  },
+  {
+   "component": "s_pqr_sav",
+   "images": {
+    "sav-background": "sav_bg",
+    "sav-photo": "sav_tech"
+   },
+   "links": {
+    "sav-cta": "/depannage-sav"
+   }
+  },
+  {
+   "component": "s_pqr_produits_ecommerce",
+   "cards": [
+    {
+     "titre": "Télécommande Hörmann HSE4-868BS",
+     "prix": "74,99€",
+     "image": "produit1",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Clavier à code Hörmann FCT3-1BS",
+     "prix": "139,99€",
+     "image": "produit2",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
+     "prix": "89,99€",
+     "image": "produit3",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Passerelle BiSecure Hörmann",
+     "prix": "74,99€",
+     "image": "produit4",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Télécommande Hörmann HSE2-868BS",
+     "prix": "64,99€",
+     "image": "produit1",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Récepteur Hörmann HET-E2 24 BS",
+     "prix": "119,99€",
+     "image": "produit4",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Clavier radio Hörmann FCT10-1BS",
+     "prix": "179,99€",
+     "image": "produit2",
+     "lien": "https://shop.piqueray.be"
+    },
+    {
+     "titre": "Bouton mural Hörmann IT1b-1",
+     "prix": "49,99€",
+     "image": "produit3",
+     "lien": "https://shop.piqueray.be"
+    }
+   ],
+   "links": {
+    "root-entete-bouton": "https://shop.piqueray.be",
+    "root-bouton-conteneur": "https://shop.piqueray.be"
+   }
+  },
+  {
+   "commun": "devis"
+  },
+  {
+   "commun": "reassurances"
+  },
+  {
+   "commun": "avis-google"
+  }
+ ],
+ "_note": "Page d'accueil. Devis, Réassurances et Avis Google sont REPRIS du contenu commun (`authoring/commun/`, spec 037) : les corriger là les corrige partout. Les destinations sont posées par `links` — celles qui manquent encore sont au registre des restes, jamais inventées."
 }

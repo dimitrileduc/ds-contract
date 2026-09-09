@@ -1071,7 +1071,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-/* AccordionRow — from ds.accordion-row v2.1.0 (core/emit-html.ts) */
+/* AccordionRow — from ds.accordion-row v2.2.0 (core/emit-html.ts) */
 
 .accordion-row, .accordion-row *, .accordion-row *::before, .accordion-row *::after {
   box-sizing: border-box;
@@ -1121,6 +1121,7 @@
 .accordion-row__TitreOuvert {
   flex: 1 1 auto;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h4-family);
   font-size: var(--pqr-typography-h4-size);
@@ -1176,6 +1177,7 @@
 .accordion-row__Titre {
   flex: 1 1 auto;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h4-family);
   font-size: var(--pqr-typography-h4-size);
@@ -4853,7 +4855,7 @@
   gap: var(--pqr-space-4);
 }
 
-/* TexteSEO — from ds.texte-seo v4.0.0 (core/emit-html.ts) */
+/* TexteSEO — from ds.texte-seo v4.1.0 (core/emit-html.ts) */
 
 .texte-seo, .texte-seo *, .texte-seo *::before, .texte-seo *::after {
   box-sizing: border-box;
@@ -4886,6 +4888,7 @@
 .texte-seo__Titre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h2-family);
   font-size: var(--pqr-typography-h2-size);
@@ -4928,6 +4931,7 @@
 .texte-seo__SousTitre {
   width: 100%;
   min-width: 0;
+  margin: 0;
   color: var(--pqr-color-noir-bleute);
   font-family: var(--pqr-typography-h4-family);
   font-size: var(--pqr-typography-h4-size);

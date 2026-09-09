@@ -570,9 +570,24 @@ const cases: Case[] = [
       if (!/menu_portes_entree/.test(migration) || !/parent_id != inf/.test(migration)) {
         throw new Error('la migration ne garde pas le re-parentage sur « encore à sa place inférée » (FR-012)');
       }
+      // Odoo joue le dossier `migrations/<v>/` quand la version du MANIFESTE est
+      // supérieure à celle installée et au moins égale à <v>. La première écriture
+      // de ce cas exigeait l'ÉGALITÉ stricte avec 19.0.1.17.0 — un encodage faux de
+      // la règle : il tenait tant que 17.0 était la dernière version, et rougissait
+      // au premier bump suivant (2026-09-09, passe 2 d'accessibilité, manifeste porté
+      // à 19.0.1.18.0 pour la migration de langue). La migration de menu était
+      // toujours là et toujours déclenchée. C'est la comparaison qui était fausse,
+      // pas le module.
       const manifeste = readFileSync(path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/__manifest__.py'), 'utf8');
-      if (!/"version": "19\.0\.1\.17\.0"/.test(manifeste)) {
-        throw new Error('la migration 19.0.1.17.0 existe mais le manifeste ne la déclenche pas');
+      const version = /"version": "(\d+)\.(\d+)\.(\d+)\.(\d+)\.(\d+)"/.exec(manifeste);
+      if (!version) {
+        throw new Error('le manifeste ne déclare aucune version lisible');
+      }
+      const rang = (v: string[]) => v.map((n) => Number(n).toString().padStart(6, '0')).join('.');
+      if (rang(version.slice(1)) < rang(['19', '0', '1', '17', '0'])) {
+        throw new Error(
+          `la migration 19.0.1.17.0 existe mais le manifeste (${version[0]}) est antérieur : elle ne se déclenchera jamais`,
+        );
       }
     },
   },

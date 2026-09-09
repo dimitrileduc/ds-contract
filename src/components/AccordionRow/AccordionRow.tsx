@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.1.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef, useState, useId } from 'react';
@@ -43,7 +43,7 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
     <div ref={ref} className={classes} {...rest}>
       {etat === 'ouvert' ? (
         <div className={styles.title}>
-          {etat === 'ouvert' ? <span className={styles.TitreOuvert}>{titre}</span> : null}
+          {etat === 'ouvert' ? <h3 className={styles.TitreOuvert}>{titre}</h3> : null}
           {etat === 'ouvert' ? (
             <span
               className={styles.ChevronUp}
@@ -58,7 +58,7 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
           {contenu}
         </span>
       ) : null}
-      {etat === 'ferme' ? <span className={styles.Titre}>{titre}</span> : null}
+      {etat === 'ferme' ? <h3 className={styles.Titre}>{titre}</h3> : null}
       {etat === 'ferme' ? (
         <span
           className={styles.ChevronDown}
