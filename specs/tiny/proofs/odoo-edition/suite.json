@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-09T06:27:20.154Z",
+  "projet": "piqueray-odoo-qa-edition",
+  "port": "8111",
+  "commit": "591749ca",
+  "ordre": [
+    "categories.spec.mts",
+    "combined-isolation.spec.mts",
+    "coordonnees-spike.spec.mts",
+    "coordonnees.spec.mts",
+    "devis.spec.mts",
+    "editability-boundary.spec.mts",
+    "equipe-spike.spec.mts",
+    "equipe.spec.mts",
+    "faq-spike.spec.mts",
+    "faq.spec.mts",
+    "footer-contact.spec.mts",
+    "google-reviews-security.spec.mts",
+    "google-reviews.spec.mts",
+    "hero.spec.mts",
+    "presentation.spec.mts",
+    "produits-ecommerce-carrousel.spec.mts",
+    "reassurances.spec.mts",
+    "sav-spike.spec.mts",
+    "sav.spec.mts",
+    "texte-seo-spike.spec.mts",
+    "texte-seo.spec.mts",
+    "edition-generique.spec.mts",
+    "footer-edit.spec.mts",
+    "footer-pages.spec.mts",
+    "footer-regen.spec.mts",
+    "footer-update.spec.mts",
+    "header-menu.spec.mts",
+    "header-nav.spec.mts",
+    "header-regen.spec.mts",
+    "pages-navigation.spec.mts",
+    "sections-intact.spec.mts",
+    "versioning.spec.mts"
+  ],
+  "termine": false,
+  "durationMs": 48626,
+  "compte": {
+    "pass": 0,
+    "fail": 1,
+    "skipped": 0
+  },
+  "lignes": [
+    {
+      "scenario": "categories.spec.mts",
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 48613,
+      "fin": [
+        "(·) .env absent — valeurs de .env.example utilisées",
+        "  Docker 29.5.2 · base piqueray_qa_edition · http://localhost:8111",
+        "  addons piqueray_ds + piqueray_ds_qa installés sur une base neuve",
+        "  rédacteur editor@example.test provisionné (Editor and Designer, PAS administrateur)",
+        "  ✔ catalogue — deux Catégories indépendantes sont insérées",
+        "      attendu « 2 racines » · observé « 2 racine(s) »",
+        "✖ locator.waitFor: Timeout 10000ms exceeded.",
+        "Call log:",
+        "\u001b[2m  - waiting for locator('.options-container:visible').filter({ has: locator('[data-pqr-control=\"categories-colonnes\"]') }).first().locator('[data-pqr-control=\"categories-colonnes\"]').first() to be visible\u001b[22m"
+      ]
+    }
+  ]
+}

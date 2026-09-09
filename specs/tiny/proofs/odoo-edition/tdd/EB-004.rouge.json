@@ -1,0 +1,32 @@
+{
+  "receiptId": "edition-generique-reassurances-odoo-019-foundation",
+  "scenarioId": "edition-generique-reassurances",
+  "snapshotId": "odoo-019-foundation",
+  "status": "fail",
+  "fixture": "config/reassurances.authoring.json",
+  "observations": [
+    "[pass] catalogue — le bloc s'insère — attendu « 1 racine », observé « 1 racine(s) .s_pqr_reassurances »",
+    "[pass] racine — data-pqr-root-actions = rootActions allowed — attendu « duplicate, move, remove », observé « duplicate, move, remove »",
+    "[pass] racine — move offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — duplicate offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — remove offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — save-as-custom absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — resize absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — background absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] panneau — au moins un contrôle Piqueray quand la config en déclare — attendu « ≥ 1 », observé « reassurances-collection, reassurances-cta-href, reassurances-cta-label »",
+    "[fail] config — sélecteurs résolus dans le DOM (parts 1/27, contrôles 2/3) — attendu « ≥ 80 % des parts, 100 % des contrôles », observé « parts 1/27 · contrôles 2/3 · absents : .s_pqr_reassurances [data-pqr-part=\"section-header-eyebrow\"] »",
+    "[pass] not-editable — 1/27 parts présentes, aucune contenteditable — attendu « 0 part not-editable ouverte », observé « 0 ouverte (26 absente(s) du DOM inséré) »",
+    "[fail] plain-text — reassurances-ctl-accroche accepte la frappe — attendu « contenteditable + marqueur présent », observé « ce=false · contenteditable=false · aucune frappe »",
+    "[fail] plain-text — reassurances-ctl-section-titre accepte la frappe — attendu « contenteditable + marqueur présent », observé « ce=false · contenteditable=false · aucune frappe »",
+    "[skipped] rich-text reassurances-ctl-reassurances-carte-carte-texte — attendu « (non exécuté) », observé « cible absente du DOM : .s_pqr_reassurances [data-pqr-part=\"section-header-eyebrow\"] »",
+    "[pass] save 1 — RPC ir.ui.view/save 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[skipped] second cycle — ré-édition — attendu « (non exécuté) », observé « aucun plain-text n'a accepté la frappe au premier cycle »",
+    "[skipped] traduction — l'édition FR ne ressuscite pas en_US — attendu « (non exécuté) », observé « non couvert par le générique v1 (arch_db traduit, docs/16) »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "ODOO-LIMIT-GENERIQUE-TRADUCTION",
+    "ODOO-LIMIT-INSTANCE-REUTILISEE"
+  ],
+  "durationMs": 9514
+}

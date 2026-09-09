@@ -1,0 +1,38 @@
+{
+  "receiptId": "edition-generique-reassurances-odoo-019-foundation",
+  "scenarioId": "edition-generique-reassurances",
+  "snapshotId": "odoo-019-foundation",
+  "status": "fail",
+  "fixture": "config/reassurances.authoring.json",
+  "observations": [
+    "[pass] catalogue — le bloc s'insère — attendu « 1 racine », observé « 1 racine(s) .s_pqr_reassurances »",
+    "[pass] racine — data-pqr-root-actions = rootActions allowed — attendu « duplicate, move, remove », observé « duplicate, move, remove »",
+    "[fail] racine — move offerte — attendu « allowed », observé « absente/désactivée »",
+    "[pass] racine — duplicate offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — remove offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — save-as-custom absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — resize absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — background absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] panneau — au moins un contrôle Piqueray quand la config en déclare — attendu « ≥ 1 », observé « reassurances-collection, reassurances-cta-href, reassurances-cta-label »",
+    "[fail] config — sélecteurs résolus dans le DOM (parts 1/27, contrôles 3/3) — attendu « ≥ 80 % des parts, 100 % des contrôles », observé « parts 1/27 · contrôles 3/3 »",
+    "[pass] not-editable — 1/27 parts présentes, aucune contenteditable — attendu « 0 part not-editable ouverte », observé « 0 ouverte (26 absente(s) du DOM inséré) »",
+    "[pass] plain-text — reassurances-ctl-accroche accepte la frappe — attendu « contenteditable + marqueur présent », observé « ce=true · \"Plus de 50 ans QA-accroche d’expérience\" »",
+    "[pass] plain-text — reassurances-ctl-section-titre accepte la frappe — attendu « contenteditable + marqueur présent », observé « ce=true · \"e QA-iontitres de garage industrielles ?\" »",
+    "[pass] rich-text — reassurances-ctl-reassurances-carte-carte-texte accepte un collage riche — attendu « contenteditable + insertHTML accepté », observé « ce=true · insertHTML=true »",
+    "[pass] save 1 — RPC ir.ui.view/save 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[pass] public — [data-pqr-part=\"reassurances-eyebrow\"] porte « QA-accroche » — attendu « QA-accroche », observé « \"Plus de 50 ans QA-accroche d’expérienceQA-PLAIN-GRAS\" »",
+    "[pass] public — [data-pqr-part=\"reassurances-title\"] porte « QA-iontitre » — attendu « QA-iontitre », observé « \"uoi choisir nos porte QA-iontitres de garage industrielles ?\" »",
+    "[pass] public — [data-pqr-part=\"carte-body\"] porte « QA-GRAS » — attendu « QA-GRAS », observé « \"errouillage mécanique anti-intrusion breveté. QA-GRASQA-SOUS\" »",
+    "[pass] garde — <strong> collé dans un plain-text aplati au save — attendu « texte gardé, balise retirée », observé « aplati »",
+    "[fail] rich-text — reassurances-ctl-reassurances-carte-carte-texte : <strong> aplati, <u> aplati — allowedMarks [aucune] — attendu « strong=false · u=false · texte gardé », observé « strong=true · u=false · texte gardé »",
+    "[pass] save 2 — second enregistrement 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[pass] public — la seconde édition est persistée — attendu « QA-BIS présent », observé « \"ccroche QA-BIS d’expérienceQA-PLAIN-GRAS\" »",
+    "[pass] dupliquer — la copie s'édite sans toucher l'original — attendu « 2 racines · original intact », observé « copie=\"-BIS d’expérienceQA-PLAIN-GRAS\" · original intact »",
+    "[skipped] traduction — l'édition FR ne ressuscite pas en_US — attendu « (non exécuté) », observé « non couvert par le générique v1 (arch_db traduit, docs/16) »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "ODOO-LIMIT-GENERIQUE-TRADUCTION"
+  ],
+  "durationMs": 27814
+}

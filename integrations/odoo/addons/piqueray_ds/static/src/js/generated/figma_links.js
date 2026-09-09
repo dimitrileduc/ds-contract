@@ -11,7 +11,7 @@ export const FIGMA_PANEL_LINKS = Object.freeze([
     Object.freeze({ panelId: "devis", selector: ".s_pqr_devis", contractId: "ds.devis", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2694:21604" }),
     Object.freeze({ panelId: "equipe", selector: ".s_pqr_equipe", contractId: "ds.equipe", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2777:30992" }),
     Object.freeze({ panelId: "faq", selector: ".s_pqr_faq", contractId: "ds.faq", contractVersion: "2.1.1", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2773:27504" }),
-    Object.freeze({ panelId: "faq-row", selector: ".s_pqr_faq [data-pqr-faq-row]", contractId: "ds.accordion-row", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2767:20198" }),
+    Object.freeze({ panelId: "faq-row", selector: ".s_pqr_faq [data-pqr-faq-row]", contractId: "ds.accordion-row", contractVersion: "2.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2767:20198" }),
     Object.freeze({ panelId: "footer", selector: ".footer[data-pqr-shell=\"footer\"]", contractId: "ds.footer", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2735:12509" }),
     Object.freeze({ panelId: "google-reviews", selector: ".s_pqr_google_reviews", contractId: "ds.google-reviews", contractVersion: "3.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2700:28391" }),
     Object.freeze({ panelId: "hero", selector: ".s_pqr_hero", contractId: "ds.hero", contractVersion: "3.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2770:20976" }),
@@ -26,8 +26,8 @@ export const FIGMA_PANEL_LINKS = Object.freeze([
     Object.freeze({ panelId: "reassurances-card", selector: ".s_pqr_reassurances [data-pqr-carte]", contractId: "ds.carte", contractVersion: "3.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2700:25961" }),
     Object.freeze({ panelId: "review-card", selector: ".s_pqr_google_reviews [data-pqr-review-card]", contractId: "ds.review-card", contractVersion: "4.3.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2731:9375" }),
     Object.freeze({ panelId: "sav", selector: ".s_pqr_sav", contractId: "ds.sav", contractVersion: "2.3.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2693:20992" }),
-    Object.freeze({ panelId: "texte-seo", selector: ".s_pqr_texte_seo", contractId: "ds.texte-seo", contractVersion: "4.0.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2768:20428" }),
-    Object.freeze({ panelId: "texte-seo-row", selector: ".s_pqr_texte_seo [data-pqr-accordion-row]", contractId: "ds.accordion-row", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2767:20198" }),
+    Object.freeze({ panelId: "texte-seo", selector: ".s_pqr_texte_seo", contractId: "ds.texte-seo", contractVersion: "4.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2768:20428" }),
+    Object.freeze({ panelId: "texte-seo-row", selector: ".s_pqr_texte_seo [data-pqr-accordion-row]", contractId: "ds.accordion-row", contractVersion: "2.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2767:20198" }),
 ]);
 
 /** Rend une correspondance seulement pour la sélection exacte du panneau. */

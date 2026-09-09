@@ -1338,6 +1338,66 @@
         "hero-video-fond-anime"
       ],
       "mechanism": "public-interaction"
+    },
+    {
+      "adaptationId": "ODOO-037-ANCRE-FORMULAIRE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.formulaire"
+      ],
+      "reasonCode": "odoo-motion-policy",
+      "decisionRefs": [
+        "accessibilite-home-passe-2"
+      ],
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-038-REALISATIONS-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.realisations"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "realisations.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-038-REALISATIONS-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.realisations"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "realisations.authoring.json"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-038-REALISATIONS-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.realisations"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "realisations.authoring.json"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-037-CTA-CARTE-REPLI",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/responsive/categories-principales.pqr.css",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "accessibilite-home-passe-2"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }

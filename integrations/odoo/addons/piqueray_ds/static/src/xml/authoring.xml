@@ -179,6 +179,13 @@
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="member-image-alt"><BuilderTextInput action="'pqrSetMemberPortraitAlt'"/></span>
     </BuilderRow>
+    <!-- EB-029 : la photo de survol, éditable comme le portrait (config 2.1.1). -->
+    <BuilderRow label.translate="Portrait de survol">
+      <span data-pqr-control="member-image-survol-url"><BuilderButton action="'pqrReplaceMemberSurvol'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative du survol">
+      <span data-pqr-control="member-image-survol-alt"><BuilderTextInput action="'pqrSetMemberSurvolAlt'"/></span>
+    </BuilderRow>
     <BuilderRow label.translate="Ordre">
       <span data-pqr-control="member-move-up"><BuilderButton action="'pqrMoveMemberUp'" preview="false">Monter</BuilderButton></span>
       <span data-pqr-control="member-move-down"><BuilderButton action="'pqrMoveMemberDown'" preview="false">Descendre</BuilderButton></span>
@@ -466,4 +473,34 @@
     </BuilderRow>
   </t>
   <!-- ODOO-023-CATEGORIES-PANEL END -->
+
+  <!-- ODOO-038-REALISATIONS-PANEL BEGIN -->
+  <!-- EB-001 (décision owner 2026-09-09) : Réalisations reçoit sa couche d'édition sur le
+       modèle Catégories. Sur-titre, titre et paragraphe s'éditent dans le bloc ; les tuiles
+       s'ajoutent ici, chaque tuile règle sa photo (outil natif), son alt, son ordre, son retrait. -->
+  <t t-name="piqueray_ds.RealisationsOption">
+    <BuilderRow label.translate="Piqueray · Réalisations">
+      <span data-pqr-control="realisations-collection">Le sur-titre, le titre et le texte se modifient directement dans le bloc.</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Tuiles">
+      <span data-pqr-control="realisations-collection"><BuilderButton action="'pqrAddRealisation'" preview="false">Ajouter une réalisation</BuilderButton></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.RealisationTuileOption">
+    <BuilderRow label.translate="Photo">
+      <span data-pqr-control="tuile-image-url"><BuilderButton action="'pqrReplaceRealisationImage'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="tuile-image-alt"><BuilderTextInput action="'pqrSetRealisationImageAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="tuile-move-up"><BuilderButton action="'pqrMoveRealisationUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="tuile-move-down"><BuilderButton action="'pqrMoveRealisationDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="tuile-remove"><BuilderButton action="'pqrRemoveRealisation'" preview="false" type="'danger'">Supprimer la réalisation</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-038-REALISATIONS-PANEL END -->
 </templates>

@@ -1,0 +1,37 @@
+{
+  "receiptId": "edition-generique-realisations-odoo-019-foundation",
+  "scenarioId": "edition-generique-realisations",
+  "snapshotId": "odoo-019-foundation",
+  "status": "fail",
+  "fixture": "config/realisations.authoring.json",
+  "observations": [
+    "[pass] catalogue — le bloc s'insère — attendu « 1 racine », observé « 1 racine(s) .s_pqr_realisations »",
+    "[pass] racine — data-pqr-root-actions = rootActions allowed — attendu « duplicate, move, remove », observé « duplicate, move, remove »",
+    "[fail] racine — move offerte — attendu « allowed », observé « absente/désactivée »",
+    "[pass] racine — duplicate offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — remove offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — save-as-custom absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — resize absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — background absente — attendu « forbidden », observé « absente/désactivée »",
+    "[fail] panneau — au moins un contrôle Piqueray quand la config en déclare — attendu « ≥ 1 », observé « (vide) »",
+    "[pass] config — sélecteurs résolus dans le DOM (parts 4/5, contrôles 4/4) — attendu « ≥ 80 % des parts, 100 % des contrôles », observé « parts 4/5 · contrôles 4/4 »",
+    "[pass] not-editable — 4/5 parts présentes, aucune contenteditable — attendu « 0 part not-editable ouverte », observé « 0 ouverte (1 absente(s) du DOM inséré) »",
+    "[fail] collection — realisations-ctl-photos : bouton Ajouter au panneau — attendu « un bouton Ajouter », observé « aucun bouton Ajouter visible dans le panneau racine »",
+    "[fail] plain-text — realisations-ctl-accroche accepte la frappe — attendu « cible visible et éditable », observé « ce=false · cible MASQUÉE dans l'éditeur (hidden/display:none) — inéditable sans l'afficher »",
+    "[fail] rich-text — realisations-ctl-titre accepte un collage riche — attendu « contenteditable + insertHTML accepté », observé « ce=false · insertHTML=false »",
+    "[fail] rich-text — realisations-ctl-texte accepte un collage riche — attendu « contenteditable + insertHTML accepté », observé « ce=false · insertHTML=false »",
+    "[pass] save 1 — RPC ir.ui.view/save 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[skipped] second cycle — ré-édition — attendu « (non exécuté) », observé « aucun plain-text n'a accepté la frappe au premier cycle »",
+    "[skipped] computed-display — realisations-tuile-ctl-image-url — attendu « (non exécuté) », observé « mécanisme sans preuve générique (v1) »",
+    "[skipped] computed-display — realisations-tuile-ctl-image-alt — attendu « (non exécuté) », observé « mécanisme sans preuve générique (v1) »",
+    "[skipped] traduction — l'édition FR ne ressuscite pas en_US — attendu « (non exécuté) », observé « non couvert par le générique v1 (arch_db traduit, docs/16) »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "ODOO-LIMIT-GENERIQUE-COMPUTED-DISPLAY",
+    "ODOO-LIMIT-GENERIQUE-TRADUCTION",
+    "ODOO-LIMIT-INSTANCE-REUTILISEE",
+    "ODOO-NOTE-EDITOR-ENTRY-SECOND-TRY"
+  ],
+  "durationMs": 131007
+}

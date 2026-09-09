@@ -136,10 +136,11 @@ async function main() {
         'carte 0 = « ★ … » · carte 1 inchangée',
         JSON.stringify(editedTitles.slice(0, 2)));
 
-      // En-tête FIXÉ (R3) — geste de texte direct refusé (edge « verrou contourné »).
+      // En-tête OUVERT (EB-004, décision owner 2026-09-09) : accroche et titre de section s'éditent.
       const headerCE = await first.locator('[data-pqr-part="reassurances-title"]').getAttribute('contenteditable');
-      receipt.constateSi('en-tête fixé — le titre de section n\'est pas éditable',
-        headerCE !== 'true', 'contenteditable ≠ true sur le titre d\'en-tête', `contenteditable=${headerCE}`);
+      const eyebrowCE = await first.locator('[data-pqr-part="reassurances-eyebrow"]').getAttribute('contenteditable');
+      receipt.constateSi('en-tête ouvert — accroche et titre de section sont éditables',
+        headerCE === 'true' && eyebrowCE === 'true', 'contenteditable=true sur les deux', `titre=${headerCE} · accroche=${eyebrowCE}`);
 
       // Geste natif neutralisé : la carte est un descendant verrouillé
       // (is_unremovable_selector) — Odoo ne propose ni suppression ni déplacement natifs.

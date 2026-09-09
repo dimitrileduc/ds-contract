@@ -1,0 +1,42 @@
+{
+  "receiptId": "edition-generique-hero-video-odoo-019-foundation",
+  "scenarioId": "edition-generique-hero-video",
+  "snapshotId": "odoo-019-foundation",
+  "status": "skipped",
+  "fixture": "config/hero-video.authoring.json",
+  "observations": [
+    "[pass] catalogue — le bloc s'insère — attendu « 1 racine », observé « 1 racine(s) .s_pqr_hero_video »",
+    "[pass] racine — data-pqr-root-actions = rootActions allowed — attendu « duplicate, move, remove », observé « duplicate, move, remove »",
+    "[pass] racine — move offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — duplicate offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — remove offerte — attendu « allowed », observé « offerte »",
+    "[pass] racine — save-as-custom absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — resize absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] racine — background absente — attendu « forbidden », observé « absente/désactivée »",
+    "[pass] panneau — au moins un contrôle Piqueray quand la config en déclare — attendu « ≥ 1 », observé « hero-video-accroche, hero-video-background-alt, hero-video-background-url, hero-video-button-label, hero-video-cta-href »",
+    "[pass] config — sélecteurs résolus dans le DOM (parts 8/10, contrôles 3/3) — attendu « ≥ 80 % des parts, 100 % des contrôles », observé « parts 8/10 · contrôles 3/3 »",
+    "[pass] not-editable — 8/10 parts présentes, aucune contenteditable — attendu « 0 part not-editable ouverte », observé « 0 ouverte (2 absente(s) du DOM inséré) »",
+    "[pass] plain-text (alt) — hero-video-background-alt se pose au panneau — attendu « champ alt au panneau → attribut alt posé », observé « aria-label=\"QA-ALT-nd-alt\" »",
+    "[pass] plain-text — hero-video-button-label accepte la frappe — attendu « contenteditable + marqueur présent », observé « ce=true · \"Contact QA-tonlabelez-nous\" »",
+    "[pass] rich-text — hero-video-accroche accepte un collage riche — attendu « contenteditable + insertHTML accepté », observé « ce=true · insertHTML=true »",
+    "[pass] save 1 — RPC ir.ui.view/save 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[pass] public — aria-label de [data-pqr-part=\"hero-video-poster\"] = « QA-ALT-nd-alt » — attendu « QA-ALT-nd-alt », observé « QA-ALT-nd-alt »",
+    "[pass] public — [data-pqr-part=\"button-label\"] porte « QA-tonlabel » — attendu « QA-tonlabel », observé « \"Contact QA-tonlabelez-nousQA-PLAIN-GRAS\" »",
+    "[pass] public — [data-pqr-part=\"hero-video-title\"] porte « QA-GRAS » — attendu « QA-GRAS », observé « \"o 1 des portes HÖRMANN en Province de Liège ! QA-GRASQA-SOUS\" »",
+    "[pass] garde — <strong> collé dans un plain-text aplati au save — attendu « texte gardé, balise retirée », observé « aplati »",
+    "[pass] rich-text — hero-video-accroche : <strong> aplati, <u> aplati — allowedMarks [line-break] — attendu « strong=false · u=false · texte gardé », observé « strong=false · u=false · texte gardé »",
+    "[pass] save 2 — second enregistrement 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[pass] public — la seconde édition est persistée — attendu « QA-BIS présent », observé « \"t QA-tonlabelez-nousQA-PLAIN-GRAS QA-BIS\" »",
+    "[pass] dupliquer — la copie s'édite sans toucher l'original — attendu « 2 racines · original intact », observé « copie=\"A-COPIEousQA-PLAIN-GRAS QA-BIS\" · original intact »",
+    "[skipped] computed-display — hero-video-background-url — attendu « (non exécuté) », observé « mécanisme sans preuve générique (v1) »",
+    "[skipped] traduction — l'édition FR ne ressuscite pas en_US — attendu « (non exécuté) », observé « non couvert par le générique v1 (arch_db traduit, docs/16) »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "ODOO-LIMIT-GENERIQUE-COMPUTED-DISPLAY",
+    "ODOO-LIMIT-GENERIQUE-TRADUCTION",
+    "ODOO-LIMIT-INSTANCE-REUTILISEE",
+    "ODOO-NOTE-EDITOR-ENTRY-SECOND-TRY"
+  ],
+  "durationMs": 139691
+}

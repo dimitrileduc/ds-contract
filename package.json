@@ -29,6 +29,8 @@
     "odoo:pages:check": "tsx scripts/odoo/resolve-page.ts --check",
     "odoo:pages:measure": "tsx extract/odoo-page-parity/cli.ts",
     "odoo:pages:selftest": "tsx extract/odoo-page-parity/selftest.ts",
+    "odoo:qa:all": "tsx integrations/odoo/qa/run.mts --all",
+    "odoo:qa:edition": "tsx integrations/odoo/qa/scenarios/edition-generique.spec.mts",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

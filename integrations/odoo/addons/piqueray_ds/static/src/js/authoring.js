@@ -37,6 +37,7 @@ import {
     closestElement,
     assertOdoo19Environment,
     excludeNativeImageOptionsForRoots,
+    excludeNativeFormOptionsForRoots,
     excludeNativeOptionsForRoots,
     excludeUndeclaredTopActionsForRoots,
     governResizeForRoots,
@@ -72,6 +73,10 @@ import {
     MoveCarteCategorieDownAction,
     SetStyleCarteAction,
     findCategoriesRoot,
+    AddRealisationAction,
+    RemoveRealisationAction,
+    MoveRealisationUpAction,
+    MoveRealisationDownAction,
 } from "./repeat_action";
 import {
     ReplaceCarteImageAction,
@@ -84,6 +89,8 @@ import {
     ReplaceHeroVideoPosterAction,
     ReplaceReviewAvatarAction,
     SetMemberPortraitAltAction,
+    ReplaceMemberSurvolAction,
+    SetMemberSurvolAltAction,
     SetHeroBackgroundAltAction,
     SetHeroVideoPosterAltAction,
     SetDevisBackgroundAltAction,
@@ -92,6 +99,8 @@ import {
     ReplaceSavPhotoAction,
     SetSavBackgroundAltAction,
     SetSavPhotoAltAction,
+    ReplaceRealisationImageAction,
+    SetRealisationImageAltAction,
 } from "./media_action";
 import { FIGMA_PANEL_LINKS, findFigmaPanelLink } from "./generated/figma_links";
 
@@ -139,7 +148,13 @@ export class PiquerayFigmaLinkOption extends BaseOptionComponent {
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
  *  (US2). Spec 023 ajoute `.s_pqr_categories_principales`. */
 export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales", ".s_pqr_hero_video", ".s_pqr_produits_ecommerce", ".s_pqr_realisations", ".s_pqr_formulaire"];
-export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
+/** EB-009 (décision owner 2026-09-09) : une SECTION qui enveloppe un bloc gouverné
+ *  (Avis Google) est gouvernée comme une racine pour tout ce qui est natif — options
+ *  Background/Height/Visibility, save-as-custom, resize, actions hautes — mais elle
+ *  ne verrouille PAS ses descendants (le bloc intérieur garde sa propre politique). */
+export const PIQUERAY_SECTION_WRAPPERS = [".s_pqr_google_reviews_section"];
+export const PIQUERAY_GOVERNED = [...PIQUERAY_ROOTS, ...PIQUERAY_SECTION_WRAPPERS];
+export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_GOVERNED.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
     (root) => `${root} [data-pqr-marks=""]`,
@@ -269,6 +284,10 @@ export const FOOTER_CONTACT_NO_FORMAT =
  *  (R3), donc absent des zones rouvertes ; les glyphes/variante du CTA aussi. Les
  *  gestes de collection (ajouter/supprimer/monter/descendre) vivent au panneau. */
 export const REASSURANCES_EDITABLE_PARTS = [
+    // EB-004 (décision owner 2026-09-09) : l'accroche et le titre de section
+    // s'éditent — le QWeb les posait déjà `o_pqr_editable`, ce miroir les oubliait.
+    '[data-pqr-part="reassurances-eyebrow"]',
+    '[data-pqr-part="reassurances-title"]',
     '[data-pqr-carte] [data-pqr-part="carte-title"]',
     '[data-pqr-carte] [data-pqr-part="carte-body"]',
     '[data-pqr-part="reassurances-cta"] [data-pqr-part="button-label"]',
@@ -308,9 +327,21 @@ export const FORMULAIRE_EDITABLE_PARTS = [
     '[data-pqr-part="formulaire-succes"]',
 ].map((part) => `.s_pqr_formulaire ${part}`);
 export const FORMULAIRE_RICH_TEXT = '.s_pqr_formulaire [data-pqr-part="formulaire-title"]';
+/** EB-001 (décision owner 2026-09-09) — Réalisations : sur-titre (texte simple), titre et
+ *  paragraphe (gras autorisé, `data-pqr-marks="strong"` au QWeb) s'éditent en ligne ; les
+ *  photos passent par l'outil image natif + alt au panneau ; les tuiles s'ajoutent, se
+ *  retirent, s'ordonnent au panneau. Le QWeb posait déjà `o_pqr_editable` : ce miroir
+ *  manquait — et aucune porte ne le voit (docs/16, piège FORMULAIRE_EDITABLE_PARTS). */
+export const REALISATIONS_EDITABLE_PARTS = [
+    '[data-pqr-part="realisations-eyebrow"]',
+    '[data-pqr-part="realisations-title"]',
+    '[data-pqr-part="realisations-body"]',
+].map((part) => `.s_pqr_realisations ${part}`);
+export const REALISATIONS_RICH_TEXT =
+    '.s_pqr_realisations [data-pqr-part="realisations-title"], .s_pqr_realisations [data-pqr-part="realisations-body"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}, ${HERO_VIDEO_RICH_TEXT}, ${FORMULAIRE_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}, ${PRODUITS_ECOMMERCE_RICH_TEXT}, ${HERO_VIDEO_RICH_TEXT}, ${FORMULAIRE_RICH_TEXT}, ${REALISATIONS_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -336,6 +367,7 @@ export const PIQUERAY_REOPENED = [
     ...HERO_VIDEO_EDITABLE_PARTS,
     ...PRODUITS_ECOMMERCE_EDITABLE_PARTS,
     ...FORMULAIRE_EDITABLE_PARTS,
+    ...REALISATIONS_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -390,10 +422,12 @@ function normalizePiqueray(changedRoot) {
     normalizeRootActions(changedRoot);
 }
 
-excludeNativeOptionsForRoots(PIQUERAY_ROOTS);
-excludeNativeImageOptionsForRoots(PIQUERAY_ROOTS);
-excludeUndeclaredTopActionsForRoots(PIQUERAY_ROOTS);
-governResizeForRoots(PIQUERAY_ROOTS);
+excludeNativeOptionsForRoots(PIQUERAY_GOVERNED);
+excludeNativeImageOptionsForRoots(PIQUERAY_GOVERNED);
+// EB-019 : le formulaire gouverné écarte les options natives de champ/étiquette.
+excludeNativeFormOptionsForRoots([".s_pqr_formulaire"]);
+excludeUndeclaredTopActionsForRoots(PIQUERAY_GOVERNED);
+governResizeForRoots(PIQUERAY_GOVERNED);
 
 // ODOO-023 — Suppression des plugins footer natifs. Notre footer shell remplace
 // entièrement le footer natif d'Odoo (xpath sur website.layout). Les plugins
@@ -596,6 +630,21 @@ export class PiquerayProductCardOption extends BaseOptionComponent {
 export class PiquerayCarteCategorieOption extends BaseOptionComponent {
     static template = "piqueray_ds.CarteCategorieOption";
     static selector = ".s_pqr_categories_principales [data-pqr-carte]";
+    static editableOnly = false;
+}
+
+/** EB-001 — Réalisations : panneau racine (ajout de tuile) et panneau par tuile
+ *  (image, alt, ordre, retrait). Même forme que Catégories — même zone que les
+ *  autres options (ODOO-019-AUTHORING-PLUGIN) : une zone ne s'imbrique pas dans une autre. */
+export class PiquerayRealisationsOption extends BaseOptionComponent {
+    static template = "piqueray_ds.RealisationsOption";
+    static selector = ".s_pqr_realisations";
+    static editableOnly = false;
+}
+
+export class PiquerayRealisationTuileOption extends BaseOptionComponent {
+    static template = "piqueray_ds.RealisationTuileOption";
+    static selector = ".s_pqr_realisations [data-pqr-carte]";
     static editableOnly = false;
 }
 
@@ -894,7 +943,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayProduitsEcommerceOption, PiquerayProductCardOption, PiquerayFooterOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayFigmaLinkOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayHeroVideoOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption, PiquerayProduitsEcommerceOption, PiquerayProductCardOption, PiquerayFooterOption, PiquerayRealisationsOption, PiquerayRealisationTuileOption],
         builder_actions: {
             OpenFigmaAction,
             SetCtaHrefAction,
@@ -917,6 +966,12 @@ export class PiquerayAuthoringPlugin extends Plugin {
             SetStyleCarteAction,
             ReplaceCarteCategorieImageAction,
             SetCarteCategorieImageAltAction,
+            AddRealisationAction,
+            RemoveRealisationAction,
+            MoveRealisationUpAction,
+            MoveRealisationDownAction,
+            ReplaceRealisationImageAction,
+            SetRealisationImageAltAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,
@@ -944,6 +999,8 @@ export class PiquerayAuthoringPlugin extends Plugin {
             SetHeroVideoPosterAltAction,
             ReplaceMemberPortraitAction,
             SetMemberPortraitAltAction,
+            ReplaceMemberSurvolAction,
+            SetMemberSurvolAltAction,
             ReplaceDevisBackgroundAction,
             SetDevisBackgroundAltAction,
             ReplaceSavBackgroundAction,

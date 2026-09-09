@@ -71,6 +71,16 @@ import { LayoutOption } from "@website/builder/plugins/layout_option/layout_opti
 import { ImageAndFaOption } from "@html_builder/plugins/image/image_tool_option_plugin";
 import { ImageToolOption } from "@html_builder/plugins/image/image_tool_option";
 import { ReplaceMediaOption } from "@html_builder/plugins/image/replace_media_option";
+// EB-019 : options NATIVES du formulaire Website. Elles ciblent `.s_website_form*`
+// — classes que nos champs DOIVENT porter pour l'envoi Odoo — et l'une d'elles
+// (`SelectLabelPositionAction` via `getLabelPosition`) lit `.s_website_form_label`,
+// que notre étiquette ne porte pas (`field__label`) : `null.classList` → « Oops! »
+// qui empoisonne la session. On les exclut sous notre racine gouvernée, comme le
+// fond/resize/image ci-dessus.
+import { FormOption } from "@website/builder/plugins/form/form_option";
+import { FormFieldOption } from "@website/builder/plugins/form/form_field_option";
+import { FormFieldOptionRedraw } from "@website/builder/plugins/form/form_field_option_redraw";
+import { WebsiteFormSubmitOption } from "@website/builder/plugins/form/form_option_plugin";
 
 /** Imports internes dont l'existence est une hypothèse de compatibilité. Les
  * centraliser ici garantit qu'un renommage casse un seul module au chargement. */
@@ -134,6 +144,28 @@ export function excludeNativeImageOptionsForRoots(rootSelectors) {
             // garde les outils natifs (ImageTool : crop / position / filtre) — le cadrage des
             // photos est un fait de contenu que le contrat ne porte pas (transformation d'image Figma).
             const exclusion = `${rootSelector} img:not([data-pqr-native-image])`;
+            const actuel = Option.exclude || "";
+            const exclusions = actuel.split(",").map((value) => value.trim()).filter(Boolean);
+            if (!exclusions.includes(exclusion)) {
+                Option.exclude = actuel ? `${actuel}, ${exclusion}` : exclusion;
+            }
+        }
+    }
+}
+
+const ODOO19_FORM_NATIVE_OPTIONS = [FormOption, FormFieldOption, FormFieldOptionRedraw, WebsiteFormSubmitOption];
+
+/** Écarte les options NATIVES du formulaire Website sous chaque racine gouvernée
+ * qui contient un `<form>` (Piqueray · Formulaire de contact). La structure du
+ * formulaire est gouvernée (option 2, décision owner 2026-09-08) : le rédacteur
+ * édite les textes déclarés, jamais les champs/étiquettes eux-mêmes. Sans cette
+ * exclusion, cliquer une étiquette ouvre « Oops! » (EB-019). Un `exclude` est
+ * testé contre l'ÉLÉMENT ciblé : nos champs sont des descendants de la racine,
+ * donc on exclut `${racine} *`. */
+export function excludeNativeFormOptionsForRoots(rootSelectors) {
+    for (const Option of ODOO19_FORM_NATIVE_OPTIONS) {
+        for (const rootSelector of rootSelectors) {
+            const exclusion = `${rootSelector} *`;
             const actuel = Option.exclude || "";
             const exclusions = actuel.split(",").map((value) => value.trim()).filter(Boolean);
             if (!exclusions.includes(exclusion)) {

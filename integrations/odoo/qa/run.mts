@@ -390,7 +390,82 @@ async function main() {
     });
     return;
   }
-  throw new Error('Usage : --up | --smoke | --down');
+  if (args.includes('--all')) {
+    await lancerToutesLesScenarios(env, args);
+    return;
+  }
+  throw new Error('Usage : --up | --smoke | --down | --all [--out <fichier.json>] [--only <motif>]');
+}
+
+// ---------------------------------------------------------------------------
+// --all : la suite en série, un tableau à la fin (tinyspec odoo-edition-panneaux)
+// ---------------------------------------------------------------------------
+
+interface LigneSuite {
+  scenario: string;
+  status: 'pass' | 'fail' | 'skipped';
+  exitCode: number | null;
+  durationMs: number;
+  /** Les 12 dernières lignes de sortie : assez pour lire la cause, pas le journal entier. */
+  fin: string[];
+}
+
+/**
+ * Lance chaque `scenarios/*.spec.mts` en SOUS-PROCESSUS, en série, et écrit
+ * `suite.json`. Un scénario qui appelle `withInstance` reconstruit la base
+ * lui-même ; les dix qui ne l'appellent pas (footer-*, header-*, pages-navigation,
+ * sections-intact, versioning) attendent une instance déjà propre — ils passent
+ * donc EN DERNIER, sur l'état laissé par le dernier reconstructeur. Cet ordre est
+ * écrit dans le tableau (`ordre`), pas deviné.
+ *
+ * Le verdict d'une ligne est le CODE DE SORTIE du scénario (chacun fait
+ * `process.exit(1)` sur un reçu rouge) ; « skipped » n'est posé que si le
+ * scénario l'écrit lui-même (« reçu « skipped » ») — jamais par absence de mesure.
+ */
+async function lancerToutesLesScenarios(env: QaEnv, args: string[]): Promise<void> {
+  const { readdirSync, mkdirSync, writeFileSync } = await import('node:fs');
+  const dossier = path.join(HERE, 'scenarios');
+  const only = args[args.indexOf('--only') + 1];
+  const outArg = args.indexOf('--out') >= 0 ? args[args.indexOf('--out') + 1] : null;
+  const out = outArg ? path.resolve(outArg) : path.join(REPO, 'specs', 'tiny', 'proofs', 'odoo-edition', 'suite.json');
+  const fichiers = readdirSync(dossier).filter((f) => f.endsWith('.spec.mts')).filter((f) => !only || args.indexOf('--only') < 0 || f.includes(only)).sort();
+  const reconstruit = (f: string) => readFileSync(path.join(dossier, f), 'utf8').includes('withInstance(');
+  const ordre = [...fichiers.filter(reconstruit), ...fichiers.filter((f) => !reconstruit(f))];
+  const version = dockerDisponible();
+  if (!version) throw new Error('Docker ne répond pas — `docker info` en échec.');
+  if (env.odooPort === PORT_OWNER || process.env.COMPOSE_PROJECT_NAME === PROJET_OWNER) {
+    throw new Error(`Refus : ${PROJET_OWNER} (port ${PORT_OWNER}) est l'instance de l'owner.`);
+  }
+  console.log(`  suite : ${ordre.length} scénario(s) · projet ${process.env.COMPOSE_PROJECT_NAME ?? 'piqueray-odoo-qa'} · ${baseUrl(env)}`);
+  const lignes: LigneSuite[] = [];
+  const debut = Date.now();
+  for (const [i, f] of ordre.entries()) {
+    const t0 = Date.now();
+    console.log(`\n[${i + 1}/${ordre.length}] ${f}`);
+    const r = spawnSync('npx', ['tsx', path.join(dossier, f)], {
+      cwd: REPO, encoding: 'utf8', timeout: 60 * 60_000, maxBuffer: 64 * 1024 * 1024, env: process.env,
+    });
+    const sortie = `${r.stdout ?? ''}${r.stderr ?? ''}`;
+    const fin = sortie.trim().split('\n').slice(-12);
+    // Un scénario qui n'a rien pu mesurer écrit « reçu « skipped » » et sort
+    // souvent en 1 : ce n'est pas un rouge, c'est une absence de preuve — et
+    // elle se lit comme telle dans le tableau (un ✖ dans la sortie, lui, est rouge).
+    const recuSkipped = /reçu « skipped »/.test(sortie) && !/^\s*✖/m.test(sortie);
+    const status: LigneSuite['status'] = recuSkipped ? 'skipped' : r.status === 0 ? 'pass' : 'fail';
+    const ligne: LigneSuite = { scenario: f, status, exitCode: r.status, durationMs: Date.now() - t0, fin };
+    lignes.push(ligne);
+    console.log(`  → ${status} (${Math.round(ligne.durationMs / 1000)} s)${r.signal ? ` · signal ${r.signal}` : ''}`);
+    for (const l of fin.slice(-4)) console.log(`    ${l}`);
+    mkdirSync(path.dirname(out), { recursive: true });
+    writeFileSync(out, JSON.stringify({
+      date: new Date().toISOString(), projet: process.env.COMPOSE_PROJECT_NAME ?? 'piqueray-odoo-qa', port: env.odooPort,
+      commit: spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: REPO, encoding: 'utf8' }).stdout.trim(),
+      ordre, termine: i + 1 === ordre.length, durationMs: Date.now() - debut,
+      compte: { pass: lignes.filter((l) => l.status === 'pass').length, fail: lignes.filter((l) => l.status === 'fail').length, skipped: lignes.filter((l) => l.status === 'skipped').length },
+      lignes,
+    }, null, 2) + '\n');
+  }
+  console.log(`\n  ${lignes.filter((l) => l.status === 'pass').length} pass · ${lignes.filter((l) => l.status === 'fail').length} fail · ${lignes.filter((l) => l.status === 'skipped').length} skipped → ${path.relative(REPO, out)}`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

@@ -263,32 +263,6 @@
       "label": "imageAlt"
     },
     {
-      "decisionId": "cat-ctl-carte-ctalabel",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.categories-principales",
-              "version": "2.1.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carte-categorie",
-              "version": "3.1.0"
-            },
-            "viaPart": "CarteCategorie",
-            "repeat": true
-          }
-        ],
-        "prop": "ctaLabel"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-label\"]",
-      "label": "ctaLabel"
-    },
-    {
       "decisionId": "cat-ctl-lien-variant",
       "address": {
         "componentPath": [
@@ -318,39 +292,6 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
-    },
-    {
-      "decisionId": "cat-ctl-lien-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.categories-principales",
-              "version": "2.1.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carte-categorie",
-              "version": "3.1.0"
-            },
-            "viaPart": "CarteCategorie",
-            "repeat": true
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "lien"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-label\"]",
-      "label": "libellé"
     },
     {
       "decisionId": "cat-ctl-lien-iconleft",
@@ -508,39 +449,6 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "cat-ctl-bouton-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.categories-principales",
-              "version": "2.1.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.carte-categorie",
-              "version": "3.1.0"
-            },
-            "viaPart": "CarteCategorie",
-            "repeat": true
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "controlled",
-      "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-label\"]",
-      "label": "libellé"
-    },
-    {
       "decisionId": "cat-ctl-bouton-iconleft",
       "address": {
         "componentPath": [
@@ -663,6 +571,95 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-carte-ctalabel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "2.1.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "3.1.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaLabel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "reasonCode": "cta-absent-du-style-affiche"
+    },
+    {
+      "decisionId": "cat-ctl-lien-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "2.1.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "3.1.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.5.0"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "reasonCode": "cta-absent-du-style-affiche"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "2.1.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "3.1.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.5.0"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "reasonCode": "cta-absent-du-style-affiche"
     }
   ],
   "parts": [

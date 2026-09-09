@@ -67,7 +67,7 @@
       },
       "verdict": "controlled",
       "mechanism": "plain-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"accroche\"]",
+      "targetSelector": ".s_pqr_google_reviews_section [data-pqr-part=\"accroche\"]",
       "label": "Accroche de section"
     },
     {
@@ -85,7 +85,7 @@
       },
       "verdict": "controlled",
       "mechanism": "rich-text",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"google-reviews-header-title\"]",
+      "targetSelector": ".s_pqr_google_reviews_section [data-pqr-part=\"google-reviews-header-title\"]",
       "label": "Titre de section"
     },
     {
@@ -175,7 +175,7 @@
       },
       "verdict": "controlled",
       "mechanism": "enum",
-      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"note\"]",
+      "targetSelector": ".s_pqr_google_reviews [data-pqr-part=\"resume\"] [data-pqr-part=\"etoiles\"]",
       "label": "Nombre d’étoiles"
     },
     {

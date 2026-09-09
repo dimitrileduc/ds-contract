@@ -502,6 +502,8 @@ export class MoveCarteDownAction extends BuilderAction {
 // action sur la mauvaise section. Les sélecteurs génériques CARTE/CARTE_LIST et
 // le localisateur findCarte sont partagés (mêmes attributs DOM).
 export const CATEGORIES_ROOT = ".s_pqr_categories_principales";
+/** Déclarée ici (avant findCarteRoot) ; ses gestes vivent dans ODOO-038-REALISATIONS-REPEAT. */
+export const REALISATIONS_ROOT = ".s_pqr_realisations";
 export const PHOTO_CATEGORIE = ".carte-categorie__categorieImage, .carte-categorie__photoSuperpose";
 
 /** La photo d'une carte, quelle que soit sa famille — l'UNION des classes
@@ -517,7 +519,7 @@ export const findCategoriesRoot = (element) => element?.closest?.(CATEGORIES_ROO
  *  renumérotation) : seule la racine changeait, elle est donc paramétrée ici
  *  plutôt que recopiée par section. */
 export const findCarteRoot = (element) =>
-    element?.closest?.(`${REASSURANCES_ROOT}, ${CATEGORIES_ROOT}`) || null;
+    element?.closest?.(`${REASSURANCES_ROOT}, ${CATEGORIES_ROOT}, ${REALISATIONS_ROOT}`) || null;
 
 // La collection catégories partage EXACTEMENT le contrat DOM de Réassurances
 // (data-pqr-carte / data-pqr-carte-list / clé pqrCarteMarker) : on réutilise donc
@@ -669,3 +671,44 @@ export class SetStyleCarteAction extends BuilderAction {
     }
 }
 // ODOO-023-CATEGORIES-REPEAT END
+
+// ODOO-038-REALISATIONS-REPEAT BEGIN
+// EB-001 (décision owner 2026-09-09) — Collection de tuiles Réalisations, DOM seule source,
+// même contrat DOM que Réassurances/Catégories (data-pqr-carte / data-pqr-carte-list /
+// blueprint inerte) : cartesOf / normalizeCartes / removeCarte / moveCarte sont réutilisés
+// tels quels (findCarteRoot connaît la racine). Identifiants d'action PROPRES : les ids du
+// builder sont globaux. La grille est `[data-pqr-carte-list]` (root-grille), pas la racine.
+export const findRealisationsRoot = (element) => element?.closest?.(REALISATIONS_ROOT) || null;
+
+/** Ajoute depuis le blueprint inerte ; l'état vide (grille vidée) reste ajoutable. */
+export function addRealisation(root) {
+    const list = root?.querySelector(CARTE_LIST);
+    const candidate = root?.querySelector('template[data-pqr-carte-blueprint=""]')?.content?.firstElementChild || null;
+    if (!list || !candidate) throw new Error("[piqueray_ds] blueprint Réalisation introuvable");
+    const tuile = candidate.cloneNode(true);
+    tuile.dataset.pqrCarteMarker = nextCarteMarker(root);
+    list.append(tuile);
+    normalizeCartes(root);
+    return tuile;
+}
+
+export class AddRealisationAction extends BuilderAction {
+    static id = "pqrAddRealisation";
+    apply({ editingElement }) { addRealisation(findRealisationsRoot(editingElement)); }
+}
+
+export class RemoveRealisationAction extends BuilderAction {
+    static id = "pqrRemoveRealisation";
+    apply({ editingElement }) { removeCarte(findCarte(editingElement)); }
+}
+
+export class MoveRealisationUpAction extends BuilderAction {
+    static id = "pqrMoveRealisationUp";
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "up"); }
+}
+
+export class MoveRealisationDownAction extends BuilderAction {
+    static id = "pqrMoveRealisationDown";
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "down"); }
+}
+// ODOO-038-REALISATIONS-REPEAT END

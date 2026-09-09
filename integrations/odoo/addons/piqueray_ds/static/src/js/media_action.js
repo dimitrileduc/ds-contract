@@ -287,6 +287,60 @@ export class SetMemberPortraitAltAction extends BuilderAction {
         reconcileMemberPortrait(editingElement);
     }
 }
+
+// EB-029 (décision owner 2026-09-09) : la photo de SURVOL (`member-picture-underlay`,
+// classe `.member-picture__funIa`) est éditable comme le portrait normal. La config la
+// déclarait `controlled` depuis 2.1.1 mais aucun panneau/action ne la servait. Plan
+// arrière : on NE bascule PAS `hidden` (une survol vide n'effondre rien, le normal est
+// au-dessus) — sinon un plan masqué au repos deviendrait inéditable (cf. member-picture).
+export function memberSurvolImage(editingElement) {
+    const image = findMemberCard(editingElement)?.querySelector(".member-picture__funIa") || null;
+    if (image) image.dataset.pqrPart = "member-picture-underlay";
+    return image;
+}
+
+export function reconcileMemberSurvol(editingElement) {
+    const image = memberSurvolImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceMemberSurvolAction extends BuilderAction {
+    static id = "pqrReplaceMemberSurvol";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const card = findMemberCard(editingElement);
+        const image = memberSurvolImage(card);
+        if (!card || !image) return null;
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileMemberSurvol(card);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileMemberSurvol(editingElement);
+    }
+}
+
+export class SetMemberSurvolAltAction extends BuilderAction {
+    static id = "pqrSetMemberSurvolAlt";
+    getValue({ editingElement }) {
+        return memberSurvolImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = memberSurvolImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileMemberSurvol(editingElement);
+    }
+}
 // ODOO-019-EQUIPE-MEDIA END
 
 // ODOO-019-DEVIS-MEDIA BEGIN
@@ -577,6 +631,64 @@ export class SetCarteCategorieImageAltAction extends BuilderAction {
     }
 }
 // ODOO-023-CATEGORIES-MEDIA END
+
+// ODOO-038-REALISATIONS-MEDIA BEGIN
+// EB-001 (décision owner 2026-09-09) — Photo d'une tuile Réalisations : dialogue média natif
+// (la tuile porte aussi `data-pqr-native-image="1"` : le double-clic natif reste possible),
+// source publiée /web/image only, alt au panneau. L'adresse d'authoring de l'image est
+// `tuile-image` (contrat ds.realisation) — PAS `carte-image` : on n'emprunte pas carteImage(),
+// qui réécrirait l'adresse. La classe contractuelle `.realisation__Image` survit au dialogue.
+const PHOTO_REALISATION = ".realisation__Image";
+
+export function realisationImage(editingElement) {
+    const image = findCarte(editingElement)?.querySelector(PHOTO_REALISATION) || null;
+    if (image && image.dataset.pqrPart !== "tuile-image") image.dataset.pqrPart = "tuile-image";
+    return image;
+}
+
+export function reconcileRealisationImage(editingElement) {
+    const image = realisationImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceRealisationImageAction extends BuilderAction {
+    static id = "pqrReplaceRealisationImage";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const tuile = findCarte(editingElement);
+        const image = realisationImage(tuile);
+        if (!tuile || !image) return null;
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileRealisationImage(tuile);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileRealisationImage(editingElement);
+    }
+}
+
+export class SetRealisationImageAltAction extends BuilderAction {
+    static id = "pqrSetRealisationImageAlt";
+    getValue({ editingElement }) {
+        return realisationImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = realisationImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileRealisationImage(editingElement);
+    }
+}
+// ODOO-038-REALISATIONS-MEDIA END
 
 // ODOO-025-HERO-VIDEO-MEDIA BEGIN
 function heroVideoRoot(editingElement) {
