@@ -777,3 +777,62 @@ jamais un CSS Odoo « en attendant » qui deviendrait la référence par défaut
   besoin de JS. Sondes : `.page-parity/sous-menu/{mobile,desktop}-anim.mts` (relevé toutes les 25–30 ms).
 - **Une erreur de page n'est à toi que si elle n'existe pas AVANT** : `TypeError … querySelector` au chargement était
   identique sur le pilote non touché. Compare toujours avec une instance d'avant avant d'accuser ton script.
+
+## Complément du 2026-09-09 — Réassurances Desktop : la photo trop haute, proposition Figma AVANT le contrat
+
+- **Le défaut et sa cause, mesurés sur le canevas** : le passage du bureau à 4 colonnes (2.2.0, 2026-09-08) a fait tomber
+  la carte de 341 à 248 px, mais la variable `spacing/carte-reassurance/photo-h` en mode Desktop est restée à 364. Même
+  valeur, autre proportion : 248 × 364 est un portrait 2:3 quand le Wide fait 284 × 364 (≈ 4:5) et le Mobile 342 × 192.
+  **Un jeton par écran survit à un changement de colonnes sans que rien ne le signale** — quand une grille change de
+  compte, relire chaque hauteur fixe des enfants.
+- **Le débordement de texte est Figma-seulement** : la rangée de la grille est FIGÉE à 561 (mesurée pour 341 de large) ;
+  à 248 le texte se replie plus et sort. Le site a `grid-auto-rows: 1fr`, pas ce défaut.
+- **Planche posée** : `031 · 24 · RÉASSURANCES DESKTOP — hauteur de photo (proposition · 3 options · 2026-09-09)`
+  (`2798:54146`, cadre auto-layout à −12000 / 67000, sous la 031 · 23) : « Aujourd'hui » (instance intacte, le
+  débordement visible) puis A 4:5 (310), B carré (248, recommandée), C 4:3 (186). Copies DÉTACHÉES, la section et les
+  masters n'ont pas été touchés. Suite si l'owner tranche : la valeur Desktop de la variable → un primitif
+  `size.carte-reassurance.photo-h.<N>` minté from-dump + `tokens/modes/viewport.desktop.tokens.json` (l. 190) ; la
+  rangée du master `Presentation=Desktop` en HUG ; `ds.carte` bump patch/mineur + les CINQ miroirs Odoo ; `figma:plan`.
+- **Trois faits d'API corrigent le journal `carte-reassurance.md`** (vérifiés par sonde, 2026-09-09) :
+  (1) **`gridRowSizes` EST scriptable** (`items.gridRowSizes = [{type:'HUG'}]` ou `{type:'FIXED', value}` — accepté sur
+  une instance comme sur un cadre) ; le journal du 2026-09-02 disait le contraire.
+  (2) **Redimensionner un cadre imbriqué DANS une instance échoue en silence** (`resize` rend 364 → 364, aucune erreur,
+  même après `setBoundVariable('height', null)`) — pour une démo, détacher l'instance ET les instances imbriquées
+  (les cartes), puis redimensionner.
+  (3) **Un cadre de premier niveau sur la page 031 s'exporte normalement** avec `figma_capture_screenshot` (472 Ko) —
+  les 149 octets ne frappent que les nœuds posés DANS une SECTION ; d'où le choix du cadre auto-layout pour toute
+  planche (mémoire `figma-section-vs-frame-coordonnees`), qui évite en plus le receveur. Ce jour-là, **aucun port de
+  la plage 9223-9232 n'était libre** (8 serveurs figma-console + 2 receveurs fantômes du 09-08 sur 9228/9230).
+
+## Complément du 2026-09-09 — un réglage d'apparence par écran (voile du Hero image, Mobile/Tablette)
+
+Le plus petit job possible du runbook — aucune anatomie, aucun prop, deux peintures sur deux variantes —
+et il a quand même payé quatre pièges qui valent pour tous les autres.
+
+- **Une valeur qui ne vaut que pour certains écrans se pose à la BASE et se re-pose par mode pour les
+  autres.** La base d'un contrat = Mobile (mobile-first) ; `tokensByProp` / `literalsByProp` portent les
+  modes qui gardent l'ancienne valeur. **Corollaire Odoo, facile à oublier tant que les quatre modes sont
+  identiques** : `components.pqr.css` émet `.<bloc>--presentation-desktop …`, **qu'aucun QWeb ne pose** —
+  donc dès que la base diverge, la zone manuelle `responsive/<bloc>.pqr.css` doit recopier la règle dans
+  son `@media (min-width: 992px)`, sinon le desktop hérite silencieusement de la valeur mobile.
+- **`figma.variables.setBoundVariableForPaint` ne mute pas le paint : il en retourne un nouveau.**
+  Écrire `figma.variables.setBoundVariableForPaint(s, 'color', v); node.fills = [s, …]` pose la bonne
+  couleur avec `boundVariables` VIDE — la peinture cesse de chevaucher le jeton et rien ne le dit.
+  Toujours relire `node.fills[i].boundVariables` après le geste.
+- **`instance.overrides` ne répond pas « cette instance surcharge-t-elle CE nœud »** : il liste tout le
+  sous-arbre. 40 des 45 instances du Hero portaient un override `fills` — c'était la PHOTO du
+  `Background`. La bonne question est `i.overrides.find(o => o.id === <id du nœud visé>)`.
+- **Mesurer sans `--out` neuf peut lire une capture Odoo périmée** : 13,10 % au premier passage, 3,61 %
+  au second, même page, même minute. Et `odoo:pages:measure` **écrit dans les reçus committés de la
+  spec 037** — donc une mesure de contrôle se fait toujours avec `--out` vers un dossier jetable.
+- **Un port de la plage 9223-9232 peut porter deux serveurs à la fois** (une socket IPv4, une IPv6) :
+  `curl localhost` en touche un, le plugin l'autre, et un POST peut disparaître dans le mauvais. Vérifier
+  `lsof -nP -iTCP:<port> -sTCP:LISTEN` (deux PID = piège) et ne jamais tuer un process sans savoir à qui
+  il est. Pour rejouer un script du dépôt dans le bac à sable : le servir en HTTP puis
+  `new (Object.getPrototypeOf(async function(){}).constructor)('return (\n' + src + '\n)')` — le
+  `'return ' + src` seul rend `undefined` par ASI dès que le script commence par un commentaire.
+- **Un duel d'apparence se juge sur la photo de la page réelle** (règle du 2026-09-07, re-payée) : la
+  planche a été posée sur « Portes de garage », maison blanche plein cadre, puis **supprimée** après
+  décision. Le journal garde le tableau des options mesurées ; le canevas ne garde rien.
+
+Journal complet : `specs/tiny/vague-031/voiles-hero.md` (§ Suite du 2026-09-09).

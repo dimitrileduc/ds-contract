@@ -1,7 +1,7 @@
 /*
  * responsive/hero.pqr.css — ZONE MANUELLE (vague 031 suite, section Hero IMAGE, 2026-09-07).
  *
- * Projection Odoo des règles PAR MODE du contrat ds.hero 3.0.0 (layoutByProp / tokensByProp /
+ * Projection Odoo des règles PAR MODE du contrat ds.hero 3.2.0 (layoutByProp / tokensByProp /
  * literalsByProp / stylesWhen sur l'axe `presentation`, set candidat 2770:20976), réécrites en
  * @media sur les breakpoints des tokens :
  *   Mobile   = base (components.pqr.css — mobile-first, classe `.hero`)
@@ -24,7 +24,7 @@
  * pleine largeur et porte la sienne (Titres) — pas de `s_pqr_bleed`, pas de `.container`.
  */
 
-/* ---- ds.hero 3.0.0 ---------------------------------------------------------- */
+/* ---- ds.hero 3.2.0 ---------------------------------------------------------- */
 
 /* Base = Mobile. `height` du contrat → min-height (Odoo, sections < 768). Le conteneur
  * flex garde `align-items: stretch` (contrat) : blocTexte, puis Titres (grow), remplissent
@@ -96,6 +96,16 @@
   .s_pqr_hero.hero .hero__Titre,
   .s_pqr_hero.hero .hero__sousTitre {
     text-align: left;
+  }
+  /* Voile bas Desktop/Wide — décision owner 2026-09-09 (duel canevas, option A) : la BASE
+   * (Mobile/Tablette, components.pqr.css) est passée au voile du HeroVideo parce que leur texte
+   * est centré verticalement ; Desktop et Wide, dont le texte est en pied donc déjà dans la
+   * rampe, gardent les valeurs du 2026-09-08. Recopie de `.hero--presentation-desktop
+   * .hero__Voile` (identique en Wide, rien à recopier plus bas). tokensByProp + literalsByProp
+   * du contrat 3.2.0, entrées du registre des littéraux nommés. */
+  .s_pqr_hero.hero > .hero__Voile {
+    background-color: var(--pqr-color-noir-voile-40);
+    background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%);
   }
   /* Voile de navigation Desktop (lu sur le set HeroVideo 031, repris par décision owner
    * 2026-09-07 — literalsByProp du contrat, entrée du registre des littéraux nommés). */

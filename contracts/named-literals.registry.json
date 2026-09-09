@@ -33,10 +33,28 @@
       "contractId": "ds.hero",
       "pointer": "/anatomy/root/parts/Voile/literals/background-image",
       "channel": "background-image",
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.033) 8%, rgba(0,0,0,0.099) 15%, rgba(0,0,0,0.22) 23%, rgba(0,0,0,0.396) 31%, rgba(0,0,0,0.572) 39%, rgba(0,0,0,0.66) 48%, rgba(0,0,0,0.715) 61%, rgba(0,0,0,0.748) 70%, rgba(0,0,0,0.792) 78%, rgba(0,0,0,0.858) 90%, rgba(0,0,0,0.88) 100%)",
+      "reason": "Dégradé bas du cadre `Voile` du Hero image en MOBILE et TABLETTE, remplacé le 2026-09-09 (décision owner sur un duel canevas actuel/A/B/C posé sur la photo réelle « Portes de garage », option A retenue : « un peu plus fort comme pour heroVideo »). Valeur IDENTIQUE à l'entrée ds.hero-video /anatomy/root/parts/VoileBas/literals/background-image, reprise sans retape — c'est la définition même de l'option A. Motif mesuré avant le geste : sur ces deux modes le bloc de texte est CENTRÉ verticalement (33→67 % de la hauteur en Mobile, 40→60 % en Tablette) alors que le dégradé du 2026-09-08 ne démarrait qu'à 30 % et plafonnait à 0,70 — noir effectif sous le texte 0,52, contre 0,71 côté HeroVideo à la même hauteur. Desktop et Wide ne sont PAS touchés (leur texte est en bas, dans la rampe) : leur ancienne valeur passe en literalsByProp. Valeur relevée au canevas après le geste sur le set 2770:20976. Un token gradient à usage unique fabriquerait un faux vocabulaire.",
+      "decidedOn": "2026-09-09",
+      "receiptId": "hero-voile-mobile-2026-09-09"
+    },
+    {
+      "contractId": "ds.hero",
+      "pointer": "/anatomy/root/parts/Voile/literalsByProp/0/map/desktop/background-image",
+      "channel": "background-image",
       "value": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%)",
-      "reason": "Dégradé bas du cadre `Voile` du Hero image, ALLÉGÉ le 2026-09-08 (décision owner sur un duel canevas actuel/A/B, option A retenue) : noir, alpha 0 de 0 à 30 % de la hauteur, 0,70 à 100 % — c'était 0,80. Le voile plein qui se compose dessous passe le même jour de color/noir-voile-55 à color/noir-voile-40. Motif mesuré avant le geste : les deux peintures se cumulent, le noir effectif sous le titre atteignait 0,81 en desktop et 0,91 tout en bas, contre 0,55 côté HeroVideo — la photo était écrasée. Valeur relevée au canevas après le geste sur le set 2770:20976 ; identique sur les quatre variantes. Un token gradient à usage unique fabriquerait un faux vocabulaire.",
-      "decidedOn": "2026-09-08",
-      "receiptId": "hero-voiles-2026-09-08"
+      "reason": "Dégradé bas du cadre `Voile` du Hero image en Desktop — c'est la valeur du 2026-09-08 (alpha 0 de 0 à 30 %, 0,70 à 100 %), INCHANGÉE, qui devient explicite par mode le 2026-09-09 parce que la base est passée au voile du HeroVideo pour Mobile et Tablette seulement (décision owner, duel canevas, option A). Le texte de ces deux modes est posé en bas du hero, donc déjà dans la rampe : le renfort demandé pour le texte centré ne les concerne pas. Nommé par mode, jamais tokenisé.",
+      "decidedOn": "2026-09-09",
+      "receiptId": "hero-voile-mobile-2026-09-09"
+    },
+    {
+      "contractId": "ds.hero",
+      "pointer": "/anatomy/root/parts/Voile/literalsByProp/0/map/wide/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%)",
+      "reason": "Dégradé bas du cadre `Voile` du Hero image en Wide — c'est la valeur du 2026-09-08 (alpha 0 de 0 à 30 %, 0,70 à 100 %), INCHANGÉE, qui devient explicite par mode le 2026-09-09 parce que la base est passée au voile du HeroVideo pour Mobile et Tablette seulement (décision owner, duel canevas, option A). Le texte de ces deux modes est posé en bas du hero, donc déjà dans la rampe : le renfort demandé pour le texte centré ne les concerne pas. Nommé par mode, jamais tokenisé.",
+      "decidedOn": "2026-09-09",
+      "receiptId": "hero-voile-mobile-2026-09-09"
     },
     {
       "contractId": "ds.hero-video",

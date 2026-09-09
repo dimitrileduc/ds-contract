@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "099ccd13",
+    "gitCommit": "591749ca",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -395,7 +395,7 @@
     {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "4.1.0",
+      "version": "4.2.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -410,7 +410,7 @@
         "verifie",
         "lienAvis"
       ],
-      "summary": "4.1.0 (2026-09-05, vague 033) : elevation au survol."
+      "summary": "4.2.0 (2026-09-08, demande owner) : LA CARTE ENTIERE EST CLIQUABLE, pas seulement « Lire la suite »."
     },
     {
       "id": "ds.google-reviews",
@@ -459,7 +459,7 @@
     {
       "id": "ds.hero-video",
       "name": "HeroVideo",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -474,7 +474,7 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "3.0.0",
+      "version": "3.2.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -533,7 +533,7 @@
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "3.1.0",
+      "version": "4.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -542,7 +542,7 @@
         "imageUrl",
         "imageAlt"
       ],
-      "summary": "3.1.0 (2026-09-05, vague 033) : elevation au survol."
+      "summary": "4.0.0 (2026-09-08, refonte carte produit — option choisie par l'owner sur la planche 031 · 23, DESSINEE DANS FIGMA AVANT d'etre contractee, §VIII)."
     },
     {
       "id": "ds.produits-ecommerce",
@@ -589,7 +589,7 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "2.1.2",
+      "version": "2.2.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -599,7 +599,7 @@
         "titre",
         "items"
       ],
-      "summary": "2.1.1 (2026-09-07) : en WIDE, la rangee de cartes cesse d'etre une grille a nombre de colonnes FIXE pour devenir une simple ligne."
+      "summary": "2.2.0 (2026-09-08, demande owner) : la grille du BUREAU passe de 3 a 4 colonnes — et d'elle seule ; Mobile, Tablette et Wide sont inchanges, verifie sur le canevas apres le geste."
     },
     {
       "id": "ds.sav",

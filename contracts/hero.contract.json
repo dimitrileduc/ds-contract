@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero",
   "name": "Hero",
-  "version": "3.1.0",
-  "description": "Piqueray Hero (image), responsive. 3.1.0 (2026-09-08, MINOR: the Voile plane lightened from noir-voile-55 plus gradient 0.80 to noir-voile-40 plus gradient 0.70, owner decision on a canvas duel; nothing else moved, no anchor change, no prop touched). 3.0.0 (2026-09-07, vague 031 suite, page « Portes de garage »): re-extracted from the candidate set 2770:20976 (page 031, section « 031 · HERO IMAGE — 4 variantes (candidat v2) »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner on 2026-09-07 — the anchors move from the single COMPONENT 2111:3382 to the set, hence MAJOR. Everything the canvas draws is proposed by `npm run extract:figma` on the dump v1.8 and adopted: layout per mode (Titres column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings and gap per mode as tokensByProp on the presentation axis (64/24 · 64/48 · 96-48/56 · 96-48/89, gap 24 · 24 · 32 · 32), the title riding the responsive text style H1 (typography.h1.* — SemiBold; the 2.0.0 master drew it Bold: weight change decided by the owner), the paragraph riding typography.body.* (Regular under 992, Medium above — typography.body.weight varies by viewport mode). Veils: the 2.0.0 Titres scrim (2 stops) is REMOVED (owner decision « B »); a new full-inset `Voile` plane carries the DS token color.noir-voile-55 (55 % black) PLUS a bottom gradient (0 → 30 % transparent, 0.8 at 100 %), and `VoileNavigation` reuses the HeroVideo top veil per mode. Added by hand, each named: the host element (section — not drawn), the text alignment per mode (center / left), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the schema has no channel on a nested instance — Odoo projection, code-only), the flattening of the `Titre direct` wrapper frame. The drawn widths 390/834/1200/1728 are witnesses, not tokens: the root fills its parent. The photo keeps the 2.0.0 model (code-side `backgroundUrl`, `Background` plane, object-fit cover). Breakpoints are the token dimension `breakpoint.*` (768 / 992 / 1600), consumed by the CSS build, never by this contract.",
+  "version": "3.2.0",
+  "description": "Piqueray Hero (image), responsive. 3.2.0 (2026-09-09, MINOR: the Voile of Mobile and Tablette adopts the HeroVideo veil — noir-voile-25 plus the 12-stop gradient reaching 0.88 — because the text is centered on those two modes and the 2026-09-08 veil only darkened the bottom; Desktop and Wide keep the 2026-09-08 values, now expressed by tokensByProp/literalsByProp. Nothing else moved, no prop touched, no anchor change). 3.1.0 (2026-09-08, MINOR: the Voile plane lightened from noir-voile-55 plus gradient 0.80 to noir-voile-40 plus gradient 0.70, owner decision on a canvas duel; nothing else moved, no anchor change, no prop touched). 3.0.0 (2026-09-07, vague 031 suite, page « Portes de garage »): re-extracted from the candidate set 2770:20976 (page 031, section « 031 · HERO IMAGE — 4 variantes (candidat v2) »), four `presentation` variants Mobile / Tablette / Desktop / Wide validated by the owner on 2026-09-07 — the anchors move from the single COMPONENT 2111:3382 to the set, hence MAJOR. Everything the canvas draws is proposed by `npm run extract:figma` on the dump v1.8 and adopted: layout per mode (Titres column centered on Mobile/Tablette, row bottom-aligned on Desktop/Wide), paddings and gap per mode as tokensByProp on the presentation axis (64/24 · 64/48 · 96-48/56 · 96-48/89, gap 24 · 24 · 32 · 32), the title riding the responsive text style H1 (typography.h1.* — SemiBold; the 2.0.0 master drew it Bold: weight change decided by the owner), the paragraph riding typography.body.* (Regular under 992, Medium above — typography.body.weight varies by viewport mode). Veils: the 2.0.0 Titres scrim (2 stops) is REMOVED (owner decision « B »); a new full-inset `Voile` plane carries the DS token color.noir-voile-55 (55 % black) PLUS a bottom gradient (0 → 30 % transparent, 0.8 at 100 %), and `VoileNavigation` reuses the HeroVideo top veil per mode. Added by hand, each named: the host element (section — not drawn), the text alignment per mode (center / left), the CTA pinned to the bottom edge on Mobile/Tablette (drawn ABSOLUTE on the canvas; the schema has no channel on a nested instance — Odoo projection, code-only), the flattening of the `Titre direct` wrapper frame. The drawn widths 390/834/1200/1728 are witnesses, not tokens: the root fills its parent. The photo keeps the 2.0.0 model (code-side `backgroundUrl`, `Background` plane, object-fit cover). Breakpoints are the token dimension `breakpoint.*` (768 / 992 / 1600), consumed by the CSS build, never by this contract.",
   "semantics": {
     "element": "section",
     "provenance": "extracted"
@@ -175,13 +175,37 @@
           }
         },
         "Voile": {
-          "description": "Full-inset veil, LIGHTENED on 2026-09-08 (owner decision on a canvas duel current/A/B, option A retained): a SOLID fill bound to the DS token color/noir-voile-40 (40 % black — was noir-voile-55) PLUS a bottom linear gradient (black, alpha 0 from 0 to 30 %, 0.70 at 100 % — was 0.80) as the second paint. Reason, measured before the change: the 55 % plane and the 0.80 gradient compound, so the effective black under the title reached 0.81 on desktop and 0.91 at the very bottom, against 0.55 on the HeroVideo — the photo was crushed. Option A puts both heros at the same level. Values read on the canvas after the 2026-09-08 gesture on the set 2770:20976; all four variants carry the same Voile. The gradient is a governed literal (named-literals registry); the SOLID rides the token. Sits above the photo and below VoileNavigation (same z-index, earlier in DOM order = painted first, as on the canvas). The drawn size 390 to 1728 x 640 is the root's own box: inset 0, never a token.",
+          "description": "Full-inset veil. 2026-09-09 (owner decision on a canvas duel actuel/A/B/C on the real « Portes de garage » photo, option A retained): on MOBILE and TABLETTE ONLY, the veil becomes the HeroVideo one — a SOLID bound to color/noir-voile-25 (25 % black) PLUS the HeroVideo bottom gradient (12 stops, ramp from the very top, 0.88 at 100 %). Reason, measured before the gesture: on these two modes the text block is CENTERED vertically (33→67 % of the height on Mobile, 40→60 % on Tablette) while the 2026-09-08 veil only starts ramping at 30 % and tops at 0.70 — effective black under the text 0.52, against 0.71 on the HeroVideo at the same height. The photo won, the text lost. Desktop and Wide are NOT touched (their text sits at the bottom, inside the ramp): they keep noir-voile-40 + the 0→0.70 gradient, now carried by tokensByProp/literalsByProp. Values read on the canvas after the 2026-09-09 gesture on the set 2770:20976 (two named versions, 37 instances following, none had a Voile override). Full-inset veil, LIGHTENED on 2026-09-08 (owner decision on a canvas duel current/A/B, option A retained): a SOLID fill bound to the DS token color/noir-voile-40 (40 % black — was noir-voile-55) PLUS a bottom linear gradient (black, alpha 0 from 0 to 30 %, 0.70 at 100 % — was 0.80) as the second paint. Reason, measured before the change: the 55 % plane and the 0.80 gradient compound, so the effective black under the title reached 0.81 on desktop and 0.91 at the very bottom, against 0.55 on the HeroVideo — the photo was crushed. Option A puts both heros at the same level. Values read on the canvas after the 2026-09-08 gesture on the set 2770:20976; all four variants carry the same Voile. The gradient is a governed literal (named-literals registry); the SOLID rides the token. Sits above the photo and below VoileNavigation (same z-index, earlier in DOM order = painted first, as on the canvas). The drawn size 390 to 1728 x 640 is the root's own box: inset 0, never a token.",
           "tokens": {
-            "background-color": "{color.noir-voile-40}"
+            "background-color": "{color.noir-voile-25}"
+          },
+          "tokensByProp": {
+            "prop": "presentation",
+            "map": {
+              "desktop": {
+                "background-color": "{color.noir-voile-40}"
+              },
+              "wide": {
+                "background-color": "{color.noir-voile-40}"
+              }
+            }
           },
           "literals": {
-            "background-image": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%)"
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.033) 8%, rgba(0,0,0,0.099) 15%, rgba(0,0,0,0.22) 23%, rgba(0,0,0,0.396) 31%, rgba(0,0,0,0.572) 39%, rgba(0,0,0,0.66) 48%, rgba(0,0,0,0.715) 61%, rgba(0,0,0,0.748) 70%, rgba(0,0,0,0.792) 78%, rgba(0,0,0,0.858) 90%, rgba(0,0,0,0.88) 100%)"
           },
+          "literalsByProp": [
+            {
+              "prop": "presentation",
+              "map": {
+                "desktop": {
+                  "background-image": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%)"
+                },
+                "wide": {
+                  "background-image": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%)"
+                }
+              }
+            }
+          ],
           "declared": {
             "position": "absolute",
             "top": "0",

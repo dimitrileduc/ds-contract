@@ -1994,7 +1994,7 @@ const COMPONENTS = [
     "setName": "Hero",
     "contractId": "ds.hero",
     "anchorKey": "18e85e203a80f1190745ae89352759020b6cbaa0",
-    "description": "Hero — generated from contract ds.hero v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Hero — generated from contract ds.hero v3.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [
       {
@@ -2070,7 +2070,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-40",
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -2088,16 +2088,97 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0
+                      "a": 0.033
                     },
-                    "position": 0.3
+                    "position": 0.08
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.7
+                      "a": 0.099
+                    },
+                    "position": 0.15
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.22
+                    },
+                    "position": 0.23
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.396
+                    },
+                    "position": 0.31
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.572
+                    },
+                    "position": 0.39
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.66
+                    },
+                    "position": 0.48
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.715
+                    },
+                    "position": 0.61
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.748
+                    },
+                    "position": 0.7
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.792
+                    },
+                    "position": 0.78
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.858
+                    },
+                    "position": 0.9
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.88
                     },
                     "position": 1
                   }
@@ -2382,7 +2463,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
-              "fill": "color/noir-voile-40",
+              "fill": "color/noir-voile-25",
               "gradient": {
                 "angle": 180,
                 "stops": [
@@ -2400,16 +2481,97 @@ const COMPONENTS = [
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0
+                      "a": 0.033
                     },
-                    "position": 0.3
+                    "position": 0.08
                   },
                   {
                     "color": {
                       "r": 0,
                       "g": 0,
                       "b": 0,
-                      "a": 0.7
+                      "a": 0.099
+                    },
+                    "position": 0.15
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.22
+                    },
+                    "position": 0.23
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.396
+                    },
+                    "position": 0.31
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.572
+                    },
+                    "position": 0.39
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.66
+                    },
+                    "position": 0.48
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.715
+                    },
+                    "position": 0.61
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.748
+                    },
+                    "position": 0.7
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.792
+                    },
+                    "position": 0.78
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.858
+                    },
+                    "position": 0.9
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.88
                     },
                     "position": 1
                   }

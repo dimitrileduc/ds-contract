@@ -14,7 +14,7 @@ export const FIGMA_PANEL_LINKS = Object.freeze([
     Object.freeze({ panelId: "faq-row", selector: ".s_pqr_faq [data-pqr-faq-row]", contractId: "ds.accordion-row", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2767:20198" }),
     Object.freeze({ panelId: "footer", selector: ".footer[data-pqr-shell=\"footer\"]", contractId: "ds.footer", contractVersion: "2.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2735:12509" }),
     Object.freeze({ panelId: "google-reviews", selector: ".s_pqr_google_reviews", contractId: "ds.google-reviews", contractVersion: "3.1.1", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2700:28391" }),
-    Object.freeze({ panelId: "hero", selector: ".s_pqr_hero", contractId: "ds.hero", contractVersion: "3.1.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2770:20976" }),
+    Object.freeze({ panelId: "hero", selector: ".s_pqr_hero", contractId: "ds.hero", contractVersion: "3.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2770:20976" }),
     Object.freeze({ panelId: "hero-video", selector: ".s_pqr_hero_video", contractId: "ds.hero-video", contractVersion: "2.3.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2689:15832" }),
     Object.freeze({ panelId: "member-card", selector: ".s_pqr_equipe [data-pqr-member-card]", contractId: "ds.member-card", contractVersion: "2.1.1", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2777:31008" }),
     Object.freeze({ panelId: "presentation", selector: ".s_pqr_presentation", contractId: "ds.presentation", contractVersion: "4.2.0", status: "available", fileKey: "d9FYAUcqdcNtsuaMgLefvJ", nodeId: "2693:20805" }),
