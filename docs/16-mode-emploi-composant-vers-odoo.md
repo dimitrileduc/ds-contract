@@ -836,3 +836,163 @@ et il a quand même payé quatre pièges qui valent pour tous les autres.
   décision. Le journal garde le tableau des options mesurées ; le canevas ne garde rien.
 
 Journal complet : `specs/tiny/vague-031/voiles-hero.md` (§ Suite du 2026-09-09).
+
+## Complément du 2026-09-09 — Hiérarchie des CTA : proposition Figma AVANT le contrat (3 options, aucun style neuf)
+
+- **Le constat, relevé sur la home 031** : trois sections posent le même Outline noir — Produits e-commerce (« Voir les
+  produits »), Réassurances (« Contactez-nous »), Avis Google (« Voir tous les avis ») — pour deux intentions
+  différentes (navigation vs conversion). Présentation et les cartes disent déjà la bonne chose avec le style **Link**.
+  La règle proposée n'invente rien : conversion = Default (noir plein) / Outline blanc sur photo ; action secondaire =
+  Outline ; navigation « voir plus » = Link + flèche. Planche : `031 · 25 · HIÉRARCHIE DES CTA` (`2798:54491`, cadre
+  auto-layout à −12000 / 71200, sous la 031 · 24), quatre rangées Wide 1728 + Mobile 390 : Aujourd'hui, A (lien en
+  place, recommandée), B (A + Réassurances en noir plein), C (A + lien en pied de section). A et B sont des instances
+  des sets 031 avec surcharges ; C et le Réassurances de B sont détachés. Aucun master touché.
+- **Orange est écarté par la mesure, pas par goût** : blanc sur `color/orange` (#f98a0b) ≈ 2,5:1, sous les 4,5:1 du AA
+  pour un libellé de 16 px. Le style existe dans le DS ; il ne peut pas porter ce libellé-là.
+- **Défaut de source trouvé en passant (§VIII)** : dans le set `Reassurances` 031, le « Contactez-nous » n'est PAS une
+  instance du Bouton mais un cadre dessiné (`BoutonCinqCartes`), en Wide comme en Mobile — alors que `ds.reassurances`
+  2.2.0 le déclare `ds.button`. À remettre en instance à la source avant tout contrat, quelle que soit l'option.
+- **`setProperties` sur une instance imbriquée MASQUÉE la rend visible** (vérifié : master Mobile `visible=false`,
+  l'instance surchargée passe à `true` sans qu'on l'ait demandé). Le master Mobile de ProduitsECommerce porte deux
+  boutons (en-tête masqué + conteneur pleine largeur) : après une surcharge de style, re-poser `visible = false`, sinon
+  le lien apparaît deux fois.
+- **Un cadre auto-layout créé par script puis `resize()` retombe en FIXED sur l'axe principal** : après avoir ajouté les
+  enfants, poser `layoutSizingVertical = 'HUG'` sur la colonne ET sur la rangée — sinon la planche fait 10 px de haut
+  et l'export montre un fond noir avec les instances qui débordent.
+- **Ce que coûte chaque option si l'owner tranche** : A = valeur par défaut du bouton imbriqué dans 2 contrats (patch)
+  + les cinq miroirs Odoo (§ « le CINQUIÈME miroir ») ; B = A + `ds.reassurances` (3 contrats) ; C = anatomie de 2
+  contrats (mineur) + `responsive/*.pqr.css`. Dans tous les cas : corriger la source Réassurances d'abord, puis dump,
+  extraction, contrat, miroirs, `figma:plan`, mesure — l'ordre du runbook, pas un CSS Odoo « en attendant ».
+- **Tranché le même matin — option B (carré) posée sur le canevas, planche retirée.** Variable
+  `spacing/carte-reassurance/photo-h` mode Desktop 364 → **248** ; rangées de grille en **HUG** sur le master
+  `Presentation=Desktop` (2 rangées) ET sur ses 6 instances de vues (elles portaient une surcharge `FIXED:561` qui aurait
+  survécu au master). Versions nommées avant et après. **Preuve sans receveur** : `exportAsync` dans le bac à sable +
+  empreinte FNV-1a sur les octets, gardée dans `globalThis` entre deux `figma_execute` — 35 cibles (4 masters + 31
+  instances) ; les **26** cibles Mobile/Tablette/Wide sont **identiques à l'octet**, les 8 Desktop ont changé et seulement
+  elles. Résultat à 1200, 4 cartes : carte 526 (au lieu de 561 figé), section 752 (au lieu de 787) — plus aucun débordement.
+  Deux pièges de plus : (4) **cloner une instance perd sa surcharge de rangées** (`HUG` → `FLEX:1` sur la copie, cartes
+  coupées à 485) — un clone témoin doit re-poser la surcharge avant capture ; (5) **une autre session travaillait dans le
+  fichier en même temps** (deux instances `2798:5xxxx` nées puis disparues entre l'AVANT et l'APRÈS) — l'empreinte doit
+  tolérer une cible DISPARUE et la nommer, jamais l'ignorer. **Côté dépôt, rien n'est fait** : `tokens/modes/viewport.desktop`
+  (l. 190) pointe encore `photo-h.364`, le primitif `photo-h.248` n'existe pas, `ds.carte` n'a pas bougé — c'est la
+  prochaine étape du runbook (jeton, contrat, cinq miroirs, `figma:plan`, mesure Odoo).
+
+### Suite du même jour — option A retenue (e-commerce + Avis Google SEULEMENT), source posée, planche supprimée
+
+- **Périmètre tranché par l'owner** : « Voir les produits » et « Voir tous les avis » en Link + flèche, rien d'autre —
+  le « Contactez-nous » de Réassurances (cadre dessiné, pas une instance) reste tel quel, à traiter à part.
+- **Geste, dans l'ordre §X** : version nommée « Avant 031·25 option A » → export des 8 variantes (`useAbsoluteBounds`)
+  vers le receveur 9230 de CE worktree (celui de la spec 037, encore vivant ; noms préfixés `cta-avant-`, fichiers
+  déplacés ensuite) → `setProperties({Style:'Link','Icone droite':true})` sur les **12** boutons des deux sets
+  (ProduitsECommerce en porte 2 par variante : en-tête + conteneur pleine largeur, l'un des deux masqué selon l'écran ;
+  AvisGoogle 1) en RE-POSANT la visibilité lue avant → 60 instances relues sur tout le fichier, aucune surcharge de
+  style, toutes en Link → export `cta-apres-` → planche `031 · 25` supprimée → version « Après 031·25 option A ».
+  Reçus : `specs/tiny/proofs/cta-hierarchie/cta-{avant,apres}-<Set>-<Ecran>.png` (16 fichiers).
+- **Ce que ça change de mesurable, à retrouver dans le contrat** : le bouton passe de 54 à 30 de haut, donc les
+  sections raccourcissent (produits Wide 522 → 518, Mobile 454 → 430 ; avis Wide 493 → 469, Mobile 1755 → 1731).
+  En Mobile/Tablette le conteneur pleine largeur garde son bouton en FILL : le libellé du lien se centre dans la
+  largeur — c'est la boîte du master, pas un choix neuf. En Desktop les DEUX boutons portent `visible=true` mais le
+  conteneur n'est pas rendu (son parent est masqué) : à relire au dump avant de modéliser.
+- **Aucun port libre dans 9223-9232 ce jour-là non plus** : 9230 était le receveur 037 (vivant depuis le 09-08, `/health`
+  le nomme et pointe un dossier de ce worktree) — utilisé sans le tuer, avec des noms qui ne peuvent pas entrer en
+  collision avec les vues 037, puis les fichiers déplacés. Un receveur qu'on n'a pas lancé se lit à `/health` avant
+  tout POST et ne se tue jamais.
+- **Suite (« le reste », à voir avec l'owner)** : `parity/snapshots/figma-components.json` est maintenant périmé pour ces
+  deux sets ; puis dump → `extract:figma` → `ds.produits-ecommerce` 2.2.x et `ds.google-reviews` 3.1.x (valeur par
+  défaut `variant: "link"` + `iconRight: true` du bouton imbriqué, description du changement) → les cinq miroirs Odoo,
+  `inputs.lock.json --repin`, `figma:plan`, golden → recomposition des pages qui posent ces blocs (avis : les neuf ;
+  produits : home, Motorisation) → mesure.
+- **Côté dépôt, fait dans la foulée (même matin)** : primitif `size.carte-reassurance.photo-h.248` (from-dump),
+  `viewport.desktop` → `.248`, `ds.carte` 3.1.0 → **3.1.1** (description seule : la part suit toujours le même jeton),
+  33 épingles (`reassurances.authoring.json` 30, `figma-panels.json` 3), repin du verrou et **nouveau digest dans les
+  quatre miroirs** (`version_guard.js`, `scan-saved-versions.ts`, `cases.json` ×2, `components.xml` ×16), `figma:plan`
+  (`01-tokens.js`, `07-carte.js`, `batch-02.js`), catalogue, golden, reçu moteur. Variable primitive
+  `size/carte-reassurance/photo-h/248` créée sur le canevas (miroir du jeton, scopes et codeSyntax copiés de la 364).
+  **Cliché de parité mis à jour sans receveur** : le cliché local patché a la MÊME empreinte FNV que l'extraction vive
+  (`JSON.stringify(collections)` dans le bac à sable : `3259b7c3` / 63 523) — `parity` vert, 19 acquittés inchangés.
+  **Mesure Odoo (037, 8109, `/portes-residentielles`) = Figma aux quatre largeurs** : 390 → 1666, 834 → 1748,
+  **1200 → 752 (carte 526, photo 248)**, 1728 → 799 — les mêmes hauteurs que les vues `Portes de garage résidentielles`.
+- **Quatre pièges d'instrument, ce matin** : (6) `page.evaluate(() => …)` sous `tsx` lève `__name is not defined`
+  (helper esbuild injecté dans le code envoyé au navigateur) — passer le corps en CHAÎNE ; (7) une sonde hors du dépôt
+  ne résout pas `playwright-core` — la poser sous `.page-parity/` (gitignoré) ; (8) le `playwright-core` du dépôt attend
+  Chromium **1228**, le cache n'a que **1243** — `PLAYWRIGHT_CHROMIUM_PATH` explicite ; (9) **une seconde base est apparue
+  dans le conteneur 037** (`piqueray_pilote`, créée 07:13 UTC par une autre session) et toutes les pages sont tombées en
+  404 (le piège 037) — sans toucher à sa base, ouvrir d'abord `/web/login?db=piqueray_037` pour lier la session, puis
+  la page. **Deux sessions dans ce worktree** ce matin : leurs miroirs (digest) ont été réécrits par mon repin — c'est
+  la mécanique attendue (le digest est global), mais elles doivent rebâtir avant leur `derivation:check`.
+
+### Suite du même jour — le style Link en SemiBold au repos, pour tout le monde (décision owner)
+
+- **La question de l'owner** : « ce CTA link ne devrait-il pas être plus gras pour tout le monde — c'est réutilisé ou pas ? »
+  Réponse relevée sur le canevas : OUI, un seul style, `Style=Link` du set Bouton (`6:122`), posé dans 24 contextes
+  (« Lire la suite » ×204, « Contactez-nous » des cartes de catégorie, « En savoir plus », brochures, « Voir les
+  produits », « Voir tous les avis »…). Son libellé portait le style de texte **« Libellé bouton » (Medium 16), le même
+  que TOUS les autres styles du Bouton** — donc « plus gras pour le lien » ne peut pas passer par ce style-là.
+- **Le geste, sans dégradation (piège A6 « poser une graisse détache du style »)** : un style de texte DÉDIÉ
+  « Libellé bouton lien » copié champ par champ depuis « Libellé bouton » (SemiBold, `fontSize` re-lié à
+  `typography/button/size` par `setBoundVariable` sur le STYLE, textCase UPPER, interligne 22, description datée),
+  puis `setTextStyleIdAsync` sur le libellé des variantes Link Repos / Actif / Focus. Survol inchangé (« Libellé bouton
+  survol », SemiBold + soulignement) : le lien perd le changement de graisse au survol, garde soulignement + noir pur.
+  Vérifié après : `fontSize` lié, `fills` lié (couleur d'état), largeur 155 → 156.
+- **`textNode.boundVariables.fontSize` est un TABLEAU** (`[{type, id}]`), pas un objet : `.id` dessus rend `undefined`,
+  `getVariableByIdAsync(undefined)` rend `null`, et le script plante APRÈS la première mutation. Lire `fs[0].id`.
+  Un script qui plante à mi-course laisse un état intermédiaire (ici : style créé + 1 variante sur 3) — relire l'état
+  avant de relancer, jamais relancer à l'aveugle.
+- **Trouvé par le contrôle global, invisible autrement** : 468 instances Link hors survol, 428 suivaient. Les 40 autres
+  = les « action » des cartes de `CategoriesPrincipales` dans les vues démo de CINQ pages (Résidentielles, Motorisation,
+  Portes d'entrée, SAV, Industrielles ; 2 par instance × 4 vues × 5 pages) : libellé **détaché de tout style**, Medium,
+  et en Wide **taille 18 en dur, non liée** — un texte re-saisi avec mise en forme à la construction des vues (spec 037).
+  Re-liés au style par `setTextStyleIdAsync` sur le texte de l'instance (une surcharge d'instance qui, elle, prend) :
+  40/40, caractères inchangés, taille re-liée. Contrôle final : **468/468**. Leçon : après tout geste sur un style
+  partagé, compter les instances qui suivent — un libellé détaché ne se voit pas, il se compte.
+- **§X tenu** : versions nommées « Avant/Après Link SemiBold », exports `lien-{avant,apres}-*` (4 variantes + 8 contextes)
+  et `catprin-{avant,apres}-<vue>` (20 instances touchées), tous non vides, rangés dans
+  `specs/tiny/proofs/cta-hierarchie/`. Receveur 9230 (037) réutilisé comme le matin, sans le tuer.
+- **Suite côté dépôt (« le reste »)** : `ds.button` — `tokensByProp.variant.link["font-weight"] = "{font.weight.semibold}"`
+  (le jeton existe) + `typography.etat.link.graisse-survol` reste semibold (le survol ne change plus de graisse) ; bump
+  patch/mineur du Bouton = **264 épingles Odoo** + les cinq miroirs (§ « le CINQUIÈME miroir ») + `version_guard`,
+  `scan-saved-versions`, fixture `version-drift`, `figma-panels.json`, `golden:update` après le dernier build. Puis les
+  deux contrats de l'option A. Cliché `figma-components.json` à rafraîchir AVANT `parity`.
+
+### Suite du même jour — Presentation : le « En savoir plus » n'était une instance du Bouton qu'en Wide
+
+- **Signalé par l'owner** sur l'instance `Presentation=Desktop` d'À Propos (« pourquoi lui n'utilise pas le bon CTA ? »).
+  Relevé : dans le set `Presentation` (`2693:20805`), Mobile / Tablette / Desktop portaient un cadre « Bouton »
+  DESSINÉ (iconLeft + label + iconRight, texte libre Medium 16 **sans style de texte**, taille liée au primitif
+  `font/size/16` au lieu de `typography/button/size`) ; seule Wide portait l'instance `Style=Link`. Le SemiBold posé
+  sur le style Link ne pouvait donc pas l'atteindre — c'est ainsi que le défaut s'est vu.
+- **Correction à la source** (§VIII, versions « Avant/Après Presentation », exports `pres-{avant,apres}-<Écran>` dans
+  `specs/tiny/proofs/cta-hierarchie/`) : instance du Bouton `Style=Link` « En savoir plus » + flèche insérée au même
+  index du `wrapper`, dimensionnement repris du cadre (FILL quand le cadre centrait en pleine largeur, HUG sinon), cadre
+  supprimé. 16 instances du set relues : 16/16 portent l'instance, 0 cadre restant. Hauteurs : Mobile 544 → 520,
+  Tablette 394 → 370 (le cadre faisait 54, un Link fait 30), Desktop et Wide inchangés.
+- **Balayage de TOUS les sets de la page 031** (texte de CTA hors instance du Bouton) : il ne reste que le
+  « Contactez-nous » de `Reassurances` (`BoutonCinqCartes`, 4 variantes, sans style, 18 en dur en Wide) — déjà nommé
+  deux fois ce jour, non touché faute de décision owner. Règle qui en sort : **avant de toucher un style partagé, balayer
+  les textes de CTA hors instance** — un CTA dessiné ne suit ni le style, ni la taille responsive, ni le contrat.
+
+## Complément du 2026-09-09 — Équipe : changer un compte de colonnes (Desktop 3→4, Wide 4→5), le plus court chemin complet
+
+Journal : `specs/tiny/equipe-v2/equipe.md` (§ 2026-09-09). Le job entier — source, contrat, miroirs, mesure — tient
+en une heure quand la source est propre ; ce qui suit est ce qu'il faut savoir pour qu'il tienne la prochaine fois.
+
+- **Un compte de colonnes se change à la SOURCE en un champ** : `gridColumnCount` sur la grille du master ; Figma
+  recompte les rangées tout seul et garde `HUG`. Relire ensuite les INSTANCES : si aucune ne surcharge la grille
+  (`i.overrides.find(o => o.id === grid.id)` vide), elles suivent. Preuve §X sans receveur ni capture d'écran :
+  empreinte des cibles NON visées identique à l'octet, seules les cibles visées changent.
+- **Quand une grille change de compte, relire chaque hauteur fixe des enfants** (leçon Réassurances du même jour).
+  Ici la carte est `aspectRatio 1` + `width: fill` : rien à relire, la carte suit. C'est le cas facile — le vérifier
+  reste obligatoire.
+- **Une rangée orpheline est un fait de dessin, pas un défaut de code** : 16 cartes sur 5 colonnes laissent une carte
+  seule. Le dire à l'owner avec la capture ; ne pas « corriger » en CSS.
+- **`parity` ne regarde PAS le nombre de colonnes** : le cliché `figma-components.json` ne porte ni `gridColumnCount`
+  ni `columns`. Un `layoutByProp.columns` peut diverger du canevas sans qu'aucune porte rougisse — la seule preuve est
+  la mesure (planche contre bloc) et l'empreinte avant/après.
+- **`odoo -d <base> -u …` avec un mauvais nom de base CRÉE la base** et fait tomber toutes les pages du conteneur en
+  404 « No database is selected ». Lire la liste des bases (`psql -U odoo -d postgres`) avant le `-u` ; l'instance
+  `piqueray-odoo-037` est sur **`piqueray_037`**, seul le pilote est sur `piqueray_pilote`. Si c'est fait :
+  `DROP DATABASE … WITH (FORCE)` après avoir vérifié la date de création et le compte de modules.
+- **Les outils de mesure hors git disparaissent avec leur worktree** (`.page-parity/equipe-v2/tools/` n'existait plus
+  nulle part). Un outil de mesure qui a servi à prouver un chiffre committé devrait vivre dans le dépôt ; en attendant,
+  `.page-parity/equipe-colonnes/mesure-equipe.mjs` est la version réécrite (capture clippée, refus de boîte dégénérée,
+  sonde, triptyque, `X-Odoo-Database` en option).

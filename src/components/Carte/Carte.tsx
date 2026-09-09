@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v3.1.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v3.1.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -28,7 +28,9 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
   ctaIconRightGlyph?: 'arrow-right' | 'download';
 }
 
-/** Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.
+/** 3.1.1 (2026-09-09, option B owner) : la photo de la réassurance en DESKTOP passe de 364 à 248 (carré 248 × 248). Cause : le passage du bureau à 4 colonnes (ds.reassurances 2.2.0, 2026-09-08) a fait tomber la carte de 341 à 248 de large sans que la hauteur de photo du mode Desktop ne suive — 248 × 364 était un portrait 2:3 quand le Wide fait 284 × 364. Le contrat ne change pas de forme : la part reassuranceImage suit toujours le jeton spacing.carte-reassurance.photo-h, dont la valeur Desktop pointe désormais size.carte-reassurance.photo-h.248 (minté from-dump, variable Figma 2699:25925 mode Desktop). Mobile 192, Tablette 240 et Wide 364 sont inchangés — prouvé à l’octet sur 26 cibles du canevas.
+
+Piqueray Carte, responsive. 3.0.0 (2026-09-02, vague 031) : la branche réassurance est ré-extraite du set 031 CarteReassurance (2700:25961), qui porte un axe Alignement {Centré, Gauche} et lie ses espacements aux jetons par écran. Ce qui change : écart et marge basse suivent spacing.carte-reassurance.gap et pad-bas (16 en mobile, 24 au-delà), la photo suit photo-h (192 / 240 / 364), le titre monte le style responsive H4 (20/25 → 24/30) et le texte la recette de corps (16/24 → 18/27), l'alignement devient une propriété gouvernée au lieu d'un choix figé. La largeur dessinée 341,33 est un témoin : la carte remplit sa piste. Avant cette version les vingt cartes de la section Réassurances étaient des cadres libres, sans lien au composant : elles ont été remplacées par des instances le 2026-09-02, à zéro pixel de différence sur les quatre vues. La disposition « categorie » est conservée en archive, plus utilisée par aucune page.
 
 Historique avant 3.0.0 :
 Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.

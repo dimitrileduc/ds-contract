@@ -191,3 +191,22 @@ confirme qu'il n'en reste aucun autre.
 | 834 | 21,98 % | **0,89 %** |
 | 1200 | 11,64 % (−30 px) | **0,97 %** · hauteur exacte |
 | 1728 | 1,42 % | **1,21 %** |
+
+## À trancher (2026-09-09) — hauteur de photo en Desktop après le passage à 4 colonnes
+
+Constat owner sur la vue « Portes de garage résidentielles — desktop 1200 » (`2774:28902`) : photo 248 × 364, trop
+haute. Cause : `photo-h` Desktop = 364 est resté celui des cartes de 341 (3 colonnes). Planche de proposition
+`031 · 24` (`2798:54146`) : A 4:5 = 310 · B carré = 248 (recommandée) · C 4:3 = 186. Rangée figée 561 → HUG (défaut
+Figma seulement). Correction du journal ci-dessus : les propriétés de grille (`gridRowSizes`) SONT modifiables par
+script — vérifié. Rien n'a été changé sur le set ni sur le contrat en attendant la décision.
+
+**Tranché (2026-09-09, owner) : option B.** Canevas fait : variable Desktop 364 → 248, rangées HUG (master + 6 instances
+de vues), versions nommées avant/après, 26 cibles Mobile/Tablette/Wide identiques à l'octet, planche `031 · 24` retirée.
+**Dépôt à faire** : primitif `size.carte-reassurance.photo-h.248` (from-dump, variable `2699:25925` mode Desktop),
+`tokens/modes/viewport.desktop.tokens.json` l. 190 → `.248`, description de `reassuranceImage` dans `ds.carte`
+(192 / 240 / **248** / 364) + bump, cinq miroirs Odoo, `figma:plan`, mesure du bloc à 1200 (carte 526, section 752).
+**Dépôt fait (2026-09-09, même matin)** : `ds.carte` **3.1.1**, jeton `photo-h.248` (primitif + mode desktop), 33 épingles,
+digest `4afa8f18…` dans les 4 miroirs, figma-sync régénéré, cliché jetons rafraîchi (empreinte = extraction vive), golden
+et reçu moteur re-pinnés. Mesure sur 037 (`/portes-residentielles`) : 390 → 1666 · 834 → 1748 · **1200 → 752 (photo 248,
+carte 526)** · 1728 → 799, identiques aux vues Figma. Portes : build, geometry:gate, authoring, module 23/23,
+derivation:check, emitters:check, parity (0 neuf), tsc ×2, plugin:check, core-browser, roundtrip — vertes.

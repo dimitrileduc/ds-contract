@@ -859,7 +859,7 @@ const COMPONENTS = [
     "setName": "Carte",
     "contractId": "ds.carte",
     "anchorKey": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
-    "description": "Carte — generated from contract ds.carte v3.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Carte — generated from contract ds.carte v3.1.1 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
