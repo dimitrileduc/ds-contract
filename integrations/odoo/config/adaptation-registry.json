@@ -44,6 +44,10 @@
     {
       "code": "odoo-motion-policy",
       "description": "Refus d'un media decoratif quand le systeme demande moins d'animation, ou sous le point de rupture desktop (donnees mobiles). Aucun mecanisme natif Odoo ne couvre ce cas (mesure 2026-09-08)."
+    },
+    {
+      "code": "odoo-image-loading",
+      "description": "Neutralisation explicite du `loading=\"lazy\"` qu'Odoo ajoute a TOUTE <img> de site (website/models/ir_qweb.py::_post_processing_att) sur l'image au-dessus de la ligne de flottaison. La garde prevue par Odoo est l'attribut lui-meme."
     }
   ],
   "adaptations": [
@@ -1398,6 +1402,18 @@
         "accessibilite-home-passe-2"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-038-HERO-IMAGE-EAGER",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-image-loading",
+      "decisionRefs": [
+        "mesure-2026-09-09-build-37745542"
+      ],
+      "mechanism": "qweb"
     }
   ]
 }

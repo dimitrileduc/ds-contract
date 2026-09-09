@@ -16,6 +16,7 @@
 # Usage : odoo shell -d <db> ... < compose_page.py   (PQR_DESCRIPTOR par env)
 
 import json, base64, os, copy, mimetypes
+from urllib.parse import quote
 from lxml import html as LH
 
 DESC = json.load(open(os.environ.get("PQR_DESCRIPTOR", "/tmp/pqr_compose/descriptor.json"), encoding="utf-8"))
@@ -76,12 +77,44 @@ def img_url(name):
             raise FileNotFoundError("image introuvable dans %s : %s(%s)" % (IMG_DIR, name, "|".join(IMG_EXTENSIONS)))
         with open(path, "rb") as f:
             data = f.read()
-        att = env["ir.attachment"].create({
-            "name": "pqr_" + name, "type": "binary",
-            "datas": base64.b64encode(data),
-            "mimetype": mimetypes.guess_type(path)[0] or "application/octet-stream", "public": True,
-        })
-        _att[name] = "/web/image/%d" % att.id
+        Att = env["ir.attachment"].sudo()
+        mimetype = mimetypes.guess_type(path)[0] or "application/octet-stream"
+        checksum = Att._compute_checksum(data)
+        # (1) RÉUTILISER au lieu de recréer. `create()` inconditionnel faisait
+        #     grossir le stock à chaque composition (286 -> 399 mesuré le
+        #     2026-09-08 après UNE reconstruction complète) et changeait le HTML
+        #     sauvegardé alors que rien n'avait changé.
+        #     `('id','!=',False)` neutralise la clause implicite `res_field = False`
+        #     que `ir.attachment._search` ajoute (sinon la recherche ne voit rien).
+        att = Att.search([("id", "!=", False), ("checksum", "=", checksum),
+                          ("file_size", "=", len(data)), ("mimetype", "=", mimetype)], limit=1)
+        if att:
+            if not att.public:
+                att.public = True          # un attachment retrouvé peut être privé
+        else:
+            att = Att.create({
+                "name": "pqr_" + os.path.basename(path), "type": "binary",
+                "raw": data,               # octets directs, pas d'aller-retour base64
+                "mimetype": mimetype, "public": True,
+                "res_model": False, "res_id": False,   # JAMAIS de res_field sur du contenu
+            })
+        # (2) URL CACHABLE. Sans jeton, `Binary.content_image` ne pose pas
+        #     `max_age` et `send_file` répond `Cache-Control: no-cache` : le
+        #     navigateur REVALIDE à chaque navigation, retour arrière compris —
+        #     un aller-retour bloquant avant de peindre (mesuré le 2026-09-09 sur
+        #     le build 37745542 : `/web/image/1668` -> `no-cache`, 304, ~170 ms).
+        #     Avec un segment `-<jeton>`, le contrôleur passe `immutable=True` et
+        #     `max_age=STATIC_CACHE_LONG` (un an) : plus aucune requête.
+        #     La forme est celle qu'Odoo écrit lui-même dans le HTML des pages
+        #     (`html_editor/models/ir_attachment.py::_compute_image_src`), et le
+        #     jeton est le CHECKSUM : il change si et seulement si les octets
+        #     changent, ce qui est la condition exacte de validité d'`immutable`.
+        #     COROLLAIRE : remplacer un fichier de `assets/` sans relancer
+        #     `odoo:page` laisse les visiteurs sur l'ancienne image (l'URL, elle,
+        #     n'a pas bougé). C'est cohérent avec le modèle — une page Odoo est du
+        #     HTML figé, on recompose après tout changement — mais c'est une
+        #     contrainte dure, pas un détail.
+        _att[name] = "/web/image/%d-%s/%s" % (att.id, att.checksum[:8], quote(att.name, safe=""))
     return _att[name]
 
 def render(xmlid, values=None):

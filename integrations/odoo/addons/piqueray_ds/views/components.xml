@@ -207,7 +207,18 @@
              data-ds-graph-digest="02d3e54904e6f928e4b8817244e31c1a540e19053a7165110f478c95b0e9ffc2"
              data-vcss="19.0.1.19.0" data-vxml="19.0.1.19.0" data-vjs="19.0.1.19.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
-      <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
+      <!-- ODOO-038-HERO-IMAGE-EAGER — `loading` et `fetchpriority` sont POSÉS ICI, à dessein.
+           `website/models/ir_qweb.py::_post_processing_att` ajoute `loading="lazy"` à TOUTE
+           balise `img` rendue sur un site — « if website and tagName == 'img' and 'loading'
+           not in atts ». La garde est l'attribut lui-même : Odoo respecte celui qui est déjà
+           là. L'image de fond du hero est au-dessus de la ligne de flottaison et c'est le plus
+           grand élément peint de la page ; différée, elle laissait un aplat gris ~0,5 s avant
+           d'apparaître (mesuré le 2026-09-09 sur le build 37745542, alors que le fichier ne
+           pèse que 0,24 à 0,53 Mo et se charge en 44 à 110 ms — le retard venait de l'attente,
+           pas du poids). `eager` annule l'attente, `fetchpriority="high"` la fait demander
+           avant le reste. Ne PAS retirer ces deux attributs : les enlever, c'est rendre la
+           main à la règle d'Odoo, en silence. -->
+      <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt="" loading="eager" fetchpriority="high"/>
       <div class="hero__Voile oe_unremovable oe_unmovable" data-pqr-part="hero-veil"/>
       <div class="hero__VoileNavigation oe_unremovable oe_unmovable" data-pqr-part="hero-navigation-veil"/>
       <div class="hero__blocTexte oe_unremovable oe_unmovable" data-pqr-part="hero-content">
