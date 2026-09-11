@@ -124,7 +124,16 @@
     <xpath expr="//div[@id='footer']" position="replace">
       <t t-call="piqueray_ds.footer_bar"/>
     </xpath>
-    <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace"/>
+    <!-- ODOO-023-FOOTER-COPYRIGHT : on NEUTRALISE le bloc copyright, on ne le
+         SUPPRIME PAS. Il contient `<t t-call="web.brand_promotion"/>`, et la vue
+         standard `website` (addons/website/views/website_templates.xml, xpath
+         `//t[@t-call='web.brand_promotion']/..`) va chercher ce noeud pour le
+         styler. Le retirer de l'arbre fait echouer l'installation du module sur
+         une base ou cette vue est active — constate en production le 2026-09-11.
+         `t-if="False"` garde le noeud pour les vues heritees, sans jamais le rendre. -->
+    <xpath expr="//div[hasclass('o_footer_copyright')]" position="attributes">
+      <attribute name="t-if">False</attribute>
+    </xpath>
   </template>
   <!-- ODOO-023-FOOTER-QWEB END -->
 </odoo>
