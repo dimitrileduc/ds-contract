@@ -1041,10 +1041,15 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         </div>
       </div>
       <form class="formulaire__form s_website_form oe_unremovable oe_unmovable" data-pqr-part="form"
-            action="/website/form/" method="post" enctype="multipart/form-data" data-model_name="mail.mail" hide-change-model="1" novalidate="novalidate">
-        <!-- Destination : RÉGLAGE CLIENT (contenu de l hôte). Le pilote n a ni SMTP ni e-mail de société (mesuré le 2026-09-08). -->
-        <input type="hidden" class="s_website_form_input s_website_form_custom" name="email_to" value="info@piqueray.be"/>
-        <input type="hidden" class="s_website_form_input" name="subject" value="Demande de contact — site Piqueray"/>
+            action="/website/form/" method="post" enctype="multipart/form-data" data-model_name="crm.lead" hide-change-model="1" novalidate="novalidate">
+        <!-- ODOO-039-FORMULAIRE-CRM (2026-09-11, QUICK FIX DEMO) : la demande cree une
+             OPPORTUNITE au lieu d envoyer un simple e-mail. `name` est l intitule de la fiche
+             (champ obligatoire de `crm.lead`), `team_id` l equipe destinataire — l equipe
+             « Site Web » (id 2), creee chez le client et jusqu ici vide. L intitule est
+             STATIQUE : le champ « Sujet » qui le rendrait parlant a ete retire de la maquette
+             le 2026-09-08, et son retour passe par Figma + contrat + trois surfaces. -->
+        <input type="hidden" class="s_website_form_input" name="name" value="Demande depuis le site web"/>
+        <input type="hidden" class="s_website_form_input" name="team_id" value="2"/>
         <div class="formulaire__ResumeErreurs" role="alert" tabindex="-1" data-pqr-part="resume-erreurs" hidden="hidden">
           <div class="formulaire__barre" data-pqr-part="resume-erreurs-barre"></div>
           <div class="formulaire__texte" data-pqr-part="resume-erreurs-texte">
@@ -1056,13 +1061,13 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         <t t-set="prefixe_id" t-value="'formulaire'"/>
         <div class="formulaire__rangIdentite" data-pqr-part="rang-identite">
           <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'prenom'"/><t t-set="label" t-value="'Prénom'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'prenom'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'given-name'"/></t>
-          <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'nom'"/><t t-set="label" t-value="'Nom'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'nom'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'family-name'"/></t>
+          <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'nom'"/><t t-set="label" t-value="'Nom'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'contact_name'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'family-name'"/></t>
         </div>
         <div class="formulaire__rangContact" data-pqr-part="rang-contact">
           <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'email'"/><t t-set="label" t-value="'Email'"/><t t-set="obligatoire" t-value="True"/><t t-set="name" t-value="'email_from'"/><t t-set="type" t-value="'email'"/><t t-set="autocomplete" t-value="'email'"/><t t-set="message" t-value="'Saisissez votre adresse e-mail pour que nous puissions vous répondre.'"/></t>
-          <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'telephone'"/><t t-set="label" t-value="'Téléphone'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'telephone'"/><t t-set="type" t-value="'tel'"/><t t-set="autocomplete" t-value="'tel'"/></t>
+          <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'telephone'"/><t t-set="label" t-value="'Téléphone'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'phone'"/><t t-set="type" t-value="'tel'"/><t t-set="autocomplete" t-value="'tel'"/></t>
         </div>
-        <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'message'"/><t t-set="label" t-value="'Message'"/><t t-set="obligatoire" t-value="True"/><t t-set="name" t-value="'message'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'off'"/><t t-set="message" t-value="'Écrivez votre message : décrivez en quelques mots votre projet ou votre question.'"/><t t-set="textarea" t-value="True"/></t>
+        <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'message'"/><t t-set="label" t-value="'Message'"/><t t-set="obligatoire" t-value="True"/><t t-set="name" t-value="'description'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'off'"/><t t-set="message" t-value="'Écrivez votre message : décrivez en quelques mots votre projet ou votre question.'"/><t t-set="textarea" t-value="True"/></t>
         <span class="formulaire__Consentement o_pqr_editable" data-pqr-part="formulaire-consent" data-pqr-marks="">En cliquant sur « Envoyer », je confirme avoir lu et accepté la politique de confidentialité.</span>
         <!-- Caché au repos : un span VIDE reste un élément flex et vaut un `gap` entier (32 px mesurés,
              2026-09-08). Odoo remplace ce nœud (renderAt afterend + remove) à chaque statut : le
