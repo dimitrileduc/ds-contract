@@ -1,0 +1,1220 @@
+{
+  "_note": "Produit par `npx tsx scripts/odoo/optimize-images.ts --write`. Outil d'AUTEUR, hors build : les octets committés sont la référence, ce manifeste sert à `npm run odoo:images:check`, qui mesure sans jamais réencoder.",
+  "densitePetit": 2,
+  "familles": [
+    {
+      "largeurCible": 1728,
+      "largeurCss": 1728,
+      "motif": "^hero_",
+      "nom": "fond-hero",
+      "pourquoi": "section pleine largeur, object-fit cover — components.pqr.css:3092"
+    },
+    {
+      "largeurCible": 1728,
+      "largeurCss": 1728,
+      "motif": "^devis(_|$)",
+      "nom": "fond-devis",
+      "pourquoi": "section bord à bord, padding-inline 0 — components.pqr.css:830"
+    },
+    {
+      "largeurCible": 1550,
+      "largeurCss": 1550,
+      "motif": "^sav_bg$",
+      "nom": "fond-sav",
+      "pourquoi": "calc(100% - 2×89) en wide — responsive/sav.pqr.css:139"
+    },
+    {
+      "largeurCible": 738,
+      "largeurCss": 738,
+      "motif": "^sav_",
+      "nom": "photo-sav",
+      "pourquoi": "colonne unique sous 992 : 834−96 — le max est en TABLETTE, pas en wide (563)"
+    },
+    {
+      "largeurCible": 818,
+      "largeurCss": 818,
+      "motif": "^cat_",
+      "nom": "carte-categorie",
+      "pourquoi": "743 en wide (2 cartes, flex 1 1 0) × 1,1 du zoom au survol — responsive/carte-categorie.pqr.css:118"
+    },
+    {
+      "largeurCible": 738,
+      "largeurCss": 738,
+      "motif": "^rea(\\d|_)",
+      "nom": "carte-reassurance",
+      "pourquoi": "une carte par ligne sous 992 : 834−96. Le max est en TABLETTE (284 en wide)"
+    },
+    {
+      "largeurCible": 743,
+      "largeurCss": 743,
+      "motif": "^rlz",
+      "nom": "tuile-realisation",
+      "pourquoi": "la GRANDE tuile (span 2×2) en wide. Couvre aussi la tuile normale (340×2 = 680)"
+    },
+    {
+      "largeurCible": 568,
+      "largeurCss": 284,
+      "motif": "^equipe(_|$)",
+      "nom": "photo-equipe",
+      "pourquoi": "grille 5 colonnes en wide : (1550−128)/5 — responsive/equipe.pqr.css:99. Repos et survol sont un fondu croisé, même boîte"
+    },
+    {
+      "largeurCible": 460,
+      "largeurCss": 230,
+      "motif": "^(produit|prod_)",
+      "nom": "produit",
+      "pourquoi": "carte à largeur FIXE 288 en wide, moins bordures et marges intérieures"
+    }
+  ],
+  "images": [
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_ent_1.webp",
+      "hauteur": 738,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 56310,
+      "sha256": "d7ed4a0dce706b5342d555b4b39841c80962e2c370ac4973ce1b144a71800e18"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_ent_2.webp",
+      "hauteur": 614,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 21722,
+      "sha256": "3290a0349d1477f21c16e4d6556dfaa4f15be65e2f978a6af506a512fe8ac091"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_entree.webp",
+      "hauteur": 738,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 53966,
+      "sha256": "33f2498b50409c68899bb99704133721422b23a007da99f356899e0f14be080b"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_garage.webp",
+      "hauteur": 389,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 40142,
+      "sha256": "c64232af9dcee60e82615ebd142c3a7791c28ffb97d9803025a09d02a368a235"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_ind_portillon.webp",
+      "hauteur": 409,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 30356,
+      "sha256": "318410b39ab1a984bec4e65e4735cdc75133036b70944b46a267c7d8383816f7"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_ind_surmesure.webp",
+      "hauteur": 532,
+      "largeur": 800,
+      "largeurCible": 818,
+      "octets": 47454,
+      "sha256": "d598ea6876a326eee09b29bc459ff8dcc56efcb3745360c01dbd4c46ef1ee0d2"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_industriel.webp",
+      "hauteur": 409,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 29304,
+      "sha256": "d4a005b9f6edfeaeae6b0e3c6361bd804f31480842769b309449bb8d073c67e2"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_mot_1.webp",
+      "hauteur": 546,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 75776,
+      "sha256": "0061a0f2853358ed76c4a8a5361d0dde9671771dcd5fcc760bbc0c1c626ad1fa"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_mot_2.webp",
+      "hauteur": 614,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 63080,
+      "sha256": "86b8cc2306e3679960eeb129fffd097eb60e43f20c8717a26fd890a9ae448c8f"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_mot_3.webp",
+      "hauteur": 573,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 31010,
+      "sha256": "a0462f6ef35d0a4b60709a31ef9da798549ddbbedfb8b901140f576382189d87"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_planche_empile.webp",
+      "hauteur": 418,
+      "largeur": 743,
+      "largeurCible": 818,
+      "octets": 58030,
+      "sha256": "21b030df8e8ed038cdbc71c77b38ad3d20ed589dede6ee69ad4626e707cc26c6"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_res_basculante.webp",
+      "hauteur": 666,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 64788,
+      "sha256": "d781983f619a1fd28f326a62de47774c90117f71f967d25c176edb5a6f105053"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_res_sectionnelle.webp",
+      "hauteur": 389,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 38718,
+      "sha256": "4090dcd2acd6192baf1d5e369ace0c305191cba945f91d6160562f2aa2bff133"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_sav_1.webp",
+      "hauteur": 457,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 42168,
+      "sha256": "dd50b21108b7d71c7b5124ce3e645f96331b85ea76865493cb2703612fe13978"
+    },
+    {
+      "famille": "carte-categorie",
+      "fichier": "cat_sav_2.webp",
+      "hauteur": 457,
+      "largeur": 818,
+      "largeurCible": 818,
+      "octets": 37006,
+      "sha256": "62b97110bb2720fcb908cfeea56318bf05aa7c6a294c839e215047644a183dbc"
+    },
+    {
+      "famille": "fond-devis",
+      "fichier": "devis.webp",
+      "hauteur": 1296,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 333646,
+      "sha256": "316226994de7e38d3360011ecc76eb53718c15afce828ac987383e5cce319098"
+    },
+    {
+      "famille": "fond-devis",
+      "fichier": "devis_industriel.webp",
+      "hauteur": 608,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 61864,
+      "sha256": "10c862fc736039a50655d48c953d6e59545272ac2510c2e4cc8422d06b4cc04e"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_01.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7788,
+      "sha256": "bfaf453804e587b47ccfb9a0d5bf2faf376b766a89d91ac23ef196e71824c71f"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_02.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 8640,
+      "sha256": "9c781d9c2d8739f2129d5d684a9bafe466c76a46adc69530ecc096a5cc4fb87d"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_03.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 9348,
+      "sha256": "1c548269351e03831823058b6840dfd9de8d67236474a193ff25c7d0ed3b8699"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_04.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7958,
+      "sha256": "84e4993df115e41c37b3ee3b700bc04a7755d32e9bf850368e72269b40d07a0d"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_05.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 6828,
+      "sha256": "45bbbce5c3e402414609f23c2fc4cea39ab7cc25ad8d171d05d58a6940409bb2"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_06.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 9022,
+      "sha256": "8295e5f966883e2884367ee6d0d4d3324cc6df2a9ed9b42b557119340e977058"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_07.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7402,
+      "sha256": "d2ca5534dbacd7cf351e84b431ce2a88320e4dd5243a5bf8079d14a3b8996933"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_08.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 8462,
+      "sha256": "28c1a3e4501bf73b2e8cb22c508f3f0eb8cc97a4eb81154d7fd780291e90f0c1"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_09.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 9248,
+      "sha256": "4ef5a5de444408279ae70d9d40cb570effdb93c4089980d135aa144178e97890"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_10.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7446,
+      "sha256": "9bcf0b3835fc7c479d5cefadc9734158ac437e0926be0cb8224340adf537ddf9"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_11.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7150,
+      "sha256": "666ea2d034b5617d775f27cd70131ca4950906570ba16208071d3b287e40bf19"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_12.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7274,
+      "sha256": "dd970b0896855d1fb5ed1d922757c1b63a4b47b2dcce78c4a2237e38c8e51711"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_13.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 7754,
+      "sha256": "3c7fc0ec6d453bd9a3ef3ddc6943bcf17e00c0e8053cd2e8e3d77b95c5c95be6"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_14.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 9732,
+      "sha256": "f8c731c9d408f020ffdb3e96e4530e1a3d4b34866cc46b1b94e58f3d906b9ed5"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_15.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 10034,
+      "sha256": "d8b9a83bf2f227ec3bda22f6f1c30e49930187cf70614bb39051f28ba6592fd9"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_16.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 9506,
+      "sha256": "28a345bd55170a75bb36e058d5ebb064d83c937fc1c37ce05ae68f52412cd1b0"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol.webp",
+      "hauteur": 364,
+      "largeur": 364,
+      "largeurCible": 568,
+      "octets": 14800,
+      "sha256": "fb10de06c878a557215d81fbfd31167d513a28a92db4da9a900ddd7da69ab2b4"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_01.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 31214,
+      "sha256": "b21bcf5f2edeab00f754b71c2159725ef09e99cf4371a546e03e725b978b457f"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_02.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 18762,
+      "sha256": "8afedecec6312296601696a59ea839f35a27a9b294f3ad36e4cf42deb860c0a9"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_03.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 15924,
+      "sha256": "128ab8c20456b3e27c3e1073cecc9eb95ec8f0487a7763f3854b475dee6a1dc9"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_04.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 16118,
+      "sha256": "2a0cbdbbf656e552db30ba16d38e5ea6a7da9e6690faace0420ee777c433be4b"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_05.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 14906,
+      "sha256": "d7e88e67ba2d9d9e116b69db97bd07b76a0982cf70afe73e667e4948825c4bdf"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_06.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 17824,
+      "sha256": "cdf0ee5995294d32d08966dd783f05e10e91626a80bc9f425e6b4f7ba45e7901"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_07.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 19574,
+      "sha256": "549bd6fbe004a2578c70ec8a76a17b16d4a6292bd0fa72f4288ff292518a80cb"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_08.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 26052,
+      "sha256": "57329967dd2b1907c4a3cca3a9d008dd8966631600dbf442599d22dabc594e96"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_09.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 22608,
+      "sha256": "b9f680e7eb2df96a875c63ba98a22b5ec61cd4e5a691eb7ecfd1aeba1569bd23"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_10.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 15948,
+      "sha256": "59416120593da6053ceeb6c81624f0b4f625d49ef98e8a5b1aa6460a7b0c2bfa"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_11.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 19796,
+      "sha256": "72cda6c7b2db24cdcd94e561cbd3c6f81db645ba992eca868f82dfd234a9fc90"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_12.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 22790,
+      "sha256": "dc0b351819495c238ead6d305fd5a56b8e60658bc2a9c0d52efcc0e62fc04d57"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_13.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 21224,
+      "sha256": "12fb90a203829ab18015270f2a37a5f0193df777c1956fe79a2011af53ea8fb3"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_14.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 21442,
+      "sha256": "97f77f4e58cde0d9beaf7fbcaeb9780aebed082f1629439b87f895e95ab63881"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_15.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 18714,
+      "sha256": "6d358b470762cad8cd49cf04d4846f6c888ad97f86aecdbd803522a556090ab0"
+    },
+    {
+      "famille": "photo-equipe",
+      "fichier": "equipe_survol_16.webp",
+      "hauteur": 568,
+      "largeur": 568,
+      "largeurCible": 568,
+      "octets": 15622,
+      "sha256": "64a13bd4807308df2b11de96f349529ced8ccb0c8d5cdb10f527812cd709769f"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_a_propos.webp",
+      "hauteur": 723,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 143384,
+      "sha256": "40e6d42c419ad82262c9c89b266919ec9d00bd909afbae3900cd3fceb58f0373"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_contactez_nous.webp",
+      "hauteur": 1152,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 120952,
+      "sha256": "45f9f2fa765b2a361d0a56acfc9a5bdaa0512a17863f44816044b6c8a60c5ec5"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_depannage_sav.webp",
+      "hauteur": 624,
+      "largeur": 1696,
+      "largeurCible": 1728,
+      "octets": 85988,
+      "sha256": "a041b071bb06a2da520673f8f3a34a1823572095c8f7a2b7b65e1dafc2bbb7a9"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_industriel.webp",
+      "hauteur": 719,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 56148,
+      "sha256": "308e67da9d1efdf1313be7311e1e6304bbed6462af88c47f07d14c65c8156959"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_motorisation.webp",
+      "hauteur": 960,
+      "largeur": 1707,
+      "largeurCible": 1728,
+      "octets": 207350,
+      "sha256": "5ac95ba8db09acc9c91bac484945647d27ad68123d68c1cbfbc1210ebf60d20b"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_portes_entree.webp",
+      "hauteur": 714,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 203220,
+      "sha256": "82d701312b947b6fb5dc2a9f170ec07f2471e57fcd6cda0ccc7ae5027b4c4342"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_portes_garage.webp",
+      "hauteur": 1246,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 228200,
+      "sha256": "2f8f9a02b5bee3afd6e6fb8a5113b507355c2fa4e5779b579fd1164383cfa442"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_portes_industrielles.webp",
+      "hauteur": 719,
+      "largeur": 1728,
+      "largeurCible": 1728,
+      "octets": 56190,
+      "sha256": "6fd346d634c43b505b3b1d41d751a04ab0c361ba5488b5ba2dc86aa7bc8afe03"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_portes_residentielles.webp",
+      "hauteur": 650,
+      "largeur": 1200,
+      "largeurCible": 1728,
+      "octets": 111432,
+      "sha256": "d93540c3fc52e2d6330790f9d046f0db45b9e5943006f8b10d48dd3f0e6cac11"
+    },
+    {
+      "famille": "fond-hero",
+      "fichier": "hero_video_facade.webp",
+      "hauteur": 900,
+      "largeur": 1600,
+      "largeurCible": 1728,
+      "octets": 62148,
+      "sha256": "f3f7b015e9a1b2af313150c2c03d73431a84407c46ccdc5110d5497cf5593f42"
+    },
+    {
+      "famille": "produit",
+      "fichier": "prod_mot_1.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 6184,
+      "sha256": "08185862b79d3b6f0f0e9613c8650c5c3d55beda55544d2879eaad7e4c9cd4ec"
+    },
+    {
+      "famille": "produit",
+      "fichier": "prod_mot_2.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 9332,
+      "sha256": "05f8e80c549175a288285d62a21a07528147c258bce55717326fec9fbc59fa60"
+    },
+    {
+      "famille": "produit",
+      "fichier": "prod_mot_3.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 4912,
+      "sha256": "2bdc429d4e894f5c9fbc20d2454ffe325219c10e9fc7f4b134355605d6219f5b"
+    },
+    {
+      "famille": "produit",
+      "fichier": "prod_mot_4.webp",
+      "hauteur": 340,
+      "largeur": 340,
+      "largeurCible": 460,
+      "octets": 4726,
+      "sha256": "414912a29be409082d946a2e1c31ae6aaf82445fbcec4895a699a677985beaa2"
+    },
+    {
+      "famille": "produit",
+      "fichier": "produit1.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 5478,
+      "sha256": "f45cdc6e3b5bb440918d52ed71207479d07d45d6b711bc7da11d1b22433532da"
+    },
+    {
+      "famille": "produit",
+      "fichier": "produit2.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 7862,
+      "sha256": "58084299fdd93a7a457eb0967f1fa9787fb6aad05451d63a87b8189e311e349d"
+    },
+    {
+      "famille": "produit",
+      "fichier": "produit3.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 4580,
+      "sha256": "902df22d5b5cb9f69d8b94afc8624f3821608fb792f84fa090b54f1355c64bc0"
+    },
+    {
+      "famille": "produit",
+      "fichier": "produit4.webp",
+      "hauteur": 460,
+      "largeur": 460,
+      "largeurCible": 460,
+      "octets": 5330,
+      "sha256": "7ad7fa6083d1c2f346410edc005cae10b97cdedf1c380b9c0ca11df17306aacd"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea1.webp",
+      "hauteur": 984,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 70424,
+      "sha256": "a21459b1b865219ae9dda22455803191ccf2c0184a6dd296144c984b8816c9be"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea2.webp",
+      "hauteur": 508,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 39796,
+      "sha256": "b3dc2a5727c3aa6df8b8880e4f2addb0675b52772c333c15dbee5bc2c1f12d4c"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea3.webp",
+      "hauteur": 492,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 18926,
+      "sha256": "e45fcb72f304c9322b349743c08aaa3cc9ccb000892b2f967a9aef5a48a1285a"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea4.webp",
+      "hauteur": 1109,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 47264,
+      "sha256": "8eefd6d8f35d1e6821798f431120ca9ee78fb1f860c262f4252b68d0ea737ad9"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea5.webp",
+      "hauteur": 492,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 45274,
+      "sha256": "e9aac03a447818a04ac5db8afd67c1898c7aee15a18d460098db7f8b9be244f4"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_apropos_1.webp",
+      "hauteur": 984,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 74410,
+      "sha256": "2094c87adeafee1dc4bd394a4d266e7c48384af6ffbef7c6c40e70b4dc2aa203"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_apropos_2.webp",
+      "hauteur": 508,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 42620,
+      "sha256": "b20877ede9f2d12bcc66ffa445fa8da379f590fd34682803edc12b8002107fb0"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_apropos_3.webp",
+      "hauteur": 901,
+      "largeur": 600,
+      "largeurCible": 738,
+      "octets": 46514,
+      "sha256": "a1a97382dc5b0eeb8be43172879ae2e71ce4cf550096b8626069cb85d2eb6165"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_apropos_4.webp",
+      "hauteur": 492,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 47304,
+      "sha256": "47a699ec864a2dcc1c28233fcbad5d2f0281c535ac6c9ddbdd0cb797a384ad73"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ent_1.webp",
+      "hauteur": 350,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 18634,
+      "sha256": "eae07e5d1192d0d7cbdd80267780fac36e85935bf0fafcd31fcdcd9f967647cc"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ent_2.webp",
+      "hauteur": 666,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 47744,
+      "sha256": "4f4e625a5375c87f685aad3aa681cf03ec4ac5c04bd4432dca767fe9e62b5fed"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ent_3.webp",
+      "hauteur": 765,
+      "largeur": 587,
+      "largeurCible": 738,
+      "octets": 40952,
+      "sha256": "58a1aa0017bfa82bc7b2afb0b6f5b91690890e1c8d915c29706c0524c04fdf8b"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ent_4.webp",
+      "hauteur": 533,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 53188,
+      "sha256": "429718753cc0a141c41b03013e0f71c791ea143a1ddd7ecd91a92f8b84865cb3"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ind_1.webp",
+      "hauteur": 620,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 18378,
+      "sha256": "5db39861077a0a4819ea8882fe927f844c5c02a59fa03a56e14efed45129eab6"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ind_2.webp",
+      "hauteur": 610,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 36988,
+      "sha256": "30a1a6ee6115da0d6fa8c2d2b50c505df6effb15c013125dac8a68cb522dd134"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ind_3.webp",
+      "hauteur": 738,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 46280,
+      "sha256": "6b840bd162dbe178c1f54c835a9926f5af9d1be40669fbe05263742ebc4e7006"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_ind_4.webp",
+      "hauteur": 554,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 52188,
+      "sha256": "89af46958d45444b067f5b83c022a5bcb3fea58c6c98abba4f74633d173b6842"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_res_1.webp",
+      "hauteur": 554,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 68168,
+      "sha256": "f090b031b82cccb83dafb8f21935f6c0fb63c0e5dbef2bd1ee32b626ff4bc02b"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_res_2.webp",
+      "hauteur": 492,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 64076,
+      "sha256": "9ab13463983fe526f3716085e23d1846d86c400eecd860a8d9969cf0a751a3b6"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_res_3.webp",
+      "hauteur": 277,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 20688,
+      "sha256": "247930e192b6b34a890f156ec909bbb567954a2495c3282db3ec4dcf32917b3f"
+    },
+    {
+      "famille": "carte-reassurance",
+      "fichier": "rea_res_4.webp",
+      "hauteur": 400,
+      "largeur": 738,
+      "largeurCible": 738,
+      "octets": 41172,
+      "sha256": "99828b8ca2a35bbd70661d833b57321a694d76821be1ebb661f63ec8a56fe3e5"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz1.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 21364,
+      "sha256": "eac2b07efbebde1d83a3b271bc9b604bf80d6191453b45788c284ddd99b785d1"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz2.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 54562,
+      "sha256": "29373bc83c033abaf1e00335c096ae51656b688b0183be1fe9f9f1e62219cb8f"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz3.webp",
+      "hauteur": 745,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 46900,
+      "sha256": "82389e955f65cf3178187b8f4cb2a8790fd479cda9bc0a2954d069698b24a4d7"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz4.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 19200,
+      "sha256": "4719e436414571cb11fff1101157b6af0dba19a28d312a8dad9d55afa7d48b03"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz5.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 47342,
+      "sha256": "b1a3dc24c1a5fccdfc5f3e34eeb5008fc0deab2c2112335335025211272bf349"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz6.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 52306,
+      "sha256": "d0a4f5afa30f6c05ef8ddd05bff4ef5bec495e803be569b4ea2bf36f257262c6"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz7.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 29248,
+      "sha256": "ddb9d95ca31ff3637a710daa962da74c1bd72b40cafa832c1963a990bceb3166"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz8.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 14048,
+      "sha256": "2530c2fdf72f7210cb330266f8e853a2a1b2a2ef8ebd8c4c634b96b9704f8cc5"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz9.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 73604,
+      "sha256": "367e2bee019ebe67e9ec70e58d6448ced69178f295bb66434bd5f66de50c2c37"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_1.webp",
+      "hauteur": 419,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 39618,
+      "sha256": "8293f7062e0b15ca2845c5d936fbe863531927cb1f4a67aed959b3f08fddd859"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_2.webp",
+      "hauteur": 836,
+      "largeur": 626,
+      "largeurCible": 743,
+      "octets": 51754,
+      "sha256": "8406a82a5d81afa053ce76a4972ea2e11bc06ccd03cf07280b992214b1ffdba5"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_3.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 65436,
+      "sha256": "cabde3efdbda6e3e5921cf40a31c6f9b6d2188e944267f67b36c627a88514d10"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_4.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 74866,
+      "sha256": "e80893a695d71cf9b5bf6cfe50c00fd56171dd76a08edc4b88efa8407e03bc06"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_5.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 72892,
+      "sha256": "0078e040cbfaaf8f04f0f419d9eaab6bf915f323bafcacf21d32b440444ea1fd"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_6.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 40162,
+      "sha256": "6bdfdbb0de1ebe4d1a3d56c9ff8042d9acf368cdf78bb0ba99b513b8f12e899d"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_7.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 92694,
+      "sha256": "c5a7d48a71431261789836f74644fae49f6a23057d7192b69b5ba04b3240cea8"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_8.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 40924,
+      "sha256": "3444aaaed64bae178e76db389999d6a79080b9734a8ab179b1da18b212b3df00"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ent_9.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 76380,
+      "sha256": "61537f1add07fc7a00ef4899acb3d622445cd28c803387348db61aed3535ec91"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_1.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 22394,
+      "sha256": "b4b0b478bf8091a337c37dd82cfc1b7a2bec0684243990c8b0375627eda7f430"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_2.webp",
+      "hauteur": 506,
+      "largeur": 506,
+      "largeurCible": 743,
+      "octets": 46014,
+      "sha256": "97fe79230b4bba319f2b5a471976749c803d71c8acb16568f4792c67e6d789f3"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_3.webp",
+      "hauteur": 532,
+      "largeur": 531,
+      "largeurCible": 743,
+      "octets": 43328,
+      "sha256": "b95a644a8f1ff6a5a25d1890e3ca6fe41555c0194b49045916308e0b5c85ad8c"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_4.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 21012,
+      "sha256": "4f43c663a47b0620c27ab263a44bc24152cc4323252769249437a23dce8b08cc"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_5.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 53394,
+      "sha256": "2cacde15d42858dc6478b7c00849f45f7410670f529292a6feb901a5c5dd828c"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_6.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 58590,
+      "sha256": "52704d02622f8fc93b87c054e955848145c91a90072652e351ad86a9e4c73e54"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_7.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 32852,
+      "sha256": "271d12cb7f62c49085a07079a099bfe0d10bad4f1a0fffa6a53e537b79a38722"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_8.webp",
+      "hauteur": 661,
+      "largeur": 661,
+      "largeurCible": 743,
+      "octets": 15700,
+      "sha256": "b9aef7c042467762e21893fb747afef3fa52ece9aeb4b0cb2508335f9d862641"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_ind_9.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 87382,
+      "sha256": "0b3ed6169f7f70e2a21a993e66e043a78b99162035bca07fa3b084c251b13196"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_1.webp",
+      "hauteur": 585,
+      "largeur": 585,
+      "largeurCible": 743,
+      "octets": 68844,
+      "sha256": "60df7939cca4351994dbb908aa63250019765ac3368929bcc803bad1b42bda38"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_2.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 111084,
+      "sha256": "8e109f2ec922bae132ecc3fbb97d345b1634f1cce4524c481bf7dc5c046e8e90"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_3.webp",
+      "hauteur": 557,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 68888,
+      "sha256": "365d0cc275d2b9d9bafbc7fd4dbcc822ed46eecdac858bdc9f791f1e0370a7ce"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_4.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 87940,
+      "sha256": "fbf2ef56a7675d10ba4fcc3a00251647d23476e0c3b17b4dc68c5f6043989d98"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_5.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 60070,
+      "sha256": "3af280bd9f2ec39bed4c8027d44a9335870fe37858bf41d8a29f52f92fd5f708"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_6.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 112232,
+      "sha256": "bec98be5e4b111c3ed1e05036c56e39ac8879c745d30ee3ebc71e49611adb8a5"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_7.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 63438,
+      "sha256": "c09d23167b74fdf03172b7122f11a5b6b152594cf7aed3c89ad6ddcfda271926"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_8.webp",
+      "hauteur": 558,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 74174,
+      "sha256": "622b10a2ed4b8719625fbc8d5741d1c22b6ee818ef1abf609e9815baaf1a1af0"
+    },
+    {
+      "famille": "tuile-realisation",
+      "fichier": "rlz_res_9.webp",
+      "hauteur": 743,
+      "largeur": 743,
+      "largeurCible": 743,
+      "octets": 108300,
+      "sha256": "1097df4cee6c9b3d2f358a3fc4f4b78d8952bc244c36deca17fda9c99b3094f9"
+    },
+    {
+      "famille": "fond-sav",
+      "fichier": "sav_bg.webp",
+      "hauteur": 736,
+      "largeur": 1550,
+      "largeurCible": 1550,
+      "octets": 128300,
+      "sha256": "242025c4b77ce5cb3d89953cfa360a180a5f5a545daa171b9dffc112df4b5b6f"
+    },
+    {
+      "famille": "photo-sav",
+      "fichier": "sav_tech.webp",
+      "hauteur": 548,
+      "largeur": 600,
+      "largeurCible": 738,
+      "octets": 42880,
+      "sha256": "dfa77e9a38cb6b98f1242256507a61a58dbd2c3521cabe6840cc6fe89791fe95"
+    }
+  ],
+  "outils": {
+    "cwebp": "1.6.0",
+    "ffprobe": "9.0.1"
+  },
+  "qualiteWebp": 82,
+  "seuilPetitPx": 400
+}

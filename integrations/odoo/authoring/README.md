@@ -54,7 +54,7 @@ nomme un **bloc** (`component`) et son **contenu**. Extraits réels de `pages/ho
       "set_html": { "hero-title": "<span>Le numéro 1 des portes HÖRMANN…</span>" },
       "remove_class": ["pqr-soustitre-on"],   // masque le sous-titre (comme la maquette)
       "set_button": { "hero-cta": "En savoir plus" },
-      "images": { "hero-background": "hero" }  // "hero" = assets/hero.png
+      "images": { "hero-background": "hero_a_propos" }  // = assets/hero_a_propos.webp
     },
 
     { "component": "s_pqr_categories_principales",
@@ -87,7 +87,7 @@ nomme un **bloc** (`component`) et son **contenu**. Extraits réels de `pages/ho
 | `component` | le bloc à poser (voir la liste ci-dessous) — **obligatoire** |
 | `set_html` | `{ "<part>": "<html>" }` — remplace un texte (le gras `<strong>` est gardé) |
 | `set_button` | `{ "<part-cta>": "libellé" }` — change le libellé d'un bouton |
-| `images` | `{ "<part>": "nomfichier" }` — met une image (`nomfichier` = `assets/nomfichier.png`) |
+| `images` | `{ "<part>": "nomfichier" }` — met une image (`nomfichier` = `assets/nomfichier.webp`) |
 | `variant` | `"superpose"` pour les catégories (2 cartes superposées) |
 | `cards` | liste de cartes (`titre` / `texte` ou `body` / `image`) — réassurances, catégories |
 | `reviews` | liste d'avis (`auteur` / `initiale` / `date` / `texte`) — Avis Google |
@@ -220,11 +220,29 @@ descripteurs : sans gouttière de page, la pleine largeur est le défaut.
 Tracé dans `integrations/odoo/config/adaptation-registry.json` (reason code `odoo-page-layout`).
 
 ## Les images
-Elles vivent dans **`assets/`** (`assets/hero.png`, `assets/cat_garage.png`…), en `.jpg` ou `.png`
-(le type est déduit de l'extension — une photo va en JPEG à la taille du cadre, un PNG de
-5 Mo servi tel quel a coûté 4 s de chargement le 2026-09-07).
-Pour en ajouter une : dépose le fichier dans `assets/`, puis référence-la par son nom
-(sans extension) dans le fichier de contenu (`"images": { "hero-background": "mon_image" }`).
+Elles vivent dans **`assets/`**, **toutes en `.webp`**, chacune à la largeur d'affichage
+de sa famille (passe du 2026-09-15 : 43,5 Mo → 5,8 Mo pour 127 fichiers).
+Pour en ajouter une : dépose le fichier dans `assets/`, référence-la par son nom
+**sans extension** dans le fichier de contenu (`"images": { "hero-background": "mon_image" }`),
+puis applique la règle et vérifie :
+
+```
+npx tsx scripts/odoo/optimize-images.ts          # le plan, n'écrit rien
+npx tsx scripts/odoo/optimize-images.ts --write  # applique + écrit assets/MANIFEST.json
+npm run odoo:images:check                        # la porte
+```
+
+Le nom du fichier **décide de sa famille**, donc de sa largeur cible (`FAMILLES` dans
+`scripts/odoo/optimize-images.ts`). Un nom qui ne correspond à aucun motif est REFUSÉ :
+la règle ne se devine pas.
+
+⚠️ **Ne dépose jamais un `.jpg` ou un `.png` à côté d'un `.webp` du même nom.**
+`compose_page.py::IMG_EXTENSIONS` cherche `.jpg .jpeg .png .webp` et prend **le premier
+trouvé** : l'ancien format gagnerait en silence. `npm run odoo:images:check` refuse ce cas.
+
+⚠️ **Remplacer un fichier ne suffit pas.** L'URL publiée porte le checksum des octets et
+sort en `immutable` pour un an : tant que la page n'est pas recomposée, les visiteurs
+gardent l'ancienne image. Conversion et `odoo:page` sont **une seule opération**.
 
 ## « Et si un bloc change ? »
 Tu **relances la commande** `npm run odoo:page -- <nom> <projet>`. Elle reconstruit la
@@ -241,6 +259,6 @@ puis re-`save` le seed si besoin.
 
 ## Les fichiers ici
 - `pages/*.json` — **tes fichiers de contenu** (une page chacun).
-- `assets/*.png` — les images.
+- `assets/*.webp` — les images. `assets/MANIFEST.json` — leur relevé (généré).
 - `compose_page.py` — le moteur (rend les blocs gouvernés + injecte ton contenu). Ne pas éditer pour un usage normal.
 - `page.sh` / `run-compose.sh` — les scripts appelés par `npm run odoo:page`.
