@@ -1,12 +1,12 @@
 # TinySpec: les photos de page en WebP, à leur taille d'affichage
 
 **Date**: 2026-09-15
-**Status**: converti et mesuré côté dépôt — **recomposition des pages non faite**
+**Status**: converti, recomposé et **mesuré en parité sur instance jetable** — production non faite
 **Complexity**: medium
 
 ## What
 
-Les 131 photos de page pesaient **42,5 Mo**. Elles pèsent **5,8 Mo** — **−86 %**.
+Les 131 photos de page pesaient **42,5 Mo**. Elles pèsent **6,9 Mo** — **−84 %**.
 Cause traitée : la dimension, pas le format. Les images étaient 2 à 6 fois plus
 larges que l'emplacement où elles s'affichent.
 
@@ -62,6 +62,33 @@ page, la gouttière vit dans chaque section (24/48/56/89). Confirmé
 | photo d'équipe (repos et survol) | 284 **→ 568** | grille 5 colonnes — `responsive/equipe.pqr.css:99`. Fondu croisé, pas un zoom : même boîte |
 | produit e-commerce | 230 **→ 460** | carte à largeur fixe 288 en wide |
 
+### Le défaut que seule la mesure a attrapé : la rotation EXIF
+
+**Quatorze des 131 fichiers portent une consigne de rotation.** Leur en-tête
+annonce 1920×1440 quand l'image se voit en 1440×1920.
+
+- Les **navigateurs** appliquent cette consigne — `image-orientation: from-image`
+  est la valeur initiale en CSS depuis 2020.
+- **`ffprobe`, `sips` et `cwebp` ne l'appliquent pas** : ils lisent l'en-tête.
+
+La première conversion, faite en appelant `cwebp` directement, a donc produit
+**quatorze images couchées à 90°** — et un WebP ne porte plus d'EXIF, donc plus
+rien ne rattrape le coup côté navigateur. Le fond de la section devis partait de
+travers sur huit pages.
+
+Aucune relecture de code ne l'aurait vu : le fichier était valide, du bon poids,
+aux bonnes proportions déclarées. **C'est la mesure de parité qui l'a montré**,
+par une bande entièrement rouge sur le diff, puis par la comparaison des deux
+rendus côte à côte.
+
+Correctif : **tout passe désormais par `ffmpeg`**, qui applique la rotation au
+décodage — y compris les 117 fichiers non tournés. Une règle qui ne vaut que pour
+certains fichiers est une règle qu'on oubliera. Vérifié au passage : le profil ICC
+survit au PNG intermédiaire, sans quoi les couleurs auraient glissé en silence.
+
+Les quatorze : `devis`, `rea_ind_4`, `rea_res_1`, `rlz_ent_3..9` (sept),
+`rlz_res_2..5` (quatre).
+
 ### Ce que la mesure a trouvé, et que personne n'avait vu
 
 - **Cinq fichiers `.png` contenaient des octets JPEG** (`cat_entree`, `cat_garage`,
@@ -90,8 +117,8 @@ page, la gouttière vit dans chaque section (24/48/56/89). Confirmé
 
 1. **`scripts/odoo/optimize-images.ts`** (NOUVEAU) — outil d'**auteur**, hors de
    `npm run build`, hors de toute porte. Table de familles écrite en clair ;
-   `cwebp 1.6.0` pour le redimensionnement et l'encodage (q82, `-metadata icc`
-   pour garder le profil couleur, `-alpha_q 100`) ; `ffprobe` pour les dimensions.
+   **`ffmpeg 9.0.1` décode et redimensionne** (Lanczos), `cwebp 1.6.0` encode
+   (q82, `-metadata icc` pour garder le profil couleur, `-alpha_q 100`).
    N'écrit rien sans `--write`. Écrit `assets/MANIFEST.json`.
 2. **`scripts/odoo/check-images.ts`** + **`npm run odoo:images:check`** (NOUVEAU) —
    la porte. Elle **n'encode rien** : elle mesure les octets committés. Six refus,
@@ -126,8 +153,9 @@ page, la gouttière vit dans chaque section (24/48/56/89). Confirmé
 - [x] L'outil est **idempotent** : un WebP déjà à sa taille n'est pas réencodé —
       sans cette garde, chaque relance le dégraderait en silence.
 - [x] `npm run odoo:pages:check` vert.
-- [ ] **Les 9 pages recomposées en local**, puis `odoo:pages:measure` comparé aux
-      36 rapports de base.
+- [x] **Les 9 pages recomposées en local** et mesurées en A/B contre les mêmes
+      pages composées avec les anciennes images : **8 verts avant, 8 verts après,
+      les mêmes**.
 - [ ] **Production** — geste séparé, sur mot de l'owner, hors heures.
 
 ## Evidence
@@ -141,32 +169,36 @@ motorisation 2,33 Mo, depannage-sav 1,73 Mo — à l'identique.
 
 | Page | images | avant | après | gain |
 |---|---:|---:|---:|---:|
-| `/a-propos` | 38 | 10,49 Mo | **1,09 Mo** | −90 % |
-| `/` accueil | 15 | 8,74 Mo | **0,86 Mo** | −90 % |
-| `/portes-de-garage` | 9 | 7,59 Mo | **0,81 Mo** | −89 % |
-| `/portes-residentielles` | 17 | 7,59 Mo | **1,43 Mo** | −81 % |
-| `/portes-entree` | 17 | 4,67 Mo | **1,27 Mo** | −73 % |
-| `/portes-industrielles` | 17 | 4,60 Mo | **0,70 Mo** | −85 % |
-| `/motorisation` | 9 | 2,33 Mo | **0,70 Mo** | −70 % |
-| `/depannage-sav` | 4 | 1,73 Mo | **0,48 Mo** | −73 % |
-| `/contactez-nous` | 1 | 0,41 Mo | **0,12 Mo** | −72 % |
-| **moyenne** | | **5,35 Mo** | **0,83 Mo** | **−85 %** |
+| `/a-propos` | 38 | 10,49 Mo | **1,31 Mo** | −88 % |
+| `/` accueil | 15 | 8,74 Mo | **1,08 Mo** | −88 % |
+| `/portes-de-garage` | 9 | 7,59 Mo | **1,01 Mo** | −87 % |
+| `/portes-residentielles` | 17 | 7,59 Mo | **2,03 Mo** | −73 % |
+| `/portes-entree` | 17 | 4,67 Mo | **1,68 Mo** | −64 % |
+| `/portes-industrielles` | 17 | 4,60 Mo | **0,77 Mo** | −83 % |
+| `/motorisation` | 9 | 2,33 Mo | **0,89 Mo** | −62 % |
+| `/depannage-sav` | 4 | 1,73 Mo | **0,65 Mo** | −62 % |
+| `/contactez-nous` | 1 | 0,41 Mo | **0,12 Mo** | −71 % |
+| **moyenne** | | **5,35 Mo** | **1,06 Mo** | **−80 %** |
 
-### Le relevé, par famille
+### Parité visuelle — la vraie preuve
 
-| Famille | fichiers | avant | après | gain |
-|---|---:|---:|---:|---:|
-| carte-reassurance | 21 | 12 150 Ko | 919 Ko | −92 % |
-| tuile-realisation | 36 | 9 261 Ko | 2 001 Ko | −78 % |
-| photo-equipe | 33 | 7 650 Ko | 456 Ko | −94 % |
-| carte-categorie | 15 | 4 771 Ko | 674 Ko | −86 % |
-| fond-hero | 9 | 3 386 Ko | 1 184 Ko | −65 % |
-| fond-devis | 2 | 1 112 Ko | 386 Ko | −65 % |
-| fond-sav | 1 | 491 Ko | 125 Ko | −74 % |
-| photo-sav | 1 | 455 Ko | 42 Ko | −91 % |
-| produit | 8 | 782 Ko | 47 Ko | −94 % |
+Mesure A/B sur la même instance jetable (`piqueray-odoo-037`), même module, mêmes
+descripteurs : composition des 9 pages avec les ANCIENNES images, mesure, puis
+avec les nouvelles, mesure. Seule la variable « images » change.
 
-**Dossier : 42,5 Mo (131 fichiers) → 5,8 Mo (127 fichiers), −86 %.**
+**Instrument prouvé répétable** avant de conclure quoi que ce soit : trois passes
+consécutives sans rien changer rendent exactement les mêmes scores à la décimale.
+
+| | avant | après |
+|---|---:|---:|
+| rapports verts | **8 / 36** | **8 / 36** — les mêmes |
+| scores en baisse (meilleurs) ou inchangés | | **32 / 36** |
+| scores en hausse | | 4, de +0,6 à +1,8 point, tous sur des pages déjà à 12–22 % |
+
+Aucun rapport ne passe de vert à rouge. Les 8 verts sont identiques à ±0,03 point.
+*(L'instance est dans un état ancien — ses 8 verts ne sont pas les 25 de la
+campagne 037. C'est sans effet sur un A/B : les deux mesures partagent le même
+état.)*
 
 ### Qualité
 
@@ -176,8 +208,24 @@ d'affichage : `rea1` (900 → 738 px, 1 421 → 69 Ko) et `equipe_survol_12`
 
 **Limite réelle et nommée** : pour les ~100 images redimensionnées, une
 comparaison pixel à pixel avec l'original n'a pas de sens. La seule garantie de
-qualité est le score de parité de la page — donc `odoo:pages:measure`, qui reste
-à faire.
+qualité est le score de parité de la page.
+
+### Un défaut de l'INSTRUMENT, trouvé en s'en servant — et il n'est pas corrigé
+
+`extract/odoo-page-parity/capture.ts` fait défiler la page pour déclencher les
+images en chargement différé, puis attend un délai fixe — **il n'attend jamais que
+les images soient effectivement chargées**. Une sonde le montre : après le
+défilement, treize `<img>` de `portes-residentielles` rendent encore
+`naturalWidth === 0`.
+
+Conséquence observée : la dernière carte de Réassurances sortait **blanche** sur
+la capture, de façon reproductible, alors que son image répond `200` avec le bon
+type et se rend parfaitement **seule dans un navigateur** (vérifié : 738×400,
+`complete: true`). C'est ~2 % de pixels attribués à tort à la conversion.
+
+Ce n'est pas corrigé ici — c'est le périmètre de l'instrument, pas celui des
+images — mais **tout score de parité porte cette incertitude** tant que la boucle
+n'attend pas `img.complete`.
 
 ### Déterminisme
 

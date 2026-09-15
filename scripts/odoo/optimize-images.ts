@@ -182,8 +182,11 @@ export interface Dimensions {
   readonly hauteur: number;
 }
 
-/** Dimensions par `ffprobe` — présent sur le poste, multi-plateforme, et le
- *  même outil que celui qui encode. */
+/**
+ * Dimensions **déclarées** dans l'en-tête. ATTENTION : ce ne sont pas toujours
+ * celles que l'on voit — voir `decoderOriente` ci-dessous. Ne l'utiliser que
+ * sur un fichier déjà décodé et réorienté.
+ */
 export function dimensions(abs: string): Dimensions {
   const out = execFileSync(
     'ffprobe',
@@ -203,25 +206,59 @@ export const versionOutil = (bin: string, args: readonly string[], re: RegExp): 
 };
 
 /**
- * Encode en WebP à la largeur voulue.
+ * Décode vers un PNG **orienté comme un navigateur l'affiche**, et rend ses
+ * dimensions réelles.
  *
- * `cwebp` fait le redimensionnement ET l'encodage, donc un seul outil sur le
- * chemin et un seul point de version à consigner. Trois choix explicites :
- *   · `-resize L 0` : la hauteur suit le rapport. On ne l'appelle QUE si
- *     l'image est plus large que la cible — `cwebp` agrandirait sinon, ce qui
- *     ajouterait du poids pour zéro pixel utile.
+ * ── Le piège qui a coûté une campagne de mesure entière (2026-09-15) ────────
+ * **Quatorze fichiers du jeu portent une consigne de rotation EXIF.** Leur
+ * en-tête annonce 1920×1440 quand l'image se voit en 1440×1920. Les
+ * navigateurs appliquent cette consigne (`image-orientation: from-image` est
+ * la valeur initiale en CSS depuis 2020) ; `ffprobe` et **`cwebp` ne
+ * l'appliquent pas**. Encoder directement avec `cwebp` produisait donc des
+ * images **couchées à 90°** — et un WebP ne porte plus d'EXIF pour rattraper
+ * le coup côté navigateur. Le fond de la section devis est parti de travers
+ * sur huit pages ; seule la mesure de parité l'a vu.
+ *
+ * `ffmpeg` applique la rotation au décodage, par défaut. On passe donc TOUT
+ * par lui, y compris les fichiers non tournés : une règle qui ne vaut que pour
+ * certains fichiers est une règle qu'on oubliera.
+ *
+ * Vérifié : le profil ICC survit au PNG intermédiaire — sans quoi les couleurs
+ * des fichiers à profil non-sRGB auraient glissé en silence.
+ */
+export function decoderOriente(src: string, dest: string): Dimensions {
+  execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', src, '-f', 'image2', '-c:v', 'png', dest], {
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  return dimensions(dest);
+}
+
+/**
+ * Encode en WebP à la largeur voulue, depuis un PNG **déjà orienté**.
+ *
+ * Trois choix explicites :
+ *   · le redimensionnement est fait par `ffmpeg` en Lanczos, pas par `cwebp` —
+ *     un seul décodeur sur le chemin, donc un seul comportement à connaître ;
  *   · `-metadata icc` : on jette EXIF et XMP (poids mort, parfois du GPS) mais
- *     on GARDE le profil couleur. Quatre fichiers en portent un ; le jeter
- *     déplacerait leurs couleurs sans que rien ne le signale.
+ *     on GARDE le profil couleur. Le jeter déplacerait des couleurs sans que
+ *     rien ne le signale ;
  *   · `-alpha_q 100` : la transparence reste sans perte. Un seul fichier du
- *     jeu s'en sert vraiment (sav_tech, 40,12 % de pixels non opaques) mais
+ *     jeu s'en sert vraiment (`sav_tech`, 40,12 % de pixels non opaques), mais
  *     la règle ne doit pas dépendre de ce compte.
  */
-export function encoder(src: string, dest: string, largeur: number, largeurSource: number): void {
-  const redim = largeurSource > largeur ? ['-resize', String(largeur), '0'] : [];
+export function encoder(srcOriente: string, dest: string, largeur: number, largeurSource: number, tmp: string): void {
+  let entree = srcOriente;
+  if (largeurSource > largeur) {
+    entree = path.join(tmp, 'redim.png');
+    execFileSync(
+      'ffmpeg',
+      ['-y', '-v', 'error', '-i', srcOriente, '-vf', `scale=${largeur}:-1:flags=lanczos`, '-f', 'image2', '-c:v', 'png', entree],
+      { stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+  }
   execFileSync(
     'cwebp',
-    ['-quiet', '-q', String(QUALITE), '-m', '6', '-alpha_q', '100', '-metadata', 'icc', ...redim, src, '-o', dest],
+    ['-quiet', '-q', String(QUALITE), '-m', '6', '-alpha_q', '100', '-metadata', 'icc', entree, '-o', dest],
     { stdio: ['ignore', 'pipe', 'pipe'] },
   );
 }
@@ -310,9 +347,12 @@ export function main(): void {
       if (!fam) throw new Error(`famille absente pour ${f} (le pré-vol aurait dû l'attraper)`);
 
       const cible = largeurCible(fam);
-      const avant = dimensions(abs);
       const octetsAvant = statSync(abs).size;
       const formatAvant = formatReel(abs);
+      // Les dimensions viennent du fichier DÉCODÉ ET ORIENTÉ, jamais de
+      // l'en-tête : quatorze fichiers du jeu mentent sur leur orientation.
+      const oriente = path.join(tmp, 'oriente.png');
+      const avant = decoderOriente(abs, oriente);
       const largeurFinale = Math.min(cible, avant.largeur);
 
       // ── IDEMPOTENCE, et ce n'est pas du confort ────────────────────────────
@@ -342,7 +382,7 @@ export function main(): void {
       }
 
       const sortie = path.join(tmp, `${stem}.webp`);
-      encoder(abs, sortie, largeurFinale, avant.largeur);
+      encoder(oriente, sortie, largeurFinale, avant.largeur, tmp);
 
       const octetsApres = statSync(sortie).size;
       // Un fichier qui GROSSIT est un refus, pas un compromis : on le nomme et
