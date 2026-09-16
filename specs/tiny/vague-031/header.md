@@ -276,3 +276,15 @@ alors que `npx playwright install` pose 1243 → `PLAYWRIGHT_CHROMIUM_PATH` ; ce
 
 - Portes après ce lot : build ✔ · geometry:gate ✔ · authoring ✔ · module 23/23 ✔ · derivation ✔ · emitters ✔ · plugin ✔ · tsc ×2 ✔ ·
   parity ✔ (cliché rafraîchi, 59 sets, 13 acquittements inchangés) · golden + receipt re-pinnés · **eval : 249/252** (troisième passe) — mêmes trois rouges que HEAD ; deux cas d'eval ont dû suivre le registre 2.0.0 : `detect-icon-registry-divergence` semait le retrait de `cart` (désormais réellement absent → sème `phone`), `lower-icon-swap-and-visibility-into-props` attendait 13 glyphes dont `cart` (le dump committé en liste 13, l'intersection avec le registre vivant en fait 10).
+
+### Production (2026-09-16, 13:01, agent Superset sur le dépôt client, GO owner)
+
+Patch DS `9550a419` porté dans `psbe-piqueray_srl` (`git apply -p4 --directory=src`, manifest et `hooks.py` à la main), **migration
+renumérotée `19.0.1.26.0`** côté client (`origin/main` client était déjà en 25.0 : les numéros 20 à 25 y sont pris par des
+migrations propres au client — le DS garde `19.0.1.20.0`, les deux dépôts ne partagent pas la numérotation). Test local sur base
+neuve (`-i` 1.25.0 puis `-u` 1.26.0, 0 Traceback), puis push `main` client (commit `8f2d11b`) → Odoo.sh : **46 s mesurées, deux
+réponses 503 à t=16 s et t=31 s** (sondage à 15 s), puis la nouvelle barre. Contre-vérifié depuis ici sur
+`https://piqueray-srl.odoo.com/` : 6 entrées dans l'ordre, `/shop` et `/contactez-nous`, 0 part d'icône, pas de chevron sur
+« Portes d'entrée », aucune entrée « Rendez-vous ». L'entrée /shop servie est celle qui préexistait (« Boutique ») : la nôtre
+n'a pas été créée, garde par adresse tenue. Les tampons `data-vxml` du contenu enregistré en base restent 19.0.1.19.0 (contenu, pas
+gabarit — connu). **À rapatrier dans DS un jour** : les migrations client 22 à 25 et `models/website.py`, `odoo-bridge.css`.
