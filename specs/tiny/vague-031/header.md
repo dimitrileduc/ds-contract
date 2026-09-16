@@ -275,4 +275,4 @@ alors que `npx playwright install` pose 1243 → `PLAYWRIGHT_CHROMIUM_PATH` ; ce
 | Menu 390 / 834 | 3,93 % / 1,16 % | « Motorisation » (contenu réel), lissage |
 
 - Portes après ce lot : build ✔ · geometry:gate ✔ · authoring ✔ · module 23/23 ✔ · derivation ✔ · emitters ✔ · plugin ✔ · tsc ×2 ✔ ·
-  parity ✔ (cliché rafraîchi, 59 sets, 13 acquittements inchangés) · golden + receipt re-pinnés · **eval : en cours au moment du commit — compte épinglé dans le commit suivant**.
+  parity ✔ (cliché rafraîchi, 59 sets, 13 acquittements inchangés) · golden + receipt re-pinnés · **eval : 249/252** (troisième passe) — mêmes trois rouges que HEAD ; deux cas d'eval ont dû suivre le registre 2.0.0 : `detect-icon-registry-divergence` semait le retrait de `cart` (désormais réellement absent → sème `phone`), `lower-icon-swap-and-visibility-into-props` attendait 13 glyphes dont `cart` (le dump committé en liste 13, l'intersection avec le registre vivant en fait 10).

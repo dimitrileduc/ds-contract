@@ -1479,17 +1479,20 @@ const cases: Case[] = [
     id: 'detect-icon-registry-divergence',
     claim: 'C3-detection',
     run: () => {
-      // Seed a divergence on ONE side only (remove "cart" from the registry;
+      // Seed a divergence on ONE side only (remove "phone" from the registry;
       // its code asset and its canvas swap-menu presence are untouched) — the
       // icons axis must catch it from BOTH directions at once (FR-007: never
-      // silent, whichever side actually diverged).
+      // silent, whichever side actually diverged). The seeded icon was "cart"
+      // until 2026-09-16: cart/user/mail/search left the registry for real
+      // (icons.registry 2.0.0, ds.header 3.1.0 — zero consumer, zero canvas
+      // instance), so removing cart no longer diverges anything.
       editJson('contracts/icons.registry.json', (r) => {
-        r.icons = r.icons.filter((i: { name: string }) => i.name !== 'cart');
+        r.icons = r.icons.filter((i: { name: string }) => i.name !== 'phone');
       });
       if (parity().status === 0) throw new Error('Seeded icon-registry divergence not detected');
       const report = readReport();
-      expectFinding(report, 'icons', 'ahead', 'assets/icons/cart.svg');
-      expectFinding(report, 'icons', 'ahead', 'figma/Cart');
+      expectFinding(report, 'icons', 'ahead', 'assets/icons/phone.svg');
+      expectFinding(report, 'icons', 'ahead', 'figma/Phone');
     },
   },
   {
@@ -1548,8 +1551,12 @@ const cases: Case[] = [
         throw new Error(`expected default "arrow-left" (the observed default-variant instance) — got ${JSON.stringify(swapLeft.default)}`);
       }
       const enumValues = (swapLeft.type as { enum: string[] }).enum;
-      if (enumValues.length !== 13 || !enumValues.includes('cart') || enumValues.includes('mail') || enumValues.includes('external-link')) {
-        throw new Error(`expected the enum to equal the 13-icon registry exactly (no mail/external-link) — got: ${enumValues.join(', ')}`);
+      // The committed dump's swap menu lists the 13 icons of 2026-07-27; the
+      // enum is their intersection with the LIVE registry. Since 2026-09-16
+      // (icons.registry 2.0.0) cart, search and user are gone, so 10 remain —
+      // and mail / external-link (never in that dump) must still be absent.
+      if (enumValues.length !== 10 || enumValues.includes('cart') || enumValues.includes('search') || enumValues.includes('user') || !enumValues.includes('phone') || enumValues.includes('mail') || enumValues.includes('external-link')) {
+        throw new Error(`expected the enum to equal the dump's 13 swap keys ∩ the live registry = 10 icons (no cart/search/user/mail/external-link) — got: ${enumValues.join(', ')}`);
       }
       if (swapLeft.bindings.figma.values?.['arrow-left'] !== 'ArrowLeft') {
         throw new Error(`expected bindings.figma.values to map canonical "arrow-left" → figma.componentName "ArrowLeft" — got ${JSON.stringify(swapLeft.bindings.figma.values)}`);
