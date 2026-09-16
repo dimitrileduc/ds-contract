@@ -1006,6 +1006,19 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       <div class="field__Saisie" t-att-data-pqr-part="part + '-saisie'">
         <textarea t-if="textarea" class="textarea s_website_form_input" t-att-name="name" t-att-id="input_id"
                   t-att-required="'required' if required else None" t-att-aria-describedby="erreur_id if message else None" aria-invalid="false" autocomplete="off"></textarea>
+        <!-- ODOO-039-FORMULAIRE-CRM (2026-09-16) : branche `options` — un <select> HORS contrat
+             (ds.formulaire 3.1.0 n a pas de champ à choix ; décision owner : pas de passe Figma/contrat
+             pour un menu déroulant). Habillé comme ds.input par la classe `input` du CSS généré ;
+             chevron = celui de ds.select 2.0.0 (core/samples/select.html). Première option vide :
+             le champ est obligatoire, form.js d Odoo pose `o_has_error` comme pour les autres. -->
+        <div t-elif="options" class="select" t-att-data-pqr-part="part + '-select'">
+          <select class="input select__valeur s_website_form_input" t-att-name="name" t-att-id="input_id"
+                  t-att-required="'required' if required else None" t-att-aria-describedby="erreur_id if message else None" aria-invalid="false" autocomplete="off">
+            <option value=""></option>
+            <t t-foreach="options" t-as="option"><option t-att-value="option['valeur']" t-esc="option['libelle']"/></t>
+          </select>
+          <span class="select__chevron" aria-hidden="true" t-att-data-pqr-part="part + '-chevron'"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z" fill="currentColor"/></svg></span>
+        </div>
         <input t-else="" t-attf-class="input input--type-#{type} s_website_form_input" t-att-type="type" t-att-name="name" t-att-id="input_id"
                t-att-autocomplete="autocomplete" t-att-required="'required' if required else None" t-att-aria-describedby="erreur_id if message else None" aria-invalid="false"/>
       </div>
@@ -1042,23 +1055,26 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
       </div>
       <form class="formulaire__form s_website_form oe_unremovable oe_unmovable" data-pqr-part="form"
             action="/website/form/" method="post" enctype="multipart/form-data" data-model_name="crm.lead" hide-change-model="1" novalidate="novalidate">
-        <!-- ODOO-039-FORMULAIRE-CRM (2026-09-11, QUICK FIX DEMO) : la demande cree une
-             OPPORTUNITE au lieu d envoyer un simple e-mail. `name` est l intitule de la fiche
-             (champ obligatoire de `crm.lead`), `team_id` l equipe destinataire — l equipe
-             « Site Web » (id 2), creee chez le client et jusqu ici vide. L intitule est
-             STATIQUE : le champ « Sujet » qui le rendrait parlant a ete retire de la maquette
-             le 2026-09-08, et son retour passe par Figma + contrat + trois surfaces. -->
-        <input type="hidden" class="s_website_form_input" name="name" value="Demande depuis le site web"/>
+        <!-- ODOO-039-FORMULAIRE-CRM (2026-09-11, complété le 2026-09-16) : la demande crée une
+             OPPORTUNITÉ `crm.lead` au lieu d envoyer un simple e-mail. `team_id` = l équipe
+             « Site Web » (id 2 en prod) ; sans vendeur par défaut du site, Odoo assigne la fiche
+             au responsable de cette équipe, qui reçoit le mail (website_crm, `website_form_input_filter`).
+             L intitulé de la fiche (`name`, obligatoire) est le CHOIX du visiteur dans le champ
+             « Objet » ci-dessous — « Prise de contact » ou « Demande de devis » : c est le seul
+             champ de crm.lead en liste blanche qui porte cette information sans code ni config
+             (`tag_ids` n y est pas). Décision owner du 2026-09-16 : pas d étiquette, pas de piste. -->
         <input type="hidden" class="s_website_form_input" name="team_id" value="2"/>
         <div class="formulaire__ResumeErreurs" role="alert" tabindex="-1" data-pqr-part="resume-erreurs" hidden="hidden">
           <div class="formulaire__barre" data-pqr-part="resume-erreurs-barre"></div>
           <div class="formulaire__texte" data-pqr-part="resume-erreurs-texte">
             <span class="formulaire__TitreResume" data-pqr-part="resume-erreurs-titre">Votre message n’a pas pu être envoyé</span>
+            <a class="formulaire__LienObjet" href="#formulaire-objet" data-pqr-part="resume-erreurs-lien-objet">→ Choisissez l’objet de votre demande.</a>
             <a class="formulaire__LienEmail" href="#formulaire-email" data-pqr-part="resume-erreurs-lien-email">→ Saisissez votre adresse e-mail pour que nous puissions vous répondre.</a>
             <a class="formulaire__LienMessage" href="#formulaire-message" data-pqr-part="resume-erreurs-lien-message">→ Écrivez votre message : décrivez en quelques mots votre projet ou votre question.</a>
           </div>
         </div>
         <t t-set="prefixe_id" t-value="'formulaire'"/>
+        <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'objet'"/><t t-set="label" t-value="'Objet'"/><t t-set="obligatoire" t-value="True"/><t t-set="name" t-value="'name'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'off'"/><t t-set="message" t-value="'Choisissez l’objet de votre demande.'"/><t t-set="options" t-value="[{'valeur': 'Prise de contact', 'libelle': 'Prise de contact'}, {'valeur': 'Demande de devis', 'libelle': 'Demande de devis'}]"/></t>
         <div class="formulaire__rangIdentite" data-pqr-part="rang-identite">
           <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'prenom'"/><t t-set="label" t-value="'Prénom'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'prenom'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'given-name'"/></t>
           <t t-call="piqueray_ds.champ"><t t-set="cle" t-value="'nom'"/><t t-set="label" t-value="'Nom'"/><t t-set="obligatoire" t-value="False"/><t t-set="name" t-value="'contact_name'"/><t t-set="type" t-value="'text'"/><t t-set="autocomplete" t-value="'family-name'"/></t>
