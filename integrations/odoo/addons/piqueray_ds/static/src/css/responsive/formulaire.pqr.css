@@ -58,3 +58,16 @@
 /* (4) Le déclencheur d envoi d Odoo est un <a role="button"> (.s_website_form_send) :
  *     il prend les classes de ds.button, jamais le soulignement d un lien. */
 .s_pqr_formulaire .s_website_form_send { text-decoration: none; }
+
+/* (5) ODOO-039-FORMULAIRE-CRM (2026-09-16) — le champ « Objet », un <select> HORS contrat.
+ *     Le <select> porte la classe `input` (bordure, police, padding, rayon de ds.input) ;
+ *     ici seulement ce qu un <select> demande en plus : neutraliser la flèche native, faire
+ *     place au chevron de ds.select, et ne pas cumuler deux anneaux de focus (celui de
+ *     .select:focus-within, règle (3), suffit et entoure aussi le chevron). */
+.s_pqr_formulaire .select { position: relative; display: block; width: 100%; }
+.s_pqr_formulaire .select__valeur { appearance: none; -webkit-appearance: none; width: 100%; padding-right: var(--pqr-space-56, 56px); cursor: pointer; }
+.s_pqr_formulaire .select__valeur:focus-visible { outline: none; }
+.s_pqr_formulaire .select__chevron { position: absolute; right: var(--pqr-space-12); top: 50%; width: 32px; height: 32px; transform: translateY(-50%); pointer-events: none; color: var(--pqr-color-noir); display: inline-flex; }
+.s_pqr_formulaire .select__chevron svg { width: 100%; height: 100%; }
+/* Le lien du résumé d erreurs vers le champ Objet, même habit que LienEmail/LienMessage. */
+.formulaire__LienObjet { color: var(--pqr-color-rouge); font-size: var(--pqr-font-size-16); font-weight: var(--pqr-font-weight-regular); line-height: var(--pqr-font-line-height-24); text-decoration-line: underline; }

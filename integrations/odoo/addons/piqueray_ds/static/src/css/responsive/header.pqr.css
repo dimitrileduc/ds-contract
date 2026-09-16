@@ -7,7 +7,7 @@
  *   Mobile   = base (components.pqr.css, mobile-first)
  *   Tablette = @media (min-width: 768px)   ← {breakpoint.tablette}
  *   Desktop  = @media (min-width: 992px)   ← {breakpoint.desktop}
- *   Wide     = @media (min-width: 1600px)  ← {breakpoint.wide}
+ *   Wide     = @media (min-width: 2000px)  ← {breakpoint.wide}
  * Chaque bloc recopie les déclarations que components.pqr.css émet pour la
  * classe `.header--presentation-<mode>` (Odoo ne pose jamais cette classe).
  * La typographie n'est pas ici (tokens.pqr.css porte ses blocs @media ; le
@@ -68,9 +68,9 @@
   }
 }
 
-/* Wide ≥ 1600 : padding-inline 89, padding-block 26 (3.1.0), écart de la nav 32,
+/* Wide ≥ 2000 (breakpoint.wide, main 2026-09-16) : padding-inline 89, padding-block 26 (3.1.0), écart de la nav 32,
  * enveloppe 64 (sans effet visible : la nav est seule dedans). */
-@media (min-width: 1600px) {
+@media (min-width: 2000px) {
   .header {
     padding-inline: var(--pqr-space-89);
     padding-block: var(--pqr-space-26);
