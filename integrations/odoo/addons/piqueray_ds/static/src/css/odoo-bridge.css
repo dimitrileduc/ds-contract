@@ -705,6 +705,37 @@
 }
 /* ODOO-037-ANCRE-FORMULAIRE END */
 
+/* ODOO-038-HEADER-HORS-PAGE-GOUVERNEE BEGIN
+ * Pont MÉCANIQUE, aucune valeur de design nouvelle : on réutilise le jeton de
+ * fond sombre déjà porté par le pied de page.
+ *
+ * POURQUOI. La barre `ds.header` est dessinée pour se poser SUR la photo sombre
+ * du hero : elle n'a pas de fond, et son logo est la variante BLANCHE
+ * (`piqueray-logo--couleur-blanc`). Sur une page Odoo native à fond clair — la
+ * boutique ouverte le 2026-09-11, mais aussi /shop, le panier, le portail ou la
+ * page 404 — le logo et les entrées de menu deviennent blanc sur blanc, donc
+ * invisibles. Constaté à l'écran sur /shop.
+ *
+ * PORTÉE. La règle ne s'applique QUE hors de nos pages composées : celles-ci
+ * portent `#wrap.o_pqr_page` (posé par le composeur), les pages natives non.
+ * Les 9 pages du site vitrine sont donc strictement inchangées — le hero garde
+ * sa barre transparente. Vérifiable en une ligne :
+ *   nos pages  -> <div id="wrap" class="oe_structure o_pqr_page">
+ *   boutique   -> <div id="wrap" class="js_sale o_wsale_products_page">
+ *
+ * DÉGRADATION. `:has()` n'existe pas sur les très vieux navigateurs ; la règle
+ * est alors simplement ignorée et le rendu revient à l'état actuel. Aucun risque
+ * de casse.
+ *
+ * ÉCART À REPORTER : posé directement dans ce dépôt pour une démo. À reporter
+ * dans `ds-contract` (integrations/odoo/addons/piqueray_ds/static/src/css/
+ * odoo-bridge.css) avec la passe de portes, sinon la prochaine
+ * resynchronisation du module le perdra. */
+body:has(#wrap:not(.o_pqr_page)) .header[data-pqr-shell="header"] {
+  background-color: var(--pqr-color-noir-bleute);
+}
+/* ODOO-038-HEADER-HORS-PAGE-GOUVERNEE END */
+
 /* ODOO-039-AVATAR-AVIS-IMAGE BEGIN
    La photo d'un avis Google remplit sa pastille. Deux raisons, la seconde est
    celle qui a fait écrire la règle.
