@@ -2,7 +2,7 @@
 
 **Branch**: `main` (un commit direct, comme le 1400 → 1600 du 2026-09-08, `244deea2`)
 **Date**: 2026-09-16
-**Status**: done côté DS (commit `main`, 2026-09-16) — patch client appliqué localement, push client À FAIRE hors heures
+**Status**: done — DS `59fd394d`, client `b322e9f` déployé en prod le 2026-09-16 à 12:15 (agent Superset, vérifié au pixel)
 **Complexity**: small
 
 ## What
@@ -61,7 +61,7 @@ les témoins restent 390 / 834 / 1200 / 1728).
 - [x] Captures 1728 et 2100 sur instance jetable (composition 1200 / 1728 respectivement)
 - [x] Commit `main` DS
 - [x] Patch appliqué côté client, `diff -rq` vide
-- [ ] Push `main` client hors heures (= déploiement Odoo.sh) — geste owner
+- [x] Push `main` client (décision owner, en journée) : `b322e9f` à 12:15:01 après rebase sur 6 commits amont, prod servant le CSS neuf à 12:15:48 (**47 s**) ; mesuré en prod 1728 → 56 / 128, 2100 → 89 / 192
 
 ## Done When
 
