@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "199e4fed",
+    "gitCommit": "b92d3d94",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -81,7 +81,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.5.0",
+      "version": "3.0.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -91,7 +91,7 @@
         "iconLeftGlyph",
         "iconRightGlyph"
       ],
-      "summary": "2.4.1 (2026-09-09) : le style LINK prend la graisse SemiBold au REPOS (canal font-weight sur la valeur link, jeton font.weight.semibold ; les six autres styles gardent font.weight.medium)."
+      "summary": "3.0.0 (2026-09-16) : quatre glyphes quittent les deux énumérations iconLeftGlyph / iconRightGlyph — user, cart, mail, search — parce qu'ils quittent le registre (icons.registry.json 2.0.0) : plus aucun contrat ne les référençait depuis ds.header 3.1.0, et leurs quatre masters Figma n'avaient AUCUNE instance (relevé avant suppression)."
     },
     {
       "id": "ds.carousel-controls",
@@ -447,7 +447,7 @@
     {
       "id": "ds.header",
       "name": "Header",
-      "version": "3.1.0",
+      "version": "3.1.1",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -507,7 +507,7 @@
     {
       "id": "ds.menu-mobile",
       "name": "MenuMobile",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "status": "draft",
       "category": "section",
       "propNames": [

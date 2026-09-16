@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.5.0)
+ * Source of truth: contracts/button.contract.json (ds.button v3.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "2.4.1 (2026-09-09) : le style LINK prend la graisse SemiBold au REPOS (canal font-weight sur la valeur link, jeton font.weight.semibold ; les six autres styles gardent font.weight.medium). Question de l'owner : « ce CTA link ne devrait-il pas etre plus gras pour tout le monde ? » — releve sur le canevas : un seul style, 24 contextes (Lire la suite, Contactez-nous des cartes, En savoir plus, brochures, Voir les produits, Voir tous les avis), tous suivent. Cote canevas : style de texte DEDIE « Libelle bouton lien » (copie champ par champ de « Libelle bouton », SemiBold, fontSize lie a typography/button/size) pose sur les variantes Link Repos/Actif/Focus — jamais une graisse par surcharge, qui detacherait le libelle de sa taille responsive. Le survol garde « Libelle bouton survol » : il ne change plus de graisse (typography.etat.link.graisse-survol reste semibold, canal neutre), il garde soulignement et noir pur. 468 instances Link relues, 468 suivent — dont 40 libelles des Categories principales dans les vues demo de cinq pages qui etaient DETACHES de tout style (taille 18 en dur en Wide), re-lies. Meme jour, deux CTA dessines a la main remis en instance du Bouton : « En savoir plus » de Presentation (Mobile/Tablette/Desktop) et « Contactez-nous » de Reassurances (4 variantes).\n\n2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse. Nouveau canal `font-weight` sur l'etat hover, sur le meme modele par style que le soulignement : `typography.etat.<style>.graisse-survol`, six styles a font.weight.medium (la graisse du repos, leur survol ne bouge donc pas d'un octet) et link a font.weight.semibold. Decision owner du 2026-09-07, prise sur la carte categorie empilee : le libelle du CTA y est le seul signal de cible cliquable, et l'owner a refuse la couleur orange comme accent. Deux faits mesures avant d'ecrire : la couleur du survol etait DEJA le noir pur (color.etat.link.libelle-survol pointe sur color.noir-pur depuis la vague 032), donc « jouer sur le noir » n'ajoutait rien ; et le decalage horizontal du gras est de 1 px sur le libelle « CONTACTEZ-NOUS » (155 vs 156 px, releve sur le canevas), donc l'argument classique du deplacement de mise en page ne s'applique pas ici. MEME JOUR, ECART DE SOURCE REFERME : le contrat declarait le soulignement du survol link depuis la 2.3.0, la variante Figma `Style=Link, State=Hover` (2749:17111) ne le DESSINAIT pas. Elle porte desormais le style de texte « Libelle bouton survol » (Montserrat SemiBold, casse UPPER, soulignement, fontSize lie a typography/button/size comme le repos). Poser la graisse par surcharge de fontName detachait le libelle de son style de texte et lui faisait perdre la taille responsive : d'ou le style dedie. 449 instances du set Bouton avant le geste, 449 apres.\n\nPiqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. 2.1.0 (2026-09-02, Odoo hero pilot): the label font-size rides the style token typography.libelle-bouton.size, itself aliased to the Responsive typography.button.size (16 · 16 · 16 · 18) — exactly how the canvas style « Libellé bouton » binds its size. Before, a fixed font.size.16 made the Wide CTA 17 px narrower than the planche.\n\n2.2.0 (2026-09-04, vague 032) : le canal d'etats est rempli pour la premiere fois sur un contrat Piqueray -- survol, presse et focus clavier, sur les sept styles. Les couleurs voyagent par les jetons color.etat.<style>.<canal> (sans accolades ici : l'invariant zero-accolade d'emitters:check scanne aussi les descriptions), jamais en valeur litterale. L'apparence au REPOS est inchangee, prouvee au pixel sur les sept styles. Arbitrage owner du 2026-09-04 sur FR-019 : le plancher de contraste AA 4,5 vaut pour les six styles conformes ; le style orange, deja sous AA au repos a 2,42 et deliberement non corrige, est borne par une clause de non-regression -- ses etats vont en croissant 2,42 -> 2,98 -> 3,74, un etat n'a jamais le droit d'etre MOINS lisible que le repos. Limite nommee : le soulignement du style link au survol est impossible PAR STYLE -- les etats sont indexes etat -> canal -> valeur sur la racine, sans dimension par valeur d'enumere, donc souligner le link soulignerait les sept. Repli decide par l'owner : changement de couleur du libelle. L'etat disabled reste hors perimetre : aucun bouton de la home n'est inactif.\n\n2.3.0 (2026-09-05) : le style link se souligne au survol. La 2.2.0 disait cette variation impossible par style — c'etait faux, et la limite avait ete ecrite dans la matrice de capacites avant d'etre verifiee. Le canal d'etats emet en realite UNE regle par valeur d'enumere, et un jeton de type texte porte le mot-cle : le style link recoit underline, les six autres un none explicite. Le none explicite n'est pas decoratif — il resiste a une regle d'hote qui soulignerait nos boutons rendus en lien.\n\nVERSION 2.5.0 (2026-09-09, vague « arrondis ») — la racine porte enfin un rayon, token radius.4 (4 px), sur tous les styles ; le style Link garde son radius.32 par sa surcharge de variante. Canevas : variable radius/4 liée sur les 24 variantes hors Link. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR.",
+          "3.0.0 (2026-09-16) : quatre glyphes quittent les deux énumérations iconLeftGlyph / iconRightGlyph — user, cart, mail, search — parce qu'ils quittent le registre (icons.registry.json 2.0.0) : plus aucun contrat ne les référençait depuis ds.header 3.1.0, et leurs quatre masters Figma n'avaient AUCUNE instance (relevé avant suppression). Le menu de permutation du master Bouton (preferredValues des deux propriétés « Glyphe ») passe de 19 à 15, 718 instances avant, 718 après. Retrait de valeurs d'énumération = MAJEUR par la règle du dépôt, alors qu'aucun usage ne casse ; les défauts arrow-left / arrow-right sont intacts.\n\n2.4.1 (2026-09-09) : le style LINK prend la graisse SemiBold au REPOS (canal font-weight sur la valeur link, jeton font.weight.semibold ; les six autres styles gardent font.weight.medium). Question de l'owner : « ce CTA link ne devrait-il pas etre plus gras pour tout le monde ? » — releve sur le canevas : un seul style, 24 contextes (Lire la suite, Contactez-nous des cartes, En savoir plus, brochures, Voir les produits, Voir tous les avis), tous suivent. Cote canevas : style de texte DEDIE « Libelle bouton lien » (copie champ par champ de « Libelle bouton », SemiBold, fontSize lie a typography/button/size) pose sur les variantes Link Repos/Actif/Focus — jamais une graisse par surcharge, qui detacherait le libelle de sa taille responsive. Le survol garde « Libelle bouton survol » : il ne change plus de graisse (typography.etat.link.graisse-survol reste semibold, canal neutre), il garde soulignement et noir pur. 468 instances Link relues, 468 suivent — dont 40 libelles des Categories principales dans les vues demo de cinq pages qui etaient DETACHES de tout style (taille 18 en dur en Wide), re-lies. Meme jour, deux CTA dessines a la main remis en instance du Bouton : « En savoir plus » de Presentation (Mobile/Tablette/Desktop) et « Contactez-nous » de Reassurances (4 variantes).\n\n2.4.0 (2026-09-07, vague 033) : le survol du style LINK prend une graisse. Nouveau canal `font-weight` sur l'etat hover, sur le meme modele par style que le soulignement : `typography.etat.<style>.graisse-survol`, six styles a font.weight.medium (la graisse du repos, leur survol ne bouge donc pas d'un octet) et link a font.weight.semibold. Decision owner du 2026-09-07, prise sur la carte categorie empilee : le libelle du CTA y est le seul signal de cible cliquable, et l'owner a refuse la couleur orange comme accent. Deux faits mesures avant d'ecrire : la couleur du survol etait DEJA le noir pur (color.etat.link.libelle-survol pointe sur color.noir-pur depuis la vague 032), donc « jouer sur le noir » n'ajoutait rien ; et le decalage horizontal du gras est de 1 px sur le libelle « CONTACTEZ-NOUS » (155 vs 156 px, releve sur le canevas), donc l'argument classique du deplacement de mise en page ne s'applique pas ici. MEME JOUR, ECART DE SOURCE REFERME : le contrat declarait le soulignement du survol link depuis la 2.3.0, la variante Figma `Style=Link, State=Hover` (2749:17111) ne le DESSINAIT pas. Elle porte desormais le style de texte « Libelle bouton survol » (Montserrat SemiBold, casse UPPER, soulignement, fontSize lie a typography/button/size comme le repos). Poser la graisse par surcharge de fontName detachait le libelle de son style de texte et lui faisait perdre la taille responsive : d'ou le style dedie. 449 instances du set Bouton avant le geste, 449 apres.\n\nPiqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. 2.1.0 (2026-09-02, Odoo hero pilot): the label font-size rides the style token typography.libelle-bouton.size, itself aliased to the Responsive typography.button.size (16 · 16 · 16 · 18) — exactly how the canvas style « Libellé bouton » binds its size. Before, a fixed font.size.16 made the Wide CTA 17 px narrower than the planche.\n\n2.2.0 (2026-09-04, vague 032) : le canal d'etats est rempli pour la premiere fois sur un contrat Piqueray -- survol, presse et focus clavier, sur les sept styles. Les couleurs voyagent par les jetons color.etat.<style>.<canal> (sans accolades ici : l'invariant zero-accolade d'emitters:check scanne aussi les descriptions), jamais en valeur litterale. L'apparence au REPOS est inchangee, prouvee au pixel sur les sept styles. Arbitrage owner du 2026-09-04 sur FR-019 : le plancher de contraste AA 4,5 vaut pour les six styles conformes ; le style orange, deja sous AA au repos a 2,42 et deliberement non corrige, est borne par une clause de non-regression -- ses etats vont en croissant 2,42 -> 2,98 -> 3,74, un etat n'a jamais le droit d'etre MOINS lisible que le repos. Limite nommee : le soulignement du style link au survol est impossible PAR STYLE -- les etats sont indexes etat -> canal -> valeur sur la racine, sans dimension par valeur d'enumere, donc souligner le link soulignerait les sept. Repli decide par l'owner : changement de couleur du libelle. L'etat disabled reste hors perimetre : aucun bouton de la home n'est inactif.\n\n2.3.0 (2026-09-05) : le style link se souligne au survol. La 2.2.0 disait cette variation impossible par style — c'etait faux, et la limite avait ete ecrite dans la matrice de capacites avant d'etre verifiee. Le canal d'etats emet en realite UNE regle par valeur d'enumere, et un jeton de type texte porte le mot-cle : le style link recoit underline, les six autres un none explicite. Le none explicite n'est pas decoratif — il resiste a une regle d'hote qui soulignerait nos boutons rendus en lien.\n\nVERSION 2.5.0 (2026-09-09, vague « arrondis ») — la racine porte enfin un rayon, token radius.4 (4 px), sur tous les styles ; le style Link garde son radius.32 par sa surcharge de variante. Canevas : variable radius/4 liée sur les 24 variantes hors Link. Posé sur le canevas AVANT le contrat (§VIII), planches 031 · 26 et 031 · 27 validées puis supprimées, versions nommées avant/après. Ajout purement additif : MINEUR.",
       },
     },
   },
@@ -47,20 +47,16 @@ const meta = {
         'phone',
         'download',
         'pdf',
-        'search',
-        'user',
         'chevron-right',
         'chevron-left',
         'chevron-down',
         'chevron-up',
-        'cart',
         'arrow-right',
         'arrow-left',
         'facebook',
         'instagram',
         'star',
         'external-link',
-        'mail',
         'octicon-chevron-down12',
       ],
       description:
@@ -73,20 +69,16 @@ const meta = {
         'phone',
         'download',
         'pdf',
-        'search',
-        'user',
         'chevron-right',
         'chevron-left',
         'chevron-down',
         'chevron-up',
-        'cart',
         'arrow-right',
         'arrow-left',
         'facebook',
         'instagram',
         'star',
         'external-link',
-        'mail',
         'octicon-chevron-down12',
       ],
       description:
@@ -146,7 +138,7 @@ export const Matrix: Story = {
       style={{
         display: 'grid',
         gap: 16,
-        gridTemplateColumns: 'repeat(361, max-content)',
+        gridTemplateColumns: 'repeat(225, max-content)',
         alignItems: 'center',
         justifyItems: 'start',
       }}
@@ -163,12 +155,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -179,9 +165,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -202,9 +185,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="piqueray" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -220,12 +200,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -236,9 +210,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -259,9 +230,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -277,12 +245,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -293,9 +255,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -316,9 +275,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="download" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="download" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -334,12 +290,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -350,9 +300,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -373,124 +320,7 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -505,12 +335,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -521,9 +345,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -542,9 +363,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -566,12 +384,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -582,9 +394,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -603,9 +412,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -627,12 +433,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -643,9 +443,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -664,9 +461,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -688,12 +482,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -704,9 +492,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -727,67 +512,7 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="chevron-up" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -802,12 +527,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -818,9 +537,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -841,9 +557,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="arrow-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -859,12 +572,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -875,9 +582,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -898,9 +602,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="arrow-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -916,12 +617,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -932,9 +627,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -955,9 +647,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="facebook" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -973,12 +662,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -989,9 +672,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -1012,9 +692,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="instagram" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1030,12 +707,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1046,9 +717,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -1069,9 +737,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1087,12 +752,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1103,9 +762,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -1126,71 +782,11 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="default"
         iconLeftGlyph="external-link"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="piqueray">
@@ -1203,12 +799,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
         Contactez-nous
       </Button>
       <Button
@@ -1235,9 +825,6 @@ export const Matrix: Story = {
       <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-up">
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
       <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="arrow-right">
         Contactez-nous
       </Button>
@@ -1260,9 +847,6 @@ export const Matrix: Story = {
       >
         Contactez-nous
       </Button>
-      <Button variant="default" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="default"
         iconLeftGlyph="octicon-chevron-down12"
@@ -1282,12 +866,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1298,9 +876,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -1321,9 +896,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="piqueray" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1339,12 +911,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1355,9 +921,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -1378,9 +941,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1396,12 +956,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1412,9 +966,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -1435,9 +986,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="download" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1453,12 +1001,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1469,9 +1011,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -1492,124 +1031,7 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -1624,12 +1046,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1640,9 +1056,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -1661,9 +1074,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -1685,12 +1095,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1701,9 +1105,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -1724,9 +1125,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1742,12 +1140,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1758,9 +1150,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -1781,9 +1170,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-down" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1799,12 +1185,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1815,9 +1195,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -1838,67 +1215,7 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="chevron-up" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -1913,12 +1230,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1929,9 +1240,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -1952,9 +1260,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="arrow-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -1970,12 +1275,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -1986,9 +1285,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -2009,9 +1305,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="arrow-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2027,12 +1320,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2043,9 +1330,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -2066,9 +1350,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="facebook" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2084,12 +1365,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2100,9 +1375,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -2123,9 +1395,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="instagram" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2141,12 +1410,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2157,9 +1420,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -2180,9 +1440,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2198,12 +1455,6 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2214,9 +1465,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -2237,71 +1485,11 @@ export const Matrix: Story = {
       <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="orange"
         iconLeftGlyph="external-link"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="piqueray">
@@ -2314,12 +1502,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
         Contactez-nous
       </Button>
       <Button
@@ -2336,9 +1518,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="arrow-right">
@@ -2363,9 +1542,6 @@ export const Matrix: Story = {
       >
         Contactez-nous
       </Button>
-      <Button variant="orange" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="orange"
         iconLeftGlyph="octicon-chevron-down12"
@@ -2385,12 +1561,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2401,9 +1571,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -2424,9 +1591,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="piqueray" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2442,12 +1606,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2458,9 +1616,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -2481,9 +1636,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2499,12 +1651,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2515,9 +1661,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -2538,9 +1681,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="download" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2556,12 +1696,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2572,9 +1706,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -2595,124 +1726,7 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -2727,12 +1741,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2743,9 +1751,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -2766,9 +1771,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2784,12 +1786,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2800,9 +1796,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -2823,9 +1816,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2841,12 +1831,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2857,9 +1841,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -2880,9 +1861,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-down" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -2898,12 +1876,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -2914,9 +1886,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -2937,67 +1906,7 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="chevron-up" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -3012,12 +1921,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3028,9 +1931,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -3051,9 +1951,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3069,12 +1966,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3085,9 +1976,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -3108,9 +1996,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="arrow-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3126,12 +2011,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3142,9 +2021,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -3165,9 +2041,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="facebook" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3183,12 +2056,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3199,9 +2066,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -3222,9 +2086,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="instagram" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3240,12 +2101,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3256,9 +2111,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -3279,9 +2131,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3297,12 +2146,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3313,9 +2156,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -3336,67 +2176,7 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="external-link" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="piqueray">
@@ -3411,12 +2191,6 @@ export const Matrix: Story = {
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3427,9 +2201,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="arrow-right">
@@ -3448,9 +2219,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="blanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -3472,12 +2240,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3488,9 +2250,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -3509,9 +2268,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="piqueray" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -3533,12 +2289,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3549,9 +2299,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -3572,9 +2319,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -3590,12 +2334,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3606,9 +2344,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -3627,9 +2362,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="download" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -3651,12 +2383,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3667,9 +2393,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -3690,124 +2413,7 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -3822,12 +2428,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3838,9 +2438,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -3859,9 +2456,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -3883,12 +2477,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3899,9 +2487,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -3920,9 +2505,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -3944,12 +2526,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -3960,9 +2536,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -3981,9 +2554,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -4005,12 +2575,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4021,9 +2585,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -4044,71 +2605,11 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineBlanc"
         iconLeftGlyph="chevron-up"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -4123,12 +2624,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4139,9 +2634,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -4160,9 +2652,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -4184,12 +2673,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4200,9 +2683,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -4221,9 +2701,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -4245,12 +2722,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4261,9 +2732,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -4282,9 +2750,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="facebook" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -4306,12 +2771,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4322,9 +2781,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -4343,9 +2799,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="instagram" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -4367,12 +2820,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4383,9 +2830,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -4406,9 +2850,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -4424,12 +2865,6 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4440,9 +2875,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -4463,71 +2895,11 @@ export const Matrix: Story = {
       <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineBlanc"
         iconLeftGlyph="external-link"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button
@@ -4548,12 +2920,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineBlanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
         Contactez-nous
       </Button>
       <Button
@@ -4582,9 +2948,6 @@ export const Matrix: Story = {
         iconLeftGlyph="octicon-chevron-down12"
         iconRightGlyph="chevron-up"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button
@@ -4625,9 +2988,6 @@ export const Matrix: Story = {
       >
         Contactez-nous
       </Button>
-      <Button variant="outlineBlanc" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineBlanc"
         iconLeftGlyph="octicon-chevron-down12"
@@ -4647,12 +3007,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4663,9 +3017,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -4686,9 +3037,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="piqueray" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -4704,12 +3052,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4720,9 +3062,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -4743,9 +3082,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -4761,12 +3097,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4777,9 +3107,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -4800,9 +3127,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="download" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="download" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -4818,12 +3142,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -4834,9 +3152,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -4857,124 +3172,7 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -4989,12 +3187,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5005,9 +3197,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -5028,9 +3217,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5046,12 +3232,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5062,9 +3242,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -5085,9 +3262,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5103,12 +3277,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5119,9 +3287,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -5142,9 +3307,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-down" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5160,12 +3322,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5176,9 +3332,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -5199,67 +3352,7 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="chevron-up" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -5274,12 +3367,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5290,9 +3377,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -5313,9 +3397,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="arrow-right" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5331,12 +3412,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5347,9 +3422,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -5370,9 +3442,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="arrow-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5388,12 +3457,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5404,9 +3467,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -5427,9 +3487,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="facebook" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5445,12 +3502,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5461,9 +3512,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -5484,9 +3532,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="instagram" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5502,12 +3547,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5518,9 +3557,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -5541,9 +3577,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5559,12 +3592,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5575,9 +3602,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -5598,67 +3622,7 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="external-link" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="piqueray">
@@ -5673,12 +3637,6 @@ export const Matrix: Story = {
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5689,9 +3647,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="arrow-right">
@@ -5710,9 +3665,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="link" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -5734,12 +3686,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5750,9 +3696,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -5771,9 +3714,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="piqueray" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -5795,12 +3735,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5811,9 +3745,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -5834,9 +3765,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -5852,12 +3780,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5868,9 +3790,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -5889,9 +3808,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="download" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -5913,12 +3829,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -5929,9 +3839,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -5952,124 +3859,7 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -6084,12 +3874,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6100,9 +3884,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -6121,9 +3902,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6145,12 +3923,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6161,9 +3933,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -6182,9 +3951,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6206,12 +3972,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6222,9 +3982,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -6243,9 +4000,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6267,12 +4021,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6283,9 +4031,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -6306,71 +4051,11 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineNoir"
         iconLeftGlyph="chevron-up"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -6385,12 +4070,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6401,9 +4080,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -6422,9 +4098,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6446,12 +4119,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6462,9 +4129,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -6483,9 +4147,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6507,12 +4168,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6523,9 +4178,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -6544,9 +4196,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="facebook" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6568,12 +4217,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6584,9 +4227,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -6605,9 +4245,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="instagram" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -6629,12 +4266,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6645,9 +4276,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -6668,9 +4296,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -6686,12 +4311,6 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6702,9 +4321,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -6725,71 +4341,11 @@ export const Matrix: Story = {
       <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineNoir"
         iconLeftGlyph="external-link"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button
@@ -6810,12 +4366,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="outlineNoir" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
         Contactez-nous
       </Button>
       <Button
@@ -6844,9 +4394,6 @@ export const Matrix: Story = {
         iconLeftGlyph="octicon-chevron-down12"
         iconRightGlyph="chevron-up"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button
@@ -6887,9 +4434,6 @@ export const Matrix: Story = {
       >
         Contactez-nous
       </Button>
-      <Button variant="outlineNoir" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="outlineNoir"
         iconLeftGlyph="octicon-chevron-down12"
@@ -6909,12 +4453,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6925,9 +4463,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="arrow-right">
@@ -6948,9 +4483,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="piqueray" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -6966,12 +4498,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -6982,9 +4508,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="arrow-right">
@@ -7005,9 +4528,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="phone" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7023,12 +4543,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7039,9 +4553,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="arrow-right">
@@ -7062,9 +4573,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="download" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7080,12 +4588,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7096,9 +4598,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="arrow-right">
@@ -7119,124 +4618,7 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="pdf" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="search" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="user" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="piqueray">
@@ -7251,12 +4633,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7267,9 +4643,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="arrow-right">
@@ -7288,9 +4661,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -7312,12 +4682,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7328,9 +4692,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="arrow-right">
@@ -7349,9 +4710,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-left" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -7373,12 +4731,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7389,9 +4741,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="arrow-right">
@@ -7410,9 +4759,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-down" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -7434,12 +4780,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7450,9 +4790,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="arrow-right">
@@ -7473,67 +4810,7 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="chevron-up" iconRightGlyph="octicon-chevron-down12">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="cart" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="piqueray">
@@ -7548,12 +4825,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7564,9 +4835,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="arrow-right">
@@ -7585,9 +4853,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-right" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button
@@ -7609,12 +4874,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7625,9 +4884,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="arrow-right">
@@ -7648,9 +4904,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="arrow-left" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7666,12 +4919,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7682,9 +4929,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="arrow-right">
@@ -7705,9 +4949,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="facebook" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7723,12 +4964,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7739,9 +4974,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="arrow-right">
@@ -7762,9 +4994,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="instagram" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7780,12 +5009,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7796,9 +5019,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="arrow-right">
@@ -7819,9 +5039,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="star" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
@@ -7837,12 +5054,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="pdf">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
       <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="chevron-right">
         Contactez-nous
       </Button>
@@ -7853,9 +5064,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="cart">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="arrow-right">
@@ -7876,71 +5084,11 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="external-link">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="external-link" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
       <Button
         variant="iconOnly"
         iconLeftGlyph="external-link"
         iconRightGlyph="octicon-chevron-down12"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="piqueray">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="phone">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="download">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="user">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="chevron-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="chevron-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="chevron-down">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="chevron-up">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="arrow-right">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="arrow-left">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="facebook">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="instagram">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="star">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="external-link">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="mail">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="mail" iconRightGlyph="octicon-chevron-down12">
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="piqueray">
@@ -7953,12 +5101,6 @@ export const Matrix: Story = {
         Contactez-nous
       </Button>
       <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="pdf">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="search">
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="user">
         Contactez-nous
       </Button>
       <Button
@@ -7985,9 +5127,6 @@ export const Matrix: Story = {
       <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="chevron-up">
         Contactez-nous
       </Button>
-      <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="cart">
-        Contactez-nous
-      </Button>
       <Button
         variant="iconOnly"
         iconLeftGlyph="octicon-chevron-down12"
@@ -8012,9 +5151,6 @@ export const Matrix: Story = {
         iconLeftGlyph="octicon-chevron-down12"
         iconRightGlyph="external-link"
       >
-        Contactez-nous
-      </Button>
-      <Button variant="iconOnly" iconLeftGlyph="octicon-chevron-down12" iconRightGlyph="mail">
         Contactez-nous
       </Button>
       <Button

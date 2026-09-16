@@ -619,7 +619,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v2.5.0 †",
+    "description": "Button — generated from contract ds.button v3.0.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -668,18 +668,6 @@ const COMPONENTS = [
             "nodeId": "230:585"
           },
           {
-            "asset": "search",
-            "componentName": "Search",
-            "key": "260b884e25dbeb857d92c788868f075448c25d16",
-            "nodeId": "95:252"
-          },
-          {
-            "asset": "user",
-            "componentName": "User",
-            "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
-            "nodeId": "95:216"
-          },
-          {
             "asset": "chevron-right",
             "componentName": "ChevronRight",
             "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
@@ -702,12 +690,6 @@ const COMPONENTS = [
             "componentName": "ChevronUp",
             "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
             "nodeId": "226:374"
-          },
-          {
-            "asset": "cart",
-            "componentName": "Cart",
-            "key": "4583f5973482fbd560e3a81035d3225b04410045",
-            "nodeId": "27:70"
           },
           {
             "asset": "arrow-right",
@@ -744,12 +726,6 @@ const COMPONENTS = [
             "componentName": "ExternalLink",
             "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
             "nodeId": "9:185"
-          },
-          {
-            "asset": "mail",
-            "componentName": "Mail",
-            "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
-            "nodeId": "263:2125"
           },
           {
             "asset": "octicon-chevron-down12",
@@ -793,18 +769,6 @@ const COMPONENTS = [
             "nodeId": "230:585"
           },
           {
-            "asset": "search",
-            "componentName": "Search",
-            "key": "260b884e25dbeb857d92c788868f075448c25d16",
-            "nodeId": "95:252"
-          },
-          {
-            "asset": "user",
-            "componentName": "User",
-            "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
-            "nodeId": "95:216"
-          },
-          {
             "asset": "chevron-right",
             "componentName": "ChevronRight",
             "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
@@ -827,12 +791,6 @@ const COMPONENTS = [
             "componentName": "ChevronUp",
             "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
             "nodeId": "226:374"
-          },
-          {
-            "asset": "cart",
-            "componentName": "Cart",
-            "key": "4583f5973482fbd560e3a81035d3225b04410045",
-            "nodeId": "27:70"
           },
           {
             "asset": "arrow-right",
@@ -869,12 +827,6 @@ const COMPONENTS = [
             "componentName": "ExternalLink",
             "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
             "nodeId": "9:185"
-          },
-          {
-            "asset": "mail",
-            "componentName": "Mail",
-            "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
-            "nodeId": "263:2125"
           },
           {
             "asset": "octicon-chevron-down12",

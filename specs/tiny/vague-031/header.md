@@ -244,3 +244,35 @@ re-pinnés · plugin:check ✔ (engine receipt re-enregistré) · roundtrip ✔ 
 promesse non attendue + état dans `clientStorage`, résultat POSTé au receveur ; `playwright-core` 1.61 cherche `chromium-1228`
 alors que `npx playwright install` pose 1243 → `PLAYWRIGHT_CHROMIUM_PATH` ; ce worktree n'avait pas de `node_modules`
 (`sh: tsx: command not found` masqué par un `| tail`) — vérifier `ls node_modules` avant de lire un « exit 0 ».
+
+### Suite du même jour — chevron retiré, icônes orphelines supprimées, Bouton 3.0.0, main fusionnée (GO owner « tu vérifies et tu vires »)
+
+- **Chevron « Portes d'entrée »** : posé à la source (`Chevron=false` sur les deux `NavItem` de la barre ; sur le menu mobile, les
+  cinq feuilles des deux variantes nettoyées : chevron faux, aucune sous-entrée — le set portait encore « Motorisation » sous
+  « Portes d'entrée » et des sous-entrées héritées). §X : captures avant/après dans `chevron/{avant,apres}/`, versions nommées
+  `031 · 28b · AVANT / APRÈS`. Contrats `ds.header` **3.1.1**, `ds.menu-mobile` **1.1.1** (PATCH : l'échantillon du `repeat` passe à
+  six entrées, celles du set — il en portait quatre depuis 3.0.0, écart que la 3.1.0 avait laissé passer).
+- **Icônes** : `user`, `cart`, `mail` ET `search` (même cas : plus aucun contrat, 0 instance chacune, relevé avant suppression) —
+  masters supprimés de `Icônes — icons.registry` (19 → 15), `icons.registry.json` **2.0.0** (zone `2053:1257`, l'ancienne `6:111`
+  n'existait plus depuis le rangement), `assets/icons/{user,cart,mail,search}.svg` supprimés. **Conséquence obligée : `ds.button`
+  2.5.0 → 3.0.0** — les deux énumérations `iconLeftGlyph` / `iconRightGlyph` suivent le registre à l'octet (le build refuse sinon)
+  et perdre une valeur d'énumération est MAJEUR par la règle du dépôt, alors qu'aucun usage ne casse (défauts arrow-left/right
+  intacts). Sur le canevas, `preferredValues` des deux « Glyphe » du master Bouton 19 → 15, **718 instances avant, 718 après**.
+  Miroirs : **242 épingles** `ds.button` dans 12 `*.authoring.json`, lock re-épinglé, **graphDigest changé** (02d3e549… → 7b373ca3…)
+  donc `version_guard.js`, `scan-saved-versions.ts`, `components.xml` (16), fixture `version-drift` (2) — `odoo:module:check` nomme
+  chacun tant qu'il manque.
+- **`main` fusionnée dans la branche** (3 commits, dont `breakpoint.wide` 1600 → 2000) : conflit sur `header.pqr.css` résolu en
+  gardant notre feuille avec le seuil 2000 ; `derivation-report.json` régénéré. Conséquence sur la mesure : **à 1728 Odoo rend
+  désormais les règles Desktop** (écart de nav 24), la planche Wide du set (1728, écart 32) n'est plus l'attendu à cette largeur —
+  Wide ne s'applique qu'à ≥ 2000 (décision owner du jour, tinyspec `breakpoint-wide-2000`).
+- **Mesure 2** (`mesure-2.mts`, exports `apres-2/`, triptyques `mesure-2/`, addon fusionné `-u`) :
+
+| Cible | Écart | Lecture |
+|---|---|---|
+| Header 390 / 834 | 0,03 % / 0,01 % | contour du logo |
+| Header 1200 | 3 798 px (3,68 %) | **lissage seul** — plus de texte doublé, nav 866,7 contre 870 |
+| Header 1728 | 5 344 px (3,60 %) | lissage + écart 24 (Desktop, main) contre 32 (planche Wide) |
+| Menu 390 / 834 | 3,93 % / 1,16 % | « Motorisation » (contenu réel), lissage |
+
+- Portes après ce lot : build ✔ · geometry:gate ✔ · authoring ✔ · module 23/23 ✔ · derivation ✔ · emitters ✔ · plugin ✔ · tsc ×2 ✔ ·
+  parity ✔ (cliché rafraîchi, 59 sets, 13 acquittements inchangés) · golden + receipt re-pinnés · **eval : en cours au moment du commit — compte épinglé dans le commit suivant**.

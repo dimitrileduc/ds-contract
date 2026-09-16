@@ -3188,7 +3188,7 @@ const COMPONENTS = [
     "setName": "MenuMobile",
     "contractId": "ds.menu-mobile",
     "anchorKey": "a2eb854dd98fd60de2fb958324fd6e22c552f007",
-    "description": "MenuMobile — generated from contract ds.menu-mobile v1.1.0 †",
+    "description": "MenuMobile — generated from contract ds.menu-mobile v1.1.1 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -3359,8 +3359,8 @@ const COMPONENTS = [
                       "depProps": {
                         "Etat": "Fermé",
                         "Libellé": "Portes d’entrée",
-                        "Chevron": true,
-                        "Sous-entrée 1": "Motorisation",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
                         "Sous-entrée 2": "",
                         "Deux sous-entrées": false
                       }
@@ -3372,7 +3372,7 @@ const COMPONENTS = [
                       "depId": "ds.menu-entree",
                       "depProps": {
                         "Etat": "Fermé",
-                        "Libellé": "Dépannage/SAV",
+                        "Libellé": "Boutique",
                         "Chevron": false,
                         "Sous-entrée 1": "",
                         "Sous-entrée 2": "",
@@ -3386,7 +3386,35 @@ const COMPONENTS = [
                       "depId": "ds.menu-entree",
                       "depProps": {
                         "Etat": "Fermé",
+                        "Libellé": "Dépannage/SAV",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
+                        "Sous-entrée 2": "",
+                        "Deux sous-entrées": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "MenuEntree 5",
+                      "dep":"MenuEntree",
+                      "depId": "ds.menu-entree",
+                      "depProps": {
+                        "Etat": "Fermé",
                         "Libellé": "À propos",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
+                        "Sous-entrée 2": "",
+                        "Deux sous-entrées": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "MenuEntree 6",
+                      "dep":"MenuEntree",
+                      "depId": "ds.menu-entree",
+                      "depProps": {
+                        "Etat": "Fermé",
+                        "Libellé": "Contact",
                         "Chevron": false,
                         "Sous-entrée 1": "",
                         "Sous-entrée 2": "",
@@ -3621,8 +3649,8 @@ const COMPONENTS = [
                       "depProps": {
                         "Etat": "Fermé",
                         "Libellé": "Portes d’entrée",
-                        "Chevron": true,
-                        "Sous-entrée 1": "Motorisation",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
                         "Sous-entrée 2": "",
                         "Deux sous-entrées": false
                       }
@@ -3634,7 +3662,7 @@ const COMPONENTS = [
                       "depId": "ds.menu-entree",
                       "depProps": {
                         "Etat": "Fermé",
-                        "Libellé": "Dépannage/SAV",
+                        "Libellé": "Boutique",
                         "Chevron": false,
                         "Sous-entrée 1": "",
                         "Sous-entrée 2": "",
@@ -3648,7 +3676,35 @@ const COMPONENTS = [
                       "depId": "ds.menu-entree",
                       "depProps": {
                         "Etat": "Fermé",
+                        "Libellé": "Dépannage/SAV",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
+                        "Sous-entrée 2": "",
+                        "Deux sous-entrées": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "MenuEntree 5",
+                      "dep":"MenuEntree",
+                      "depId": "ds.menu-entree",
+                      "depProps": {
+                        "Etat": "Fermé",
                         "Libellé": "À propos",
+                        "Chevron": false,
+                        "Sous-entrée 1": "",
+                        "Sous-entrée 2": "",
+                        "Deux sous-entrées": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "MenuEntree 6",
+                      "dep":"MenuEntree",
+                      "depId": "ds.menu-entree",
+                      "depProps": {
+                        "Etat": "Fermé",
+                        "Libellé": "Contact",
                         "Chevron": false,
                         "Sous-entrée 1": "",
                         "Sous-entrée 2": "",

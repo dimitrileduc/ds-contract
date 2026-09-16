@@ -1186,3 +1186,9 @@ mesure). Journal : `specs/tiny/vague-031/header.md` § « Contrat 3.1.0 + Odoo �
   avant de lire un vert.
 - **`playwright-core` et `npx playwright install` ne s'accordent pas sur la révision** (1228 attendue, 1243 posée) :
   `PLAYWRIGHT_CHROMIUM_PATH` vers le Chrome for Testing du cache.
+
+- **Retirer une icône du registre coûte un MAJEUR du Bouton** : ses deux énumérations de glyphes suivent le registre à l'octet
+  (refus au build), et perdre une valeur est MAJEUR même sans usage — 242 épingles, digest global, quatre miroirs de digest.
+  À savoir avant de « nettoyer » une icône orpheline.
+- **`main` peut changer un seuil `@media` pendant ta vague** (`breakpoint.wide` 1600 → 2000 le 2026-09-16) : après une fusion,
+  relire tes feuilles `responsive/*.pqr.css` ET re-mesurer — la planche Wide 1728 n'est plus l'attendu à 1728.

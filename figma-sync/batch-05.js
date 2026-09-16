@@ -2773,7 +2773,7 @@ const COMPONENTS = [
     "setName": "Header",
     "contractId": "ds.header",
     "anchorKey": "7c1e4586ab514d119e71389d1f60efa82d6c5513",
-    "description": "Header — generated from contract ds.header v3.1.0",
+    "description": "Header — generated from contract ds.header v3.1.1",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -3125,7 +3125,7 @@ const COMPONENTS = [
                       "depProps": {
                         "Actif": false,
                         "Libellé": "Portes d’entrée",
-                        "Chevron": true
+                        "Chevron": false
                       }
                     },
                     {
@@ -3135,7 +3135,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
-                        "Libellé": "Dépannage/SAV",
+                        "Libellé": "Boutique",
                         "Chevron": false
                       }
                     },
@@ -3146,7 +3146,29 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Dépannage/SAV",
+                        "Chevron": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "NavItem 5",
+                      "dep":"NavItem",
+                      "depId": "ds.nav-item",
+                      "depProps": {
+                        "Actif": false,
                         "Libellé": "À propos",
+                        "Chevron": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "NavItem 6",
+                      "dep":"NavItem",
+                      "depId": "ds.nav-item",
+                      "depProps": {
+                        "Actif": false,
+                        "Libellé": "Contact",
                         "Chevron": false
                       }
                     }
@@ -3233,7 +3255,7 @@ const COMPONENTS = [
                       "depProps": {
                         "Actif": false,
                         "Libellé": "Portes d’entrée",
-                        "Chevron": true
+                        "Chevron": false
                       }
                     },
                     {
@@ -3243,7 +3265,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
-                        "Libellé": "Dépannage/SAV",
+                        "Libellé": "Boutique",
                         "Chevron": false
                       }
                     },
@@ -3254,7 +3276,29 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Dépannage/SAV",
+                        "Chevron": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "NavItem 5",
+                      "dep":"NavItem",
+                      "depId": "ds.nav-item",
+                      "depProps": {
+                        "Actif": false,
                         "Libellé": "À propos",
+                        "Chevron": false
+                      }
+                    },
+                    {
+                      "type":"instance",
+                      "name": "NavItem 6",
+                      "dep":"NavItem",
+                      "depId": "ds.nav-item",
+                      "depProps": {
+                        "Actif": false,
+                        "Libellé": "Contact",
                         "Chevron": false
                       }
                     }

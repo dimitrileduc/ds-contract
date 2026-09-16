@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/menu-mobile.contract.json (ds.menu-mobile v1.1.0)
+ * Source of truth: contracts/menu-mobile.contract.json (ds.menu-mobile v1.1.1)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement. 1.1.0 (2026-09-16, GO owner sur la planche 031 · 28, même décision que ds.header 3.1.0) : les icônes Utilisateur et Panier quittent la barre (la croix reste seule), le bouton « Contactez-nous » quitte le pied (le téléphone reste) — « Boutique » et « Contact » sont des entrées du menu comme les autres (`MenuEntree` répété, contenu depuis le menu Odoo). Ancres inchangées, aucun prop retiré : MINEUR.",
+          "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement. 1.1.0 (2026-09-16, GO owner sur la planche 031 · 28, même décision que ds.header 3.1.0) : les icônes Utilisateur et Panier quittent la barre (la croix reste seule), le bouton « Contactez-nous » quitte le pied (le téléphone reste) — « Boutique » et « Contact » sont des entrées du menu comme les autres (`MenuEntree` répété, contenu depuis le menu Odoo). Ancres inchangées, aucun prop retiré : MINEUR. 1.1.1 (2026-09-16) : l'échantillon passe à six entrées et toutes les feuilles sont propres (chevron faux, aucune sous-entrée) — le set portait encore « Motorisation » sous « Portes d'entrée » et des sous-entrées héritées sur les feuilles ; nettoyé à la source d'abord (les deux variantes). PATCH.",
       },
     },
   },
@@ -46,8 +46,16 @@ const meta = {
       {
         libelle: 'Portes d’entrée',
         href: '/portes-entree',
-        chevron: true,
-        sousEntree1: 'Motorisation',
+        chevron: false,
+        sousEntree1: '',
+        sousEntree2: '',
+        deuxSousEntrees: false,
+      },
+      {
+        libelle: 'Boutique',
+        href: '/shop',
+        chevron: false,
+        sousEntree1: '',
         sousEntree2: '',
         deuxSousEntrees: false,
       },
@@ -62,6 +70,14 @@ const meta = {
       {
         libelle: 'À propos',
         href: '/a-propos',
+        chevron: false,
+        sousEntree1: '',
+        sousEntree2: '',
+        deuxSousEntrees: false,
+      },
+      {
+        libelle: 'Contact',
+        href: '/contactez-nous',
         chevron: false,
         sousEntree1: '',
         sousEntree2: '',
