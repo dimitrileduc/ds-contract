@@ -92,7 +92,9 @@
       ],
       "reasonCode": "odoo-qweb-composition",
       "decisionRefs": [
-        "hero.authoring.json"
+        "hero.authoring.json",
+        "mesure-2026-09-09-build-37745542",
+        "images-edition-client"
       ],
       "mechanism": "qweb"
     },
@@ -1404,16 +1406,16 @@
       "mechanism": "odoo-bridge"
     },
     {
-      "adaptationId": "ODOO-038-HERO-IMAGE-EAGER",
-      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "adaptationId": "ODOO-039-AVATAR-AVIS-IMAGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
       "rootContracts": [
-        "ds.hero"
+        "ds.google-reviews"
       ],
-      "reasonCode": "odoo-image-loading",
+      "reasonCode": "odoo-media-dialog",
       "decisionRefs": [
-        "mesure-2026-09-09-build-37745542"
+        "images-edition-client"
       ],
-      "mechanism": "qweb"
+      "mechanism": "odoo-bridge"
     }
   ]
 }

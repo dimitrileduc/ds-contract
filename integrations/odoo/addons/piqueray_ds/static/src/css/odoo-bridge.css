@@ -704,3 +704,28 @@
   outline: none;
 }
 /* ODOO-037-ANCRE-FORMULAIRE END */
+
+/* ODOO-039-AVATAR-AVIS-IMAGE BEGIN
+   La photo d'un avis Google remplit sa pastille. Deux raisons, la seconde est
+   celle qui a fait écrire la règle.
+   (1) Rendu : le conteneur `.review-card__avatarPhoto` fait 40 × 40 (jeton
+       `size.review-card.avatar-photo`, arrondi 20) mais l'<img> qu'il porte
+       n'avait AUCUNE règle — une photo s'y serait posée à sa taille native,
+       hors du rond. Jamais vu : aucun avatar photo n'est publié à ce jour.
+   (2) Optimisation : quand le rédacteur remplace l'avatar, Odoo choisit la
+       taille de la nouvelle image en MESURANT `getComputedStyle(img).width`
+       (html_builder, computeMaxDisplayWidth). Sans règle, une <img> sans
+       source mesure 0 px → Odoo renonce à redimensionner → la photo partait
+       en JPEG 1920 × 1280, 235 Ko, pour 40 px affichés (mesuré le
+       2026-09-16, puis re-mesuré pastille rendue visible : `imgWidth: 0px`).
+       Avec cette règle l'image mesure 40 px et Odoo fait son travail.
+   `border-radius: inherit` : le conteneur ne rogne pas (`overflow` non posé
+   par le contrat), c'est donc l'image qui prend l'arrondi. */
+.review-card__avatarPhoto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+/* ODOO-039-AVATAR-AVIS-IMAGE END */

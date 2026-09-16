@@ -207,7 +207,7 @@
              data-ds-graph-digest="02d3e54904e6f928e4b8817244e31c1a540e19053a7165110f478c95b0e9ffc2"
              data-vcss="19.0.1.19.0" data-vxml="19.0.1.19.0" data-vjs="19.0.1.19.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
-      <!-- ODOO-038-HERO-IMAGE-EAGER — `loading` et `fetchpriority` sont POSÉS ICI, à dessein.
+      <!-- ODOO-038-HERO-IMAGE-EAGER (note, pas un bloc : il vit DANS ODOO-019-HERO-QWEB et deux blocs ne se chevauchent pas) — `loading` et `fetchpriority` sont POSÉS ICI, à dessein.
            `website/models/ir_qweb.py::_post_processing_att` ajoute `loading="lazy"` à TOUTE
            balise `img` rendue sur un site — « if website and tagName == 'img' and 'loading'
            not in atts ». La garde est l'attribut lui-même : Odoo respecte celui qui est déjà

@@ -124,6 +124,15 @@ export class ReplaceReviewAvatarAction extends BuilderAction {
         const card = findCard(editingElement);
         const image = avatarImage(card);
         if (!card || !image) return null;
+        // La pastille est CACHÉE tant que l'avis est en mode « initiale ». Or
+        // Odoo choisit la taille de l'image en MESURANT son emplacement au
+        // moment du dialogue : caché = 0 px = aucun redimensionnement, et la
+        // photo partait en 1920 px pour 40 affichés (mesuré le 2026-09-16 :
+        // JPEG 1920×1280, 235 Ko, par avatar). On la montre le temps du
+        // dialogue ; `reconcileAvatar` re-dérive ensuite sa visibilité selon
+        // qu'une photo est publiée ou non — une annulation la re-cache donc.
+        const host = avatarHost(card);
+        if (host) host.hidden = false;
         // Le dialogue remplace lui-même `node`, puis le pipeline before_save
         // finalise l'image marquée `o_modified_image_to_save`. Réécrire `src`
         // dans un `onAttachmentChange` casse ce cycle et force le placeholder :
@@ -185,6 +194,16 @@ export function reconcileHeroBackground(editingElement) {
     // before_save, qui produit ensuite une URL publiée /web/image. Sans la
     // classe native, une data URL reste une source hostile et est supprimée.
     if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    // Le dialogue média d'Odoo ne modifie pas la balise : il la REMPLACE par une
+    // neuve, et tout attribut qu'il ne connaît pas disparaît. Au rendu, Odoo
+    // pose ensuite `loading="lazy"` sur toute image sans consigne. Un hero
+    // remplacé par le rédacteur repassait donc en différé — ~400 ms de premier
+    // écran perdus, en silence (mesuré le 2026-09-16 : `loading="lazy"`, plus
+    // de `fetchpriority`). On remet ici les deux consignes du gabarit
+    // (components.xml, part hero-background) : cette fonction repasse déjà sur
+    // l'image après chaque dialogue, c'est l'endroit prévu pour ça.
+    image.setAttribute("loading", "eager");
+    image.setAttribute("fetchpriority", "high");
     return Boolean(image.getAttribute("src"));
 }
 
