@@ -13,10 +13,10 @@
  *   ds.footer → ds.button, ds.copyright, ds.footer, ds.footer-column, ds.piqueray-logo
  *   ds.formulaire → ds.avantage, ds.button, ds.field, ds.formulaire, ds.input, ds.textarea
  *   ds.google-reviews → ds.button, ds.google-reviews, ds.notation, ds.review-card
- *   ds.header → ds.button, ds.header, ds.nav-item, ds.piqueray-logo
+ *   ds.header → ds.header, ds.nav-item, ds.piqueray-logo
  *   ds.hero → ds.button, ds.hero
  *   ds.hero-video → ds.button, ds.hero-video
- *   ds.menu-mobile → ds.button, ds.menu-entree, ds.menu-mobile, ds.piqueray-logo
+ *   ds.menu-mobile → ds.menu-entree, ds.menu-mobile, ds.piqueray-logo
  *   ds.presentation → ds.button, ds.presentation
  *   ds.produits-ecommerce → ds.button, ds.carousel-controls, ds.product-card, ds.produits-ecommerce
  *   ds.realisations → ds.realisation, ds.realisations
@@ -2919,7 +2919,7 @@
   left: 0px;
 }
 
-/* Header — from ds.header v3.0.0 (core/emit-html.ts) */
+/* Header — from ds.header v3.1.0 (core/emit-html.ts) */
 
 .header, .header *, .header *::before, .header *::after {
   box-sizing: border-box;
@@ -2950,6 +2950,7 @@
 
 .header--presentation-wide {
   padding-inline: var(--pqr-space-89);
+  padding-block: var(--pqr-space-26);
 }
 
 .header__navWrapper {
@@ -2980,45 +2981,8 @@
   gap: var(--pqr-space-32);
 }
 
-.header__iconsNav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--pqr-space-16);
-  color: var(--pqr-color-blanc);
-}
-
-.header__User svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.header__User {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.header__Cart svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.header__Cart {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.header__Mail svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.header__Mail {
-  display: inline-flex;
-  flex-shrink: 0;
+.header--presentation-desktop .header__nav {
+  gap: var(--pqr-space-24);
 }
 
 .header__MenuBurger {
@@ -3532,7 +3496,7 @@
   line-height: var(--pqr-typography-menu-sous-entree-line-height);
 }
 
-/* MenuMobile — from ds.menu-mobile v1.0.0 (core/emit-html.ts) */
+/* MenuMobile — from ds.menu-mobile v1.1.0 (core/emit-html.ts) */
 
 .menu-mobile, .menu-mobile *, .menu-mobile *::before, .menu-mobile *::after {
   box-sizing: border-box;
@@ -3597,28 +3561,6 @@
   align-items: center;
   gap: var(--pqr-space-16);
   color: var(--pqr-color-blanc);
-}
-
-.menu-mobile__User svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.menu-mobile__User {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.menu-mobile__Cart svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.menu-mobile__Cart {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 .menu-mobile__fermer {

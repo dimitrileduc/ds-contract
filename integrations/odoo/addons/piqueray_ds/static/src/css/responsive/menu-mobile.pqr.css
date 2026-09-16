@@ -148,22 +148,8 @@ body:has(#pqr_menu_mobile.show) .offcanvas-backdrop.show {
 .menu-mobile a {
   text-decoration: none;
 }
-/* Contactez-nous : blanc en Mobile, contour blanc en Tablette (visibleWhen du contrat). */
-.menu-mobile__BoutonTablette {
-  display: none;
-}
-.menu-mobile__Bouton .button,
-.menu-mobile__BoutonTablette .button {
-  width: 100%;
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .menu-mobile__Bouton {
-    display: none;
-  }
-  .menu-mobile__BoutonTablette {
-    display: block;
-  }
-}
+/* 1.1.0 (2026-09-16) : plus de bouton Contactez-nous dans le pied (« Contact » est
+ * une entrée du menu) — les règles Bouton / BoutonTablette ont disparu avec les parts. */
 
 /* La croix est un vectorAsset absolu (contrat) : son hôte doit être positionné — la
  * feuille générée ne le pose pas sur `fermer`. Même fait que le lien-logo du header. */

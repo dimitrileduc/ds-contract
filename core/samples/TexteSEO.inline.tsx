@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v4.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -110,12 +110,12 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...(V[`presentation-${presentation}:root`] ?? {}), ...style }}  {...rest}>
-      <span style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
+      <h2 style={{ ...S.Titre }}>{titre.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</h2>
 <div style={{ ...S.p }}>
 <span style={{ ...S.Paragraphe }}>{texte.map(({ text, strong, underline }, index) => { const inner = underline ? <u>{text}</u> : text; return strong ? <strong key={index} style={{ fontWeight: 700 }}>{inner}</strong> : <span key={index}>{inner}</span>; })}</span>
 </div>
 <div style={{ ...S.h3 }}>
-<span style={{ ...S.SousTitre }}>{sousTitre}</span>
+<h3 style={{ ...S.SousTitre }}>{sousTitre}</h3>
 </div>
 <div style={{ ...S.accordion }}>
 <AccordionRow taille="petit" contenu="Réponse" etat="ferme" titre="Accès et parking" />

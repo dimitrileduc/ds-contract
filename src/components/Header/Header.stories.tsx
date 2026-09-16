@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v3.0.0)
+ * Source of truth: contracts/header.contract.json (ds.header v3.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher).",
+          "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher). 3.1.0 (2026-09-16, GO owner sur la planche 031 · 28) : les trois icônes (Utilisateur, Panier, Mail) et le bouton « Contactez-nous » sont retirés de la barre ; la nav gagne deux entrées, « Boutique » (lien vers la boutique Odoo) et « Contact » (lien vers /contactez-nous), soit six entrées — le contenu réel vient du menu Odoo (`items`, code-only). Deux conséquences mesurées et posées à la source : en Desktop, six entrées à l'écart 32 débordaient de 10 px sur le logo (largeur utile 1104, logo 180, nav 934) → écart nav 24 en Desktop seulement (nav 894, marge 30 px), Wide garde 32 ; en Wide, sans le bouton de 54 px, la barre retombait à 66 px → padding vertical 26 comme en Desktop, la barre reste à 86 px sur les deux écrans. Ancres inchangées (même set 2732:12096, re-relevé le 2026-09-16), aucun prop retiré : MINEUR.",
       },
     },
   },

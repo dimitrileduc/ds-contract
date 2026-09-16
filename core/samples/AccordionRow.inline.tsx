@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.1.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v2.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -160,11 +160,11 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
   return (
     <div ref={ref} style={{ ...S.root, ...(V[`taille-${taille}:root`] ?? {}), ...(V[`etat-${etat}:root`] ?? {}), ...style }}  {...rest}>
       {etat === 'ouvert' ? (<div style={{ ...S.title }}>
-{etat === 'ouvert' ? (<span style={{ ...S.TitreOuvert, ...(V[`taille-${taille}:TitreOuvert`] ?? {}) }}>{titre}</span>) : null}
+{etat === 'ouvert' ? (<h3 style={{ ...S.TitreOuvert, ...(V[`taille-${taille}:TitreOuvert`] ?? {}) }}>{titre}</h3>) : null}
 {etat === 'ouvert' ? (<span style={{ ...S.ChevronUp, ...(V[`taille-${taille}:ChevronUp`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-up"] }} />) : null}
 </div>) : null}
 {etat === 'ouvert' ? (<span style={{ ...S.Contenu }}>{contenu}</span>) : null}
-{etat === 'ferme' ? (<span style={{ ...S.Titre, ...(V[`taille-${taille}:Titre`] ?? {}) }}>{titre}</span>) : null}
+{etat === 'ferme' ? (<h3 style={{ ...S.Titre, ...(V[`taille-${taille}:Titre`] ?? {}) }}>{titre}</h3>) : null}
 {etat === 'ferme' ? (<span style={{ ...S.ChevronDown, ...(V[`taille-${taille}:ChevronDown`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-down"] }} />) : null}
 <button style={{ ...S.trigger, ...(taille === 'grand' ? {"left":"0px","right":"0px","top":"0px","bottom":"0px"} : {}), ...(taille === 'petit' ? {"left":"0px","right":"0px","top":"0px","bottom":"0px"} : {}) }} aria-label={String(titre)} type="button" onClick={handleToggle} aria-expanded={etat === 'ouvert'}>
 

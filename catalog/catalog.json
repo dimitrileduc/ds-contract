@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "52676b9c",
+    "gitCommit": "199e4fed",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -641,7 +641,7 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "stable",
       "category": "molecule",
       "description": "Piqueray AccordionRow, v2 (2026-09-07) : anchored on the candidate set 2767:20198 (page 031, cloned from the DS set 2059:1417 and reworked with the owner). MAJOR: the anchors leave the v1 set. What changes against 1.2.0: the title WRAPS (no fixed height on title / Titre / TitreOuvert any more), the Grand title is the DS H4 role and the Petit title / the content ride the body role — both vary per viewport through tokens, never through a variant; the chevrons are the governed icons painted noir-bleute; the Grand rule is bound to noir-bleute (was raw #000000). Native button, toggle and ARIA semantics stay deferred to the separately proven semantic-wrapper capability. Named deviations against the dump are carried on each part's description.",
@@ -2081,10 +2081,10 @@
     {
       "id": "ds.header",
       "name": "Header",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher).",
+      "description": "Piqueray Header, responsive (vague 031). 3.0.0 (2026-09-04) : les ancres passent du master DS 84:285 au set 031 `Header` 2732:12096, quatre variantes Presentation construites depuis les 4 vues home de la page 031 sans redessin (journal specs/tiny/vague-031/header.md). Mobile/Tablette : logo + burger 44×44 ; Desktop : logo + nav + icônes Utilisateur/Panier/Mail, sans bouton ; Wide : logo + nav + bouton « Contactez-nous » + icônes Utilisateur/Panier. La présence par écran de navWrapper (Desktop/Wide) et de MenuBurger (Mobile/Tablette) est portée en stylesWhen display:none (le schéma n'admet qu'une valeur par visibleWhen) ; côté canevas les variantes ne dessinent simplement pas la part absente — limite nommée du canal stylesWhen (non représenté sur le canevas). L'icône Recherche, masquée sur le canevas Wide, n'est plus portée (calque caché = défaut de source, §VIII). Largeurs minimales de la nav : Desktop 1113 px, Wide 1487 px — au-dessous, la nav chevauche le logo (fait de design, à trancher). 3.1.0 (2026-09-16, GO owner sur la planche 031 · 28) : les trois icônes (Utilisateur, Panier, Mail) et le bouton « Contactez-nous » sont retirés de la barre ; la nav gagne deux entrées, « Boutique » (lien vers la boutique Odoo) et « Contact » (lien vers /contactez-nous), soit six entrées — le contenu réel vient du menu Odoo (`items`, code-only). Deux conséquences mesurées et posées à la source : en Desktop, six entrées à l'écart 32 débordaient de 10 px sur le logo (largeur utile 1104, logo 180, nav 934) → écart nav 24 en Desktop seulement (nav 894, marge 30 px), Wide garde 32 ; en Wide, sans le bouton de 54 px, la barre retombait à 66 px → padding vertical 26 comme en Desktop, la barre reste à 86 px sur les deux écrans. Ancres inchangées (même set 2732:12096, re-relevé le 2026-09-16), aucun prop retiré : MINEUR.",
       "figma": {
         "representation": "component",
         "componentSetKey": "7c1e4586ab514d119e71389d1f60efa82d6c5513"
@@ -2319,10 +2319,10 @@
     {
       "id": "ds.menu-mobile",
       "name": "MenuMobile",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "section",
-      "description": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement.",
+      "description": "Le menu ouvert du header en Mobile et Tablette (vague 031, décision owner 2026-09-04 : piste A plein écran en Mobile, piste B tiroir en Tablette). Extrait du set 031 `MenuMobile` 2738:13621 (journal specs/tiny/vague-031/menu-mobile.md). Composant SÉPARÉ du header : « ouvert » n'est pas une prop de ds.header — l'ouverture est une interaction (prototype Figma, offcanvas natif côté Odoo), doctrine de la matrice §9 et des contrats de nav de l'archive. Anatomie commune aux deux variantes : root (l'écran) > voile (Tablette seule, color.noir-bleute-72) + tiroir (Mobile : toute la largeur ; Tablette : size.menu-mobile.tiroir = 420 ancré à droite) > barre (logo en Mobile, icônes compte et panier, croix 44) · nav (répétition de ds.menu-entree) · pied (téléphone + Contactez-nous, zone du pouce). La hauteur de l'écran (844 / 1194 sur le set) n'est pas portée : côté Odoo le panneau prend la hauteur de la fenêtre (fait code-only nommé). Motion, code-only : ouverture en fondu 280 ms ease-out avec montée des entrées décalées de 40 ms en Mobile, glissement depuis la droite 300 ms + fondu du voile en Tablette ; fermeture 180 / 200 ms ease-in ; opacité et transform seulement. 1.1.0 (2026-09-16, GO owner sur la planche 031 · 28, même décision que ds.header 3.1.0) : les icônes Utilisateur et Panier quittent la barre (la croix reste seule), le bouton « Contactez-nous » quitte le pied (le téléphone reste) — « Boutique » et « Contact » sont des entrées du menu comme les autres (`MenuEntree` répété, contenu depuis le menu Odoo). Ancres inchangées, aucun prop retiré : MINEUR.",
       "figma": {
         "representation": "component",
         "componentSetKey": "a2eb854dd98fd60de2fb958324fd6e22c552f007"
@@ -2975,7 +2975,7 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray TexteSEO, v2 (2026-09-07): anchored on the candidate set 2768:20428 (page 031, four variants Presentation=Mobile|Tablette|Desktop|Wide, cloned from the DS master 2108:3123 and reworked with the owner). MAJOR: the anchors leave the single COMPONENT master. What changes against 3.0.0: the viewport axis `presentation` (padding-inline 24/48/56/89 by mode, gap 32 everywhere), the title rides the DS H2 role (24/30 then 32/40 then 40/50, SemiBold — was 24/30 Regular), the paragraph rides the body role (16/24 Regular under 992, 18/27 Medium above — was 14/24 Regular) and becomes a governed rich-text prop `texte` (bold ranges kept), the sub-title rides the H4 role (20/25 then 24/30) and becomes the prop `sousTitre` bound to the new TEXT property `SousTitre`, and it wraps (FILL). The rows are ds.accordion-row 2.0.0 in Petit, unchanged. Named deviations against the dump are carried on each part's description.",

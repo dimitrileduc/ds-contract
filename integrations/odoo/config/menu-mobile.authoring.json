@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-menu-mobile-authoring",
-  "authoringVersion": "1.0.0",
+  "authoringVersion": "1.1.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.menu-mobile",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "rootActions": [
     {
@@ -47,7 +47,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -63,7 +63,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -82,7 +82,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -105,7 +105,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -132,7 +132,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -159,7 +159,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -186,7 +186,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -213,7 +213,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -240,7 +240,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -267,7 +267,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -286,282 +286,6 @@
       "targetSelector": ".menu-mobile [data-pqr-part=\"menu-entree-root\"]",
       "label": "Dérivé du menu (enfants)",
       "reasonCode": "computed-from-menu"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-iconleft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-iconright",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-iconleftglyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-bouton-iconrightglyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-iconleft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-iconright",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-iconleftglyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-iconrightglyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
     }
   ],
   "parts": [
@@ -572,7 +296,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -592,7 +316,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -613,7 +337,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -634,7 +358,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -656,7 +380,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -679,7 +403,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -706,7 +430,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -734,7 +458,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -762,7 +486,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -779,61 +503,13 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-user",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "tiroir",
-          "barre",
-          "actions",
-          "User"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"menumobile-user\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-part-root-tiroir-barre-actions-cart",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "tiroir",
-          "barre",
-          "actions",
-          "Cart"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"menumobile-cart\"]",
-      "allowedMarks": []
-    },
-    {
       "decisionId": "menu-mobile-part-root-tiroir-barre-actions-fermer",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -857,7 +533,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -882,7 +558,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -908,7 +584,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -930,7 +606,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -953,7 +629,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -981,7 +657,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1010,7 +686,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1040,7 +716,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1070,7 +746,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1101,7 +777,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1132,7 +808,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1161,7 +837,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1191,7 +867,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1221,7 +897,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1252,7 +928,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1284,7 +960,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1315,7 +991,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           },
           {
@@ -1347,7 +1023,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -1369,7 +1045,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -1392,7 +1068,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -1416,7 +1092,7 @@
           {
             "contract": {
               "id": "ds.menu-mobile",
-              "version": "1.0.0"
+              "version": "1.1.0"
             }
           }
         ],
@@ -1431,330 +1107,6 @@
       "verdict": "not-editable",
       "contentKind": "plain-text",
       "selector": ".menu-mobile [data-pqr-part=\"menumobile-numero\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-part-root-tiroir-pied-bouton",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "tiroir",
-          "pied",
-          "Bouton"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "component",
-      "selector": ".menu-mobile [data-pqr-part=\"menumobile-bouton\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-bouton-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".menu-mobile [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-bouton-part-root-iconleft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconLeft"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-iconleft\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-bouton-part-root-icononlyicon",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-icononlyicon\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-bouton-part-root-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".menu-mobile [data-pqr-part=\"button-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-bouton-part-root-iconright",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-iconright\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-part-root-tiroir-pied-boutontablette",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "tiroir",
-          "pied",
-          "BoutonTablette"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "component",
-      "selector": ".menu-mobile [data-pqr-part=\"menumobile-boutontablette\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".menu-mobile [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-part-root-iconleft",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconLeft"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-iconleft\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-part-root-icononlyicon",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-icononlyicon\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-part-root-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".menu-mobile [data-pqr-part=\"button-label\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "menu-mobile-boutontablette-part-root-iconright",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.menu-mobile",
-              "version": "1.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "BoutonTablette"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "media",
-      "selector": ".menu-mobile [data-pqr-part=\"button-iconright\"]",
       "allowedMarks": []
     }
   ]

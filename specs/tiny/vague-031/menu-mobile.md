@@ -126,3 +126,13 @@ ease-out pour la réactivité, jamais d'ease-in à l'entrée, translations petit
 la montée et le glissement Tablette ; montée 16 → **12 px** ; durées, décalage 40 ms et sorties inchangés (le contrat
 décrit toujours ce qui se voit). Mesuré : la 1ʳᵉ entrée est à 1 / 0 px avant `show` (292 ms), la 4ᵉ à 0,92 à cet instant
 et en place à ~420 ms.
+
+## 1.1.0 (2026-09-16) — icônes et bouton retirés, « Boutique » et « Contact » en entrées
+
+Décision owner du 2026-09-16 (planche `031 · 28`, journal `header.md` § « Contrat 3.1.0 + Odoo ») : `actions` ne garde que la croix
+(User/Cart retirés), le `pied` ne garde que le téléphone (Bouton/BoutonTablette retirés), la liste gagne « Boutique » (3ᵉ) et
+« Contact » (dernière) — deux `MenuEntree` de plus, rien de neuf au contrat (`repeat`). Geste sur les deux variantes du set, §X tenu
+(captures avant/après, versions nommées), miroirs Odoo (`menu-mobile.authoring.json` 1.1.0, `header.xml`, `menu-mobile.pqr.css`).
+Mesure 390 : 3,94 % · 834 : 1,16 % — l'écart est le contenu (« Motorisation », 3ᵉ sous-entrée réelle ; le set en dessine deux) et
+le chevron de « Portes d'entrée » (dessiné, sans enfant côté Odoo). L'extraction a **refusé** ce set sur `menu-mobile-croix`
+(bruit d'écriture d'un flottant entre les deux SVG) — contrat édité à la main, DW à ouvrir sur `vector-assets.ts`.

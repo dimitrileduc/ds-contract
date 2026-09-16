@@ -84,11 +84,71 @@ def _finalize_footer(env):
     params.set_param(FOOTER_FLAG, "1")
 
 
+# ---------------------------------------------------------------------------
+# Deux entrées de menu en plus : « Boutique » et « Contact » (ds.header 3.1.0 /
+# ds.menu-mobile 1.1.0, décision owner du 2026-09-16 sur la planche 031 · 28).
+#
+# ── Pourquoi en Python et pas dans data/menu_seed.xml ───────────────────────
+# « Boutique » mène à la boutique Odoo (`/shop`). Or `website_sale` — quand il est
+# installé, et il l'est sur le site du client — sème DÉJÀ sa propre entrée « Shop »
+# (traduite « Boutique ») sur cette adresse. Semer la nôtre en XML ferait deux
+# « Boutique » côte à côte. La règle est donc PAR ADRESSE, comme le retrait des
+# défauts d'Odoo (spike S2) : on ne crée l'entrée que si AUCUNE entrée du site ne
+# mène déjà à cette adresse. Même garde pour « Contact » (`/contactez-nous`), au cas
+# où le client l'aurait déjà ajoutée lui-même.
+#
+# ── La garde ────────────────────────────────────────────────────────────────
+# Même patron que le shell : un drapeau, posé une fois. Après quoi le menu
+# appartient au client (FR-016) — s'il retire « Contact », une mise à jour ne le
+# remet pas.
+#
+# Un seul corps, appelé par les DEUX chemins :
+#   · install frais            → post_init_hook ;
+#   · update d'un site installé → migrations/19.0.1.20.0/post-migration.py.
+MENU_031_28_FLAG = "piqueray_ds.menu_boutique_contact_finalized"
+
+# (libellé, adresse, séquence) — entre « Portes d'entrée » (20) et « Dépannage/SAV »
+# (30) pour Boutique ; après « À propos » (40) pour Contact. L'ordre est celui du
+# set Figma `Header` 3.1.0.
+MENU_031_28_ENTRIES = (
+    ("Boutique", "/shop", 25),
+    ("Contact", "/contactez-nous", 50),
+)
+
+
+def _finalize_menu_boutique_contact(env):
+    params = env["ir.config_parameter"].sudo()
+    if params.get_param(MENU_031_28_FLAG):
+        return
+
+    Menu = env["website.menu"].sudo()
+    for website in env["website"].sudo().search([]):
+        root = website.menu_id
+        if not root:
+            continue
+        for name, url, sequence in MENU_031_28_ENTRIES:
+            deja = Menu.search([("website_id", "=", website.id), ("url", "=", url)], limit=1)
+            if deja:
+                # Le site mène déjà là (website_sale, ou une entrée du client) :
+                # on ne double pas, en silence assumé.
+                continue
+            Menu.create({
+                "name": name,
+                "url": url,
+                "parent_id": root.id,
+                "website_id": website.id,
+                "sequence": sequence,
+            })
+
+    params.set_param(MENU_031_28_FLAG, "1")
+
+
 def post_init_hook(env):
     """Install FRAIS : le semis noupdate a créé les menus, on les finalise."""
     _finalize_shell(env)
     _finalize_footer(env)
     _finalize_langue(env)
+    _finalize_menu_boutique_contact(env)
 
 
 # ---------------------------------------------------------------------------

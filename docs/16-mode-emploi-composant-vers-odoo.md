@@ -1160,3 +1160,29 @@ Journal complet : `specs/tiny/vague-031/arrondis.md`. Ce qui vaut pour toutes le
   hauteurs égales**, sur chaque glyphe — sur l'instance de la vague ET sur l'instance 037 aux blocs d'avant. Ce n'est pas
   un écart de composant ; la cause (rendu texte de l'export Figma du jour, ou rendu Odoo posé par une autre session) est
   à trancher avant de relire ces scores.
+
+## Complément du 2026-09-16 — Header sans icônes ni bouton : « Boutique » et « Contact » en entrées (3.1.0 / 1.1.0)
+
+Chantier d'une demi-journée, recette du runbook tenue de bout en bout (planche → GO → masters → dump → contrats → miroirs →
+mesure). Journal : `specs/tiny/vague-031/header.md` § « Contrat 3.1.0 + Odoo ». Ce qui est nouveau et qui va en A6 :
+
+- **Le dump complet dépasse le plafond de `figma_execute` (30 s).** `dump.plugin.js` parcourt toutes les pages ; sur ce fichier
+  (36 vues + 45 sets) il met ~2 min. Recette : lancer le corps dans une promesse **non attendue**, écrire l'état dans
+  `figma.clientStorage` (`running` / `done:…` / `error:…`), POSTer le JSON au receveur depuis le sandbox, et sonder l'état
+  dans un appel suivant. Même recette pour `parity/extract-figma.plugin.js` (cliché de parité).
+- **L'extraction compare les vecteurs à l'octet.** Deux exports d'un même glyphe (`menu-mobile-croix`, Mobile vs Tablette)
+  diffèrent par `3.05176e-05` contre `0` → « different geometry across captured occurrences », refus. Ce n'est pas un défaut
+  de source. Quand l'édition du contrat est un retrait pur, édite à la main et note-le ; DW : tolérance numérique dans
+  `extract/figma/vector-assets.ts`.
+- **Une entrée de menu qui mène à une route d'un AUTRE module se pose en Python, gardée par adresse.** `website_sale` sème
+  « Shop » sur `/shop` : un `<record>` XML ferait deux « Boutique ». Hook + migration, garde « aucune entrée du site ne mène
+  déjà là », drapeau posé une fois. Même garde pour « Contact ».
+- **Le chevron d'une entrée est un fait DÉRIVÉ côté Odoo** (enfants ou pas), un fait DESSINÉ côté Figma. Quand ils divergent
+  (« Portes d'entrée » : chevron dans le set, aucun enfant depuis la spec 037), la mesure le voit à 24 px par écran. À trancher
+  à la source, pas dans le CSS.
+- **Le test d'édition générique saute les shells** (`ODOO-LIMIT-GENERIQUE-SHELL`) : header et menu mobile ne sont pas des
+  snippets. Le reçu « skipped » est la preuve attendue, pas un rouge.
+- **Un worktree neuf n'a pas de `node_modules`** : `npm run build | tail` rend 0 alors que `tsx` manque. `ls node_modules`
+  avant de lire un vert.
+- **`playwright-core` et `npx playwright install` ne s'accordent pas sur la révision** (1228 attendue, 1243 posée) :
+  `PLAYWRIGHT_CHROMIUM_PATH` vers le Chrome for Testing du cache.

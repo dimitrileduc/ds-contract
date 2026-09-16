@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-header-authoring",
-  "authoringVersion": "2.0.0",
+  "authoringVersion": "2.1.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.header",
-    "version": "3.0.0"
+    "version": "3.1.0"
   },
   "rootActions": [
     {
@@ -47,7 +47,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -63,7 +63,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -82,7 +82,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -99,151 +99,13 @@
       "mechanism": "none"
     },
     {
-      "decisionId": "header-cta-variant",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "variant"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "header-cta-children",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "children"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "header-cta-icon-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeft"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "header-cta-icon-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRight"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "header-cta-icon-left-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconLeftGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
-      "decisionId": "header-cta-icon-right-glyph",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "prop": "iconRightGlyph"
-      },
-      "verdict": "not-editable",
-      "mechanism": "none"
-    },
-    {
       "decisionId": "header-navitem-libelle",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -270,7 +132,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -297,7 +159,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -324,7 +186,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -353,7 +215,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -373,7 +235,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -394,7 +256,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -415,7 +277,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -437,7 +299,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -454,127 +316,13 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "header-part-cta",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "navWrapper",
-          "nav",
-          "Bouton"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "component",
-      "selector": ".header [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-part-icons-nav",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "navWrapper",
-          "iconsNav"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".header [data-pqr-part=\"icons-nav\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-part-icon-user",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "navWrapper",
-          "iconsNav",
-          "User"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "structural",
-      "selector": ".header [data-pqr-part=\"icon-user\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-part-icon-cart",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "navWrapper",
-          "iconsNav",
-          "Cart"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "structural",
-      "selector": ".header [data-pqr-part=\"icon-cart\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-part-icon-mail",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          }
-        ],
-        "partPath": [
-          "root",
-          "navWrapper",
-          "iconsNav",
-          "Mail"
-        ]
-      },
-      "verdict": "fixed-by-composition",
-      "contentKind": "structural",
-      "selector": ".header [data-pqr-part=\"icon-mail\"]",
-      "allowedMarks": []
-    },
-    {
       "decisionId": "header-logo-part-root",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -601,7 +349,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -629,7 +377,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -657,7 +405,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -685,7 +433,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -714,7 +462,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -743,7 +491,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           },
           {
@@ -766,152 +514,13 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "header-cta-part-root",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "structural",
-      "selector": ".header [data-pqr-part=\"button-root\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-cta-part-icon-left",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconLeft"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".header [data-pqr-part=\"button-icon-left\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-cta-part-icon-only",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconOnlyIcon"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".header [data-pqr-part=\"button-icon-only\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-cta-part-icon-right",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "iconRight"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "media",
-      "selector": ".header [data-pqr-part=\"button-icon-right\"]",
-      "allowedMarks": []
-    },
-    {
-      "decisionId": "header-cta-part-label",
-      "address": {
-        "componentPath": [
-          {
-            "contract": {
-              "id": "ds.header",
-              "version": "3.0.0"
-            }
-          },
-          {
-            "contract": {
-              "id": "ds.button",
-              "version": "2.5.0"
-            },
-            "viaPart": "Bouton"
-          }
-        ],
-        "partPath": [
-          "root",
-          "label"
-        ]
-      },
-      "verdict": "not-editable",
-      "contentKind": "plain-text",
-      "selector": ".header [data-pqr-part=\"button-label\"]",
-      "allowedMarks": []
-    },
-    {
       "decisionId": "header-part-menu-burger",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -932,7 +541,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -954,7 +563,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],
@@ -976,7 +585,7 @@
           {
             "contract": {
               "id": "ds.header",
-              "version": "3.0.0"
+              "version": "3.1.0"
             }
           }
         ],

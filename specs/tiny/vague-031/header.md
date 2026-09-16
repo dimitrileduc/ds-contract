@@ -159,3 +159,88 @@ digest), `figma-text-styles-piqueray` (51 custom au lieu de 38 : les 20 nouveaux
 - Vues `Pages` (210:325) : instances de l'ancien master DS `Header` 84:285 intactes (pivot fin de vague).
 - Le footer : clones bruts posés dans `031 · FOOTER — 4 variantes`, non nettoyés.
 - Le master DS `Header` 84:285 : intact (pivot en fin de vague, comme HeroVideo).
+
+## Contrat 3.1.0 + Odoo (orchestrateur, 2026-09-16) — les trois icônes et le bouton quittent la barre
+
+**Demande owner (2026-09-16)** : vérifier les icônes Recherche / Compte / Panier → **les trois partent** (Recherche était déjà
+hors contrat depuis 3.0.0 ; Compte et Panier partent aussi, Mail avec elles — « c'est pas page contact ») ; le bouton
+« Contactez-nous » disparaît au profit d'une **entrée de nav « Contact »** ; la boutique Odoo devient une **entrée « Boutique »**
+avec lien (capture de la prod du client à l'appui) ; « Rendez-vous » (présent en prod) n'est **pas repris** ; le menu mobile suit.
+
+**Ordre §VIII tenu** : planche d'abord (`031 · 28 · HEADER + MENU MOBILE — proposition`, cadre auto-layout à droite de la section
+Header, actuel/proposé aux 4 écrans + les deux menus), GO owner « c tt bon pr moi », puis les masters. Planche retirée après
+pose (version nommée), comme pour les CTA du 2026-09-09.
+
+- **§X** : 10 PNG « avant » (6 variantes + 4 témoins, tailles vérifiées sur disque) dans `.page-parity/vague-031/header-sans-icones/avant/`,
+  version `031 · 28 · AVANT — …` ; 10 PNG « après » + version `031 · 28 · APRÈS — …`. Comptes d'instances identiques avant/après
+  (Header 12/12/11/11, MenuMobile 3/3) ; les **36 vues** de la page `Pages` montrent les six entrées.
+- **Gestes sur `Header` 2732:12096** (Desktop + Wide) : `iconsNav` retiré, `Bouton` retiré, deux `NavItem` clonés depuis « À propos »
+  (« Boutique » en 3ᵉ, « Contact » en dernier, chevron faux). **Deux conséquences mesurées sur le set, posées à la source** :
+  · Desktop — six entrées à l'écart 32 débordaient de **10 px** sur le logo (utile 1104, logo 180, nav 934) → `nav.itemSpacing`
+    lié à **`space/24`** (nav 894, marge 30) ; Wide garde 32 (marge 436).
+  · Wide — sans le bouton (54 px) la barre retombait à **66 px** → `paddingTop/Bottom` liés à **`space/26`** comme Desktop, barre à 86.
+- **Gestes sur `MenuMobile` 2738:13621** (Mobile + Tablette) : `User` et `Cart` retirés de `actions` (la croix reste), deux
+  `MenuEntree` clonés (« Boutique », « Contact », chevron faux, Etat Fermé), `Bouton` retiré du `pied` (le téléphone reste).
+- **Dump + extraction** (`.page-parity/vague-031/header-sans-icones/{dumps,proposals}/`) : `Header` **28 notes, 0 non lié** — les
+  notes confirment le contrat (padding-block 26 en desktop ET wide ; nav itemSpacing 24 vs 32). `MenuMobile` : **extraction
+  refusée** par `vector-assets.ts` (« menu-mobile-croix has different geometry across captured occurrences ») — les deux SVG ne
+  diffèrent que par l'écriture d'un flottant (`3.05176e-05` contre `0`), bruit d'export, défaut d'instrument et non de source ;
+  le contrat a été édité à la main (retraits purs), la mise à jour n'en dépendait pas. `DW` à ouvrir : comparer les vecteurs à
+  une tolérance, pas à l'octet.
+
+**Contrats** : `ds.header` 3.0.0 → **3.1.0** (MINEUR : ancres inchangées, aucun prop retiré ; parts `iconsNav.*` et `Bouton`
+retirées, `nav.tokensByProp desktop.gap = space.24`, `root.tokensByProp wide.padding-block = space.26`) ; `ds.menu-mobile`
+1.0.0 → **1.1.0** (parts `actions.User/Cart`, `pied.Bouton/BoutonTablette` retirées). Aucun jeton neuf. Le registre d'icônes garde
+`user`, `cart`, `mail` (plus aucun contrat ne les référence — parité muette là-dessus, à trancher : les retirer du registre et
+de `assets/icons/` ou les garder pour la boutique).
+
+**Odoo** (addon **19.0.1.20.0**) :
+- `views/header.xml` : icônes et CTA retirés de la barre ; icônes et les deux boutons retirés du menu mobile.
+- `responsive/header.pqr.css` : plus de règles Mail/bouton ; `.header__nav` gap 24 à ≥ 992, 32 à ≥ 1600 ; padding-block 26 en Wide.
+  `responsive/menu-mobile.pqr.css` : règles Bouton/BoutonTablette retirées.
+- **Menu** : « Boutique » (`/shop`, séquence 25) et « Contact » (`/contactez-nous`, 50) sont posés en **Python**, pas dans
+  `menu_seed.xml` — `website_sale` sème déjà « Shop » sur `/shop` quand il est installé (il l'est chez le client) : la garde est
+  **par adresse** (aucune entrée du site ne mène déjà là), drapeau posé une fois (`piqueray_ds.menu_boutique_contact_finalized`),
+  install frais par `post_init_hook`, bases existantes par `migrations/19.0.1.20.0/`. « Portes de garage » reste un `<button>`
+  (a des enfants) ; « Portes d'entrée » n'a plus d'enfant → lien, sans chevron.
+- Miroirs : `header.authoring.json` 2.1.0 (24 épingles → 3.1.0, 6 contrôles + 10 parts CTA/icônes retirés, 7/7 · 16/16),
+  `menu-mobile.authoring.json` 1.1.0 (42 épingles, 12 contrôles + 14 parts retirés, 10/10 · 31/31), `version_guard.js`,
+  `scan-saved-versions.ts`, `components.xml` (15 × data-v*), `inputs.lock.json` re-épinglé (digest **inchangé** 02d3e549…),
+  `parity/baseline.json` : l'acquittement mort `figma|behind|Header.Bouton` retiré (14 → 13).
+
+**Mesure** (instance jetable `piqueray-odoo-header` :8140, base neuve, `.page-parity/vague-031/header-sans-icones/mesure.mts`,
+fond aplati #26282c, triptyques dans `mesure/`) :
+
+| Cible | Figma | Odoo | Écart | Lecture |
+|---|---|---|---|---|
+| Header 390 | 390×76 | 390×76 | 9 px (0,03 %) | contour du logo |
+| Header 834 | 834×76 | 834×76 | 9 px (0,01 %) | idem |
+| Header 1200 | 1200×86 | 1200×86 | 3 500 px (3,39 %) | lissage + **chevron de « Portes d'entrée »** (voir ci-dessous) |
+| Header 1728 | 1728×86 | 1728×86 | 3 499 px (2,35 %) | idem |
+| Menu 390 | 390×844 | 390×844 | 12 957 px (3,94 %) | + « Motorisation » (3ᵉ sous-entrée réelle, le set en dessine 2) |
+| Menu 834 | 834×1194 | 834×1194 | 11 588 px (1,16 %) | idem |
+
+Sonde (`probe-nav.mts`) : six largeurs d'entrée à ≤ 1 px du set (193,4/194 · 89,2/90 · 144,9/145 · 87,4/88 · 78,2/79), écart 24
+en Desktop, 32 en Wide, police Montserrat 500 16 uppercase. **Le seul écart de forme : « Portes d'entrée » = 153,6 px côté Odoo
+contre 178 dans le set — le set lui dessine un chevron (Chevron=true), Odoo n'en pose que s'il y a des enfants, et Motorisation
+est partie sous « Portes de garage » depuis la spec 037.** 24 px = chevron 16 + écart 8, d'où la nav 866,7/906,7 au lieu de 894/934.
+**À trancher (source)** : passer Chevron=false sur « Portes d'entrée » dans `Header` (2 variantes) et `MenuMobile` (2 variantes), ou
+lui rendre des enfants. Non fait : hors du GO du jour.
+
+**Chemin UPDATE prouvé** (instance :8140, `odoo shell`) : entrées `/shop` et `/contactez-nous` supprimées + drapeau effacé →
+`migrate()` de `19.0.1.20.0` les recrée aux séquences 25 et 50 sous la racine du site ; rejoué une seconde fois → toujours **2**
+entrées, aucun doublon (garde par adresse). Cas `website_sale` (un `/shop` déjà présent) non exécuté ici — le module n'est pas
+installé sur l'instance jetable ; la garde est la même ligne de code que celle qui a refusé le doublon au rejeu.
+
+**Test d'édition** : `odoo:qa:edition -- --only header` → **sauté** (`ODOO-LIMIT-GENERIQUE-SHELL` : le header n'est pas un snippet ;
+le menu s'édite par le dialogue natif « Éditer le menu », inchangé).
+
+**Portes** : build ✔ · geometry:gate ✔ (0 invisible) · odoo:authoring:check ✔ · odoo:module:check 23/23 ✔ · odoo:inputs:check
+(repin) ✔ · odoo:derivation:check ✔ · emitters:check ✔ (`core/samples/` d'AccordionRow / TexteSEO / FAQ périmés qui bougent —
+attendu) · tsc ×2 ✔ · parity ✔ (cliché rafraîchi via le pont, 13 acquittements, 0 dérive neuve) · figma:plan + catalog + golden
+re-pinnés · plugin:check ✔ (engine receipt re-enregistré) · roundtrip ✔ · core-browser ✔ · **eval : **249/252** (2026-09-16, seconde passe) — les 3 rouges sont ceux de HEAD (`figma-text-styles-piqueray`, `computed-floor-gate`, `preservation-013-clobber-detected`), aucun ne nomme le header ni le menu mobile. Un 4ᵉ rouge est apparu à la première passe et a été fermé : `odoo-production-version-drift` — la fixture `version-drift/cases.json` porte la version du module (`data-vcss/vxml/vjs`) et doit suivre le bump 19.0.1.20.0, c'est le **sixième miroir** d'un bump de module**.
+
+**Pièges d'exécution** : le dump complet (`dump.plugin.js`, toutes pages) dépasse les 30 s de `figma_execute` → le lancer en
+promesse non attendue + état dans `clientStorage`, résultat POSTé au receveur ; `playwright-core` 1.61 cherche `chromium-1228`
+alors que `npx playwright install` pose 1243 → `PLAYWRIGHT_CHROMIUM_PATH` ; ce worktree n'avait pas de `node_modules`
+(`sh: tsx: command not found` masqué par un `| tail`) — vérifier `ls node_modules` avant de lire un « exit 0 ».
