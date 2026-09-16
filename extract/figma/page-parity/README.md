@@ -3,7 +3,7 @@
 ## 1. What this is
 
 Proves — by measurement, not by inspection — that the 9 Piqueray maquette
-frames (page `Pages`, node `210:325`) rendered identically before and after
+frames (page `Pages` — since the 2026-09-09 tidy-up, one SECTION per site page holding the 4 v2 views + the frozen v1 base; the former `Pages - legacy` page `210:325` is gone) rendered identically before and after
 an externalization increment: a raw copy replaced by a governed instance, a
 token rename, a variable re-alias, a rollback. "Proof" is a narrow claim —
 **zero pixels differ** — not "looks the same". Two halves: **capture**
@@ -89,7 +89,7 @@ involved. `pages:ledger:check` exits non-zero on any incomplete ledger entry
 All four run inside Figma **desktop** via the **figma-console** bridge
 (`figma_execute`) against `Piqueray (Copy)` (fileKey
 `d9FYAUcqdcNtsuaMgLefvJ`) — the only route: `figma.loadAllPagesAsync()` must
-run first to reach the **local-only** `Pages` page (node `210:325`, the 9
+run first to reach the **local-only** `Pages` page (formerly node `210:325`, the 9
 maquettes), invisible to any server-side REST or MCP tool.
 
 A maquette frame @1x runs several MB — past what a single tool result can

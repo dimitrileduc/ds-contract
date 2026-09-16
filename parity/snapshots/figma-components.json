@@ -1,79 +1,8 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1788946347367,
+  "extractedAt": 1788953059689,
   "sets": [
-    {
-      "name": "Input",
-      "nodeId": "2053:1245",
-      "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
-      "description": "Input — generated from contract ds.input v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:1": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Textarea",
-      "nodeId": "2053:1247",
-      "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
-      "description": "Textarea — generated from contract ds.textarea v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:2": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Select",
-      "nodeId": "2053:1249",
-      "key": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "description": "Select — generated from contract ds.select v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:3": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Checkbox",
-      "nodeId": "2053:1256",
-      "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-      "description": "Checkbox — generated from contract ds.checkbox v1.0.1",
-      "variantCount": 2,
-      "properties": {
-        "Coche": {
-          "type": "VARIANT",
-          "defaultValue": "Non",
-          "variantOptions": [
-            "Non",
-            "Oui"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
     {
       "name": "Facebook",
       "nodeId": "2053:1259",
@@ -261,36 +190,6 @@
       "description": "Anciennement nommé « octicon:chevron-down-12 » sur le canvas. Glyphe hors registre (contracts/icons.registry.json ne le liste pas — gouvernance spec 002). Conservé tel quel, non réassigné à l'icône chevron-down du registre (226:373) : ses 4 usages actuels (dans les instances de Nav-item, en-tête du site) rendent visuellement à l'identique de ce glyphe précis, un ré-assignement serait un changement visuel non demandé. Décision d'adoption-ou-remplacement définitive léguée à la Spec B (FR-038, spec 005). Découvert sans emplacement de page (composant orphelin — aucun parent, non trouvé par balayage de page) avant ce déplacement ; c'est la première fois qu'il vit sur une page.",
       "variantCount": 1,
       "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Etoile vide",
-      "nodeId": "2480:5363",
-      "key": "d81e9895fa1953957d98abce4a9e9015f36d505f",
-      "description": "Étoile vide — position non atteinte d’une note. Même géométrie que Etoile, remplissage color/gris-clair.",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "PiquerayLogo",
-      "nodeId": "4:14",
-      "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-      "description": "PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0",
-      "variantCount": 2,
-      "properties": {
-        "Couleur": {
-          "type": "VARIANT",
-          "defaultValue": "Default",
-          "variantOptions": [
-            "Default",
-            "Blanc"
-          ],
-          "preferredValues": null
-        }
-      },
       "forwardedProperties": {},
       "nestedInstances": []
     },
@@ -518,6 +417,26 @@
       ]
     },
     {
+      "name": "PiquerayLogo",
+      "nodeId": "4:14",
+      "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
+      "description": "PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0",
+      "variantCount": 2,
+      "properties": {
+        "Couleur": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Blanc"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
       "name": "MemberPicture",
       "nodeId": "274:2389",
       "key": "70fdd040214e23fd7b5709b1009638a711b4080f",
@@ -536,19 +455,6 @@
       },
       "forwardedProperties": {},
       "nestedInstances": []
-    },
-    {
-      "name": "Style=Icône seule",
-      "nodeId": "2238:4411",
-      "key": "dc24a6d7ac9ee7223ff4e0d122918aba645e78e5",
-      "description": "",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "ArrowLeft",
-        "ArrowRight"
-      ]
     },
     {
       "name": "Notation",
@@ -574,92 +480,87 @@
       "nestedInstances": []
     },
     {
-      "name": "Field",
-      "nodeId": "2056:1278",
-      "key": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
-      "description": "Field — generated from contract ds.field v2.0.0 †",
+      "name": "Input",
+      "nodeId": "2782:43289",
+      "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f",
+      "description": "",
       "variantCount": 2,
       "properties": {
-        "Label#2056:4": {
+        "Valeur#2782:222": {
           "type": "TEXT",
-          "defaultValue": "Libellé",
+          "defaultValue": "",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Optionnel#2056:7": {
-          "type": "BOOLEAN",
-          "defaultValue": false,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Saisie#2056:10": {
-          "type": "INSTANCE_SWAP",
-          "defaultValue": "2053:1245",
-          "variantOptions": null,
-          "preferredValues": [
-            {
-              "type": "COMPONENT",
-              "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383"
-            },
-            {
-              "type": "COMPONENT",
-              "key": "3063f8a5ed587927ede2ae021433c705656acff5"
-            },
-            {
-              "type": "COMPONENT",
-              "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd"
-            }
-          ]
-        },
-        "Etat": {
+        "State": {
           "type": "VARIANT",
-          "defaultValue": "Normal",
+          "defaultValue": "Default",
           "variantOptions": [
-            "Erreur",
-            "Normal"
+            "Default",
+            "Focus Visible"
           ],
           "preferredValues": null
         }
       },
       "forwardedProperties": {},
-      "nestedInstances": [
-        "Input"
-      ]
+      "nestedInstances": []
     },
     {
-      "name": "AccordionRow",
-      "nodeId": "2059:1417",
-      "key": "6b15207fffd75082f1f8c423eab771aa6709179d",
-      "description": "AccordionRow — generated from contract ds.accordion-row v1.2.0 †",
-      "variantCount": 4,
+      "name": "Textarea",
+      "nodeId": "2782:43296",
+      "key": "58263ac06e29ffa202c3b2395085c3521ebd9646",
+      "description": "",
+      "variantCount": 2,
       "properties": {
-        "Titre#2059:13": {
+        "Valeur#2782:223": {
           "type": "TEXT",
-          "defaultValue": "Question",
+          "defaultValue": "",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Contenu#2059:18": {
-          "type": "TEXT",
-          "defaultValue": "Réponse",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Taille": {
+        "State": {
           "type": "VARIANT",
-          "defaultValue": "Grand",
+          "defaultValue": "Default",
           "variantOptions": [
-            "Grand",
-            "Petit"
+            "Default",
+            "Focus Visible"
           ],
           "preferredValues": null
-        },
-        "Etat": {
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Select",
+      "nodeId": "2782:46959",
+      "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3",
+      "description": "Select — generated from contract ds.select v1.0.0",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2782:255": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Checkbox",
+      "nodeId": "2053:1256",
+      "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
+      "description": "Checkbox — generated from contract ds.checkbox v1.0.1",
+      "variantCount": 2,
+      "properties": {
+        "Coche": {
           "type": "VARIANT",
-          "defaultValue": "Ferme",
+          "defaultValue": "Non",
           "variantOptions": [
-            "Ferme",
-            "Ouvert"
+            "Non",
+            "Oui"
           ],
           "preferredValues": null
         }
@@ -687,88 +588,6 @@
             "Defaut",
             "Selectionne"
           ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Carte",
-      "nodeId": "2063:1622",
-      "key": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-      "description": "Carte — generated from contract ds.carte v2.0.1 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 2,
-      "properties": {
-        "Titre#2063:26": {
-          "type": "TEXT",
-          "defaultValue": "Pour portes de garage",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2063:29": {
-          "type": "TEXT",
-          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Disposition": {
-          "type": "VARIANT",
-          "defaultValue": "Reassurance",
-          "variantOptions": [
-            "Reassurance",
-            "Categorie"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Carte/Categorie",
-      "nodeId": "2063:1611",
-      "key": "9fdaa971c9512d85eac458fcfef47525e5787b78",
-      "description": "",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2063:28": {
-          "type": "TEXT",
-          "defaultValue": "Pour portes de garage",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2063:31": {
-          "type": "TEXT",
-          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "Pdf",
-        "Download"
-      ]
-    },
-    {
-      "name": "ProductCard",
-      "nodeId": "2068:1972",
-      "key": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
-      "description": "ProductCard — generated from contract ds.product-card v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2068:34": {
-          "type": "TEXT",
-          "defaultValue": "Télécommande Hörmann HSE4-868BS",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Prix#2068:35": {
-          "type": "TEXT",
-          "defaultValue": "74,99€",
-          "variantOptions": null,
           "preferredValues": null
         }
       },
@@ -865,29 +684,6 @@
       "nestedInstances": []
     },
     {
-      "name": "Avantage",
-      "nodeId": "2088:2350",
-      "key": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
-      "description": "Avantage — generated from contract ds.avantage v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2088:41": {
-          "type": "TEXT",
-          "defaultValue": "Conseils personnalisés",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2088:42": {
-          "type": "TEXT",
-          "defaultValue": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
       "name": "SectionHeader",
       "nodeId": "2090:2397",
       "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
@@ -975,679 +771,170 @@
       "nestedInstances": []
     },
     {
-      "name": "Review-card",
-      "nodeId": "2480:5253",
-      "key": "864876fc02245c65ef4216bc4355e4128f79d181",
+      "name": "Field",
+      "nodeId": "2782:43327",
+      "key": "cc5fdd358f9a4668f3e1ed139d1b87f3cc7168de",
       "description": "",
       "variantCount": 2,
       "properties": {
-        "Initiale#2480:0": {
-          "type": "TEXT",
-          "defaultValue": "P",
+        "Obligatoire#2782:225": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
           "variantOptions": null,
           "preferredValues": null
         },
-        "Auteur#2480:1": {
+        "Label#2782:228": {
           "type": "TEXT",
-          "defaultValue": "Prénom N.",
+          "defaultValue": "Libellé",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Date#2480:2": {
-          "type": "TEXT",
-          "defaultValue": "il y a 2 mois",
+        "Optionnel#2782:231": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
           "variantOptions": null,
           "preferredValues": null
         },
-        "Témoignage#2480:3": {
-          "type": "TEXT",
-          "defaultValue": "Un témoignage neutre, exemple générique de contenu.",
+        "Saisie#2782:237": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "2782:43283",
           "variantOptions": null,
-          "preferredValues": null
+          "preferredValues": [
+            {
+              "type": "COMPONENT_SET",
+              "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "58263ac06e29ffa202c3b2395085c3521ebd9646"
+            }
+          ]
         },
-        "URL photo#2480:5": {
-          "type": "TEXT",
-          "defaultValue": "",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Alt photo#2480:6": {
-          "type": "TEXT",
-          "defaultValue": "",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Avatar": {
+        "Etat": {
           "type": "VARIANT",
-          "defaultValue": "Initiale",
+          "defaultValue": "Normal",
           "variantOptions": [
-            "Initiale",
-            "Photo"
+            "Normal",
+            "Erreur"
           ],
           "preferredValues": null
         }
       },
       "forwardedProperties": {},
       "nestedInstances": [
-        "Notation"
+        "Input"
       ]
     },
     {
-      "name": "CarteCategorie",
-      "nodeId": "2495:6770",
-      "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Titre#2495:11": {
-          "type": "TEXT",
-          "defaultValue": "Pour portes de garage",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2495:12": {
-          "type": "TEXT",
-          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Style": {
-          "type": "VARIANT",
-          "defaultValue": "Superpose",
-          "variantOptions": [
-            "Superpose",
-            "Empile"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Section Avis Google",
-      "nodeId": "2545:5685",
-      "key": "a4d8c699641576c3f44fa7042382979ef9445cdb",
-      "description": "GoogleReviewsSection — generated from contract ds.google-reviews-section v1.0.0",
+      "name": "Avantage",
+      "nodeId": "2782:38706",
+      "key": "74ddd5695503616aa0a1ea95139a1e9e05d0a3b7",
+      "description": "Avantage — generated from contract ds.avantage v1.0.0",
       "variantCount": 1,
       "properties": {
-        "Contrôles#2545:4": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
+        "Titre#2088:41": {
+          "type": "TEXT",
+          "defaultValue": "Conseils personnalisés",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2088:42": {
+          "type": "TEXT",
+          "defaultValue": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
           "variantOptions": null,
           "preferredValues": null
         }
       },
-      "forwardedProperties": {
-        "Afficher accroche#2169:64": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "AccordionRow",
+      "nodeId": "2767:20198",
+      "key": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
+      "description": "Cloné du set DS 2059:1417. Typo hiérarchisée sur le DS responsive (H4 / body), chevrons = icônes gouvernées, titre repliable, zone de clic étirée.",
+      "variantCount": 8,
+      "properties": {
+        "Titre#2059:13": {
+          "type": "TEXT",
+          "defaultValue": "Question",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Titre#2090:47": {
+        "Contenu#2059:18": {
           "type": "TEXT",
-          "defaultValue": "Plus de 1500 portes installées par année et autant de clients satisfaits",
+          "defaultValue": "Réponse",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Accroche#2090:46": {
+        "Taille": {
+          "type": "VARIANT",
+          "defaultValue": "Grand",
+          "variantOptions": [
+            "Grand",
+            "Petit"
+          ],
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Ferme",
+          "variantOptions": [
+            "Ferme",
+            "Ouvert"
+          ],
+          "preferredValues": null
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Hover",
+            "Default"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "ChevronDown"
+      ]
+    },
+    {
+      "name": "CarteReassurance",
+      "nodeId": "2700:25961",
+      "key": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Titre#2715:9": {
           "type": "TEXT",
-          "defaultValue": "Nos avis Google vérifiés",
+          "defaultValue": "Sécurité et conformité",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2715:12": {
+          "type": "TEXT",
+          "defaultValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
           "variantOptions": null,
           "preferredValues": null
         },
         "Alignement": {
           "type": "VARIANT",
-          "defaultValue": "Centre",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Contrôles#2178:80": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Volume#2178:79": {
-          "type": "TEXT",
-          "defaultValue": "93 avis",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Note globale#2178:78": {
-          "type": "TEXT",
-          "defaultValue": "4.8",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Qualificatif#2178:77": {
-          "type": "TEXT",
-          "defaultValue": "Excellent",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "SectionHeader",
-        "Avis Google",
-        "Notation",
-        "Review-card"
-      ]
-    },
-    {
-      "name": "Devis",
-      "nodeId": "2096:2524",
-      "key": "0caac7487988d0da129211e64a40545163149a6f",
-      "description": "Devis — generated from contract ds.devis v1.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2096:49": {
-          "type": "TEXT",
-          "defaultValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Formulaire",
-      "nodeId": "2096:2564",
-      "key": "b588bcccec2ae782382324bcda5fc257b91defd5",
-      "description": "Formulaire — generated from contract ds.formulaire v2.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Consentement#2096:52": {
-          "type": "TEXT",
-          "defaultValue": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {
-        "Afficher accroche#2169:64": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Titre#2090:47": {
-          "type": "TEXT",
-          "defaultValue": "Prenez contact avec nous dès maintenant !",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Accroche#2090:46": {
-          "type": "TEXT",
-          "defaultValue": "Une demande de devis ? Une réparation ?",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Alignement": {
-          "type": "VARIANT",
-          "defaultValue": "Centre",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "SectionHeader",
-        "Avantage",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "Field",
-        "Input",
-        "Textarea"
-      ]
-    },
-    {
-      "name": "Presentation",
-      "nodeId": "2103:2824",
-      "key": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
-      "description": "Presentation — generated from contract ds.presentation v2.5.0",
-      "variantCount": 1,
-      "properties": {
-        "Texte#2103:54": {
-          "type": "TEXT",
-          "defaultValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Bouton#2103:55": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Titre#2351:54": {
-          "type": "TEXT",
-          "defaultValue": "Piqueray, une histoire de famille ",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "FAQ",
-      "nodeId": "2104:2914",
-      "key": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-      "description": "FAQ — generated from contract ds.faq v1.3.0 †",
-      "variantCount": 1,
-      "properties": {
-        "Ligne 3#2104:59": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "SectionHeader",
-        "AccordionRow",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Coordonnees",
-      "nodeId": "2104:2904",
-      "key": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
-      "description": "Coordonnees — generated from contract ds.coordonnees v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {
-        "Afficher accroche#2169:64": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Titre#2090:47": {
-          "type": "TEXT",
-          "defaultValue": "Nos coordonnées",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Accroche#2090:46": {
-          "type": "TEXT",
-          "defaultValue": "Contact",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Alignement": {
-          "type": "VARIANT",
-          "defaultValue": "Gauche",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "SectionHeader"
-      ]
-    },
-    {
-      "name": "SAV",
-      "nodeId": "2108:3105",
-      "key": "bf5e147a9b56206eba9c73045d533c9868b445b2",
-      "description": "SAV — generated from contract ds.sav v1.3.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2351:50": {
-          "type": "TEXT",
-          "defaultValue": "Dépannage / SAV",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2351:51": {
-          "type": "TEXT",
-          "defaultValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "SectionHeader",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "TexteSEO",
-      "nodeId": "2108:3123",
-      "key": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
-      "description": "TexteSEO — generated from contract ds.texte-seo v2.1.0 †",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2545:2": {
-          "type": "TEXT",
-          "defaultValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "AccordionRow"
-      ]
-    },
-    {
-      "name": "Hero",
-      "nodeId": "2111:3382",
-      "key": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-      "description": "Hero — generated from contract ds.hero v1.6.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
-      "properties": {
-        "SousTitre#2351:49": {
-          "type": "TEXT",
-          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "SousTitre2#2538:0": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Titre#2545:1": {
-          "type": "TEXT",
-          "defaultValue": "Portes de garage industrielles",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Reassurances",
-      "nodeId": "2114:3721",
-      "key": "a303bd661e06746baa62828633b5c6132714a8c8",
-      "description": "Reassurances — generated from contract ds.reassurances v1.2.0 †",
-      "variantCount": 3,
-      "properties": {
-        "Disposition": {
-          "type": "VARIANT",
-          "defaultValue": "4 cartes",
+          "defaultValue": "Centré",
           "variantOptions": [
-            "4 cartes",
-            "QuatreCartesDeuxCta",
-            "5 cartes"
+            "Centré",
+            "Gauche"
           ],
           "preferredValues": null
         }
       },
       "forwardedProperties": {},
-      "nestedInstances": [
-        "SectionHeader",
-        "Carte",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Equipe",
-      "nodeId": "2115:3947",
-      "key": "786b6f6634939b2081530949058eddf071b22ab1",
-      "description": "Equipe — generated from contract ds.equipe v1.2.0",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "MemberCard",
-        "MemberPicture"
-      ]
-    },
-    {
-      "name": "CategoriesPrincipales",
-      "nodeId": "2115:4277",
-      "key": "94f64a369a5db615d68935bb353614eaaadbffc2",
-      "description": "Anciennement nommé « Catégories principales » sur le canvas. Section Catégories principales — met en avant les grandes catégories de produits (types de portes) juste après le bloc Hero, sur la plupart des pages du site. Une propriété Disposition (4 valeurs) fait varier la mise en page et le nombre de cartes affichées (2 ou 3) ; sur la variante Pleine largeur · RDV, une carte devient un bloc de rendez-vous. Seules les 3 variantes Pleine largeur instancient la molécule Carte ; la variante Standard reste construite en natif, non pilotable depuis l'instance.",
-      "variantCount": 12,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Wide",
-          "variantOptions": [
-            "Wide",
-            "Mobile",
-            "Desktop"
-          ],
-          "preferredValues": null
-        },
-        "Style": {
-          "type": "VARIANT",
-          "defaultValue": "Superpose",
-          "variantOptions": [
-            "Superpose",
-            "Empile"
-          ],
-          "preferredValues": null
-        },
-        "Colonnes": {
-          "type": "VARIANT",
-          "defaultValue": "2",
-          "variantOptions": [
-            "2",
-            "3"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "CarteCategorie",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "ProduitsECommerce",
-      "nodeId": "2116:4475",
-      "key": "a616f938df22515ef5778930a99802ea925de85f",
-      "description": "Anciennement nommé « Produits e-commerce » sur le canvas. Section qui met en avant une sélection de produits de la boutique en ligne : elle assemble une grille d'instances Product-card, un Carousel-controls pour naviguer entre les produits, et un Section-header pour l'intitulé de la section. Produits affichés et texte d'en-tête sont portés par ces instances imbriquées, modifiables depuis chaque occurrence du composant.",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2545:3": {
-          "type": "TEXT",
-          "defaultValue": "Découvrez nos produits disponibles en ligne",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "ProductCard",
-        "CarouselControls",
-        "ChevronLeft",
-        "ChevronRight"
-      ]
-    },
-    {
-      "name": "Realisations",
-      "nodeId": "2117:4691",
-      "key": "4a89264afa90d95c324efcdace47f1caf5617e62",
-      "description": "Anciennement nommé « Réalisations » sur le canvas. Section Réalisations : header + grille de 9 vignettes (1 Grand 743×743 span 2×2 + 8 Petit 340×340, GRID 4×3 gap 64). Propriété « En-tête » = Accroche (Section-header gouverné : Titre + accroche) | Presentation (titre 40px + texte descriptif 2 colonnes, gras par plage — NON la molécule Présentation gouvernée qui est en 32px). Photos = overrides de fill sur les vignettes (master Réalisation = tuile grise, sans slot). Défauts : Accroche = contenu Portes d'entrée ; Presentation = contenu Portes de garage industrielles.",
-      "variantCount": 2,
-      "properties": {
-        "En-tete": {
-          "type": "VARIANT",
-          "defaultValue": "Accroche",
-          "variantOptions": [
-            "Accroche",
-            "Presentation"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "SectionHeader",
-        "Realisation"
-      ]
-    },
-    {
-      "name": "Footer",
-      "nodeId": "2120:4785",
-      "key": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
-      "description": "Footer — generated from contract ds.footer v1.1.0 †",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "PiquerayLogo",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "FooterColumn",
-        "Copyright"
-      ]
-    },
-    {
-      "name": "Header",
-      "nodeId": "84:285",
-      "key": "4165b8449f68916cca476b62454ede85eea13420",
-      "description": "Header — generated from contract ds.header v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Fond": {
-          "type": "VARIANT",
-          "defaultValue": "Transparent",
-          "variantOptions": [
-            "Transparent"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "PiquerayLogo",
-        "NavItem",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "HeroVideo",
-      "nodeId": "2580:7392",
-      "key": "850737b8b65ad2d7d6f71608d380089d1c341653",
-      "description": "",
-      "variantCount": 3,
-      "properties": {
-        "Accroche#2580:4": {
-          "type": "TEXT",
-          "defaultValue": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Wide",
-          "variantOptions": [
-            "Wide",
-            "Compact",
-            "Desktop"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Avis Google",
-      "nodeId": "2178:7381",
-      "key": "9bc775b834830afc0b67841e8d341cf2efa3037c",
-      "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.2",
-      "variantCount": 1,
-      "properties": {
-        "Qualificatif#2178:77": {
-          "type": "TEXT",
-          "defaultValue": "Excellent",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Note globale#2178:78": {
-          "type": "TEXT",
-          "defaultValue": "4.8",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Volume#2178:79": {
-          "type": "TEXT",
-          "defaultValue": "93 avis",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Contrôles#2178:80": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Notation",
-        "Review-card"
-      ]
-    },
-    {
-      "name": "HeroVideo",
-      "nodeId": "2689:15832",
-      "key": "366023701e65d2e3091332db4de0dfe4de0d33d4",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Desktop",
-            "Wide",
-            "Tablette"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "CarteCategorie",
@@ -1693,102 +980,6 @@
       ]
     },
     {
-      "name": "CategoriesPrincipales",
-      "nodeId": "2693:20242",
-      "key": "6495b5175604b69af5a2b670bdbc1e49a60e68d3",
-      "description": "",
-      "variantCount": 8,
-      "properties": {
-        "Style": {
-          "type": "VARIANT",
-          "defaultValue": "Superpose",
-          "variantOptions": [
-            "Superpose",
-            "Empile"
-          ],
-          "preferredValues": null
-        },
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "CarteCategorie",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "SAV",
-      "nodeId": "2693:20992",
-      "key": "55d2731a22907512ac83a63499f969e0bd2bab36",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "ProduitsECommerce",
-      "nodeId": "2694:21337",
-      "key": "70f037b37186389a20d2025654428119ef584b35",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Titre#2738:69": {
-          "type": "TEXT",
-          "defaultValue": "Découvrez nos produits disponibles en ligne",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "ProductCard",
-        "CarouselControls",
-        "ChevronLeft",
-        "ChevronRight"
-      ]
-    },
-    {
       "name": "ProductCard",
       "nodeId": "2763:10149",
       "key": "2e7981e1e2deb32e4e98f291e31e66697cfbfc30",
@@ -1819,91 +1010,6 @@
       },
       "forwardedProperties": {},
       "nestedInstances": []
-    },
-    {
-      "name": "Devis",
-      "nodeId": "2694:21604",
-      "key": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "CarteReassurance",
-      "nodeId": "2700:25961",
-      "key": "88a244c4cd1ea23508c0a63a0e6596483e734f01",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Titre#2715:9": {
-          "type": "TEXT",
-          "defaultValue": "Sécurité et conformité",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2715:12": {
-          "type": "TEXT",
-          "defaultValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Alignement": {
-          "type": "VARIANT",
-          "defaultValue": "Centré",
-          "variantOptions": [
-            "Centré",
-            "Gauche"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Reassurances",
-      "nodeId": "2700:26297",
-      "key": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "CarteReassurance",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
     },
     {
       "name": "ReviewCard",
@@ -1982,6 +1088,389 @@
       ]
     },
     {
+      "name": "MenuEntree",
+      "nodeId": "2738:13482",
+      "key": "def00fcac5d711a43275c6a937f03e246b555cc4",
+      "description": "Entrée du menu mobile 031 (molécule). Axe Etat = Fermé | Ouvert (chevron tourné en orange, sous-entrées visibles le long d’un rail orange). Typographie par typography/menu/*, padding vertical par spacing/menu/entree-pad-v (Responsive). Construit le 2026-09-04 depuis le brainstorm Claude Design (piste A mobile, piste B tablette).",
+      "variantCount": 2,
+      "properties": {
+        "Libellé#2738:54": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Chevron#2738:57": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Sous-entrée 1#2738:60": {
+          "type": "TEXT",
+          "defaultValue": "Portes résidentielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Sous-entrée 2#2738:63": {
+          "type": "TEXT",
+          "defaultValue": "Portes industrielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Deux sous-entrées#2738:66": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Fermé",
+          "variantOptions": [
+            "Fermé",
+            "Ouvert"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "SousEntree",
+      "nodeId": "2793:49492",
+      "key": "ae2d1314bdd33d4b6b6d6adbe637ce85bdd4ced6",
+      "description": "Une sous-entrée du sous-menu desktop/wide (option A, 2026-09-08). Etat=Actif : page courante — libellé orange + soulignement (même règle que NavItem.Actif). Survol = orange (fait d’état du contrat, non dessiné). Rangée à la boîte tactile 44.",
+      "variantCount": 2,
+      "properties": {
+        "Libellé#2793:256": {
+          "type": "TEXT",
+          "defaultValue": "Portes résidentielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Etat": {
+          "type": "VARIANT",
+          "defaultValue": "Repos",
+          "variantOptions": [
+            "Repos",
+            "Actif"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "SousMenu",
+      "nodeId": "2793:49493",
+      "key": "74abf72bd929e46cd854b04d2663a0d3fb46c6da",
+      "description": "Sous-menu desktop/wide (option A retenue le 2026-09-08). Panneau noir-bleuté, filet blanc-14, rail orange + liste de sous-entrées (répétition de SousEntree : 3 dessinées, la liste réelle vient de website.menu). Se pose sous la barre, texte aligné sur le libellé du parent. Ouverture au clic (disclosure), Échap ferme — comportement, pas dessiné.",
+      "variantCount": 1,
+      "properties": {},
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "SousEntree"
+      ]
+    },
+    {
+      "name": "Header",
+      "nodeId": "2732:12096",
+      "key": "7c1e4586ab514d119e71389d1f60efa82d6c5513",
+      "description": "Header 031 — axe Presentation (Mobile 390 / Tablette 834 / Desktop 1200 / Wide 1728), construit le 2026-09-03 depuis les 4 vues home de la page 031, sans redessin. Enfants gouvernés en instances DS : PiquerayLogo, NavItem, Bouton. Mode Responsive posé par variante. Largeur minimale de la nav : Desktop 1113, Wide 1487 (au-dessous, la nav chevauche le logo).",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Wide",
+            "Mobile",
+            "Tablette",
+            "Desktop"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "PiquerayLogo"
+      ]
+    },
+    {
+      "name": "MenuMobile",
+      "nodeId": "2738:13621",
+      "key": "a2eb854dd98fd60de2fb958324fd6e22c552f007",
+      "description": "Menu mobile 031 (menu ouvert). Presentation=Mobile : plein écran typographique 390×844 (piste A) ; Presentation=Tablette : écran 834×1194 = voile noir-bleuté 72 % + tiroir 420 ancré à droite (piste B). Composé d’instances DS : PiquerayLogo, MenuEntree ×4, Bouton (Blanc / Outline blanc), icônes Utilisateur et Panier du header. Décision owner 2026-09-04. L’ouverture est une interaction (prototype), pas une propriété du header.",
+      "variantCount": 2,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "PiquerayLogo",
+        "MenuEntree",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "HeroVideo",
+      "nodeId": "2689:15832",
+      "key": "366023701e65d2e3091332db4de0dfe4de0d33d4",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Desktop",
+            "Wide",
+            "Tablette"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Hero",
+      "nodeId": "2770:20976",
+      "key": "18e85e203a80f1190745ae89352759020b6cbaa0",
+      "description": "Décisions owner : « B » (Mobile/Tablette texte centré, bouton pleine largeur en pied à 64) et voile : Mobile/Tablette = celui du HeroVideo (fond color/noir-voile-25 + dégradé bas 12 arrêts montant du haut jusqu'à 88 %, décision owner 2026-09-09 — le texte y est centré, l'ancien voile ne noircissait que le bas) ; Desktop/Wide = fond color/noir-voile-40 + dégradé bas transparent→70 % à partir de 30 % (décision owner 2026-09-08). Desktop/Wide texte en bas à gauche. VoileNavigation = HeroVideo par mode. Titre H1, sous-titre body (gras conservé), gouttières 24/48/56/89, hauteur 640.",
+      "variantCount": 4,
+      "properties": {
+        "SousTitre#2770:195": {
+          "type": "TEXT",
+          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "SousTitre2#2770:196": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2770:197": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage industrielles",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "CategoriesPrincipales",
+      "nodeId": "2693:20242",
+      "key": "6495b5175604b69af5a2b670bdbc1e49a60e68d3",
+      "description": "",
+      "variantCount": 8,
+      "properties": {
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose",
+            "Empile"
+          ],
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "CarteCategorie",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Presentation",
+      "nodeId": "2693:20805",
+      "key": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "SAV",
+      "nodeId": "2693:20992",
+      "key": "55d2731a22907512ac83a63499f969e0bd2bab36",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "ProduitsECommerce",
+      "nodeId": "2694:21337",
+      "key": "70f037b37186389a20d2025654428119ef584b35",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Titre#2738:69": {
+          "type": "TEXT",
+          "defaultValue": "Découvrez nos produits disponibles en ligne",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "ProductCard",
+        "CarouselControls",
+        "ChevronLeft",
+        "ChevronRight"
+      ]
+    },
+    {
+      "name": "Devis",
+      "nodeId": "2694:21604",
+      "key": "ad0f843aa5f283f03f401f9676d0cf1eeb21dcf1",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Reassurances",
+      "nodeId": "2700:26297",
+      "key": "279d958b1cc73da32d9ecf33b8dcfa6478716160",
+      "description": "",
+      "variantCount": 4,
+      "properties": {
+        "Presentation": {
+          "type": "VARIANT",
+          "defaultValue": "Mobile",
+          "variantOptions": [
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
+          ],
+          "preferredValues": null
+        }
+      },
+      "forwardedProperties": {},
+      "nestedInstances": [
+        "CarteReassurance",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
       "name": "AvisGoogle",
       "nodeId": "2700:28391",
       "key": "92ddbd842f0f0a22f284322298a9a6865c397055",
@@ -2040,193 +1529,10 @@
       ]
     },
     {
-      "name": "Header",
-      "nodeId": "2732:12096",
-      "key": "7c1e4586ab514d119e71389d1f60efa82d6c5513",
-      "description": "Header 031 — axe Presentation (Mobile 390 / Tablette 834 / Desktop 1200 / Wide 1728), construit le 2026-09-03 depuis les 4 vues home de la page 031, sans redessin. Enfants gouvernés en instances DS : PiquerayLogo, NavItem, Bouton. Mode Responsive posé par variante. Largeur minimale de la nav : Desktop 1113, Wide 1487 (au-dessous, la nav chevauche le logo).",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Wide",
-            "Mobile",
-            "Tablette",
-            "Desktop"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "PiquerayLogo"
-      ]
-    },
-    {
-      "name": "Footer",
-      "nodeId": "2735:12509",
-      "key": "cf79e2e8f660aec1cd30185d29b6134b11a86f63",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "PiquerayLogo",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "FooterColumn",
-        "Facebook",
-        "Instagram",
-        "Copyright"
-      ]
-    },
-    {
-      "name": "MenuEntree",
-      "nodeId": "2738:13482",
-      "key": "def00fcac5d711a43275c6a937f03e246b555cc4",
-      "description": "Entrée du menu mobile 031 (molécule). Axe Etat = Fermé | Ouvert (chevron tourné en orange, sous-entrées visibles le long d’un rail orange). Typographie par typography/menu/*, padding vertical par spacing/menu/entree-pad-v (Responsive). Construit le 2026-09-04 depuis le brainstorm Claude Design (piste A mobile, piste B tablette).",
-      "variantCount": 2,
-      "properties": {
-        "Libellé#2738:54": {
-          "type": "TEXT",
-          "defaultValue": "Portes de garage",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Chevron#2738:57": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Sous-entrée 1#2738:60": {
-          "type": "TEXT",
-          "defaultValue": "Portes résidentielles",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Sous-entrée 2#2738:63": {
-          "type": "TEXT",
-          "defaultValue": "Portes industrielles",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Deux sous-entrées#2738:66": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Etat": {
-          "type": "VARIANT",
-          "defaultValue": "Fermé",
-          "variantOptions": [
-            "Fermé",
-            "Ouvert"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "MenuMobile",
-      "nodeId": "2738:13621",
-      "key": "a2eb854dd98fd60de2fb958324fd6e22c552f007",
-      "description": "Menu mobile 031 (menu ouvert). Presentation=Mobile : plein écran typographique 390×844 (piste A) ; Presentation=Tablette : écran 834×1194 = voile noir-bleuté 72 % + tiroir 420 ancré à droite (piste B). Composé d’instances DS : PiquerayLogo, MenuEntree ×4, Bouton (Blanc / Outline blanc), icônes Utilisateur et Panier du header. Décision owner 2026-09-04. L’ouverture est une interaction (prototype), pas une propriété du header.",
-      "variantCount": 2,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "PiquerayLogo",
-        "MenuEntree",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "AccordionRow",
-      "nodeId": "2767:20198",
-      "key": "7b4cc8de5c5d3b5cc0c0acc97b26637258a27e1a",
-      "description": "Candidat v2 (2026-09-07) — cloné du set DS 2059:1417. Typo hiérarchisée sur le DS responsive (H4 / body), chevrons = icônes gouvernées, titre repliable, zone de clic étirée. 031 provisoire, non validé.",
-      "variantCount": 8,
-      "properties": {
-        "Titre#2059:13": {
-          "type": "TEXT",
-          "defaultValue": "Question",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Contenu#2059:18": {
-          "type": "TEXT",
-          "defaultValue": "Réponse",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Taille": {
-          "type": "VARIANT",
-          "defaultValue": "Grand",
-          "variantOptions": [
-            "Grand",
-            "Petit"
-          ],
-          "preferredValues": null
-        },
-        "Etat": {
-          "type": "VARIANT",
-          "defaultValue": "Ferme",
-          "variantOptions": [
-            "Ferme",
-            "Ouvert"
-          ],
-          "preferredValues": null
-        },
-        "State": {
-          "type": "VARIANT",
-          "defaultValue": "Default",
-          "variantOptions": [
-            "Hover",
-            "Default"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "ChevronDown"
-      ]
-    },
-    {
       "name": "TexteSEO",
       "nodeId": "2768:20428",
       "key": "3a13552df8319a513d0ee623f27c7b571013d96b",
-      "description": "Candidat v2 (2026-09-07) — décision owner « ok pour A » : Titre H2. Paragraphe body (Regular sous 992, Medium au-dessus), sous-titre H4 repliable, gouttières 24/48/56/89, lignes = AccordionRow v2. 031 provisoire.",
+      "description": "Décision owner « ok pour A » : Titre H2. Paragraphe body (Regular sous 992, Medium au-dessus), sous-titre H4 repliable, gouttières 24/48/56/89, lignes = AccordionRow v2.",
       "variantCount": 4,
       "properties": {
         "Titre#2768:187": {
@@ -2261,30 +1567,12 @@
       ]
     },
     {
-      "name": "Hero",
-      "nodeId": "2770:20976",
-      "key": "18e85e203a80f1190745ae89352759020b6cbaa0",
-      "description": "Candidat v2 (2026-09-07) — décisions owner : « B » (Mobile/Tablette texte centré, bouton pleine largeur en pied à 64) et voile : Mobile/Tablette = celui du HeroVideo (fond color/noir-voile-25 + dégradé bas 12 arrêts montant du haut jusqu'à 88 %, décision owner 2026-09-09 — le texte y est centré, l'ancien voile ne noircissait que le bas) ; Desktop/Wide = fond color/noir-voile-40 + dégradé bas transparent→70 % à partir de 30 % (décision owner 2026-09-08). Desktop/Wide texte en bas à gauche. VoileNavigation = HeroVideo par mode. Titre H1, sous-titre body (gras conservé), gouttières 24/48/56/89, hauteur 640. 031 provisoire.",
+      "name": "FAQ",
+      "nodeId": "2773:27504",
+      "key": "6a71ef12dca9523c5019defc7dad5139faf44f62",
+      "description": "Vague 031 : option B (en-tête à gauche, rangées Grand, CTA pleine largeur sous 992). Adopté.",
       "variantCount": 4,
       "properties": {
-        "SousTitre#2770:195": {
-          "type": "TEXT",
-          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "SousTitre2#2770:196": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Titre#2770:197": {
-          "type": "TEXT",
-          "defaultValue": "Portes de garage industrielles",
-          "variantOptions": null,
-          "preferredValues": null
-        },
         "Presentation": {
           "type": "VARIANT",
           "defaultValue": "Mobile",
@@ -2299,6 +1587,9 @@
       },
       "forwardedProperties": {},
       "nestedInstances": [
+        "AccordionRow",
+        "ChevronDown",
+        "ChevronUp",
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
@@ -2308,7 +1599,7 @@
       "name": "Realisations",
       "nodeId": "2773:27344",
       "key": "043a3f9354464eebfbb274d5176a67c571e18f87",
-      "description": "Section Realisations v2 (candidat vague 031). Axe Presentation = Mobile | Tablette | Desktop | Wide ; axe En-tete = Accroche | Presentation. Mosaique : 1 grande tuile sur 2x2 cellules + 8 petites. Colonnes 4 / 4 / 2 / 2 (Wide / Desktop / Tablette / Mobile), decision owner du 2026-09-07 (option B : deux colonnes en mobile). Titre centre en Mobile et Tablette, a gauche en Desktop et Wide.",
+      "description": "Section Realisations v2 (vague 031). Axe Presentation = Mobile | Tablette | Desktop | Wide ; axe En-tete = Accroche | Presentation. Mosaique : 1 grande tuile sur 2x2 cellules + 8 petites. Colonnes 4 / 4 / 2 / 2 (Wide / Desktop / Tablette / Mobile), decision owner du 2026-09-07 (option B : deux colonnes en mobile). Titre centre en Mobile et Tablette, a gauche en Desktop et Wide.",
       "variantCount": 8,
       "properties": {
         "En-tete": {
@@ -2338,65 +1629,10 @@
       ]
     },
     {
-      "name": "FAQ",
-      "nodeId": "2773:27504",
-      "key": "6a71ef12dca9523c5019defc7dad5139faf44f62",
-      "description": "candidat v2 — vague 031, option B (en-tête à gauche, rangées Grand, CTA pleine largeur sous 992). Proposition agent 2026-09-07.",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "AccordionRow",
-        "ChevronDown",
-        "ChevronUp",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
-      "name": "Presentation",
-      "nodeId": "2693:20805",
-      "key": "77a8baf2adfdba3bc6470c693c0fc717c99a33fc",
-      "description": "",
-      "variantCount": 4,
-      "properties": {
-        "Presentation": {
-          "type": "VARIANT",
-          "defaultValue": "Mobile",
-          "variantOptions": [
-            "Mobile",
-            "Tablette",
-            "Desktop",
-            "Wide"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
-      ]
-    },
-    {
       "name": "Equipe",
       "nodeId": "2777:30992",
       "key": "e5563df1e3d6a5e6d023174576ec6d16f54f997b",
-      "description": "Section Equipe Piqueray, v2 responsive. Axe Presentation=Mobile|Tablette|Desktop|Wide (390/834/1200/1728). La gouttiere vit dans la racine et est liee aux variables space 24/48/56/89 ; grille native 2/3/4/5 colonnes (Desktop 3→4 et Wide 4→5 le 2026-09-09, owner : portraits trop grands), ecarts lies a space 32. Carte en remplissage de piste : 155 / 224,67 / 248 / 284,4. Candidat adopte le 2026-09-07 ; le master v1 Equipe reste en place tant que le contrat n'est pas bascule.",
+      "description": "Section Equipe Piqueray, v2 responsive. Axe Presentation=Mobile|Tablette|Desktop|Wide (390/834/1200/1728). La gouttiere vit dans la racine et est liee aux variables space 24/48/56/89 ; grille native 2/3/4/5 colonnes (Desktop 3→4 et Wide 4→5 le 2026-09-09, owner : portraits trop grands), ecarts lies a space 32. Carte en remplissage de piste : 155 / 224,67 / 248 / 284,4. Adopté le 2026-09-07, contrat basculé.",
       "variantCount": 4,
       "properties": {
         "Presentation": {
@@ -2490,202 +1726,44 @@
       },
       "forwardedProperties": {},
       "nestedInstances": [
-        "Avantage · candidat v2",
-        "Field · candidat v2",
-        "Input · candidat v2",
-        "Textarea · candidat v2",
+        "Avantage",
+        "Field",
+        "Input",
+        "Textarea",
         "Bouton",
         "ArrowLeft",
         "ArrowRight"
       ]
     },
     {
-      "name": "Avantage · candidat v2",
-      "nodeId": "2782:38706",
-      "key": "74ddd5695503616aa0a1ea95139a1e9e05d0a3b7",
-      "description": "Avantage — generated from contract ds.avantage v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Titre#2088:41": {
-          "type": "TEXT",
-          "defaultValue": "Conseils personnalisés",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Texte#2088:42": {
-          "type": "TEXT",
-          "defaultValue": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Input · candidat v2",
-      "nodeId": "2782:43289",
-      "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f",
+      "name": "Footer",
+      "nodeId": "2735:12509",
+      "key": "cf79e2e8f660aec1cd30185d29b6134b11a86f63",
       "description": "",
-      "variantCount": 2,
+      "variantCount": 4,
       "properties": {
-        "Valeur#2782:222": {
-          "type": "TEXT",
-          "defaultValue": "",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "State": {
+        "Presentation": {
           "type": "VARIANT",
-          "defaultValue": "Default",
+          "defaultValue": "Mobile",
           "variantOptions": [
-            "Default",
-            "Focus Visible"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Textarea · candidat v2",
-      "nodeId": "2782:43296",
-      "key": "58263ac06e29ffa202c3b2395085c3521ebd9646",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Valeur#2782:223": {
-          "type": "TEXT",
-          "defaultValue": "",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "State": {
-          "type": "VARIANT",
-          "defaultValue": "Default",
-          "variantOptions": [
-            "Default",
-            "Focus Visible"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Field · candidat v2",
-      "nodeId": "2782:43327",
-      "key": "cc5fdd358f9a4668f3e1ed139d1b87f3cc7168de",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Obligatoire#2782:225": {
-          "type": "BOOLEAN",
-          "defaultValue": false,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Label#2782:228": {
-          "type": "TEXT",
-          "defaultValue": "Libellé",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Optionnel#2782:231": {
-          "type": "BOOLEAN",
-          "defaultValue": false,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Saisie#2782:237": {
-          "type": "INSTANCE_SWAP",
-          "defaultValue": "2782:43283",
-          "variantOptions": null,
-          "preferredValues": [
-            {
-              "type": "COMPONENT_SET",
-              "key": "f8f77493f71087c7cd3234dad79eeee0d7e7362f"
-            },
-            {
-              "type": "COMPONENT",
-              "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3"
-            },
-            {
-              "type": "COMPONENT_SET",
-              "key": "58263ac06e29ffa202c3b2395085c3521ebd9646"
-            }
-          ]
-        },
-        "Etat": {
-          "type": "VARIANT",
-          "defaultValue": "Normal",
-          "variantOptions": [
-            "Normal",
-            "Erreur"
+            "Mobile",
+            "Tablette",
+            "Desktop",
+            "Wide"
           ],
           "preferredValues": null
         }
       },
       "forwardedProperties": {},
       "nestedInstances": [
-        "Input · candidat v2"
-      ]
-    },
-    {
-      "name": "Select · candidat v2",
-      "nodeId": "2782:46959",
-      "key": "327d57d90e2f96f8640d0da0775c828ddf5ea4c3",
-      "description": "Select — generated from contract ds.select v1.0.0",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2782:255": {
-          "type": "TEXT",
-          "defaultValue": "",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "SousEntree",
-      "nodeId": "2793:49492",
-      "key": "ae2d1314bdd33d4b6b6d6adbe637ce85bdd4ced6",
-      "description": "Une sous-entrée du sous-menu desktop/wide (option A, 2026-09-08). Etat=Actif : page courante — libellé orange + soulignement (même règle que NavItem.Actif). Survol = orange (fait d’état du contrat, non dessiné). Rangée à la boîte tactile 44.",
-      "variantCount": 2,
-      "properties": {
-        "Libellé#2793:256": {
-          "type": "TEXT",
-          "defaultValue": "Portes résidentielles",
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Etat": {
-          "type": "VARIANT",
-          "defaultValue": "Repos",
-          "variantOptions": [
-            "Repos",
-            "Actif"
-          ],
-          "preferredValues": null
-        }
-      },
-      "forwardedProperties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "SousMenu",
-      "nodeId": "2793:49493",
-      "key": "74abf72bd929e46cd854b04d2663a0d3fb46c6da",
-      "description": "Sous-menu desktop/wide (option A retenue le 2026-09-08). Panneau noir-bleuté, filet blanc-14, rail orange + liste de sous-entrées (répétition de SousEntree : 3 dessinées, la liste réelle vient de website.menu). Se pose sous la barre, texte aligné sur le libellé du parent. Ouverture au clic (disclosure), Échap ferme — comportement, pas dessiné.",
-      "variantCount": 1,
-      "properties": {},
-      "forwardedProperties": {},
-      "nestedInstances": [
-        "SousEntree"
+        "PiquerayLogo",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "FooterColumn",
+        "Facebook",
+        "Instagram",
+        "Copyright"
       ]
     }
   ]

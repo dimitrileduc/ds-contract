@@ -135,10 +135,13 @@
   };
   for (const pg of pagesDS) collecterMasters(pg, pg);
 
-  // 2. Les 9 maquettes de la page `Pages`.
+  // 2. Les maquettes de la page `Pages` — depuis le rangement du 2026-09-09, une
+  //    SECTION par page du site (4 vues 390/834/1200/1728 + la base v1 figée) ;
+  //    l'ancienne page `Pages - legacy` (210:325) est supprimée. Cherchée par
+  //    NOM, l'identifiant de page n'étant plus stable d'un rangement à l'autre.
   if (veutMaquettes) {
-    const pagePages = figma.root.children.find((p) => p.id === '210:325');
-    if (!pagePages) throw new Error('photos-census.js: page Pages (210:325) introuvable');
+    const pagePages = figma.root.children.find((p) => p.name === 'Pages');
+    if (!pagePages) throw new Error('photos-census.js: page « Pages » introuvable');
     pagePages.children.forEach((c) => racines.push({ id: c.id, nom: c.name, type: c.type, page: pagePages.name, noeud: c }));
   }
 
